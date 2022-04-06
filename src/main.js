@@ -1,12 +1,26 @@
 import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./plugins/router";
+
+// Axios
+import VueAxios from "vue-axios";
+import Axios from "./plugins/axios/axiosPlugin";
+
+// Cookies
+import Vue3Cookies from "./plugins/cookies/Vue3-cookies";
+
+// pinia store
 import { createPinia } from "pinia";
 
-import App from "./App.vue";
-import router from "./router";
+// DayJS
+import dayjs from 'dayjs'
 
-const app = createApp(App);
+const app = createApp(App)
+  .use(createPinia())
+  .use(router)
+  .use(VueAxios, Axios)
+  .use(Vue3Cookies.VueCookies, Vue3Cookies.cookiesConfig);
 
-app.use(createPinia());
-app.use(router);
+app.config.globalProperties.$dayjs = dayjs;
 
 app.mount("#app");
