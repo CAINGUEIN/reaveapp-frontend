@@ -11,4 +11,7 @@ module.exports = {
   env: {
     "vue/setup-compiler-macros": true,
   },
+  rules: {
+    "vue/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+  }
 };

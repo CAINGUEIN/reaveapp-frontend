@@ -13,13 +13,16 @@ import Vue3Cookies from "./plugins/cookies/Vue3-cookies";
 import { createPinia } from "pinia";
 
 // DayJS
-import dayjs from 'dayjs'
+import dayjs from "dayjs";
+
+// TailwindCSS
+import "./assets/base.css";
 
 const app = createApp(App)
-  .use(createPinia())
   .use(router)
   .use(VueAxios, Axios)
-  .use(Vue3Cookies.VueCookies, Vue3Cookies.cookiesConfig);
+  .use(Vue3Cookies.VueCookies, Vue3Cookies.cookiesConfig)
+  .use(createPinia());
 
 app.config.globalProperties.$dayjs = dayjs;
 

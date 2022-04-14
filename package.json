@@ -8,7 +8,13 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@heroicons/vue": "^1.0.6",
+    "@tailwindcss/aspect-ratio": "^0.4.0",
+    "@tailwindcss/forms": "^0.5.0",
+    "@tailwindcss/typography": "^0.5.2",
+    "axios": "^0.26.1",
     "dayjs": "^1.11.0",
+    "dotenv": "^16.0.0",
     "pinia": "^2.0.11",
     "validator": "^13.7.0",
     "vue": "^3.2.31",
