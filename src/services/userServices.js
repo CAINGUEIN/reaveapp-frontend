@@ -1,4 +1,4 @@
-import Base from "../plugins/axios-plugin";
+import Base from "../plugins/axios/axiosPlugin";
 
 class UsersServices {
   static async usersList(filter) {
@@ -31,6 +31,18 @@ class UsersServices {
         console.log("error ", e);
         return e;
       });
+  }
+
+  static async checkToken() {
+    return Base.get(`/users/checkToken`)
+    .then((response) => {
+      console.log("auth : checkToken", response);
+      return response;
+    })
+    .catch((e) => {
+      console.log("error ", e);
+      return e;
+    })
   }
 }
 
