@@ -1,3 +1,61 @@
 @tailwind base;
+@layer base {
+    @font-face {
+      font-family: "Gotham";
+      font-weight: 900;
+      src: url(./font/Gotham/Gotham-Black.otf);
+    }
+    @font-face {
+      font-family: "Gotham";
+      font-weight: 700;
+      src: url(./font/Gotham/Gotham-Bold.otf);
+    }
+    @font-face {
+      font-family: "Gotham";
+      font-weight: 400;
+      src: url(./font/Gotham/Gotham-Book.otf);
+    }
+    @font-face {
+      font-family: "Gotham";
+      font-weight: 500;
+      src: url(./font/Gotham/Gotham-Medieum.otf);
+    }
+  }
 @tailwind components;
+@layer components {
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+      -webkit-text-fill-color: white;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+    h1 {
+      @apply text-H1 text-White font-sans font-black leading-none;
+    }
+    h2 {
+      @apply text-H2 text-white font-sans font-black;
+    }
+    h3 {
+      @apply text-H3 text-white font-sans font-black;
+    }
+    h4 {
+      @apply text-H3 text-white font-sans font-bold;
+    }
+    h5 {
+      @apply text-H5 text-white font-sans font-medium;
+    }
+    h6 {
+      @apply text-H6 text-white font-sans font-medium;
+    }
+    button {
+      @apply rounded-full w-full my-2 py-4 justify-center
+      font-serif font-semibold text-Body;
+    }
+  }
 @tailwind utilities;
