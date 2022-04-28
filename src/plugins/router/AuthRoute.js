@@ -14,4 +14,9 @@ export default [
     name: "Signup",
     component: () => import("../../views/Auth/SignupPage.vue"),
   },
+  {
+    path: "/logout",
+    name: "Logout",
+    component: () => import("../../views/Auth/LogoutPage.vue"),
+  },
 ];

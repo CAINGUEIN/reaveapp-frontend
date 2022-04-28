@@ -1,6 +1,9 @@
 <template>
-  <div class="bg-Anthracite">
-    <div v-if="store.isLogin === true">Pas encore fait</div>
+  <div class="bg-Anthracite h-full">
+    <div v-if="store.isLogin === true">
+      <ReaveLayout>
+      </ReaveLayout>
+    </div>
     <div v-else-if="store.isLogin === false">
       <AuthLayoutPage />
     </div>
@@ -12,12 +15,14 @@
 import useStoreAuth from "./plugins/stores/auth";
 /* Import components*/
 import AuthLayoutPage from "./views/Auth/AuthLayoutPage.vue";
+import ReaveLayout from "./views/Public/ReaveLayout.vue";
 
 export default {
   name: "App",
   components: {
     AuthLayoutPage,
-  },
+    ReaveLayout
+},
   data() {
     const store = useStoreAuth();
     return {

@@ -22,6 +22,11 @@ const Store = defineStore("auth", {
       }
       this.loading = false;
     },
+    deleteDataAccount(state) {
+      state.dataAccount = "";
+      state.isAdmin = false;
+      state.isLogin = false;
+    },
   },
 });
 

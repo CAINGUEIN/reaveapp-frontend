@@ -10,6 +10,11 @@ let routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import("../../App.vue"),
   },
+  {
+    path: "/tchat",
+    name: "Tchat",
+    component: () => import("../../views/Tchats/tchat.vue"),
+  },
 ];
 
 routes = routes.concat(routesAuth);

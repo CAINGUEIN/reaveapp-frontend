@@ -3,7 +3,6 @@ import { useCookies } from "vue3-cookies";
 
 const { cookies } = useCookies();
 
-
 const Base = axios.create({
   baseURL: import.meta.env.VITE_API_BACKURL,
 });
@@ -32,8 +31,12 @@ Base.interceptors.request.use(
 Base.interceptors.response.use((response) => {
   console.log("dans le interceptor response", response);
   /* viser si possible la mise en cookies du token de connection
-  cookies.set("userSession", response.data.access_token)
-  */
+   */
+  if (response.data.token) {
+    console.log("set token", response.data.token);
+    cookies.set("userSession", response.data.token);
+  }
+  return response;
 });
 
 if (import.meta.env.VITE_API_WATCHSERVICES === "yes") {

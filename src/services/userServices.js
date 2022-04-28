@@ -34,7 +34,7 @@ class UsersServices {
   }
 
   static async checkToken() {
-    return Base.get(`/users/checkToken`)
+    return Base.get(`/user/checkToken`)
     .then((response) => {
       console.log("auth : checkToken", response);
       return response;

@@ -14,7 +14,7 @@
           : ''
       "
       :value="modelValue"
-      @input="$emit('update:modelValue', !modelValue)"
+      @input="$emit('update:modelValue', modelValue)"
       :disabled="store.loading"
     />
     <div>

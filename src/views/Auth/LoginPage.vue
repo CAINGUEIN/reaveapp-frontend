@@ -80,9 +80,9 @@ export default {
         password: this.password.value,
       };
       let result = await AuthServices.login(forLogin);
-      if (result.data.access_token) {
-        this.$cookies.set("userSession", result.data.access_token);
-        store.commit("feedDataAccount");
+      if (result.data.token) {
+        this.$cookies.set("userSession", result.data.token);
+        this.store.feedDataAccount;
         this.errors = ErrorsHelpers.resetError();
         this.$router.push({ name: "Home" });
       } else {
