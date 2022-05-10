@@ -1,5 +1,5 @@
 import { createApp } from "vue";
-import App from "./App.vue";
+import App from "./core/App.vue";
 import router from "./plugins/router";
 
 // Axios
@@ -11,18 +11,19 @@ import Vue3Cookies from "./plugins/cookies/Vue3-cookies";
 
 // pinia store
 import { createPinia } from "pinia";
+const usePinia = createPinia()
 
 // DayJS
 import dayjs from "dayjs";
 
 // TailwindCSS
-import "./assets/base.css";
+import "./core/assets/base.css";
 
 const app = createApp(App)
+  .use(usePinia)
   .use(router)
   .use(VueAxios, Axios)
-  .use(Vue3Cookies.VueCookies, Vue3Cookies.cookiesConfig)
-  .use(createPinia());
+  .use(Vue3Cookies.VueCookies, Vue3Cookies.cookiesConfig);
 
 app.config.globalProperties.$dayjs = dayjs;
 

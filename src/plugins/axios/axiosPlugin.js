@@ -13,10 +13,10 @@ Base.interceptors.request.use(
     if (
       config.headers["Authorization"] === undefined &&
       config.baseURL === import.meta.env.VITE_API_BACKURL &&
-      cookies.get("userSession") !== undefined
+      cookies.get("userSession") !== null
     ) {
       config.headers["Authorization"] = "bearer " + cookies.get("userSession");
-      console.log("rajout du headers Authorization");
+      console.log("rajout du headers Authorization", cookies.get("userSession"));
     } else {
       console.log("pas de rajout du headers Authorization");
     }

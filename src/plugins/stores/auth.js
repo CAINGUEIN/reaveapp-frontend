@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import UsersServices from "../../services/userServices";
+import UsersServices from "../../modules/personal/services/userServices";
 
 const Store = defineStore("auth", {
   state: () => {
@@ -17,10 +17,13 @@ const Store = defineStore("auth", {
       this.dataAccount = result.data.data;
       if (result.status == "200") {
         this.isLogin = true;
+        this.loading = false;
+        return true;
       } else {
         this.isLogin = false;
+        this.loading = false;
+        return false;
       }
-      this.loading = false;
     },
     deleteDataAccount(state) {
       state.dataAccount = "";
@@ -30,4 +33,4 @@ const Store = defineStore("auth", {
   },
 });
 
-export default Store
+export default Store;
