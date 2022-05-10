@@ -18,7 +18,7 @@
     @font-face {
       font-family: "Gotham";
       font-weight: 500;
-      src: url(./font/Gotham/Gotham-Medieum.otf);
+      src: url(./font/Gotham/Gotham-Medium.otf);
     }
   }
 @tailwind components;
