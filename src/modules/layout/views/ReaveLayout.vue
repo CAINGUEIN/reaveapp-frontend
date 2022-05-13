@@ -48,16 +48,8 @@
     <div class="w-full flex flex-col">
       <div name="nav-bar-top" class="flex pt-8 items-center">
         <div name="space-for" class="flex space-x-2">
-          <img
-            src="http://via.placeholder.com/60"
-            alt=""
-            class="rounded-full my-auto"
-          />
-          <img
-            src="http://via.placeholder.com/60"
-            alt=""
-            class="rounded-full my-auto"
-          />
+          <SpaceNavBar @action="openSpace" :data="store.dataAccount.spaces" />
+
           <div class="bg-white h-14 my-auto w-1 rounded-full"></div>
           <button
             @click="openModal"
@@ -108,11 +100,16 @@
 
 <script>
 import CreateSpaceModal from "../../../core/components/modal/CreateSpaceModal.vue";
+import useStoreAuth from "../../../plugins/stores/auth";
+import SpaceNavBar from "../../../core/components/barNav/SpaceNavBar.vue";
+
 export default {
-  components: { CreateSpaceModal },
+  components: { CreateSpaceModal, SpaceNavBar },
   data() {
+    const store = useStoreAuth();
     return {
       isOpenModal: false,
+      store,
     };
   },
   methods: {
@@ -123,6 +120,10 @@ export default {
     },
     closeModal() {
       this.isOpenModal = false;
+    },
+    openSpace(target, type) {
+      this.$router.push({ path: "/space/" + type, query: { id: target } });
+      console.log("open", "/space/" + type + "/" + target);
     },
   },
 };

@@ -25,10 +25,13 @@ import UploadModel from "../../inputs/uploadModel.vue";
 import InputModel from "../../inputs/InputModel.vue";
 import ToolsButtonSubmit from "../../buttons/ToolsButtonSubmit.vue";
 import ErrorsHelpers from "../../../support/functions/ErrorsHelpers";
+import FriendsServices from "../../../../modules/friends/services/friendsServices";
+import useStoreSpace from "../../../../plugins/stores/storeSpace";
 
 export default {
   components: { UploadModel, InputModel, ToolsButtonSubmit },
   data() {
+    const storeSpace = useStoreSpace();
     return {
       imgUpload: {
         label: "Logo",
@@ -37,7 +40,7 @@ export default {
         value: "",
       },
       profile: {
-        label: "Profile",
+        label: "@Profile",
         name: "profile",
         type: "text",
         value: "",
@@ -49,27 +52,35 @@ export default {
         value: "",
       },
       errors: "",
+      storeSpace,
     };
   },
   methods: {
-    validate() {
-      let dataForRequeste = {
+    async validate() {
+      let dataRequeste = {
+        type: "friends",
         profile: this.profile.value,
         bio: this.bio.value,
       };
       //a recup dans le service les datas du user
       // pour le createBy:user._id
-      let result = await FriendsServices.create(dataForRequeste)
-      if (result.succes) {
-        let resultSpaceData = await this.storeSpace.feedDataSpace()
+      let result = await FriendsServices.create(dataRequeste);
+      console.log("ici dans result", result);
+      if (result.success) {
+        let resultSpaceData = await this.storeSpace.feedDataSpace(
+          result.idNewSpace
+        );
         if (resultSpaceData.succes) {
           this.errors = ErrorsHelpers.resetError();
-          this.$router.push({ name: "Friends"/* mettre l'_id du space */ });
+          this.$router.push({
+            path: "/space/friends",
+            query: { id: result.idNewSpace },
+          });
         } else {
-          this.errors = ErrorsHelpers.handleError(resultSpaceData.data.errors);
+          this.errors = ErrorsHelpers.handleError(/**/);
         }
       } else {
-        this.errors = ErrorsHelpers.handleError(result.data.errors);
+        this.errors = ErrorsHelpers.handleError(/**/);
       }
     },
   },

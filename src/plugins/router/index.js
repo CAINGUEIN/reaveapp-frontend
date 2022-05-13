@@ -8,9 +8,10 @@ let routes = [
   },
 ];
 
-import routesAuth from "../../modules/auth/router/AuthRoute";
+import routesAuth from "../../modules/auth/router/authRoute";
 import personalRoute from "../../modules/personal/router/personalRoute";
-routes = routes.concat(routesAuth, personalRoute);
+import spaceRoute from "../../modules/space/router/spaceRoute";
+routes = routes.concat(routesAuth, personalRoute, spaceRoute);
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

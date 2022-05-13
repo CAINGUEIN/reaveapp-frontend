@@ -3,10 +3,10 @@ import Base from "../../../plugins/axios/axiosPlugin";
 class FriendsServices {
   static async create(data) {
     let body = data
-    return Base.post(`/auth/login`, body)
+    return Base.post(`/space/create`, body)
     .then((response) => {
-      console.log("auth : login", response);
-      return response;
+      console.log("space friends create", response);
+      return response.data;
     })
     .catch((e) => {
       console.log("error ", e);

@@ -14,8 +14,9 @@ const Store = defineStore("auth", {
   actions: {
     async feedDataAccount() {
       let result = await UsersServices.checkToken();
+      console.log("dans le feedDataAccount" , result);
       this.dataAccount = result.data.data;
-      if (result.status == "200") {
+      if (result.data.success) {
         this.isLogin = true;
         this.loading = false;
         return true;
