@@ -4,15 +4,27 @@
       name="correspondants"
       class="w-64 bg-DarkRock rounded-tl-2xl flex flex-col justify-between"
     >
-      <div v-for="category in categories">
-        <h3>{{ category.name }}</h3>
-        <div v-for="room in category._id_rooms">
-          <button @click="joinServeur(room._id)">{{ room.name }}</button>
+      <div>
+        <div v-for="category in categories">
+          <div class="m-2 flex items-center justify-between">
+            <h3>{{ category.name }}</h3>
+            <button class="p-0 text-right" @click="openModalRoom(category._id)">
+              Add
+            </button>
+          </div>
+          <div class="mx-4" v-for="room in category._id_rooms">
+            <button class="m-0 p-0 text-left" @click="joinServeur(room._id)">
+              {{ room.name }}
+            </button>
+          </div>
         </div>
       </div>
       <div class="flex">
-        <button @click="openModal">Add Category</button>
-        <button @click="openModal">Add room</button>
+        <button
+          @click="openModalCategory(storeSpace.dataSpace.dataOfSpace._id)"
+        >
+          Add Category
+        </button>
       </div>
     </div>
     <div name="messages" class="flex flex-col flex-1 justify-between">
@@ -102,7 +114,16 @@
         </div>
       </div>
     </div>
-    <Createcategory @isOpenModal="closeModal" :isOpenModal="isOpenModal" />
+    <CreateCategory
+      @isOpenModal="closeModal"
+      :isOpenModal="isOpenModalCategory"
+      :_id_dataOfSpace="_id_data"
+    />
+    <CreateRoom
+      @isOpenModal="closeModal"
+      :isOpenModal="isOpenModalRoom"
+      :_id_category="_id_data"
+    />
 
     <!-- <p class="text-Gravel test-H5 font-normal">User: {{ store.dataAccount.userName }}</p>
     <p class="text-Gravel test-H5 font-normal">online: {{ users.length }}</p>
@@ -120,42 +141,60 @@
 import { io } from "socket.io-client";
 import ChatRoom from "./ChatRoom.vue";
 import useStoreAuth from "../../../plugins/stores/auth";
+import useStoreSpace from "../../../plugins/stores/storeSpace";
 import FriendsServices from "../../../modules/friends/services/friendsServices";
-import Createcategory from "../modal/Createcategory.vue";
+import CreateCategory from "../modal/Createcategory.vue";
+import CreateRoom from "../modal/CreateRoom.vue";
 
 export default {
-  components: { ChatRoom, Createcategory },
-  props: ["dataSpace"],
+  components: { ChatRoom, CreateCategory, CreateRoom },
   data() {
     const store = useStoreAuth();
+    const storeSpace = useStoreSpace();
     return {
       socket: io(import.meta.env.VITE_API_BACKURL),
       waiting: false,
-      isOpenModal: false,
+      _id_data: "",
+      isOpenModalCategory: false,
+      isOpenModalRoom: false,
       messages: [],
       users: [],
       store,
+      storeSpace,
       categories: "",
     };
   },
   methods: {
-    openModal() {
-      this.isOpenModal = true;
+    openModalCategory(id) {
+      this._id_data = id;
+      this.isOpenModalCategory = true;
+      this.isOpenModalRoom = false;
+      this.sidebarOpen = false;
+      console.log("open");
+    },
+    openModalRoom(id) {
+      this._id_data = id;
+      this.isOpenModalRoom = true;
+      this.isOpenModalCategory = false;
       this.sidebarOpen = false;
       console.log("open");
     },
     closeModal() {
-      this.isOpenModal = false;
+      this._id_data = "";
+      this.isOpenModalRoom = false;
+      this.isOpenModalCategory = false;
+      this.sidebarOpen = false;
     },
     log(param) {
       console.log("dans le log", param);
     },
     async dataquery() {
       this.waiting = true;
+      console.log(this.storeSpace.dataSpace.dataOfSpace, "ici dans le query");
+
       // ici je doit recup les categories et les rooms
-      console.log(this.dataSpace.dataOfSpace._id);
       let result = await FriendsServices.allRooms({
-        _id: this.dataSpace.dataOfSpace._id,
+        _id: this.storeSpace.dataSpace.dataOfSpace._id,
       });
       console.log(result);
       if (result.success) {
@@ -172,7 +211,6 @@ export default {
         room: targetRoom,
         _id_user: this.store.dataAccount._id,
       });
-      this.listen();
     },
     listen() {
       this.socket.on("loggedIn", (data) => {
@@ -206,6 +244,7 @@ export default {
     //recup le pseudo de l'utilisateur connecté
     this.username = this.store.dataAccount.userName;
     this.dataquery();
+    this.listen();
   },
 };
 </script>

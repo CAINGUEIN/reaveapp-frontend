@@ -1,6 +1,6 @@
 <template>
   <div v-if="!storeSpace.isWaiting" class="flex flex-col h-full">
-     <nav
+    <nav
       class="mt-2 flex h-16 min-w-max justify-between items-center bg-DarkRock rounded-full"
     >
       <div name="space-name" class="flex ml-4">
@@ -9,7 +9,7 @@
           alt=""
           class="rounded-full my-auto"
         />
-        <h4 class="ml-2">{{storeSpace.dataSpace.nameSpace}}</h4>
+        <h4 class="ml-2">{{ storeSpace.dataSpace.nameSpace }}</h4>
       </div>
       <div name="select-game" class="flex bg-Rock rounded-full">
         <img
@@ -59,7 +59,7 @@
       </div>
     </nav>
     <div class="flex-1">
-      <Tchat v-if="view === 'chat'" :dataSpace="storeSpace.dataSpace"/>
+      <Tchat v-if="view === 'chat'" />
     </div>
   </div>
 </template>
@@ -68,17 +68,31 @@
 import useStoreSpace from "../../../plugins/stores/storeSpace";
 import Tchat from "../../../core/components/chat/tchat.vue";
 export default {
-    data() {
-        const storeSpace = useStoreSpace();
-        return {
-            view: "chat",
-            storeSpace,
-            space: storeSpace.dataSpace,
-        };
+  components: { Tchat },
+  data() {
+    const storeSpace = useStoreSpace();
+    return {
+      view: "chat",
+      storeSpace,
+      space: "",
+    };
+  },
+  methods: {
+    async paramInURL() {
+      console.log("in param URL");
+      if (Object.keys(this.$route.query).length === 0) {
+        console.log("si rien " + this.$route.query);
+        //si rien on degage c'est pas normal
+      } else {
+        console.log(this.$route.query);
+        await this.storeSpace.feedDataSpace(this.$route.query);
+        this.space === this.storeSpace.dataSpace
+      }
     },
-    components: { Tchat },
-    mounted () {
-      console.log("le friends layout est mounted");;
-    },
+  },
+  async mounted() {
+    await this.paramInURL();
+    console.log("le friends layout est mounted");
+  },
 };
 </script>

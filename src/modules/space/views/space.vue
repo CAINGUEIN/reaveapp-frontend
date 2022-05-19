@@ -24,12 +24,13 @@ export default {
     };
   },
   methods: {
-    paramInURL() {
+    async paramInURL() {
       if (Object.keys(this.$route.query).length === 0) {
+        console.log("si rien " +this.$route.query);
         //si rien on degage c'est pas normal
       } else {
         console.log(this.$route.query.id);
-        this.storeSpace.feedDataSpace(this.$route.query);
+        await this.storeSpace.feedDataSpace(this.$route.query);
       }
     },
   },

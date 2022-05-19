@@ -39,9 +39,18 @@
           >
             <div>
               <div class="mt-3 sm:mt-5">
-                <ChoiseSpaceType v-if="target === ''" v-model="target" @close="close"/>
-                <CreateFriends v-else-if="target === 'friends'" v-model="target" @close="close"/>
-                <CreateTeam v-else-if="target === 'team'" v-model="target" @close="close"/>
+                <h3>Create your Category for chat</h3>
+                <InputModel
+                  class="mt-8"
+                  :data="name"
+                  v-model="name.value"
+                  :errors="errors"
+                />
+                <ToolsButtonSubmit
+                  @action="submit"
+                  txtButton="Create"
+                  :color="name.value === '' ? 'desactivated' : ''"
+                />
               </div>
             </div>
           </div>
@@ -58,34 +67,45 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import ChoiseSpaceType from "./ChoiseSpaceType.vue";
-import CreateFriends from "./CreateFriends.vue";
-import CreateTeam from "./CreateTeam.vue";
+import ToolsButtonSubmit from "../buttons/ToolsButtonSubmit.vue";
+import InputModel from "../inputs/InputModel.vue";
+import ChatServices from "../../../modules/space/services/chatServices"
 
 export default {
-  props: ["isOpenModal"],
+  props: ["isOpenModal", "_id_category"],
   components: {
     Dialog,
     DialogOverlay,
     TransitionChild,
     TransitionRoot,
-    ChoiseSpaceType,
-    CreateFriends,
-    CreateTeam
-},
+    InputModel,
+    ToolsButtonSubmit,
+  },
   data() {
-      return {
-          target: ""
-      }
+    return {
+      name: {
+        label: "Room name",
+        name: "name",
+        type: "text",
+        value: "",
+      },
+      errors: "",
+    };
   },
   methods: {
     close() {
       this.$emit("isOpenModal", false);
-      this.target = ""
+      this.target = "";
     },
-    changeTarget(value) {
-      this.target = value
-      console.log(value);
+    submit() {
+      //recup dans les props l'id de la category
+      //le nom de la room et le créateur
+      let createRoom= {
+        _id_category: this._id_category , 
+        name: this.name.value
+      }
+      let result = ChatServices.addRoom(createRoom)
+      console.log(result);
     },
   },
 };

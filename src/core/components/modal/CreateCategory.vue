@@ -69,9 +69,10 @@ import {
 } from "@headlessui/vue";
 import ToolsButtonSubmit from "../buttons/ToolsButtonSubmit.vue";
 import InputModel from "../inputs/InputModel.vue";
+import ChatServices from "../../../modules/space/services/chatServices"
 
 export default {
-  props: ["isOpenModal"],
+  props: ["isOpenModal", "_id_dataOfSpace"],
   components: {
     Dialog,
     DialogOverlay,
@@ -88,6 +89,7 @@ export default {
         type: "text",
         value: "",
       },
+      errors: "",
     };
   },
   methods: {
@@ -95,7 +97,16 @@ export default {
       this.$emit("isOpenModal", false);
       this.target = "";
     },
-    submit() {},
+    submit() {
+      //recup dans les props l'id du space
+      //le nom de la category et le créateur
+      let createCategory = {
+        _id_dataOfSpace: this._id_dataOfSpace,
+        name: this.name.value,
+      };
+      let result = ChatServices.addCategory(createCategory);
+      console.log(result);
+    },
   },
 };
 </script>
