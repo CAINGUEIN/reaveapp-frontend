@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <nav
+  <div v-if="!storeSpace.isWaiting" class="flex flex-col h-full">
+     <nav
       class="mt-2 flex h-16 min-w-max justify-between items-center bg-DarkRock rounded-full"
     >
       <div name="space-name" class="flex ml-4">
@@ -9,7 +9,7 @@
           alt=""
           class="rounded-full my-auto"
         />
-        <h4 class="ml-2">SPACE OF {{store.userName}}</h4>
+        <h4 class="ml-2">{{storeSpace.dataSpace.nameSpace}}</h4>
       </div>
       <div name="select-game" class="flex bg-Rock rounded-full">
         <img
@@ -58,21 +58,27 @@
         <input type="text" class="rounded-full my-2" />
       </div>
     </nav>
-    <router-view />
+    <div class="flex-1">
+      <Tchat v-if="view === 'chat'" :dataSpace="storeSpace.dataSpace"/>
+    </div>
   </div>
 </template>
 
 <script>
-import useStoreAuth from "../../../plugins/stores/auth";
-
+import useStoreSpace from "../../../plugins/stores/storeSpace";
+import Tchat from "../../../core/components/chat/tchat.vue";
 export default {
-  data() {
-    const store = useStoreAuth();
-    return {
-      store
-    }
-  },
+    data() {
+        const storeSpace = useStoreSpace();
+        return {
+            view: "chat",
+            storeSpace,
+            space: storeSpace.dataSpace,
+        };
+    },
+    components: { Tchat },
+    mounted () {
+      console.log("le friends layout est mounted");;
+    },
 };
 </script>
-
-<style lang="scss" scoped></style>

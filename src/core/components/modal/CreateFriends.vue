@@ -6,7 +6,7 @@
     >
       X
     </button>
-    <ProfilForSpace v-if="target === ''" />
+    <ProfilForSpace v-if="target === ''" @close="$emit('close')" />
   </div>
 </template>
 

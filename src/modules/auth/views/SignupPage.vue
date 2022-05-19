@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col p-12 pl-18 pb-8 max-w-authPage w-full">
     <div class="flex justify-between">
-      <img src="../../components/icons/Logo.svg" class="h-6" alt="" />
-      <img src="../../components/icons/Settings.svg" class="h-6 w-6" alt="" />
+      <img src="../../../core/assets/icons/logo.svg" class="h-6" alt="" />
+      <img src="../../../core/assets/icons/Settings.svg" class="h-6 w-6" alt="" />
     </div>
     <h1 class="w-164 mt-16 text-5xl">{{ title }}</h1>
     <div v-if="etape === 1" class="w-input">
@@ -14,8 +14,8 @@
       />
       <InputModel
         class="mt-8"
-        :data="username"
-        v-model="username.value"
+        :data="userName"
+        v-model="userName.value"
         :errors="errors"
       />
       <InputModel
@@ -37,11 +37,11 @@
         :errors="errors"
       />
       <ToolsButtonSubmit
-        @action="next"
+        @action="submit /* next */"
         txtButton="Continue"
         :color="
           email.value === '' ||
-          username.value === '' ||
+          userName.value === '' ||
           profilename.value === '' ||
           password.value === '' ||
           password.value !== confirmPassword.value
@@ -84,11 +84,17 @@
           v-model="cgu.value"
           :errors="errors"
         />
-        <router-link to="Login" class="ml-2 text-Blue text-H6 font-normal leading-none"
+        <router-link
+          to="Login"
+          class="ml-2 text-Blue text-H6 font-normal leading-none"
           >Terms of Service</router-link
         >
-        <span class="text-LightGrey text-H6 font-normal leading-none ml-2">and</span>
-        <router-link to="Login" class="ml-2 text-Blue text-H6 font-normal leading-none"
+        <span class="text-LightGrey text-H6 font-normal leading-none ml-2"
+          >and</span
+        >
+        <router-link
+          to="Login"
+          class="ml-2 text-Blue text-H6 font-normal leading-none"
           >Privacy Policy</router-link
         >
       </div>
@@ -125,11 +131,12 @@
 </template>
 
 <script>
-import InputModel from "../../components/core/input/InputModel.vue";
-import AuthServices from "../../services/authServices";
-import ToolsButtonSubmit from "../../support/toolsBox/ToolsButtonSubmit.vue";
-import useStoreAuth from "../../plugins/stores/auth";
-import CheckboxModel from "../../components/core/input/CheckboxModel.vue";
+import InputModel from "../../../core/components/inputs/InputModel.vue";
+import AuthServices from "../services/authServices";
+import ToolsButtonSubmit from "../../../core/components/buttons/ToolsButtonSubmit.vue";
+import useStoreAuth from "../../../plugins/stores/auth";
+import CheckboxModel from "../../../core/components/inputs/CheckboxModel.vue";
+import ErrorsHelpers from "../../../core/support/functions/ErrorsHelpers";
 
 export default {
   components: { InputModel, ToolsButtonSubmit, CheckboxModel },
@@ -144,9 +151,9 @@ export default {
         type: "text",
         value: "",
       },
-      username: {
+      userName: {
         label: "USERNAME",
-        name: "username",
+        name: "userName",
         type: "text",
         value: "",
       },
@@ -218,17 +225,28 @@ export default {
     },
     async submit() {
       this.store.loading = true;
-      let forReset = {
+      //passé pour plus tard mettre tout les elements
+      let forRegister = {
+        email: this.email.value,
+        userName: this.userName.value,
+        profilename: this.profilename.value,
+        password: this.password.value,
         email: this.email.value,
       };
-      let result = await AuthServices.login(forReset);
-      if (result.data.access_token) {
-        this.$cookies.set("userSession", result.data.access_token);
-        store.commit("feedDataAccount");
-        this.errors = ErrorsHelpers.resetError();
-        this.$router.push({ name: "Home" });
+      console.log(forRegister);
+      let result = await AuthServices.register(forRegister);
+      console.log(result);
+      if (result.data.success) {
+        this.$cookies.set("userSession", result.data.token);
+        let resultDataAccount = await this.store.feedDataAccount();
+        if (resultDataAccount) {
+          this.errors = ErrorsHelpers.resetError();
+          this.$router.push({ name: "Personal" });
+          this.store.loading = false;
+        }
       } else {
         this.errors = ErrorsHelpers.handleError(result.data.errors);
+        this.store.loading = false;
       }
     },
   },

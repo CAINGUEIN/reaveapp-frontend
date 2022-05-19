@@ -6,7 +6,11 @@ const Store = defineStore("auth", {
     //ici mes variables
     return {
       dataAccount: "",
+      //a mettre a jour aprés chaque modification d'un space
+      dataSpaces:"",
+      //aide pour l'etat de connection pour la redirection du router
       isLogin: "",
+      //pour desactiver certain boutton
       loading: false,
     };
   },
@@ -15,8 +19,9 @@ const Store = defineStore("auth", {
     async feedDataAccount() {
       let result = await UsersServices.checkToken();
       console.log("dans le feedDataAccount" , result);
-      this.dataAccount = result.data.data;
       if (result.data.success) {
+        this.dataSpaces = result.data.data.spaces;
+        this.dataAccount = result.data.data;
         this.isLogin = true;
         this.loading = false;
         return true;
@@ -26,10 +31,14 @@ const Store = defineStore("auth", {
         return false;
       }
     },
-    deleteDataAccount(state) {
-      state.dataAccount = "";
-      state.isAdmin = false;
-      state.isLogin = false;
+    //setter
+    updateDataSpaces(value) {
+      this.dataSpaces = value
+    },
+    async deleteDataAccount() {
+      this.dataAccount = "";
+      this.isAdmin = false;
+      this.isLogin = false;
     },
   },
 });

@@ -13,6 +13,18 @@ class FriendsServices {
       return e;
     })
   }
+  static async allRooms(data) {
+    let body = data
+    return Base.post(`/space/allRooms`, body)
+    .then((response) => {
+      console.log("space friends allRooms", response);
+      return response.data;
+    })
+    .catch((e) => {
+      console.log("error ", e);
+      return e;
+    })
+  }
 }
 
 export default FriendsServices;

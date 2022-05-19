@@ -5,11 +5,13 @@
       class="flex flex-col justify-between w-32 h-screen items-center"
     >
       <div name="top">
-        <img
-          src="../../../core/assets/icons/logo.svg"
-          alt=""
-          class="h-16 w-16 p-4 m-8 bg-DarkRock rounded-full"
-        />
+        <button class="m-0 p-0 pt-2" @click="goTo('PersonalMessages')">
+          <img
+            src="../../../core/assets/icons/logo.svg"
+            alt=""
+            class="h-16 w-16 p-4 m-8 bg-DarkRock rounded-full"
+          />
+        </button>
         <img
           src="http://via.placeholder.com/24"
           alt=""
@@ -33,11 +35,13 @@
       </div>
       <div name="bottom" class="my-8">
         <div class="bg-white h-1 w-14 mx-auto rounded-full"></div>
-        <img
-          src="../../../core/assets/icons/Settings.svg"
-          alt=""
-          class="h-16 w-16 p-4 mt-4 bg-DarkRock rounded-full"
-        />
+        <button @click="goTo('PersonalSettings')">
+          <img
+            src="../../../core/assets/icons/Settings.svg"
+            alt=""
+            class="h-16 w-16 p-4 mt-4 bg-DarkRock rounded-full"
+          />
+        </button>
         <img
           src="http://via.placeholder.com/60"
           alt=""
@@ -48,8 +52,7 @@
     <div class="w-full flex flex-col">
       <div name="nav-bar-top" class="flex pt-8 items-center">
         <div name="space-for" class="flex space-x-2">
-          <SpaceNavBar @action="openSpace" :data="store.dataAccount.spaces" />
-
+          <SpaceNavBar @action="openSpace" :data="store.dataSpaces" />
           <div class="bg-white h-14 my-auto w-1 rounded-full"></div>
           <button
             @click="openModal"
@@ -101,15 +104,18 @@
 <script>
 import CreateSpaceModal from "../../../core/components/modal/CreateSpaceModal.vue";
 import useStoreAuth from "../../../plugins/stores/auth";
+import useStoreSpace from "../../../plugins/stores/storeSpace";
 import SpaceNavBar from "../../../core/components/barNav/SpaceNavBar.vue";
 
 export default {
   components: { CreateSpaceModal, SpaceNavBar },
   data() {
     const store = useStoreAuth();
+    const storeSpace = useStoreSpace();
     return {
       isOpenModal: false,
       store,
+      storeSpace,
     };
   },
   methods: {
@@ -121,8 +127,15 @@ export default {
     closeModal() {
       this.isOpenModal = false;
     },
-    openSpace(target, type) {
-      this.$router.push({ path: "/space/" + type, query: { id: target } });
+    goTo(target) {
+      this.$router.push({ name: target });
+    },
+    async openSpace(target, type) {
+      if (await this.storeSpace.feedDataSpace({ id: target })) {
+        this.$router.push({ path: "/space/" + type, query: { id: target } });
+      } else {
+        this.$router.push({ name: "Personal"})
+      }
       console.log("open", "/space/" + type + "/" + target);
     },
   },

@@ -27,11 +27,13 @@ import ToolsButtonSubmit from "../../buttons/ToolsButtonSubmit.vue";
 import ErrorsHelpers from "../../../support/functions/ErrorsHelpers";
 import FriendsServices from "../../../../modules/friends/services/friendsServices";
 import useStoreSpace from "../../../../plugins/stores/storeSpace";
+import useStoreAuth from "../../../../plugins/stores/auth";
 
 export default {
   components: { UploadModel, InputModel, ToolsButtonSubmit },
   data() {
     const storeSpace = useStoreSpace();
+    const store = useStoreAuth();
     return {
       imgUpload: {
         label: "Logo",
@@ -53,6 +55,7 @@ export default {
       },
       errors: "",
       storeSpace,
+      store,
     };
   },
   methods: {
@@ -65,17 +68,20 @@ export default {
       //a recup dans le service les datas du user
       // pour le createBy:user._id
       let result = await FriendsServices.create(dataRequeste);
-      console.log("ici dans result", result);
+      console.log("ici dans result", result );
       if (result.success) {
+        this.store.updateDataSpaces(result.data.spaces)
         let resultSpaceData = await this.storeSpace.feedDataSpace(
-          result.idNewSpace
+          {id: result.idNewSpace}
         );
-        if (resultSpaceData.succes) {
+        console.log(resultSpaceData);
+        if (resultSpaceData) {
           this.errors = ErrorsHelpers.resetError();
           this.$router.push({
             path: "/space/friends",
             query: { id: result.idNewSpace },
           });
+          this.$emit("close")
         } else {
           this.errors = ErrorsHelpers.handleError(/**/);
         }

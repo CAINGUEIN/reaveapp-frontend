@@ -16,9 +16,7 @@ Base.interceptors.request.use(
       cookies.get("userSession") !== null
     ) {
       config.headers["Authorization"] = "bearer " + cookies.get("userSession");
-      console.log("rajout du headers Authorization", cookies.get("userSession"));
     } else {
-      console.log("pas de rajout du headers Authorization");
     }
     return config;
   },

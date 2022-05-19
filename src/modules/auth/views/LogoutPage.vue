@@ -2,17 +2,17 @@
   <div class="flex flex-col p-12 pl-18 pb-8 max-w-authPage w-full">
     <div class="flex justify-between">
       <img src="../../../core/assets/icons/logo.svg" class="h-6" alt="" />
-      <img src="../../../core/assets/icons/Settings.svg" class="h-6 w-6" alt="" />
+      <img
+        src="../../../core/assets/icons/Settings.svg"
+        class="h-6 w-6"
+        alt=""
+      />
     </div>
     <h1 class="w-164 mt-16">{{ nameTitle }}</h1>
     <div class="flex mt-24">
       <!-- soumettre BTN -->
       <div class="flex items-center justify-between">
-        <ToolsButtonSubmit
-          @action="logout"
-          txtButton="Logout"
-          :color="''"
-        />
+        <ToolsButtonSubmit @action="logout" txtButton="Logout" :color="''" />
       </div>
       <div class="mt-8 ml-8">
         <img src="http://via.placeholder.com/190" alt="" class="rounded" />
@@ -45,13 +45,12 @@ export default {
   methods: {
     async logout() {
       let result = await AuthServices.logout();
-      this.$cookies.remove("userSession"); //return this
-      this.store.deleteDataAccount;
-      if (result.status == "204") {
+      if (result.data.success) {
+        this.$cookies.remove("userSession"); //return this
+        this.store.deleteDataAccount;
         this.$router.replace({ name: "Login" });
       } else {
         console.log("erreur de deconnexion");
-        this.$router.replace({ name: "Login" });
       }
     },
   },

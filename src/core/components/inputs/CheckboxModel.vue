@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import ErrorsHelpers from "../../../support/functions/ErrorsHelpers";
+import ErrorsHelpers from "../../support/functions/ErrorsHelpers";
 import useStoreAuth from "../../../plugins/stores/auth";
 
 /**

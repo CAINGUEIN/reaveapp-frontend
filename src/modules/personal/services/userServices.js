@@ -8,7 +8,7 @@ class UsersServices {
     }
     console.log("users service called");
     // req
-    return Base.get(`/users`,{params})
+    return Base.get(`/user`,{params})
     .then((response) => {
       console.log("service : usersList : res ", response);
         return response;
@@ -19,10 +19,10 @@ class UsersServices {
       });
   }
 
-  static async deleteUser(uuid) {
+  static async deleteUser() {
     console.log("delete users service called");
     // req
-    return Base.delete(`/users/` + uuid)
+    return Base.delete(`/user/delete`)
     .then((response) => {
       console.log("service : deleteUser : res ", response);
         return response;

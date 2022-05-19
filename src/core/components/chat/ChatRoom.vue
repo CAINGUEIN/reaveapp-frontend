@@ -2,9 +2,9 @@
   <div>
     <div name="block-messages">
       
-      <div name="form-message">
+      <div name="form-message" class="flex">
         <InputModel
-          class="mt-8"
+          class=""
           :data="message"
           v-model="message.value"
         />
@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import InputModel from "../input/InputModel.vue";
-import ToolsButtonSubmit from "../../../support/toolsBox/ToolsButtonSubmit.vue";
+import InputModel from "../inputs/InputModel.vue";
+import ToolsButtonSubmit from "../buttons/ToolsButtonSubmit.vue";
 
 export default {
   components: { InputModel, ToolsButtonSubmit },

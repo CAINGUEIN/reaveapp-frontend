@@ -88,18 +88,19 @@ export default {
         password: this.password.value,
       };
       let result = await AuthServices.login(forLogin);
-      if (result.status === 200) {
+      if (result.data.success) {
         this.$cookies.set("userSession", result.data.token);
         let resultDataAccount = await this.store.feedDataAccount();
         if (resultDataAccount) {
           this.errors = ErrorsHelpers.resetError();
           this.$router.push({ name: "Personal" });
+          this.store.loading = false;
         }
       } else {
         this.errors = ErrorsHelpers.handleError(result.data.errors);
+        this.store.loading = false;
       }
     },
   },
 };
 </script>
-

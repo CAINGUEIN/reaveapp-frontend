@@ -16,6 +16,7 @@ class AuthServices {
 
   static async register(data) {
     let body = data
+    console.log("dans le register", body);
     return Base.post(`/auth/register`, body)
     .then((response) => {
       console.log("auth : register", response);
@@ -28,7 +29,7 @@ class AuthServices {
   }
     
   static async logout() {
-    return Base.post(`/auth/logout`)
+    return Base.get(`/auth/logout`)
     .then((response) => {
       console.log("auth : logout", response);
       return response;

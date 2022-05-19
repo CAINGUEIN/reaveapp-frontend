@@ -6,7 +6,7 @@ const StoreSpace = defineStore("space", {
   state: () => {
     //ici mes variables
     return {
-        DataSpace: "",
+        dataSpace: "",
         isWaiting: false,
     };
   },
@@ -15,7 +15,8 @@ const StoreSpace = defineStore("space", {
     async feedDataSpace(id) {
       this.isWaiting = true;
       let result = await SpaceServices.checkSpace(id);
-      this.DataSpace = result.data.data;
+      this.dataSpace = result.data.data;
+      console.log("dans le dataSpace", this.dataSpace);
       if (result.status == "200") {
         this.isWaiting = false;
         return true
@@ -25,7 +26,7 @@ const StoreSpace = defineStore("space", {
       }
     },
     deleteDataSpace(state) {
-      state.dataAccount = "";
+      state.dataSpace = "";
     },
   },
 });

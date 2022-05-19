@@ -8,12 +8,12 @@ export default [
       {
         path: "friends",
         name: "SpaceFriendsChat",
-        component: () => import("../../friends/views/friendsChat.vue"),
+        component: () => import("../../friends/views/FriendsChat.vue"),
       },
       {
         path: "friendsCalendar",
         name: "SpaceFriendsCalendar",
-        component: () => import("../../friends/views/friendsCalendar.vue"),
+        component: () => import("../../friends/views/FriendsCalendar.vue"),
       },
     ],
   },
