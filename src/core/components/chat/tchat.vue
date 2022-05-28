@@ -8,19 +8,30 @@
         <div v-for="category in categories">
           <div class="m-2 flex items-center justify-between">
             <h3>{{ category.name }}</h3>
-            <button class="p-0 text-right" @click="openModalRoom(category._id)">
-              Add
-            </button>
+            <div class="flex">
+              <button
+                class="p-0 m-1 text-right text-Green"
+                @click="openModalRoom(category._id)"
+              >
+                Add
+              </button>
+              <Delete @actionDelete="deleteCategory" :data="category" />
+            </div>
           </div>
-          <div class="mx-4" v-for="room in category._id_rooms">
+          <div class="mx-4 flex" v-for="room in category._id_rooms">
             <button class="m-0 p-0 text-left" @click="joinServeur(room._id)">
               {{ room.name }}
             </button>
+            <Delete
+              @actionDelete="deleteRoom(room._id, category._id)"
+              :data="room"
+            />
           </div>
         </div>
       </div>
       <div class="flex">
         <button
+          class="p-0 m-1 text-Green"
           @click="openModalCategory(storeSpace.dataSpace.dataOfSpace._id)"
         >
           Add Category
@@ -79,41 +90,7 @@
         </div>
       </div>
     </div>
-    <div name="correspondants-contact" class="">
-      <div class="flex rounded-xl m-2 px-4 py-1 bg-LightRock">
-        <img
-          src="http://via.placeholder.com/40"
-          alt=""
-          class="rounded-full my-auto"
-        />
-        <div name="user-div" class="ml-2">
-          <h5>User</h5>
-          <p>Mood message</p>
-        </div>
-      </div>
-      <div class="flex rounded-xl m-2 px-4 py-1 bg-LightRock">
-        <img
-          src="http://via.placeholder.com/40"
-          alt=""
-          class="rounded-full my-auto"
-        />
-        <div name="user-div" class="ml-2">
-          <h5>User</h5>
-          <p>Mood message</p>
-        </div>
-      </div>
-      <div class="flex rounded-xl m-2 px-4 py-1 bg-LightRock">
-        <img
-          src="http://via.placeholder.com/40"
-          alt=""
-          class="rounded-full my-auto"
-        />
-        <div name="user-div" class="ml-2">
-          <h5>User</h5>
-          <p>Mood message</p>
-        </div>
-      </div>
-    </div>
+    
     <CreateCategory
       @isOpenModal="closeModal"
       :isOpenModal="isOpenModalCategory"
@@ -124,16 +101,6 @@
       :isOpenModal="isOpenModalRoom"
       :_id_category="_id_data"
     />
-
-    <!-- <p class="text-Gravel test-H5 font-normal">User: {{ store.dataAccount.userName }}</p>
-    <p class="text-Gravel test-H5 font-normal">online: {{ users.length }}</p>
-    <div name="view-messages">
-      <div name="message" class="flex" v-for="(message, key) in messages" :key="message._id">
-        <div name="username">{{ message.user + " -" }}</div>
-        <div name="text-message">{{ message.msg }}</div>
-        <div name="action" @click="deleteMsg(message._id, key)" class="text-Red">(X)</div>
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -145,9 +112,11 @@ import useStoreSpace from "../../../plugins/stores/storeSpace";
 import FriendsServices from "../../../modules/friends/services/friendsServices";
 import CreateCategory from "../modal/Createcategory.vue";
 import CreateRoom from "../modal/CreateRoom.vue";
+import Delete from "../buttons/Delete.vue";
+import ChatServices from "../../../modules/space/services/chatServices";
 
 export default {
-  components: { ChatRoom, CreateCategory, CreateRoom },
+  components: { ChatRoom, CreateCategory, CreateRoom, Delete },
   data() {
     const store = useStoreAuth();
     const storeSpace = useStoreSpace();
@@ -168,16 +137,10 @@ export default {
     openModalCategory(id) {
       this._id_data = id;
       this.isOpenModalCategory = true;
-      this.isOpenModalRoom = false;
-      this.sidebarOpen = false;
-      console.log("open");
     },
     openModalRoom(id) {
       this._id_data = id;
       this.isOpenModalRoom = true;
-      this.isOpenModalCategory = false;
-      this.sidebarOpen = false;
-      console.log("open");
     },
     closeModal() {
       this._id_data = "";
@@ -187,6 +150,23 @@ export default {
     },
     log(param) {
       console.log("dans le log", param);
+    },
+    async deleteRoom(_id_room, _id_category) {
+      let data = {
+        _id_room: _id_room,
+        _id_category: _id_category,
+      };
+      console.log(data);
+      let result = await ChatServices.deleteRoom(data);
+      console.log(result);
+    },
+    async deleteCategory(_id_category) {
+      let data = {
+        _id_category: _id_category,
+        _id_dataOfSpace: this.storeSpace.dataSpace.dataOfSpace._id,
+      };
+      let result = await ChatServices.deleteCategory(data);
+      console.log(result);
     },
     async dataquery() {
       this.waiting = true;

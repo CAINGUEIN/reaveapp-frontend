@@ -12,7 +12,7 @@ et surtout passé le loading en debut de la function service a true et un retour
  -->
 
 <template>
-  <div class="mt-8 w-full">
+  <div class="w-full">
     <div
       v-if="store.loading"
       type="button"

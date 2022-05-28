@@ -6,6 +6,7 @@
         <InputModel
           class=""
           :data="message"
+          @keyup.enter="submit"
           v-model="message.value"
         />
         <ToolsButtonSubmit

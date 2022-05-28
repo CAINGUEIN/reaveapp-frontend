@@ -4,96 +4,31 @@
       name="nav-bar-left"
       class="flex flex-col justify-between w-32 h-screen items-center"
     >
-      <div name="top">
-        <button class="m-0 p-0 pt-2" @click="goTo('PersonalMessages')">
-          <img
-            src="../../../core/assets/icons/logo.svg"
-            alt=""
-            class="h-16 w-16 p-4 m-8 bg-DarkRock rounded-full"
-          />
-        </button>
-        <img
-          src="http://via.placeholder.com/24"
-          alt=""
-          class="rounded-full mt-8 mx-auto"
-        />
-        <img
-          src="http://via.placeholder.com/24"
-          alt=""
-          class="rounded-full mt-8 mx-auto"
-        />
-        <img
-          src="http://via.placeholder.com/24"
-          alt=""
-          class="rounded-full mt-8 mx-auto"
-        />
-        <img
-          src="http://via.placeholder.com/24"
-          alt=""
-          class="rounded-full mt-8 mx-auto"
-        />
+      <div name="top" class="mt-8">
+        <TopLeftNavBar :dataButtons="dataTopLeft" />
       </div>
       <div name="bottom" class="my-8">
         <div class="bg-white h-1 w-14 mx-auto rounded-full"></div>
-        <button @click="goTo('PersonalSettings')">
-          <img
-            src="../../../core/assets/icons/Settings.svg"
-            alt=""
-            class="h-16 w-16 p-4 mt-4 bg-DarkRock rounded-full"
-          />
-        </button>
-        <img
-          src="http://via.placeholder.com/60"
-          alt=""
-          class="rounded-full mt-4 mx-auto"
+        <BottomLeftNavBar
+          :dataButtons="dataBottomLeft"
         />
       </div>
     </div>
     <div class="w-full flex flex-col">
-      <div name="nav-bar-top" class="flex pt-8 items-center">
-        <div name="space-for" class="flex space-x-2">
-          <SpaceNavBar @action="openSpace" :data="store.dataSpaces" />
-          <div class="bg-white h-14 my-auto w-1 rounded-full"></div>
-          <button
-            @click="openModal"
-            name="svg-div"
-            class="bg-Rock hover:bg-Stone hover:text-White rounded-full p-0.5"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-14 w-14"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 4v16m8-8H4"
-              />
-            </svg>
-          </button>
-          <button
-            name="svg-div"
-            class="bg-Rock hover:bg-Stone hover:text-White rounded-full p-3"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-10 w-10"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </button>
-        </div>
+      <div name="nav-bar-top" class="flex mt-8 items-center">
+        <SpaceNavBar @action="openSpace" :data="store.dataSpaces" />
+        <div class="bg-white h-14 my-auto w-1 rounded-full mr-2"></div>
+        <ToolsButtonNav
+          @click="openModal"
+          :dataClass="'medium'"
+          :slot="true"
+          class="mr-2"
+        >
+          <PlusIcon class="h-15 w-15" />
+        </ToolsButtonNav>
+        <ToolsButtonNav :dataClass="'medium'" :slot="true">
+          <GlobeIcon class="h-15 w-15" />
+        </ToolsButtonNav>
       </div>
       <router-view />
     </div>
@@ -102,18 +37,38 @@
 </template>
 
 <script>
-import CreateSpaceModal from "../../../core/components/modal/CreateSpaceModal.vue";
+//store
 import useStoreAuth from "../../../plugins/stores/auth";
 import useStoreSpace from "../../../plugins/stores/storeSpace";
+//compenents
+import CreateSpaceModal from "../../../core/components/modal/CreateSpaceModal.vue";
 import SpaceNavBar from "../../../core/components/barNav/SpaceNavBar.vue";
+import TopLeftNavBar from "../../../core/components/barNav/TopLeftNavBar.vue";
+import BottomLeftNavBar from "../../../core/components/barNav/BottomLeftNavBar.vue";
+import ToolsButtonNav from "../../../core/components/buttons/ToolsButtonNav.vue";
+import { GlobeIcon, PlusIcon } from "@heroicons/vue/outline";
+//data
+import dataTopLeft from "../data/dataTopLeftNavBar";
+import dataBottomLeft from "../data/dataBottomLeftNavBar";
 
 export default {
-  components: { CreateSpaceModal, SpaceNavBar },
+  components: {
+    CreateSpaceModal,
+    SpaceNavBar,
+    TopLeftNavBar,
+    ToolsButtonNav,
+    BottomLeftNavBar,
+    GlobeIcon,
+    PlusIcon,
+  },
   data() {
     const store = useStoreAuth();
     const storeSpace = useStoreSpace();
     return {
+      dataTopLeft,
+      dataBottomLeft,
       isOpenModal: false,
+      isOpenStatusMenu: false,
       store,
       storeSpace,
     };
@@ -121,8 +76,6 @@ export default {
   methods: {
     openModal() {
       this.isOpenModal = true;
-      this.sidebarOpen = false;
-      console.log("open");
     },
     closeModal() {
       this.isOpenModal = false;
@@ -134,7 +87,7 @@ export default {
       if (await this.storeSpace.feedDataSpace({ id: target })) {
         this.$router.push({ path: "/space/" + type, query: { id: target } });
       } else {
-        this.$router.push({ name: "Personal"})
+        this.$router.push({ name: "Personal" });
       }
       console.log("open", "/space/" + type + "/" + target);
     },

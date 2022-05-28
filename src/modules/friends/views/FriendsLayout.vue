@@ -58,8 +58,21 @@
         <input type="text" class="rounded-full my-2" />
       </div>
     </nav>
-    <div class="flex-1">
-      <Tchat v-if="view === 'chat'" />
+    <div class="flex-1 flex">
+      <Tchat v-if="view === 'chat'" class="w-full" />
+      <div name="correspondants-contact" class="w-56">
+        <div class="flex rounded-xl m-2 px-4 py-1 bg-LightRock">
+          <img
+            src="http://via.placeholder.com/40"
+            alt=""
+            class="rounded-full my-auto"
+          />
+          <div name="user-div" class="ml-2">
+            <h5>user</h5>
+            <p>!!!!!</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -86,7 +99,7 @@ export default {
       } else {
         console.log(this.$route.query);
         await this.storeSpace.feedDataSpace(this.$route.query);
-        this.space === this.storeSpace.dataSpace
+        this.space === this.storeSpace.dataSpace;
       }
     },
   },

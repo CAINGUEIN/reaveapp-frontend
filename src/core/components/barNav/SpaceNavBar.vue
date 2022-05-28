@@ -1,21 +1,24 @@
 <template>
-  <button
+  <ToolsButtonNav
     v-for="space in data"
     @click="$emit('action', space._id, space.typeOfSpace)"
-    name="svg-div"
-    class="bg-Rock hover:bg-Stone hover:text-White rounded-full p-0.5"
+    :dataClass="'large'"
+    class="mr-2"
+    :slot="true"
   >
     <img
       src="http://via.placeholder.com/60"
       alt=""
       class="rounded-full my-auto"
     />
-  </button>
+  </ToolsButtonNav>
 </template>
 
 <script>
+import ToolsButtonNav from '../buttons/ToolsButtonNav.vue';
 export default {
-  props: ["data"],
-  emits: ["action"]
+    props: ["data"],
+    emits: ["action"],
+    components: { ToolsButtonNav }
 };
 </script>

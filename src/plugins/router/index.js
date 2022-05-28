@@ -13,9 +13,29 @@ let routes = [
 
 import routesAuth from "../../modules/auth/router/authRoute";
 import personalRoute from "../../modules/personal/router/personalRoute";
-//import spaceRoute from "../../modules/space/router/spaceRoute";
-import friendsRoute from "../../modules/friends/router/friendsRoute"
-routes = routes.concat(routesAuth, personalRoute, /* spaceRoute, */ friendsRoute);
+import friendsRoute from "../../modules/friends/router/friendsRoute";
+import socialRoute from "../../modules/social/router/socialRoute";
+import playRoute from "../../modules/play/router/playRoute";
+import academyRoute from "../../modules/academy/router/academyRoute";
+import bootcampsRoute from "../../modules/bootcamps/router/bootcampsRoute";
+import jobsRoute from "../../modules/jobs/router/jobsRoute";
+import leagueRoute from "../../modules/league/router/leagueRoute";
+import nftRoute from "../../modules/nft/router/nftRoute";
+import newRoute from "../../modules/new/router/newRoute"
+
+routes = routes.concat(
+  routesAuth,
+  personalRoute,
+  friendsRoute,
+  socialRoute,
+  playRoute,
+  academyRoute,
+  bootcampsRoute,
+  jobsRoute,
+  leagueRoute,
+  nftRoute,
+  newRoute
+);
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

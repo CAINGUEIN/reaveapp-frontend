@@ -45,6 +45,7 @@ module.exports = {
         input: "510px",
         imgAuthPAge: "720px",
         authPage: "1200px",
+        "15": "3.75rem",
         "128": "32rem",
         "144": "36rem",
         "160": "40rem",
