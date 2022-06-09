@@ -34,6 +34,22 @@
           viewBox="0 0 24 24"
           stroke="currentColor"
           stroke-width="2"
+          @click="view = 'chat'"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+          />
+        </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-16 w-16 p-4 hover:bg-Stone rounded-full"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+          @click="view = 'dashboard'"
         >
           <path
             stroke-linecap="round"
@@ -48,6 +64,7 @@
           viewBox="0 0 24 24"
           stroke="currentColor"
           stroke-width="2"
+          @click="view = 'calendar'"
         >
           <path
             stroke-linecap="round"
@@ -55,24 +72,29 @@
             d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
           />
         </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-16 w-16 p-4 hover:bg-Stone rounded-full"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+          @click="view = ''"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          />
+        </svg>
         <input type="text" class="rounded-full my-2" />
       </div>
     </nav>
     <div class="flex-1 flex">
-      <Tchat v-if="view === 'chat'" class="w-full" />
-      <div name="correspondants-contact" class="w-56">
-        <div class="flex rounded-xl m-2 px-4 py-1 bg-LightRock">
-          <img
-            src="http://via.placeholder.com/40"
-            alt=""
-            class="rounded-full my-auto"
-          />
-          <div name="user-div" class="ml-2">
-            <h5>user</h5>
-            <p>!!!!!</p>
-          </div>
-        </div>
-      </div>
+      <Tchat v-if="view === 'chat'" class="w-full"/>
+      <FriendsDashboard v-if="view === 'dashboard'" class="w-full"></FriendsDashboard>
+      <FriendsCalendar v-if="view === 'calendar'" class="w-full"></FriendsCalendar>
+      
     </div>
   </div>
 </template>
@@ -80,8 +102,10 @@
 <script>
 import useStoreSpace from "../../../plugins/stores/storeSpace";
 import Tchat from "../../../core/components/chat/tchat.vue";
+import FriendsDashboard from "./FriendsDashboard.vue";
+import FriendsCalendar from "./FriendsCalendar.vue";
 export default {
-  components: { Tchat },
+  components: { Tchat, FriendsDashboard, FriendsCalendar },
   data() {
     const storeSpace = useStoreSpace();
     return {

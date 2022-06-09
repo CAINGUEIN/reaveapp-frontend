@@ -8,6 +8,13 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@fullcalendar/core": "^5.11.0",
+    "@fullcalendar/daygrid": "^5.11.0",
+    "@fullcalendar/interaction": "^5.11.0",
+    "@fullcalendar/list": "^5.11.0",
+    "@fullcalendar/timegrid": "^5.11.0",
+    "@fullcalendar/vue": "^5.11.0",
+    "@fullcalendar/vue3": "^5.11.1",
     "@headlessui/vue": "^1.6.1",
     "@heroicons/vue": "^1.0.6",
     "@tailwindcss/aspect-ratio": "^0.4.0",
@@ -30,6 +37,7 @@
     "@vitejs/plugin-vue-jsx": "^1.3.7",
     "@vue/eslint-config-prettier": "^7.0.0",
     "autoprefixer": "^10.4.4",
+    "css-loader": "^6.7.1",
     "eslint": "^8.5.0",
     "eslint-plugin-vue": "^8.2.0",
     "postcss": "^8.4.12",

@@ -2,13 +2,21 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: ["./public/**/*.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
   theme: {
     extend: {
       gridTemplateRows: {
-        'dashboard': 'repeat(4, minmax(202px, 1fr))',
+        dashboard: "repeat(4, minmax(202px, 1fr))",
       },
       gridTemplateCols: {
-        'dashboard': 'repeat(8, minmax(202px, 1fr))',
+        dashboard: "repeat(8, minmax(202px, 1fr))",
       },
       fontFamily: {
         sans: ["Gotham", ...defaultTheme.fontFamily.sans],
@@ -41,36 +49,51 @@ module.exports = {
         Body2: "14px",
         caption: "12px",
       },
+      height: {
+        input: "510px",
+        imgAuthPAge: "720px",
+        authPage: "1200px",
+        15: "3.75rem",
+        88: "22rem",
+        128: "32rem",
+        144: "36rem",
+        160: "40rem",
+        164: "41rem",
+        328: "82rem",
+        modal: "500px",
+      },
       width: {
         input: "510px",
         imgAuthPAge: "720px",
         authPage: "1200px",
-        "15": "3.75rem",
-        "128": "32rem",
-        "144": "36rem",
-        "160": "40rem",
-        "164": "41rem",
+        15: "3.75rem",
+        88: "22rem",
+        128: "32rem",
+        144: "36rem",
+        160: "40rem",
+        164: "41rem",
+        328: "82rem",
         modal: "500px",
       },
       maxWidth: {
         authPage: "1200px",
       },
       borderRadius: {
-        Large: '16px',
+        Large: "16px",
       },
       margin: {
-        '18': '72px',
+        18: "72px",
       },
       padding: {
-        '18': '72px',
+        18: "72px",
       },
       backgroundImage: {
-        'img1': "url('/src/core/assets/img/1073_Opera_1_A.jpg')",
-        'img2': "url('/src/core/assets/img/2001_BEMOCS_Space_Park_Cosmic_Canyon_03.jpg')",
-        'img3': "url('/src/core/assets/img/BEMOCS_Fntclr_Screen_Print_A.jpg')",
-        'img4': "url('/src/core/assets/img/BEMOCS_LR_04_Countryside_00.jpg')",
-        'img5': "url('/src/core/assets/img/BEMOCS_Merkur_05.jpg')",
-      }
+        img1: "url('/src/core/assets/img/1073_Opera_1_A.jpg')",
+        img2: "url('/src/core/assets/img/2001_BEMOCS_Space_Park_Cosmic_Canyon_03.jpg')",
+        img3: "url('/src/core/assets/img/BEMOCS_Fntclr_Screen_Print_A.jpg')",
+        img4: "url('/src/core/assets/img/BEMOCS_LR_04_Countryside_00.jpg')",
+        img5: "url('/src/core/assets/img/BEMOCS_Merkur_05.jpg')",
+      },
     },
   },
   plugins: [

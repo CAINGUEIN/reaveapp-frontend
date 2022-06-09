@@ -90,6 +90,19 @@
         </div>
       </div>
     </div>
+    <div name="correspondants-contact" class="w-56">
+        <div class="flex rounded-xl m-2 px-4 py-1 bg-LightRock">
+          <img
+            src="http://via.placeholder.com/40"
+            alt=""
+            class="rounded-full my-auto"
+          />
+          <div name="user-div" class="ml-2">
+            <h5>user</h5>
+            <p>!!!!!</p>
+          </div>
+        </div>
+      </div>
     
     <CreateCategory
       @isOpenModal="closeModal"

@@ -1,21 +1,22 @@
 <template>
-  <div class="flex">
+  <div class="flex relative">
     <div
       name="nav-bar-left"
-      class="flex flex-col justify-between w-32 h-screen items-center"
+      class="sticky top-0 left-0 bottom-0 flex flex-col justify-between w-32 h-screen items-center"
     >
       <div name="top" class="mt-8">
         <TopLeftNavBar :dataButtons="dataTopLeft" />
       </div>
       <div name="bottom" class="my-8">
         <div class="bg-white h-1 w-14 mx-auto rounded-full"></div>
-        <BottomLeftNavBar
-          :dataButtons="dataBottomLeft"
-        />
+        <BottomLeftNavBar :dataButtons="dataBottomLeft" />
       </div>
     </div>
     <div class="w-full flex flex-col">
-      <div name="nav-bar-top" class="flex mt-8 items-center">
+      <div
+        name="nav-bar-top"
+        class="sticky top-0 left-0 right-0 z-10 bg-Anthracite flex py-8 items-center"
+      >
         <SpaceNavBar @action="openSpace" :data="store.dataSpaces" />
         <div class="bg-white h-14 my-auto w-1 rounded-full mr-2"></div>
         <ToolsButtonNav
