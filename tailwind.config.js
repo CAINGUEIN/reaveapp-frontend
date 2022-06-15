@@ -27,7 +27,7 @@ module.exports = {
         DarkRock: "#1A1A1A",
         Rock: "#212121",
         LightRock: "#2A2A2A",
-        Stone: "#404040",
+        Stone: "#303030",
         Gravel: "#808080",
         LightGrey: "#BEBEBE",
         Cloud: "#E5E5E5",

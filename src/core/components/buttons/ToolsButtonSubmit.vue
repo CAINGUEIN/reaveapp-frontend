@@ -83,7 +83,22 @@ export default {
       } else if (this.color === "desactivated") {
         this.classBtn = "bg-LightGrey rounded-full py-4 justify-center flex ";
         this.classTxtBtn = "text-Black font-bold text-H4 leading-none";
-      }
+      } else if (this.color === "blue") {
+        this.classBtn = "bg-Blue rounded-full py-4 justify-center flex ";
+        this.classTxtBtn = "text-Black font-bold text-H4 leading-none";
+      } else if (this.color === "yellow") {
+        this.classBtn = "bg-Yellow rounded-full py-4 justify-center flex ";
+        this.classTxtBtn = "text-Black font-bold text-H4 leading-none";
+      } else if (this.color === "red") {
+        this.classBtn = "bg-Red rounded-full py-4 justify-center flex ";
+        this.classTxtBtn = "text-Black font-bold text-H4 leading-none";
+      } else if (this.color === "green") {
+        this.classBtn = "bg-Green rounded-full py-4 justify-center flex ";
+        this.classTxtBtn = "text-Black font-bold text-H4 leading-none";
+      } else if (this.color === "orange") {
+        this.classBtn = "bg-Orange rounded-full py-4 justify-center flex ";
+        this.classTxtBtn = "text-Black font-bold text-H4 leading-none";
+      } 
     },
   },
   watch: {

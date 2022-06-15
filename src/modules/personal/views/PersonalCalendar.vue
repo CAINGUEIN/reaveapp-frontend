@@ -1,5 +1,8 @@
 <template>
-  <FullCalendar :options="calendarOptions" />
+<div class="flex justify-between m-4">
+  <FullCalendar class="m-auto w-2/3" :options="calendarOptions" />
+  <CreateEventCalendarSide class=" h-[800px]"/>
+</div>
 </template>
 
 <script>
@@ -9,31 +12,37 @@ import list from "@fullcalendar/list";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import CreateEventCalendarSide from "../../../core/components/elements/CreateEventCalendarSide.vue";
 export default {
   components: {
-    FullCalendar, // make the <FullCalendar> tag available
-  },
+    FullCalendar,
+    CreateEventCalendarSide
+},
+  props: ["action"],
   data() {
     return {
       calendarOptions: {
         plugins: [dayGridPlugin, interactionPlugin, list, timeGridPlugin],
         initialView: "timeGridWeek",
-        height: 1310,
+        height: 1290,
         headerToolbar: {
           left: "prev,today,next",
           center: "title",
-          right:
-            "dayGridMonth,timeGridWeek,timeGridDay",
+          right: "dayGridMonth,timeGridWeek,timeGridDay",
         },
         selectable: true,
         navLinks: true,
         nowIndicator: true,
         dayMaxEvents: true,
-        select: function (info) {
-          console.log(info)
-        },
+        select: (info) => this.emit(info),
       },
     };
+  },
+  methods: {
+    emit(info) {
+      this.$emit("action", info);
+      console.log(info);
+    },
   },
 };
 </script>

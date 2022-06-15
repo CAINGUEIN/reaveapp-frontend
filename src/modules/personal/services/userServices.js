@@ -44,6 +44,19 @@ class UsersServices {
       return e;
     })
   }
+
+  static async addFriend(data) {
+    let body = data
+    return Base.post(`/user/friend/add`, body)
+    .then((response) => {
+      console.log("user friend add", response);
+      return response;
+    })
+    .catch((e) => {
+      console.log("error ", e);
+      return e;
+    })
+  }
 }
 
 export default UsersServices;

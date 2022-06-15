@@ -15,7 +15,7 @@
 
 const Data = [
     {
-        name: "PersonalMessages",
+        name: "Personal",
         target: "PersonalMessages",
         src: "/src/core/assets/icons/logo.svg",
         class: "logo"

@@ -9,7 +9,7 @@
           alt=""
           class="rounded-full my-auto"
         />
-        <h4 class="ml-2">SPACE OF {{store.userName}}</h4>
+        <h4 class="ml-2">SPACE OF {{ store.userName }}</h4>
       </div>
       <div name="select-game" class="flex bg-Rock rounded-full">
         <img
@@ -34,6 +34,7 @@
           viewBox="0 0 24 24"
           stroke="currentColor"
           stroke-width="2"
+          @click="view = 'dashboard'"
         >
           <path
             stroke-linecap="round"
@@ -48,6 +49,7 @@
           viewBox="0 0 24 24"
           stroke="currentColor"
           stroke-width="2"
+          @click="view = 'calendar'"
         >
           <path
             stroke-linecap="round"
@@ -58,19 +60,53 @@
         <input type="text" class="rounded-full my-2" />
       </div>
     </nav>
-    <router-view />
+    <div class="flex-1 flex">
+      <Tchat v-if="view === 'chat'" class="w-full" />
+      <PersonalCalendar
+        v-if="view === 'calendar'"
+        class="w-full"
+        @action="(e) => openModal(e)"
+      ></PersonalCalendar>
+      <PersonalSpacePage v-if="view === 'dashboard'" class="w-full">
+      </PersonalSpacePage>
+    </div>
+    <CreateCalendarEvent @isOpenModal="closeModal" :isOpenModal="isOpenModal" :data="data" />
   </div>
 </template>
 
 <script>
 import useStoreAuth from "../../../plugins/stores/auth";
+import Tchat from "../../../core/components/chat/tchat.vue";
+import PersonalCalendar from "./PersonalCalendar.vue";
+import PersonalSpacePage from "./PersonalSpacePage.vue";
+import CreateCalendarEvent from "../../../core/components/modal/CreateCalendarEvent.vue";
 
 export default {
   data() {
     const store = useStoreAuth();
     return {
-      store
-    }
+      view: "chat",
+      store,
+      space: "",
+      isOpenModal: false,
+      data: "",
+    };
+  },
+  methods: {
+    openModal(e) {
+      console.log(e);
+      this.isOpenModal = true;
+      this.data = e
+    },
+    closeModal() {
+      this.isOpenModal = false;
+    },
+  },
+  components: {
+    Tchat,
+    PersonalCalendar,
+    PersonalSpacePage,
+    CreateCalendarEvent,
   },
 };
 </script>

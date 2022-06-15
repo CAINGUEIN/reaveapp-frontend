@@ -20,8 +20,8 @@
       />
       <InputModel
         class="mt-8"
-        :data="profilename"
-        v-model="profilename.value"
+        :data="profileTag"
+        v-model="profileTag.value"
         :errors="errors"
       />
       <InputModel
@@ -42,7 +42,7 @@
         :color="
           email.value === '' ||
           userName.value === '' ||
-          profilename.value === '' ||
+          profileTag.value === '' ||
           password.value === '' ||
           password.value !== confirmPassword.value
             ? 'desactivated'
@@ -157,7 +157,7 @@ export default {
         type: "text",
         value: "",
       },
-      profilename: {
+      profileTag: {
         label: "PROFILE NAME",
         name: "profilename",
         type: "text",
@@ -229,7 +229,7 @@ export default {
       let forRegister = {
         email: this.email.value,
         userName: this.userName.value,
-        profilename: this.profilename.value,
+        profileTag: this.profileTag.value,
         password: this.password.value,
         email: this.email.value,
       };

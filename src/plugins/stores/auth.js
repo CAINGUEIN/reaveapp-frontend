@@ -7,7 +7,14 @@ const Store = defineStore("auth", {
     return {
       dataAccount: "",
       //a mettre a jour aprés chaque modification d'un space
-      dataSpaces:"",
+      dataSpaces: "",
+      notifications: "",
+      calendar: "",
+      dm: "",
+      invitationSended: "",
+      calendarSpacesShow: "",
+      friends: "",
+      ban: "",
       //aide pour l'etat de connection pour la redirection du router
       isLogin: "",
       //pour desactiver certain boutton
@@ -17,11 +24,20 @@ const Store = defineStore("auth", {
   getters: {},
   actions: {
     async feedDataAccount() {
+      //destructurer le plus la data pour pouvoir la modifier sur des requete plus petite a des endroit de l'app
       let result = await UsersServices.checkToken();
-      console.log("dans le feedDataAccount" , result);
+      console.log("dans le feedDataAccount", result);
       if (result.data.success) {
         this.dataSpaces = result.data.data.spaces;
         this.dataAccount = result.data.data;
+        this.notifications = result.data.data.notifications
+        this.calendar = result.data.data.calendar
+        this.dm = result.data.data.dm
+        this.invitationSended = result.data.data.invitationSended
+        this.calendarSpacesShow = result.data.data.calendarSpacesShow
+        this.friends = result.data.data.friends
+        this.ban = result.data.data.ban
+        
         this.isLogin = true;
         this.loading = false;
         return true;
@@ -33,7 +49,7 @@ const Store = defineStore("auth", {
     },
     //setter
     updateDataSpaces(value) {
-      this.dataSpaces = value
+      this.dataSpaces = value;
     },
     async deleteDataAccount() {
       this.dataAccount = "";

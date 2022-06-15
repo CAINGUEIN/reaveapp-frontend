@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!storeSpace.isWaiting" class="flex flex-col h-full">
+  <div>
     <nav
       class="mt-2 flex h-16 min-w-max justify-between items-center bg-DarkRock rounded-full"
     >
@@ -9,7 +9,7 @@
           alt=""
           class="rounded-full my-auto"
         />
-        <h4 class="ml-2">{{ storeSpace.dataSpace.nameSpace }}</h4>
+        <h4 class="ml-2">SPACE OF {{ store.userName }}</h4>
       </div>
       <div name="select-game" class="flex bg-Rock rounded-full">
         <img
@@ -27,21 +27,6 @@
         />
       </div>
       <div name="icon-search" class="flex mr-4">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-16 w-16 p-4 hover:bg-Stone rounded-full"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-          @click="view = 'chat'"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
-          />
-        </svg>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-16 w-16 p-4 hover:bg-Stone rounded-full"
@@ -72,69 +57,59 @@
             d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
           />
         </svg>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-16 w-16 p-4 hover:bg-Stone rounded-full"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-          @click="view = ''"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-          />
-        </svg>
         <input type="text" class="rounded-full my-2" />
       </div>
     </nav>
     <div class="flex-1 flex">
       <Tchat v-if="view === 'chat'" class="w-full" />
-      <FriendsDashboard
-        v-if="view === 'dashboard'"
-        class="w-full"
-      ></FriendsDashboard>
-      <FriendsCalendar
+      <PersonalCalendar
         v-if="view === 'calendar'"
         class="w-full"
-      ></FriendsCalendar>
+        @action="(e) => openModal(e)"
+      ></PersonalCalendar>
+      <PersonalSpacePage v-if="view === 'dashboard'" class="w-full">
+      </PersonalSpacePage>
     </div>
+    <CreateCalendarEvent @isOpenModal="closeModal" :isOpenModal="isOpenModal" :data="data" />
   </div>
 </template>
 
 <script>
-import useStoreSpace from "../../../plugins/stores/storeSpace";
+import useStoreAuth from "../../../plugins/stores/auth";
 import Tchat from "../../../core/components/chat/tchat.vue";
-import FriendsDashboard from "./FriendsDashboard.vue";
-import FriendsCalendar from "./FriendsCalendar.vue";
+import PersonalCalendar from "./PersonalCalendar.vue";
+import PersonalSpacePage from "./PersonalSpacePage.vue";
+import CreateCalendarEvent from "../../../core/components/modal/CreateCalendarEvent.vue";
+
 export default {
-  components: { Tchat, FriendsDashboard, FriendsCalendar },
   data() {
-    const storeSpace = useStoreSpace();
+    const store = useStoreAuth();
     return {
       view: "chat",
-      storeSpace,
+      store,
       space: "",
+      store,
+      isOpenModal: false,
+      data: "",
     };
   },
   methods: {
-    async paramInURL() {
-      console.log("in param URL");
-      if (Object.keys(this.$route.query).length === 0) {
-        console.log("si rien " + this.$route.query);
-        //si rien on degage c'est pas normal
-      } else {
-        console.log(this.$route.query);
-        await this.storeSpace.feedDataSpace(this.$route.query);
-        this.space === this.storeSpace.dataSpace;
-      }
+    openModal(e) {
+      console.log(e);
+      this.isOpenModal = true;
+      this.data = e
+    },
+    closeModal() {
+      this.isOpenModal = false;
     },
   },
-  async mounted() {
-    await this.paramInURL();
-    console.log("le friends layout est mounted");
+  components: {
+    Tchat,
+    PersonalCalendar,
+    PersonalSpacePage,
+    CreateCalendarEvent,
   },
 };
 </script>
+
+<style lang="scss" scoped></style>
