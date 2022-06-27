@@ -10,7 +10,7 @@
           v-for="person in people"
           :key="person.email"
           :class="person.grid"
-          class="bg-DarkRock rounded-lg shadow"
+          class="bg-DarkRock rounded-lg shadow z-0"
         >
           <div class="w-full flex items-center p-6">
             <img

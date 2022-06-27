@@ -57,6 +57,45 @@ class UsersServices {
       return e;
     })
   }
+
+  static async validateFriend(data) {
+    let body = data
+    return Base.post(`/user/friend/validate`, body)
+    .then((response) => {
+      console.log("user friend add", response);
+      return response;
+    })
+    .catch((e) => {
+      console.log("error ", e);
+      return e;
+    })
+  }
+
+  static async declineFriend(data) {
+    let body = data
+    return Base.post(`/user/friend/decline`, body)
+    .then((response) => {
+      console.log("user friend add", response);
+      return response;
+    })
+    .catch((e) => {
+      console.log("error ", e);
+      return e;
+    })
+  }
+
+  static async banUser(data) {
+    let body = data
+    return Base.post(`/user/ban`, body)
+    .then((response) => {
+      console.log("user friend add", response);
+      return response;
+    })
+    .catch((e) => {
+      console.log("error ", e);
+      return e;
+    })
+  }
 }
 
 export default UsersServices;

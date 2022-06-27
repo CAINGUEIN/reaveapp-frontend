@@ -10,14 +10,14 @@
     />
     <div class="relative">
       <ToolsButtonNav
-        :target="'PersonalSpace'"
+        :target="'Personal'"
         :src="'http://via.placeholder.com/60'"
         :dataClass="'large'"
         @click.right.prevent="toggleDropdown"
       />
       <div
         :class="dropdown"
-        class="absolute bottom-0 left-16 z-10 bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700"
+        class="absolute bottom-0 left-16 z-20 bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700"
       >
         <ul
           class="py-1 text-sm text-gray-700 dark:text-gray-200"

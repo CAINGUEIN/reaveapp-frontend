@@ -59,13 +59,89 @@
               General
             </button>
           </div>
-          <div v-if="select === 'friends'" name="friends"></div>
+          <div v-if="select === 'friends'" name="friends">
+            <!-- list des amis -->
+            <!-- recup ici peut etre avec un populate dans la DB les infos des firends
+             en limitant au nom photo de profile et note -->
+            <div v-for="friend in store.friends">
+              <div
+                name="left"
+                class="flex mt-2 ml-2 justify-between items-center"
+              >
+                <div class="flex items-center">
+                  <img
+                    src="http://via.placeholder.com/50"
+                    alt=""
+                    class="h-12 w-12 rounded-full"
+                  />
+                  <div class="ml-3 text-left">
+                    <h5>
+                      {{ friend.userName }}
+                    </h5>
+                    <h5 class="text-LightGrey">@{{ friend.profileTag }}</h5>
+                  </div>
+                </div>
+
+                <Popover class="relative" v-slot="{ open }">
+                  <PopoverButton
+                    class="'group rounded-md inline-flex items-center'"
+                  >
+                    <DotsVerticalIcon
+                      class="h-8 w-8 bg-LightRock text-Gravel rounded-full items-center hover:bg-White hover:text-Anthracite mr-2"
+                    />
+                  </PopoverButton>
+
+                  <transition
+                    enter-active-class="transition ease-out duration-200"
+                    enter-from-class="opacity-0 translate-y-1"
+                    enter-to-class="opacity-100 translate-y-0"
+                    leave-active-class="transition ease-in duration-150"
+                    leave-from-class="opacity-100 translate-y-0"
+                    leave-to-class="opacity-0 translate-y-1"
+                  >
+                    <PopoverPanel
+                      class="absolute z-10 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-xs sm:px-0"
+                    >
+                      <div
+                        class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden"
+                      >
+                        <div class="relative grid p-4 bg-LightRock">
+                          <a
+                            v-for="item in solutions"
+                            :key="item.name"
+                            :href="item.href"
+                          >
+                            <div
+                              class="p-1 block rounded-md hover:bg-Stone transition ease-in-out duration-150"
+                            >
+                              <p class="text-base font-medium text-White">
+                                {{ item.name }}
+                              </p>
+                            </div>
+                            <div
+                              v-if="item.divide"
+                              class="border-b-2 border-Gravel"
+                            ></div>
+                          </a>
+                        </div>
+                      </div>
+                    </PopoverPanel>
+                  </transition>
+                </Popover>
+              </div>
+            </div>
+          </div>
           <div v-if="select === 'general'" name="general"></div>
         </div>
 
         <!-- si non  -->
-        <div v-else>
-          <div name="friendsSelected"></div>
+        <div class="flex w-full mt-2" v-else>
+          <div
+            name="friendsSelected"
+            class="flex-1 pb-2 border-b-2 border-White text-White text-center"
+          >
+            Friends
+          </div>
           <div name="friends"></div>
         </div>
       </div>
@@ -74,53 +150,10 @@
       <nav class="bg-DarkRock rounded-r-full h-15 w-full flex justify-between">
         <div name="leftSide" class="flex items-center">
           <div name="name">
-            <Popover class="relative" v-slot="{ open }">
-              <PopoverButton
-                class="'group rounded-md inline-flex items-center'"
-              >
-                <h4 class="ml-6">
-                  <!-- mettre ici le pseudo de la personne DM -->
-                  {{ store.dataAccount.userName }}
-                </h4>
-              </PopoverButton>
-
-              <transition
-                enter-active-class="transition ease-out duration-200"
-                enter-from-class="opacity-0 translate-y-1"
-                enter-to-class="opacity-100 translate-y-0"
-                leave-active-class="transition ease-in duration-150"
-                leave-from-class="opacity-100 translate-y-0"
-                leave-to-class="opacity-0 translate-y-1"
-              >
-                <PopoverPanel
-                  class="absolute z-10 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-xs sm:px-0"
-                >
-                  <div
-                    class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden"
-                  >
-                    <div class="relative grid p-4 bg-LightRock">
-                      <a
-                        v-for="item in solutions"
-                        :key="item.name"
-                        :href="item.href"
-                      >
-                        <div
-                          class="p-1 block rounded-md hover:bg-Stone transition ease-in-out duration-150"
-                        >
-                          <p class="text-base font-medium text-White">
-                            {{ item.name }}
-                          </p>
-                        </div>
-                        <div
-                          v-if="item.divide"
-                          class="border-b-2 border-Gravel"
-                        ></div>
-                      </a>
-                    </div>
-                  </div>
-                </PopoverPanel>
-              </transition>
-            </Popover>
+            <h4 class="ml-6">
+              <!-- mettre ici le pseudo de la personne DM -->
+              {{ store.dataAccount.userName }}
+            </h4>
           </div>
         </div>
         <div name="rightSide" class="flex">
@@ -166,6 +199,7 @@
     </div>
     <AddFriendModal @isOpenModal="closeModal" :isOpenModal="isOpenModal" />
     <ValidateFriendModal
+      @pullNotification="pullNotification"
       @isOpenModal="closeModal"
       :isOpenModal="isOpenModalValidate"
       :data="friendInviteList"
@@ -279,6 +313,9 @@ export default {
         this.addFriendInvite = true;
       }
       console.log("ici");
+    },
+    pullNotification(index) {
+      this.friendInviteList.splice(index, 1);
     },
   },
   mounted() {

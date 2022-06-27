@@ -66,34 +66,37 @@
                       />
                     </div>
                   </div>
-                  <div
-                    v-for="user in listUsers"
-                    class="flex justify-between items-center my-1.5"
-                  >
-                    <div name="left" class="flex">
-                      <img
-                        src="http://via.placeholder.com/50"
-                        alt=""
-                        class="h-15 w-15 rounded-full"
-                      />
-                      <div class="ml-3 text-left">
-                        <h5>
-                          {{ user.userName }}
-                        </h5>
-                        <h5 class="text-LightGrey">@{{ user.profileTag }}</h5>
+                  <div v-for="user in listUsers">
+                    <div
+                      v-if="user._id !== store.dataAccount._id"
+                      class="flex justify-between items-center my-1.5"
+                    >
+                      <div name="left" class="flex">
+                        <img
+                          src="http://via.placeholder.com/50"
+                          alt=""
+                          class="h-15 w-15 rounded-full"
+                        />
+                        <div class="ml-3 text-left">
+                          <h5>
+                            {{ user.userName }}
+                          </h5>
+                          <h5 class="text-LightGrey">@{{ user.profileTag }}</h5>
+                        </div>
                       </div>
-                    </div>
 
-                    <div name="right" class="">
-                      <button
-                        v-if="ifSended(user._id)"
-                        name="addFriends"
-                        class="bg-White text-Anthracite h-9 rounded-full items-center hover:bg-DarkRock hover:text-White"
-                        @click="addFriend(user._id)"
-                      >
-                        <PlusIcon class="mx-2 h-5 w-5" />
-                      </button>
-                      <p v-else>Wait responce</p>
+                      <div name="right" class="">
+                        <p v-if="ifFriend(user._id)">Friend</p>
+                        <button
+                          v-else-if="ifSended(user._id)"
+                          name="addFriends"
+                          class="bg-White text-Anthracite h-9 rounded-full items-center hover:bg-DarkRock hover:text-White"
+                          @click="addFriend(user._id)"
+                        >
+                          <PlusIcon class="mx-2 h-5 w-5" />
+                        </button>
+                        <p v-else>Wait responce</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -165,10 +168,19 @@ export default {
         (sended) => sended._targetUser_id === _id
       );
       if (find) {
-        console.log("false", result);
         result = false;
       } else {
-        console.log("true", result);
+        result = true;
+      }
+      return result;
+    },
+    ifFriend(_id) {
+      let result;
+      let find = this.store.friends.find((friend) => friend._id === _id);
+      console.log(find);
+      if (!find) {
+        result = false;
+      } else {
         result = true;
       }
       return result;
@@ -182,6 +194,11 @@ export default {
         _targetUser_id: _id,
       };
       let result = await UsersServices.addFriend(dataSubmit);
+      //TODO: ou recup peut etre l'etat du array invitationSended et le push dans le store
+      if (result.data.success) {
+        this.store.setInvitationSended(result.data.data)
+      }
+      // avec un rerender du composant qui gere
     },
   },
   computed: {

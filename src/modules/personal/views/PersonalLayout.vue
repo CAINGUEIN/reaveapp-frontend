@@ -61,7 +61,6 @@
       </div>
     </nav>
     <div class="flex-1 flex">
-      <Tchat v-if="view === 'chat'" class="w-full" />
       <PersonalCalendar
         v-if="view === 'calendar'"
         class="w-full"
@@ -76,7 +75,6 @@
 
 <script>
 import useStoreAuth from "../../../plugins/stores/auth";
-import Tchat from "../../../core/components/chat/tchat.vue";
 import PersonalCalendar from "./PersonalCalendar.vue";
 import PersonalSpacePage from "./PersonalSpacePage.vue";
 import CreateCalendarEvent from "../../../core/components/modal/CreateCalendarEvent.vue";
@@ -103,7 +101,6 @@ export default {
     },
   },
   components: {
-    Tchat,
     PersonalCalendar,
     PersonalSpacePage,
     CreateCalendarEvent,

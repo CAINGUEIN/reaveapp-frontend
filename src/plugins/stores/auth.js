@@ -48,8 +48,14 @@ const Store = defineStore("auth", {
       }
     },
     //setter
+    setter(value, target) {
+      this[target] = value;
+    },
     updateDataSpaces(value) {
       this.dataSpaces = value;
+    },
+    setInvitationSended(value) {
+      this.invitationSended = value;
     },
     async deleteDataAccount() {
       this.dataAccount = "";

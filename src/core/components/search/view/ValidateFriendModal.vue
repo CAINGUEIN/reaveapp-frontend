@@ -48,7 +48,7 @@
                   <h3>Validate Friend</h3>
                   <h5>It’s better to progress together, than alone.</h5>
                   <div
-                    v-for="user in data"
+                    v-for="(user, index) in data"
                     class="flex justify-between items-center my-1.5"
                   >
                     <div name="left" class="flex">
@@ -63,21 +63,21 @@
                       <button
                         name="validateFriend"
                         class="bg-Green text-Anthracite h-9 rounded-full items-center hover:bg-DarkRock hover:text-White"
-                        @click="validateFriend(user._id)"
+                        @click="validateFriend(user, index)"
                       >
                         <CheckIcon class="mx-2 h-5 w-5" />
                       </button>
                       <button
                         name="declinFriend"
                         class="bg-Red text-Anthracite h-9 rounded-full items-center hover:bg-DarkRock hover:text-White"
-                        @click="declinFriend(user._id)"
+                        @click="declineFriend(user, index)"
                       >
                         <XIcon class="mx-2 h-5 w-5" />
                       </button>
                       <button
                         name="banUser"
                         class="bg-Gravel text-Anthracite h-9 rounded-full items-center hover:bg-DarkRock hover:text-White"
-                        @click="banUser(user._id)"
+                        @click="banUser(user, index)"
                       >
                         <BanIcon class="mx-2 h-5 w-5" />
                       </button>
@@ -116,6 +116,7 @@ puis aprés 500ms fait une recherche
 avec une logique de debounce on empeche de multi requete entre temps une fois les res
 on regarde si la demande initiale a etait changé si oui on affiche et on recommence
 chaque element de la list recup devront etre affiché avec un bouton add qui donnera sur un service d'addFriend
+rajout d'une verification ban friends ou wait
  */
 export default {
   components: {
@@ -128,7 +129,7 @@ export default {
     CheckIcon,
     BanIcon,
   },
-  props: ["isOpenModal", "data"],
+  props: ["isOpenModal", "data", "pullNotification"],
   data() {
     const store = useStoreAuth();
     return {
@@ -147,29 +148,44 @@ export default {
     };
   },
   methods: {
-    ifSended(_id) {
-      let result;
-      let find = this.store.invitationSended.find(
-        (sended) => sended._targetUser_id === _id
-      );
-      if (find) {
-        console.log("false", result);
-        result = false;
-      } else {
-        console.log("true", result);
-        result = true;
+    async validateFriend(data, index) {
+      //création des data de base
+      let dataSubmit = {
+        _targeter_id: data.data._targeter_id,
+        _notification_id: data._id,
+      };
+      //requete
+      let result = await UsersServices.validateFriend(dataSubmit);
+      //supression de la notification si success
+      if (result.data.success === true) {
+        this.$emit("pullNotification", index);
       }
-      return result;
+    },
+    async declineFriend(data, index) {
+      // voir validateFriend
+      let dataSubmit = {
+        _targeter_id: data.data._targeter_id,
+        _notification_id: data._id,
+      };
+      let result = await UsersServices.declineFriend(dataSubmit);
+      if (result.data.success === true) {
+        this.$emit("pullNotification", index);
+      }
+    },
+    async banUser(data, index) {
+      // voir validateFriend
+      let dataSubmit = {
+        _targeter_id: data.data._targeter_id,
+        _notification_id: data._id,
+      };
+      let result = await UsersServices.banUser(dataSubmit);
+      if (result.data.success === true) {
+        this.$emit("pullNotification", index);
+      }
     },
     close() {
       this.$emit("isOpenModal", false);
       this.target = "";
-    },
-    async addFriend(_id) {
-      let dataSubmit = {
-        _targetUser_id: _id,
-      };
-      let result = await UsersServices.addFriend(dataSubmit);
     },
   },
   computed: {
@@ -208,5 +224,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped></style>
