@@ -3,73 +3,117 @@
     <nav
       class="mt-2 flex h-16 min-w-max justify-between items-center bg-DarkRock rounded-full"
     >
-      <div name="space-name" class="flex ml-4">
+      <div name="space-name" class="flex flex-1 ml-4">
         <img
           src="http://via.placeholder.com/36"
           alt=""
           class="rounded-full my-auto"
         />
-        <h4 class="ml-2">SPACE OF {{ store.userName }}</h4>
+        <h4 class="ml-2">{{ store.dataAccount.userName }}</h4>
       </div>
-      <div name="select-game" class="flex bg-Rock rounded-full">
+      <div
+        v-if="view === 'dashboard' || view === 'tree' || view === 'history'"
+        name="select-game"
+        class="flex bg-Rock rounded-full"
+      >
         <img
           src="../../../core/assets/icons/League Of Legends.svg"
           alt=""
-          class="h-16 w-16 p-4 hover:bg-Stone rounded-full"
+          class="h-16 w-16 p-4 hover:bg-Stone hover:brightness-200 rounded-full"
+          :class="
+            option === 'lol'
+              ? 'brightness-150 hover:brightness-150 bg-Stone'
+              : ''
+          "
+          @click="option = 'lol'"
         /><img
           src="../../../core/assets/icons/Overwatch.svg"
           alt=""
-          class="h-16 w-16 p-4 hover:bg-Stone rounded-full"
+          class="h-16 w-16 p-4 hover:bg-Stone hover:brightness-200 rounded-full"
+          :class="
+            option === 'ow'
+              ? 'brightness-150 hover:brightness-150 bg-Stone'
+              : ''
+          "
+          @click="option = 'ow'"
         /><img
           src="../../../core/assets/icons/Valorant.svg"
           alt=""
-          class="h-16 w-16 p-4 hover:bg-Stone rounded-full"
+          class="h-16 w-16 p-4 hover:bg-Stone hover:brightness-200 rounded-full"
+          :class="
+            option === 'valo'
+              ? 'brightness-150 hover:brightness-150 bg-Stone'
+              : ''
+          "
+          @click="option = 'valo'"
         />
       </div>
-      <div name="icon-search" class="flex mr-4">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-16 w-16 p-4 hover:bg-Stone rounded-full"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
+      <div name="icon" class="flex justify-end flex-1 mr-4">
+        <TemplateIcon
+          class="h-16 w-16 p-4 hover:bg-Stone hover:text-White rounded-full"
+          :class="view === 'dashboard' ? 'text-White bg-Stone ' : ''"
           @click="view = 'dashboard'"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
-          />
-        </svg>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-16 w-16 p-4 hover:bg-Stone rounded-full"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
+        ></TemplateIcon>
+        <ShareIcon
+          class="h-16 w-16 p-4 hover:bg-Stone hover:text-White rounded-full"
+          :class="view === 'tree' ? 'text-White bg-Stone ' : ''"
+          @click="view = 'tree'"
+        ></ShareIcon>
+        <CalendarIcon
+          class="h-16 w-16 p-4 hover:bg-Stone hover:text-White rounded-full"
+          :class="view === 'calendar' ? 'text-White bg-Stone ' : ''"
           @click="view = 'calendar'"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-          />
-        </svg>
-        <input type="text" class="rounded-full my-2" />
+        ></CalendarIcon>
+        <ClipboardListIcon
+          class="h-16 w-16 p-4 hover:bg-Stone hover:text-White rounded-full"
+          :class="view === 'history' ? 'text-White bg-Stone ' : ''"
+          @click="view = 'history'"
+        ></ClipboardListIcon>
+        <LightningBoltIcon
+          class="h-16 w-16 p-4 hover:bg-Stone hover:text-White rounded-full"
+          :class="view === 'notifications' ? 'text-White bg-Stone ' : ''"
+          @click="view = 'notifications'"
+        ></LightningBoltIcon>
+        <FolderAddIcon
+          class="h-16 w-16 p-4 hover:bg-Stone hover:text-White rounded-full"
+          :class="view === 'wallet' ? 'text-White bg-Stone ' : ''"
+          @click="view = 'wallet'"
+        ></FolderAddIcon>
+        <MapIcon
+          class="h-16 w-16 p-4 hover:bg-Stone hover:text-White rounded-full"
+          :class="view === 'pass' ? 'text-White bg-Stone ' : ''"
+          @click="view = 'pass'"
+        ></MapIcon>
       </div>
     </nav>
     <div class="flex-1 flex">
+      <DashboardLol
+        v-if="view === 'dashboard' && option === 'lol'"
+        class="w-full"
+      ></DashboardLol>
+      <DashboardValo
+        v-if="view === 'dashboard' && option === 'valo'"
+        class="w-full"
+      ></DashboardValo>
+      <DashboardOw
+        v-if="view === 'dashboard' && option === 'ow'"
+        class="w-full"
+      ></DashboardOw>
       <PersonalCalendar
         v-if="view === 'calendar'"
         class="w-full"
         @action="(e) => openModal(e)"
       ></PersonalCalendar>
-      <PersonalSpacePage v-if="view === 'dashboard'" class="w-full">
-      </PersonalSpacePage>
+      <MatchHistory
+        v-if="view === 'history' && option === 'lol'"
+        class="w-full"
+      ></MatchHistory>
     </div>
-    <CreateCalendarEvent @isOpenModal="closeModal" :isOpenModal="isOpenModal" :data="data" />
+    <CreateCalendarEvent
+      @isOpenModal="closeModal"
+      :isOpenModal="isOpenModal"
+      :data="data"
+    />
   </div>
 </template>
 
@@ -78,12 +122,43 @@ import useStoreAuth from "../../../plugins/stores/auth";
 import PersonalCalendar from "./PersonalCalendar.vue";
 import PersonalSpacePage from "./PersonalSpacePage.vue";
 import CreateCalendarEvent from "../../../core/components/modal/CreateCalendarEvent.vue";
+import {
+  ShareIcon,
+  MapIcon,
+  LightningBoltIcon,
+  TemplateIcon,
+  FolderAddIcon,
+  CalendarIcon,
+  ClipboardListIcon,
+} from "@heroicons/vue/outline";
+import DashboardLol from "./DashboardLol.vue";
+import DashboardValo from "./DashboardValo.vue";
+import DashboardOw from "./DashboardOw.vue";
+import UsersServices from "../services/userServices";
+import MatchHistory from "./MatchHistory.vue";
 
 export default {
+  components: {
+    PersonalCalendar,
+    PersonalSpacePage,
+    CreateCalendarEvent,
+    CalendarIcon,
+    MapIcon,
+    LightningBoltIcon,
+    FolderAddIcon,
+    ClipboardListIcon,
+    TemplateIcon,
+    ShareIcon,
+    DashboardLol,
+    DashboardValo,
+    DashboardOw,
+    MatchHistory,
+  },
   data() {
     const store = useStoreAuth();
     return {
       view: "chat",
+      option: "lol",
       store,
       space: "",
       isOpenModal: false,
@@ -94,18 +169,21 @@ export default {
     openModal(e) {
       console.log(e);
       this.isOpenModal = true;
-      this.data = e
+      this.data = e;
     },
     closeModal() {
       this.isOpenModal = false;
     },
+    async feadLastMatch() {
+      let result = await UsersServices.feadLastMatch();
+      //le bute est de faire une verification des dernier match a chaque mounted de la page
+      this.store.setter(result.data.data, "ListLastMatchLol");
+      //la push dans le store
+      //voir a mettre un CD
+    },
   },
-  components: {
-    PersonalCalendar,
-    PersonalSpacePage,
-    CreateCalendarEvent,
+  mounted() {
+    this.feadLastMatch();
   },
 };
 </script>
-
-<style lang="scss" scoped></style>

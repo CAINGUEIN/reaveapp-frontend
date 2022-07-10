@@ -15,6 +15,7 @@ const Store = defineStore("auth", {
       calendarSpacesShow: "",
       friends: "",
       ban: "",
+      ListLastMatchLol: "",
       //aide pour l'etat de connection pour la redirection du router
       isLogin: "",
       //pour desactiver certain boutton

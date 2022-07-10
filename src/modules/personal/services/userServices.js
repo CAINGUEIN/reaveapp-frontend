@@ -96,6 +96,31 @@ class UsersServices {
       return e;
     })
   }
+
+  static async addLolPuuid(data) {
+    let body = data
+    return Base.put(`/user/update/lol/puuid`, body)
+    .then((response) => {
+      console.log("user update lol puuid", response);
+      return response;
+    })
+    .catch((e) => {
+      console.log("error ", e);
+      return e;
+    })
+  }
+
+  static async feadLastMatch() {
+    return Base.put(`/user/update/lol/lastTeenMatchList`)
+    .then((response) => {
+      console.log("user update lol lastTeenMatchList", response);
+      return response;
+    })
+    .catch((e) => {
+      console.log("error ", e);
+      return e;
+    })
+  }
 }
 
 export default UsersServices;
