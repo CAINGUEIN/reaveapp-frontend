@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import useStoreAuth from "../stores/auth";
+import useStoreData from '../stores/data'
 import { useCookies } from "vue3-cookies";
 
 const { cookies } = useCookies();
@@ -44,6 +45,7 @@ const router = createRouter({
 
 router.beforeEach(async (to, from) => {
   const store = useStoreAuth();
+  const storeData = useStoreData()
 
   console.log("avant le login", store);
 
@@ -55,6 +57,10 @@ router.beforeEach(async (to, from) => {
     } else {
       cookies.remove("userSession"); //return this
     }
+  }
+
+  if (storeData.data === "") {
+    await storeData.feedData()
   }
 
   console.log("aprés le login", store.isLogin);
