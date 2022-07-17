@@ -1,5 +1,5 @@
 <template>
-  <div v-if="personnalStat" class="w-[930px] h-52 p-3 my-3">
+  <div v-if="personnalStat" class="w-[930px] h-52 p-3 my-3" @click="goTo()">
     <div
       class="absolute w-[930px] top-0 left-0 h-52 overflow-hidden rounded-2xl"
     >
@@ -14,7 +14,7 @@
         {{ personnalStat.statTotal.win ? "VICTORY" : "DEFEAT" }}
       </h5>
       <p class="mr-1">
-        - {{ $dayjs(info.gameStartTimestamp).format("DD-MM-YYYY HH:mm") }} -
+        - {{ $dayjs(info.gameStartTimestamp).format("DD/MM/YYYY HH:mm") }} -
       </p>
       <p class="mr-1">{{ timeDuration(info.gameDuration) }} -</p>
       <p class="mr-1" v-if="info.gameMode === 'CLASSIC'">
@@ -331,6 +331,9 @@ export default {
     minionsPerMin(totalKills, totalTime) {
       let div = totalTime / 60;
       return Math.round((totalKills / div) * 100) / 100;
+    },
+    goTo() {
+      this.$router.push({ name: 'MatchSummary', query: { match: this.data._id_riot } });
     },
   },
   mounted() {

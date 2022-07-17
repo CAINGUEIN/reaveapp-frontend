@@ -118,6 +118,10 @@
 </template>
 
 <script>
+//TODO: pensé a faire un systeme de sauvegarde du lieu de navigation
+// passé en query le lieu pour si on recharge et que les variable de navigation sont vide
+// la recup dans lURL si rien mettre a la page de garde
+
 import useStoreAuth from "../../../plugins/stores/auth";
 import PersonalCalendar from "./PersonalCalendar.vue";
 import PersonalSpacePage from "./PersonalSpacePage.vue";
