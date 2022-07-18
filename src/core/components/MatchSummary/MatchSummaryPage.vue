@@ -1,6 +1,6 @@
 <template>
   <div v-if="personnalStat">
-    <div name="resume" class="w-full h-40 p-3 my-3">
+    <div name="resume" class="w-full h-40 p-3 my-3 flex justify-between">
       <div
         name="img-bg"
         class="absolute top-0 left-0 right-3 h-40 overflow-hidden rounded-2xl"
@@ -11,8 +11,8 @@
           class="blur-sm brightness-75 bg-center"
         />
       </div>
-      <div name="content-left">
-        <div name="ligne-top" class="flex items-center mx-3">
+      <div name="content-left" class="flex h-full flex-col justify-evenly">
+        <div name="ligne-top" class="flex items-center ml-3">
           <img src="../../assets/icons/Component_19.svg" />
           <h1 class="mr-1">
             {{ personnalStat.statTotal.win ? "VICTORY" : "DEFEAT" }}
@@ -23,73 +23,85 @@
           <img
             :src="formateImgChampion(personnalStat.statTotal.championName)"
             alt=""
-            class="h-9 w-9 rounded-full"
+            class="h-10 w-10 rounded-full"
           />
-          <img
-            :src="
-              formateImgRunesReforged(
-                personnalStat.statTotal.perks.styles[0].style
-              )
-            "
-            alt=""
-            class="ml-3 h-6 w-6 p-1 rounded-full bg-Anthracite"
-          />
+          <div>
+            <img
+              :src="
+                formateImgRunesReforged(
+                  personnalStat.statTotal.perks.styles[0].style
+                )
+              "
+              alt=""
+              class="ml-3 h-6 w-6 p-0.5 rounded-full bg-Anthracite"
+            />
+            <img
+              :src="
+                formateImgRunesReforged(
+                  personnalStat.statTotal.perks.styles[1].style
+                )
+              "
+              alt=""
+              class="ml-3 h-6 w-6 p-0.5 rounded-full bg-Anthracite"
+            />
+          </div>
+
           <div class="ml-2 space-y-1">
             <img
               :src="formateImgSummonerCast(personnalStat.statTotal.summoner1Id)"
               alt=""
-              class="h-5 w-5 p-1 rounded-lg bg-Anthracite"
+              class="h-6 w-6 rounded-lg bg-Anthracite"
             />
             <img
               :src="formateImgSummonerCast(personnalStat.statTotal.summoner2Id)"
               alt=""
-              class="h-5 w-5 p-1 rounded-lg bg-Anthracite"
+              class="h-6 w-6 rounded-lg bg-Anthracite"
             />
           </div>
           <img
             v-if="personnalStat.statTotal.item0"
             :src="formateImgItem(personnalStat.statTotal.item0)"
             alt=""
-            class="h-6 w-6 p-1 ml-1 rounded-lg bg-Anthracite"
+            class="h-9 w-9 ml-1 rounded-lg bg-Anthracite"
           />
           <img
             v-if="personnalStat.statTotal.item1"
             :src="formateImgItem(personnalStat.statTotal.item1)"
             alt=""
-            class="h-6 w-6 p-1 ml-1 rounded-lg bg-Anthracite"
+            class="h-9 w-9 ml-1 rounded-lg bg-Anthracite"
           />
           <img
             v-if="personnalStat.statTotal.item2"
             :src="formateImgItem(personnalStat.statTotal.item2)"
             alt=""
-            class="h-6 w-6 p-1 ml-1 rounded-lg bg-Anthracite"
+            class="h-9 w-9 ml-1 rounded-lg bg-Anthracite"
           />
           <img
             v-if="personnalStat.statTotal.item3"
             :src="formateImgItem(personnalStat.statTotal.item3)"
             alt=""
-            class="h-6 w-6 p-1 ml-1 rounded-lg bg-Anthracite"
+            class="h-9 w-9 ml-1 rounded-lg bg-Anthracite"
           />
           <img
             v-if="personnalStat.statTotal.item4"
             :src="formateImgItem(personnalStat.statTotal.item4)"
             alt=""
-            class="h-6 w-6 p-1 ml-1 rounded-lg bg-Anthracite"
+            class="h-9 w-9 ml-1 rounded-lg bg-Anthracite"
           />
           <img
             v-if="personnalStat.statTotal.item5"
             :src="formateImgItem(personnalStat.statTotal.item5)"
             alt=""
-            class="h-6 w-6 p-1 ml-1 rounded-lg bg-Anthracite"
+            class="h-9 w-9 ml-1 rounded-lg bg-Anthracite"
           />
           <img
             v-if="personnalStat.statTotal.item6"
             :src="formateImgItem(personnalStat.statTotal.item6)"
             alt=""
-            class="h-6 w-6 p-1 ml-1 rounded-lg bg-Anthracite"
+            class="h-9 w-9 ml-1 rounded-lg bg-Anthracite"
           />
         </div>
-        <div name="ligne-bottom" class="flex">
+        <div name="ligne-bottom" class="flex ml-3">
           <p class="mr-1">
             {{ $dayjs(info.gameStartTimestamp).format("DD/MM/YYYY") }}
           </p>
@@ -109,7 +121,6 @@
               team100[3].statTotal.kills +
               team100[4].statTotal.kills
             }}
-            
           </p>
           <p class="mr-1">/</p>
           <p class="mr-1 text-Red">
@@ -123,7 +134,69 @@
           </p>
         </div>
       </div>
-      <div name="content-right"></div>
+      <div
+        name="content-right"
+        class="flex h-full flex-col justify-evenly items-end"
+      >
+        <div class="flex">
+          <div class="h-15 w-15 p-2 bg-DarkRock rounded-full">
+            <PaperAirplaneIcon class="h-11 w-11 rotate-[0deg]" />
+          </div>
+          <div class="h-15 w-15 p-2 bg-DarkRock rounded-full ml-3 mr-6">
+            <XIcon class="h-11 w-11" />
+          </div>
+        </div>
+        <div class="flex -space-x-4 mr-6">
+          <div class="h-9 w-9 p-2 bg-DarkRock rounded-full"></div>
+          <div class="h-9 w-9 p-2 bg-DarkRock rounded-full"></div>
+          <div class="h-9 w-9 p-2 bg-DarkRock rounded-full"></div>
+          <div class="h-9 w-9 p-2 bg-DarkRock rounded-full"></div>
+          <div class="h-9 w-9 p-2 bg-DarkRock rounded-full"></div>
+          <div class="h-9 w-9 p-2 bg-Gravel rounded-full"><p>+5</p></div>
+        </div>
+      </div>
+    </div>
+    <div name="compared">
+      <div name="title" class="mt-12 flex justify-between items-center">
+        <div class="flex items-center">
+          <p class="text-3xl font-bold text-White">
+            Compared to<span class="text-3xl font-bold text-Gravel">
+              previous match</span
+            >
+          </p>
+          <ChevronDownIcon class="w-6 ml-2" />
+        </div>
+      </div>
+      <div
+        name="content"
+        class="mt-6"
+        v-on:mouseover="mouseover"
+        v-on:mouseleave="mouseleave"
+      >
+        <div v-if="comparedContent" class="absolute inset-0 z-10 flex">
+          <h3 class="m-auto bg-Purple rounded-full px-5 py-3">SOON</h3>
+        </div>
+        <div
+          class="flex justify-between"
+          :class="comparedContent ? 'blur-sm' : 'blur-[2px]'"
+        >
+          <div
+            v-for="item in fakeData"
+            :key="item.id"
+            class="w-48 h-48 mx-3 flex flex-col justify-evenly first:ml-0 last::mr-0 bg-DarkRock rounded-2xl"
+          >
+            <h1
+              class="text-center"
+              :class="item.value > 0 ? 'text-Green' : 'text-Red'"
+            >
+              {{ item.value }}%
+            </h1>
+            <p class="w-36 text-center mx-auto font-medium text-White">
+              {{ item.txt }}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -132,16 +205,29 @@
 import FindOneMatch from "../../../plugins/axios/services/servicesMatchSummary";
 import useDataStore from "../../../plugins/stores/data";
 import useAuthStore from "../../../plugins/stores/auth";
+import {
+  PaperAirplaneIcon,
+  ChevronDownIcon,
+  XIcon,
+} from "@heroicons/vue/outline";
+import fakeData from "./fakeData";
 /* changement recup direct les datas dans le back du match
 voir peut etre a mettre sur cette route la recup des datas timeline
  */
 export default {
+  components: {
+    PaperAirplaneIcon,
+    XIcon,
+    ChevronDownIcon,
+  },
   data() {
     const dataStore = useDataStore();
     const store = useAuthStore();
     return {
+      fakeData,
       store,
       dataStore,
+      comparedContent: false,
       info: "",
       players: "",
       personnalStat: "",
@@ -257,6 +343,17 @@ export default {
           return index + 1;
         }
       }
+    },
+    mouseover: function () {
+      this.comparedContent = true;
+    },
+    mouseleave: function () {
+      this.comparedContent = false;
+    },
+  },
+  computed: {
+    setComparedContent(value) {
+      this.comparedContent = value;
     },
   },
   mounted() {
