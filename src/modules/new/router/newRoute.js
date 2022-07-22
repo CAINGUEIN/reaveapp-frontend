@@ -2,7 +2,7 @@ export default [
     {
       path: "/new",
       name: "New",
-      component: () => import("../views/New.vue"),
+      component: () => import("@/modules/new/views/New.vue"),
       meta: { layout: "Reave", permission: "log" }
     },
   ];
