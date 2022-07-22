@@ -33,7 +33,7 @@
 <script>
 import InputModel from "@core/components/inputs/InputModel.vue";
 import AuthServices from "@axios/services/authServices";
-import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit/vue";
+import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
 import useStoreAuth from "@stores/auth";
 
 export default {
