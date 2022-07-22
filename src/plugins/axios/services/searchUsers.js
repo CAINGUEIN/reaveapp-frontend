@@ -1,5 +1,5 @@
 // ici la gestion des services pour join l'api pour les search bar
-import Base from "/src/plugins/axios/axiosPlugin";
+import Base from "@axios/axiosPlugin";
 
 class SearchUsersServices {
   static async usersList(data) {

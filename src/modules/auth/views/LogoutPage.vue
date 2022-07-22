@@ -27,10 +27,10 @@
 
 <script>
 /* import Services */
-import AuthServices from "@plugins/axios/services/authServices";
+import AuthServices from "@axios/services/authServices";
 /* Import Tools */
 import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
-import useStoreAuth from "@plugins/stores/auth";
+import useStoreAuth from "@stores/auth";
 
 export default {
   components: { ToolsButtonSubmit },

@@ -75,11 +75,11 @@
 </template>
 
 <script>
-import useStoreAuth from "../../../plugins/stores/auth";
-import Tchat from "../../../core/components/chat/tchat.vue";
-import PersonalCalendar from "./PersonalCalendar.vue";
-import PersonalSpacePage from "./PersonalSpacePage.vue";
-import CreateCalendarEvent from "../../../core/components/modal/CreateCalendarEvent.vue";
+import useStoreAuth from "@stores/auth";
+import Tchat from "@core/components/chat/tchat.vue";
+import PersonalCalendar from "@modules/personal/views/PersonalCalendar.vue";
+import PersonalSpacePage from "@modules/personal/views/PersonalSpacePage.vue";
+import CreateCalendarEvent from "@core/components/modal/CreateCalendarEvent.vue";
 
 export default {
   data() {
