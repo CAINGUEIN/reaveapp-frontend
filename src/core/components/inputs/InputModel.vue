@@ -35,8 +35,8 @@
 
 <script>
 import { ExclamationCircleIcon } from '@heroicons/vue/solid'
-import ErrorsHelpers from "../../support/functions/ErrorsHelpers";
-import useStoreAuth from "../../../plugins/stores/auth";
+import ErrorsHelpers from "@core/support/functions/ErrorsHelpers";
+import useStoreAuth from "@stores/auth";
 
 /**
  * composant qui gere l'affichage

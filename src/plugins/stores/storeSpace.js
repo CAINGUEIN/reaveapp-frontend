@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import SpaceServices from "../../modules/space/services/spaceServices"
+import SpaceServices from "@axios/services/spaceServices"
 
 
 const StoreSpace = defineStore("space", {

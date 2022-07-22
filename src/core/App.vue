@@ -8,10 +8,10 @@
 
 <script>
 /* Import Tools */
-import useStoreAuth from "../plugins/stores/auth";
+import useStoreAuth from "@stores/auth";
 /* Import components*/
-import AuthLayout from "../modules/layout/views/AuthLayout.vue";
-import ReaveLayout from "../modules/layout/views/ReaveLayout.vue";
+import AuthLayout from "@modules/layout/views/AuthLayout.vue";
+import ReaveLayout from "@modules/layout/views/ReaveLayout.vue";
 
 export default {
   name: "App",

@@ -21,13 +21,13 @@
 </template>
 
 <script>
-import UploadModel from "../../inputs/uploadModel.vue";
-import InputModel from "../../inputs/InputModel.vue";
-import ToolsButtonSubmit from "../../buttons/ToolsButtonSubmit.vue";
-import ErrorsHelpers from "../../../support/functions/ErrorsHelpers";
-import FriendsServices from "../../../../modules/friends/services/friendsServices";
-import useStoreSpace from "../../../../plugins/stores/storeSpace";
-import useStoreAuth from "../../../../plugins/stores/auth";
+import UploadModel from "@core/components/inputs/uploadModel.vue";
+import InputModel from "@core/components/inputs/InputModel.vue";
+import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
+import ErrorsHelpers from "@core/support/functions/ErrorsHelpers";
+import FriendsServices from "@axios/services/friendsServices";
+import useStoreSpace from "@stores/storeSpace";
+import useStoreAuth from "@stores/auth";
 
 export default {
   components: { UploadModel, InputModel, ToolsButtonSubmit },

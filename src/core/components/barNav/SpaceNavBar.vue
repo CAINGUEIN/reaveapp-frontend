@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import ToolsButtonNav from '../buttons/ToolsButtonNav.vue';
+import ToolsButtonNav from '@core/components/buttons/ToolsButtonNav.vue';
 export default {
     props: ["data"],
     emits: ["action"],

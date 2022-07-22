@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import UsersServices from "../../modules/personal/services/userServices";
+import UsersServices from "@axios/services/userServices";
 
 const Store = defineStore("auth", {
   state: () => {

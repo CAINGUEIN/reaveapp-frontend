@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import ToolsButtonSubmit from "../../../core/components/buttons/ToolsButtonSubmit.vue";
-import UsersServices from "../services/userServices";
-import useStoreAuth from "../../../plugins/stores/auth";
+import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
+import UsersServices from "@axios/services/userServices";
+import useStoreAuth from "@stores/auth";
 
 export default {
   components: { ToolsButtonSubmit },

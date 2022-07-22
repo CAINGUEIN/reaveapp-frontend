@@ -13,15 +13,15 @@
       </div>
       <div name="select-game" class="flex bg-Rock rounded-full">
         <img
-          src="../../../core/assets/icons/League Of Legends.svg"
+          src="@core/assets/icons/League Of Legends.svg"
           alt=""
           class="h-16 w-16 p-4 hover:bg-Stone rounded-full"
         /><img
-          src="../../../core/assets/icons/Overwatch.svg"
+          src="@core/assets/icons/Overwatch.svg"
           alt=""
           class="h-16 w-16 p-4 hover:bg-Stone rounded-full"
         /><img
-          src="../../../core/assets/icons/Valorant.svg"
+          src="@core/assets/icons/Valorant.svg"
           alt=""
           class="h-16 w-16 p-4 hover:bg-Stone rounded-full"
         />
@@ -105,8 +105,8 @@
 </template>
 
 <script>
-import useStoreSpace from "../../../plugins/stores/storeSpace";
-import Tchat from "../../../core/components/chat/tchat.vue";
+import useStoreSpace from "@stores/storeSpace";
+import Tchat from "@core/components/chat/tchat.vue";
 import FriendsDashboard from "./FriendsDashboard.vue";
 import FriendsCalendar from "./FriendsCalendar.vue";
 export default {

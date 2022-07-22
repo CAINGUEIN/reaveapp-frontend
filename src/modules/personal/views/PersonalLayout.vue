@@ -17,7 +17,7 @@
         class="flex bg-Rock rounded-full"
       >
         <img
-          src="../../../core/assets/icons/League Of Legends.svg"
+          src="@core/assets/icons/League Of Legends.svg"
           alt=""
           class="h-16 w-16 p-4 hover:bg-Stone hover:brightness-200 rounded-full"
           :class="
@@ -27,7 +27,7 @@
           "
           @click="option = 'lol'"
         /><img
-          src="../../../core/assets/icons/Overwatch.svg"
+          src="@core/assets/icons/Overwatch.svg"
           alt=""
           class="h-16 w-16 p-4 hover:bg-Stone hover:brightness-200 rounded-full"
           :class="
@@ -37,7 +37,7 @@
           "
           @click="option = 'ow'"
         /><img
-          src="../../../core/assets/icons/Valorant.svg"
+          src="@core/assets/icons/Valorant.svg"
           alt=""
           class="h-16 w-16 p-4 hover:bg-Stone hover:brightness-200 rounded-full"
           :class="
@@ -104,10 +104,18 @@
         class="w-full"
         @action="(e) => openModal(e)"
       ></PersonalCalendar>
-      <MatchHistory
+      <MatchHistoryLol
         v-if="view === 'history' && option === 'lol'"
         class="w-full"
-      ></MatchHistory>
+      ></MatchHistoryLol>
+      <MatchHistoryOw
+        v-if="view === 'history' && option === 'ow'"
+        class="w-full"
+      ></MatchHistoryOw>
+      <MatchHistoryValo
+        v-if="view === 'history' && option === 'valo'"
+        class="w-full"
+      ></MatchHistoryValo>
     </div>
     <CreateCalendarEvent
       @isOpenModal="closeModal"
@@ -122,10 +130,17 @@
 // passé en query le lieu pour si on recharge et que les variable de navigation sont vide
 // la recup dans lURL si rien mettre a la page de garde
 
-import useStoreAuth from "../../../plugins/stores/auth";
-import PersonalCalendar from "./PersonalCalendar.vue";
-import PersonalSpacePage from "./PersonalSpacePage.vue";
-import CreateCalendarEvent from "../../../core/components/modal/CreateCalendarEvent.vue";
+import useStoreAuth from "@stores/auth";
+import PersonalCalendar from "@modules/personal/views/PersonalCalendar.vue";
+import PersonalSpacePage from "@modules/personal/views/PersonalSpacePage.vue";
+import CreateCalendarEvent from "@core/components/modal/CreateCalendarEvent.vue";
+import DashboardLol from "@modules/personal/views/DashboardLol.vue";
+import DashboardValo from "@modules/personal/views/DashboardValo.vue";
+import DashboardOw from "@modules/personal/views/DashboardOw.vue";
+import UsersServices from "@axios/services/userServices";
+import MatchHistoryLol from "@modules/personal/views/MatchHistoryLol.vue";
+import MatchHistoryOw from "@modules/personal/views/MatchHistoryOw.vue";
+import MatchHistoryValo from "@modules/personal/views/MatchHistoryValo.vue";
 import {
   ShareIcon,
   MapIcon,
@@ -135,11 +150,6 @@ import {
   CalendarIcon,
   ClipboardListIcon,
 } from "@heroicons/vue/outline";
-import DashboardLol from "./DashboardLol.vue";
-import DashboardValo from "./DashboardValo.vue";
-import DashboardOw from "./DashboardOw.vue";
-import UsersServices from "../services/userServices";
-import MatchHistory from "./MatchHistory.vue";
 
 export default {
   components: {
@@ -156,7 +166,9 @@ export default {
     DashboardLol,
     DashboardValo,
     DashboardOw,
-    MatchHistory,
+    MatchHistoryLol,
+    MatchHistoryOw,
+    MatchHistoryValo,
   },
   data() {
     const store = useStoreAuth();

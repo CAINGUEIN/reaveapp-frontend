@@ -5,7 +5,7 @@
     </ToolsButtonNav>
     <ToolsButtonNav
       :target="'PersonalSettings'"
-      :src="'/src/core/assets/icons/Settings.svg'"
+      :src="'@core/assets/icons/Settings.svg'"
       :dataClass="'medium'"
     />
     <div class="relative">
@@ -89,9 +89,9 @@
 
 <script>
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
-import ToolsButtonNav from "../buttons/ToolsButtonNav.vue";
-import Ecran from "../../assets/icons/ecran.vue";
-import InputModel from "../inputs/InputModel.vue";
+import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
+import Ecran from "@core/assets/icons/ecran.vue";
+import InputModel from "@core/components/inputs/InputModel.vue";
 export default {
   props: ["dataButtons"],
   data() {

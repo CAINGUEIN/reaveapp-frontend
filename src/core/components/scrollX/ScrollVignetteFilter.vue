@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import VignetteFilter from "./VignetteFilter.vue";
+import VignetteFilter from "@core/components/scrollX/VignetteFilter.vue";
 
 export default {
   props: ["data"],

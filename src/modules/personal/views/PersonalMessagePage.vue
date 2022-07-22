@@ -208,8 +208,8 @@
 </template>
 
 <script>
-import AddFriendModal from "../../../core/components/search/view/AddFriendModal.vue";
-import ValidateFriendModal from "../../../core/components/search/view/ValidateFriendModal.vue";
+import AddFriendModal from "@core/components/search/view/AddFriendModal.vue";
+import ValidateFriendModal from "@core/components/search/view/ValidateFriendModal.vue";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import {
   DotsVerticalIcon,
@@ -220,7 +220,7 @@ import {
   PlusIcon,
 } from "@heroicons/vue/outline";
 
-import useStoreAuth from "../../../plugins/stores/auth";
+import useStoreAuth from "@stores/auth";
 export default {
   components: {
     Popover,

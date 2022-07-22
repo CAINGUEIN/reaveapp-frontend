@@ -67,9 +67,9 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import ToolsButtonSubmit from "../buttons/ToolsButtonSubmit.vue";
-import InputModel from "../inputs/InputModel.vue";
-import ChatServices from "../../../modules/space/services/chatServices"
+import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
+import InputModel from "@core/components/inputs/InputModel.vue";
+import ChatServices from "@modules/space/services/chatServices"
 
 export default {
   props: ["isOpenModal", "_id_dataOfSpace"],

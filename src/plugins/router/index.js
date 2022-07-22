@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
-import useStoreAuth from "../stores/auth";
-import useStoreData from '../stores/data'
+import useStoreAuth from "@stores/auth";
+import useStoreData from '@stores/data'
 import { useCookies } from "vue3-cookies";
 
 const { cookies } = useCookies();
@@ -12,17 +12,17 @@ let routes = [
   },
 ];
 
-import routesAuth from "@/modules/auth/router/AuthRoute.js";
-import personalRoute from "@/modules/personal/router/personalRoute.js";
-import friendsRoute from "@/modules/friends/router/friendsRoute.js";
-import socialRoute from "@/modules/social/router/socialRoute.js";
-import playRoute from "@/modules/play/router/playRoute.js";
-import academyRoute from "@/modules/academy/router/academyRoute.js";
-import bootcampsRoute from "@/modules/bootcamps/router/bootcampsRoute.js";
-import jobsRoute from "@/modules/jobs/router/jobsRoute.js";
-import leagueRoute from "@/modules/league/router/leagueRoute.js";
-import nftRoute from "@/modules/nft/router/nftRoute.js";
-import newRoute from "@/modules/new/router/newRoute.js"
+import routesAuth from "@router/routes/authRoute";
+import personalRoute from "@router/routes/personalRoute";
+import friendsRoute from "@router/routes/friendsRoute";
+import socialRoute from "@router/routes/socialRoute";
+import playRoute from "@router/routes/playRoute";
+import academyRoute from "@router/routes/academyRoute";
+import bootcampsRoute from "@router/routes/bootcampsRoute";
+import jobsRoute from "@router/routes/jobsRoute";
+import leagueRoute from "@router/routes/leagueRoute";
+import nftRoute from "@router/routes/nftRoute";
+import newRoute from "@router/routes/newRoute"
 
 routes = routes.concat(
   routesAuth,

@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import InputModel from "../inputs/InputModel.vue";
-import ToolsButtonSubmit from "../buttons/ToolsButtonSubmit.vue";
+import InputModel from "@core/components/inputs/InputModel.vue";
+import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
 
 export default {
   components: { InputModel, ToolsButtonSubmit },

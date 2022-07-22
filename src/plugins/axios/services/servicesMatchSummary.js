@@ -1,4 +1,4 @@
-import Base from "../axiosPlugin";
+import Base from "@axios/axiosPlugin";
 
 class FindOneMatch {
   static async lolMatchSummary(idriot) {

@@ -10,7 +10,7 @@
       <div name="content-left" class="flex h-full flex-col justify-between">
         <div name="ligne-top" class="flex items-center">
           <img
-            src="../../assets/icons/Component_19.svg"
+            src="@core/assets/icons/Component_19.svg"
             class="h-[53px] w-[53px]"
           />
           <h1
@@ -1062,17 +1062,17 @@
 </template>
 
 <script>
-import FindOneMatch from "../../../plugins/axios/services/servicesMatchSummary";
-import useDataStore from "../../../plugins/stores/data";
-import useAuthStore from "../../../plugins/stores/auth";
+import FindOneMatch from "@axios/services/servicesMatchSummary";
+import useDataStore from "@stores/data";
+import useAuthStore from "@stores/auth";
 import {
   PaperAirplaneIcon,
   ChevronDownIcon,
   XIcon,
   PuzzleIcon,
 } from "@heroicons/vue/outline";
-import fakeData from "./fakeData";
-import ToolsButtonSubmit from "../buttons/ToolsButtonSubmit.vue";
+import fakeData from "@core/components/MatchSummary/fakeData";
+import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
 /* changement recup direct les datas dans le back du match
 voir peut etre a mettre sur cette route la recup des datas timeline
 - passer un query pour savoir sur un partage qui est le you de la game

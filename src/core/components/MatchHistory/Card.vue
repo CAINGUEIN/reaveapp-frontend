@@ -64,13 +64,27 @@
           }}
         </p>
       </div>
-      <img
-        :src="
-          formateImgRunesReforged(personnalStat.statTotal.perks.styles[0].style)
-        "
-        alt=""
-        class="ml-3 h-6 w-6 p-1 rounded-full bg-Anthracite"
-      />
+
+      <div class="ml-2 space-y-1">
+        <img
+          :src="
+            formateImgRunesReforged(
+              personnalStat.statTotal.perks.styles[0].style
+            )
+          "
+          alt=""
+          class="ml-3 h-6 w-6 p-1 rounded-full bg-Anthracite"
+        />
+        <img
+          :src="
+            formateImgRunesReforged(
+              personnalStat.statTotal.perks.styles[1].style
+            )
+          "
+          alt=""
+          class="ml-3 h-6 w-6 p-1 rounded-full bg-Anthracite"
+        />
+      </div>
       <div class="ml-2 space-y-1">
         <img
           :src="formateImgSummonerCast(personnalStat.statTotal.summoner1Id)"
@@ -180,7 +194,7 @@
 </template>
 
 <script>
-import useDataStore from "../../../plugins/stores/data";
+import useDataStore from "@stores/data";
 export default {
   props: ["data", "personnalId"],
   data() {
@@ -333,7 +347,10 @@ export default {
       return Math.round((totalKills / div) * 100) / 100;
     },
     goTo() {
-      this.$router.push({ name: 'MatchSummary', query: { match: this.data._id_riot } });
+      this.$router.push({
+        name: "MatchSummary",
+        query: { match: this.data._id_riot },
+      });
     },
   },
   mounted() {

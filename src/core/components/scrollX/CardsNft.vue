@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import ToolsButtonNav from "../buttons/ToolsButtonNav.vue";
-import ToolsButtonSubmit from "../buttons/ToolsButtonSubmit.vue";
+import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
+import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
 import { PlusIcon } from "@heroicons/vue/outline";
 export default {
   components: { ToolsButtonNav, ToolsButtonSubmit, PlusIcon },

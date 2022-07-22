@@ -39,18 +39,18 @@
 
 <script>
 //store
-import useStoreAuth from "../../../plugins/stores/auth";
-import useStoreSpace from "../../../plugins/stores/storeSpace";
-//compenents
-import CreateSpaceModal from "../../../core/components/modal/CreateSpaceModal.vue";
-import SpaceNavBar from "../../../core/components/barNav/SpaceNavBar.vue";
-import TopLeftNavBar from "../../../core/components/barNav/TopLeftNavBar.vue";
-import BottomLeftNavBar from "../../../core/components/barNav/BottomLeftNavBar.vue";
-import ToolsButtonNav from "../../../core/components/buttons/ToolsButtonNav.vue";
+import useStoreAuth from "@stores/auth";
+import useStoreSpace from "@stores/storeSpace";
+//components
+import CreateSpaceModal from "@core/components/modal/CreateSpaceModal.vue";
+import SpaceNavBar from "@core/components/barNav/SpaceNavBar.vue";
+import TopLeftNavBar from "@core/components/barNav/TopLeftNavBar.vue";
+import BottomLeftNavBar from "@core/components/barNav/BottomLeftNavBar.vue";
+import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
 import { GlobeIcon, PlusIcon } from "@heroicons/vue/outline";
 //data
-import dataTopLeft from "../data/dataTopLeftNavBar";
-import dataBottomLeft from "../data/dataBottomLeftNavBar";
+import dataTopLeft from "@modules/layout/data/dataTopLeftNavBar";
+import dataBottomLeft from "@modules/layout/data/dataBottomLeftNavBar";
 
 export default {
   components: {

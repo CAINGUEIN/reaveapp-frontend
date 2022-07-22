@@ -26,10 +26,10 @@
 </template>
 
 <script>
-import useStoreAuth from "../../../plugins/stores/auth";
-import InputModel from "../../../core/components/inputs/InputModel.vue";
-import ToolsButtonSubmit from "../../../core/components/buttons/ToolsButtonSubmit.vue";
-import UsersServices from "../services/userServices"
+import useStoreAuth from "@stores/auth";
+import InputModel from "@core/components/inputs/InputModel.vue";
+import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
+import UsersServices from "@axios/services/userServices"
 
 export default {
   components: { InputModel, ToolsButtonSubmit },

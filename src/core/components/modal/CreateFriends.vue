@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import ProfilForSpace from "./CreateFriendsElements/ProfilForSpace.vue";
+import ProfilForSpace from "@core/components/modal/CreateFriendsElements/ProfilForSpace.vue";
 export default {
   components: { ProfilForSpace },
   data() {

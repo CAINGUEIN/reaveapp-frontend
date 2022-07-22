@@ -96,7 +96,7 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import ToolsButtonSubmit from "./ToolsButtonSubmit.vue";
+import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
 
 export default {
   name: "Delete",

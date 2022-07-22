@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col p-12 pl-18 pb-8 max-w-authPage w-full">
     <div class="flex justify-between">
-      <img src="../../components/icons/Logo.svg" class="h-6" alt="" />
-      <img src="../../components/icons/Settings.svg" class="h-6 w-6" alt="" />
+      <img src="@core/components/icons/Logo.svg" class="h-6" alt="" />
+      <img src="@core/components/icons/Settings.svg" class="h-6 w-6" alt="" />
     </div>
     <h1 class="w-164 mt-16 text-5xl">{{ title }}</h1>
     <div class="w-input">
@@ -31,10 +31,10 @@
 </template>
 
 <script>
-import InputModel from "../../components/core/input/InputModel.vue";
-import AuthServices from "../../services/authServices";
-import ToolsButtonSubmit from "../../support/toolsBox/ToolsButtonSubmit.vue";
-import useStoreAuth from "../../plugins/stores/auth";
+import InputModel from "@core/components/core/input/InputModel.vue";
+import AuthServices from "@axios/services/authServices";
+import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit/vue";
+import useStoreAuth from "@stores/auth";
 
 export default {
   components: { InputModel, ToolsButtonSubmit },

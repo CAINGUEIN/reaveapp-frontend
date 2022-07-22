@@ -32,8 +32,8 @@
     <ScrollCards :data="dataCards" :txttitle="'Trending Auctions'" />
     <TopLayoutOneFilter />
     <div name="nftContest" class="h-[300px] mt-12 relative">
-      <img src="../../../core/assets/img/contest.png" alt="" class="absolute object-fill w-full h-[300px]">
-      <img src="../../../core/assets/img/gril.png" alt="" class="absolute object-fill w-full h-[300px]">
+      <img src="@core/assets/img/contest.png" alt="" class="absolute object-fill w-full h-[300px]">
+      <img src="@core/assets/img/gril.png" alt="" class="absolute object-fill w-full h-[300px]">
       <h1 class="z-10">Nft Content</h1>
       <button class="bg-DarkRock p-2 mx-2 absolute w-32 left-8 bottom-8">
         Explorer
@@ -47,18 +47,18 @@
 </template>
 
 <script>
-import dataFilter from "../data/filter";
-import dataCards from "../data/cards";
-import ToolsButtonSubmit from "../../../core/components/buttons/ToolsButtonSubmit.vue";
-import ToolsButtonNav from "../../../core/components/buttons/ToolsButtonNav.vue";
+import dataFilter from "@modules/nft/data/filter";
+import dataCards from "@modules/nft/data/cards";
+import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
+import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
 import { GlobeIcon, PlusIcon, SearchIcon } from "@heroicons/vue/outline";
-import ScrollVignetteFilter from "../../../core/components/scrollX/ScrollVignetteFilter.vue";
-import ScrollCards from "../../../core/components/scrollX/ScrollCards.vue";
-import TopLayoutOneFilter from "../../../core/components/top/TopLayoutOneFilter.vue";
-import GetCertified from "../../../core/components/elements/GetCertified.vue";
-import TopLayoutTwoFilters from "../../../core/components/top/TopLayoutTwoFilters.vue";
-import HowItWorks from "../../../core/components/elements/HowItWorks.vue";
-import QAndR from "../../../core/components/elements/QAndR.vue";
+import ScrollVignetteFilter from "@core/components/scrollX/ScrollVignetteFilter.vue";
+import ScrollCards from "@core/components/scrollX/ScrollCards.vue";
+import TopLayoutOneFilter from "@core/components/top/TopLayoutOneFilter.vue";
+import GetCertified from "@core/components/elements/GetCertified.vue";
+import TopLayoutTwoFilters from "@core/components/top/TopLayoutTwoFilters.vue";
+import HowItWorks from "@core/components/elements/HowItWorks.vue";
+import QAndR from "@core/components/elements/QAndR.vue";
 export default {
   components: {
     ToolsButtonSubmit,

@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import StoreDataServices from "../axios/services/storeData";
+import StoreDataServices from "@axios/services/storeData";
 
 const StoreData = defineStore("data", {
   state: () => {

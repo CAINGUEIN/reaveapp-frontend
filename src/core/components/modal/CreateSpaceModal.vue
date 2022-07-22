@@ -58,9 +58,9 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import ChoiseSpaceType from "./ChoiseSpaceType.vue";
-import CreateFriends from "./CreateFriends.vue";
-import CreateTeam from "./CreateTeam.vue";
+import ChoiseSpaceType from "@core/components/modal/ChoiseSpaceType.vue";
+import CreateFriends from "@core/components/modal/CreateFriends.vue";
+import CreateTeam from "@core/components/modal/CreateTeam.vue";
 
 export default {
   props: ["isOpenModal"],

@@ -1,6 +1,5 @@
 <template>
   <div>
-    
     <div name="contain" class="">
       <ul
         role="list"
@@ -14,7 +13,7 @@
         >
           <div class="w-full flex items-center p-6">
             <img
-              class="w-12 h-12 bg-gray-300 rounded-full "
+              class="w-12 h-12 bg-gray-300 rounded-full"
               :src="person.imageUrl"
               alt=""
             />
@@ -79,105 +78,120 @@ const people = [
     grid: "col-span-1",
     action: false,
     imageUrl: "http://via.placeholder.com/50",
-  },{
+  },
+  {
     name: "Ceadus",
     title: "Main Support",
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
     imageUrl: "http://via.placeholder.com/50",
-  },{
+  },
+  {
     name: "Ceadus",
     title: "Main Support",
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
     imageUrl: "http://via.placeholder.com/50",
-  },{
+  },
+  {
     name: "Ceadus",
     title: "Main Support",
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
     imageUrl: "http://via.placeholder.com/50",
-  },{
+  },
+  {
     name: "Ceadus",
     title: "Main Support",
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
     imageUrl: "http://via.placeholder.com/50",
-  },{
+  },
+  {
     name: "Ceadus",
     title: "Main Support",
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
     imageUrl: "http://via.placeholder.com/50",
-  },{
+  },
+  {
     name: "Ceadus",
     title: "Main Support",
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
     imageUrl: "http://via.placeholder.com/50",
-  },{
+  },
+  {
     name: "Ceadus",
     title: "Main Support",
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
     imageUrl: "http://via.placeholder.com/50",
-  },{
+  },
+  {
     name: "Ceadus",
     title: "Main Support",
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
     imageUrl: "http://via.placeholder.com/50",
-  },{
+  },
+  {
     name: "Ceadus",
     title: "Main Support",
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
     imageUrl: "http://via.placeholder.com/50",
-  },{
+  },
+  {
     name: "Ceadus",
     title: "Main Support",
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
     imageUrl: "http://via.placeholder.com/50",
-  },{
+  },
+  {
     name: "Ceadus",
     title: "Main Support",
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
     imageUrl: "http://via.placeholder.com/50",
-  },{
+  },
+  {
     name: "Ceadus",
     title: "Main Support",
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
     imageUrl: "http://via.placeholder.com/50",
-  },{
+  },
+  {
     name: "Ceadus",
     title: "Main Support",
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
     imageUrl: "http://via.placeholder.com/50",
-  },{
+  },
+  {
     name: "Ceadus",
     title: "Main Support",
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
     imageUrl: "http://via.placeholder.com/50",
-  },{
+  },
+  {
     name: "Ceadus",
     title: "Main Support",
     txt: "Play your first match with Reave to start missions",

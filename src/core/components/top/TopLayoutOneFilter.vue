@@ -19,7 +19,7 @@
     et l'afficher
  */
 import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/vue/outline";
-import TopDisplay from "./TopDisplay.vue";
+import TopDisplay from "@core/components/top/TopDisplay.vue";
 
 export default {
   components: { ChevronDownIcon, ChevronRightIcon, TopDisplay },

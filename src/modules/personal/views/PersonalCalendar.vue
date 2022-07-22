@@ -12,7 +12,7 @@ import list from "@fullcalendar/list";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import CreateEventCalendarSide from "../../../core/components/elements/CreateEventCalendarSide.vue";
+import CreateEventCalendarSide from "@core/components/elements/CreateEventCalendarSide.vue";
 export default {
   components: {
     FullCalendar,

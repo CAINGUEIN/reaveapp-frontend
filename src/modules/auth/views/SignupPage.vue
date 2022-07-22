@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col p-12 pl-18 pb-8 max-w-authPage w-full">
     <div class="flex justify-between">
-      <img src="../../../core/assets/icons/logo.svg" class="h-6" alt="" />
-      <img src="../../../core/assets/icons/Settings.svg" class="h-6 w-6" alt="" />
+      <img src="@core/assets/icons/logo.svg" class="h-6" alt="" />
+      <img src="@core/assets/icons/Settings.svg" class="h-6 w-6" alt="" />
     </div>
     <h1 class="w-164 mt-16 text-5xl">{{ title }}</h1>
     <div v-if="etape === 1" class="w-input">
@@ -131,12 +131,12 @@
 </template>
 
 <script>
-import InputModel from "../../../core/components/inputs/InputModel.vue";
-import AuthServices from "../services/authServices";
-import ToolsButtonSubmit from "../../../core/components/buttons/ToolsButtonSubmit.vue";
-import useStoreAuth from "../../../plugins/stores/auth";
-import CheckboxModel from "../../../core/components/inputs/CheckboxModel.vue";
-import ErrorsHelpers from "../../../core/support/functions/ErrorsHelpers";
+import InputModel from "@core/components/inputs/InputModel.vue";
+import AuthServices from "@axios/services/authServices";
+import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
+import useStoreAuth from "@stores/auth";
+import CheckboxModel from "@core/components/inputs/CheckboxModel.vue";
+import ErrorsHelpers from "@core/support/functions/ErrorsHelpers";
 
 export default {
   components: { InputModel, ToolsButtonSubmit, CheckboxModel },

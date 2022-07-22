@@ -44,11 +44,11 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import ToolsButtonSubmit from "../buttons/ToolsButtonSubmit.vue";
-import InputModel from "../inputs/InputModel.vue";
-import UserCalendarServices from "../../../modules/personal/services/userCalendarServices";
-import DateModel from "../inputs/DateModel.vue";
-import AddMonoValueInArray from "../inputs/AddMonoValueInArray.vue";
+import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
+import InputModel from "@core/components/inputs/InputModel.vue";
+import UserCalendarServices from "@axios/services/userCalendarServices";
+import DateModel from "@core/components/inputs/DateModel.vue";
+import AddMonoValueInArray from "@core/components/inputs/AddMonoValueInArray.vue";
 
 export default {
   props: ["isOpenModal", "data"],

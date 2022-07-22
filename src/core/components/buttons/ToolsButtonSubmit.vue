@@ -55,7 +55,7 @@ et surtout passé le loading en debut de la function service a true et un retour
 
 <script>
 /* Import Tools */
-import useStoreAuth from "../../../plugins/stores/auth";
+import useStoreAuth from "@stores/auth";
 
 export default {
   props: ["txtButton", "color"],

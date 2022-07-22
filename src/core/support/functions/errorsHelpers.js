@@ -1,4 +1,4 @@
-import store from "../../../plugins/stores/auth";
+import store from "@stores/auth";
 
 export default {
   /**format errors message from Api for

@@ -11,8 +11,8 @@ le temps que je dl les infos dans le back avec une petite image d'attente
 </template>
 
 <script>
-import Waiting from "../../../core/components/page/Waiting.vue";
-import useStoreSpace from "../../../plugins/stores/storeSpace";
+import Waiting from "@core/components/page/Waiting.vue";
+import useStoreSpace from "@stores/storeSpace";
 
 export default {
   components: { Waiting },

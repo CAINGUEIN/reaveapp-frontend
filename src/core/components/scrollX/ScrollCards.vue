@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import CardsNft from "./CardsNft.vue";
+import CardsNft from "@core/components/scrollX/CardsNft.vue";
 export default { components: { CardsNft }, props: ["data", "txttitle"] };
 </script>
 

@@ -1,4 +1,4 @@
-import Base from "../axiosPlugin";
+import Base from "@axios/axiosPlugin";
 
 class StoreDataServices {
   static async version() {

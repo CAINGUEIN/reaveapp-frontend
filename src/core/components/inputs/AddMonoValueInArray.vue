@@ -50,9 +50,9 @@
 </template>
 
 <script>
-import ToolsButtonSubmit from "../buttons/ToolsButtonSubmit.vue";
-import ErrorsHelpers from "../../support/functions/ErrorsHelpers";
-import useStoreAuth from "../../../plugins/stores/auth";
+import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
+import ErrorsHelpers from "@core/support/functions/ErrorsHelpers";
+import useStoreAuth from "@stores/auth";
 import { XIcon } from "@heroicons/vue/outline";
 
 /**
