@@ -22,7 +22,7 @@ import bootcampsRoute from "@/modules/bootcamps/router/bootcampsRoute.js";
 import jobsRoute from "@/modules/jobs/router/jobsRoute.js";
 import leagueRoute from "@/modules/league/router/leagueRoute.js";
 import nftRoute from "@/modules/nft/router/nftRoute.js";
-import newRoute from "@/modules/new/router/newRoute.js"
+import newRoute from "@/modules/new/router/NewRoute.js"
 
 routes = routes.concat(
   routesAuth,
