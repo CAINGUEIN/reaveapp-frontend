@@ -38,7 +38,7 @@ export default {
         this.$router.push({ name: "Login" });
         this.store.loading = false;
       } else {
-        this.errors = ErrorsHelpers.handleError(result.data.errors);
+        this.errors = errorsHelpers.handleError(result.data.errors);
         this.store.loading = false;
       }
     },

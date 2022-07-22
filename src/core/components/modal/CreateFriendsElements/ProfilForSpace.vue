@@ -24,7 +24,7 @@
 import UploadModel from "@core/components/inputs/uploadModel.vue";
 import InputModel from "@core/components/inputs/InputModel.vue";
 import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
-import ErrorsHelpers from "@core/support/functions/ErrorsHelpers";
+import errorsHelpers from "@core/support/functions/errorsHelpers";
 import FriendsServices from "@axios/services/friendsServices";
 import useStoreSpace from "@stores/storeSpace";
 import useStoreAuth from "@stores/auth";
@@ -76,17 +76,17 @@ export default {
         );
         console.log(resultSpaceData);
         if (resultSpaceData) {
-          this.errors = ErrorsHelpers.resetError();
+          this.errors = errorsHelpers.resetError();
           this.$router.push({
             path: "/space/friends",
             query: { id: result.idNewSpace },
           });
           this.$emit("close")
         } else {
-          this.errors = ErrorsHelpers.handleError(/**/);
+          this.errors = errorsHelpers.handleError(/**/);
         }
       } else {
-        this.errors = ErrorsHelpers.handleError(/**/);
+        this.errors = errorsHelpers.handleError(/**/);
       }
     },
   },

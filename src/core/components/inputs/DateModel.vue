@@ -5,7 +5,7 @@
       <span class="text-Red ml-2 text-H6 font-normal" id="email-error">{{
         !errors.hasOwnProperty(data.name)
           ? ""
-          : ErrorsHelpers.affichageError(errors[data.name].message)
+          : errorsHelpers.affichageError(errors[data.name].message)
       }}</span>
     </label>
     <div class="mt-3 relative">
@@ -32,7 +32,7 @@
 
 <script>
 import { ExclamationCircleIcon } from "@heroicons/vue/solid";
-import ErrorsHelpers from "@core/support/functions/ErrorsHelpers";
+import errorsHelpers from "@core/support/functions/errorsHelpers";
 import useStoreAuth from "@stores/auth";
 
 /**
@@ -69,7 +69,7 @@ export default {
     const store = useStoreAuth();
     return {
       date: "",
-      ErrorsHelpers,
+      errorsHelpers,
       store,
     };
   },

@@ -55,7 +55,7 @@ import InputModel from "@core/components/inputs/InputModel.vue";
 import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
 import useStoreAuth from "@stores/auth";
 import AuthServices from "@axios/services/authServices";
-import ErrorsHelpers from "@core/support/functions/ErrorsHelpers";
+import errorsHelpers from "@core/support/functions/errorsHelpers";
 
 export default {
   components: { InputModel, ToolsButtonSubmit },
@@ -92,12 +92,12 @@ export default {
         this.$cookies.set("userSession", result.data.token);
         let resultDataAccount = await this.store.feedDataAccount();
         if (resultDataAccount) {
-          this.errors = ErrorsHelpers.resetError();
+          this.errors = errorsHelpers.resetError();
           this.$router.push({ name: "Personal" });
           this.store.loading = false;
         }
       } else {
-        this.errors = ErrorsHelpers.handleError(result.data.errors);
+        this.errors = errorsHelpers.handleError(result.data.errors);
         this.store.loading = false;
       }
     },

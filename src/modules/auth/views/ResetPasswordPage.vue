@@ -64,10 +64,10 @@ export default {
       if (result.data.access_token) {
         this.$cookies.set("userSession", result.data.access_token);
         store.commit("feedDataAccount");
-        this.errors = ErrorsHelpers.resetError();
+        this.errors = errorsHelpers.resetError();
         this.$router.push({ name: "Home" });
       } else {
-        this.errors = ErrorsHelpers.handleError(result.data.errors);
+        this.errors = errorsHelpers.handleError(result.data.errors);
       }
     },
   },
