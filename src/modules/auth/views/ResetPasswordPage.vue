@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import InputModel from "@core/components/core/input/InputModel.vue";
+import InputModel from "@core/components/input/InputModel.vue";
 import AuthServices from "@axios/services/authServices";
 import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit/vue";
 import useStoreAuth from "@stores/auth";
