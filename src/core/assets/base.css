@@ -57,6 +57,9 @@
   thead { @apply border-hidden }
   table { @apply border-hidden }
   tbody { @apply border-hidden }
+  p {
+    @apply text-lg text-Cloud font-sans font-normal
+  }
 }
 @tailwind utilities;
 @layer utilities {

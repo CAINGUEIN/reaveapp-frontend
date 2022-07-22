@@ -2,7 +2,7 @@
   <div class="flex relative">
     <div
       name="nav-bar-left"
-      class="sticky top-0 left-0 bottom-0 flex flex-col justify-between w-32 h-screen items-center"
+      class="sticky top-0 left-0 bottom-0 z-50 flex flex-col justify-between w-32 h-screen items-center"
     >
       <div name="top" class="mt-8">
         <TopLeftNavBar :dataButtons="dataTopLeft" />
@@ -15,7 +15,7 @@
     <div class="w-full flex flex-col">
       <div
         name="nav-bar-top"
-        class="sticky top-0 left-0 right-0 z-10 bg-Anthracite flex py-8 items-center"
+        class="sticky top-0 left-0 right-0 z-50 bg-Anthracite flex pt-6 pb-[18px] items-center"
       >
         <SpaceNavBar @action="openSpace" :data="store.dataSpaces" />
         <div class="bg-white h-14 my-auto w-1 rounded-full mr-2"></div>
@@ -31,7 +31,7 @@
           <GlobeIcon class="h-15 w-15" />
         </ToolsButtonNav>
       </div>
-      <router-view />
+      <router-view class="pr-[30px]" />
     </div>
     <CreateSpaceModal @isOpenModal="closeModal" :isOpenModal="isOpenModal" />
   </div>

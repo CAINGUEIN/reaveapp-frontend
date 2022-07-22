@@ -79,7 +79,7 @@ export default {
     BTN() {
       if (this.color === "") {
         this.classBtn = "bg-White rounded-full py-4 justify-center flex ";
-        this.classTxtBtn = "text-Black font-bold text-H4 leading-none";
+        this.classTxtBtn = "text-Black font-black text-[20px] leading-none";
       } else if (this.color === "desactivated") {
         this.classBtn = "bg-LightGrey rounded-full py-4 justify-center flex ";
         this.classTxtBtn = "text-Black font-bold text-H4 leading-none";
