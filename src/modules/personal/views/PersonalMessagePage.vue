@@ -208,8 +208,8 @@
 </template>
 
 <script>
-import AddFriendModal from "@core/components/search/view/AddFriendModal.vue";
-import ValidateFriendModal from "@core/components/search/view/ValidateFriendModal.vue";
+import AddFriendModal from "@core/components/search/AddFriendModal.vue";
+import ValidateFriendModal from "@core/components/search/ValidateFriendModal.vue";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import {
   DotsVerticalIcon,
