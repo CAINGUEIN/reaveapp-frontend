@@ -17,7 +17,7 @@
         class="flex bg-Rock rounded-full"
       >
         <img
-          src="@core/assets/icons/League Of Legends.svg"
+          src="@core/assets/icons/LeagueOfLegends.svg"
           alt=""
           class="h-16 w-16 p-4 hover:bg-Stone hover:brightness-200 rounded-full"
           :class="
