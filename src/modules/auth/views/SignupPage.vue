@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col p-12 pl-18 pb-8 max-w-authPage w-full">
     <div class="flex justify-between">
-      <img src="@core/assets/icons/logo.svg" class="h-6" alt="" />
+      <img src="@core/assets/icons/Logo1.svg" class="h-6" alt="" />
       <img src="@core/assets/icons/Settings.svg" class="h-6 w-6" alt="" />
     </div>
     <h1 class="w-164 mt-16 text-5xl">{{ title }}</h1>
