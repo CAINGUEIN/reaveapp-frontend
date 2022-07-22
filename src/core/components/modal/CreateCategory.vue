@@ -69,7 +69,7 @@ import {
 } from "@headlessui/vue";
 import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
 import InputModel from "@core/components/inputs/InputModel.vue";
-import ChatServices from "@modules/space/services/chatServices"
+import ChatServices from "@axios/services/chatServices"
 
 export default {
   props: ["isOpenModal", "_id_dataOfSpace"],
