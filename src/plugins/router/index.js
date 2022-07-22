@@ -12,7 +12,7 @@ let routes = [
   },
 ];
 
-import routesAuth from "@/modules/auth/router/authRoute.js";
+import routesAuth from "@/modules/auth/router/AuthRoute.js";
 import personalRoute from "@/modules/personal/router/personalRoute.js";
 import friendsRoute from "@/modules/friends/router/friendsRoute.js";
 import socialRoute from "@/modules/social/router/socialRoute.js";
