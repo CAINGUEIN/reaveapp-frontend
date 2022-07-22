@@ -107,8 +107,8 @@
 <script>
 import useStoreSpace from "@stores/storeSpace";
 import Tchat from "@core/components/chat/tchat.vue";
-import FriendsDashboard from "@modules/friends/views/FriendsDashboard.vue";
-import FriendsCalendar from "@modules/friends/views/FriendsCalendar.vue";
+import FriendsDashboard from "@modules/friends/views/Dashboard.vue";
+import FriendsCalendar from "@modules/friends/views/Calendar.vue";
 export default {
   components: { Tchat, FriendsDashboard, FriendsCalendar },
   data() {
