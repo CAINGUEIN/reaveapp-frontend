@@ -12,17 +12,17 @@ let routes = [
   },
 ];
 
-import routesAuth from "src/modules/auth/router/authRoute";
-import personalRoute from "src/modules/personal/router/personalRoute";
-import friendsRoute from "src/modules/friends/router/friendsRoute";
-import socialRoute from "src/modules/social/router/socialRoute";
-import playRoute from "src/modules/play/router/playRoute";
-import academyRoute from "src/modules/academy/router/academyRoute";
-import bootcampsRoute from "src/modules/bootcamps/router/bootcampsRoute";
-import jobsRoute from "src/modules/jobs/router/jobsRoute";
-import leagueRoute from "src/modules/league/router/leagueRoute";
-import nftRoute from "src/modules/nft/router/nftRoute";
-import newRoute from "src/modules/new/router/newRoute"
+import routesAuth from "/src/modules/auth/router/authRoute";
+import personalRoute from "/src/modules/personal/router/personalRoute";
+import friendsRoute from "/src/modules/friends/router/friendsRoute";
+import socialRoute from "/src/modules/social/router/socialRoute";
+import playRoute from "/src/modules/play/router/playRoute";
+import academyRoute from "/src/modules/academy/router/academyRoute";
+import bootcampsRoute from "/src/modules/bootcamps/router/bootcampsRoute";
+import jobsRoute from "/src/modules/jobs/router/jobsRoute";
+import leagueRoute from "/src/modules/league/router/leagueRoute";
+import nftRoute from "/src/modules/nft/router/nftRoute";
+import newRoute from "/src/modules/new/router/newRoute"
 
 routes = routes.concat(
   routesAuth,
