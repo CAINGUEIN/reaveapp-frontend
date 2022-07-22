@@ -119,7 +119,7 @@
 
 <script>
 import { io } from "socket.io-client";
-import ChatRoom from "@core/components/modal/ChatRoom.vue";
+import ChatRoom from "@core/components/chat/ChatRoom.vue";
 import useStoreAuth from "@stores/auth";
 import useStoreSpace from "@stores/storeSpace";
 import FriendsServices from "@axios/services/friendsServices";
