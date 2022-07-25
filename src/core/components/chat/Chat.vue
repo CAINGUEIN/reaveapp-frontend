@@ -134,7 +134,7 @@ export default {
     const store = useStoreAuth();
     const storeSpace = useStoreSpace();
     return {
-      socket: io(import.meta.env.VITE_API_BACKURL),
+      socket: io(import.meta.env.VITE_API_BACK_URL),
       waiting: false,
       _id_data: "",
       isOpenModalCategory: false,
