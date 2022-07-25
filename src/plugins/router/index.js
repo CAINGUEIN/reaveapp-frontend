@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import useStoreAuth from "@stores/auth";
-import useStoreData from '@stores/data'
+import useStoreData from "@stores/data";
 import { useCookies } from "vue3-cookies";
 
 const { cookies } = useCookies();
@@ -22,7 +22,7 @@ import bootcampsRoute from "@router/routes/bootcampsRoute";
 import jobsRoute from "@router/routes/jobsRoute";
 import leagueRoute from "@router/routes/leagueRoute";
 import nftRoute from "@router/routes/nftRoute";
-import newRoute from "@router/routes/newRoute"
+import newRoute from "@router/routes/newRoute";
 
 routes = routes.concat(
   routesAuth,
@@ -45,7 +45,7 @@ const router = createRouter({
 
 router.beforeEach(async (to, from) => {
   const store = useStoreAuth();
-  const storeData = useStoreData()
+  const storeData = useStoreData();
 
   console.log("avant le login", store);
 
@@ -54,13 +54,13 @@ router.beforeEach(async (to, from) => {
   if (store.isLogin === "") {
     if (await store.feedDataAccount()) {
       console.log("apres le feed");
+      if (storeData.data === "") {
+        await storeData.feedData();
+      }
     } else {
       cookies.remove("userSession"); //return this
+      console.log("removeCooki");
     }
-  }
-
-  if (storeData.data === "") {
-    await storeData.feedData()
   }
 
   console.log("aprés le login", store.isLogin);

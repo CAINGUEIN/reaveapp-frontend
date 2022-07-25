@@ -4,7 +4,7 @@ import { useCookies } from "vue3-cookies";
 const { cookies } = useCookies();
 
 const Base = axios.create({
-  baseURL: import.meta.env.VITE_API_BACKURL,
+  baseURL: import.meta.env.VITE_API_BACK_URL,
 });
 export default Base;
 
@@ -12,7 +12,7 @@ Base.interceptors.request.use(
   function (config) {
     if (
       config.headers["Authorization"] === undefined &&
-      config.baseURL === import.meta.env.VITE_API_BACKURL &&
+      config.baseURL === import.meta.env.VITE_API_BACK_URL &&
       cookies.get("userSession") !== null
     ) {
       config.headers["Authorization"] = "bearer " + cookies.get("userSession");
@@ -37,11 +37,11 @@ Base.interceptors.response.use((response) => {
   return response;
 });
 
-if (import.meta.env.VITE_API_WATCHSERVICES === "yes") {
+if (import.meta.env.VITE_APP_WATCH_SERVICES === "yes") {
   Base.interceptors.request.use(
     (request) => {
       console.log("\\\\\\\\");
-      console.log(`SENDING FROM FRONTEND : ${request}`);
+      console.log(`SENDING FROM FRONTEND :`, request);
       console.log("\\\\\\\\");
       return request;
     },
