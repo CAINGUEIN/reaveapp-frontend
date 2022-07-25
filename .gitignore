@@ -1,6 +1,4 @@
 node_modules
-.env_loc
+.env
+.env_lab
 poubelle
-old-src
-src
-public
