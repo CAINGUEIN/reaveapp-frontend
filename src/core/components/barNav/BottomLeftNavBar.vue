@@ -5,7 +5,7 @@
     </ToolsButtonNav>
     <ToolsButtonNav
       :target="'PersonalSettings'"
-      :src="'@core/assets/icons/Settings.svg'"
+      :src="'/src/core/assets/icons/Settings.svg'"
       :dataClass="'medium'"
     />
     <div class="relative">
