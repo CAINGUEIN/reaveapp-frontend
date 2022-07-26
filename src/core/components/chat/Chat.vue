@@ -205,7 +205,7 @@ export default {
         _id_user: this.store.dataAccount._id,
       });
     },
-    listen() {
+    /* listen() {
       console.log(socket);
       this.socket.on("loggedIn", (data) => {
         this.messages = data.messages._id_messages;
@@ -224,7 +224,7 @@ export default {
       this.socket.on("deleteMsg", (key) => {
         this.messages.splice(key, 1);
       });
-    },
+    }, */
     sendMessage(message) {
       this.socket.emit("msg", message);
     },
@@ -238,7 +238,7 @@ export default {
     //recup le pseudo de l'utilisateur connecté
     this.username = this.store.dataAccount.userName;
     this.dataquery();
-    this.listen();
+    //this.listen();
   },
 };
 </script>
