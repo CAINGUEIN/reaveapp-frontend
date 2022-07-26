@@ -206,6 +206,7 @@ export default {
       });
     },
     listen() {
+      console.log(socket);
       this.socket.on("loggedIn", (data) => {
         this.messages = data.messages._id_messages;
         this.users = data.users;
