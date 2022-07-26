@@ -281,7 +281,6 @@ export default {
     },
     formateImgSummonerCast(target) {
       for (const key in this.dataStore.summoners) {
-        console.log(this.dataStore.summoners[key].key, target);
         if (this.dataStore.summoners[key].key == target) {
           return (
             "http://ddragon.leagueoflegends.com/cdn/" +

@@ -1,9 +1,10 @@
 <template>
-  <div>
-    <Filter />
-    <div>
-      <Card v-for="match in store.ListLastMatchLol" :data="match" :personnalId="store.dataAccount._id" />
+  <div class="flex">
+    <Filter class="w-1/5" />
+    <div class="w-3/5">
+      <Card class="m-auto" v-for="match in store.ListLastMatchLol" :data="match" :personnalId="store.dataAccount._id" />
     </div>
+    <Order class="W-1/5"/>
   </div>
 </template>
 
@@ -11,8 +12,9 @@
 import useStoreAuth from "@stores/auth";
 import Filter from "@core/components/MatchHistory/Filter.vue";
 import Card from "@core/components/MatchHistory/Card.vue";
+import Order from "./Order.vue";
 export default {
-  components: { Filter, Card },
+  components: { Filter, Card, Order },
   data() {
     const store = useStoreAuth();
     return {
