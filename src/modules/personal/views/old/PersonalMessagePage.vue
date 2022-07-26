@@ -12,7 +12,7 @@
       <div name="correspondants-contact" class="">
         <div class="flex rounded-xl m-2 px-4 py-1 bg-LightRock">
           <img
-            src="http://via.placeholder.com/40"
+            src="https://via.placeholder.com/40"
             alt=""
             class="rounded-full my-auto"
           />
@@ -23,7 +23,7 @@
         </div>
         <div class="flex rounded-xl m-2 px-4 py-1 bg-LightRock">
           <img
-            src="http://via.placeholder.com/40"
+            src="https://via.placeholder.com/40"
             alt=""
             class="rounded-full my-auto"
           />
@@ -34,7 +34,7 @@
         </div>
         <div class="flex rounded-xl m-2 px-4 py-1 bg-LightRock">
           <img
-            src="http://via.placeholder.com/40"
+            src="https://via.placeholder.com/40"
             alt=""
             class="rounded-full my-auto"
           />
@@ -91,7 +91,7 @@
       <div name="message-input" class="min-w-max bg-Stone rounded-2xl m-2 flex justify-between">
         <div name="start" class="flex">
           <img
-            src="http://via.placeholder.com/60"
+            src="https://via.placeholder.com/60"
             alt=""
             class="rounded-full my-auto"
           />
@@ -99,19 +99,19 @@
         </div>
         <div name="end" class="flex">
           <img
-            src="http://via.placeholder.com/60"
+            src="https://via.placeholder.com/60"
             alt=""
             class="rounded-full my-auto"
           /><img
-            src="http://via.placeholder.com/60"
+            src="https://via.placeholder.com/60"
             alt=""
             class="rounded-full my-auto"
           /><img
-            src="http://via.placeholder.com/60"
+            src="https://via.placeholder.com/60"
             alt=""
             class="rounded-full my-auto"
           /><img
-            src="http://via.placeholder.com/60"
+            src="https://via.placeholder.com/60"
             alt=""
             class="rounded-full my-auto"
           />

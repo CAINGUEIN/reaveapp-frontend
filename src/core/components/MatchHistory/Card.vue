@@ -143,7 +143,7 @@
     <div class="flex items-center mx-3">
       <div class="flex mr-8">
         <img
-          src="http://via.placeholder.com/24"
+          src="https://via.placeholder.com/24"
           alt=""
           class="rounded-full my-auto"
         />
@@ -154,7 +154,7 @@
       </div>
       <div v-if="info.gameMode === 'CLASSIC'" class="flex mr-8">
         <img
-          src="http://via.placeholder.com/24"
+          src="https://via.placeholder.com/24"
           alt=""
           class="rounded-full my-auto"
         />
@@ -172,7 +172,7 @@
       </div>
       <div class="flex mr-8">
         <img
-          src="http://via.placeholder.com/24"
+          src="https://via.placeholder.com/24"
           alt=""
           class="rounded-full my-auto"
         />

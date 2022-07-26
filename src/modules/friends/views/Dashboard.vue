@@ -69,7 +69,7 @@ const people = [
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
-    imageUrl: "http://via.placeholder.com/50",
+    imageUrl: "https://via.placeholder.com/50",
   },
   {
     name: "Ceadus",
@@ -77,7 +77,7 @@ const people = [
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
-    imageUrl: "http://via.placeholder.com/50",
+    imageUrl: "https://via.placeholder.com/50",
   },
   {
     name: "Ceadus",
@@ -85,7 +85,7 @@ const people = [
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
-    imageUrl: "http://via.placeholder.com/50",
+    imageUrl: "https://via.placeholder.com/50",
   },
   {
     name: "Ceadus",
@@ -93,7 +93,7 @@ const people = [
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
-    imageUrl: "http://via.placeholder.com/50",
+    imageUrl: "https://via.placeholder.com/50",
   },
   {
     name: "Ceadus",
@@ -101,7 +101,7 @@ const people = [
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
-    imageUrl: "http://via.placeholder.com/50",
+    imageUrl: "https://via.placeholder.com/50",
   },
   {
     name: "Ceadus",
@@ -109,7 +109,7 @@ const people = [
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
-    imageUrl: "http://via.placeholder.com/50",
+    imageUrl: "https://via.placeholder.com/50",
   },
   {
     name: "Ceadus",
@@ -117,7 +117,7 @@ const people = [
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
-    imageUrl: "http://via.placeholder.com/50",
+    imageUrl: "https://via.placeholder.com/50",
   },
   {
     name: "Ceadus",
@@ -125,7 +125,7 @@ const people = [
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
-    imageUrl: "http://via.placeholder.com/50",
+    imageUrl: "https://via.placeholder.com/50",
   },
   {
     name: "Ceadus",
@@ -133,7 +133,7 @@ const people = [
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
-    imageUrl: "http://via.placeholder.com/50",
+    imageUrl: "https://via.placeholder.com/50",
   },
   {
     name: "Ceadus",
@@ -141,7 +141,7 @@ const people = [
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
-    imageUrl: "http://via.placeholder.com/50",
+    imageUrl: "https://via.placeholder.com/50",
   },
   {
     name: "Ceadus",
@@ -149,7 +149,7 @@ const people = [
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
-    imageUrl: "http://via.placeholder.com/50",
+    imageUrl: "https://via.placeholder.com/50",
   },
   {
     name: "Ceadus",
@@ -157,7 +157,7 @@ const people = [
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
-    imageUrl: "http://via.placeholder.com/50",
+    imageUrl: "https://via.placeholder.com/50",
   },
   {
     name: "Ceadus",
@@ -165,7 +165,7 @@ const people = [
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
-    imageUrl: "http://via.placeholder.com/50",
+    imageUrl: "https://via.placeholder.com/50",
   },
   {
     name: "Ceadus",
@@ -173,7 +173,7 @@ const people = [
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
-    imageUrl: "http://via.placeholder.com/50",
+    imageUrl: "https://via.placeholder.com/50",
   },
   {
     name: "Ceadus",
@@ -181,7 +181,7 @@ const people = [
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
-    imageUrl: "http://via.placeholder.com/50",
+    imageUrl: "https://via.placeholder.com/50",
   },
   {
     name: "Ceadus",
@@ -189,7 +189,7 @@ const people = [
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
-    imageUrl: "http://via.placeholder.com/50",
+    imageUrl: "https://via.placeholder.com/50",
   },
   {
     name: "Ceadus",
@@ -197,7 +197,7 @@ const people = [
     txt: "Play your first match with Reave to start missions",
     grid: "col-span-1",
     action: false,
-    imageUrl: "http://via.placeholder.com/50",
+    imageUrl: "https://via.placeholder.com/50",
   },
   // More people...
 ];

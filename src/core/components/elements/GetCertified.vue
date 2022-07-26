@@ -8,47 +8,47 @@
     </p>
     <p class="text-center text-2xl text-White">Sit sapiente odio nulla fugiat est neque, esse eveniet.</p>
     <div class="flex mx-auto mt-14">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
     </div>
     <div class="flex mx-auto mt-5">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
-        <img src="http://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
+        <img src="https://via.placeholder.com/60" alt="" class="rounded-full mx-2">
     </div>
   </div>
 </template>

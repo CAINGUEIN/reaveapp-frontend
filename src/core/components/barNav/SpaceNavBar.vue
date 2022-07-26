@@ -7,7 +7,7 @@
     :slot="true"
   >
     <img
-      src="http://via.placeholder.com/60"
+      src="https://via.placeholder.com/60"
       alt=""
       class="rounded-full my-auto"
     />

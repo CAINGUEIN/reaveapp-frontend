@@ -15,7 +15,7 @@
         <ToolsButtonSubmit @action="logout" txtButton="Logout" :color="''" />
       </div>
       <div class="mt-8 ml-8">
-        <img src="http://via.placeholder.com/190" alt="" class="rounded" />
+        <img src="https://via.placeholder.com/190" alt="" class="rounded" />
       </div>
     </div>
     <div class="flex justify-between mt-auto">

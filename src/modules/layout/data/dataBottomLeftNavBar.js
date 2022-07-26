@@ -23,7 +23,7 @@
         {
             name: "PersonalSpace",
             target: "PersonalSpace",
-            src: "http://via.placeholder.com/60",
+            src: "https://via.placeholder.com/60",
             class: "large"
         },
     ];

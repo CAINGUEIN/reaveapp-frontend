@@ -31,52 +31,52 @@ export default {
       tops: [
         {
           name: "Kingans",
-          src: "http://via.placeholder.com/40",
+          src: "https://via.placeholder.com/40",
           value: "9",
         },
         {
           name: "Kingans",
-          src: "http://via.placeholder.com/40",
+          src: "https://via.placeholder.com/40",
           value: "8",
         },
         {
           name: "Kingans",
-          src: "http://via.placeholder.com/40",
+          src: "https://via.placeholder.com/40",
           value: "7",
         },
         {
           name: "Kingans",
-          src: "http://via.placeholder.com/40",
+          src: "https://via.placeholder.com/40",
           value: "6",
         },
         {
           name: "Kingans",
-          src: "http://via.placeholder.com/40",
+          src: "https://via.placeholder.com/40",
           value: "5",
         },
         {
           name: "Kingans",
-          src: "http://via.placeholder.com/40",
+          src: "https://via.placeholder.com/40",
           value: "4",
         },
         {
           name: "Kingans",
-          src: "http://via.placeholder.com/40",
+          src: "https://via.placeholder.com/40",
           value: "3",
         },
         {
           name: "Kingans",
-          src: "http://via.placeholder.com/40",
+          src: "https://via.placeholder.com/40",
           value: "2",
         },
         {
           name: "Kingans",
-          src: "http://via.placeholder.com/40",
+          src: "https://via.placeholder.com/40",
           value: "1",
         },
         {
           name: "Kingans",
-          src: "http://via.placeholder.com/40",
+          src: "https://via.placeholder.com/40",
           value: "0",
         },
       ],

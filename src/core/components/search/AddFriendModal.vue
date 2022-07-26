@@ -73,7 +73,7 @@
                     >
                       <div name="left" class="flex">
                         <img
-                          src="http://via.placeholder.com/50"
+                          src="https://via.placeholder.com/50"
                           alt=""
                           class="h-15 w-15 rounded-full"
                         />

@@ -11,7 +11,7 @@
     <div class="relative">
       <ToolsButtonNav
         :target="'Personal'"
-        :src="'http://via.placeholder.com/60'"
+        :src="'https://via.placeholder.com/60'"
         :dataClass="'large'"
         @click.right.prevent="toggleDropdown"
       />

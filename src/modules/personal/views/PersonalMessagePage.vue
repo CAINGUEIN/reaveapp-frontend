@@ -70,7 +70,7 @@
               >
                 <div class="flex items-center">
                   <img
-                    src="http://via.placeholder.com/50"
+                    src="https://via.placeholder.com/50"
                     alt=""
                     class="h-12 w-12 rounded-full"
                   />

@@ -6,7 +6,7 @@
     <div class="flex justify-center">
       <div class="flex flex-col px-4 first:pl-0 last:pr-0">
         <img
-          src="http://via.placeholder.com/144"
+          src="https://via.placeholder.com/144"
           alt=""
           class="rounded-md m-auto"
         />
@@ -16,7 +16,7 @@
       </div>
       <div class="flex flex-col px-4 first:pl-0 last:pr-0">
         <img
-          src="http://via.placeholder.com/144"
+          src="https://via.placeholder.com/144"
           alt=""
           class="rounded-md mx-auto"
         />
@@ -26,7 +26,7 @@
       </div>
       <div class="flex flex-col px-4 first:pl-0 last:pr-0">
         <img
-          src="http://via.placeholder.com/144"
+          src="https://via.placeholder.com/144"
           alt=""
           class="rounded-md mx-auto"
         />
@@ -36,7 +36,7 @@
       </div>
       <div class="flex flex-col px-4 first:pl-0 last:pr-0">
         <img
-          src="http://via.placeholder.com/144"
+          src="https://via.placeholder.com/144"
           alt=""
           class="rounded-md mx-auto"
         />

@@ -5,7 +5,7 @@
     >
       <div name="space-name" class="flex flex-1 ml-4">
         <img
-          src="http://via.placeholder.com/36"
+          src="https://via.placeholder.com/36"
           alt=""
           class="rounded-full my-auto"
         />
