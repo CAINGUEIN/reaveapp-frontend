@@ -122,11 +122,11 @@ import { io } from "socket.io-client";
 import ChatRoom from "@core/components/chat/ChatRoom.vue";
 import useStoreAuth from "@stores/auth";
 import useStoreSpace from "@stores/storeSpace";
-import FriendsServices from "@axios/services/friendsServices";
+import FriendsServices from "../../../plugins/axios/services/friendsServices.js";
 import CreateCategory from "@core/components/modal/CreateCategory.vue";
 import CreateRoom from "@core/components/modal/CreateRoom.vue";
 import Delete from "@core/components/buttons/Delete.vue";
-import ChatServices from "@axios/services/chatServices";
+import ChatServices from "../../../plugins/axios/services/chatServices";
 
 export default {
   components: { ChatRoom, CreateCategory, CreateRoom, Delete },
