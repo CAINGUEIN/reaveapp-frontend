@@ -19,5 +19,13 @@ export default defineConfig({
       "@modules": fileURLToPath(new URL("./src/modules", import.meta.url)),
     },
   },
-  
+    server: {
+      host: process.env.VITE_API_BACK_URL,
+      port: 3000,
+      strictPort: true,
+      hmr: {
+          port: 443,
+          protocol: 'ws',
+      },
+  },  
 });
