@@ -21,10 +21,8 @@ export default defineConfig({
   },
     server: {
       host: process.env.VITE_API_BACK_URL,
-      port: 3000,
       strictPort: true,
       hmr: {
-          port: 3000,
           protocol: 'wss',
       },
   },  
