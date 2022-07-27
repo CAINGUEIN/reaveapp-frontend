@@ -19,7 +19,10 @@ export default defineConfig({
       "@modules": fileURLToPath(new URL("./src/modules", import.meta.url)),
     },
   },
-    server: {
-      hmr: false
-  },  
+  server: {
+    hmr: {
+      protocol: 'wss',
+      host: process.env.VITE_API_BACK_URL
+    }
+  },
 });
