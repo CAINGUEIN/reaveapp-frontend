@@ -20,10 +20,6 @@ export default defineConfig({
     },
   },
   server: {
-    host: true,
-    hmr: {
-      host: "api.reave.dev",
-      port: 8080
-    },
+    hmr: false,
   },
 });
