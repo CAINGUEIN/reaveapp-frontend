@@ -20,10 +20,9 @@ export default defineConfig({
     },
   },
     server: {
-      host: process.env.VITE_API_BACK_URL,
-      strictPort: true,
       hmr: {
-          protocol: 'wss',
-      },
+        protocol: 'wss',
+        host: process.env.VITE_API_BACK_URL
+      }
   },  
 });
