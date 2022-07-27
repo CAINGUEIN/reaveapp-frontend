@@ -91,19 +91,19 @@
       </div>
     </div>
     <div name="correspondants-contact" class="w-56">
-        <div class="flex rounded-xl m-2 px-4 py-1 bg-LightRock">
-          <img
-            src="https://via.placeholder.com/40"
-            alt=""
-            class="rounded-full my-auto"
-          />
-          <div name="user-div" class="ml-2">
-            <h5>user</h5>
-            <p>!!!!!</p>
-          </div>
+      <div class="flex rounded-xl m-2 px-4 py-1 bg-LightRock">
+        <img
+          src="https://via.placeholder.com/40"
+          alt=""
+          class="rounded-full my-auto"
+        />
+        <div name="user-div" class="ml-2">
+          <h5>user</h5>
+          <p>!!!!!</p>
         </div>
       </div>
-    
+    </div>
+
     <CreateCategory
       @isOpenModal="closeModal"
       :isOpenModal="isOpenModalCategory"
@@ -118,7 +118,7 @@
 </template>
 
 <script>
-//import { io } from "socket.io-client";
+import { io } from "socket.io-client";
 import ChatRoom from "@core/components/chat/ChatRoom.vue";
 import useStoreAuth from "@stores/auth";
 import useStoreSpace from "@stores/storeSpace";
@@ -134,7 +134,10 @@ export default {
     const store = useStoreAuth();
     const storeSpace = useStoreSpace();
     return {
-      //socket: io(import.meta.env.VITE_API_BACK_URL),
+      socket: new io({
+        debug: true,
+        connection: import.meta.env.VITE_API_BACK_URL,
+      }),
       waiting: false,
       _id_data: "",
       isOpenModalCategory: false,
@@ -206,7 +209,7 @@ export default {
       });
     },
     listen() {
-      console.log(socket);
+      console.log(this.socket.io.connected);
       this.socket.on("loggedIn", (data) => {
         this.messages = data.messages._id_messages;
         this.users = data.users;
@@ -238,7 +241,7 @@ export default {
     //recup le pseudo de l'utilisateur connecté
     this.username = this.store.dataAccount.userName;
     this.dataquery();
-    //this.listen();
+    this.listen();
   },
 };
 </script>
