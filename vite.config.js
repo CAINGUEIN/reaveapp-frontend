@@ -23,8 +23,7 @@ export default defineConfig({
     host: true,
     hmr: {
       protocol: 'wss',
-      clientPort: 3000,
-      host: "wss://api.reave.dev",
+      host: "api.reave.dev",
       port: 8080
     },
   },
