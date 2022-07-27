@@ -20,9 +20,6 @@ export default defineConfig({
     },
   },
     server: {
-      hmr: {
-        protocol: 'wss',
-        host: process.env.VITE_API_BACK_URL
-      }
+      hmr: false
   },  
 });
