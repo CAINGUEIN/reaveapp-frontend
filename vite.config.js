@@ -25,7 +25,7 @@ export default defineConfig({
       strictPort: true,
       hmr: {
           port: "",
-          protocol: 'https',
+          protocol: 'wss',
       },
   },  
 });
