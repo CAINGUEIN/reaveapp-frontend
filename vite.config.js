@@ -24,7 +24,7 @@ export default defineConfig({
       port: 3000,
       strictPort: true,
       hmr: {
-          port: 0,
+          port: 3000,
           protocol: 'wss',
       },
   },  
