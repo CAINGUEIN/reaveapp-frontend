@@ -21,7 +21,7 @@ export default defineConfig({
   },
   server: {
     hmr: {
-      port: 5555,
+      clientPort: 5555,
       path: "/sockIO/",
     },
   },
