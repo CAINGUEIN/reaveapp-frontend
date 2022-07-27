@@ -1,5 +1,5 @@
 <template>
-  <!-- <div v-if="!waiting" class="flex h-full">
+  <div v-if="!waiting" class="flex h-full">
     <div
       name="correspondants"
       class="w-64 bg-DarkRock rounded-tl-2xl flex flex-col justify-between"
@@ -114,7 +114,7 @@
       :isOpenModal="isOpenModalRoom"
       :_id_category="_id_data"
     />
-  </div> -->
+  </div>
 </template>
 
 <script>
@@ -198,14 +198,14 @@ export default {
         //TODO: faire une sortie du space
       }
     },
-    /* joinServeur(targetRoom) {
+    joinServeur(targetRoom) {
       console.log(this.store);
       this.socket.emit("connectionWithRoom", {
         room: targetRoom,
         _id_user: this.store.dataAccount._id,
       });
-    }, */
-    /* listen() {
+    },
+    listen() {
       console.log(socket);
       this.socket.on("loggedIn", (data) => {
         this.messages = data.messages._id_messages;
@@ -224,15 +224,15 @@ export default {
       this.socket.on("deleteMsg", (key) => {
         this.messages.splice(key, 1);
       });
-    }, */
-    /* sendMessage(message) {
+    },
+    sendMessage(message) {
       this.socket.emit("msg", message);
-    }, */
+    },
     //TODO: penser a bloqué que pour le proprietaire du message ou qui a le droit
-    /* deleteMsg(msgId, key) {
+    deleteMsg(msgId, key) {
       console.log("ici");
       this.socket.emit("deleteMsg", msgId, key);
-    }, */
+    },
   },
   mounted() {
     //recup le pseudo de l'utilisateur connecté
