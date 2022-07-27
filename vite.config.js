@@ -18,8 +18,5 @@ export default defineConfig({
       "@core": fileURLToPath(new URL("./src/core", import.meta.url)),
       "@modules": fileURLToPath(new URL("./src/modules", import.meta.url)),
     },
-  },
-    server: {
-      hmr: false
-  },  
+  }, 
 });
