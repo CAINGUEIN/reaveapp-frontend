@@ -47,8 +47,8 @@ export default {
       let result = await AuthServices.logout();
       if (result.data.success) {
         this.$cookies.remove("userSession"); //return this
-        this.store.deleteDataAccount;
-        this.$router.replace({ name: "Login" });
+        this.store.deleteDataAccount();
+        this.$router.push({ name: "Login" });
       } else {
         console.log("erreur de deconnexion");
       }

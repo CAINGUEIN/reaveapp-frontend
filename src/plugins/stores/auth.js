@@ -31,14 +31,14 @@ const Store = defineStore("auth", {
       if (result.data.success) {
         this.dataSpaces = result.data.data.spaces;
         this.dataAccount = result.data.data;
-        this.notifications = result.data.data.notifications
-        this.calendar = result.data.data.calendar
-        this.dm = result.data.data.dm
-        this.invitationSended = result.data.data.invitationSended
-        this.calendarSpacesShow = result.data.data.calendarSpacesShow
-        this.friends = result.data.data.friends
-        this.ban = result.data.data.ban
-        
+        this.notifications = result.data.data.notifications;
+        this.calendar = result.data.data.calendar;
+        this.dm = result.data.data.dm;
+        this.invitationSended = result.data.data.invitationSended;
+        this.calendarSpacesShow = result.data.data.calendarSpacesShow;
+        this.friends = result.data.data.friends;
+        this.ban = result.data.data.ban;
+
         this.isLogin = true;
         this.loading = false;
         return true;
@@ -60,6 +60,15 @@ const Store = defineStore("auth", {
     },
     async deleteDataAccount() {
       this.dataAccount = "";
+      this.dataSpaces = "";
+      this.dataAccount = "";
+      this.notifications = "";
+      this.calendar = "";
+      this.dm = "";
+      this.invitationSended = "";
+      this.calendarSpacesShow = "";
+      this.friends = "";
+      this.ban = "";
       this.isAdmin = false;
       this.isLogin = false;
     },

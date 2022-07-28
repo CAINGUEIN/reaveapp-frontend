@@ -10,6 +10,11 @@ let routes = [
     path: "/",
     redirect: "/login",
   },
+  {
+    path: "/waiting",
+    name: "Waiting",
+    component: () => import("@core/components/page/Waiting.vue"),
+  },
 ];
 
 import routesAuth from "@router/routes/authRoute";
@@ -44,6 +49,7 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from) => {
+
   const store = useStoreAuth();
   const storeData = useStoreData();
 
@@ -76,7 +82,7 @@ router.beforeEach(async (to, from) => {
     if (store[to.meta.permission] === false) {
       return { name: "/" };
     } else if (to.meta.permission === "noLog") {
-      return { name: "PersonalMessage" };
+      return { name: "PersonalMessages" };
     }
   }
   // si pas connecté

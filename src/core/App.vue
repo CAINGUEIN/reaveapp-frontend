@@ -12,12 +12,14 @@ import useStoreAuth from "@stores/auth";
 /* Import components*/
 import AuthLayout from "@modules/layout/views/AuthLayout.vue";
 import ReaveLayout from "@modules/layout/views/ReaveLayout.vue";
+import WaitingLayout from "./components/page/Waiting.vue";
 
 export default {
   name: "App",
   components: {
     AuthLayout,
     ReaveLayout,
+    WaitingLayout,
   },
   data() {
     const store = useStoreAuth();
@@ -32,7 +34,7 @@ export default {
   },
   computed: {
     layout() {
-      let layout = (this.$route.meta.layout || "Reave") + "Layout";
+      let layout = (this.$route.meta.layout || "Waiting") + "Layout";
       console.log("layout", layout);
       return layout;
     },
