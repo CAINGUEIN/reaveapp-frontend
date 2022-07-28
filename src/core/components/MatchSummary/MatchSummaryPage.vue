@@ -1101,6 +1101,7 @@ export default {
     };
   },
   methods: {
+    submit() {},
     QueryURL() {
       let idRiot = this.$route.query.match;
       //recup le query de l'URL

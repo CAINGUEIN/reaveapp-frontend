@@ -230,14 +230,12 @@ export default {
       let sec = value % 60;
       let min = value - sec;
       let minute = min / 60;
-      console.log(sec);
       if (sec < 10) {
         sec = "0" + sec;
       }
       return minute + ":" + sec;
     },
     formateUrlSplash(id) {
-      console.log(id);
       if (id === 11) {
         return "https://cdn.discordapp.com/attachments/959875058745094225/996718845278556200/unknown.png";
       } else {
@@ -252,7 +250,6 @@ export default {
       result.sort(function (a, b) {
         return a + b;
       });
-      console.log(result);
       for (let index = 0; index < result.length; index++) {
         if (result[index] === target) {
           return index + 1;
