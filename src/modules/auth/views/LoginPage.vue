@@ -10,7 +10,7 @@
     </div>
     <h1 class="w-164 mt-16">{{ title }}</h1>
     <div class="flex mt-24">
-      <div class="w-input">
+      <form class="w-input">
         <InputModel :data="email" v-model="email.value" :errors="errors" />
         <InputModel
           class="mt-8"
@@ -38,7 +38,7 @@
             >Register</router-link
           >
         </div>
-      </div>
+      </form>
       <div class="mt-8 ml-8">
         <img src="https://via.placeholder.com/190" alt="" class="rounded" />
       </div>
