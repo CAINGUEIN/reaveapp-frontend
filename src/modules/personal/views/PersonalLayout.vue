@@ -137,7 +137,6 @@ import CreateCalendarEvent from "@core/components/modal/CreateCalendarEvent.vue"
 import DashboardLol from "@modules/personal/views/DashboardLol.vue";
 import DashboardValo from "@modules/personal/views/DashboardValo.vue";
 import DashboardOw from "@modules/personal/views/DashboardOw.vue";
-import UsersServices from "@axios/services/userServices";
 import MatchHistoryLol from "@modules/personal/views/MatchHistoryLol.vue";
 import MatchHistoryOw from "@modules/personal/views/MatchHistoryOw.vue";
 import MatchHistoryValo from "@modules/personal/views/MatchHistoryValo.vue";
@@ -190,16 +189,6 @@ export default {
     closeModal() {
       this.isOpenModal = false;
     },
-    async feadLastMatch() {
-      let result = await UsersServices.feadLastMatch();
-      //le bute est de faire une verification des dernier match a chaque mounted de la page
-      this.store.setter(result.data.data, "ListLastMatchLol");
-      //la push dans le store
-      //voir a mettre un CD
-    },
-  },
-  mounted() {
-    this.feadLastMatch();
   },
 };
 </script>
