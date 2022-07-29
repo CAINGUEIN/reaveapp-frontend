@@ -17,7 +17,7 @@
         {
             name: "PersonalSettings",
             target: "PersonalSettings",
-            src: "/src/core/assets/icons/Settings.svg",
+            src: "@core/assets/icons/Settings.svg",
             class: "medium"
         },
         {
