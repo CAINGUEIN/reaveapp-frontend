@@ -17,55 +17,55 @@ const Data = [
     {
         name: "Personal",
         target: "PersonalMessages",
-        src: "/src/core/assets/icons/Logo1.svg",
+        src: "@core/assets/icons/Logo1.svg",
         class: "logo"
     },
     {
         name: "Social",
         target: "Social",
-        src: "/src/core/assets/icons/Home.svg",
+        src: "@core/assets/icons/Home.svg",
         class: "small"
     },
     {
         name: "Play",
         target: "Play",
-        src: "/src/core/assets/icons/Play.svg",
+        src: "@core/assets/icons/Play.svg",
         class: "small"
     },
     {
         name: "Academy",
         target: "Academy",
-        src: "/src/core/assets/icons/Academy.svg",
+        src: "@core/assets/icons/Academy.svg",
         class: "small"
     },
     {
         name: "Jobs",
         target: "Jobs",
-        src: "/src/core/assets/icons/Jobs.svg",
+        src: "@core/assets/icons/Jobs.svg",
         class: "small"
     },
     {
         name: "Bootcamps",
         target: "Bootcamps",
-        src: "/src/core/assets/icons/Bootcamps.svg",
+        src: "@core/assets/icons/Bootcamps.svg",
         class: "small"
     },
     {
         name: "League",
         target: "League",
-        src: "/src/core/assets/icons/Events.svg",
+        src: "@core/assets/icons/Events.svg",
         class: "small"
     },
     {
         name: "NFTs",
         target: "Nft",
-        src: "/src/core/assets/icons/NFTs.svg",
+        src: "@core/assets/icons/NFTs.svg",
         class: "small"
     },
     {
         name: "New",
         target: "New",
-        src: "/src/core/assets/icons/News.svg",
+        src: "@core/assets/icons/News.svg",
         class: "small"
     }
 ];

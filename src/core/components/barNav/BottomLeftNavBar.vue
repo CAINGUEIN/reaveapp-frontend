@@ -5,7 +5,7 @@
     </ToolsButtonNav>
     <ToolsButtonNav
       :target="'PersonalSettings'"
-      :src="'/src/core/assets/icons/Settings.svg'"
+      src="https://media.reave.dev/test/Settings.svg"
       :dataClass="'medium'"
     />
     <div class="relative">
