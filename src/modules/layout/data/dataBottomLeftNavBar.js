@@ -17,7 +17,7 @@
         {
             name: "PersonalSettings",
             target: "PersonalSettings",
-            src: "@core/assets/icons/Settings.svg",
+            src: "https://media.reave.dev/test/Settings.svg",
             class: "medium"
         },
         {
