@@ -49,51 +49,57 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from) => {
-
   const store = useStoreAuth();
   const storeData = useStoreData();
 
-  console.log("avant le login", store);
-
+  console.log("dans le beforeEach");
+  if (storeData.data === "") {
+    console.log("ici si pas de data pour recup les datas de base");
+    await storeData.feedData();
+    console.log("pinia data load");
+  }
   // mise en pause de la navigation
   // si pas de donné de connection
   if (store.isLogin === "") {
+    console.log("si pas de login");
     if (await store.feedDataAccount()) {
-      console.log("apres le feed");
-      if (storeData.data === "") {
-        await storeData.feedData();
-      }
+      console.log("ici si on a un token valide et que on a recup les datas user");
     } else {
       cookies.remove("userSession"); //return this
-      console.log("removeCooki");
+      console.log("ici si pas de token ou token invalide");
     }
   }
 
-  console.log("aprés le login", store.isLogin);
+  console.log("aprés le login");
 
   // si connecté
   if (store.isLogin) {
-    console.log("si login", store);
+    console.log("si login");
     //si pas de match de page
     if (to.matched.length === 0) {
+      console.log("redirect si pas de match");
       return { name: "Personal" };
     }
     // verifiaction si les droits de la page sont accesible par le user
     if (store[to.meta.permission] === false) {
+      console.log("pour le moment pas use");
       return { name: "/" };
     } else if (to.meta.permission === "noLog") {
+      console.log("redirect si on est log mais que la page est en nolog");
       return { name: "PersonalMessages" };
     }
   }
   // si pas connecté
   if (!store.isLogin) {
-    console.log("si pas login", to.meta.permission, to);
+    console.log("si pas login");
     //si pas de match de page
     if (to.matched.length === 0) {
+      console.log("redirect si pas de match");
       return { name: "Login" };
     }
     // verification des droits de la page
     if (to.meta.permission !== "noLog" && to.meta.permission !== undefined) {
+      console.log("redirect si on est nolog mais que la page est pas nolog");
       return { name: "Login" };
     }
   }
