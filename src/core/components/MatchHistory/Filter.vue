@@ -71,16 +71,24 @@
           :disabled="wait"
         />
       </div>
+      <ToolsButtonSubmit
+              @action="submit"
+              txtButton="Apply Filter"
+              class="w-[200px]"
+              :color="''"
+            />
     </div>
   </div>
 </template>
 
 <script>
 import { SearchIcon } from "@heroicons/vue/outline";
+import ToolsButtonSubmit from "../buttons/ToolsButtonSubmit.vue";
 export default {
   components: {
     SearchIcon,
-  },
+    ToolsButtonSubmit
+},
   data() {
     return {
       user: "",
@@ -88,6 +96,11 @@ export default {
       item: "",
       wait: false,
     };
+  },
+  methods: {
+    submit() {
+      //ici on va soumettre les filtres rempli
+    }
   },
 };
 </script>
