@@ -1,22 +1,11 @@
 <template>
-  <button
-    class="w-auto h-auto m-0 p-0 cursor-pointer hover:bg-DarkRock text-Gravel hover:text-LightGrey"
-    :class="classBTN"
+  <div
+    class="h-16 w-16 p-4 hover:bg-Stone hover:text-White rounded-full"
+    :class="view === 'dashboard' ? 'text-White bg-Stone ' : ''"
     @click="goTo(target)"
   >
-    <slot
-      v-if="slot === true"
-      :class="classIMG"
-    >
-    </slot>
-    <img
-      v-else
-      :src="src"
-      alt=""
-      class="mx-auto h-15 w-15 "
-      :class="classIMG"
-    />
-  </button>
+    <slot></slot>
+  </div>
 </template>
 
 <script>

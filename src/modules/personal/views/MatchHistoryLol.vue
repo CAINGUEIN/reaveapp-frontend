@@ -56,8 +56,9 @@ export default {
       //peut etre mettre un waiting le temps de voir si le puuid est valide
       if (result.data.success) {
         //si une 200 on la recup se t le store et cela devrais changer la page auto
-        this.store.dataAccount.lolData.lolPuuid =
-          result.data.data.lolData.lolPuuid;
+        // du coup retour des 20 dernier match direct et le puuid on le prend dans la request
+        this.store.dataAccount.lolData.lolPuuid = forSubmit.lolPuuid
+        this.store.ListLastMatchLol = result.data.data
         this.store.loading = false;
       } else {
         this.store.loading = false;

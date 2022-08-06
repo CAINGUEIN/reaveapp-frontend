@@ -25,9 +25,19 @@
       </div>
       <h4>SUCCESS</h4>
       <div class="flex">
-        <div class="border-2 text-center border-LightRock w-9 h-9 rounded-sm mr-1"><h4 class="text-Green">W</h4></div>
-        <div class="border-2 text-center border-LightRock w-9 h-9 rounded-sm mr-1"><h4 class="text-Red">L</h4></div>
-        <div class="border-2 text-center border-LightRock w-9 h-9 rounded-sm"><h4 class="text-Orange">E</h4></div>
+        <div
+          class="border-2 text-center border-LightRock w-9 h-9 rounded-sm mr-1"
+        >
+          <h4 class="text-Green">W</h4>
+        </div>
+        <div
+          class="border-2 text-center border-LightRock w-9 h-9 rounded-sm mr-1"
+        >
+          <h4 class="text-Red">L</h4>
+        </div>
+        <div class="border-2 text-center border-LightRock w-9 h-9 rounded-sm">
+          <h4 class="text-Orange">E</h4>
+        </div>
       </div>
       <h4>CHAMPION PLAYED</h4>
       <label for="search" class="sr-only">Search</label>
@@ -45,17 +55,33 @@
         />
       </div>
       <div class="flex">
-        <div class="border-2 bg-Gravel border-LightRock w-9 h-9 rounded-full mr-1"></div>
-        <div class="border-2 bg-Gravel border-LightRock w-9 h-9 rounded-full mr-1"></div>
-        <div class="border-2 bg-Gravel border-LightRock w-9 h-9 rounded-full mr-1"></div>
-        <div class="border-2 bg-Gravel border-LightRock w-9 h-9 rounded-full mr-1"></div>
-        <div class="border-2 bg-Gravel border-LightRock w-9 h-9 rounded-full mr-1"></div>
-        <div class="border-2 bg-Gravel border-LightRock w-9 h-9 rounded-full"></div>
+        <div
+          class="border-2 bg-Gravel border-LightRock w-9 h-9 rounded-full mr-1"
+        ></div>
+        <div
+          class="border-2 bg-Gravel border-LightRock w-9 h-9 rounded-full mr-1"
+        ></div>
+        <div
+          class="border-2 bg-Gravel border-LightRock w-9 h-9 rounded-full mr-1"
+        ></div>
+        <div
+          class="border-2 bg-Gravel border-LightRock w-9 h-9 rounded-full mr-1"
+        ></div>
+        <div
+          class="border-2 bg-Gravel border-LightRock w-9 h-9 rounded-full mr-1"
+        ></div>
+        <div
+          class="border-2 bg-Gravel border-LightRock w-9 h-9 rounded-full"
+        ></div>
       </div>
       <h4>MAP PLAYED</h4>
       <div class="flex">
-        <div class="border-2 text-center border-LightRock w-20 h-9 rounded-sm mr-1"></div>
-        <div class="border-2 text-center border-LightRock w-20 h-9 rounded-sm"></div>
+        <div
+          class="border-2 text-center border-LightRock w-20 h-9 rounded-sm mr-1"
+        ></div>
+        <div
+          class="border-2 text-center border-LightRock w-20 h-9 rounded-sm"
+        ></div>
       </div>
       <h4>ITEM PLAYED</h4>
       <div class="relative text-gray-400 border-White m-2">
@@ -72,17 +98,19 @@
         />
       </div>
       <ToolsButtonSubmit
-              @action="submit"
-              txtButton="Apply Filter"
-              class="w-[200px]"
-              :color="''"
-            />
+        @action="submit"
+        txtButton="Apply Filter"
+        class="w-[200px]"
+        :color="''"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import useStoreAuth from "@stores/auth";
 import { SearchIcon } from "@heroicons/vue/outline";
+import UsersServices from "../../../plugins/axios/services/userServices";
 import ToolsButtonSubmit from "../buttons/ToolsButtonSubmit.vue";
 export default {
   components: {
@@ -90,7 +118,9 @@ export default {
     ToolsButtonSubmit
 },
   data() {
+    const store = useStoreAuth();
     return {
+      store,
       user: "",
       champion: "",
       item: "",
@@ -98,8 +128,10 @@ export default {
     };
   },
   methods: {
-    submit() {
-      //ici on va soumettre les filtres rempli
+    async submit() {
+      let result = await UsersServices.feadFilteredMatch();
+        //le bute est de faire une verification des dernier match a chaque mounted de la page
+        this.store.setter(result.data.data, "ListLastMatchLol");
     }
   },
 };

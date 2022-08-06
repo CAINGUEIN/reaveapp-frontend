@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <Filter class="w-1/5" @submit="feadLastMatchWithFilter" />
+    <Filter class="w-1/5"/>
     <div class="w-3/5">
       <Card
         class="m-auto"
@@ -30,21 +30,13 @@ export default {
   },
   methods: {
     async feadLastMatch() {
-      let result = await UsersServices.feadLastMatch();
-      //le bute est de faire une verification des dernier match a chaque mounted de la page
-      this.store.setter(result.data.data, "ListLastMatchLol");
-      //la push dans le store
-      //voir a mettre un CD
-    },
-    async feadLastMatchWithFilter(filters) {
-      //recup less data dans le composant filter
-      //les filtre
-      // class user success champion map item
-      //faire la requete avec les datas
-      //recup les data et les afficher
-      //2 chois 
-      //créer une variable dans cette page qui va permettre de stocker la data
-      // sotcker la data dans le store qui restera la jusqu'au prochaine chargement 
+      if (this.store.ListLastMatchLol === "") {
+        let result = await UsersServices.feadLastMatch();
+        //le bute est de faire une verification des dernier match a chaque mounted de la page
+        this.store.setter(result.data.data, "ListLastMatchLol");
+        //la push dans le store
+        //voir a mettre un CD
+      }
     },
   },
   mounted() {

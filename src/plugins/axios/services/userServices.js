@@ -111,9 +111,21 @@ class UsersServices {
   }
 
   static async feadLastMatch() {
-    return Base.put(`/user/update/lol/lastTeenMatchList`)
+    return Base.post(`/user/data/lol/lastMatchList`)
     .then((response) => {
-      console.log("user update lol lastTeenMatchList", response);
+      console.log("user update lol lastMatchList", response);
+      return response;
+    })
+    .catch((e) => {
+      console.log("error ", e);
+      return e;
+    })
+  }
+
+  static async feadFilteredMatch() {
+    return Base.post(`/user/data/lol/filteredMatchList`)
+    .then((response) => {
+      console.log("user update lol filteredMatchList", response);
       return response;
     })
     .catch((e) => {

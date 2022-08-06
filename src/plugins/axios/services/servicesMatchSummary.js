@@ -3,7 +3,7 @@ import Base from "@axios/axiosPlugin";
 class FindOneMatch {
   static async lolMatchSummary(idriot) {
     let body = { _id_match: idriot };
-    return Base.post("/lol/matchSummary", body)
+    return Base.post("/user/data/lol/matchSummary", body)
       .then((response) => {
         console.log("matchSummary", response);
         return response;

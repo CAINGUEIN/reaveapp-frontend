@@ -23,7 +23,7 @@ const Data = [
     {
         name: "Social",
         target: "Social",
-        src: "@core/assets/icons/Home.svg",
+        src: "/src/core/assets/icons/Feed.svg",
         class: "small"
     },
     {
@@ -35,7 +35,7 @@ const Data = [
     {
         name: "Academy",
         target: "Academy",
-        src: "@core/assets/icons/Academy.svg",
+        src: "/src/core/assets/icons/Academy.svg",
         class: "small"
     },
     {
