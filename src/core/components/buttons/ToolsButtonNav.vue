@@ -1,7 +1,7 @@
 <template>
   <div
-    class="h-16 w-16 p-4 hover:bg-Stone hover:text-White rounded-full"
-    :class="view === 'dashboard' ? 'text-White bg-Stone ' : ''"
+    class="flex items-center justify-center hover:bg-Stone hover:text-White rounded-full"
+    :class="(view === 'dashboard' ? 'text-White bg-Stone ' : '', classBTN)"
     @click="goTo(target)"
   >
     <slot></slot>
@@ -20,7 +20,6 @@ export default {
   props: ["target", "src", "dataClass", "slot"],
   data() {
     return {
-      classIMG: "",
       classBTN: "",
     };
   },
@@ -30,14 +29,9 @@ export default {
     },
     classButton() {
       if (this.dataClass === "small") {
-        this.classIMG = "p-4";
-      } else if (this.dataClass === "medium") {
-        this.classIMG = "p-2";
-      } else if (this.dataClass === "logo") {
-        this.classIMG = "p-2 rounded-full";
-        this.classBTN = "hover:bg-LightRock";
-      } else if (this.dataClass === "large") {
-        this.classIMG = "rounded-full";
+        this.classBTN = "h-10 w-10";
+      } else if (this.dataClass === "") {
+        this.classBTN = "h-15 w-15";
       }
     },
   },

@@ -53,12 +53,20 @@
   h6 {
     @apply text-H6 text-white font-sans font-medium;
   }
-  th { @apply border-hidden }
-  thead { @apply border-hidden }
-  table { @apply border-hidden }
-  tbody { @apply border-hidden }
+  th {
+    @apply border-hidden;
+  }
+  thead {
+    @apply border-hidden;
+  }
+  table {
+    @apply border-hidden;
+  }
+  tbody {
+    @apply border-hidden;
+  }
   p {
-    @apply text-lg text-Cloud font-sans font-normal
+    @apply text-lg text-Cloud font-sans font-normal;
   }
 }
 @tailwind utilities;
@@ -78,6 +86,11 @@
     background: white;
     border-radius: 100vh;
   }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #808080;
+  }
+
   .scrollbar2::-webkit-scrollbar {
     width: 20px;
     height: 3px;
@@ -95,11 +108,27 @@
     border: 1px solid grey;
   }
 
-  .scrollbar::-webkit-scrollbar-thumb:hover {
+  .scrollbar3::-webkit-scrollbar {
+    width: 20px;
+    height: 5px;
+  }
+
+  .scrollbar3::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: black;
+  }
+
+  .scrollbar3::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 100vh;
+  }
+
+  .scrollbar3::-webkit-scrollbar-thumb:hover {
     background: #808080;
   }
+
   body::-webkit-scrollbar {
-    width: 1px; /* width of the entire scrollbar */
+    width: 3px; /* width of the entire scrollbar */
   }
 
   body::-webkit-scrollbar-track {
@@ -111,15 +140,15 @@
     border-radius: 20px; /* roundness of the scroll thumb */
   }
   td {
-    border-color : #2A2A2A !important
+    border-color: #2a2a2a !important;
   }
   table {
-    border: none !important
+    border: none !important;
   }
   th {
-    border: none !important
+    border: none !important;
   }
   td.fc-day-today {
-    background-color : #212121 !important
+    background-color: #212121 !important;
   }
 }

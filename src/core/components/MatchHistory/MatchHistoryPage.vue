@@ -1,12 +1,13 @@
 <template>
   <div class="flex">
-    <Filter class="w-1/5"/>
+    <Filter class="w-1/5" />
     <div class="w-3/5">
       <Card
         class="m-auto"
         v-for="match in store.ListLastMatchLol"
         :data="match"
         :personnalId="store.dataAccount._id"
+        :key="match._id_match"
       />
     </div>
     <Order class="W-1/5" />
@@ -32,10 +33,11 @@ export default {
     async feadLastMatch() {
       if (this.store.ListLastMatchLol === "") {
         let result = await UsersServices.feadLastMatch();
-        //le bute est de faire une verification des dernier match a chaque mounted de la page
-        this.store.setter(result.data.data, "ListLastMatchLol");
-        //la push dans le store
-        //voir a mettre un CD
+        let list = [];
+        for (let index = 0; index < result.data.data.length; index++) {
+          list.push(result.data.data[index]._id_lolMatch);
+        }
+        this.store.setter(list, "ListLastMatchLol");
       }
     },
   },

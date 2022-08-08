@@ -1,0 +1,33 @@
+<template>
+  <div>
+    <svg
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        x="5"
+        y="17.5"
+        width="7"
+        height="8.5"
+        rx="3.5"
+        stroke="currentColor"
+        stroke-width="2"
+      />
+      <rect
+        x="20"
+        y="17.5"
+        width="7"
+        height="8.5"
+        rx="3.5"
+        stroke="currentColor"
+        stroke-width="2"
+      />
+      <path
+        d="M5 21V15C5 8.92487 9.92487 4 16 4V4C22.0751 4 27 8.92487 27 15V21"
+        stroke="currentColor"
+        stroke-width="2"
+      />
+    </svg>
+  </div>
+</template>

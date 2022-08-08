@@ -201,8 +201,8 @@ export default {
     const dataStore = useDataStore();
     return {
       dataStore,
-      info: this.data._id_lolMatch.info,
-      players: this.data._id_lolMatch.players,
+      info: this.data.info,
+      players: this.data.players,
       personnalStat: "",
       team100: [],
       team200: [],
@@ -218,7 +218,7 @@ export default {
       }
     },
     feadTeam() {
-      this.data._id_lolMatch.players.forEach((player) => {
+      this.data.players.forEach((player) => {
         if (player.statTotal.teamId === 100) {
           this.team100.push(player);
         } else {

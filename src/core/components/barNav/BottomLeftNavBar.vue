@@ -1,20 +1,33 @@
 <template>
-  <div class="flex flex-col">
-    <ToolsButtonNav :dataClass="'medium'" :slot="true">
-      <Ecran />
+  <div class="flex flex-col items-center">
+    <div class="flex">
+      <ToolsButtonNav :dataClass="'small'">
+        <Screenshare class="h-6 w-6" />
+      </ToolsButtonNav>
+      <ToolsButtonNav :dataClass="'small'">
+        <Camera class="h-6 w-6" />
+      </ToolsButtonNav>
+    </div>
+    <div class="flex">
+      <ToolsButtonNav :dataClass="'small'">
+        <Microphone class="h-6 w-6" />
+      </ToolsButtonNav>
+      <ToolsButtonNav :dataClass="'small'">
+        <Headphone class="h-6 w-6" />
+      </ToolsButtonNav>
+    </div>
+
+    <ToolsButtonNav :dataClass="''">
+      <Settings />
     </ToolsButtonNav>
-    <ToolsButtonNav
-      :target="'PersonalSettings'"
-      src="https://media.reave.dev/test/Settings.svg"
-      :dataClass="'medium'"
-    />
     <div class="relative">
       <ToolsButtonNav
         :target="'Personal'"
-        :src="'https://via.placeholder.com/60'"
-        :dataClass="'large'"
+        :dataClass="''"
         @click.right.prevent="toggleDropdown"
-      />
+      >
+        <div class="h-10 w-10 rounded-full bg-Gravel"></div
+      ></ToolsButtonNav>
       <div
         :class="dropdown"
         class="absolute bottom-0 left-16 z-20 bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700"
@@ -48,9 +61,9 @@
             >
           </li>
         </ul>
-        <div class="py-1 text-sm ">
+        <div class="py-1 text-sm">
           <InputModel
-          class="m-0 p-0 text-gray-700 dark:text-gray-200"
+            class="m-0 p-0 text-gray-700 dark:text-gray-200"
             :data="moodMessage"
             v-model="moodMessage.value"
             :errors="errors"
@@ -90,13 +103,17 @@
 <script>
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
-import Ecran from "@core/assets/icons/ecran.vue";
 import InputModel from "@core/components/inputs/InputModel.vue";
+import Screenshare from "../../assets/icons/Screenshare.vue";
+import Camera from "../../assets/icons/Camera.vue";
+import Microphone from "../../assets/icons/Microphone.vue";
+import Headphone from "../../assets/icons/Headphone.vue";
+import Settings from "../../assets/icons/Settings.vue";
 export default {
   props: ["dataButtons"],
   data() {
     return {
-        moodMessage: {
+      moodMessage: {
         name: "moodMessage",
         type: "text",
         value: "",
@@ -117,12 +134,16 @@ export default {
   },
   components: {
     ToolsButtonNav,
-    Ecran,
     MenuItems,
     MenuItem,
     MenuButton,
     Menu,
     InputModel,
+    Screenshare,
+    Camera,
+    Microphone,
+    Headphone,
+    Settings,
   },
 };
 </script>

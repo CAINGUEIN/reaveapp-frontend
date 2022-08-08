@@ -122,8 +122,8 @@ class UsersServices {
     })
   }
 
-  static async feadFilteredMatch() {
-    return Base.post(`/user/data/lol/filteredMatchList`)
+  static async feadFilteredMatch(body) {
+    return Base.post(`/user/data/lol/filteredMatchList`, body)
     .then((response) => {
       console.log("user update lol filteredMatchList", response);
       return response;
