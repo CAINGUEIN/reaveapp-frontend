@@ -345,7 +345,7 @@ export default {
     goTo() {
       this.$router.push({
         name: "MatchSummary",
-        query: { match: this.data._id_riot },
+        query: { match: this.data._id_match },
       });
     },
   },

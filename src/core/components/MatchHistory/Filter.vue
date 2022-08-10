@@ -175,6 +175,7 @@ export default {
     SearchIcon,
     ToolsButtonSubmit,
   },
+  props: ["action"],
   data() {
     const store = useStoreAuth();
     const storeData = useStoreData();
@@ -211,10 +212,7 @@ export default {
       if (this.item.value !== "") {
         body["item"] = this.item.value
       }
-
-      let result = await UsersServices.feadFilteredMatch(body);
-      //le bute est de faire une verification des dernier match a chaque mounted de la page
-      this.store.setter(result.data.data, "ListLastMatchLol");
+      this.$emit("action", body)
     },
     lanePosition(value) {
       if (this.lane === value) {

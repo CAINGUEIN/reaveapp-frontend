@@ -9,10 +9,7 @@
       </div>
       <div name="content-left" class="flex h-full flex-col justify-between">
         <div name="ligne-top" class="flex items-center">
-          <img
-            src="@core/assets/icons/Component_19.svg"
-            class="h-[53px] w-[53px]"
-          />
+          <LeagueOfLegend class="h-[53px] w-[53px] text-White"/>
           <h1
             class="ml-6"
             :class="personnalStat.statTotal.win ? 'text-Green' : 'text-Red'"
@@ -1073,6 +1070,9 @@ import {
 } from "@heroicons/vue/outline";
 import fakeData from "@core/components/MatchSummary/fakeData";
 import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
+import LeagueOfLegend from "../../assets/icons/LeagueOfLegend.vue";
+import Overwatch from "../../assets/icons/Overwatch.vue";
+import Valorant from "../../assets/icons/Valorant.vue";
 /* changement recup direct les datas dans le back du match
 voir peut etre a mettre sur cette route la recup des datas timeline
 - passer un query pour savoir sur un partage qui est le you de la game
@@ -1084,7 +1084,10 @@ export default {
     ChevronDownIcon,
     PuzzleIcon,
     ToolsButtonSubmit,
-  },
+    LeagueOfLegend,
+    Overwatch,
+    Valorant
+},
   data() {
     const dataStore = useDataStore();
     const store = useAuthStore();

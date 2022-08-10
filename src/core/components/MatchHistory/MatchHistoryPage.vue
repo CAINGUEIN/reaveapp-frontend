@@ -1,14 +1,15 @@
 <template>
   <div class="flex">
-    <Filter class="w-1/5" />
+    <Filter class="w-1/5" @action="feadFilteredMatch" />
     <div class="w-3/5">
       <Card
         class="m-auto"
         v-for="match in store.ListLastMatchLol"
         :data="match"
         :personnalId="store.dataAccount._id"
-        :key="match._id_match"
+        :key="match._id"
       />
+      <button>20 more</button>
     </div>
     <Order class="W-1/5" />
   </div>
@@ -27,22 +28,22 @@ export default {
     const store = useStoreAuth();
     return {
       store,
+      body: "",
     };
   },
   methods: {
-    async feadLastMatch() {
-      if (this.store.ListLastMatchLol === "") {
-        let result = await UsersServices.feadLastMatch();
-        let list = [];
-        for (let index = 0; index < result.data.data.length; index++) {
-          list.push(result.data.data[index]._id_lolMatch);
-        }
-        this.store.setter(list, "ListLastMatchLol");
-      }
+    async feadMatch() {
+      let result = await UsersServices.feadFilteredMatch(this.body);
+      //le bute est de faire une verification des dernier match a chaque mounted de la page
+      this.store.setter(result.data.data, "ListLastMatchLol");
+    },
+    feadFilteredMatch(value) {
+      this.body = value;
+      this.feadMatch();
     },
   },
   mounted() {
-    this.feadLastMatch();
+    this.feadMatch();
   },
 };
 </script>
