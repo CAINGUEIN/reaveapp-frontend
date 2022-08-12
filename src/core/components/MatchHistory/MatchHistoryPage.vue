@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
     <Filter class="w-1/5" @action="feadFilteredMatch" />
-    <div class="w-3/5">
+    <div class="w-3/5 flex flex-col items-center">
       <Card
         class="m-auto"
         v-for="match in store.ListLastMatchLol"
@@ -9,7 +9,7 @@
         :personnalId="store.dataAccount._id"
         :key="match._id"
       />
-      <button>20 more</button>
+      <ToolsButtonSubmit :txtButton="'more'" @action="moreMatch" :color="''" />
     </div>
     <Order class="W-1/5" />
   </div>
@@ -21,14 +21,15 @@ import Filter from "@core/components/MatchHistory/Filter.vue";
 import Card from "@core/components/MatchHistory/Card.vue";
 import UsersServices from "@axios/services/userServices";
 import Order from "./Order.vue";
+import ToolsButtonSubmit from "../buttons/ToolsButtonSubmit.vue";
 
 export default {
-  components: { Filter, Card, Order },
+  components: { Filter, Card, Order, ToolsButtonSubmit },
   data() {
     const store = useStoreAuth();
     return {
       store,
-      body: "",
+      body: {},
     };
   },
   methods: {
@@ -40,6 +41,17 @@ export default {
     feadFilteredMatch(value) {
       this.body = value;
       this.feadMatch();
+    },
+    async moreMatch() {
+      console.log(this.body.page);
+      if (this.body.page === undefined) {
+        this.body["page"] = 2;
+      } else {
+        this.body.page = this.body.page + 1;
+      }
+      let result = await UsersServices.feadFilteredMatch(this.body);
+      let preparArray = [this.store.ListLastMatchLol, result.data.data];
+      this.store.ListLastMatchLol = preparArray.flat();
     },
   },
   mounted() {
