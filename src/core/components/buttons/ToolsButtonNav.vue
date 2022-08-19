@@ -1,14 +1,16 @@
 <template>
   <div
     class="flex items-center justify-center hover:bg-Stone hover:text-White rounded-full"
-    :class="(view === 'dashboard' ? 'text-White bg-Stone ' : '', classBTN)"
+    :class="classBTN"
     @click="goTo(target)"
   >
-    <slot></slot>
+    <slot
+    ></slot>
   </div>
 </template>
 
 <script>
+import useStoreAuth from "@stores/auth";
 /** ce que j'ai besoin
  * - le goTo
  * - le src de l'image
@@ -19,13 +21,16 @@
 export default {
   props: ["target", "src", "dataClass", "slot"],
   data() {
+    const store = useStoreAuth();
     return {
       classBTN: "",
+      store,
     };
   },
   methods: {
-    goTo(target) {
-      this.$router.push({ name: target });
+    goTo(value) {
+      this.store.view = value
+      this.$router.push({ name: value });
     },
     classButton() {
       if (this.dataClass === "small") {

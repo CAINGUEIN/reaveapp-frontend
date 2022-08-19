@@ -5,6 +5,7 @@ const Store = defineStore("auth", {
   state: () => {
     //ici mes variables
     return {
+      view: "",
       dataAccount: "",
       //a mettre a jour aprés chaque modification d'un space
       dataSpaces: "",

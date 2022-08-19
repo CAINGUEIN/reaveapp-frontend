@@ -110,7 +110,6 @@ import Microphone from "../../assets/icons/Microphone.vue";
 import Headphone from "../../assets/icons/Headphone.vue";
 import Settings from "../../assets/icons/Settings.vue";
 export default {
-  props: ["dataButtons"],
   data() {
     return {
       moodMessage: {

@@ -5,11 +5,11 @@
       class="sticky top-0 left-0 bottom-0 z-50 flex flex-col justify-between w-32 h-screen items-center"
     >
       <div name="top" class="mt-8">
-        <TopLeftNavBar :dataButtons="dataTopLeft" />
+        <TopLeftNavBar />
       </div>
       <div name="bottom" class="my-8">
         <div class="bg-white h-1 w-14 mx-auto rounded-full"></div>
-        <BottomLeftNavBar :dataButtons="dataBottomLeft" />
+        <BottomLeftNavBar/>
       </div>
     </div>
     <div class="w-full flex flex-col">

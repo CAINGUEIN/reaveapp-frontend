@@ -113,7 +113,7 @@ class UsersServices {
   static async feadLastMatch() {
     return Base.post(`/user/data/lol/lastMatchList`)
     .then((response) => {
-      console.log("user update lol lastMatchList", response);
+      console.log("user lol lastMatchList", response);
       return response;
     })
     .catch((e) => {
@@ -125,7 +125,19 @@ class UsersServices {
   static async feadFilteredMatch(body) {
     return Base.post(`/user/data/lol/filteredMatchList`, body)
     .then((response) => {
-      console.log("user update lol filteredMatchList", response);
+      console.log("user lol filteredMatchList", response);
+      return response;
+    })
+    .catch((e) => {
+      console.log("error ", e);
+      return e;
+    })
+  }
+
+  static async feadDataForDashboard() {
+    return Base.post(`/user/data/lol/dashboard`)
+    .then((response) => {
+      console.log("user lol dashboard", response);
       return response;
     })
     .catch((e) => {
