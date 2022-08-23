@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col p-12 pl-18 pb-8 max-w-authPage w-full">
     <div class="flex justify-between">
-      <img src="@core/assets/icons/Logo1.svg" class="h-6" alt="" />
-      <img src="@core/assets/icons/Settings.svg" class="h-6 w-6" alt="" />
+      <Reave/>
+      <Settings/>
     </div>
     <h1 class="w-164 mt-16 text-5xl">{{ title }}</h1>
     <div v-if="etape === 1" class="w-input">
@@ -137,9 +137,11 @@ import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
 import useStoreAuth from "@stores/auth";
 import CheckboxModel from "@core/components/inputs/CheckboxModel.vue";
 import errorsHelpers from "@core/support/functions/errorsHelpers";
+import Reave from "@assets/icons/Reave.vue";
+import Settings from "@assets/icons/Settings.vue";
 
 export default {
-  components: { InputModel, ToolsButtonSubmit, CheckboxModel },
+  components: { InputModel, ToolsButtonSubmit, CheckboxModel, Reave, Settings },
   data() {
     const store = useStoreAuth();
 
