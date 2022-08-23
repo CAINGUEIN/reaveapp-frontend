@@ -17,5 +17,11 @@ export default [
     component: () => import("@core/components/MatchSummary/MatchSummaryPage.vue"),
     meta: { layout: "Reave", permission: "log" },
   },
+  {
+    path: "/settings",
+    name: "Settings",
+    component: () => import("@modules/personal/views/PersonalSettings.vue"),
+    meta: { layout: "Reave", permission: "log" },
+  },
 
 ];

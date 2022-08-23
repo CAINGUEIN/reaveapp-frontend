@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav
-      class="mt-2 flex h-16 min-w-max justify-between items-center bg-DarkRock rounded-full"
+      class="flex h-15 min-w-max justify-between items-center bg-DarkRock rounded-full"
     >
       <div name="space-name" class="flex ml-4">
         <img
@@ -9,7 +9,7 @@
           alt=""
           class="rounded-full my-auto"
         />
-        <h4 class="ml-2">{{ store.dataAccount.userName }}</h4>
+        <h4 class="ml-4">{{ store.dataAccount.userName }}</h4>
       </div>
       <LolOptionDashboard
         v-if="view === 'dashboard' && option === 'lol'"
@@ -19,76 +19,112 @@
       <div
         v-if="view === 'dashboard' || view === 'tree' || view === 'history'"
         name="select-game"
-        class="flex bg-Rock rounded-full"
+        class="flex bg-LightRock rounded-full"
       >
-        <img
-          src="@core/assets/icons/LeagueOfLegends.svg"
-          alt=""
-          class="h-16 w-16 p-4 hover:bg-Stone hover:brightness-200 rounded-full"
-          :class="
-            option === 'lol'
-              ? 'brightness-150 hover:brightness-150 bg-Stone'
-              : ''
-          "
+        <ToolsButtonNav
+          :target="''"
+          :btnName="'lol'"
+          :dataClass="'logoGame'"
+          :comparTarget="option"
           @click="option = 'lol'"
-        /><img
-          src="@core/assets/icons/Overwatch.svg"
-          alt=""
-          class="h-16 w-16 p-4 hover:bg-Stone hover:brightness-200 rounded-full"
-          :class="
-            option === 'ow'
-              ? 'brightness-150 hover:brightness-150 bg-Stone'
-              : ''
-          "
+        >
+          <LeagueOfLegend />
+        </ToolsButtonNav>
+        <ToolsButtonNav
+          :target="''"
+          :btnName="'ow'"
+          :dataClass="'logoGame'"
+          :comparTarget="option"
           @click="option = 'ow'"
-        /><img
-          src="@core/assets/icons/Valorant.svg"
-          alt=""
-          class="h-16 w-16 p-4 hover:bg-Stone hover:brightness-200 rounded-full"
-          :class="
-            option === 'valo'
-              ? 'brightness-150 hover:brightness-150 bg-Stone'
-              : ''
-          "
+        >
+          <Overwatch />
+        </ToolsButtonNav>
+        <ToolsButtonNav
+          :target="''"
+          :btnName="'valo'"
+          :dataClass="'logoGame'"
+          :comparTarget="option"
           @click="option = 'valo'"
-        />
+        >
+          <Valorant />
+        </ToolsButtonNav>
       </div>
-      <div name="icon" class="flex mr-4">
-        <TemplateIcon
-          class="h-16 w-16 p-4 hover:bg-Stone hover:text-White rounded-full"
-          :class="view === 'dashboard' ? 'text-White bg-Stone ' : ''"
+      <div name="icon" class="flex ">
+        <ToolsButtonNav
+          :target="''"
+          :btnName="'dashboard'"
+          :dataClass="'spaceIcon'"
+          :comparTarget="view"
           @click="view = 'dashboard'"
-        ></TemplateIcon>
-        <ShareIcon
-          class="h-16 w-16 p-4 hover:bg-Stone hover:text-White rounded-full"
-          :class="view === 'tree' ? 'text-White bg-Stone ' : ''"
+        >
+          <Dashboard />
+        </ToolsButtonNav>
+        <ToolsButtonNav
+          :target="''"
+          :btnName="'tree'"
+          :dataClass="'spaceIcon'"
+          :comparTarget="view"
           @click="view = 'tree'"
-        ></ShareIcon>
-        <CalendarIcon
-          class="h-16 w-16 p-4 hover:bg-Stone hover:text-White rounded-full"
-          :class="view === 'calendar' ? 'text-White bg-Stone ' : ''"
+        >
+          <Tree />
+        </ToolsButtonNav>
+        <ToolsButtonNav
+          :target="''"
+          :btnName="'calendar'"
+          :dataClass="'spaceIcon'"
+          :comparTarget="view"
           @click="view = 'calendar'"
-        ></CalendarIcon>
-        <ClipboardListIcon
-          class="h-16 w-16 p-4 hover:bg-Stone hover:text-White rounded-full"
-          :class="view === 'history' ? 'text-White bg-Stone ' : ''"
+        >
+          <Calendar />
+          <div class="absolute text-[11px] font-black bottom-[18px]">
+            {{ this.$dayjs().format("D") }}
+          </div>
+        </ToolsButtonNav>
+        <ToolsButtonNav
+          :target="''"
+          :btnName="'history'"
+          :dataClass="'spaceIcon'"
+          :comparTarget="view"
           @click="view = 'history'"
-        ></ClipboardListIcon>
-        <LightningBoltIcon
-          class="h-16 w-16 p-4 hover:bg-Stone hover:text-White rounded-full"
-          :class="view === 'notifications' ? 'text-White bg-Stone ' : ''"
-          @click="view = 'notifications'"
-        ></LightningBoltIcon>
-        <FolderAddIcon
-          class="h-16 w-16 p-4 hover:bg-Stone hover:text-White rounded-full"
-          :class="view === 'wallet' ? 'text-White bg-Stone ' : ''"
+        >
+          <MatchHistory />
+        </ToolsButtonNav>
+        <ToolsButtonNav
+          :target="''"
+          :btnName="'cloud'"
+          :dataClass="'spaceIcon'"
+          :comparTarget="view"
+          @click="view = 'cloud'"
+        >
+          <Cloud />
+        </ToolsButtonNav>
+        <ToolsButtonNav
+          :target="''"
+          :btnName="'notifs'"
+          :dataClass="'spaceIcon'"
+          :comparTarget="view"
+          @click="view = 'notifs'"
+        >
+          <Notification />
+        </ToolsButtonNav>
+        <ToolsButtonNav
+          :target="''"
+          :btnName="'wallet'"
+          :dataClass="'spaceIcon'"
+          :comparTarget="view"
           @click="view = 'wallet'"
-        ></FolderAddIcon>
-        <MapIcon
-          class="h-16 w-16 p-4 hover:bg-Stone hover:text-White rounded-full"
-          :class="view === 'pass' ? 'text-White bg-Stone ' : ''"
-          @click="view = 'pass'"
-        ></MapIcon>
+        >
+          <Wallet />
+        </ToolsButtonNav>
+        <ToolsButtonNav
+          :target="''"
+          :btnName="'championPass'"
+          :dataClass="'spaceIcon'"
+          :comparTarget="view"
+          @click="view = 'championPass'"
+        >
+          <ChampionPass />
+        </ToolsButtonNav>
       </div>
     </nav>
     <div class="flex-1 flex">
@@ -137,7 +173,7 @@
 // passé en query le lieu pour si on recharge et que les variable de navigation sont vide
 // la recup dans lURL si rien mettre a la page de garde
 
-import useStoreAuth from "@stores/auth";
+//component
 import PersonalCalendar from "@modules/personal/views/PersonalCalendar.vue";
 import PersonalSpacePage from "@modules/personal/views/PersonalSpacePage.vue";
 import CreateCalendarEvent from "@core/components/modal/CreateCalendarEvent.vue";
@@ -147,29 +183,28 @@ import DashboardOw from "@modules/personal/views/DashboardOw.vue";
 import MatchHistoryLol from "@modules/personal/views/MatchHistoryLol.vue";
 import MatchHistoryOw from "@modules/personal/views/MatchHistoryOw.vue";
 import MatchHistoryValo from "@modules/personal/views/MatchHistoryValo.vue";
-import {
-  ShareIcon,
-  MapIcon,
-  LightningBoltIcon,
-  TemplateIcon,
-  FolderAddIcon,
-  CalendarIcon,
-  ClipboardListIcon,
-} from "@heroicons/vue/outline";
-import LolOptionDashboard from "../../../core/components/layout/LolOptionDashboard.vue";
+import LolOptionDashboard from "@core/components/layout/LolOptionDashboard.vue";
+import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
+//tool
+import useStoreAuth from "@stores/auth";
+//assets
+import Dashboard from "@assets/icons/Dashboard.vue";
+import Tree from "@assets/icons/Tree.vue";
+import Calendar from "@assets/icons/Calendar.vue";
+import MatchHistory from "@assets/icons/MatchHistory.vue";
+import Cloud from "@assets/icons/Cloud.vue";
+import Notification from "@assets/icons/Notification.vue";
+import Wallet from "@assets/icons/Wallet.vue";
+import ChampionPass from "@assets/icons/ChampionPass.vue";
+import LeagueOfLegend from "@assets/icons/LeagueOfLegend.vue";
+import Overwatch from "@assets/icons/Overwatch.vue";
+import Valorant from "@assets/icons/Valorant.vue";
 
 export default {
   components: {
     PersonalCalendar,
     PersonalSpacePage,
     CreateCalendarEvent,
-    CalendarIcon,
-    MapIcon,
-    LightningBoltIcon,
-    FolderAddIcon,
-    ClipboardListIcon,
-    TemplateIcon,
-    ShareIcon,
     DashboardLol,
     DashboardValo,
     DashboardOw,
@@ -177,11 +212,23 @@ export default {
     MatchHistoryOw,
     MatchHistoryValo,
     LolOptionDashboard,
+    ToolsButtonNav,
+    Dashboard,
+    Tree,
+    Calendar,
+    MatchHistory,
+    Cloud,
+    Notification,
+    Wallet,
+    ChampionPass,
+    LeagueOfLegend,
+    Overwatch,
+    Valorant,
   },
   data() {
     const store = useStoreAuth();
     return {
-      view: "chat",
+      view: "dashboard",
       option: "lol",
       store,
       space: "",

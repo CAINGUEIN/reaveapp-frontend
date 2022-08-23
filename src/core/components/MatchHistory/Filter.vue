@@ -5,32 +5,59 @@
       <h4>CLASS</h4>
       <div class="flex">
         <div
-          class="border-2 w-9 h-9 rounded-sm mr-1"
-          :class="lane === 'TOP' ? 'border-gravel' : 'border-LightRock'"
+          class="w-9 h-9 rounded mr-2"
+          :class="
+            lane === 'TOP'
+              ? 'border-Platinium bg-Platinium'
+              : 'border-LightRock hover:border-LightRock hover:bg-LightRock'
+          "
           @click="lanePosition('TOP')"
         >
-          Top
+          <TopLane :width="36" :height="36" />
         </div>
         <div
-          class="border-2 w-9 h-9 rounded-sm mr-1"
-          :class="lane === 'MIDDLE' ? 'border-gravel' : 'border-LightRock'"
+          class="w-9 h-9 rounded mr-2"
+          :class="
+            lane === 'MIDDLE'
+              ? 'border-Platinium bg-Platinium'
+              : ' hover:border-LightRock hover:bg-LightRock'
+          "
           @click="lanePosition('MIDDLE')"
         >
-          Mid
+          <MidLane :width="36" :height="36" />
         </div>
         <div
-          class="border-2 w-9 h-9 rounded-sm mr-1"
-          :class="lane === 'BOTTOM' ? 'border-gravel' : 'border-LightRock'"
+          class="w-9 h-9 rounded mr-2"
+          :class="
+            lane === 'BOTTOM'
+              ? 'border-Platinium bg-Platinium'
+              : 'border-LightRock hover:border-LightRock hover:bg-LightRock'
+          "
           @click="lanePosition('BOTTOM')"
         >
-          Bot
+          <BotLane :width="36" :height="36" />
         </div>
         <div
-          class="border-2 w-9 h-9 rounded-sm mr-1"
-          :class="lane === 'JUNGLE' ? 'border-gravel' : 'border-LightRock'"
+          class="w-9 h-9 rounded mr-2"
+          :class="
+            lane === 'JUNGLE'
+              ? 'border-Platinium bg-Platinium'
+              : 'border-LightRock hover:border-LightRock hover:bg-LightRock'
+          "
           @click="lanePosition('JUNGLE')"
         >
-          Jungle
+          <JungleLane :width="36" :height="36" />
+        </div>
+        <div
+          class="w-9 h-9 rounded mr-2"
+          :class="
+            lane === 'SUPPORT'
+              ? 'border-Platinium bg-Platinium'
+              : 'border-LightRock hover:border-LightRock hover:bg-LightRock'
+          "
+          @click="lanePosition('SUPPORT')"
+        >
+          <SupportLane :width="36" :height="36" />
         </div>
       </div>
       <h4>Summoner Name</h4>
@@ -170,10 +197,20 @@ import useStoreData from "@stores/data";
 import { SearchIcon } from "@heroicons/vue/outline";
 import UsersServices from "../../../plugins/axios/services/userServices";
 import ToolsButtonSubmit from "../buttons/ToolsButtonSubmit.vue";
+import TopLane from "../../assets/icons/TopLane.vue";
+import MidLane from "../../assets/icons/MidLane.vue";
+import BotLane from "../../assets/icons/BotLane.vue";
+import JungleLane from "../../assets/icons/JungleLane.vue";
+import SupportLane from "../../assets/icons/SupportLane.vue";
 export default {
   components: {
     SearchIcon,
     ToolsButtonSubmit,
+    TopLane,
+    MidLane,
+    BotLane,
+    JungleLane,
+    SupportLane,
   },
   props: ["action"],
   data() {
@@ -195,24 +232,24 @@ export default {
     async submit() {
       let body = {};
       if (this.win !== "") {
-        body["win"] = this.win
+        body["win"] = this.win;
       }
       if (this.mapId !== "") {
-        body["mapId"] = this.mapId
+        body["mapId"] = this.mapId;
       }
       if (this.lane !== "") {
-        body["lane"] = this.lane
+        body["lane"] = this.lane;
       }
       if (this.summonerName !== "") {
-        body["summonerName"] = this.summonerName
+        body["summonerName"] = this.summonerName;
       }
       if (this.championName !== "") {
-        body["championName"] = this.championName
+        body["championName"] = this.championName;
       }
       if (this.item.value !== "") {
-        body["item"] = this.item.value
+        body["item"] = this.item.value;
       }
-      this.$emit("action", body)
+      this.$emit("action", body);
     },
     lanePosition(value) {
       if (this.lane === value) {

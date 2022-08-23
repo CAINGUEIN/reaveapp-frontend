@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-center">
-    <div class="flex">
+    <!-- <div class="flex">
       <ToolsButtonNav :dataClass="'small'">
         <Screenshare class="h-6 w-6" />
       </ToolsButtonNav>
@@ -15,14 +15,19 @@
       <ToolsButtonNav :dataClass="'small'">
         <Headphone class="h-6 w-6" />
       </ToolsButtonNav>
-    </div>
+    </div> -->
 
-    <ToolsButtonNav :dataClass="''">
+    <ToolsButtonNav
+      :target="'Settings'"
+      :comparTarget="store.view"
+      :dataClass="'settings'"
+    >
       <Settings />
     </ToolsButtonNav>
     <div class="relative">
       <ToolsButtonNav
         :target="'Personal'"
+        :comparTarget="store.view"
         :dataClass="''"
         @click.right.prevent="toggleDropdown"
       >
@@ -104,13 +109,15 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
 import InputModel from "@core/components/inputs/InputModel.vue";
-import Screenshare from "../../assets/icons/Screenshare.vue";
-import Camera from "../../assets/icons/Camera.vue";
-import Microphone from "../../assets/icons/Microphone.vue";
-import Headphone from "../../assets/icons/Headphone.vue";
-import Settings from "../../assets/icons/Settings.vue";
+import Screenshare from "@assets/icons/Screenshare.vue";
+import Camera from "@assets/icons/Camera.vue";
+import Microphone from "@assets/icons/Microphone.vue";
+import Headphone from "@assets/icons/Headphone.vue";
+import Settings from "@assets/icons/Settings.vue";
+import useStoreAuth from "@stores/auth";
 export default {
   data() {
+    const store = useStoreAuth();
     return {
       moodMessage: {
         name: "moodMessage",
@@ -118,6 +125,7 @@ export default {
         value: "",
       },
 
+      store,
       errors: "",
       dropdown: "hidden",
     };

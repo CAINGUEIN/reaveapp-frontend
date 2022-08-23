@@ -34,6 +34,7 @@ export default ({ mode }) => {
         ),
         "@core": fileURLToPath(new URL("./src/core", import.meta.url)),
         "@modules": fileURLToPath(new URL("./src/modules", import.meta.url)),
+        "@assets": fileURLToPath(new URL("./src/core/assets", import.meta.url))
       },
     },
     server: {

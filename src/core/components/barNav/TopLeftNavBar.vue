@@ -2,65 +2,50 @@
   <div class="flex flex-col">
     <ToolsButtonNav
       :target="'PersonalMessages'"
-      :dataClass="''"
-      :class="'PersonalMessages' === store.view ? 'text-Cloud bg-Gravel ' : ''"
+      :dataClass="'reave'"
+      :comparTarget="store.view"
+      class="mb-[18px]"
     >
       <Reave />
     </ToolsButtonNav>
     <ToolsButtonNav
       :target="'Social'"
+      :comparTarget="store.view"
       :dataClass="''"
-      :class="'Social' === store.view ? 'text-Cloud bg-Gravel ' : ''"
     >
       <Feed />
     </ToolsButtonNav>
-    <ToolsButtonNav
-      :target="'Play'"
-      :dataClass="''"
-      :class="'Play' === store.view ? 'text-Cloud bg-Gravel ' : ''"
-    >
+    <ToolsButtonNav :target="'Play'" :comparTarget="store.view" :dataClass="''">
       <Play />
     </ToolsButtonNav>
     <ToolsButtonNav
       :target="'Academy'"
+      :comparTarget="store.view"
       :dataClass="''"
-      :class="'Academy' === store.view ? 'text-Cloud bg-Gravel ' : ''"
     >
       <Academy />
     </ToolsButtonNav>
-    <ToolsButtonNav
-      :target="'Jobs'"
-      :dataClass="''"
-      :class="'Jobs' === store.view ? 'text-Cloud bg-Gravel ' : ''"
-    >
+    <ToolsButtonNav :target="'Jobs'" :comparTarget="store.view" :dataClass="''">
       <Jobs />
     </ToolsButtonNav>
     <ToolsButtonNav
       :target="'Bootcamps'"
+      :comparTarget="store.view"
       :dataClass="''"
-      :class="'Bootcamps' === store.view ? 'text-Cloud bg-Gravel ' : ''"
     >
       <Bootcamps />
     </ToolsButtonNav>
     <ToolsButtonNav
       :target="'League'"
+      :comparTarget="store.view"
       :dataClass="''"
-      :class="'League' === store.view ? 'text-Cloud bg-Gravel ' : ''"
     >
       <Leagues />
     </ToolsButtonNav>
-    <ToolsButtonNav
-      :target="'Nft'"
-      :dataClass="''"
-      :class="'Nft' === store.view ? 'text-Cloud bg-Gravel ' : ''"
-    >
+    <ToolsButtonNav :target="'Nft'" :comparTarget="store.view" :dataClass="''">
       <NFTs />
     </ToolsButtonNav>
-    <ToolsButtonNav
-      :target="'New'"
-      :dataClass="''"
-      :class="'New' === store.view ? 'text-Cloud bg-Gravel ' : ''"
-    >
+    <ToolsButtonNav :target="'New'" :comparTarget="store.view" :dataClass="''">
       <News />
     </ToolsButtonNav>
   </div>

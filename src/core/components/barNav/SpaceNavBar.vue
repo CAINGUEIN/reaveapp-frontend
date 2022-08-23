@@ -3,7 +3,7 @@
     v-for="space in data"
     @click="$emit('action', space._id, space.typeOfSpace)"
     :dataClass="'large'"
-    class="mr-2"
+    class="mr-2.5"
     :slot="true"
   >
     <img

@@ -3,24 +3,63 @@
     <div
       class="absolute w-[930px] top-0 left-0 h-52 overflow-hidden rounded-2xl"
     >
-      <img
-        :src="formateUrlSplash(info.mapId)"
-        alt=""
-        class="blur-sm brightness-75 bg-center"
-      />
+      <img :src="formateUrlSplash(info.mapId)" alt="" class="" />
     </div>
     <div class="flex items-center mx-3">
-      <h5 class="mr-1">
+      <h3 class="mr-2"
+      :class="personnalStat.statTotal.win ? 'text-Green' : 'text-Red'">
         {{ personnalStat.statTotal.win ? "VICTORY" : "DEFEAT" }}
-      </h5>
-      <p class="mr-1">
-        - {{ $dayjs(info.gameStartTimestamp).format("DD/MM/YYYY HH:mm") }} -
+      </h3>
+      <div class="bg-Cloud h-1 w-1 rounded-full mr-2"></div>
+      <p class="mr-2">
+        {{ $dayjs(info.gameStartTimestamp).format("DD/MM/YYYY") }} at
+        {{ $dayjs(info.gameStartTimestamp).format("HH:mm") }}
       </p>
-      <p class="mr-1">{{ timeDuration(info.gameDuration) }} -</p>
-      <p class="mr-1" v-if="info.gameMode === 'CLASSIC'">
-        {{ formateKDA(personnalStat.statTotal.challenges.kda) }} th -
+      <div class="bg-Cloud h-1 w-1 rounded-full mr-2"></div>
+      <p class="mr-2">{{ timeDuration(info.gameDuration) }}</p>
+      <div class="bg-Cloud h-1 w-1 rounded-full mr-2"></div>
+      <div v-if="info.gameMode === 'CLASSIC'" class="flex items-center">
+        <TopLane
+          v-if="personnalStat.statTotal.lane === 'TOP'"
+          :width="20"
+          :height="20"
+        />
+        <JungleLane
+          v-if="personnalStat.statTotal.lane === 'JUNGLE'"
+          :width="20"
+          :height="20"
+        />
+        <BotLane
+          v-if="personnalStat.statTotal.lane === 'BOTTOM'"
+          :width="20"
+          :height="20"
+        />
+        <MidLane
+          v-if="personnalStat.statTotal.lane === 'MIDDLE'"
+          :width="20"
+          :height="20"
+        />
+        <SupportLane
+          v-if="personnalStat.statTotal.lane === 'SUP'"
+          :width="20"
+          :height="20"
+        />
+        <p class="ml-[3px] mr-2 font-medium">
+          {{ formatTextLane(personnalStat.statTotal.lane) }}
+        </p>
+      </div>
+
+      <div class="bg-Cloud h-1 w-1 rounded-full mr-2"></div>
+      <p class="mr-2" v-if="info.gameMode === 'CLASSIC'">
+        {{ formateKDA(personnalStat.statTotal.challenges.kda) }}
       </p>
-      <p class="mr-1">
+      <div class="bg-Cloud h-1 w-1 rounded-full mr-2"></div>
+      <p
+        class="mr-2"
+        :class="
+          personnalStat.statTotal.teamId === 100 ? 'font-black' : 'font-normal'
+        "
+      >
         {{
           team100[0].statTotal.kills +
           team100[1].statTotal.kills +
@@ -28,9 +67,14 @@
           team100[3].statTotal.kills +
           team100[4].statTotal.kills
         }}
-        /
+        -
       </p>
-      <p class="mr-1">
+      <p
+        class="mr-2"
+        :class="
+          personnalStat.statTotal.teamId === 200 ? 'font-black' : 'font-normal'
+        "
+      >
         {{
           team200[0].statTotal.kills +
           team200[1].statTotal.kills +
@@ -39,22 +83,22 @@
           team200[4].statTotal.kills
         }}
       </p>
-      <p class="mr-1" v-if="info.gameMode === 'CLASSIC'">
-        {{ personnalStat.statTotal.lane }}
-      </p>
     </div>
-    <div class="flex items-center mx-3">
+    <div class="flex items-center mx-3 mt-3">
       <img
         :src="formateImgChampion(personnalStat.statTotal.championName)"
         alt=""
-        class="h-9 w-9 rounded-full"
+        class="h-[50px] w-[50px] rounded-full mr-2"
       />
-      <div>
-        <p v-if="info.gameMode === 'CLASSIC'">
+      <div class=" w-24 mr-8">
+        <p
+          class="leading-none text-[18px] font-medium mb-[5px]"
+          v-if="info.gameMode === 'CLASSIC'"
+        >
           {{ Math.round(personnalStat.statTotal.challenges.kda * 100) / 100 }}
-          KDA
+          <span class="text-[12px]">KDA</span>
         </p>
-        <p>
+        <p class="leading-none font-medium text-[14px]">
           {{
             personnalStat.statTotal.kills +
             " / " +
@@ -65,7 +109,7 @@
         </p>
       </div>
 
-      <div class="ml-2 space-y-1">
+      <div class="mr-3">
         <img
           :src="
             formateImgRunesReforged(
@@ -73,7 +117,7 @@
             )
           "
           alt=""
-          class="ml-3 h-6 w-6 p-1 rounded-full bg-Anthracite"
+          class="h-6 w-6 mb-[5px] rounded-full bg-Anthracite"
         />
         <img
           :src="
@@ -82,65 +126,65 @@
             )
           "
           alt=""
-          class="ml-3 h-6 w-6 p-1 rounded-full bg-Anthracite"
+          class="h-6 w-6 rounded-full bg-Anthracite"
         />
       </div>
-      <div class="ml-2 space-y-1">
+      <div class="mr-3">
         <img
           :src="formateImgSummonerCast(personnalStat.statTotal.summoner1Id)"
           alt=""
-          class="h-5 w-5 p-1 rounded-lg bg-Anthracite"
+          class="h-6 w-6 mb-[5px] rounded-lg bg-Anthracite"
         />
         <img
           :src="formateImgSummonerCast(personnalStat.statTotal.summoner2Id)"
           alt=""
-          class="h-5 w-5 p-1 rounded-lg bg-Anthracite"
+          class="h-6 w-6 rounded-lg bg-Anthracite"
         />
       </div>
       <img
         v-if="personnalStat.statTotal.item0"
         :src="formateImgItem(personnalStat.statTotal.item0)"
         alt=""
-        class="h-6 w-6 p-1 ml-1 rounded-lg bg-Anthracite"
+        class="h-6 w-6 mr-2 rounded-lg bg-Anthracite"
       />
       <img
         v-if="personnalStat.statTotal.item1"
         :src="formateImgItem(personnalStat.statTotal.item1)"
         alt=""
-        class="h-6 w-6 p-1 ml-1 rounded-lg bg-Anthracite"
+        class="h-6 w-6 mr-2 rounded-lg bg-Anthracite"
       />
       <img
         v-if="personnalStat.statTotal.item2"
         :src="formateImgItem(personnalStat.statTotal.item2)"
         alt=""
-        class="h-6 w-6 p-1 ml-1 rounded-lg bg-Anthracite"
+        class="h-6 w-6 mr-2 rounded-lg bg-Anthracite"
       />
       <img
         v-if="personnalStat.statTotal.item3"
         :src="formateImgItem(personnalStat.statTotal.item3)"
         alt=""
-        class="h-6 w-6 p-1 ml-1 rounded-lg bg-Anthracite"
+        class="h-6 w-6 mr-2 rounded-lg bg-Anthracite"
       />
       <img
         v-if="personnalStat.statTotal.item4"
         :src="formateImgItem(personnalStat.statTotal.item4)"
         alt=""
-        class="h-6 w-6 p-1 ml-1 rounded-lg bg-Anthracite"
+        class="h-6 w-6 mr-2 rounded-lg bg-Anthracite"
       />
       <img
         v-if="personnalStat.statTotal.item5"
         :src="formateImgItem(personnalStat.statTotal.item5)"
         alt=""
-        class="h-6 w-6 p-1 ml-1 rounded-lg bg-Anthracite"
+        class="h-6 w-6 mr-2 rounded-lg bg-Anthracite"
       />
       <img
         v-if="personnalStat.statTotal.item6"
         :src="formateImgItem(personnalStat.statTotal.item6)"
         alt=""
-        class="h-6 w-6 p-1 ml-1 rounded-lg bg-Anthracite"
+        class="h-6 w-6 mr-2 rounded-lg bg-Anthracite"
       />
     </div>
-    <div class="flex items-center mx-3">
+    <div class="flex items-center ml-[198px]">
       <div class="flex mr-8">
         <img
           src="https://via.placeholder.com/24"
@@ -195,6 +239,11 @@
 
 <script>
 import useDataStore from "@stores/data";
+import TopLane from "../../assets/icons/TopLane.vue";
+import JungleLane from "../../assets/icons/JungleLane.vue";
+import BotLane from "../../assets/icons/BotLane.vue";
+import MidLane from "../../assets/icons/MidLane.vue";
+import SupportLane from "../../assets/icons/SupportLane.vue";
 export default {
   props: ["data", "personnalId"],
   data() {
@@ -237,7 +286,7 @@ export default {
     },
     formateUrlSplash(id) {
       if (id === 11) {
-        return "https://cdn.discordapp.com/attachments/959875058745094225/996718845278556200/unknown.png";
+        return "https://cdn.discordapp.com/attachments/951892638381010975/1011656609514135693/Group_953.png";
       } else {
         return "https://cdn.discordapp.com/attachments/959875058745094225/996719094013374557/unknown.png";
       }
@@ -252,8 +301,27 @@ export default {
       });
       for (let index = 0; index < result.length; index++) {
         if (result[index] === target) {
-          return index + 1;
+          if (index === 0) {
+            return index + 1 + "st";
+          } else if (index === 1) {
+            return index + 1 + "nd";
+          } else if (index === 2) {
+            return index + 1 + "rd";
+          } else {
+            return index + 1 + "th";
+          }
         }
+      }
+    },
+    formatTextLane(lane) {
+      if (lane === "TOP") {
+        return "Top";
+      } else if (lane === "JUNGLE") {
+        return "Jungle";
+      } else if (lane === "BOTTOM") {
+        return "Bot";
+      } else if (lane === "MIDDLE") {
+        return "Mid";
       }
     },
     formateImgChampion(name) {
@@ -353,5 +421,6 @@ export default {
     this.feadPersonnalStat();
     this.feadTeam();
   },
+  components: { TopLane, JungleLane, BotLane, MidLane, SupportLane },
 };
 </script>

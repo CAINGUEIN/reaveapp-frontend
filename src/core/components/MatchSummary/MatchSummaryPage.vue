@@ -9,7 +9,7 @@
       </div>
       <div name="content-left" class="flex h-full flex-col justify-between">
         <div name="ligne-top" class="flex items-center">
-          <LeagueOfLegend class="h-[53px] w-[53px] text-White" />
+          <LeagueOfLegendBig class="h-[53px] w-[53px] text-White" />
           <h1
             class="ml-6"
             :class="personnalStat.statTotal.win ? 'text-Green' : 'text-Red'"
@@ -18,13 +18,7 @@
           </h1>
           <div class="bg-Cloud h-2 w-2 rounded-full ml-3"></div>
           <div class="h-10 w-10 bg-white rounded-full ml-3"></div>
-          <h3
-            class="ml-2 font-medium"
-            :class="
-              personnalStat.statTotal.teamId === 100 ? 'text-Blue' : 'text-Red'
-            "
-            v-if="info.gameMode === 'CLASSIC'"
-          >
+          <h3 class="ml-2 font-medium" v-if="info.gameMode === 'CLASSIC'">
             {{ formatTextLane(personnalStat.statTotal.lane) }}
           </h3>
           <div class="bg-Cloud h-2 w-2 rounded-full ml-3"></div>
@@ -128,7 +122,14 @@
           </p>
           <div class="bg-Cloud h-1.5 w-1.5 rounded-full ml-3"></div>
           <div class="flex ml-3 font-bold">
-            <p class="mr-1 text-Blue font-bold">
+            <p
+              class="mr-1 font-bold"
+              :class="
+                personnalStat.statTotal.teamId === 100
+                  ? 'font-black'
+                  : 'font-normal'
+              "
+            >
               {{
                 team100[0].statTotal.kills +
                 team100[1].statTotal.kills +
@@ -138,7 +139,14 @@
               }}
             </p>
             <p class="mr-1">-</p>
-            <p class="mr-1 text-Red font-bold">
+            <p
+              class="mr-1 font-bold"
+              :class="
+                personnalStat.statTotal.teamId === 200
+                  ? 'font-black'
+                  : 'font-normal'
+              "
+            >
               {{
                 team200[0].statTotal.kills +
                 team200[1].statTotal.kills +
@@ -764,7 +772,9 @@
           <table class="overflow-hidden text-[18px] leading-4">
             <tr>
               <th></th>
-              <th colspan="2"><p class="font-medium text-White">K/D/A</p></th>
+              <th colspan="2">
+                <p class="font-medium text-White pb-4">K/D/A</p>
+              </th>
               <th><p class="font-medium text-White">DD/DT/HG</p></th>
               <th><p class="font-medium text-White">Gold Earned</p></th>
               <th><p class="font-medium text-White">Sbires</p></th>
@@ -826,7 +836,7 @@
                       player.statTotal.challenges.visionScorePerMinute * 100
                     ) / 100
                   }}
-                  Vis/Min
+                  <span class="text-Silver">Vis/Min</span>
                 </p>
               </td>
             </tr>
@@ -887,7 +897,7 @@
                       player.statTotal.challenges.visionScorePerMinute * 100
                     ) / 100
                   }}
-                  Vis/Min
+                  <span class="text-Silver">Vis/Min</span>
                 </p>
               </td>
             </tr>
@@ -1013,49 +1023,47 @@
     </div>
     <div name="badge" class="mt-18 flex flex-col">
       <div name="title" class="justify-between text-White items-center">
-        <p class="text-[32px] font-medium text-White">Earned Badges</p>
+        <p class="text-[32px] font-medium text-White">Earned Medals</p>
       </div>
       <div
-        class="rounded-2xl mt-6"
+        class="rounded-2xl mt-6 flex"
         v-on:mouseover="mouseover"
         v-on:mouseleave="mouseleave"
       >
-        <div class="absolute inset-0 flex">
-          <p
-            class="m-auto bg-Purple font-normal rounded-full text-White px-5 py-3"
+        <div>
+          <div class="absolute inset-0 flex">
+            <h3
+              class="m-auto z-10 bg-Purple rounded-full text-White px-5 py-2"
+              :class="
+                comparedContent
+                  ? 'transition duration-300 ease-in-out'
+                  : 'opacity-0 transition duration-300 ease-in-out'
+              "
+            >
+              SOON
+            </h3>
+          </div>
+          <div
+            class="flex space-x-3"
             :class="
               comparedContent
-                ? 'transition duration-300 ease-in-out'
-                : 'opacity-0 transition duration-300 ease-in-out'
+                ? 'blur-[6px] transition duration-300 ease-in-out'
+                : 'blur-[4px] transition duration-300 ease-in-out'
             "
           >
-            SOON
-          </p>
-        </div>
-        <div
-          class="flex space-x-2"
-          :class="
-            comparedContent
-              ? 'blur-[6px] transition duration-300 ease-in-out'
-              : 'blur-[4px] transition duration-300 ease-in-out'
-          "
-        >
-          <div class="rounded-full h-12 w-12 bg-amber-400"></div>
-          <div class="rounded-full h-12 w-12 bg-slate-400"></div>
-          <div class="rounded-full h-12 w-12 bg-orange-400"></div>
-          <div class="rounded-full h-12 w-12 bg-amber-400"></div>
-          <div class="rounded-full h-12 w-12 bg-slate-400"></div>
-          <div class="rounded-full h-12 w-12 bg-slate-400"></div>
-          <div class="rounded-full h-12 w-12 bg-orange-400"></div>
-          <div class="rounded-full h-12 w-12 bg-amber-400"></div>
-          <div class="rounded-full h-12 w-12 bg-amber-400"></div>
+            <div class="rounded-full h-12 w-12 bg-amber-400"></div>
+            <div class="rounded-full h-12 w-12 bg-slate-400"></div>
+            <div class="rounded-full h-12 w-12 bg-orange-400"></div>
+            <div class="rounded-full h-12 w-12 bg-amber-400"></div>
+            <div class="rounded-full h-12 w-12 bg-slate-400"></div>
+          </div>
         </div>
       </div>
       <a href=""
         ><p
           class="text-[18px] mt-4 text decoration-solid decoration-white decoration-1 underline"
         >
-          See all Reave Badges
+          See all Reave Medals
         </p></a
       >
     </div>
@@ -1064,34 +1072,40 @@
         <p class="text-[32px] font-medium text-White">Tools</p>
       </div>
       <div
-        class="rounded-2xl mt-6"
+        class="rounded-2xl mt-6 flex"
         v-on:mouseover="mouseover"
         v-on:mouseleave="mouseleave"
       >
-        <div class="absolute inset-0 flex">
-          <p
-            class="m-auto bg-Purple font-normal rounded-full text-White px-5 py-3"
+        <div>
+          <div class="absolute inset-0 flex">
+            <h3
+              class="m-auto z-10 bg-Purple rounded-full text-White px-5 py-2"
+              :class="
+                comparedContent
+                  ? 'transition duration-300 ease-in-out'
+                  : 'opacity-0 transition duration-300 ease-in-out'
+              "
+            >
+              SOON
+            </h3>
+          </div>
+          <div
+            class="flex space-x-3"
             :class="
               comparedContent
-                ? 'transition duration-300 ease-in-out'
-                : 'opacity-0 transition duration-300 ease-in-out'
+                ? 'blur-[6px] transition duration-300 ease-in-out'
+                : 'blur-[4px] transition duration-300 ease-in-out'
             "
           >
-            SOON
-          </p>
-        </div>
-        <div
-          class="flex space-x-2"
-          :class="
-            comparedContent
-              ? 'blur-[6px] transition duration-300 ease-in-out'
-              : 'blur-[4px] transition duration-300 ease-in-out'
-          "
-        >
-          <PaperAirplaneIcon class="rounded-full h-12 w-12"></PaperAirplaneIcon>
-          <PuzzleIcon class="rounded-full h-12 w-12"></PuzzleIcon>
-          <PaperAirplaneIcon class="rounded-full h-12 w-12"></PaperAirplaneIcon>
-          <PuzzleIcon class="rounded-full h-12 w-12"></PuzzleIcon>
+            <PaperAirplaneIcon
+              class="rounded-full h-12 w-12"
+            ></PaperAirplaneIcon>
+            <PuzzleIcon class="rounded-full h-12 w-12"></PuzzleIcon>
+            <PaperAirplaneIcon
+              class="rounded-full h-12 w-12"
+            ></PaperAirplaneIcon>
+            <PuzzleIcon class="rounded-full h-12 w-12"></PuzzleIcon>
+          </div>
         </div>
       </div>
     </div>
@@ -1113,6 +1127,7 @@ import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
 import LeagueOfLegend from "../../assets/icons/LeagueOfLegend.vue";
 import Overwatch from "../../assets/icons/Overwatch.vue";
 import Valorant from "../../assets/icons/Valorant.vue";
+import LeagueOfLegendBig from "../../assets/icons/LeagueOfLegendBig.vue";
 /* changement recup direct les datas dans le back du match
 voir peut etre a mettre sur cette route la recup des datas timeline
 - passer un query pour savoir sur un partage qui est le you de la game
@@ -1127,6 +1142,7 @@ export default {
     LeagueOfLegend,
     Overwatch,
     Valorant,
+    LeagueOfLegendBig,
   },
   data() {
     const dataStore = useDataStore();
@@ -1193,7 +1209,7 @@ export default {
         return "Jungle";
       } else if (lane === "BOTTOM") {
         return "Bot";
-      } else if (lane === "MID") {
+      } else if (lane === "MIDDLE") {
         return "Mid";
       }
     },

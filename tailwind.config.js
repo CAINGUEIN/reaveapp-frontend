@@ -38,6 +38,8 @@ module.exports = {
         Orange: "#FF9331",
         Red: "#F34242",
         Purple: '#7500BD',
+        Silver: '#505050',
+        Platinium: '#404040'
       },
       fontSize: {
         H1: "64px",

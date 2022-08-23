@@ -2,14 +2,14 @@
   <div class="flex relative">
     <div
       name="nav-bar-left"
-      class="sticky top-0 left-0 bottom-0 z-50 flex flex-col justify-between w-32 h-screen items-center"
+      class="sticky top-0 left-0 bottom-0 z-50 flex flex-col justify-between mx-[30px] h-screen items-center"
     >
-      <div name="top" class="mt-8">
+      <div name="top" class="mt-6">
         <TopLeftNavBar />
       </div>
-      <div name="bottom" class="my-8">
-        <div class="bg-white h-1 w-14 mx-auto rounded-full"></div>
-        <BottomLeftNavBar/>
+      <div name="bottom" class="mb-6">
+        <div class="bg-LightRock h-0.5 mb-3 w-14 mx-auto rounded-full"></div>
+        <BottomLeftNavBar />
       </div>
     </div>
     <div class="w-full flex flex-col">
@@ -18,17 +18,22 @@
         class="sticky top-0 left-0 right-0 z-50 bg-Anthracite flex pt-6 pb-[18px] items-center"
       >
         <SpaceNavBar @action="openSpace" :data="store.dataSpaces" />
-        <div class="bg-white h-14 my-auto w-1 rounded-full mr-2"></div>
+
         <ToolsButtonNav
           @click="openModal"
-          :dataClass="'medium'"
-          :slot="true"
+          :dataClass="'top'"
           class="mr-2"
+          :btnName="'+'"
+          :comparTarget="''"
         >
-          <PlusIcon class="h-15 w-15" />
+          <Plus />
         </ToolsButtonNav>
-        <ToolsButtonNav :dataClass="'medium'" :slot="true">
-          <GlobeIcon class="h-15 w-15" />
+        <ToolsButtonNav
+          :dataClass="'top'"
+          :target="'Explore'"
+          :comparTarget="store.view"
+        >
+          <Explore />
         </ToolsButtonNav>
       </div>
       <router-view class="pr-[30px]" />
@@ -51,6 +56,8 @@ import { GlobeIcon, PlusIcon } from "@heroicons/vue/outline";
 //data
 import dataTopLeft from "@modules/layout/data/dataTopLeftNavBar";
 import dataBottomLeft from "@modules/layout/data/dataBottomLeftNavBar";
+import Explore from "../../../core/assets/icons/Explore.vue";
+import Plus from "../../../core/assets/icons/plus.vue";
 
 export default {
   components: {
@@ -61,6 +68,8 @@ export default {
     BottomLeftNavBar,
     GlobeIcon,
     PlusIcon,
+    Explore,
+    Plus,
   },
   data() {
     const store = useStoreAuth();
