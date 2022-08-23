@@ -13,15 +13,15 @@
       </div>
       <div name="select-game" class="flex bg-Rock rounded-full">
         <img
-          src="../../../core/assets/icons/LeagueOfLegends.svg"
+          src="@assets/icons/LeagueOfLegends.svg"
           alt=""
           class="h-16 w-16 p-4 hover:bg-Stone rounded-full"
         /><img
-          src="../../../core/assets/icons/Overwatch.svg"
+          src="@assets/icons/Overwatch.svg"
           alt=""
           class="h-16 w-16 p-4 hover:bg-Stone rounded-full"
         /><img
-          src="../../../core/assets/icons/Valorant.svg"
+          src="@assets/icons/Valorant.svg"
           alt=""
           class="h-16 w-16 p-4 hover:bg-Stone rounded-full"
         />
