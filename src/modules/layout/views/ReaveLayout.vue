@@ -57,7 +57,7 @@ import { GlobeIcon, PlusIcon } from "@heroicons/vue/outline";
 import dataTopLeft from "@modules/layout/data/dataTopLeftNavBar";
 import dataBottomLeft from "@modules/layout/data/dataBottomLeftNavBar";
 import Explore from "@assets/icons/Explore.vue";
-import Plus from "@assets/icons/plus.vue";
+import Plus from "@assets/icons/Plus.vue";
 
 export default {
   components: {
