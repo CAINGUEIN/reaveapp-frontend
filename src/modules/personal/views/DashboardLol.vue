@@ -19,7 +19,11 @@
     <div v-if="show">
       <div name="content" class="flex flex-wrap">
         <ModuleAverageKDA :data="data" />
-        <ModuleCompareKDA :data1month="data" />
+        <ModuleCompareKDA
+          :data="data"
+          :data1month="dataProps"
+          :paramOptionGame="paramOptionGame"
+        />
       </div>
     </div>
   </div>
@@ -40,6 +44,7 @@ export default {
     ModuleAverageKDA,
     ModuleCompareKDA,
   },
+  props: ["paramOptionGame", "action"],
   data() {
     const store = useStoreAuth();
     return {
@@ -52,6 +57,7 @@ export default {
       },
       data: "",
       show: false,
+      dataProps: [],
     };
   },
   methods: {
@@ -70,7 +76,33 @@ export default {
     async feadStat() {
       let result = await UsersServices.feadDataForDashboard();
       this.data = result.data.data;
-      this.show = true
+      this.dataProps = result.data.data;
+      this.show = true;
+      this.championMatch(result.data.data);
+    },
+    championMatch(value) {
+      let arrayChampionMatch = [];
+      for (let index = 0; index < value.length; index++) {
+        if (!arrayChampionMatch.includes(value[index].champion)) {
+          arrayChampionMatch.push(value[index].champion);
+        }
+      }
+      this.$emit("action", arrayChampionMatch);
+    },
+  },
+  watch: {
+    paramOptionGame(newValue, oldValue) {
+      let selectChampion = this.paramOptionGame.selectChampionValue;
+      if (selectChampion !== "") {
+        this.dataProps = [];
+        for (let index = 0; index < this.data.length; index++) {
+          if (this.data[index].champion === selectChampion) {
+            this.dataProps = [...this.dataProps, this.data[index]];
+          }
+        }
+      } else {
+        this.dataProps = this.data;
+      }
     },
   },
   mounted() {

@@ -9,7 +9,7 @@
       </div>
       <div name="content-left" class="flex h-full flex-col justify-between">
         <div name="ligne-top" class="flex items-center">
-          <LeagueOfLegend class="h-[53px] w-[53px] text-White"/>
+          <LeagueOfLegend class="h-[53px] w-[53px] text-White" />
           <h1
             class="ml-6"
             :class="personnalStat.statTotal.win ? 'text-Green' : 'text-Red'"
@@ -755,190 +755,227 @@
       >
     </div>
     <div name="individual" class="mt-18 flex-1">
+      <!-- TODO: voir pour le gestion de la team -->
       <div name="tittle">
         <p class="text-[32px] font-medium text-White">Individual Scores</p>
       </div>
       <div name="main-content">
         <div name="table" class="flex mt-6">
-          <table
-            v-if="personnalStat.statTotal.teamId === 100"
-            class="bg-DarkRock rounded-2xl overflow-hidden"
-          >
+          <table class="overflow-hidden text-[18px] leading-4">
             <tr>
               <th></th>
-              <th class="bg-Rock">K/D/A</th>
-              <th>DD/DT/HG</th>
-              <th class="bg-Rock">Gold Earned</th>
-              <th>Sbires</th>
-              <th class="bg-Rock">Vision</th>
+              <th colspan="2"><p class="font-medium text-White">K/D/A</p></th>
+              <th><p class="font-medium text-White">DD/DT/HG</p></th>
+              <th><p class="font-medium text-White">Gold Earned</p></th>
+              <th><p class="font-medium text-White">Sbires</p></th>
+              <th><p class="font-medium text-White">Vision</p></th>
             </tr>
-            <tr v-for="player in team100" class="text-center">
-              <td class="flex text-Blue justify-between px-8 py-1 items-center">
-                {{ player.statTotal.summonerName }}
+            <tr v-for="(player, index) in team100" class="text-center">
+              <td
+                class="flex t justify-between pr-6 py-[5px] items-center"
+                :class="index === 4 ? 'pb-[12px]' : ''"
+              >
+                <p class="text-Blue font-medium">
+                  {{ player.statTotal.summonerName }}
+                </p>
                 <img
                   :src="formateImgChampion(player.statTotal.championName)"
                   alt=""
                   class="ml-4 h-10 w-10 rounded-full"
                 />
               </td>
-              <td class="justify-between px-8 py-1 bg-Rock">
-                <div class="flex justify-between space-x-2">
-                  <div>
-                    {{
-                      Math.round(player.statTotal.challenges.kda * 100) / 100
-                    }}
-                  </div>
-                  <div>
-                    {{ player.statTotal.kills }}/{{
-                      player.statTotal.deaths
-                    }}/{{ player.statTotal.assists }}
-                  </div>
-                </div>
+              <td
+                class="pr-3 pl-8 py-1 bg-Rock"
+                :class="index === 0 ? 'rounded-tl-2xl' : ''"
+              >
+                <p class="font-medium text-White mr-6 text-left">
+                  {{ Math.round(player.statTotal.challenges.kda * 100) / 100 }}
+                </p>
               </td>
-              <td class="justify-between px-8 py-1">
-                {{ player.statTotal.totalDamageDealt }}/{{
-                  player.statTotal.totalDamageTaken
-                }}/{{ player.statTotal.totalHeal }}
+              <td class="pr-8 pl-3 py-1 bg-Rock">
+                <p class="text-left">
+                  {{ player.statTotal.kills }}
+                  <span class="font-medium">/</span>
+                  {{ player.statTotal.deaths }}
+                  <span class="font-medium">/</span>
+                  {{ player.statTotal.assists }}
+                </p>
               </td>
-              <td class="justify-between px-8 py-1 bg-Rock">
-                {{ player.statTotal.goldEarned }}
+              <td class="px-8 py-1">
+                <p class="">
+                  {{ player.statTotal.totalDamageDealt }}
+                  <span class="font-medium">/</span>
+                  {{ player.statTotal.totalDamageTaken }}
+                  <span class="font-medium">/</span>
+                  {{ player.statTotal.totalHeal }}
+                </p>
               </td>
-              <td class="justify-between px-8 py-1">
-                {{ player.statTotal.totalMinionsKilled }}
+              <td class="px-8 py-1 bg-Rock">
+                <p>{{ player.statTotal.goldEarned }}</p>
               </td>
-              <td class="justify-between px-8 py-1 bg-Rock">
-                {{
-                  Math.round(
-                    player.statTotal.challenges.visionScorePerMinute * 100
-                  ) / 100
-                }}
-                Vis/Min
+              <td class="px-8 py-1">
+                <p>{{ player.statTotal.totalMinionsKilled }}</p>
+              </td>
+              <td
+                class="px-8 py-1 bg-Rock text-right"
+                :class="index === 0 ? 'rounded-tr-2xl' : ''"
+              >
+                <p>
+                  {{
+                    Math.round(
+                      player.statTotal.challenges.visionScorePerMinute * 100
+                    ) / 100
+                  }}
+                  Vis/Min
+                </p>
               </td>
             </tr>
 
-            <tr v-for="player in team200" class="text-center">
+            <tr v-for="(player, index) in team200" class="text-center">
               <td
-                class="flex text-Red justify-between px-8 py-2 items-center bg-Rock"
+                class="flex justify-between pr-6 py-[5px] items-center"
+                :class="index === 4 ? 'pt-[12px]' : ''"
               >
-                {{ player.statTotal.summonerName }}
+                <p class="text-Red font-medium">
+                  {{ player.statTotal.summonerName }}
+                </p>
                 <img
                   :src="formateImgChampion(player.statTotal.championName)"
                   alt=""
                   class="ml-4 h-10 w-10 rounded-full"
                 />
               </td>
-              <td class="justify-between px-8 py-2 bg-LightRock">
-                <div class="flex justify-between space-x-2">
-                  <div>
-                    {{
-                      Math.round(player.statTotal.challenges.kda * 100) / 100
-                    }}
-                  </div>
-                  <div>
-                    {{ player.statTotal.kills }}/{{
-                      player.statTotal.deaths
-                    }}/{{ player.statTotal.assists }}
-                  </div>
-                </div>
-              </td>
-              <td class="justify-between px-8 py-2 bg-Rock">
-                {{ player.statTotal.totalDamageDealt }}/{{
-                  player.statTotal.totalDamageTaken
-                }}/{{ player.statTotal.totalHeal }}
-              </td>
-              <td class="justify-between px-8 py-2 bg-LightRock">
-                {{ player.statTotal.goldEarned }}
-              </td>
-              <td class="justify-between px-8 py-2 bg-Rock">
-                {{ player.statTotal.totalMinionsKilled }}
-              </td>
-              <td class="justify-between px-8 py-2 bg-LightRock">
-                {{
-                  Math.round(
-                    player.statTotal.challenges.visionScorePerMinute * 100
-                  ) / 100
-                }}
-                Vis/Min
-              </td>
-            </tr>
-          </table>
-          <table v-else class="bg-DarkRock rounded-2xl overflow-hidden">
-            <tr>
-              <th></th>
-              <th class="bg-Rock">K/D/A</th>
-              <th>DD/DT/HG</th>
-              <th class="bg-Rock">Gold Earned</th>
-              <th>Sbires</th>
-              <th class="bg-Rock">Vision</th>
-            </tr>
-            <tr v-for="player in team200" class="text-center">
-              <td class="flex text-Blue justify-between px-8 py-1 items-center">
-                {{ player.statTotal.summonerName }}
-                <img
-                  :src="formateImgChampion(player.statTotal.championName)"
-                  alt=""
-                  class="ml-4 h-10 w-10 rounded-full"
-                />
-              </td>
-              <td class="justify-between px-8 py-1 bg-Rock">
-                <div class="flex justify-between space-x-2">
-                  <div>
-                    {{
-                      Math.round(player.statTotal.challenges.kda * 100) / 100
-                    }}
-                  </div>
-                  <div>
-                    {{ player.statTotal.kills }}/{{
-                      player.statTotal.deaths
-                    }}/{{ player.statTotal.assists }}
-                  </div>
-                </div>
-              </td>
-              <td class="justify-between px-8 py-1">
-                {{ player.statTotal.totalDamageDealt }}/{{
-                  player.statTotal.totalDamageTaken
-                }}/{{ player.statTotal.totalHeal }}
-              </td>
-              <td class="justify-between px-8 py-1 bg-Rock">
-                {{ player.statTotal.goldEarned }}
-              </td>
-              <td class="justify-between px-8 py-1">
-                {{ player.statTotal.totalMinionsKilled }}
-              </td>
-              <td class="justify-between px-8 py-1 bg-Rock">
-                {{
-                  Math.round(
-                    player.statTotal.challenges.visionScorePerMinute * 100
-                  ) / 100
-                }}
-                Vis/Min
-              </td>
-            </tr>
-
-            <tr v-for="player in team100" class="text-center">
               <td
-                class="flex text-Red justify-between px-8 py-2 items-center bg-Rock"
+                class="pr-3 pl-8 py-1 bg-LightRock"
+                :class="index === 4 ? 'rounded-bl-2xl' : ''"
               >
-                {{ player.statTotal.summonerName }}
-                <img
-                  :src="formateImgChampion(player.statTotal.championName)"
-                  alt=""
-                  class="ml-4 h-10 w-10 rounded-full"
-                />
+                <p class="font-medium text-White mr-6 text-left">
+                  {{ Math.round(player.statTotal.challenges.kda * 100) / 100 }}
+                </p>
+              </td>
+              <td class="pr-8 pl-3 py-1 bg-LightRock">
+                <p class="text-LightGrey flex-1 text-left">
+                  {{ player.statTotal.kills }}
+                  <span class="font-medium">/</span>
+                  {{ player.statTotal.deaths }}
+                  <span class="font-medium">/</span>
+                  {{ player.statTotal.assists }}
+                </p>
+              </td>
+              <td class="px-8 py-2 bg-Rock">
+                <p>
+                  {{ player.statTotal.totalDamageDealt }}
+                  <span class="font-medium">/</span>
+                  {{ player.statTotal.totalDamageTaken }}
+                  <span class="font-medium">/</span>
+                  {{ player.statTotal.totalHeal }}
+                </p>
               </td>
               <td class="px-8 py-2 bg-LightRock">
-                <div class="flex justify-between space-x-2">
-                  <div>
-                    {{
-                      Math.round(player.statTotal.challenges.kda * 100) / 100
-                    }}
-                  </div>
-                  <div>
-                    {{ player.statTotal.kills }}/{{
-                      player.statTotal.deaths
-                    }}/{{ player.statTotal.assists }}
-                  </div>
-                </div>
+                <p>{{ player.statTotal.goldEarned }}</p>
+              </td>
+              <td class="px-8 py-2 bg-Rock">
+                <p>{{ player.statTotal.totalMinionsKilled }}</p>
+              </td>
+              <td
+                class="px-8 py-2 bg-LightRock text-right"
+                :class="index === 4 ? 'rounded-br-2xl' : ''"
+              >
+                <p>
+                  {{
+                    Math.round(
+                      player.statTotal.challenges.visionScorePerMinute * 100
+                    ) / 100
+                  }}
+                  Vis/Min
+                </p>
+              </td>
+            </tr>
+          </table>
+          <!-- <table v-else class="overflow-hidden text-[18px]">
+            <tr class="font-medium text-White">
+              <th></th>
+              <th colspan="2" class="font-medium">K/D/A</th>
+              <th class="font-medium">DD/DT/HG</th>
+              <th class="font-medium">Gold Earned</th>
+              <th class="font-medium">Sbires</th>
+              <th class="font-medium">Vision</th>
+            </tr>
+            <tr v-for="(player, index) in team200" class="text-center">
+              <td
+                class="flex text-Blue text-[18px] font-medium justify-between pr-6 py-[5px] items-center"
+                :class="index === 4 ? 'pb-[12px]' : ''"
+              >
+                {{ player.statTotal.summonerName }}
+                <img
+                  :src="formateImgChampion(player.statTotal.championName)"
+                  alt=""
+                  class="ml-4 h-10 w-10 rounded-full"
+                />
+              </td>
+              <td
+                class="justify-between pr-3 pl-8 py-1 bg-Rock"
+                :class="index === 0 ? 'rounded-tl-2xl' : ''"
+              >
+                <p class="font-medium mr-6">
+                  {{ Math.round(player.statTotal.challenges.kda * 100) / 100 }}
+                </p>
+              </td>
+              <td class="justify-between pr-8 pl-3 py-1 bg-Rock">
+                <p class="text-LightGrey flex-1">
+                  {{ player.statTotal.kills }} / {{ player.statTotal.deaths }} /
+                  {{ player.statTotal.assists }}
+                </p>
+              </td>
+              <td class="justify-between px-8 py-1">
+                {{ player.statTotal.totalDamageDealt }}/{{
+                  player.statTotal.totalDamageTaken
+                }}/{{ player.statTotal.totalHeal }}
+              </td>
+              <td class="justify-between px-8 py-1 bg-Rock">
+                {{ player.statTotal.goldEarned }}
+              </td>
+              <td class="justify-between px-8 py-1">
+                {{ player.statTotal.totalMinionsKilled }}
+              </td>
+              <td
+                class="justify-between px-8 py-1 bg-Rock"
+                :class="index === 0 ? 'rounded-tr-2xl' : ''"
+              >
+                {{
+                  Math.round(
+                    player.statTotal.challenges.visionScorePerMinute * 100
+                  ) / 100
+                }}
+                Vis/Min
+              </td>
+            </tr>
+
+            <tr v-for="(player, index) in team100" class="text-center">
+              <td
+                class="flex text-Red text-[18px] font-medium justify-between pr-6 py-[5px] items-center"
+                :class="index === 0 ? 'pt-[12px]' : ''"
+              >
+                {{ player.statTotal.summonerName }}
+                <img
+                  :src="formateImgChampion(player.statTotal.championName)"
+                  alt=""
+                  class="ml-4 h-10 w-10 rounded-full"
+                />
+              </td>
+              <td
+                class="justify-between pr-3 pl-8 py-1 bg-LightRock"
+                :class="index === 4 ? 'rounded-bl-2xl' : ''"
+              >
+                <p class="font-medium mr-6 ">
+                  {{ Math.round(player.statTotal.challenges.kda * 100) / 100 }}
+                </p>
+              </td>
+              <td class="justify-between pr-8 pl-3 py-1 bg-LightRock">
+                <p class="text-LightGrey flex-1">
+                  {{ player.statTotal.kills }} / {{ player.statTotal.deaths }} /
+                  {{ player.statTotal.assists }}
+                </p>
               </td>
               <td class="justify-between px-8 py-2 bg-Rock">
                 {{ player.statTotal.totalDamageDealt }}/{{
@@ -951,7 +988,10 @@
               <td class="justify-between px-8 py-2 bg-Rock">
                 {{ player.statTotal.totalMinionsKilled }}
               </td>
-              <td class="justify-between px-8 py-2 bg-LightRock">
+              <td
+                class="justify-between px-8 py-2 bg-LightRock"
+                :class="index === 4 ? 'rounded-br-2xl' : ''"
+              >
                 {{
                   Math.round(
                     player.statTotal.challenges.visionScorePerMinute * 100
@@ -960,7 +1000,7 @@
                 Vis/Min
               </td>
             </tr>
-          </table>
+          </table> -->
         </div>
       </div>
       <a href=""
@@ -1086,8 +1126,8 @@ export default {
     ToolsButtonSubmit,
     LeagueOfLegend,
     Overwatch,
-    Valorant
-},
+    Valorant,
+  },
   data() {
     const dataStore = useDataStore();
     const store = useAuthStore();

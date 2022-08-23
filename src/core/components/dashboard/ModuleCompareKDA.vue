@@ -8,7 +8,7 @@
         </div>
         <div class="flex items-center">
           {{ txtStat }}
-          <h6 @click="switchChart()">{{ txtLabel }}</h6>
+          <h6>{{ txtLabel }}</h6>
         </div>
       </div>
       <div></div>
@@ -19,7 +19,6 @@
         :chart-data="chartData"
         :chart-id="chartId"
         :dataset-id-key="datasetIdKey"
-        :plugins="plugins"
         :css-classes="cssClasses"
         :styles="styles"
         :width="width"
@@ -33,7 +32,7 @@
 import { Line } from "vue-chartjs";
 import ChartJS from "chart.js/auto";
 export default {
-  props: ["data1month"],
+  props: ["data1month", "paramOptionGame"],
   components: {
     Line,
   },
@@ -96,7 +95,7 @@ export default {
       datasetIdKey: "label",
       width: 200,
       height: 110,
-      show: "",
+      show: false,
       cssClasses: "",
       styles: {},
       txtLabel: "",
@@ -108,14 +107,6 @@ export default {
       this.chartData.labels = labels;
       this.chartData.datasets[0].data = value;
       this.chartData.datasets[0].backgroundColor = this.getGradient();
-    },
-    switchChart() {
-      console.log(this.show);
-      if (this.show === "teen") {
-        this.lastDayMatch(7);
-      } else {
-        this.lastMatch(10);
-      }
     },
     lastMatch(indexSet) {
       if (indexSet > this.data1month.length) {
@@ -130,13 +121,12 @@ export default {
           value.push(this.data1month[index].KDA);
         }
       }
-      console.log(value);
 
       if (!Number.isNaN(value[0]) && !Number.isNaN(value[indexSet - 1])) {
         let stat = (value[0] * 100) / value[indexSet - 1] - 100;
         this.txtStat = Math.round(stat * 100) / 100;
       } else {
-        this.txtStat = "no data";
+        this.txtStat = "?";
       }
       this.createChart(labels.reverse(), value.reverse());
 
@@ -169,7 +159,7 @@ export default {
         let stat = (value[0] * 100) / value[indexSet - 1] - 100;
         this.txtStat = Math.round(stat * 100) / 100;
       } else {
-        this.txtStat = "no data";
+        this.txtStat = "?";
       }
       this.createChart(labels.reverse(), value.reverse());
     },
@@ -178,19 +168,27 @@ export default {
       return value.reduce((partialSum, a) => partialSum + a, 0) / div;
     },
     getGradient() {
-      console.log(document.getElementById("line"));
       let gradient = document
         .getElementById("line")
         .getContext("2d")
         .createLinearGradient(100, 10, 100, 100);
-      gradient.addColorStop(0, "rgba(0,102,255,0.75)");
-      gradient.addColorStop(0.5, "rgba(0,102,255,0.5)");
-      gradient.addColorStop(0.99, "rgba(0, 0,0, 0)");
+      gradient.addColorStop(0, "rgba(0,102,255, 0.3)");
+      gradient.addColorStop(0.95, "rgba(0,0,0, 0)");
       return gradient;
     },
   },
+  watch: {
+    paramOptionGame(newValue, oldValue) {
+      if (this.paramOptionGame.selectTypeValue === "day") {
+        this.lastDayMatch(this.paramOptionGame.numberValue)
+      } else {
+        this.lastMatch(this.paramOptionGame.numberValue)
+
+      }
+    }
+  },
   mounted() {
-    this.lastMatch(10);
+    this.lastMatch(this.paramOptionGame.numberValue);
   },
 };
 </script>

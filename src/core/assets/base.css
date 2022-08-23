@@ -66,7 +66,7 @@
     @apply border-hidden;
   }
   p {
-    @apply text-lg text-Cloud font-sans font-normal;
+    @apply text-lg text-LightGrey font-sans font-normal;
   }
 }
 @tailwind utilities;

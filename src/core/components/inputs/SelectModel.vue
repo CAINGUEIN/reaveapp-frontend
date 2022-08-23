@@ -12,57 +12,47 @@
       }}</span>
     </label>
 
-    <div class="mt-3 relative">
-      <input
-        :type="data.type"
-        :name="data.name"
-        :id="data.name"
-        :placeholder="data.label"
-        :autocomplete="data.name"
-        class="block w-full font-normal py-3 px-6 rounded-Large text-H4 text-White bg-Anthracite border-LightGrey leading-none focus:border-White border-2 focus:outline-none"
-        :value="modelValue"
-        @input="$emit('update:modelValue', $event.target.value)"
-        :disabled="store.loading"
-        aria-describedby="email-error"
-        aria-invalid="true"
-      />
-      <div
-        v-if="errors.hasOwnProperty(data.name)"
-        class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"
+    <select
+      :id="data.name"
+      :value="modelValue"
+      @input="$emit('update:modelValue', $event.target.value)"
+      class="block w-full font-normal py-3 px-6 rounded-Large text-H4 text-White bg-Anthracite border-LightGrey leading-none focus:border-White border-2 focus:outline-none"
+    >
+      <option
+        v-for="option in data.options"
+        :key="option.value"
+        v-bind:value="option.value"
       >
-        <ExclamationCircleIcon class="h-5 w-5 text-Red" aria-hidden="true" />
-      </div>
-    </div>
+        {{ option.slot }}
+      </option>
+    </select>
   </div>
 </template>
 
 <script>
-import { ExclamationCircleIcon } from "@heroicons/vue/solid";
 import errorsHelpers from "@core/support/functions/errorsHelpers";
 import useStoreAuth from "@stores/auth";
 
 /**
  * composant qui gere l'affichage
- * de l'input de type text
+ * de l'input de type select
  */
 export default {
-  components: {
-    ExclamationCircleIcon,
-  },
   props: {
     /** :data="inputExemple"
      * inputExemple: {
      *  label: "Exemple",
      *  name: "exemple",
-     *  type: "text",
+     *  type: "select",
      *  value: "",
+     *  options: [""],
      * },
      */
     data: Object,
     /** v-model="inputExemple.value"
      * ce qui va etre submit
      */
-    modelValue: String,
+    modelValue: { String, Number },
     /** :errors="errors[exemple]"
      * retour de l'erreur
      */
@@ -76,6 +66,13 @@ export default {
     return {
       errorsHelpers,
       store,
+
+      classLabel: "block text-blue text-sm font-bold mb-2",
+      classInput:
+        "bg-appGrey shadow appearance-none border rounded-full w-full py-2px-3 text-white leading-tight focus:outline-none focus:border-blue focus:shadow-outline",
+      classLabelError: "block text-error text-sm font-bold mb-2",
+      classInputError:
+        "placeholder-error bg-warning text-error selected-warning shadow appearance-none border rounded-full w-full py-2px-3 leading-tight focus:outline-none focus:border-warning focus:shadow-outline",
     };
   },
 };

@@ -3,7 +3,7 @@
     <nav
       class="mt-2 flex h-16 min-w-max justify-between items-center bg-DarkRock rounded-full"
     >
-      <div name="space-name" class="flex flex-1 ml-4">
+      <div name="space-name" class="flex ml-4">
         <img
           src="https://via.placeholder.com/36"
           alt=""
@@ -11,6 +11,11 @@
         />
         <h4 class="ml-2">{{ store.dataAccount.userName }}</h4>
       </div>
+      <LolOptionDashboard
+        v-if="view === 'dashboard' && option === 'lol'"
+        :dataOptionGame="dataOptionGame"
+        @actionParam="(e) => setParamOptionGame(e)"
+      />
       <div
         v-if="view === 'dashboard' || view === 'tree' || view === 'history'"
         name="select-game"
@@ -48,7 +53,7 @@
           @click="option = 'valo'"
         />
       </div>
-      <div name="icon" class="flex justify-end flex-1 mr-4">
+      <div name="icon" class="flex mr-4">
         <TemplateIcon
           class="h-16 w-16 p-4 hover:bg-Stone hover:text-White rounded-full"
           :class="view === 'dashboard' ? 'text-White bg-Stone ' : ''"
@@ -90,6 +95,8 @@
       <DashboardLol
         v-if="view === 'dashboard' && option === 'lol'"
         class="w-full"
+        @action="(e) => setCompenentOptionGame(e)"
+        :paramOptionGame="paramOptionGame"
       ></DashboardLol>
       <DashboardValo
         v-if="view === 'dashboard' && option === 'valo'"
@@ -149,6 +156,7 @@ import {
   CalendarIcon,
   ClipboardListIcon,
 } from "@heroicons/vue/outline";
+import LolOptionDashboard from "../../../core/components/layout/LolOptionDashboard.vue";
 
 export default {
   components: {
@@ -168,6 +176,7 @@ export default {
     MatchHistoryLol,
     MatchHistoryOw,
     MatchHistoryValo,
+    LolOptionDashboard,
   },
   data() {
     const store = useStoreAuth();
@@ -178,6 +187,12 @@ export default {
       space: "",
       isOpenModal: false,
       data: "",
+      dataOptionGame: [{ slot: "ALL", value: "" }],
+      paramOptionGame: {
+        numberValue: "10",
+        selectTypeValue: "match",
+        selectChampionValue: "",
+      },
     };
   },
   methods: {
@@ -188,6 +203,14 @@ export default {
     },
     closeModal() {
       this.isOpenModal = false;
+    },
+    setCompenentOptionGame(value) {
+      for (let index = 0; index < value.length; index++) {
+        this.dataOptionGame.push({ slot: value[index], value: value[index] });
+      }
+    },
+    setParamOptionGame(value) {
+      this.paramOptionGame = value;
     },
   },
 };
