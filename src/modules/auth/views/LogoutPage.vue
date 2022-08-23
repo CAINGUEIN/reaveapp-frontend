@@ -27,8 +27,8 @@ import AuthServices from "@axios/services/authServices";
 /* Import Tools */
 import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
 import useStoreAuth from "@stores/auth";
-import Reave from "../../../core/assets/icons/Reave.vue";
-import Settings from "../../../core/assets/icons/Settings.vue";
+import Reave from "@assets/icons/Reave.vue";
+import Settings from "@assets/icons/Settings.vue";
 
 export default {
   components: { ToolsButtonSubmit, Reave, Settings },

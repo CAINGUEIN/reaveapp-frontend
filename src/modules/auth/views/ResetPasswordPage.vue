@@ -35,8 +35,8 @@ import InputModel from "@core/components/inputs/InputModel.vue";
 import AuthServices from "@axios/services/authServices";
 import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
 import useStoreAuth from "@stores/auth";
-import Reave from "../../../core/assets/icons/Reave.vue";
-import Settings from "../../../core/assets/icons/Settings.vue";
+import Reave from "@assets/icons/Reave.vue";
+import Settings from "@assets/icons/Settings.vue";
 
 export default {
   components: { InputModel, ToolsButtonSubmit, Reave, Settings },
