@@ -49,7 +49,7 @@
           <Valorant />
         </ToolsButtonNav>
       </div>
-      <div name="icon" class="flex ">
+      <div name="icon" class="flex">
         <ToolsButtonNav
           :target="''"
           :btnName="'dashboard'"
@@ -252,9 +252,11 @@ export default {
       this.isOpenModal = false;
     },
     setCompenentOptionGame(value) {
+      let arrayStock = [];
       for (let index = 0; index < value.length; index++) {
-        this.dataOptionGame.push({ slot: value[index], value: value[index] });
+        arrayStock.push({ slot: value[index], value: value[index] });
       }
+      this.dataOptionGame = arrayStock;
     },
     setParamOptionGame(value) {
       this.paramOptionGame = value;
