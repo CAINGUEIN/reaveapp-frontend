@@ -16,7 +16,7 @@
         :color="puuid.value === '' ? 'desactivated' : ''"
       />
     </div>
-    <div v-if="show">
+    <div v-if="show && store.dataAccount.lolData.lolPuuid">
       <div name="content" class="flex flex-wrap">
         <ModuleAverageKDA :data="data" />
         <ModuleCompareKDA
