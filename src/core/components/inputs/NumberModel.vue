@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-4 flex flex-col justify-between text-white">
+  <div class="flex flex-col justify-between text-white">
     <label
       class="flex text-H4 text-White font-bold leading-none"
       :for="data.name"
@@ -19,7 +19,7 @@
         :autocomplete="data.name"
         min="1"
         max="999"
-        class="block w-full font-normal py-3 px-6 rounded-Large text-H4 text-White bg-Anthracite border-LightGrey leading-none focus:border-White border-2 focus:outline-none"
+        class="block border-0 w-full font-normal py-3 px-6 rounded-Large text-H4 text-White bg-Anthracite leading-none focus:ring-0 focus:outline-none focus:border-0"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
       />

@@ -1,19 +1,31 @@
 <template>
-  <div class="h-[202px] w-[650px] bg-DarkRock ml-[22px] rounded-md mt-5 p-6">
+  <div class="h-[202px] w-[650px] bg-DarkRock ml-[22px] rounded-2xl mt-5 p-6 hover:bg-[#1f1f1f]">
     <div>
       <div>
         <div class="flex items-center">
-          <h5>K/D/A</h5>
-          <h6>(kills/deaths/assists)</h6>
+          <p class="text-[20px] font-bold">K/D/A</p>
+          <p class="text-[16px] font-normal ml-[5px]">(kills/deaths/assists)</p>
         </div>
-        <div class="flex items-center">
-          {{ txtStat }}
-          <h6>{{ txtLabel }}</h6>
+        <div class="flex">
+          <p
+            class="text-[16px] font-black"
+            :class="
+              txtStat.sym === '+'
+                ? 'text-Green'
+                : txtStat.sym === '-'
+                ? 'text-Red'
+                : 'text-White'
+            "
+          >
+            <span class="text-[14px] font-black">{{ txtStat.sym }}</span
+            >{{ txtStat.value }}<span class="text-[12px] font-black">%</span>
+          </p>
+          <p class="text-[16px] ml-[5px]">{{ txtLabel }}</p>
         </div>
       </div>
       <div></div>
     </div>
-    <div>
+    <div class="-ml-1 mt-2">
       <Line
         :chart-options="chartOptions"
         :chart-data="chartData"
@@ -45,12 +57,12 @@ export default {
             display: true,
             label: "KDA",
             fill: true,
-            tension: 0.3,
+            tension: 0.4,
             pointRadius: 0,
             pointHitRadius: 25,
             borderColor: "#0066FF",
             pointBackgroundColor: "white",
-            borderWidth: 2,
+            borderWidth: 3,
             pointBorderColor: "white",
             backgroundColor: "",
             data: "",
@@ -74,19 +86,19 @@ export default {
         },
         scales: {
           x: {
-            //display: false,
+            //grid: false,
             grid: {
-              color: "#1A1A1A",
-              borderColor: "#1A1A1A",
-              tickColor: "#1A1A1A",
+              color: "rgba(0, 0, 0, 0)",
+              borderColor: "rgba(0, 0, 0, 0)",
+              tickColor: "rgba(0, 0, 0, 0)",
             },
           },
           y: {
             display: false,
             grid: {
-              color: "#1A1A1A",
-              borderColor: "#1A1A1A",
-              tickColor: "#1A1A1A",
+              color: "rgba(0, 0, 0, 0)",
+              borderColor: "rgba(0, 0, 0, 0)",
+              tickColor: "rgba(0, 0, 0, 0)",
             },
           },
         },
@@ -94,12 +106,13 @@ export default {
       chartId: "line",
       datasetIdKey: "label",
       width: 200,
-      height: 110,
+      height: 90,
       show: false,
       cssClasses: "",
       styles: {},
       txtLabel: "",
-      txtStat: "",
+      txtStat: { sym: "", value: "" },
+      stat: "",
     };
   },
   methods: {
@@ -124,9 +137,11 @@ export default {
 
       if (!Number.isNaN(value[0]) && !Number.isNaN(value[indexSet - 1])) {
         let stat = (value[0] * 100) / value[indexSet - 1] - 100;
-        this.txtStat = Math.round(stat * 100) / 100;
+        this.stat = Math.round(stat * 100) / 100;
+        this.formatTxtStat();
       } else {
-        this.txtStat = "?";
+        this.formatTxtStat();
+        this.stat = "?";
       }
       this.createChart(labels.reverse(), value.reverse());
 
@@ -137,7 +152,7 @@ export default {
         indexSet = 31;
       }
       this.txtLabel = "compared to last " + indexSet + " days";
-      this.txtStat = "";
+      this.stat = "";
       let labels = [];
       let value = [];
       for (let index = 0; index < indexSet; index++) {
@@ -157,9 +172,11 @@ export default {
       this.show = "day";
       if (!Number.isNaN(value[0]) && !Number.isNaN(value[indexSet - 1])) {
         let stat = (value[0] * 100) / value[indexSet - 1] - 100;
-        this.txtStat = Math.round(stat * 100) / 100;
+        this.stat = Math.round(stat * 100) / 100;
+        this.formatTxtStat();
       } else {
-        this.txtStat = "?";
+        this.stat = "?";
+        this.formatTxtStat();
       }
       this.createChart(labels.reverse(), value.reverse());
     },
@@ -171,21 +188,34 @@ export default {
       let gradient = document
         .getElementById("line")
         .getContext("2d")
-        .createLinearGradient(100, 10, 100, 100);
-      gradient.addColorStop(0, "rgba(0,102,255, 0.3)");
-      gradient.addColorStop(0.95, "rgba(0,0,0, 0)");
+        .createLinearGradient(100, 0, 100, 100);
+      gradient.addColorStop(0, "rgba(0,102,255, 0.40)");
+      gradient.addColorStop(0.25, "rgba(0,102,255, 0.20)");
+      gradient.addColorStop(0.65, "rgba(26,26,26, 0.1)");
+      gradient.addColorStop(0.95, "rgba(26,26,26, 0)");
       return gradient;
+    },
+    formatTxtStat() {
+      if (this.stat > 0) {
+        this.txtStat.sym = "+";
+        this.txtStat.value = this.stat;
+      } else if (this.stat < 0) {
+        this.txtStat.sym = "-";
+        this.txtStat.value = 0 - this.stat;
+      } else {
+        this.txtStat.sym = "";
+        this.txtStat.value = "?";
+      }
     },
   },
   watch: {
     paramOptionGame(newValue, oldValue) {
       if (this.paramOptionGame.selectTypeValue === "day") {
-        this.lastDayMatch(this.paramOptionGame.numberValue)
+        this.lastDayMatch(this.paramOptionGame.numberValue);
       } else {
-        this.lastMatch(this.paramOptionGame.numberValue)
-
+        this.lastMatch(this.paramOptionGame.numberValue);
       }
-    }
+    },
   },
   mounted() {
     this.lastMatch(this.paramOptionGame.numberValue);

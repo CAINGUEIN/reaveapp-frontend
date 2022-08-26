@@ -16,7 +16,7 @@
       :id="data.name"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
-      class="block w-full font-normal py-3 px-6 rounded-Large text-H4 text-White bg-Anthracite border-LightGrey leading-none focus:border-White border-2 focus:outline-none"
+      class="block border-0 file:border file:border-solid w-full font-normal py-3 px-6 rounded-Large text-H4 text-White bg-Anthracite focus:ring-0 leading-none"
     >
       <option
         v-for="option in data.options"

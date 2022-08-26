@@ -1,5 +1,5 @@
 <template>
-  <div class="h-[202px] w-[202px] bg-slate-600 ml-[22px] rounded-md mt-5">
+  <div class="h-[202px] w-[202px] bg-DarkRock rounded-2xl mt-5 hover:bg-Rock">
     {{ Math.round(((dataToday * 100) / dataYesterday - 100) * 100) / 100 }}
   </div>
 </template>

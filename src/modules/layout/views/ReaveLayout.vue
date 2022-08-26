@@ -2,7 +2,7 @@
   <div class="flex relative">
     <div
       name="nav-bar-left"
-      class="sticky top-0 left-0 bottom-0 z-50 flex flex-col justify-between mx-[30px] h-screen items-center"
+      class="sticky top-0 left-0 bottom-0 z-20 flex flex-col justify-between mx-[30px] h-screen items-center"
     >
       <div name="top" class="mt-6">
         <TopLeftNavBar />
@@ -15,26 +15,27 @@
     <div class="w-full flex flex-col">
       <div
         name="nav-bar-top"
-        class="sticky top-0 left-0 right-0 z-50 bg-Anthracite flex pt-6 pb-[18px] items-center"
+        class="sticky top-0 left-0 right-0 z-20 bg-Anthracite flex pt-6 pb-[18px] items-center"
       >
         <SpaceNavBar @action="openSpace" :data="store.dataSpaces" />
-
-        <ToolsButtonNav
-          @click="openModal"
-          :dataClass="'top'"
-          class="mr-2"
-          :btnName="'+'"
-          :comparTarget="''"
-        >
-          <Plus />
-        </ToolsButtonNav>
-        <ToolsButtonNav
-          :dataClass="'top'"
-          :target="'Explore'"
-          :comparTarget="store.view"
-        >
-          <Explore />
-        </ToolsButtonNav>
+        <div class="h-15 flex items-center">
+          <ToolsButtonNav
+            @click="openModal"
+            :dataClass="'top'"
+            class="mr-2"
+            :btnName="'+'"
+            :comparTarget="''"
+          >
+            <Plus />
+          </ToolsButtonNav>
+          <ToolsButtonNav
+            :dataClass="'top'"
+            :target="'Explore'"
+            :comparTarget="store.view"
+          >
+            <Explore />
+          </ToolsButtonNav>
+        </div>
       </div>
       <router-view class="pr-[30px]" />
     </div>

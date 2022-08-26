@@ -121,9 +121,9 @@
             {{ formateKDA(personnalStat.statTotal.challenges.kda) }}
           </p>
           <div class="bg-Cloud h-1.5 w-1.5 rounded-full ml-3"></div>
-          <div class="flex ml-3 font-bold">
+          <div class="flex ml-3">
             <p
-              class="mr-1 font-bold"
+              class="mr-1"
               :class="
                 personnalStat.statTotal.teamId === 100
                   ? 'font-black'
@@ -140,7 +140,7 @@
             </p>
             <p class="mr-1">-</p>
             <p
-              class="mr-1 font-bold"
+              class="mr-1"
               :class="
                 personnalStat.statTotal.teamId === 200
                   ? 'font-black'
@@ -1197,9 +1197,9 @@ export default {
     },
     formateUrlSplash(id) {
       if (id === 11) {
-        return "/src/core/assets/img/Summoners_Rift.png";
+        return "https://media.reave.dev/reave/LOL/Large_SummonersRift.png";
       } else {
-        return "https://cdn.discordapp.com/attachments/959875058745094225/996719094013374557/unknown.png";
+        return "https://media.reave.dev/reave/LOL/Large_HowlingAbyss.png";
       }
     },
     formatTextLane(lane) {

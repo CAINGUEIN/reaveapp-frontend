@@ -1,7 +1,9 @@
 <template>
-  <NumberModel :data="number" v-model="numberValue" />
-  <SelectModel :data="selectType" v-model="selectTypeValue" />
-  <SelectModel :data="selectChampion" v-model="selectChampionValue" />
+  <div class="flex"> 
+    <NumberModel :data="number" v-model="numberValue" />
+    <SelectModel :data="selectType" v-model="selectTypeValue" />
+    <SelectModel :data="selectChampion" v-model="selectChampionValue" />
+  </div>
 </template>
 
 <script>
@@ -29,7 +31,7 @@ export default {
         label: "",
         name: "champion",
         type: "select",
-        options: this.dataOptionGame
+        options: "",
       },
       number: {
         label: "",
@@ -38,39 +40,42 @@ export default {
       },
       numberValue: "10",
       selectTypeValue: "match",
-      selectChampionValue: ""
+      selectChampionValue: "",
     };
   },
   methods: {
     emitParam(param) {
-      this.$emit("actionParam", param)
-    }
+      this.$emit("actionParam", param);
+    },
   },
   watch: {
     numberValue(newValue, oldValue) {
       let param = {
         numberValue: this.numberValue,
         selectTypeValue: this.selectTypeValue,
-        selectChampionValue: this.selectChampionValue
+        selectChampionValue: this.selectChampionValue,
       };
-      this.emitParam( param)
+      this.emitParam(param);
     },
     selectTypeValue(newValue, oldValue) {
       let param = {
         numberValue: this.numberValue,
         selectTypeValue: this.selectTypeValue,
-        selectChampionValue: this.selectChampionValue
+        selectChampionValue: this.selectChampionValue,
       };
-      this.emitParam(param)
+      this.emitParam(param);
     },
     selectChampionValue(newValue, oldValue) {
       let param = {
         numberValue: this.numberValue,
         selectTypeValue: this.selectTypeValue,
-        selectChampionValue: this.selectChampionValue
+        selectChampionValue: this.selectChampionValue,
       };
-      this.emitParam(param)
+      this.emitParam(param);
     },
+    dataOptionGame() {
+      this.selectChampion.options = this.dataOptionGame
+    }
   },
 };
 </script>

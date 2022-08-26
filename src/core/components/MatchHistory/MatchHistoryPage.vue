@@ -11,7 +11,6 @@
       />
       <ToolsButtonSubmit :txtButton="'more'" @action="moreMatch" :color="''" />
     </div>
-    <Order class="W-1/5" />
   </div>
 </template>
 

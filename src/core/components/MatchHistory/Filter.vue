@@ -1,190 +1,331 @@
 <template>
   <div>
     <div class="flex flex-col">
-      <h2>Match History</h2>
-      <h4>CLASS</h4>
-      <div class="flex">
-        <div
-          class="w-9 h-9 rounded mr-2"
-          :class="
-            lane === 'TOP'
-              ? 'border-Platinium bg-Platinium'
-              : 'border-LightRock hover:border-LightRock hover:bg-LightRock'
-          "
-          @click="lanePosition('TOP')"
-        >
-          <TopLane :width="36" :height="36" />
-        </div>
-        <div
-          class="w-9 h-9 rounded mr-2"
-          :class="
-            lane === 'MIDDLE'
-              ? 'border-Platinium bg-Platinium'
-              : ' hover:border-LightRock hover:bg-LightRock'
-          "
-          @click="lanePosition('MIDDLE')"
-        >
-          <MidLane :width="36" :height="36" />
-        </div>
-        <div
-          class="w-9 h-9 rounded mr-2"
-          :class="
-            lane === 'BOTTOM'
-              ? 'border-Platinium bg-Platinium'
-              : 'border-LightRock hover:border-LightRock hover:bg-LightRock'
-          "
-          @click="lanePosition('BOTTOM')"
-        >
-          <BotLane :width="36" :height="36" />
-        </div>
-        <div
-          class="w-9 h-9 rounded mr-2"
-          :class="
-            lane === 'JUNGLE'
-              ? 'border-Platinium bg-Platinium'
-              : 'border-LightRock hover:border-LightRock hover:bg-LightRock'
-          "
-          @click="lanePosition('JUNGLE')"
-        >
-          <JungleLane :width="36" :height="36" />
-        </div>
-        <div
-          class="w-9 h-9 rounded mr-2"
-          :class="
-            lane === 'SUPPORT'
-              ? 'border-Platinium bg-Platinium'
-              : 'border-LightRock hover:border-LightRock hover:bg-LightRock'
-          "
-          @click="lanePosition('SUPPORT')"
-        >
-          <SupportLane :width="36" :height="36" />
-        </div>
-      </div>
-      <h4>Summoner Name</h4>
-      <label for="search" class="sr-only">Search</label>
-      <div class="relative text-gray-400 border-White m-2">
-        <SearchIcon class="absolute h-5 w-5 z-10 m-3" aria-hidden="true" />
-        <!-- voir a comprendre pourquoi j'ai un ring bleu -->
-        <input
-          id="search"
-          class="bg-Anthracite block w-full h-11 pl-11 border border-transparent rounded-full text-White placeholder-Gravel"
-          placeholder="Search Summoner name"
-          type="search"
-          name="summonerName"
-          v-model="summonerName"
-          :disabled="wait"
-        />
-      </div>
-      <h4>SUCCESS</h4>
-      <div class="flex">
-        <div
-          class="border-2 text-center w-9 h-9 rounded-sm mr-1"
-          :class="win === true ? 'border-gravel' : 'border-LightRock'"
-          @click="winSet(true)"
-        >
-          <h4 class="text-Green">W</h4>
-        </div>
-        <div
-          class="border-2 text-center w-9 h-9 rounded-sm mr-1"
-          :class="win === false ? 'border-gravel' : 'border-LightRock'"
-          @click="winSet(false)"
-        >
-          <h4 class="text-Red">L</h4>
-        </div>
-      </div>
-      <h4>CHAMPION PLAYED</h4>
-      <label for="search" class="sr-only">Search</label>
-      <div class="relative text-gray-400 border-White m-2">
-        <SearchIcon class="absolute h-5 w-5 z-10 m-3" aria-hidden="true" />
-        <!-- voir a comprendre pourquoi j'ai un ring bleu -->
-        <input
-          id="search"
-          class="bg-Anthracite block w-full h-11 pl-11 border border-transparent rounded-full text-White placeholder-Gravel"
-          placeholder="Search Champions"
-          type="search"
-          name="championName"
-          v-model="championName"
-          :disabled="wait"
-        />
-      </div>
-      <div class="w-[353PX]">
-        <div class="not-prose relative overflow-hidden">
+      <h2 class="font-bold mt-5">Match History</h2>
+      <div name="class" class="mt-4">
+        <h3 class="text-[20px] mb-3">ROLE</h3>
+        <div class="flex">
           <div
-            class="absolute inset-0"
-            style="background-position: 10px 10px"
-          ></div>
-          <div class="relative overflow-auto">
-            <div
-              class="relative flex w-full overflow-x-auto scrollbar3 rounded-lg pb-1"
-            >
-              <div v-for="champion in storeData.champions" class="shrink-0">
-                <img
-                  v-if="compareChampionName(champion.id) || championName === ''"
-                  :src="formateImgChampion(champion.id)"
-                  alt=""
-                  class="h-9 w-9 mx-1 shrink-0 rounded-full"
-                  @click="championNameSet(champion.id)"
-                />
-              </div>
-            </div>
+            class="w-9 h-9 rounded mr-2"
+            v-on:mouseover="mouseover('TOP')"
+            v-on:mouseleave="mouseleave"
+            @click="lanePosition('TOP')"
+          >
+            <TopLane
+              :width="36"
+              :height="36"
+              :color1="
+                lane === 'TOP'
+                  ? '#FFFFFF'
+                  : comparedContent === 'TOP'
+                  ? '#BEBEBE'
+                  : '#505050'
+              "
+              :color2="
+                lane === 'TOP'
+                  ? '#808080'
+                  : comparedContent === 'TOP'
+                  ? '#404040'
+                  : '#2A2A2A'
+              "
+            />
           </div>
-          <div class="absolute inset-0 pointer-events-none rounded-xl"></div>
+          <div
+            class="w-9 h-9 rounded mr-2"
+            v-on:mouseover="mouseover('MIDDLE')"
+            v-on:mouseleave="mouseleave"
+            @click="lanePosition('MIDDLE')"
+          >
+            <MidLane
+              :width="36"
+              :height="36"
+              :color1="
+                lane === 'MIDDLE'
+                  ? '#FFFFFF'
+                  : comparedContent === 'MIDDLE'
+                  ? '#BEBEBE'
+                  : '#505050'
+              "
+              :color2="
+                lane === 'MIDDLE'
+                  ? '#808080'
+                  : comparedContent === 'MIDDLE'
+                  ? '#404040'
+                  : '#2A2A2A'
+              "
+            />
+          </div>
+          <div
+            class="w-9 h-9 rounded mr-2"
+            v-on:mouseover="mouseover('BOTTOM')"
+            v-on:mouseleave="mouseleave"
+            @click="lanePosition('BOTTOM')"
+          >
+            <BotLane
+              :width="36"
+              :height="36"
+              :color1="
+                lane === 'BOTTOM'
+                  ? '#FFFFFF'
+                  : comparedContent === 'BOTTOM'
+                  ? '#BEBEBE'
+                  : '#505050'
+              "
+              :color2="
+                lane === 'BOTTOM'
+                  ? '#808080'
+                  : comparedContent === 'BOTTOM'
+                  ? '#404040'
+                  : '#2A2A2A'
+              "
+            />
+          </div>
+          <div
+            class="w-9 h-9 rounded mr-2"
+            v-on:mouseover="mouseover('JUNGLE')"
+            v-on:mouseleave="mouseleave"
+            @click="lanePosition('JUNGLE')"
+          >
+            <JungleLane
+              :width="36"
+              :height="36"
+              :color1="
+                lane === 'JUNGLE'
+                  ? '#FFFFFF'
+                  : comparedContent === 'JUNGLE'
+                  ? '#BEBEBE'
+                  : '#505050'
+              "
+              :color2="
+                lane === 'JUNGLE'
+                  ? '#808080'
+                  : comparedContent === 'JUNGLE'
+                  ? '#404040'
+                  : '#2A2A2A'
+              "
+            />
+          </div>
+          <div
+            class="w-9 h-9 rounded mr-2"
+            v-on:mouseover="mouseover('SUPPORT')"
+            v-on:mouseleave="mouseleave"
+            @click="lanePosition('SUPPORT')"
+          >
+            <SupportLane
+              :width="36"
+              :height="36"
+              :color1="
+                lane === 'SUPPORT'
+                  ? '#FFFFFF'
+                  : comparedContent === 'SUPPORT'
+                  ? '#BEBEBE'
+                  : '#505050'
+              "
+              :color2="
+                lane === 'SUPPORT'
+                  ? '#808080'
+                  : comparedContent === 'SUPPORT'
+                  ? '#404040'
+                  : '#2A2A2A'
+              "
+            />
+          </div>
         </div>
       </div>
-      <h4>MAP PLAYED</h4>
-      <div class="flex">
-        <div v-for="map in storeData.maps">
-          <img
-            :src="formateImgMap(map.image.full)"
-            :class="map.MapId === mapId ? 'border-gravel' : 'border-LightRock'"
-            :alt="map.MapId"
-            class="h-9 w-9 mx-1 shrink-0 border-2 rounded-lg"
-            @click="mapSet(map.MapId)"
+      <div name="summoner" class="mt-4">
+        <h3 class="text-[20px] mb-3">PLAYER</h3>
+        <label for="search" class="sr-only">Search</label>
+        <div class="relative text-gray-400 border-White">
+          <SearchIcon
+            class="absolute h-5 w-5 z-10 my-3 ml-6"
+            aria-hidden="true"
+          />
+          <input
+            id="search"
+            class="block w-full h-11 pl-[57px] rounded-full appearance-none border-0 focus:bg-LightRock focus:ring-0 focus:border-0 focus:text-Cloud placeholder-Gravel fill-Cloud"
+            :class="
+              summonerName === '' ? 'bg-DarkRock' : 'bg-Rock text-LightGrey'
+            "
+            placeholder="Search Player's"
+            type="search"
+            name="summonerName"
+            v-model="summonerName"
+            :disabled="wait"
           />
         </div>
       </div>
-      <h4>ITEM PLAYED</h4>
-      <div class="relative text-gray-400 border-White m-2">
-        <SearchIcon class="absolute h-5 w-5 z-10 m-3" aria-hidden="true" />
-        <!-- voir a comprendre pourquoi j'ai un ring bleu -->
-        <input
-          id="search"
-          class="bg-Anthracite block w-full h-11 pl-11 border border-transparent rounded-full text-White placeholder-Gravel"
-          placeholder="Search Item"
-          type="search"
-          name="item"
-          v-model="item.name"
-          :disabled="wait"
-        />
-      </div>
-      <div class="w-[353PX]">
-        <div class="not-prose relative overflow-hidden">
+      <div name="victory" class="mt-4">
+        <h3 class="text-[20px] mb-3">SUCCESS</h3>
+        <div class="flex">
           <div
-            class="absolute inset-0"
-            style="background-position: 10px 10px"
-          ></div>
-          <div class="relative overflow-auto">
-            <div
-              class="relative flex w-full overflow-x-auto scrollbar3 rounded-lg pb-1"
-            >
-              <div v-for="(oneItem, key) in storeData.items" class="shrink-0">
-                <img
-                  v-if="compareItem(oneItem.name) || item === ''"
-                  :src="formateImgItem(oneItem)"
-                  alt=""
-                  class="h-9 w-9 mx-1 shrink-0 rounded-full"
-                  @click="itemSet(oneItem, key)"
-                />
-              </div>
-            </div>
+            class="border-2 rounded w-9 h-9 mr-2"
+            :class="win === true ? 'border-Platinium bg-Platinium' : 'border-LightRock hover:bg-LightRock'"
+            @click="winSet(true)"
+          >
+            <Win class="-mt-0.5 -ml-0.5" />
           </div>
-          <div class="absolute inset-0 pointer-events-none rounded-xl"></div>
+          <div
+            class="border-2 rounded w-9 h-9 mr-2"
+            :class="win === false ? 'border-Platinium bg-Platinium' : 'border-LightRock hover:bg-LightRock'"
+            @click="winSet(false)"
+          >
+            <Loose class="-mt-0.5 -ml-0.5" />
+          </div>
         </div>
       </div>
+      <div name="champion" class="mt-4">
+        <h3 class="text-[20px] mb-3">CHAMPION PLAYED</h3>
+        <div class="w-[353PX] mb-3">
+          <div class="not-prose relative overflow-hidden">
+            <div
+              class="absolute inset-0"
+              style="background-position: 10px 10px"
+            ></div>
+            <div class="relative overflow-auto">
+              <div
+                class="relative flex w-full overflow-x-auto scrollbar rounded-lg pb-1"
+              >
+                <div v-for="champion in storeData.champions" class="shrink-0">
+                  <img
+                    v-if="
+                      compareChampionName(champion.id) || championName === ''
+                    "
+                    :src="formateImgChampion(champion.id)"
+                    alt=""
+                    class="h-9 w-9 mx-1 shrink-0 rounded-full"
+                    @click="championNameSet(champion.id)"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="absolute inset-0 pointer-events-none rounded-xl"></div>
+          </div>
+        </div>
+        <label for="search" class="sr-only">Search</label>
+        <div class="relative text-gray-400 border-White mb-3">
+          <SearchIcon
+            class="absolute h-5 w-5 z-10 my-3 ml-6"
+            aria-hidden="true"
+          />
+          <!-- voir a comprendre pourquoi j'ai un ring bleu -->
+          <input
+            id="search"
+            class="block w-full h-11 pl-[57px] rounded-full appearance-none border-0 focus:bg-LightRock focus:ring-0 focus:border-0 focus:text-Cloud placeholder-Gravel fill-Cloud"
+            :class="
+              summonerName === '' ? 'bg-DarkRock' : 'bg-Rock text-LightGrey'
+            "
+            placeholder="Search Champions"
+            type="search"
+            name="championName"
+            v-model="championName"
+            :disabled="wait"
+          />
+        </div>
+        <div class="w-[353PX]">
+          <div class="not-prose relative overflow-hidden">
+            <div
+              class="absolute inset-0"
+              style="background-position: 10px 10px"
+            ></div>
+            <div class="relative overflow-auto">
+              <div
+                class="relative flex w-full overflow-x-auto scrollbar3 rounded-lg pb-2"
+              >
+                <div v-for="champion in storeData.champions" class="shrink-0">
+                  <img
+                    v-if="
+                      compareChampionName(champion.id) || championName === ''
+                    "
+                    :src="formateImgChampion(champion.id)"
+                    alt=""
+                    class="h-9 w-9 mr-3 shrink-0 rounded-full"
+                    @click="championNameSet(champion.id)"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="absolute inset-0 pointer-events-none rounded-xl"></div>
+          </div>
+        </div>
+      </div>
+      <div name="map" class="mt-4">
+        <h3 class="text-[20px] mb-3">MAP PLAYED</h3>
+        <div class="flex">
+          <div v-for="map in storeData.maps">
+            <div
+              v-if="map.MapId === '11' || map.MapId === '12'"
+              class="h-9 w-[83px] mr-2"
+              @click="mapSet(map.MapId)"
+            >
+              <div
+                name="img-bg"
+                class="absolute top-0 left-0 right-0 z-0 h-9 overflow-hidden rounded-lg"
+              >
+                <img
+                  :src="formateImgMap(map.MapId)"
+                  :alt="map.MapId"
+                  class="bg-center"
+                />
+              </div>
+              <div
+                class="absolute top-0 left-0 right-0 z-0 h-9 overflow-hidden rounded-lg"
+                :class="map.MapId === mapId ? '' : 'bg-Anthracite opacity-50'"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div name="item" class="mt-4">
+        <h3 class="text-[20px] mb-3">ITEM PLAYED</h3>
+        <div class="relative text-gray-400 border-White">
+          <SearchIcon
+            class="absolute h-5 w-5 z-10 my-3 ml-6"
+            aria-hidden="true"
+          />
+          <!-- voir a comprendre pourquoi j'ai un ring bleu -->
+          <input
+            id="search"
+            class="block w-full h-11 pl-[57px] rounded-full appearance-none border-0 focus:bg-LightRock focus:ring-0 focus:border-0 focus:text-Cloud placeholder-Gravel fill-Cloud"
+            :class="
+              summonerName === '' ? 'bg-DarkRock' : 'bg-Rock text-LightGrey'
+            "
+            placeholder="Search Item"
+            type="search"
+            name="item"
+            v-model="item.name"
+            :disabled="wait"
+          />
+        </div>
+        <div class="w-[353PX]">
+          <div class="not-prose relative overflow-hidden">
+            <div
+              class="absolute inset-0"
+              style="background-position: 10px 10px"
+            ></div>
+            <div class="relative overflow-auto">
+              <div
+                class="relative flex w-full overflow-x-auto scrollbar3 rounded-lg pb-1"
+              >
+                <div v-for="(oneItem, key) in storeData.items" class="shrink-0">
+                  <img
+                    v-if="compareItem(oneItem.name) || item === ''"
+                    :src="formateImgItem(oneItem)"
+                    alt=""
+                    class="h-9 w-9 mx-1 shrink-0 rounded-full"
+                    @click="itemSet(oneItem, key)"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="absolute inset-0 pointer-events-none rounded-xl"></div>
+          </div>
+        </div>
+      </div>
+
       <ToolsButtonSubmit
         @action="submit"
-        txtButton="Apply Filter"
-        class="w-[200px]"
+        txtButton="Apply"
+        class="w-[150px] mx-auto mt-6"
         :color="''"
       />
     </div>
@@ -195,13 +336,14 @@
 import useStoreAuth from "@stores/auth";
 import useStoreData from "@stores/data";
 import { SearchIcon } from "@heroicons/vue/outline";
-import UsersServices from "../../../plugins/axios/services/userServices";
 import ToolsButtonSubmit from "../buttons/ToolsButtonSubmit.vue";
 import TopLane from "../../assets/icons/TopLane.vue";
 import MidLane from "../../assets/icons/MidLane.vue";
 import BotLane from "../../assets/icons/BotLane.vue";
 import JungleLane from "../../assets/icons/JungleLane.vue";
 import SupportLane from "../../assets/icons/SupportLane.vue";
+import Win from "../../assets/icons/Win.vue";
+import Loose from "../../assets/icons/Loose.vue";
 export default {
   components: {
     SearchIcon,
@@ -211,6 +353,8 @@ export default {
     BotLane,
     JungleLane,
     SupportLane,
+    Win,
+    Loose,
   },
   props: ["action"],
   data() {
@@ -226,6 +370,7 @@ export default {
       mapId: "",
       lane: "",
       wait: false,
+      comparedContent: false,
     };
   },
   methods: {
@@ -315,12 +460,18 @@ export default {
       }
     },
     formateImgMap(target) {
-      return (
-        "http://ddragon.leagueoflegends.com/cdn/" +
-        this.storeData.data.version +
-        "/img/map/" +
-        target
-      );
+      console.log("image map", target);
+      if (target === "11") {
+        return "https://media.reave.dev/reave/LOL/Light_Small_SummonersRift.png";
+      } else {
+        return "https://media.reave.dev/reave/LOL/Light_Small_HowlingAbyss.png";
+      }
+    },
+    mouseover: function (e) {
+      this.comparedContent = e;
+    },
+    mouseleave: function () {
+      this.comparedContent = false;
     },
   },
 };

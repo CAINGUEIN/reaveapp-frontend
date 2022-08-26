@@ -131,7 +131,7 @@
       <DashboardLol
         v-if="view === 'dashboard' && option === 'lol'"
         class="w-full"
-        @action="(e) => setCompenentOptionGame(e)"
+        @action="(e) => dataOptionWait = e"
         :paramOptionGame="paramOptionGame"
       ></DashboardLol>
       <DashboardValo
@@ -240,6 +240,7 @@ export default {
         selectTypeValue: "match",
         selectChampionValue: "",
       },
+      dataOptionWait:"",
     };
   },
   methods: {
@@ -252,7 +253,7 @@ export default {
       this.isOpenModal = false;
     },
     setCompenentOptionGame(value) {
-      let arrayStock = [];
+      let arrayStock = [{ slot: "ALL", value: "" }];
       for (let index = 0; index < value.length; index++) {
         arrayStock.push({ slot: value[index], value: value[index] });
       }
@@ -261,6 +262,12 @@ export default {
     setParamOptionGame(value) {
       this.paramOptionGame = value;
     },
+  },
+  watch: {
+    dataOptionWait() {
+      this.setCompenentOptionGame(this.dataOptionWait)
+      console.log("dans le watcher");
+    }
   },
 };
 </script>
