@@ -1,8 +1,9 @@
 <template>
   <div>
     <nav
-      class="flex h-15 min-w-max justify-between items-center bg-DarkRock rounded-full"
+      class="sticky top-[102px] left-0 right-0 z-20 h-15 min-w-max bg-Anthracite"
     >
+    <div class="flex justify-between bg-DarkRock rounded-full items-center">
       <div name="space-name" class="flex ml-4">
         <img
           src="https://via.placeholder.com/36"
@@ -125,7 +126,7 @@
         >
           <ChampionPass />
         </ToolsButtonNav>
-      </div>
+      </div></div>
     </nav>
     <div class="flex-1 flex">
       <DashboardLol
