@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-full w-full">
+  <div class="flex h-screen w-full">
     <div name="contact" class="w-72 bg-Rock rounded-tl-2xl">
       <div class="w-full pt-1 px-1 flex justify-between">
         <h4>Direct Messages</h4>

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-Anthracite h-full">
+  <div class="bg-Anthracite h-screen">
     <component :is="layout">
       <router-view />
     </component>

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!waiting" class="flex h-full">
+  <div v-if="!waiting" class="flex h-screen">
     <div
       name="correspondants"
       class="w-64 bg-DarkRock rounded-tl-2xl flex flex-col justify-between"

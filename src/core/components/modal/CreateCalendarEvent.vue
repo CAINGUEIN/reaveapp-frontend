@@ -1,9 +1,9 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <TransitionRoot as="template" :show="isOpenModal">
-    <Dialog as="div" class="fixed z-10 inset-0 overflow-y-auto" @close="close">
+    <Dialog as="div" class="fixed z-30 inset-0 overflow-y-auto" @close="close">
       <div
-        class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+        class="flex items-end justify-center min-h-screen pt-4 px-4 pb-4 text-center sm:block sm:p-0"
       >
         <TransitionChild
           as="template"
@@ -39,7 +39,7 @@
           >
             <div>
               <div class="mt-3 sm:mt-5">
-                <div class="bg-Black p-8 rounded-lg h-full text-center">
+                <div class="bg-Black p-8 rounded-lg h-auto text-center">
                   <button
                     class="text-right hover:border-2 hover:border-Stone w-auto absolute top-0 right-2"
                     @click="close"

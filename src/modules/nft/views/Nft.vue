@@ -1,48 +1,61 @@
 <template>
-  <div class="p-4 flex flex-col">
-    <div name="reaveShards" class="bg-Gravel h-[300px] rounded-lg">
-      <h1></h1>
-      <div
-        name="explorerBarre"
-        class="flex h-20 w-164 justify-between absolute -bottom-8 inset-x-0 mx-auto bg-DarkRock rounded-full p-2"
-      >
-        <input
-          type="text"
-          placeholder="Artists, Collections, ..."
-          class="bg-DarkRock w-128 min-w-max border-0 rounded-full"
-        />
-        <ToolsButtonNav
-          class="bg-White h-15 w-15"
-          :dataClass="'medium'"
-          :slot="true"
+  <div>
+    <div class="h-full flex flex-col overflow-hidden">
+      <div class=" overflow-auto scrollbarV pr-[30px]">
+        <div name="reaveShards" class="bg-Gravel h-[300px] rounded-lg">
+        <h1></h1>
+        <div
+          name="explorerBarre"
+          class="flex h-20 w-164 justify-between absolute -bottom-8 inset-x-0 mx-auto bg-DarkRock rounded-full p-2"
         >
-          <SearchIcon class="h-6 w-6 m-auto"></SearchIcon>
-        </ToolsButtonNav>
+          <input
+            type="text"
+            placeholder="Artists, Collections, ..."
+            class="bg-DarkRock w-128 min-w-max border-0 rounded-full"
+          />
+          <ToolsButtonNav
+            class="bg-White h-15 w-15"
+            :dataClass="'medium'"
+            :slot="true"
+          >
+            <SearchIcon class="h-6 w-6 m-auto"></SearchIcon>
+          </ToolsButtonNav>
+        </div>
       </div>
+      <ScrollVignetteFilter :data="dataFilter" />
+      <div name="button" class="flex justify-center mt-18">
+        <button class="bg-DarkRock p-2 mx-2 w-64">
+          <h4 class="text-White">Discover</h4>
+        </button>
+        <button class="bg-White p-2 mx-2 w-64">
+          <h4 class="text-Anthracite">Create an NFT</h4>
+        </button>
+      </div>
+      <ScrollCards :data="dataCards" :txttitle="'Trending Auctions'" />
+      <TopLayoutOneFilter />
+      <div name="nftContest" class="h-[300px] mt-12 relative">
+        <img
+          src="@core/assets/img/contest.png"
+          alt=""
+          class="absolute object-fill w-full h-[300px]"
+        />
+        <img
+          src="@core/assets/img/gril.png"
+          alt=""
+          class="absolute object-fill w-full h-[300px]"
+        />
+        <h1 class="z-10">Nft Content</h1>
+        <button class="bg-DarkRock p-2 mx-2 absolute w-32 left-8 bottom-8">
+          Explorer
+        </button>
+      </div>
+      <GetCertified />
+      <TopLayoutTwoFilters />
+      <HowItWorks />
+      <QAndR />
+      </div>
+      
     </div>
-    <ScrollVignetteFilter :data="dataFilter" />
-    <div name="button" class="flex justify-center mt-18">
-      <button class="bg-DarkRock p-2 mx-2 w-64">
-        <h4 class="text-White">Discover</h4>
-      </button>
-      <button class="bg-White p-2 mx-2 w-64">
-        <h4 class="text-Anthracite">Create an NFT</h4>
-      </button>
-    </div>
-    <ScrollCards :data="dataCards" :txttitle="'Trending Auctions'" />
-    <TopLayoutOneFilter />
-    <div name="nftContest" class="h-[300px] mt-12 relative">
-      <img src="@core/assets/img/contest.png" alt="" class="absolute object-fill w-full h-[300px]">
-      <img src="@core/assets/img/gril.png" alt="" class="absolute object-fill w-full h-[300px]">
-      <h1 class="z-10">Nft Content</h1>
-      <button class="bg-DarkRock p-2 mx-2 absolute w-32 left-8 bottom-8">
-        Explorer
-      </button>
-    </div>
-    <GetCertified/>
-    <TopLayoutTwoFilters/>
-    <HowItWorks/>
-    <QAndR/>
   </div>
 </template>
 
@@ -72,8 +85,8 @@ export default {
     GetCertified,
     TopLayoutTwoFilters,
     HowItWorks,
-    QAndR
-},
+    QAndR,
+  },
   data() {
     return {
       dataFilter: dataFilter,

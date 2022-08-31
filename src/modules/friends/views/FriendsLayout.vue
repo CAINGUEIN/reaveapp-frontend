@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!storeSpace.isWaiting" class="flex flex-col h-full">
+  <div v-if="!storeSpace.isWaiting" class="flex flex-col h-screen">
     <nav
       class="mt-2 flex h-16 min-w-max justify-between items-center bg-DarkRock rounded-full"
     >

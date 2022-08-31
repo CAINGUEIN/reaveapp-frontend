@@ -16,11 +16,9 @@
         :color="puuid.value === '' ? 'desactivated' : ''"
       />
     </div>
-    <div v-else>
-      <MatchHistoryPage />
-      <!-- Card de match de base a la connection on en recup 20 faire un truc qui permet de recup 10 ou 20 de plus
+    <MatchHistoryPage v-else />
+    <!-- Card de match de base a la connection on en recup 20 faire un truc qui permet de recup 10 ou 20 de plus
       quand on arrive vers la fin de la liste -->
-    </div>
   </div>
 </template>
 
@@ -57,8 +55,8 @@ export default {
       if (result.data.success) {
         //si une 200 on la recup se t le store et cela devrais changer la page auto
         // du coup retour des 20 dernier match direct et le puuid on le prend dans la request
-        this.store.dataAccount.lolData.lolPuuid = forSubmit.lolPuuid
-        this.store.ListLastMatchLol = result.data.data
+        this.store.dataAccount.lolData.lolPuuid = forSubmit.lolPuuid;
+        this.store.ListLastMatchLol = result.data.data;
         this.store.loading = false;
       } else {
         this.store.loading = false;

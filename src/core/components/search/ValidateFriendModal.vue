@@ -38,7 +38,7 @@
           >
             <div>
               <div class="mt-3 sm:mt-5">
-                <div class="bg-Black p-8 rounded-lg h-full text-center">
+                <div class="bg-Black p-8 rounded-lg h-screen text-center">
                   <button
                     class="text-right hover:border-2 hover:border-Stone w-auto absolute top-0 right-2"
                     @click="close"
