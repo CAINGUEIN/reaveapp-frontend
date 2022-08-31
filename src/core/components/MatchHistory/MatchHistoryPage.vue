@@ -1,7 +1,7 @@
 <template>
-  <div class="flex">
+  <div class="flex h-full overflow-hidden">
     <Filter class="w-1/5" @action="feadFilteredMatch" />
-    <div class="w-3/5 flex flex-col items-center">
+    <div class="w-3/5 flex flex-col items-center overflow-auto scrollbarV pr-4">
       <Card
         class="m-auto"
         v-for="match in store.ListLastMatchLol"
@@ -9,7 +9,7 @@
         :personnalId="store.dataAccount._id"
         :key="match._id"
       />
-      <ToolsButtonSubmit :txtButton="'more'" @action="moreMatch" :color="''" />
+      <ToolsButtonSubmit class="w-[150px]" :txtButton="'more'" @action="moreMatch" :color="''" />
     </div>
   </div>
 </template>

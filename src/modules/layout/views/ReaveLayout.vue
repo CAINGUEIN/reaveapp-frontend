@@ -1,5 +1,5 @@
 <template>
-  <div class="flex relative">
+  <div class="flex h-screen">
     <div
       name="nav-bar-left"
       class="sticky top-0 left-0 bottom-0 z-20 flex flex-col justify-between mx-[30px] h-screen items-center"
@@ -12,7 +12,7 @@
         <BottomLeftNavBar />
       </div>
     </div>
-    <div class="w-full flex flex-col">
+    <div class="w-full flex flex-col h-screen">
       <div
         name="nav-bar-top"
         class="sticky top-0 left-0 right-0 z-20 bg-Anthracite flex pt-6 pb-[18px] items-center"
@@ -37,7 +37,7 @@
           </ToolsButtonNav>
         </div>
       </div>
-      <router-view class="pr-[30px]" />
+      <router-view class="overflow-hidden"/>
     </div>
     <CreateSpaceModal @isOpenModal="closeModal" :isOpenModal="isOpenModal" />
   </div>
