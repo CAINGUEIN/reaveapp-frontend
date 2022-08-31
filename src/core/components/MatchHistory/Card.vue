@@ -383,7 +383,7 @@ export default {
         index++
       ) {
         if (this.dataStore.runesReforged[index].id === target) {
-          return "/src/core/assets/" + this.dataStore.runesReforged[index].icon;
+          return "https://media.reave.dev/reave/LOL/" + this.dataStore.runesReforged[index].icon;
         }
       }
     },

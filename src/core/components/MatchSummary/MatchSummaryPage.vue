@@ -11,7 +11,7 @@
           </div>
           <div
             name="content-left"
-            class="flex h-screen flex-col justify-between"
+            class="flex h-full flex-col justify-between"
           >
             <div name="ligne-top" class="flex items-center">
               <LeagueOfLegendBig class="h-[53px] w-[53px] text-White" />
@@ -169,7 +169,7 @@
           </div>
           <div
             name="content-right"
-            class="flex h-screen flex-col justify-between items-end"
+            class="flex h-full flex-col justify-between items-end"
           >
             <div class="flex">
               <div class="h-15 w-15 pt-2.5 pl-[18px] bg-DarkRock rounded-full">
@@ -1305,7 +1305,7 @@ export default {
         index++
       ) {
         if (this.dataStore.runesReforged[index].id === target) {
-          return "/src/core/assets/" + this.dataStore.runesReforged[index].icon;
+          return "https://media.reave.dev/reave/LOL/" + this.dataStore.runesReforged[index].icon;
         }
       }
     },
