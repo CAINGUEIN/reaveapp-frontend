@@ -146,6 +146,25 @@
     background: #808080;
   }
 
+  .scrollbarV::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  .scrollbarV::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: black;
+  }
+
+  .scrollbarV::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 100vh;
+  }
+
+  .scrollbarV::-webkit-scrollbar-thumb:hover {
+    background: #808080;
+  }
+
   body::-webkit-scrollbar {
     width: 3px; /* width of the entire scrollbar */
   }
