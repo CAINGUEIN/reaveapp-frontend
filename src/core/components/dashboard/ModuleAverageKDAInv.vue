@@ -7,7 +7,7 @@
         {{ sortByReduce() }}
       </p>
       <p class="text-[16px] font-normal text-White mt-1">Average KDA</p>
-      <div v-if="ifNan" class="flex flex-col items-center justify-around mt-1">
+      <div v-if="!ifNan" class="flex flex-col items-center justify-around mt-1">
         <p
           class="text-[8px] w-[103px] leading-3 font-black text-White bg-Ruby rounded-full"
         >
@@ -18,7 +18,7 @@
         </p>
       </div>
       <div v-else class="mt-1">
-        <p class="text-[16px] font-normal text-White mt-0.5">
+        <p class="text-[14px] font-normal leading-5 text-White mt-0.5">
           <span class="text-[16px] font-black text-Green leading-none mt-0.5"
             >+16% </span
           >compared to yesterday

@@ -24,6 +24,25 @@
           :data1month="dataProps"
           :paramOptionGame="paramOptionGame"
         />
+        <ModuleCompareGoldEarned
+          :data="data"
+          :data1month="dataProps"
+          :paramOptionGame="paramOptionGame"
+        />
+        <ModuleAverageKDA :data="data" class="ml-[20px]" />
+        <ModuleCompareVisionPerMinute
+          :data="data"
+          :data1month="dataProps"
+          :paramOptionGame="paramOptionGame"
+        />
+        <ModuleCompareVisionLaneOpponent
+          :data="data"
+          :data1month="dataProps"
+          :paramOptionGame="paramOptionGame"
+        />
+        <ModuleAverageKDA :data="data" class="ml-[22px]" />
+        <ModuleAverageKDAInv :data="data" class="ml-[20px]" />
+
       </div>
     </div>
   </div>
@@ -36,6 +55,10 @@ import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
 import UsersServices from "@axios/services/userServices";
 import ModuleAverageKDA from "@core/components/dashboard/ModuleAverageKDA.vue";
 import ModuleCompareKDA from "@core/components/dashboard/ModuleCompareKDA.vue";
+import ModuleCompareGoldEarned from "../../../core/components/dashboard/ModuleCompareGoldEarned.vue";
+import ModuleCompareVisionLaneOpponent from "../../../core/components/dashboard/ModuleCompareVisionLaneOpponent.vue";
+import ModuleCompareVisionPerMinute from "../../../core/components/dashboard/ModuleCompareVisionPerMinute.vue";
+import ModuleAverageKDAInv from "../../../core/components/dashboard/ModuleAverageKDAInv.vue";
 
 export default {
   components: {
@@ -43,7 +66,11 @@ export default {
     ToolsButtonSubmit,
     ModuleAverageKDA,
     ModuleCompareKDA,
-  },
+    ModuleCompareGoldEarned,
+    ModuleCompareVisionLaneOpponent,
+    ModuleCompareVisionPerMinute,
+    ModuleAverageKDAInv
+},
   props: ["paramOptionGame", "action"],
   data() {
     const store = useStoreAuth();
