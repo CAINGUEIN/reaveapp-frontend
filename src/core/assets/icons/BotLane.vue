@@ -31,11 +31,11 @@
         type: Number,
         default: 16
       },
-    color1: {
+    color2: {
       type: String,
       default: "#808080",
     },
-    color2: {
+    color1: {
       type: String,
       default: "#E5E5E5",
     },
