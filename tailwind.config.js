@@ -37,6 +37,7 @@ module.exports = {
         Yellow: "#FFC700",
         Orange: "#FF9331",
         Red: "#F34242",
+        Ruby: "#EE5151",
         Purple: '#7500BD',
         Silver: '#505050',
         Platinium: '#404040'

@@ -1,18 +1,15 @@
 <template>
   <div v-if="personnalStat">
     <div class="h-full flex flex-col overflow-hidden">
-      <div class=" overflow-auto scrollbarV pr-[30px]">
+      <div class="overflow-auto scrollbarV pr-[30px]">
         <div name="resume" class="h-40 p-6 flex justify-between">
           <div
             name="img-bg"
-            class="absolute top-0 left-0 right-0 h-40 overflow-hidden rounded-2xl"
+            class="absolute top-0 left-0 right-0 h-40 overflow-hidden rounded-2xl bg-cover bg-center"
+            :style="'background-image: url('+formateUrlSplash(info.mapId)+')'"
           >
-            <img :src="formateUrlSplash(info.mapId)" alt="" class="bg-center" />
           </div>
-          <div
-            name="content-left"
-            class="flex h-full flex-col justify-between"
-          >
+          <div name="content-left" class="flex h-full flex-col justify-between">
             <div name="ligne-top" class="flex items-center">
               <LeagueOfLegendBig class="h-[53px] w-[53px] text-White" />
               <h1
@@ -233,7 +230,7 @@
               </h3>
             </div>
             <div
-              class="flex justify-between"
+              class="flex space-x-5"
               :class="
                 comparedContent
                   ? 'blur-[6px] transition duration-300 ease-in-out'
@@ -617,13 +614,15 @@
               </div>
             </div>
           </div>
-          <a href=""
-            ><p
-              class="text-[18px] mt-4 text decoration-solid decoration-white decoration-1 underline"
+          <div class="flex">
+            <a href=""
+              ><p
+                class="text-[18px] mt-4 text decoration-solid decoration-white decoration-1 underline"
+              >
+                Open Statistical Table for more
+              </p></a
             >
-              Open Statistical Table for more
-            </p></a
-          >
+          </div>
         </div>
         <div name="Personnal" class="mt-18 flex-1">
           <div name="tittle">
@@ -824,13 +823,15 @@
               </div>
             </div>
           </div>
-          <a href=""
-            ><p
-              class="text-[18px] mt-4 text decoration-solid decoration-white decoration-1 underline"
+          <div class="flex">
+            <a href=""
+              ><p
+                class="text-[18px] mt-4 text decoration-solid decoration-white decoration-1 underline"
+              >
+                Open Statistical Table for more
+              </p></a
             >
-              Open Statistical Table for more
-            </p></a
-          >
+          </div>
         </div>
         <div name="individual" class="mt-18 flex-1">
           <!-- TODO: voir pour le gestion de la team -->
@@ -1087,13 +1088,15 @@
           </table> -->
             </div>
           </div>
-          <a href=""
-            ><p
-              class="text-[18px] mt-4 text decoration-solid decoration-white decoration-1 underline"
+          <div class="flex">
+            <a href=""
+              ><p
+                class="text-[18px] mt-4 text decoration-solid decoration-white decoration-1 underline"
+              >
+                Change mode for more & better statistics
+              </p></a
             >
-              Change mode for more & better statistics
-            </p></a
-          >
+          </div>
         </div>
         <div name="badge" class="mt-18 flex flex-col">
           <div name="title" class="justify-between text-White items-center">
@@ -1133,13 +1136,15 @@
               </div>
             </div>
           </div>
-          <a href=""
-            ><p
-              class="text-[18px] mt-4 text decoration-solid decoration-white decoration-1 underline"
+          <div class="flex">
+            <a href=""
+              ><p
+                class="text-[18px] mt-4 text decoration-solid decoration-white decoration-1 underline"
+              >
+                See all Reave Medals
+              </p></a
             >
-              See all Reave Medals
-            </p></a
-          >
+          </div>
         </div>
         <div name="tools" class="mt-18 mb-12 flex flex-col">
           <div name="title" class="justify-between text-White items-center">
@@ -1305,7 +1310,10 @@ export default {
         index++
       ) {
         if (this.dataStore.runesReforged[index].id === target) {
-          return "https://media.reave.dev/reave/LOL/" + this.dataStore.runesReforged[index].icon;
+          return (
+            "https://media.reave.dev/reave/LOL/" +
+            this.dataStore.runesReforged[index].icon
+          );
         }
       }
     },

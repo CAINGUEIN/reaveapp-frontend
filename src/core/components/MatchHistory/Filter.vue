@@ -1,7 +1,52 @@
 <template>
-  <div class="flex max-h-fit flex-col sticky top-0 left-0 bottom-0 w-[360px]">
+  <div class="flex max-h-fit flex-col sticky top-0 left-0 bottom-0 w-[390px]">
     <h2 class="font-bold">Match History</h2>
-    <div class="overflow-auto scrollbarV pr-4">
+    <div class="hover:overflow-auto overflow-hidden scrollbarV">
+      <div name="player" class="mt-4 overflow-hidden">
+        <h3
+          class="text-[20px] flex items-center cursor-pointer"
+          @click="
+            playerState === true
+              ? ((playerState = false), (summonerName = ''))
+              : (playerState = true)
+          "
+        >
+          PLAYER<span class="ml-2"
+            ><Chevron
+              :class="
+                playerState === true
+                  ? 'transition-all ease-in-out'
+                  : 'transition-all ease-in-out rotate-180'
+              "
+          /></span>
+        </h3>
+        <label for="search" class="sr-only">Search</label>
+        <div
+          class="relative w-[360PX] text-gray-400 border-White"
+          :class="
+            playerState
+              ? 'transition-all ease-in-out duration-200 transform opacity-100 scale-100 mt-3'
+              : 'transition-all ease-in-out duration-100 transform opacity-0 scale-0 -mb-11'
+          "
+        >
+          <SearchIcon
+            class="absolute h-5 w-5 z-10 my-3 ml-6"
+            aria-hidden="true"
+          />
+          <input
+            id="search"
+            class="block w-full h-11 pl-[57px] rounded-full appearance-none border-0 focus:bg-LightRock focus:ring-0 focus:border-0 focus:text-Cloud placeholder-Gravel fill-Cloud"
+            :class="
+              summonerName === '' ? 'bg-DarkRock' : 'bg-Rock text-LightGrey'
+            "
+            placeholder="Search Player's"
+            type="search"
+            name="summonerName"
+            v-model="summonerName"
+            :disabled="wait"
+          />
+        </div>
+      </div>
       <div name="role" class="mt-4 overflow-hidden">
         <h3
           class="text-[20px] flex items-center cursor-pointer"
@@ -30,7 +75,7 @@
           "
         >
           <div
-            class="w-9 h-9 rounded mr-2"
+            class="w-9 h-9 rounded mr-2 cursor-pointer"
             v-on:mouseover="mouseover('TOP')"
             v-on:mouseleave="mouseleave"
             @click="lanePosition('TOP')"
@@ -55,7 +100,7 @@
             />
           </div>
           <div
-            class="w-9 h-9 rounded mr-2"
+            class="w-9 h-9 rounded mr-2 cursor-pointer"
             v-on:mouseover="mouseover('MIDDLE')"
             v-on:mouseleave="mouseleave"
             @click="lanePosition('MIDDLE')"
@@ -80,7 +125,7 @@
             />
           </div>
           <div
-            class="w-9 h-9 rounded mr-2"
+            class="w-9 h-9 rounded mr-2 cursor-pointer"
             v-on:mouseover="mouseover('BOTTOM')"
             v-on:mouseleave="mouseleave"
             @click="lanePosition('BOTTOM')"
@@ -105,7 +150,7 @@
             />
           </div>
           <div
-            class="w-9 h-9 rounded mr-2"
+            class="w-9 h-9 rounded mr-2 cursor-pointer"
             v-on:mouseover="mouseover('JUNGLE')"
             v-on:mouseleave="mouseleave"
             @click="lanePosition('JUNGLE')"
@@ -130,7 +175,7 @@
             />
           </div>
           <div
-            class="w-9 h-9 rounded mr-2"
+            class="w-9 h-9 rounded mr-2 cursor-pointer"
             v-on:mouseover="mouseover('SUPPORT')"
             v-on:mouseleave="mouseleave"
             @click="lanePosition('SUPPORT')"
@@ -154,51 +199,6 @@
               "
             />
           </div>
-        </div>
-      </div>
-      <div name="player" class="mt-4 overflow-hidden">
-        <h3
-          class="text-[20px] flex items-center cursor-pointer"
-          @click="
-            playerState === true
-              ? ((playerState = false), (summonerName = ''))
-              : (playerState = true)
-          "
-        >
-          PLAYER<span class="ml-2"
-            ><Chevron
-              :class="
-                playerState === true
-                  ? 'transition-all ease-in-out'
-                  : 'transition-all ease-in-out rotate-180'
-              "
-          /></span>
-        </h3>
-        <label for="search" class="sr-only">Search</label>
-        <div
-          class="relative w-[340PX] text-gray-400 border-White"
-          :class="
-            playerState
-              ? 'transition-all ease-in-out duration-200 transform opacity-100 scale-100 mt-3'
-              : 'transition-all ease-in-out duration-100 transform opacity-0 scale-0 -mb-11'
-          "
-        >
-          <SearchIcon
-            class="absolute h-5 w-5 z-10 my-3 ml-6"
-            aria-hidden="true"
-          />
-          <input
-            id="search"
-            class="block w-full h-11 pl-[57px] rounded-full appearance-none border-0 focus:bg-LightRock focus:ring-0 focus:border-0 focus:text-Cloud placeholder-Gravel fill-Cloud"
-            :class="
-              summonerName === '' ? 'bg-DarkRock' : 'bg-Rock text-LightGrey'
-            "
-            placeholder="Search Player's"
-            type="search"
-            name="summonerName"
-            v-model="summonerName"
-            :disabled="wait"
-          />
         </div>
       </div>
       <div name="victory" class="mt-4 overflow-hidden">
@@ -228,7 +228,7 @@
           "
         >
           <div
-            class="border-2 rounded w-9 h-9 mr-2"
+            class="border-2 rounded w-9 h-9 mr-2 cursor-pointer"
             :class="
               win === true
                 ? 'border-Platinium bg-Platinium'
@@ -239,7 +239,7 @@
             <Win class="-mt-0.5 -ml-0.5" />
           </div>
           <div
-            class="border-2 rounded w-9 h-9 mr-2"
+            class="border-2 rounded w-9 h-9 mr-2 cursor-pointer"
             :class="
               win === false
                 ? 'border-Platinium bg-Platinium'
@@ -248,116 +248,6 @@
             @click="winSet(false)"
           >
             <Loose class="-mt-0.5 -ml-0.5" />
-          </div>
-        </div>
-      </div>
-      <div name="champion" class="mt-4 overflow-hidden">
-        <h3
-          class="text-[20px] flex items-center cursor-pointer"
-          @click="
-            championState === true
-              ? ((championState = false), (championSelect = []))
-              : (championState = true)
-          "
-        >
-          CHAMPION PLAYED<span class="ml-2"
-            ><Chevron
-              :class="
-                championState === true
-                  ? 'transition-all ease-in-out'
-                  : 'transition-all ease-in-out rotate-180'
-              "
-          /></span>
-        </h3>
-        <div
-          :class="
-            championState
-              ? 'transition-all ease-in-out duration-200 transform opacity-100 scale-100 mt-3'
-              : 'transition-all ease-in-out duration-100 transform opacity-0 scale-0 -mb-[121px]'
-          "
-        >
-          <div name="selectedChampion">
-            <div class="w-[340PX] mb-3">
-              <div class="not-prose relative overflow-hidden">
-                <div
-                  class="absolute inset-0"
-                  style="background-position: 10px 10px"
-                ></div>
-                <div class="relative overflow-auto">
-                  <div
-                    class="relative flex w-full overflow-x-auto scrollbar rounded-lg pb-1"
-                  >
-                    <div v-for="champion in championSelect" class="shrink-0">
-                      <img
-                        :src="formateImgChampion(champion)"
-                        alt=""
-                        class="h-9 w-9 mx-1 shrink-0 rounded-full"
-                        @click="championNameSet(champion)"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="absolute inset-0 pointer-events-none rounded-xl"
-                ></div>
-              </div>
-            </div>
-          </div>
-          <div name="inputChampion">
-            <label for="search" class="sr-only">Search</label>
-            <div class="relative w-[340PX] text-gray-400 border-White mb-3">
-              <SearchIcon
-                class="absolute h-5 w-5 z-10 my-3 ml-6"
-                aria-hidden="true"
-              />
-              <input
-                id="search"
-                class="block w-full h-11 pl-[57px] rounded-full appearance-none border-0 focus:bg-LightRock focus:ring-0 focus:border-0 focus:text-Cloud placeholder-Gravel fill-Cloud"
-                :class="
-                  championName === '' ? 'bg-DarkRock' : 'bg-Rock text-LightGrey'
-                "
-                placeholder="Search Champions"
-                type="search"
-                name="championName"
-                v-model="championName"
-                :disabled="wait"
-              />
-            </div>
-          </div>
-          <div name="listChampion">
-            <div class="w-[340PX]">
-              <div class="not-prose relative overflow-hidden">
-                <div
-                  class="absolute inset-0"
-                  style="background-position: 10px 10px"
-                ></div>
-                <div class="relative overflow-auto">
-                  <div
-                    class="relative flex w-full overflow-x-auto scrollbar3 rounded-lg pb-2"
-                    :class="this.championSelect.length < 8 ? '' : 'opacity-50'"
-                  >
-                    <div
-                      v-for="champion in storeData.champions"
-                      class="shrink-0"
-                    >
-                      <img
-                        v-if="
-                          compareChampionName(champion.id) ||
-                          championName === ''
-                        "
-                        :src="formateImgChampion(champion.id)"
-                        alt=""
-                        class="h-9 w-9 mr-3 shrink-0 rounded-full"
-                        @click="championNameSet(champion.id)"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="absolute inset-0 pointer-events-none rounded-xl"
-                ></div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -390,7 +280,7 @@
           <div v-for="map in storeData.maps">
             <div
               v-if="map.MapId === '11' || map.MapId === '12'"
-              class="h-9 w-[83px] mr-2"
+              class="h-9 w-[83px] mr-2 cursor-pointer"
               @click="mapSet(map.MapId)"
             >
               <div
@@ -407,6 +297,116 @@
                 class="absolute top-0 left-0 right-0 z-0 h-9 overflow-hidden rounded-lg"
                 :class="map.MapId === mapId ? '' : 'bg-Anthracite opacity-50'"
               ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div name="champion" class="mt-4 overflow-hidden">
+        <h3
+          class="text-[20px] flex items-center cursor-pointer"
+          @click="
+            championState === true
+              ? ((championState = false), (championSelect = []))
+              : (championState = true)
+          "
+        >
+          CHAMPION PLAYED<span class="ml-2"
+            ><Chevron
+              :class="
+                championState === true
+                  ? 'transition-all ease-in-out'
+                  : 'transition-all ease-in-out rotate-180'
+              "
+          /></span>
+        </h3>
+        <div
+          :class="
+            championState
+              ? 'transition-all ease-in-out duration-200 transform opacity-100 scale-100 mt-3'
+              : 'transition-all ease-in-out duration-100 transform opacity-0 scale-0 -mb-[109px]'
+          "
+        >
+          <div v-if="championSelect.length > 0" name="selectedChampion">
+            <div class="w-[360PX] mb-3">
+              <div class="not-prose relative overflow-hidden">
+                <div
+                  class="absolute inset-0"
+                  style="background-position: 10px 10px"
+                ></div>
+                <div class="relative overflow-auto">
+                  <div
+                    class="relative flex w-full overflow-x-auto scrollbar rounded-lg pb-1"
+                  >
+                    <div v-for="champion in championSelect" class="flex">
+                      <img
+                        :src="formateImgChampion(champion)"
+                        alt=""
+                        class="h-9 w-9 mr-2 shrink-0 rounded-full cursor-pointer"
+                        @click="championNameSet(champion)"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="absolute inset-0 pointer-events-none rounded-xl"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div name="inputChampion">
+            <label for="search" class="sr-only">Search</label>
+            <div class="relative w-[360PX] text-gray-400 border-White mb-3">
+              <SearchIcon
+                class="absolute h-5 w-5 z-10 my-3 ml-6"
+                aria-hidden="true"
+              />
+              <input
+                id="search"
+                class="block w-full h-11 pl-[57px] rounded-full appearance-none border-0 focus:bg-LightRock focus:ring-0 focus:border-0 focus:text-Cloud placeholder-Gravel fill-Cloud"
+                :class="
+                  championName === '' ? 'bg-DarkRock' : 'bg-Rock text-LightGrey'
+                "
+                placeholder="Search Champions"
+                type="search"
+                name="championName"
+                v-model="championName"
+                :disabled="wait"
+              />
+            </div>
+          </div>
+          <div name="listChampion">
+            <div class="w-[360PX]">
+              <div class="not-prose relative overflow-hidden">
+                <div
+                  class="absolute inset-0"
+                  style="background-position: 10px 10px"
+                ></div>
+                <div class="relative overflow-auto">
+                  <div
+                    class="relative flex w-full overflow-x-auto scrollbar3 rounded-lg pb-2"
+                    :class="this.championSelect.length < 8 ? '' : 'opacity-50'"
+                  >
+                    <div
+                      v-for="champion in storeData.champions"
+                      class="shrink-0"
+                    >
+                      <img
+                        v-if="
+                          compareChampionName(champion.id) ||
+                          championName === ''
+                        "
+                        :src="formateImgChampion(champion.id)"
+                        alt=""
+                        class="h-9 w-9 mr-2 shrink-0 rounded-full cursor-pointer"
+                        @click="championNameSet(champion.id)"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="absolute inset-0 pointer-events-none rounded-xl"
+                ></div>
+              </div>
             </div>
           </div>
         </div>
@@ -433,11 +433,11 @@
           :class="
             itemState
               ? 'transition-all ease-in-out duration-200 transform opacity-100 scale-100 mt-3'
-              : 'transition-all ease-in-out duration-100 transform opacity-0 scale-0 -mb-[121px]'
+              : 'transition-all ease-in-out duration-100 transform opacity-0 scale-0 -mb-[109px]'
           "
         >
-          <div name="selectedItem">
-            <div class="w-[340PX] mb-3">
+          <div v-if="itemSelect.length > 0" name="selectedItem">
+            <div class="w-[360PX] mb-3">
               <div class="not-prose relative overflow-hidden">
                 <div
                   class="absolute inset-0"
@@ -447,11 +447,11 @@
                   <div
                     class="relative flex w-full overflow-x-auto scrollbar rounded-lg pb-1"
                   >
-                    <div v-for="oneItem in itemSelect" class="shrink-0">
+                    <div v-for="oneItem in itemSelect" class="flex">
                       <img
                         :src="formateImgItem(oneItem)"
                         alt=""
-                        class="h-9 w-9 mx-1 shrink-0 rounded-full"
+                        class="h-9 w-9 mr-2 shrink-0 rounded-full cursor-pointer"
                         @click="itemSet(oneItem, oneItem.value)"
                       />
                     </div>
@@ -465,7 +465,7 @@
           </div>
           <div name="inputItem">
             <label for="search" class="sr-only">Search</label>
-            <div class="relative w-[340PX] text-gray-400 border-White mb-3">
+            <div class="relative w-[360PX] text-gray-400 border-White mb-3">
               <SearchIcon
                 class="absolute h-5 w-5 z-10 my-3 ml-6"
                 aria-hidden="true"
@@ -485,7 +485,7 @@
             </div>
           </div>
           <div name="listItem">
-            <div class="w-[340PX]">
+            <div class="w-[360PX]">
               <div class="not-prose relative overflow-hidden">
                 <div
                   class="absolute inset-0"
@@ -504,7 +504,7 @@
                         v-if="compareItem(oneItem.name) || item === ''"
                         :src="formateImgItem(oneItem)"
                         alt=""
-                        class="h-9 w-9 mr-3 shrink-0 rounded-full"
+                        class="h-9 w-9 mr-2 shrink-0 rounded-full cursor-pointer"
                         @click="itemSet(oneItem, key)"
                       />
                     </div>

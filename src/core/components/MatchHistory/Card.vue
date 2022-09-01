@@ -1,12 +1,12 @@
 <template>
-  <div v-if="personnalStat" class="w-[930px] h-52 p-3 my-3 flex">
+  <div v-if="personnalStat" class="relative w-[930px] p-3 h-52 mb-[22px] flex">
     <div
       class="absolute w-[930px] top-0 left-0 h-52 overflow-hidden rounded-2xl"
       @click="goTo()"
     >
       <img :src="formateUrlSplash(info.mapId)" alt="" class="" />
     </div>
-    <div @click="goTo()">
+    <div @click="goTo()" class="w-[930px] h-52">
       <div class="flex items-center mx-3">
         <h3
           class="mr-2"

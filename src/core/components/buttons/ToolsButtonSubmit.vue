@@ -17,7 +17,7 @@ et surtout passé le loading en debut de la function service a true et un retour
       v-if="store.loading"
       type="button"
       :class="[classBtn]"
-      class="text-Black"
+      class="text-Black cursor-wait"
       disabled
     >
       <svg
@@ -46,6 +46,7 @@ et surtout passé le loading en debut de la function service a true et un retour
       v-else
       type="button"
       :class="[classBtn, classTxtBtn]"
+      class=" cursor-pointer"
       @click.prevent="action"
     >
       {{ txtButton }}

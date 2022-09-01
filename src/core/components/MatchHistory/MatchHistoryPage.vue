@@ -1,9 +1,9 @@
 <template>
   <div class="flex h-full overflow-hidden">
-    <Filter class="w-1/5" @action="feadFilteredMatch" />
-    <div class="w-3/5 flex flex-col items-center overflow-auto scrollbarV pr-4">
+    <Filter class="w-1/5 mt-5" @action="feadFilteredMatch" />
+    <div class="w-4/5 mt-[30px] flex flex-col items-center overflow-auto scrollbarV">
       <Card
-        class="m-auto"
+        class=""
         v-for="match in store.ListLastMatchLol"
         :data="match"
         :personnalId="store.dataAccount._id"
