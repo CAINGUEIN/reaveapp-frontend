@@ -31,8 +31,10 @@
         :dataClass="''"
         @click.right.prevent="toggleDropdown"
       >
-        <div class="h-10 w-10 rounded-full bg-Gravel"></div
-      ></ToolsButtonNav>
+        <img
+          :src="'https://media.reave.dev/useravatar/s' + store.dataAccount._id + 'avatar.png'"
+          class="h-10 w-10 rounded-full bg-Gravel"
+      /></ToolsButtonNav>
       <div
         :class="dropdown"
         class="absolute bottom-0 left-16 z-20 bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700"

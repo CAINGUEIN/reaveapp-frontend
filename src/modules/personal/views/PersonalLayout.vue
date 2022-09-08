@@ -7,7 +7,7 @@
         <div class="flex justify-between bg-DarkRock rounded-full items-center">
           <div name="space-name" class="flex ml-4">
             <img
-              src="https://via.placeholder.com/36"
+              :src="'https://media.reave.dev/useravatar/xs' + store.dataAccount._id + 'avatar.png'"
               alt=""
               class="rounded-full my-auto"
             />
