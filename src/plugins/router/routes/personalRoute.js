@@ -20,8 +20,8 @@ export default [
   {
     path: "/settings",
     name: "Settings",
-    component: () => import("@modules/personal/views/PersonalSettings.vue"),
-    meta: { layout: "Reave", permission: "log" },
+    component: () => import("@modules/settings/views/SettingsLayout.vue"),
+    meta: { layout: "none", permission: "log" },
   },
 
 ];

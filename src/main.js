@@ -17,6 +17,10 @@ import Vue3Cookies from "@cookies/Vue3-cookies";
 // DayJS
 import dayjs from "dayjs";
 
+// CropperJS
+import VueCropper from 'vue-cropperjs';
+import 'cropperjs/dist/cropper.css';
+
 // TailwindCSS
 import "@core/assets/base.css";
 
@@ -24,7 +28,8 @@ const app = createApp(App)
   .use(usePinia)
   .use(router)
   .use(VueAxios, Axios)
-  .use(Vue3Cookies.VueCookies, Vue3Cookies.cookiesConfig);
+  .use(Vue3Cookies.VueCookies, Vue3Cookies.cookiesConfig)
+  .use(VueCropper)
 
 app.config.globalProperties.$dayjs = dayjs;
 

@@ -1,13 +1,12 @@
 <template>
   <div class="flex flex-col justify-between text-white">
     <label
-      class="h-20 block font-400 mb-1 rounded-2xl border-dashed border-2 border-"
+      class="h-20 font-400 mb-1 rounded-2xl border-dashed border-2 flex"
       :for="data.name"
     >
-      <div class="">
-        <div class="flex flex-1 flex-col text-center">
+        <div class="flex flex-1 flex-col">
           <svg
-            class="absolute left-96 top-0 h-12 w-12 text-gray-400"
+            class="m-auto h-12 w-12 text-gray-400"
             stroke="currentColor"
             fill="none"
             viewBox="0 0 48 48"
@@ -33,7 +32,6 @@
             </label>
           </div>
         </div>
-      </div>
     </label>
   </div>
 </template>
