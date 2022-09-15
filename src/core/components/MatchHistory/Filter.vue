@@ -555,7 +555,7 @@ export default {
     Loose,
     Chevron,
   },
-  props: ["action"],
+  props: ["action", "filter"],
   data() {
     const store = useStoreAuth();
     const storeData = useStoreData();
@@ -600,7 +600,11 @@ export default {
         body["championName"] = this.championSelect;
       }
       if (this.itemSelect.length > 0) {
-        body["item"] = this.itemSelect;
+        let queryItem = [];
+        for (let index = 0; index < this.itemSelect.length; index++) {
+          queryItem.push(this.itemSelect[index].key);
+        }
+        body["item"] = queryItem;
       }
       console.log(body);
       this.$emit("action", body);
@@ -699,6 +703,48 @@ export default {
     },
     mouseleave: function () {
       this.comparedContent = false;
+    },
+  },
+  watch: {
+    filter() {
+      console.log(this.filter);
+      if (this.win !== this.filter.win && this.filter.win !== undefined) {
+        this.win = this.filter.win;
+      }
+      if (
+        this.summonerName !== this.filter.summonerName &&
+        this.filter.summonerName !== undefined
+      ) {
+        this.summonerName = this.filter.summonerName;
+      }
+      if (
+        this.championSelect !== this.filter.championSelect &&
+        this.filter.championSelect !== undefined
+      ) {
+        this.championSelect = this.filter.summonerName;
+      }
+      if (
+        this.itemSelect.length === 0 &&
+        this.filter.item !== undefined
+      ) {
+        for (let index = 0; index < this.filter.item.length; index++) {
+          console.log("ici dans le filter");
+          for (const [key, data] of Object.entries(this.storeData.items)) {
+            console.log(key, this.filter.item[index]);
+            if (key === this.filter.item[index]) {
+              let dataPush = data
+              dataPush["key"] = key;
+              this.itemSelect.push(dataPush);
+            }
+          }
+        }
+      }
+      if (this.mapId !== this.filter.mapId && this.filter.mapId !== undefined) {
+        this.mapId = this.filter.mapId;
+      }
+      if (this.lane !== this.filter.lane && this.filter.lane !== undefined) {
+        this.lane = this.filter.lane;
+      }
     },
   },
 };

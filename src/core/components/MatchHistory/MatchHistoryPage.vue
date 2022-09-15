@@ -1,7 +1,9 @@
 <template>
   <div class="flex h-full overflow-hidden">
-    <Filter class="w-1/5 mt-5" @action="feadFilteredMatch" />
-    <div class="w-4/5 mt-[30px] flex flex-col items-center overflow-auto scrollbarV">
+    <Filter class="w-1/5 mt-5" :filter="body" @action="feadFilteredMatch" />
+    <div
+      class="w-4/5 mt-[30px] flex flex-col items-center overflow-auto scrollbarV"
+    >
       <Card
         class=""
         v-for="match in store.ListLastMatchLol"
@@ -9,7 +11,12 @@
         :personnalId="store.dataAccount._id"
         :key="match._id"
       />
-      <ToolsButtonSubmit class="w-[150px]" :txtButton="'more'" @action="moreMatch" :color="''" />
+      <ToolsButtonSubmit
+        class="w-[150px]"
+        :txtButton="'more'"
+        @action="moreMatch"
+        :color="''"
+      />
     </div>
   </div>
 </template>
@@ -33,13 +40,33 @@ export default {
   },
   methods: {
     async feadMatch() {
+      console.log(this.body);
       let result = await UsersServices.feadFilteredMatch(this.body);
       //le bute est de faire une verification des dernier match a chaque mounted de la page
       this.store.setter(result.data.data, "ListLastMatchLol");
     },
-    feadFilteredMatch(value) {
+    async feadFilteredMatch(value) {
+      if (value.win === "true" || value.win === true) {
+        value.win = true;
+      } else if (value.win == "false" || value.win === false) {
+        value.win = false;
+      } else {
+        delete value.win;
+      }
       this.body = value;
+      this.setParamURL(this.body);
       this.feadMatch();
+    },
+    paramInURL() {
+      if (Object.keys(this.$route.query).length === 0) {
+        this.feadMatch();
+      } else {
+        let valueQuery = {};
+        for (const [key, data] of Object.entries(this.$route.query)) {
+          valueQuery[key] = JSON.parse(data);
+        }
+        this.feadFilteredMatch(valueQuery);
+      }
     },
     async moreMatch() {
       console.log(this.body.page);
@@ -52,9 +79,22 @@ export default {
       let preparArray = [this.store.ListLastMatchLol, result.data.data];
       this.store.ListLastMatchLol = preparArray.flat();
     },
+    setParamURL(value) {
+      let valueQuery = {};
+      for (const [key, data] of Object.entries(value)) {
+        if (Array.isArray(data)) {
+          valueQuery[key] = JSON.stringify(data);
+        } else {
+          valueQuery[key] = data;
+        }
+      }
+      this.$router.replace({
+        query: valueQuery,
+      });
+    },
   },
   mounted() {
-    this.feadMatch();
+    this.paramInURL();
   },
 };
 </script>
