@@ -19,7 +19,7 @@
 
     <ToolsButtonNav
       :target="'Settings'"
-      :comparTarget="store.view"
+      :subTarget="'account'"
       :dataClass="'settings'"
     >
       <Settings />
@@ -27,6 +27,7 @@
     <div class="relative">
       <ToolsButtonNav
         :target="'Personal'"
+        :subTarget="'dashboard'"
         :comparTarget="store.view"
         :dataClass="''"
         @click.right.prevent="toggleDropdown"

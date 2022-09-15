@@ -18,7 +18,7 @@ import useStoreAuth from "@stores/auth";
  *  bouton en select
  */
 export default {
-  props: ["target", "src", "dataClass", "slot", "comparTarget", "btnName"],
+  props: ["target", "subTarget", "src", "dataClass", "slot", "comparTarget", "btnName"],
   data() {
     const store = useStoreAuth();
     return {
@@ -32,7 +32,7 @@ export default {
     goTo(value) {
       if (value !== "") {
         this.store.view = value;
-        this.$router.push({ name: value });
+        this.$router.push({ name: value, params: {view: this.subTarget} });
       }
     },
     classButton() {
