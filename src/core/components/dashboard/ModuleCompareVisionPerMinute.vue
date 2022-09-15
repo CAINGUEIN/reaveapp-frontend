@@ -3,7 +3,7 @@
     <div>
       <div>
         <div class="flex items-center">
-          <p class="text-[20px] font-bold">Vision Score</p>
+          <p class="text-[20px] text-White font-bold">Vision Score</p>
           <p class="text-[16px] font-normal ml-[5px]">(Vis/min)</p>
         </div>
         <div class="flex">

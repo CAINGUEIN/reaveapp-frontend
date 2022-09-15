@@ -3,7 +3,7 @@
     <div>
       <div>
         <div class="flex items-center">
-          <p class="text-[20px] font-bold">Gold earned</p>
+          <p class="text-[20px] text-White font-bold">Gold earned</p>
           <p class="text-[16px] font-normal ml-[5px]"></p>
         </div>
         <div class="flex">
