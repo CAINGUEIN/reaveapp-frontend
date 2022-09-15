@@ -41,6 +41,7 @@
                 <div class="">
                   <AvatarModal v-if="target === 'avatar'" @close="close"/>
                   <BannerModal v-if="target === 'banner'" @close="close"/>
+                  <ModalLogOut v-if="target === 'logout'" @close="close"/>
                 </div>
               </div>
             </div>
@@ -59,6 +60,7 @@
   } from "@headlessui/vue";
 import BannerModal from "./account/BannerModal.vue";
 import AvatarModal from "./account/AvatarModal.vue";
+import ModalLogOut from "./ModalLogOut.vue";
   
   export default {
     props: ["isOpenModal", "target"],
@@ -68,7 +70,8 @@ import AvatarModal from "./account/AvatarModal.vue";
     TransitionChild,
     TransitionRoot,
     BannerModal,
-    AvatarModal
+    AvatarModal,
+    ModalLogOut
 },
     data() {
         return {

@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div name="identity" class="ml-16 flex flex-col">
-      <h3>Identity</h3>
-      <div class="bg-White h-1 rounded-full w-[730px]"></div>
-      <div class="flex">
+    <div name="identity" class="mt-[56px] flex flex-col">
+      <p class="font-medium text-[32px] text-White">Identity</p>
+      <div class="bg-Gravel mt-4 h-1 rounded-full w-[730px]"></div>
+      <div class="flex mt-6">
         <div name="leftContent" class="w-[420px]">
           <InputModel
-            class="mt-8"
+            class=""
             :data="profileName"
             v-model="profileName.value"
             :errors="errors"
@@ -17,8 +17,8 @@
             v-model="userTag.value"
             :errors="errors"
           />
-          <p>You can change your profile name every 93 days.</p>
-          <p>You’ll be on cooldown if you change it.</p>
+          <p class="text-[12px] font-medium text-Gravel leading-3 mt-3">You can change your profile name every 93 days.</p>
+          <p class="text-[12px] font-medium text-Gravel leading-3 mt-1">You’ll be on cooldown if you change it.</p>
           <div class="flex">
             <InputModel
               class="mt-8 mr-2"
@@ -33,42 +33,11 @@
             />
           </div>
           <ToolsButtonSubmit
-            class="w-40 mx-auto mt-5"
+            class="w-40 mt-5"
             @action="submit"
-            txtButton="Save"
+            txtButton="Modify"
             :color="''"
           />
-        </div>
-        <div name="rightContent" class="w-[661px] m-auto">
-          <p>PROFILE APPEARANCE</p>
-          <div class="bg-Gravel w-[661px] h-[150px] rounded-2xl">
-            <div
-              class="w-[661px] h-[150px] rounded-2xl overflow-hidden"
-              @click="openModal('banner')"
-            >
-              <img
-                :src="
-                  'https://media.reave.dev/userbannier/status' +
-                    store.dataAccount._id +
-                    'bannier.png' ||
-                  'https://media.reave.dev/userbannier/status' +
-                    store.dataAccount._id +
-                    'bannier.jpeg'
-                "
-                alt=""
-              />
-            </div>
-            <img
-              :src="
-                'https://media.reave.dev/useravatar/xl' +
-                store.dataAccount._id +
-                'avatar.png'
-              "
-              alt=""
-              class="absolute rounded-full left-8 -bottom-8"
-              @click="openModal('avatar')"
-            />
-          </div>
         </div>
       </div>
     </div>
@@ -81,6 +50,7 @@ import InputModel from "@core/components/inputs/InputModel.vue";
 import ToolsButtonSubmit from "../../buttons/ToolsButtonSubmit.vue";
 //tool
 import useStoreAuth from "@stores/auth";
+import UserUpdateServices from "../../../../plugins/axios/services/userUpdateServices";
 export default {
   components: { InputModel, ToolsButtonSubmit },
   data() {
@@ -118,8 +88,27 @@ export default {
     openModal(e) {
       this.$emit("action", e);
     },
+    async submit() {
+      let body = {
+        userTag: this.userTag.value,
+        profileName: this.profileName.value,
+        firstName: this.firstName.value,
+        lastName: this.lastName.value,
+      };
+      let result = await UserUpdateServices.identity(body);
+      if (result.data.success) {
+        this.store.dataAccount.userTag = this.userTag.value;
+        this.store.dataAccount.profileName = this.profileName.value;
+        this.store.dataAccount.firstName = this.firstName.value;
+        this.store.dataAccount.lastName = this.lastName.value;
+      }
+    },
+  },
+  mounted() {
+    this.userTag.value = this.store.dataAccount.userTag || "";
+    this.profileName.value = this.store.dataAccount.profileName || "";
+    this.firstName.value = this.store.dataAccount.firstName || "";
+    this.lastName.value = this.store.dataAccount.lastName || "";
   },
 };
 </script>
-
-<style lang="scss" scoped></style>
