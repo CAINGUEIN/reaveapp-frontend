@@ -4,7 +4,13 @@
       <h2>VISUAL EDITOR AVATAR</h2>
       <p @click="close">X</p>
     </div>
-    <UploadModel v-if="img === ''" class="mt-4" :data="imgUpload" v-model="imgUpload.value" @change="submit" />
+    <UploadModel
+      v-if="img === ''"
+      class="mt-4"
+      :data="imgUpload"
+      v-model="imgUpload.value"
+      @change="submit"
+    />
     <div>
       <CropperAvatar v-if="img !== ''" :src="img" @closeAction="close" />
     </div>
@@ -15,7 +21,6 @@
 //component
 import UploadModel from "@core/components/inputs/uploadModel.vue";
 import CropperAvatar from "@core/components/cropper/CropperAvatar.vue";
-
 
 export default {
   components: { UploadModel, CropperAvatar },
@@ -36,8 +41,8 @@ export default {
       this.img = URL.createObjectURL(this.cache);
     },
     close() {
-        this.$emit("close");
-      },
+      this.$emit("close");
+    },
     log(value) {
       console.log(value);
     },
