@@ -63,7 +63,9 @@ router.beforeEach(async (to, from) => {
   if (store.isLogin === "") {
     console.log("si pas de login");
     if (await store.feedDataAccount()) {
-      console.log("ici si on a un token valide et que on a recup les datas user");
+      console.log(
+        "ici si on a un token valide et que on a recup les datas user"
+      );
     } else {
       cookies.remove("userSession"); //return this
       console.log("ici si pas de token ou token invalide");
@@ -78,7 +80,7 @@ router.beforeEach(async (to, from) => {
     //si pas de match de page
     if (to.matched.length === 0) {
       console.log("redirect si pas de match");
-      return { name: "Personal" };
+      return { name: "Personal", params: { view: "dashboard" } };
     }
     // verifiaction si les droits de la page sont accesible par le user
     if (store[to.meta.permission] === false) {

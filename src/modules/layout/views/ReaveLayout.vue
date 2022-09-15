@@ -82,6 +82,7 @@ export default {
       isOpenStatusMenu: false,
       store,
       storeSpace,
+      storeView: store.view
     };
   },
   methods: {
@@ -102,6 +103,21 @@ export default {
       }
       console.log("open", "/space/" + type + "/" + target);
     },
+    getUrl () {
+      if (this.$route.name !== this.store.view) {
+        this.store.view = this.$route.name
+      }
+    },
+  },
+  watch: {
+    $route() {
+      if (this.$route.name !== this.store.view) {
+        this.store.view = this.$route.name
+      }
+    }
+  },
+  mounted () {
+    this.getUrl();
   },
 };
 </script>
