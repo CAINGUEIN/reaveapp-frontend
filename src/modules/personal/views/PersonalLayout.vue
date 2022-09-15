@@ -5,7 +5,7 @@
         class="sticky top-0 left-0 right-0 z-20 h-15 bg-Anthracite"
       >
         <div class="flex justify-between bg-DarkRock rounded-full items-center">
-          <div name="space-name" class="flex ml-4">
+          <div name="space-name" class="flex ml-4" @click="goTo('Profile')">
             <img
               :src="'https://media.reave.dev/useravatar/xs' + store.dataAccount._id + 'avatar.png'"
               alt=""
@@ -266,12 +266,34 @@ export default {
     setParamOptionGame(value) {
       this.paramOptionGame = value;
     },
+    goTo(target) {
+      this.$router.push({ name: target });
+    },
+    setUrl(value) {
+      this.$router.replace({
+        name: this.$route.name,
+        params: { view: value }
+      })
+    },
+    getUrl () {
+      if (Object.keys(this.$route.params).length > 0) {
+        this.view = this.$route.params.view
+      } else {
+        this.view = 'account'
+      }
+    },
   },
   watch: {
     dataOptionWait() {
       this.setCompenentOptionGame(this.dataOptionWait);
       console.log("dans le watcher");
     },
+    view() {
+      this.setUrl(this.view)
+    }
+  },
+  mounted () {
+    this.getUrl();
   },
 };
 </script>
