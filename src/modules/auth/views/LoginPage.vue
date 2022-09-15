@@ -1,42 +1,45 @@
 <template>
-  <div class="flex flex-col p-12 pl-18 pb-8 max-w-authPage w-full">
+  <div class="flex flex-col p-6 flex-1">
     <div class="flex justify-between">
       <Reave />
       <Settings />
     </div>
-    <h1 class="w-164 mt-16">{{ title }}</h1>
-    <div class="flex mt-24">
-      <form class="w-input">
-        <InputModel :data="email" v-model="email.value" :errors="errors" />
-        <InputModel
-          class="mt-8"
-          :data="password"
-          v-model="password.value"
-          :errors="errors"
-        />
-        <router-link
-          to="ResetPassword"
-          class="mt-4 block text-Blue test-H5 font-bold"
-          >Forgot your password ?</router-link
-        >
-        <ToolsButtonSubmit
-          @action="submit"
-          txtButton="Login"
-          :color="
-            password.value === '' || email.value === '' ? 'desactivated' : ''
-          "
-        />
-        <div class="flex mt-4">
-          <span class="text-Gravel test-H5 font-normal"
-            >Need an account ?
-          </span>
-          <router-link to="Signup" class="text-Blue test-H5 font-bold ml-1"
-            >Register</router-link
+    <div class="flex m-auto flex-col">
+      <h1 class="w-164 mb-16">{{ title }}</h1>
+      <div class="flex">
+        <form class="w-input">
+          <InputModel :data="email" v-model="email.value" :errors="errors" />
+          <InputModel
+            class="mt-6"
+            :data="password"
+            v-model="password.value"
+            :errors="errors"
+          />
+          <router-link
+            to="ResetPassword"
+            class="mt-4 block text-Blue test-H5 font-bold"
+            >Forgot your password ?</router-link
           >
+          <ToolsButtonSubmit
+            class="mt-4"
+            @action="submit"
+            txtButton="Login"
+            :color="
+              password.value === '' || email.value === '' ? 'desactivated' : ''
+            "
+          />
+          <div class="flex mt-4">
+            <span class="text-Gravel test-H5 font-normal"
+              >Need an account ?
+            </span>
+            <router-link to="Signup" class="text-Blue test-H5 font-bold ml-1"
+              >Register</router-link
+            >
+          </div>
+        </form>
+        <div class="mt-8 ml-8">
+          <img src="https://via.placeholder.com/190" alt="" class="rounded" />
         </div>
-      </form>
-      <div class="mt-8 ml-8">
-        <img src="https://via.placeholder.com/190" alt="" class="rounded" />
       </div>
     </div>
     <div class="flex justify-between mt-auto">
@@ -53,9 +56,10 @@ import useStoreAuth from "@stores/auth";
 import AuthServices from "@axios/services/authServices";
 import errorsHelpers from "@core/support/functions/errorsHelpers";
 import Reave from "@assets/icons/Reave.vue";
+import Settings from "../../../core/assets/icons/Settings.vue";
 
 export default {
-  components: { InputModel, ToolsButtonSubmit, Reave },
+  components: { InputModel, ToolsButtonSubmit, Reave, Settings },
   data() {
     const store = useStoreAuth();
     return {

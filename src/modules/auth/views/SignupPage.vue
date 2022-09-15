@@ -1,83 +1,43 @@
 <template>
-  <div class="flex flex-col p-12 pl-18 pb-8 max-w-authPage w-full">
+  <div class="flex flex-col p-6 flex-1">
     <div class="flex justify-between">
-      <Reave/>
-      <Settings/>
+      <Reave />
+      <Settings />
     </div>
-    <h1 class="w-164 mt-16 text-5xl">{{ title }}</h1>
-    <div v-if="etape === 1" class="w-input">
+
+    <div class="m-auto">
+      <h1 class="w-164 text-5xl">{{ title }}</h1>
       <InputModel
-        class="mt-8"
+        class="mt-6 w-input"
         :data="email"
         v-model="email.value"
         :errors="errors"
       />
       <InputModel
-        class="mt-8"
-        :data="userName"
-        v-model="userName.value"
+        class="mt-6 w-input"
+        :data="userTag"
+        v-model="userTag.value"
         :errors="errors"
       />
       <InputModel
-        class="mt-8"
-        :data="profileTag"
-        v-model="profileTag.value"
+        class="mt-6 w-input"
+        :data="profileName"
+        v-model="profileName.value"
         :errors="errors"
       />
       <InputModel
-        class="mt-8"
+        class="mt-6 w-input"
         :data="password"
         v-model="password.value"
         :errors="errors"
       />
       <InputModel
-        class="mt-8"
+        class="mt-6 w-input"
         :data="confirmPassword"
         v-model="confirmPassword.value"
         :errors="errors"
       />
-      <ToolsButtonSubmit
-        @action="submit /* next */"
-        txtButton="Continue"
-        :color="
-          email.value === '' ||
-          userName.value === '' ||
-          profileTag.value === '' ||
-          password.value === '' ||
-          password.value !== confirmPassword.value
-            ? 'desactivated'
-            : ''
-        "
-      />
-    </div>
-    <div v-else-if="etape === 2">
-      <div class="w-input">
-        <InputModel
-          class="mt-8"
-          :data="birthDay"
-          v-model="birthDay.value"
-          :errors="errors"
-        />
-        <InputModel
-          class="mt-8"
-          :data="role"
-          v-model="role.value"
-          :errors="errors"
-        />
-        <InputModel
-          class="mt-8"
-          :data="played"
-          v-model="played.value"
-          :errors="errors"
-        />
-        <InputModel
-          class="mt-8"
-          :data="rolePlayed"
-          v-model="rolePlayed.value"
-          :errors="errors"
-        />
-      </div>
-      <div class="flex items-center mt-8">
+      <div class="flex items-center mt-4">
         <CheckboxModel
           class="text-LightGrey"
           :data="cgu"
@@ -86,43 +46,46 @@
         />
         <router-link
           to="Login"
-          class="ml-2 text-Blue text-H6 font-normal leading-none"
+          class="ml-1 text-Blue text-H6 font-normal leading-none"
           >Terms of Service</router-link
         >
-        <span class="text-LightGrey text-H6 font-normal leading-none ml-2"
+        <span class="text-LightGrey text-H6 font-normal leading-none ml-1"
           >and</span
         >
         <router-link
           to="Login"
-          class="ml-2 text-Blue text-H6 font-normal leading-none"
+          class="ml-1 text-Blue text-H6 font-normal leading-none"
           >Privacy Policy</router-link
         >
       </div>
       <CheckboxModel
-        class="mt-8 text-Gravel"
+        class="mt-4 text-Gravel"
         :data="newsLetters"
         v-model="newsLetters.value"
         :errors="errors"
       />
-      <div class="w-input">
+      <div class="mt-4 w-input">
         <ToolsButtonSubmit
           @action="submit"
           txtButton="Register"
           :color="
-            birthDay.value === '' ||
-            role.value === '' ||
-            played.value === '' ||
-            rolePlayed.value === '' ||
+            email.value === '' ||
+            userTag.value === '' ||
+            profileName.value === '' ||
+            password.value === '' ||
+            confirmPassword.value === '' ||
+            newsLetters.value === '' ||
             cgu.value === false
               ? 'desactivated'
               : ''
           "
         />
       </div>
+      <router-link to="Login" class="mt-2 block text-Blue test-H5 font-bold"
+        >Already have an account?</router-link
+      >
     </div>
-    <router-link to="Login" class="mt-4 block text-Blue test-H5 font-bold"
-      >Already have an account?</router-link
-    >
+
     <div class="flex justify-between mt-auto">
       <span class="text-H6 font-normal">V0.0.1</span>
       <span>Copyright © 2022 REAVE</span>
@@ -146,20 +109,20 @@ export default {
     const store = useStoreAuth();
 
     return {
-      title: "Create on account",
+      title: "Create an account",
       email: {
         label: "EMAIL",
         name: "email",
         type: "text",
         value: "",
       },
-      userName: {
-        label: "USERNAME",
-        name: "userName",
+      userTag: {
+        label: "USER TAG",
+        name: "userTag",
         type: "text",
         value: "",
       },
-      profileTag: {
+      profileName: {
         label: "PROFILE NAME",
         name: "profilename",
         type: "text",
@@ -175,31 +138,6 @@ export default {
         label: "CONFIRM PASSWORD",
         name: "confirmPassword",
         type: "password",
-        value: "",
-      },
-
-      birthDay: {
-        label: "BIRTHDAY",
-        name: "birthDay",
-        type: "text",
-        value: "",
-      },
-      role: {
-        label: "ECOSYSTEM ROLE(S)",
-        name: "role",
-        type: "text",
-        value: "",
-      },
-      played: {
-        label: "ESPORT(S) PLAYED",
-        name: "played",
-        type: "text",
-        value: "",
-      },
-      rolePlayed: {
-        label: "ESPORT ROLE(S) PLAYED",
-        name: "rolePlayed",
-        type: "text",
         value: "",
       },
       cgu: {
@@ -230,8 +168,8 @@ export default {
       //passé pour plus tard mettre tout les elements
       let forRegister = {
         email: this.email.value,
-        userName: this.userName.value,
-        profileTag: this.profileTag.value,
+        userTag: this.userTag.value,
+        profileName: this.profileName.value,
         password: this.password.value,
         email: this.email.value,
       };

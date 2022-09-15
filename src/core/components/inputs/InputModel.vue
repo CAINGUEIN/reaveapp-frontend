@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col justify-between">
     <label
-      class="flex text-H4 text-White font-bold leading-none"
+      class="flex text-H4 text-White font-black leading-none"
       :for="data.name"
     >
       {{ data.label }}
@@ -19,7 +19,7 @@
         :id="data.name"
         :placeholder="data.label"
         :autocomplete="data.name"
-        class="block w-full font-normal py-3 px-6 rounded-Large text-H4 text-White bg-Anthracite border-LightGrey leading-none focus:border-White border-2 focus:outline-none"
+        class="block w-full font-normal py-3 px-6 rounded-Large text-H4 text-White bg-Anthracite border-LightGrey leading-none focus:border-White border-2 focus:ring-0 focus:outline-none"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
         :disabled="store.loading"
