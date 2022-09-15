@@ -74,7 +74,6 @@
             profileName.value === '' ||
             password.value === '' ||
             confirmPassword.value === '' ||
-            newsLetters.value === '' ||
             cgu.value === false
               ? 'desactivated'
               : ''
@@ -181,7 +180,7 @@ export default {
         let resultDataAccount = await this.store.feedDataAccount();
         if (resultDataAccount) {
           this.errors = errorsHelpers.resetError();
-          this.$router.push({ name: "Personal" });
+          this.$router.push({ name: "Personal", params: {view: 'dashboard'} });
           this.store.loading = false;
         }
       } else {
