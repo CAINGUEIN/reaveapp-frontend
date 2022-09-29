@@ -7,14 +7,7 @@ import { VitePWA } from "vite-plugin-pwa";
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
-  let hmr = "";
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
-  if (process.env.VITE_APP_ENVIRONEMENT !== "local") {
-    hmr = {
-      clientPort: 443,
-      path: "/sockIO/",
-    };
-  }
   return defineConfig({
     plugins: [vue(), vueJsx(), VitePWA({})],
     resolve: {
@@ -34,11 +27,11 @@ export default ({ mode }) => {
         ),
         "@core": fileURLToPath(new URL("./src/core", import.meta.url)),
         "@modules": fileURLToPath(new URL("./src/modules", import.meta.url)),
-        "@assets": fileURLToPath(new URL("./src/core/assets", import.meta.url))
+        "@assets": fileURLToPath(new URL("./src/core/assets", import.meta.url)),
+        "@components": fileURLToPath(
+          new URL("./src/core/components", import.meta.url)
+        ),
       },
-    },
-    server: {
-      hmr: hmr,
     },
   });
 };

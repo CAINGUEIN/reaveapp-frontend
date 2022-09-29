@@ -21,6 +21,9 @@ const Store = defineStore("auth", {
       isLogin: "",
       //pour desactiver certain boutton
       loading: false,
+      avatarKey: 0,
+      bannerKey: 0,
+      spaceKey: 0,
     };
   },
   getters: {},

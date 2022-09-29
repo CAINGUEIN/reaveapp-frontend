@@ -53,11 +53,11 @@
 
 <script>
 //component
-import InputModel from "@core/components/inputs/InputModel.vue";
-import ToolsButtonSubmit from "../../buttons/ToolsButtonSubmit.vue";
+import InputModel from "@components/inputs/InputModel.vue";
+import ToolsButtonSubmit from "@components/buttons/ToolsButtonSubmit.vue";
 //tool
 import useStoreAuth from "@stores/auth";
-import UserUpdateServices from "../../../../plugins/axios/services/userUpdateServices";
+import UserUpdateServices from "@axios/services/userUpdateServices";
 export default {
   components: { InputModel, ToolsButtonSubmit },
   data() {

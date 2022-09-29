@@ -6,9 +6,10 @@
           <div
             name="img-bg"
             class="absolute top-0 left-0 right-0 h-40 overflow-hidden rounded-2xl bg-cover bg-center"
-            :style="'background-image: url('+formateUrlSplash(info.mapId)+')'"
-          >
-          </div>
+            :style="
+              'background-image: url(' + formateUrlSplash(info.mapId) + ')'
+            "
+          ></div>
           <div name="content-left" class="flex h-full flex-col justify-between">
             <div name="ligne-top" class="flex items-center">
               <LeagueOfLegendBig class="h-[53px] w-[53px] text-White" />
@@ -19,7 +20,33 @@
                 {{ personnalStat.statTotal.win ? "VICTORY" : "DEFEAT" }}
               </h1>
               <div class="bg-Cloud h-2 w-2 rounded-full ml-3"></div>
-              <div class="h-10 w-10 bg-white rounded-full ml-3"></div>
+              <div class="h-10 w-10 ml-3">
+                <TopLane
+                  v-if="personnalStat.statTotal.lane === 'TOP'"
+                  :width="40"
+                  :height="40"
+                />
+                <JungleLane
+                  v-if="personnalStat.statTotal.lane === 'JUNGLE'"
+                  :width="40"
+                  :height="40"
+                />
+                <BotLane
+                  v-if="personnalStat.statTotal.lane === 'BOTTOM'"
+                  :width="40"
+                  :height="40"
+                />
+                <MidLane
+                  v-if="personnalStat.statTotal.lane === 'MIDDLE'"
+                  :width="40"
+                  :height="40"
+                />
+                <SupportLane
+                  v-if="personnalStat.statTotal.lane === 'SUP'"
+                  :width="40"
+                  :height="40"
+                />
+              </div>
               <h3 class="ml-2 font-medium" v-if="info.gameMode === 'CLASSIC'">
                 {{ formatTextLane(personnalStat.statTotal.lane) }}
               </h3>
@@ -173,7 +200,8 @@
                 <PaperAirplaneIcon class="h-8 w-8 rotate-[45deg] text-White" />
               </div>
               <div
-                class="h-15 w-15 p-[14px] bg-DarkRock rounded-full text-White ml-3"
+                class="h-15 w-15 p-[14px] bg-DarkRock rounded-full text-White ml-3 cursor-pointer"
+                @click="goBack"
               >
                 <XIcon class="h-8 w-8" />
               </div>
@@ -1209,6 +1237,11 @@ import LeagueOfLegend from "../../assets/icons/LeagueOfLegend.vue";
 import Overwatch from "../../assets/icons/Overwatch.vue";
 import Valorant from "../../assets/icons/Valorant.vue";
 import LeagueOfLegendBig from "../../assets/icons/LeagueOfLegendBig.vue";
+import TopLane from "../../assets/icons/TopLane.vue";
+import JungleLane from "../../assets/icons/JungleLane.vue";
+import BotLane from "../../assets/icons/BotLane.vue";
+import MidLane from "../../assets/icons/MidLane.vue";
+import SupportLane from "../../assets/icons/SupportLane.vue";
 /* changement recup direct les datas dans le back du match
 voir peut etre a mettre sur cette route la recup des datas timeline
 - passer un query pour savoir sur un partage qui est le you de la game
@@ -1224,7 +1257,12 @@ export default {
     Overwatch,
     Valorant,
     LeagueOfLegendBig,
-  },
+    TopLane,
+    JungleLane,
+    BotLane,
+    MidLane,
+    SupportLane
+},
   data() {
     const dataStore = useDataStore();
     const store = useAuthStore();
@@ -1242,6 +1280,9 @@ export default {
   },
   methods: {
     submit() {},
+    goBack() {
+      this.$router.back();
+    },
     QueryURL() {
       let idRiot = this.$route.query.match;
       //recup le query de l'URL

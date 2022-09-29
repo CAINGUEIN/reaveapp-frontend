@@ -718,7 +718,7 @@ export default {
         this.summonerName = this.filter.summonerName;
       }
       if (
-        this.championSelect !== this.filter.championSelect &&
+        this.championSelect === 0 &&
         this.filter.championSelect !== undefined
       ) {
         this.championSelect = this.filter.summonerName;
@@ -740,10 +740,10 @@ export default {
         }
       }
       if (this.mapId !== this.filter.mapId && this.filter.mapId !== undefined) {
-        this.mapId = this.filter.mapId;
+        this.mapId = String(this.filter.mapId)  ;
       }
       if (this.lane !== this.filter.lane && this.filter.lane !== undefined) {
-        this.lane = this.filter.lane;
+        this.lane = this.filter.lane
       }
     },
   },

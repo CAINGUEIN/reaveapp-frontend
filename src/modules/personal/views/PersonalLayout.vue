@@ -6,11 +6,12 @@
       >
         <div class="flex justify-between bg-DarkRock rounded-full items-center">
           <div name="space-name" class="flex ml-4" @click="goTo('Profile')">
-            <img
-              :src="'https://media.reave.dev/useravatar/xs' + store.dataAccount._id + 'avatar.png'"
-              alt=""
-              class="rounded-full my-auto"
-            />
+            <ImgFormated
+                :key="store.avatarKey"
+                :size="'xs'"
+                :type="'avatar'"
+                class="rounded-full my-auto"
+              />
             <h4 class="ml-4">{{ store.dataAccount.userName }}</h4>
           </div>
           <LolOptionDashboard
@@ -24,7 +25,7 @@
             class="flex bg-LightRock rounded-full"
           >
             <ToolsButtonNav
-              :target="''"
+              
               :btnName="'lol'"
               :dataClass="'logoGame'"
               :comparTarget="option"
@@ -33,7 +34,7 @@
               <LeagueOfLegend />
             </ToolsButtonNav>
             <ToolsButtonNav
-              :target="''"
+              
               :btnName="'ow'"
               :dataClass="'logoGame'"
               :comparTarget="option"
@@ -42,7 +43,7 @@
               <Overwatch />
             </ToolsButtonNav>
             <ToolsButtonNav
-              :target="''"
+              
               :btnName="'valo'"
               :dataClass="'logoGame'"
               :comparTarget="option"
@@ -53,7 +54,7 @@
           </div>
           <div name="icon" class="flex">
             <ToolsButtonNav
-              :target="''"
+              
               :btnName="'dashboard'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
@@ -62,7 +63,7 @@
               <Dashboard />
             </ToolsButtonNav>
             <ToolsButtonNav
-              :target="''"
+              
               :btnName="'tree'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
@@ -71,7 +72,7 @@
               <Tree />
             </ToolsButtonNav>
             <ToolsButtonNav
-              :target="''"
+              
               :btnName="'calendar'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
@@ -83,7 +84,7 @@
               </div>
             </ToolsButtonNav>
             <ToolsButtonNav
-              :target="''"
+              
               :btnName="'history'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
@@ -92,7 +93,7 @@
               <MatchHistory />
             </ToolsButtonNav>
             <ToolsButtonNav
-              :target="''"
+              
               :btnName="'cloud'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
@@ -101,7 +102,7 @@
               <Cloud />
             </ToolsButtonNav>
             <ToolsButtonNav
-              :target="''"
+              
               :btnName="'notifs'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
@@ -110,7 +111,7 @@
               <Notification />
             </ToolsButtonNav>
             <ToolsButtonNav
-              :target="''"
+              
               :btnName="'wallet'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
@@ -119,7 +120,7 @@
               <Wallet />
             </ToolsButtonNav>
             <ToolsButtonNav
-              :target="''"
+              
               :btnName="'championPass'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
@@ -203,6 +204,7 @@ import ChampionPass from "@assets/icons/ChampionPass.vue";
 import LeagueOfLegend from "@assets/icons/LeagueOfLegend.vue";
 import Overwatch from "@assets/icons/Overwatch.vue";
 import Valorant from "@assets/icons/Valorant.vue";
+import ImgFormated from "../../../core/components/img/ImgFormated.vue";
 
 export default {
   components: {
@@ -228,7 +230,8 @@ export default {
     LeagueOfLegend,
     Overwatch,
     Valorant,
-  },
+    ImgFormated
+},
   data() {
     const store = useStoreAuth();
     return {

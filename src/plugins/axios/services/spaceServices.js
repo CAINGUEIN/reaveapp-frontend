@@ -1,9 +1,8 @@
 import Base from "@axios/axiosPlugin";
 
 class SpaceServices {
-  static async checkSpace(id) {
-    let body = { _id: id.id };
-    return Base.post(`/space/checkSpace`, body)
+  static async checkSpace() {
+    return Base.post(`/space/checkSpace`)
       .then((response) => {
         console.log("auth : checkSpace", response);
         return response;

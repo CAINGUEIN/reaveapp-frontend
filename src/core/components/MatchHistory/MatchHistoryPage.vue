@@ -40,10 +40,17 @@ export default {
   },
   methods: {
     async feadMatch() {
+      this.store.loading = true;
       console.log(this.body);
       let result = await UsersServices.feadFilteredMatch(this.body);
-      //le bute est de faire une verification des dernier match a chaque mounted de la page
-      this.store.setter(result.data.data, "ListLastMatchLol");
+      if (result.data.success) {
+        //le bute est de faire une verification des dernier match a chaque mounted de la page
+        this.store.setter(result.data.data, "ListLastMatchLol");
+        this.store.loading = false;
+      } else {
+        //faire une notif d'erreur
+        this.store.loading = false;
+      }
     },
     async feadFilteredMatch(value) {
       if (value.win === "true" || value.win === true) {
@@ -53,6 +60,7 @@ export default {
       } else {
         delete value.win;
       }
+      console.log(value);
       this.body = value;
       this.setParamURL(this.body);
       this.feadMatch();
@@ -63,12 +71,17 @@ export default {
       } else {
         let valueQuery = {};
         for (const [key, data] of Object.entries(this.$route.query)) {
-          valueQuery[key] = JSON.parse(data);
+          try {
+            valueQuery[key] = JSON.parse(data);
+          } catch {
+            valueQuery[key] = data
+          }
         }
         this.feadFilteredMatch(valueQuery);
       }
     },
     async moreMatch() {
+      this.store.loading = true;
       console.log(this.body.page);
       if (this.body.page === undefined) {
         this.body["page"] = 2;
@@ -76,8 +89,14 @@ export default {
         this.body.page = this.body.page + 1;
       }
       let result = await UsersServices.feadFilteredMatch(this.body);
-      let preparArray = [this.store.ListLastMatchLol, result.data.data];
-      this.store.ListLastMatchLol = preparArray.flat();
+      if (result.data.success) {
+        let preparArray = [this.store.ListLastMatchLol, result.data.data];
+        this.store.ListLastMatchLol = preparArray.flat();
+        this.store.loading = false;
+      } else {
+        //faire une notif d'erreur
+        this.store.loading = false;
+      }
     },
     setParamURL(value) {
       let valueQuery = {};

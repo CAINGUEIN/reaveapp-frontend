@@ -7,42 +7,34 @@
         <div name="rightContent" class="w-[661px]">
           <div class="bg-Gravel w-[661px] h-[150px] rounded-2xl">
             <div
-              class="w-[661px] h-[150px] rounded-2xl overflow-hidden  cursor-pointer"
+              class="w-[661px] h-[150px] rounded-2xl overflow-hidden cursor-pointer"
               @click="openModal('banner')"
             >
-              <img
-                :src="
-                  'https://media.reave.dev/userbanner/status' +
-                    store.dataAccount._id +
-                    'banner.png' ||
-                  'https://media.reave.dev/userbanner/status' +
-                    store.dataAccount._id +
-                    'banner.jpeg'
-                "
-                alt=""
+              <ImgFormated
+                :key="store.bannerKey"
+                :size="'status'"
+                :type="'banner'"
                 class="h-auto"
               />
+
               <div
                 class="absolute top-0 flex z-10 m-auto text-White w-[661px] h-[150px] bg-opacity-50 hover:bg-opacity-75 bg-black"
               >
-                <p class="m-auto">Modify</p>
+                <p class="m-auto font-black text-White">Modify</p>
               </div>
             </div>
             <div class="absolute rounded-full z-20 left-8 -bottom-8">
-              <img
-                :src="
-                  'https://media.reave.dev/useravatar/xl' +
-                  store.dataAccount._id +
-                  'avatar.png'
-                "
-                alt=""
+              <ImgFormated
+                :key="store.avatarKey"
+                :size="'xl'"
+                :type="'avatar'"
                 class="rounded-full left-8 -bottom-8"
               />
               <div
                 @click="openModal('avatar')"
-                class=" cursor-pointer absolute rounded-full flex z-30 m-auto text-White left-8 -bottom-8 h-[120px] w-[120px] bg-opacity-50 hover:bg-opacity-75 bg-black"
+                class="cursor-pointer absolute rounded-full flex z-30 m-auto text-White left-8 -bottom-8 h-[120px] w-[120px] bg-opacity-50 hover:bg-opacity-75 bg-black"
               >
-                <p class="m-auto">Modify</p>
+                <p class="m-auto font-black text-White">Modify</p>
               </div>
             </div>
           </div>
@@ -54,6 +46,7 @@
 
 <script>
 //component
+import ImgFormated from "@components/img/ImgFormated.vue";
 //tool
 import useStoreAuth from "@stores/auth";
 export default {
@@ -69,5 +62,6 @@ export default {
       this.$emit("action", e);
     },
   },
+  components: { ImgFormated },
 };
 </script>

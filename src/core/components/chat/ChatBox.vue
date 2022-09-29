@@ -1,11 +1,11 @@
 <template>
-  <div v-if="!waiting" class="flex h-screen">
+  <div v-if="!waiting && space !== ''" class="flex flex-1">
     <div
       name="correspondants"
       class="w-64 bg-DarkRock rounded-tl-2xl flex flex-col justify-between"
     >
       <div>
-        <div v-for="category in categories">
+        <div v-for="category in space.dataOfSpace.categories">
           <div class="m-2 flex items-center justify-between">
             <h3>{{ category.name }}</h3>
             <div class="flex">
@@ -18,8 +18,8 @@
               <Delete @actionDelete="deleteCategory" :data="category" />
             </div>
           </div>
-          <div class="mx-4 flex" v-for="room in category._id_rooms">
-            <button class="m-0 p-0 text-left" @click="joinServeur(room._id)">
+          <div class="mx-4 flex" v-for="room in category.rooms">
+            <button class="m-0 p-0 text-left" @click="showRoom(room._id)">
               {{ room.name }}
             </button>
             <Delete
@@ -90,16 +90,21 @@
         </div>
       </div>
     </div>
-    <div name="correspondants-contact" class="w-56">
-      <div class="flex rounded-xl m-2 px-4 py-1 bg-LightRock">
-        <img
-          src="https://via.placeholder.com/40"
-          alt=""
+    <div v-if="space !== ''" name="correspondants-contact" class="w-56">
+      <div
+        v-for="user in space.dataOfSpace.users"
+        class="flex rounded-xl m-2 px-4 py-1 bg-LightRock"
+      >
+        <ImgFormated
+          :key="store.avatarKey"
+          :targetSpace="user._id"
+          :size="'s'"
+          :type="'avatar'"
           class="rounded-full my-auto"
         />
         <div name="user-div" class="ml-2">
-          <h5>user</h5>
-          <p>!!!!!</p>
+          <h5>{{ user._id_user.userTag }}</h5>
+          <p>{{ user._id_user.profileName }}</p>
         </div>
       </div>
     </div>
@@ -122,22 +127,19 @@ import { io } from "socket.io-client";
 import ChatRoom from "@core/components/chat/ChatRoom.vue";
 import useStoreAuth from "@stores/auth";
 import useStoreSpace from "@stores/storeSpace";
-import FriendsServices from "@axios/services/friendsServices.js";
 import CreateCategory from "@core/components/modal/CreateCategory.vue";
 import CreateRoom from "@core/components/modal/CreateRoom.vue";
 import Delete from "@core/components/buttons/Delete.vue";
-import ChatServices from "@axios/services/chatServices";
+import ImgFormated from "../img/ImgFormated.vue";
 
 export default {
-  components: { ChatRoom, CreateCategory, CreateRoom, Delete },
+  components: { ChatRoom, CreateCategory, CreateRoom, Delete, ImgFormated },
+  props: ["spaceId"],
   data() {
     const store = useStoreAuth();
     const storeSpace = useStoreSpace();
     return {
-      socket: new io({
-        debug: true,
-        connection: import.meta.env.VITE_API_BACK_URL,
-      }),
+      socket: "",
       waiting: false,
       _id_data: "",
       isOpenModalCategory: false,
@@ -147,6 +149,7 @@ export default {
       store,
       storeSpace,
       categories: "",
+      space: "",
     };
   },
   methods: {
@@ -167,81 +170,33 @@ export default {
     log(param) {
       console.log("dans le log", param);
     },
-    async deleteRoom(_id_room, _id_category) {
-      let data = {
-        _id_room: _id_room,
-        _id_category: _id_category,
-      };
-      console.log(data);
-      let result = await ChatServices.deleteRoom(data);
-      console.log(result);
-    },
-    async deleteCategory(_id_category) {
-      let data = {
-        _id_category: _id_category,
-        _id_dataOfSpace: this.storeSpace.dataSpace.dataOfSpace._id,
-      };
-      let result = await ChatServices.deleteCategory(data);
-      console.log(result);
-    },
-    async dataquery() {
-      this.waiting = true;
-      console.log(this.storeSpace.dataSpace.dataOfSpace, "ici dans le query");
-
-      // ici je doit recup les categories et les rooms
-      let result = await FriendsServices.allRooms({
-        _id: this.storeSpace.dataSpace.dataOfSpace._id,
+    async deleteRoom(_id_room, _id_category) {},
+    async deleteCategory(_id_category) {},
+    async dataquery() {},
+    showRoom() {},
+    joinServeur() {
+      this.socket = new io.connect(import.meta.env.VITE_API_BACK_URL);
+      this.socket.emit("connectedUser", () => {
+        let user = this.store.dataAccount.userTag;
+        return user;
       });
-      console.log(result);
-      if (result.success) {
-        console.log("aprés le success");
-        this.categories = result.data._id_categories;
-        this.waiting = false;
-      } else {
-        //TODO: faire une sortie du space
-      }
-    },
-    joinServeur(targetRoom) {
-      console.log(this.store);
-      this.socket.emit("connectionWithRoom", {
-        room: targetRoom,
-        _id_user: this.store.dataAccount._id,
+      this.socket.on("user", (user) => {
+        console.log("new connected user");
       });
-    },
-    listen() {
-      console.log(this.socket.io.connected);
-      this.socket.on("loggedIn", (data) => {
-        this.messages = data.messages._id_messages;
-        this.users = data.users;
-        this.socket.emit("newUser", this.store.dataAccount.userName);
-      });
-      this.socket.on("userOnline", (user) => {
-        this.users.push(user);
-      });
-      this.socket.on("disconnect", (user) => {
-        this.users.splice(this.users.indexOf(user), 1);
-      });
-      this.socket.on("msg", (message) => {
-        this.messages.push(message);
-      });
-      this.socket.on("deleteMsg", (key) => {
-        this.messages.splice(key, 1);
-      });
-    },
-    sendMessage(message) {
-      this.socket.emit("msg", message);
-    },
-    //TODO: penser a bloqué que pour le proprietaire du message ou qui a le droit
-    deleteMsg(msgId, key) {
       console.log("ici");
-      this.socket.emit("deleteMsg", msgId, key);
+    },
+    listen() {},
+    sendMessage() {},
+    deleteMsg() {},
+  },
+  watch: {
+    spaceId() {
+      this.space = this.storeSpace.dataSpace[this.spaceId];
     },
   },
   mounted() {
-    //recup le pseudo de l'utilisateur connecté
-    this.username = this.store.dataAccount.userName;
-    this.dataquery();
-    this.listen();
+    this.space = this.storeSpace.dataSpace[this.spaceId];
+    this.joinServeur();
   },
 };
 </script>

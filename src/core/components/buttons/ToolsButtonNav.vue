@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     goTo(value) {
-      if (value !== "") {
+      if (value !== undefined) {
         this.store.view = value;
         this.$router.push({ name: value, params: {view: this.subTarget} });
       }
@@ -116,7 +116,7 @@ export default {
       }
     },
     verif() {
-      if (this.target === "") {
+      if (this.target === undefined) {
         this.stat = this.btnName;
       } else {
         this.stat = this.target;

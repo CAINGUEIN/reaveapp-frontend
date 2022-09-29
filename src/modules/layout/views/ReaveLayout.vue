@@ -92,9 +92,6 @@ export default {
     closeModal() {
       this.isOpenModal = false;
     },
-    goTo(target) {
-      this.$router.push({ name: target });
-    },
     async openSpace(target, type) {
       if (await this.storeSpace.feedDataSpace({ id: target })) {
         this.$router.push({ path: "/space/" + type, query: { id: target } });

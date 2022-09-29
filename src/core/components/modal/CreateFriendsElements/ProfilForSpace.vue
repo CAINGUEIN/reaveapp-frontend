@@ -2,21 +2,36 @@
   <div>
     <h3>Your Profile For Space Friends</h3>
     <p>Show the world you're a Champion.</p>
-    <UploadModel class="mt-4" :data="imgUpload" v-model="imgUpload.value" />
-    <InputModel
-      class="mt-8"
-      :data="profile"
-      v-model="profile.value"
-      :errors="errors"
-    />
-    <p>It's your team's profile tag on Reave's Social Platform (feed).</p>
-    <InputModel class="mt-8" :data="bio" v-model="bio.value" :errors="errors" />
-    <p>It's your team's profile bio on Reave's Social Platform (feed).</p>
-    <ToolsButtonSubmit
-      @action="validate"
-      txtButton="Continue"
-      :color="profile.value === '' ? 'desactivated' : ''"
-    />
+
+    <div v-if="stage === 1">
+      <InputModel
+        class="mt-8"
+        :data="profile"
+        v-model="profile.value"
+        :errors="errors"
+      />
+      <p>It's your team's profile tag on Reave's Social Platform (feed).</p>
+      <ToolsButtonSubmit
+        @action="validate"
+        txtButton="Continue"
+        :color="profile.value === '' ? 'desactivated' : ''"
+      />
+    </div>
+    <div v-if="stage === 2">
+      <UploadModel
+        v-if="img === ''"
+        class="mt-4"
+        :data="imgUpload"
+        v-model="imgUpload.value"
+        @change="submit"
+      />
+      <CropperProfileFriend
+        v-if="img !== ''"
+        :src="img"
+        :spaceId="spaceId"
+        @closeAction="$emit('close')"
+      />
+    </div>
   </div>
 </template>
 
@@ -28,29 +43,32 @@ import errorsHelpers from "@core/support/functions/errorsHelpers";
 import FriendsServices from "@axios/services/friendsServices";
 import useStoreSpace from "@stores/storeSpace";
 import useStoreAuth from "@stores/auth";
+import CropperProfileFriend from "../../cropper/CropperProfileFriend.vue";
 
 export default {
-  components: { UploadModel, InputModel, ToolsButtonSubmit },
+  components: {
+    UploadModel,
+    InputModel,
+    ToolsButtonSubmit,
+    CropperProfileFriend,
+  },
   data() {
     const storeSpace = useStoreSpace();
     const store = useStoreAuth();
     return {
-      imgUpload: {
-        label: "Logo",
-        name: "logo_image",
-        type: "file",
-        value: "",
-      },
+      stage: 1,
+      img: "",
+      spaceId: "",
       profile: {
         label: "@Profile",
         name: "profile",
         type: "text",
         value: "",
       },
-      bio: {
-        label: "@Bio",
-        name: "bio",
-        type: "textarea",
+      imgUpload: {
+        label: "SpaceFriend",
+        name: "friend",
+        type: "file",
         value: "",
       },
       errors: "",
@@ -63,31 +81,24 @@ export default {
       let dataRequeste = {
         type: "friends",
         profile: this.profile.value,
-        bio: this.bio.value,
       };
       //a recup dans le service les datas du user
       // pour le createBy:user._id
       let result = await FriendsServices.create(dataRequeste);
-      console.log("ici dans result", result );
+      console.log("ici dans result", result);
       if (result.success) {
-        this.store.updateDataSpaces(result.data.spaces)
-        let resultSpaceData = await this.storeSpace.feedDataSpace(
-          {id: result.idNewSpace}
-        );
-        console.log(resultSpaceData);
-        if (resultSpaceData) {
-          this.errors = errorsHelpers.resetError();
-          this.$router.push({
-            path: "/space/friends",
-            query: { id: result.idNewSpace },
-          });
-          this.$emit("close")
-        } else {
-          this.errors = errorsHelpers.handleError(/**/);
-        }
+        this.stage = 2;
+        this.spaceId = result.data.newSpace._id;
+        this.store.dataAccount.spaces = result.data.updateSpaceUser;
+        this.store.dataSpaces[result.data.newSpace._id] = result.data.newSpace;
+        //si ok on recup le Space_id
       } else {
-        this.errors = errorsHelpers.handleError(/**/);
+        //voir un message d'erreur
       }
+    },
+    submit() {
+      let cache = document.getElementById("friend").files[0];
+      this.img = URL.createObjectURL(cache);
     },
   },
 };

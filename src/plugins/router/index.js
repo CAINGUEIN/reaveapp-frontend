@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import useStoreAuth from "@stores/auth";
 import useStoreData from "@stores/data";
+import useStoreSpace from "@stores/storeSpace";
 import { useCookies } from "vue3-cookies";
 
 const { cookies } = useCookies();
@@ -51,6 +52,7 @@ const router = createRouter({
 router.beforeEach(async (to, from) => {
   const store = useStoreAuth();
   const storeData = useStoreData();
+  const storeSpace = useStoreSpace();
 
   console.log("dans le beforeEach");
   if (storeData.data === "") {
@@ -66,6 +68,11 @@ router.beforeEach(async (to, from) => {
       console.log(
         "ici si on a un token valide et que on a recup les datas user"
       );
+      if (await storeSpace.feedDataSpace()) {
+        console.log(
+          "et que on a recup les datas space"
+        );
+      }
     } else {
       cookies.remove("userSession"); //return this
       console.log("ici si pas de token ou token invalide");

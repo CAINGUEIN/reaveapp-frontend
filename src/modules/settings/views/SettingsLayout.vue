@@ -67,7 +67,9 @@
             />
           </div>
           <div name="appSettings" class="mb-8">
-            <h3>APP SETTINGS</h3>
+            <p class="mb-2 text-[20px] text-White font-black pl-6">
+              APP SETTINGS
+            </p>
             <button
               class="font-medium text-[20px] h-[38px] w-[300px] text-left pl-6 rounded-lg mb-0.5"
               :class="
@@ -146,7 +148,9 @@
             </button>
           </div>
           <div name="aiSettings" class="mb-8">
-            <h3>AI SETTINGS</h3>
+            <p class="mb-2 text-[20px] text-White font-black pl-6">
+              AI SETTINGS
+            </p>
             <button
               class="font-medium text-[20px] h-[38px] w-[300px] text-left pl-6 rounded-lg mb-0.5"
               :class="
@@ -195,7 +199,9 @@
             </button>
           </div>
           <div name="economicSettings" class="mb-8">
-            <h3>ECONOMIC SETTINGS</h3>
+            <p class="mb-2 text-[20px] text-White font-black pl-6">
+              ECONOMIC SETTINGS
+            </p>
             <button
               class="font-medium text-[20px] h-[38px] w-[300px] text-left pl-6 rounded-lg mb-0.5"
               :class="
@@ -256,7 +262,7 @@
             </button>
           </div>
           <div name="reave" class="mb-8">
-            <h3>REAVE</h3>
+            <p class="mb-2 text-[20px] text-White font-black pl-6">REAVE</p>
             <button
               class="font-medium text-[20px] h-[38px] w-[300px] text-left pl-6 rounded-lg mb-0.5"
               :class="
@@ -353,7 +359,6 @@
 
           <button
             class="font-medium text-[20px] h-[38px] w-[300px] text-left pl-6 rounded-lg mb-0.5 text-Ruby hover:bg-Ruby hover:text-White"
-            
             @click="openModal('logout')"
           >
             Log out
@@ -413,23 +418,23 @@ export default {
     setUrl(value) {
       this.$router.replace({
         name: this.$route.name,
-        params: { view: value }
-      })
+        params: { view: value },
+      });
     },
-    getUrl () {
+    getUrl() {
       if (Object.keys(this.$route.params).length > 0) {
-        this.view = this.$route.params.view
+        this.view = this.$route.params.view;
       } else {
-        this.view = 'account'
+        this.view = "account";
       }
     },
   },
   watch: {
     view() {
-      this.setUrl(this.view)
-    }
+      this.setUrl(this.view);
+    },
   },
-  mounted () {
+  mounted() {
     this.getUrl();
   },
 };

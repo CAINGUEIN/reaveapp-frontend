@@ -19,8 +19,8 @@
 
 <script>
 //component
-import UploadModel from "@core/components/inputs/uploadModel.vue";
-import CropperAvatar from "@core/components/cropper/CropperAvatar.vue";
+import UploadModel from "@components/inputs/uploadModel.vue";
+import CropperAvatar from "@components/cropper/CropperAvatar.vue";
 
 export default {
   components: { UploadModel, CropperAvatar },
@@ -37,8 +37,8 @@ export default {
   },
   methods: {
     submit() {
-      this.cache = document.getElementById("avatar").files[0];
-      this.img = URL.createObjectURL(this.cache);
+      let cache = document.getElementById("avatar").files[0];
+      this.img = URL.createObjectURL(cache);
     },
     close() {
       this.$emit("close");

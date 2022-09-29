@@ -23,6 +23,17 @@ class UserUpdateServices {
         return e;
       });
   }
+  static async imgProfileFriend(formdata) {
+    return Base.post("/user/update/img/ProfileFriend", formdata)
+      .then((response) => {
+        console.log("banner img", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error version", e);
+        return e;
+      });
+  }
   static async identity(data) {
     let body = data
     return Base.post(`/user/update/identity`, body)

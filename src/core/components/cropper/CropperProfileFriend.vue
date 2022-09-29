@@ -76,6 +76,9 @@ export default {
     src: {
       type: String,
     },
+    spaceId: {
+      type: String
+    }
   },
   data() {
     const store = useStoreAuth();
@@ -98,7 +101,7 @@ export default {
       }
       return new File(
         [u8arr],
-        this.store.dataAccount._id + "avatar." + type[1],
+        this.spaceId + "friend." + type[1],
         {
           type: mime,
         }
@@ -112,11 +115,11 @@ export default {
       let formData = new FormData();
       formData.append("img", submitImg);
       console.log(submitImg);
-      let result = await UserUpdateServices.imgAvatar(formData);
+      let result = await UserUpdateServices.imgProfileFriend(formData);
       if (result.data.success) {
         this.$emit("closeAction");
         this.store.loading = false;
-        this.store.avatarKey = this.store.avatarKey + 1
+        this.store.spaceKey = this.store.spaceKey + 1
       } else {
         //message d'erreur
         this.$emit("closeAction");

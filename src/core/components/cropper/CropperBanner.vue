@@ -34,7 +34,7 @@
             @action="rotate(-90)"
             txtButton="R-"
             :color="''"
-          />
+          /><!-- 
           <toolsButtonSubmit
             class="w-15 mx-2 mt-5"
             @action="flipX"
@@ -46,7 +46,7 @@
             @action="flipY"
             txtButton="Y"
             :color="''"
-          />
+          /> -->
           <toolsButtonSubmit
             class="w-40 mx-2 mt-5"
             @action="cropImage"
@@ -70,8 +70,8 @@ import ToolsButtonSubmit from "../buttons/ToolsButtonSubmit.vue";
 export default {
   components: {
     VueCropper,
-    ToolsButtonSubmit
-},
+    ToolsButtonSubmit,
+  },
   props: {
     src: {
       type: String,
@@ -105,6 +105,7 @@ export default {
       );
     },
     async cropImage() {
+      this.store.loading = true;
       // get image data for post processing, e.g. upload or setting image src
       this.cropImg = this.$refs.cropper.getCroppedCanvas().toDataURL();
       let submitImg = this.dataURLtoFile(this.cropImg);
@@ -112,10 +113,14 @@ export default {
       formData.append("img", submitImg);
       console.log(submitImg);
       let result = await UserUpdateServices.imgBanner(formData);
-      if (result.success) {
+      if (result.data.success) {
         this.$emit("closeAction");
+        this.store.loading = false;
+        this.store.bannerKey = this.store.bannerKey + 1
       } else {
+        //message d'erreur
         this.$emit("closeAction");
+        this.store.loading = false;
       }
     },
     flipX() {
