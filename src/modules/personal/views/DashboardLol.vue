@@ -19,6 +19,7 @@
     <div v-if="show && store.dataAccount.lolData.lolPuuid">
       <div name="content" class="flex flex-wrap">
         <ModuleAverageKDA :data="data" />
+        <!-- //TODO: voir a reglé l'affichage -->
         <ModuleCompareKDA
           :data="data"
           :data1month="dataProps"
