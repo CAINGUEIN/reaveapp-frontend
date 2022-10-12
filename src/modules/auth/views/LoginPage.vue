@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col p-6 flex-1">
+  <div @keyup.enter="submit" class="flex flex-col p-6 flex-1">
     <div class="flex justify-between">
       <Reave />
       <Settings />
