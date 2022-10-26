@@ -202,6 +202,12 @@
             <p class="mb-2 text-[20px] text-White font-black pl-6">
               ECONOMIC SETTINGS
             </p>
+            <BtnSettings
+              :txtBtn="'Profesional'"
+              :view="view"
+              v-model="view"
+              :target="'pro'"
+            />
             <button
               class="font-medium text-[20px] h-[38px] w-[300px] text-left pl-6 rounded-lg mb-0.5"
               :class="
@@ -371,6 +377,7 @@
     <div name="content" class="relative flex-1 pt-6">
       <button @click="goBack" class="absolute right-6 top-6 z-10">X</button>
       <Account v-if="view === 'account'" @action="openModal" />
+      <Pro v-if="view === 'pro'"></Pro>
     </div>
     <ModalSettings
       @isOpenModal="closeModal"
@@ -381,20 +388,23 @@
 </template>
 
 <script>
+//components
 import DeleteAccount from "./DeleteAccount.vue";
-import UpdateAccount from "./UpdateAccount.vue";
-import Reave from "@core/assets/icons/Reave.vue";
-import Account from "./Account.vue";
-import ModalSettings from "@core/components/settings/ModalSettings.vue";
 import BtnSettings from "@core/components/settings/BtnSettings.vue";
+import ModalSettings from "@core/components/settings/ModalSettings.vue";
+//page
+import Account from "./Account.vue";
+import Pro from "./Pro.vue";
+//assets
+import Reave from "@core/assets/icons/Reave.vue";
 export default {
   components: {
-    DeleteAccount,
-    UpdateAccount,
     Reave,
+    DeleteAccount,
     Account,
     ModalSettings,
     BtnSettings,
+    Pro,
   },
   data() {
     return {

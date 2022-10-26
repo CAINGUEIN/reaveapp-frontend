@@ -59,6 +59,32 @@ class UserUpdateServices {
       return e;
     })
   }
+
+  static async coinBalance(data) {
+    let body = data
+    return Base.post(`/user/update/coinBalance`, body)
+    .then((response) => {
+      console.log("user update Coin Balance", response);
+      return response;
+    })
+    .catch((e) => {
+      console.log("error ", e);
+      return e;
+    })
+  }
+
+  static async contactPro(data) {
+    let body = data
+    return Base.post(`/user/update/contactPro`, body)
+    .then((response) => {
+      console.log("user update contactPro", response);
+      return response;
+    })
+    .catch((e) => {
+      console.log("error ", e);
+      return e;
+    })
+  }
 }
 
 export default UserUpdateServices;

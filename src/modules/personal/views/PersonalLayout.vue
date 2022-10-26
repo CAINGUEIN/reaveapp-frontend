@@ -12,7 +12,7 @@
                 :type="'avatar'"
                 class="rounded-full my-auto"
               />
-            <h4 class="ml-4">{{ store.dataAccount.userName }}</h4>
+            <h4 class="ml-4">{{ store.dataAccount.userTag }}</h4>
           </div>
           <LolOptionDashboard
             v-if="view === 'dashboard' && option === 'lol'"
@@ -163,6 +163,8 @@
           v-if="view === 'history' && option === 'valo'"
           class="w-full h-full"
         ></MatchHistoryValo>
+        <PersonalWallet v-if="view === 'wallet'"
+          class="w-full h-full"></PersonalWallet>
       </div>
       <CreateCalendarEvent
         @isOpenModal="closeModal"
@@ -190,6 +192,7 @@ import MatchHistoryOw from "@modules/personal/views/MatchHistoryOw.vue";
 import MatchHistoryValo from "@modules/personal/views/MatchHistoryValo.vue";
 import LolOptionDashboard from "@core/components/layout/LolOptionDashboard.vue";
 import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
+import PersonalWallet from "./PersonalWallet.vue";
 //tool
 import useStoreAuth from "@stores/auth";
 //assets
@@ -230,7 +233,8 @@ export default {
     LeagueOfLegend,
     Overwatch,
     Valorant,
-    ImgFormated
+    ImgFormated,
+    PersonalWallet
 },
   data() {
     const store = useStoreAuth();
