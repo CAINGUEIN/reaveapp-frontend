@@ -35,6 +35,7 @@ export default {
     const store = useStoreAuth();
     return {
       store,
+      errors: "",
       puuid: {
         label: "PUUID",
         name: "puuid",
