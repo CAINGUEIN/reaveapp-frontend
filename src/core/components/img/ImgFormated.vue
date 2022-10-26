@@ -1,5 +1,5 @@
 <template>
-  <img :src="srcImg" @error="replaceUrl" :alt="type+size"/>
+  <img :src="srcImg" @error="replaceUrl" :alt="type + size" />
 </template>
 
 <script>
@@ -13,7 +13,7 @@ export default {
       store,
       srcImg: "",
       srcMediaBase: "https://media.reave.dev/",
-      target: ""
+      target: "",
     };
   },
   methods: {
@@ -21,13 +21,13 @@ export default {
       let srcType = "";
       if (this.type === "banner") {
         srcType = "userbanner/";
-        this.target = this.store.dataAccount._id
+        this.target = this.store.dataAccount._id;
       } else if (this.type === "avatar") {
         srcType = "useravatar/";
-        this.target = this.store.dataAccount._id
+        this.target = this.store.dataAccount._id;
       } else if (this.type === "friend") {
         srcType = "profilespace/";
-        this.target = this.targetSpace
+        this.target = this.targetSpace;
       }
       this.srcImg =
         this.srcMediaBase +
@@ -37,21 +37,27 @@ export default {
         this.type +
         ".png?rand=" +
         Math.random();
-        console.log(this.srcImg);
+      console.log(this.srcImg);
     },
-    replaceUrl (e) {
+    replaceUrl(e) {
       console.log("dans le replace");
-      let randomColor = (Math.floor(Math.random()*0xFFFFFF)).toString(16)
-      let formatSize = ""
-      if (this.size === 'l') {
-        formatSize = '60/'
-      } else if (this.size === 'm') {
-        formatSize = '50/'
-      } else if (this.size === 'xs') {
-        formatSize = '36/'
+      let randomColor = Math.floor(Math.random() * 0xffffff).toString(16);
+      let formatSize = "";
+      if (this.size === "l") {
+        formatSize = "60/";
+      } else if (this.size === "m") {
+        formatSize = "50/";
+      } else if (this.size === "xs") {
+        formatSize = "36/";
+      } else if (this.size === "s") {
+        formatSize = "40/";
+      } else if (this.size === "xl") {
+        formatSize = "120/";
+      } else if (this.size === "status") {
+        formatSize = "661x150/";
       }
-      e.target.src = "https://via.placeholder.com/" + formatSize + randomColor
-    }
+      e.target.src = "https://via.placeholder.com/" + formatSize + randomColor;
+    },
   },
   mounted() {
     this.setSrcImg();
