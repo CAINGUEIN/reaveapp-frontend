@@ -51,8 +51,8 @@ const Data = [
         class: "small"
     },
     {
-        name: "League",
-        target: "League",
+        name: "Event",
+        target: "Event",
         src: "@core/assets/icons/Events.svg",
         class: "small"
     },

@@ -36,7 +36,7 @@
       <Bootcamps />
     </ToolsButtonNav>
     <ToolsButtonNav
-      :target="'League'"
+      :target="'Event'"
       :comparTarget="store.view"
       :dataClass="''"
     >
