@@ -22,12 +22,7 @@ import routesAuth from "@router/routes/authRoute";
 import personalRoute from "@router/routes/personalRoute";
 import friendsRoute from "@router/routes/friendsRoute";
 import socialRoute from "@router/routes/socialRoute";
-import playRoute from "@router/routes/playRoute";
-import academyRoute from "@router/routes/academyRoute";
-import bootcampsRoute from "@router/routes/bootcampsRoute";
-import jobsRoute from "@router/routes/jobsRoute";
-import leagueRoute from "@router/routes/leagueRoute";
-import nftRoute from "@router/routes/nftRoute";
+import marketPlaceRoute from "@router/routes/marketPlaceRoute";
 import newRoute from "@router/routes/newRoute";
 
 routes = routes.concat(
@@ -35,12 +30,7 @@ routes = routes.concat(
   personalRoute,
   friendsRoute,
   socialRoute,
-  playRoute,
-  academyRoute,
-  bootcampsRoute,
-  jobsRoute,
-  leagueRoute,
-  nftRoute,
+  marketPlaceRoute,
   newRoute
 );
 

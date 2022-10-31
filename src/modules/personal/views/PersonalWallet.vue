@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Wallet</h1>
-    <div class="flex">
+    <div name="coin" class="flex">
       <div class="flex border-2 bg-white rounded-full">
         <h4 class="text-Black rounded-full px-4">ReaveCoin</h4>
         <h4 class="px-4 bg-black rounded-full">{{ store.dataAccount.coin }}</h4>

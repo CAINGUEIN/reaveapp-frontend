@@ -60,8 +60,8 @@
 </template>
 
 <script>
-import dataFilter from "@modules/nft/data/filter";
-import dataCards from "@modules/nft/data/cards";
+import dataFilter from "@modules/marketPlace/nft/data/filter";
+import dataCards from "@modules/marketPlace/nft/data/cards";
 import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
 import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
 import { GlobeIcon, PlusIcon, SearchIcon } from "@heroicons/vue/outline";
