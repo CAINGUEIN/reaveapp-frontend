@@ -19,22 +19,22 @@
         :autocomplete="data.name"
         min="1"
         max="999"
-        class="block border-0 w-full font-normal py-3 px-6 rounded-Large text-H4 text-White bg-Anthracite leading-none focus:ring-0 focus:outline-none focus:border-0"
+        class="block w-full font-normal py-3 px-6 rounded-Large text-H4 text-White bg-Anthracite border-LightGrey leading-none focus:border-White border-2 focus:ring-0 focus:outline-none"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
       />
+      <div
+        v-if="errors.hasOwnProperty(data.name)"
+        class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"
+      >
+        <ExclamationCircleIcon class="h-5 w-5 text-Red" aria-hidden="true" />
+      </div>
     </div>
-    <p class="text-error" id="input-error">
-      {{
-        !errors.hasOwnProperty(data.name)
-          ? ""
-          : ErrorsHelpers.affichageError(errors[data.name].message)
-      }}
-    </p>
   </div>
 </template>
 
 <script>
+import { ExclamationCircleIcon } from "@heroicons/vue/solid";
 import errorsHelpers from "@core/support/functions/errorsHelpers";
 import useStoreAuth from "@stores/auth";
 
@@ -43,6 +43,9 @@ import useStoreAuth from "@stores/auth";
  * de l'input de type number
  */
 export default {
+  components: {
+    ExclamationCircleIcon,
+  },
   props: {
     /** :data="inputExemple"
      * inputExemple: {

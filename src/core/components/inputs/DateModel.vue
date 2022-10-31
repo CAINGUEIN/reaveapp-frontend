@@ -15,7 +15,7 @@
         :id="data.name"
         :placeholder="data.label"
         :autocomplete="data.name"
-        class="block w-full font-normal py-3 px-6 rounded-Large text-H4 text-White bg-Anthracite border-LightGrey leading-none focus:border-White border-2 focus:outline-none"
+        class="block w-full font-normal py-3 px-6 rounded-Large text-H4 text-White bg-Anthracite border-LightGrey leading-none focus:border-White border-2 focus:ring-0 focus:outline-none"
         :value="formatDate()"
         @input="updateDate($event.target.value)"
         :disabled="store.loading"
