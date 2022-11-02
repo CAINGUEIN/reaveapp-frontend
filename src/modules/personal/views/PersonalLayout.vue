@@ -119,6 +119,16 @@
             >
               <Wallet />
             </ToolsButtonNav>
+
+            <ToolsButtonNav
+              
+              :btnName="'operator'"
+              :dataClass="'spaceIcon'"
+              :comparTarget="view"
+              @click="view = 'operator'"
+            >
+              <Operator />
+            </ToolsButtonNav>
             <ToolsButtonNav
               
               :btnName="'championPass'"
@@ -208,6 +218,7 @@ import LeagueOfLegend from "@assets/icons/LeagueOfLegend.vue";
 import Overwatch from "@assets/icons/Overwatch.vue";
 import Valorant from "@assets/icons/Valorant.vue";
 import ImgFormated from "../../../core/components/img/ImgFormated.vue";
+import Operator from "../../../core/assets/icons/Operator.vue";
 
 export default {
   components: {
@@ -234,7 +245,8 @@ export default {
     Overwatch,
     Valorant,
     ImgFormated,
-    PersonalWallet
+    PersonalWallet,
+    Operator
 },
   data() {
     const store = useStoreAuth();

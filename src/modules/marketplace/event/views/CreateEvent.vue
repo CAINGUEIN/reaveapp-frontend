@@ -74,7 +74,7 @@
 import InputModel from "@components/inputs/InputModel.vue";
 import DateModel from "@components/inputs/DateModel.vue";
 import NumberModel from "@components/inputs/NumberModel.vue";
-import EventServices from "@axios/services/eventServices"
+import EventServices from "@axios/services/eventServices";
 export default {
   components: { InputModel, DateModel, NumberModel },
   data() {
@@ -145,7 +145,7 @@ export default {
     };
   },
   methods: {
-    submit() {
+    async submit() {
       this.errors = {};
       let submitData = {};
       for (const property in this.data) {
@@ -160,7 +160,7 @@ export default {
         return;
       } else {
         //faire le submit
-        let result = EventServices.createEvent(submitData);
+        let result = await EventServices.createEvent(submitData);
         if (result.data.success) {
           this.closeModal();
         } else {

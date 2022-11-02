@@ -38,9 +38,9 @@ module.exports = {
         Orange: "#FF9331",
         Red: "#F34242",
         Ruby: "#EE5151",
-        Purple: '#7500BD',
-        Silver: '#505050',
-        Platinium: '#404040'
+        Purple: "#7500BD",
+        Silver: "#505050",
+        Platinium: "#404040",
       },
       fontSize: {
         H1: "64px",
@@ -97,6 +97,10 @@ module.exports = {
         img3: "url('/src/core/assets/img/BEMOCS_Fntclr_Screen_Print_A.jpg')",
         img4: "url('/src/core/assets/img/BEMOCS_LR_04_Countryside_00.jpg')",
         img5: "url('/src/core/assets/img/BEMOCS_Merkur_05.jpg')",
+      },
+      screens: {
+        "3xl": "1650px",
+        "ml": { "min": "950px", "max": "1023px" },
       },
     },
   },

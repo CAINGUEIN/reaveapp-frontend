@@ -41,8 +41,22 @@
       </button>
     </div>
     <div class="w-full bg-[#808080] h-0.5"></div>
+
+    <div name="content" class="m-8">
+      <ul
+        role="list"
+        class="grid grid-cols-1 gap-6 sm:grid-cols-2 ml:grid-cols-3 lg:grid-cols-4 3xl:grid-cols-6"
+      >
+        <EventCard
+          v-for="card in dataCards"
+          :key="card._id"
+          class="col-span-1 flex flex-col divide-y divide-LightRock rounded-lg bg-Rock text-center shadow"
+          :data="card"
+        ></EventCard>
+      </ul>
+    </div>
     <ModalClear :open="open" @action="close()">
-      <CreateEvent  @action="close()"></CreateEvent>
+      <CreateEvent @action="close()"></CreateEvent>
     </ModalClear>
   </div>
 </template>
@@ -51,18 +65,21 @@
 //component
 import ModalClear from "@core/components/modal/ModalClear.vue";
 import CreateEvent from "@modules/marketPlace/event/views/CreateEvent.vue";
+import EventCard from "@modules/marketPlace/event/views/EventCard.vue";
+import EventServices from "@axios/services/eventServices";
 //tool
 import { SearchIcon } from "@heroicons/vue/outline";
 import useStoreAuth from "@stores/auth";
 
 export default {
-  components: { SearchIcon, ModalClear, CreateEvent },
+  components: { SearchIcon, ModalClear, CreateEvent, EventCard },
   data() {
     const store = useStoreAuth();
     return {
       open: false,
       store,
       errors: {},
+      dataCards: {},
     };
   },
   methods: {
@@ -70,6 +87,17 @@ export default {
       this.open = false;
     },
     //faire la route pour recup les data d'event de base recup les 20 prochaines
+    async feadDataCards() {
+      let result = await EventServices.listEvent();
+      if (result.data.success) {
+        this.dataCards = result.data.data;
+      } else {
+        this.errors = result.data.data.errors;
+      }
+    },
+  },
+  mounted() {
+    this.feadDataCards();
   },
 };
 </script>
