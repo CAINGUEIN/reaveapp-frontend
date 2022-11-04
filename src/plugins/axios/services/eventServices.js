@@ -25,6 +25,18 @@ class EventServices {
         return e;
       });
   }
+
+  static async buyEvent(body) {
+    return Base.post(`/event/buy`, body)
+      .then((response) => {
+        console.log("event buy", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error ", e);
+        return e;
+      });
+  }
 }
 
 export default EventServices;
