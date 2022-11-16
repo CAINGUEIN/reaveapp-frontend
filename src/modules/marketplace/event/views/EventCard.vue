@@ -56,7 +56,7 @@
     <ModalClear :open="open" @action="close()">
       <BuyModal
         :data="data"
-        @action="close()"
+        @action="close"
         v-if="viewModal === 'buy'"
       ></BuyModal>
       <GiftModal
@@ -85,6 +85,9 @@ export default {
       type: Object,
       default: {},
     },
+    reload: {
+      type: Function,
+    }
   },
   data() {
     return {
@@ -101,8 +104,12 @@ export default {
     mouseleave: function () {
       this.comparedContent = false;
     },
-    close() {
+    close(value) {
       this.open = false;
+      if (value === 'reload') {
+        console.log('dans le reload');
+        this.$emit('reload')
+      }
     },
     async addCoins(balance) {
       let data = "";

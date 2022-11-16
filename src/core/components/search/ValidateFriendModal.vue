@@ -158,6 +158,7 @@ export default {
       let result = await UsersServices.validateFriend(dataSubmit);
       //supression de la notification si success
       if (result.data.success === true) {
+        this.store.dataAccount = result.data.data
         this.$emit("pullNotification", index);
       }
     },

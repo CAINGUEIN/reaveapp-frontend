@@ -37,6 +37,18 @@ class EventServices {
         return e;
       });
   }
+
+  static async searchPersonalEventOperator() {
+    return Base.get(`/event/personalOperator`)
+      .then((response) => {
+        console.log("event personalOperator", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error personalOperator", e);
+        return e;
+      });
+  }
 }
 
 export default EventServices;

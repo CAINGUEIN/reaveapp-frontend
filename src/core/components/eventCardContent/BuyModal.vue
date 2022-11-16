@@ -1,5 +1,22 @@
 <template>
-  <div :key="'buy' + update" v-if="data.price <= store.dataAccount.coin">
+  <div
+    :key="'validate' + update"
+    v-if="view === 'validate'"
+    class="flex flex-col justify-between"
+  >
+    <h4>Merci pour votre achat</h4>
+    <h5>le ticket pour {{ data.name }} a etait ajouté a votre wallet</h5>
+    <h6>La page vas ce fermer dans quelque secondes</h6>
+    <div>
+      <button
+        class="bg-white text-black rounded-full px-3"
+        @click.prevent="closeModal()"
+      >
+        <h4 class="text-black">fermer</h4>
+      </button>
+    </div>
+  </div>
+  <div :key="'buy' + update" v-else-if="data.price <= store.dataAccount.coin">
     <h3>BUY</h3>
     <h4>un fois validé le retour en arriere n'est pas possible</h4>
     <p>
@@ -9,7 +26,10 @@
     <button @click="closeModal()" class="bg-Red text-black rounded-full px-3">
       quitter
     </button>
-    <button @click="buyTicket(data._id)" class="bg-Green text-black rounded-full px-3">
+    <button
+      @click="buyTicket(data._id)"
+      class="bg-Green text-black rounded-full px-3"
+    >
       valider
     </button>
   </div>
@@ -31,7 +51,7 @@
 import UserUpdateServices from "@axios/services/userUpdateServices";
 import NumberModel from "@components/inputs/NumberModel.vue";
 import useStoreAuth from "@stores/auth";
-import EventServices from "@axios/services/eventServices"
+import EventServices from "@axios/services/eventServices";
 export default {
   components: {
     NumberModel,
@@ -49,6 +69,7 @@ export default {
       },
       errors: {},
       update: 0,
+      view: "",
     };
   },
   methods: {
@@ -71,17 +92,24 @@ export default {
       // fermeture de la modal si ok avec changment du chiffre dans la reavecoin
     },
     async buyTicket(id) {
-        let data = {event_id: id}
+      let data = { event_id: id };
       let result = await EventServices.buyEvent(data);
       if (result.data.success) {
+        this.view = "validate";
+        this.store.dataAccount.historiesCoin = result.data.data.historiesCoin
+        this.store.dataAccount.coin = result.data.data.coin
+        this.store.dataAccount.ticket = result.data.data.ticket
+        setTimeout(() => {
+          this.closeModal('reload');
+        }, 2000);
       } else {
       }
     },
     setValue() {
       this.money.value = this.data.price - this.store.dataAccount.coin;
     },
-    closeModal() {
-      this.$emit("action");
+    closeModal(value) {
+      this.$emit("action", value);
     },
   },
   mounted() {

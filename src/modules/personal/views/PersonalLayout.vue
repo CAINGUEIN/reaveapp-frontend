@@ -1,17 +1,15 @@
 <template>
   <div class="pr-[30px]">
     <div class="h-full flex flex-col overflow-hidden">
-      <div
-        class="sticky top-0 left-0 right-0 z-20 h-15 bg-Anthracite"
-      >
+      <div class="sticky top-0 left-0 right-0 z-20 h-15 bg-Anthracite">
         <div class="flex justify-between bg-DarkRock rounded-full items-center">
           <div name="space-name" class="flex ml-4" @click="goTo('Profile')">
             <ImgFormated
-                :key="store.avatarKey"
-                :size="'xs'"
-                :type="'avatar'"
-                class="rounded-full my-auto"
-              />
+              :key="store.avatarKey"
+              :size="'xs'"
+              :type="'avatar'"
+              class="rounded-full my-auto"
+            />
             <h4 class="ml-4">{{ store.dataAccount.userTag }}</h4>
           </div>
           <LolOptionDashboard
@@ -25,7 +23,6 @@
             class="flex bg-LightRock rounded-full"
           >
             <ToolsButtonNav
-              
               :btnName="'lol'"
               :dataClass="'logoGame'"
               :comparTarget="option"
@@ -34,7 +31,6 @@
               <LeagueOfLegend />
             </ToolsButtonNav>
             <ToolsButtonNav
-              
               :btnName="'ow'"
               :dataClass="'logoGame'"
               :comparTarget="option"
@@ -43,7 +39,6 @@
               <Overwatch />
             </ToolsButtonNav>
             <ToolsButtonNav
-              
               :btnName="'valo'"
               :dataClass="'logoGame'"
               :comparTarget="option"
@@ -54,7 +49,6 @@
           </div>
           <div name="icon" class="flex">
             <ToolsButtonNav
-              
               :btnName="'dashboard'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
@@ -63,7 +57,6 @@
               <Dashboard />
             </ToolsButtonNav>
             <ToolsButtonNav
-              
               :btnName="'tree'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
@@ -72,7 +65,6 @@
               <Tree />
             </ToolsButtonNav>
             <ToolsButtonNav
-              
               :btnName="'calendar'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
@@ -84,7 +76,6 @@
               </div>
             </ToolsButtonNav>
             <ToolsButtonNav
-              
               :btnName="'history'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
@@ -93,7 +84,6 @@
               <MatchHistory />
             </ToolsButtonNav>
             <ToolsButtonNav
-              
               :btnName="'cloud'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
@@ -102,7 +92,6 @@
               <Cloud />
             </ToolsButtonNav>
             <ToolsButtonNav
-              
               :btnName="'notifs'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
@@ -111,7 +100,6 @@
               <Notification />
             </ToolsButtonNav>
             <ToolsButtonNav
-              
               :btnName="'wallet'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
@@ -121,7 +109,6 @@
             </ToolsButtonNav>
 
             <ToolsButtonNav
-              
               :btnName="'operator'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
@@ -130,7 +117,6 @@
               <Operator />
             </ToolsButtonNav>
             <ToolsButtonNav
-              
               :btnName="'championPass'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
@@ -173,8 +159,14 @@
           v-if="view === 'history' && option === 'valo'"
           class="w-full h-full"
         ></MatchHistoryValo>
-        <PersonalWallet v-if="view === 'wallet'"
-          class="w-full h-full"></PersonalWallet>
+        <PersonalWallet
+          v-if="view === 'wallet'"
+          class="w-full h-full"
+        ></PersonalWallet>
+        <PersonalOperator
+          v-if="view === 'operator'"
+          class="w-full h-full"
+        ></PersonalOperator>
       </div>
       <CreateCalendarEvent
         @isOpenModal="closeModal"
@@ -219,6 +211,7 @@ import Overwatch from "@assets/icons/Overwatch.vue";
 import Valorant from "@assets/icons/Valorant.vue";
 import ImgFormated from "../../../core/components/img/ImgFormated.vue";
 import Operator from "../../../core/assets/icons/Operator.vue";
+import PersonalOperator from "./PersonalOperator.vue";
 
 export default {
   components: {
@@ -246,8 +239,9 @@ export default {
     Valorant,
     ImgFormated,
     PersonalWallet,
-    Operator
-},
+    Operator,
+    PersonalOperator,
+  },
   data() {
     const store = useStoreAuth();
     return {
@@ -291,14 +285,14 @@ export default {
     setUrl(value) {
       this.$router.replace({
         name: this.$route.name,
-        params: { view: value }
-      })
+        params: { view: value },
+      });
     },
-    getUrl () {
+    getUrl() {
       if (Object.keys(this.$route.params).length > 0) {
-        this.view = this.$route.params.view
+        this.view = this.$route.params.view;
       } else {
-        this.view = 'account'
+        this.view = "account";
       }
     },
   },
@@ -308,10 +302,10 @@ export default {
       console.log("dans le watcher");
     },
     view() {
-      this.setUrl(this.view)
-    }
+      this.setUrl(this.view);
+    },
   },
-  mounted () {
+  mounted() {
     this.getUrl();
   },
 };

@@ -63,7 +63,7 @@
             <!-- list des amis -->
             <!-- recup ici peut etre avec un populate dans la DB les infos des firends
              en limitant au nom photo de profile et note -->
-            <div v-for="friend in store.friends">
+            <div v-for="friend in store.dataAccount.friends">
               <div
                 name="left"
                 class="flex mt-2 ml-2 justify-between items-center"
@@ -76,9 +76,9 @@
                   />
                   <div class="ml-3 text-left">
                     <h5>
-                      {{ friend.userName }}
+                      {{ friend.userTag }}
                     </h5>
-                    <h5 class="text-LightGrey">@{{ friend.profileTag }}</h5>
+                    <h5 class="text-LightGrey">@{{ friend.profileName }}</h5>
                   </div>
                 </div>
 

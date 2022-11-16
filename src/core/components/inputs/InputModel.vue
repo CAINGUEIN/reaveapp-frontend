@@ -17,15 +17,17 @@
         :type="data.type"
         :name="data.name"
         :id="data.name"
-        :placeholder="data.label"
+        :placeholder="data.placeholder ? data.placeholder : data.label"
         :autocomplete="data.name"
         class="block w-full font-normal py-3 px-6 rounded-Large text-H4 text-White bg-Anthracite border-LightGrey leading-none focus:border-White border-2 focus:ring-0 focus:outline-none"
+        :class="data.class"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
         :disabled="store.loading"
         aria-describedby="email-error"
         aria-invalid="true"
       />
+      <slot></slot>
       <div
         v-if="errors.hasOwnProperty(data.name)"
         class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"

@@ -1,6 +1,6 @@
 <template>
   <TransitionRoot as="template" :show="isOpenModal">
-    <Dialog as="div" class="fixed z-10 inset-0 overflow-y-auto" @close="close">
+    <Dialog as="div" class="fixed z-50 inset-0 overflow-y-auto" @close="close">
       <div
         class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
       >
@@ -38,7 +38,7 @@
           >
             <div>
               <div class="mt-3 sm:mt-5">
-                <div class="bg-Black p-8 rounded-lg h-screen text-center">
+                <div class="bg-Black p-8 rounded-lg text-center">
                   <button
                     class="text-right hover:border-2 hover:border-Stone w-auto absolute top-0 right-2"
                     @click="close"
@@ -79,9 +79,9 @@
                         />
                         <div class="ml-3 text-left">
                           <h5>
-                            {{ user.userName }}
+                            {{ user.userTag }}
                           </h5>
-                          <h5 class="text-LightGrey">@{{ user.profileTag }}</h5>
+                          <h5 class="text-LightGrey">@{{ user.profileName }}</h5>
                         </div>
                       </div>
 
@@ -215,7 +215,7 @@ export default {
         this.timeout = setTimeout(async () => {
           this.wait = true;
           this.user.value = val;
-          let submitData = { userName: val, profileTag: val };
+          let submitData = { userTag: val, profileName: val };
           let result = await SearchUsersServices.usersList(submitData);
           if (result.data.success) {
             if (result.data.data.length === 0) {

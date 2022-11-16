@@ -50,6 +50,7 @@
         <EventCard
           v-for="card in dataCards"
           :key="card._id"
+          @reload="feadDataCards"
           class="col-span-1 flex flex-col divide-y divide-LightRock rounded-lg bg-Rock text-center shadow"
           :data="card"
         ></EventCard>
