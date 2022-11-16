@@ -84,6 +84,16 @@
                     <Debit class="m-auto" :color1="'white'"></Debit>
                   </div>
                 </div>
+                <div v-if="item.type === 'sendCoin' && item.value > 0" class="flex">
+                  <div class="bg-LightRock rounded-full h-10 w-10 flex mx-auto">
+                    <TransferFrom class="m-auto" :color1="'white'"></TransferFrom>
+                  </div>
+                </div>
+                <div v-if="item.type === 'sendCoin' && item.value < 0" class="flex">
+                  <div class="bg-LightRock rounded-full h-10 w-10 flex mx-auto">
+                    <TransferTo class="m-auto" :color1="'white'"></TransferTo>
+                  </div>
+                </div>
                 <div v-if="item.type === 'BuyTicket'" class="flex">
                   <div class="bg-LightRock rounded-full h-10 w-10 flex mx-auto">
                     <Purshase class="m-auto" :color1="'white'"></Purshase>
@@ -91,6 +101,8 @@
                 </div>
               </td>
               <td>
+                <h5 v-if="item.type === 'sendCoin' && item.value > 0">cadeau</h5>
+                <h5 v-if="item.type === 'sendCoin' && item.value < 0">don</h5>
                 <h5 v-if="item.type === 'coin' && item.value > 0">Achat</h5>
                 <h5 v-if="item.type === 'coin' && item.value < 0">Vente</h5>
                 <h5 v-if="item.type === 'BuyTicket'">{{ item.message }}</h5>
@@ -153,6 +165,7 @@ import Credit from "@assets/icons/Wallet/Credit.vue";
 import Debit from "@assets/icons/Wallet/Debit.vue";
 import Purshase from "@assets/icons/Wallet/Purshase.vue";
 import TransferTo from "@assets/icons/Wallet/TransferTo.vue";
+import TransferFrom from "@assets/icons/Wallet/TransferFrom.vue";
 import GoldRC from "@assets/icons/Wallet/GoldRC.vue";
 import WalletCard from "@components/eventCardContent/WalletCard.vue";
 import TransferingTo from "@components/modal/wallet/TransferingTo.vue";
@@ -174,6 +187,7 @@ export default {
     Debiting,
     TransferingTo,
     Purshase,
+    TransferFrom,
   },
   data() {
     const store = useStoreAuth();

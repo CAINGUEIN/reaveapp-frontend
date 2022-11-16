@@ -46,7 +46,7 @@
         <h4 class="text-center">your Wallet?</h4>
       </div>
       <div
-        @click="select = 'Mastercard'"
+        @click="select = 'Mastercard', etape = 3"
         class="h-20 flex justify-between items-center p-4 rounded-2xl"
         :class="select === 'Mastercard' ? 'bg-LightRock' : 'hover:bg-Rock'"
       >
@@ -65,7 +65,7 @@
         </div>
       </div>
       <div
-        @click="select = 'Visa'"
+        @click="select = 'Visa', etape = 3"
         class="h-20 flex justify-between items-center p-4 rounded-2xl"
         :class="select === 'Visa' ? 'bg-LightRock' : 'hover:bg-Rock'"
       >
@@ -85,13 +85,6 @@
       </div>
       <button class="rounded-full h-16 px-10 mx-auto mt-6">
         <h4 class="text-White">Add Card</h4>
-      </button>
-      <button
-        :class="select !== '' ? 'bg-white' : 'bg-Gravel cursor-not-allowed'"
-        class="rounded-full h-16 px-10 mx-auto mt-6"
-        @click.prevent="select !== '' ? (etape = 3) : ''"
-      >
-        <h4 class="text-black">Continue</h4>
       </button>
     </div>
     <div class="pt-12 flex flex-col space-y-4" v-if="etape === 3">

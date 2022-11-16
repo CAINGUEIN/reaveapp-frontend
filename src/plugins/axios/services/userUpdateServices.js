@@ -73,6 +73,19 @@ class UserUpdateServices {
     })
   }
 
+  static async sendCoin(data) {
+    let body = data
+    return Base.post(`/user/update/sendCoin`, body)
+    .then((response) => {
+      console.log("user update send Coin", response);
+      return response;
+    })
+    .catch((e) => {
+      console.log("error ", e);
+      return e;
+    })
+  }
+
   static async contactPro(data) {
     let body = data
     return Base.post(`/user/update/contactPro`, body)
