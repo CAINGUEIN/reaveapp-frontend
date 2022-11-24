@@ -7,12 +7,7 @@
     >
       <h2 class="text-white">&lsaquo;</h2>
     </button>
-    <button
-      class="absolute right-0 rounded-full px-3 z-10"
-      @click.prevent="closeModal()"
-    >
-      <h2 class="text-white">X</h2>
-    </button>
+    <XButton36 class="absolute right-0 z-10" @click.prevent="closeModal()"></XButton36>
     <div class="pt-12 flex flex-col" v-if="etape === 1">
       <h4 class="text-center">Who are you sending to?</h4>
       <div class="mt-4">
@@ -152,6 +147,7 @@ import InputModel from "../../inputs/InputModel.vue";
 import UserUpdateServices from "@axios/services/userUpdateServices";
 //tool
 import useStoreAuth from "@stores/auth";
+import XButton36 from "../../buttons/XButton36.vue";
 
 export default {
   data() {
@@ -204,6 +200,6 @@ export default {
       // fermeture de la modal si ok avec changment du chiffre dans la reavecoin
     },
   },
-  components: { SearchIcon, ArrowRightIcon, InputModel, SilverRC, Checkmark },
+  components: { SearchIcon, ArrowRightIcon, InputModel, SilverRC, Checkmark, XButton36 },
 };
 </script>

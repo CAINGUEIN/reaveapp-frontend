@@ -26,6 +26,12 @@ export default [
     meta: { layout: "none", permission: "log" },
   },
   {
+    path: "/projectId/:id",
+    name: "ProjectId",
+    component: () => import("@modules/personal/views/OperatorProjectId.vue"),
+    meta: { layout: "none", permission: "log" },
+  },
+  {
     path: "/profile",
     name: "Profile",
     component: () => import("@modules/personal/views/ProfileMain.vue"),

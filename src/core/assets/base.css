@@ -87,6 +87,9 @@
   p {
     @apply text-lg text-LightGrey font-sans font-normal;
   }
+  label {
+    @apply font-sans
+  }
 }
 @tailwind utilities;
 @layer utilities {

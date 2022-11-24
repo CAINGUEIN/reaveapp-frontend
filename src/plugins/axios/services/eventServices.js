@@ -49,6 +49,18 @@ class EventServices {
         return e;
       });
   }
+
+  static async dataEvent(body) {
+    return Base.post(`/event/data`, body)
+      .then((response) => {
+        console.log("event data", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error ", e);
+        return e;
+      });
+  }
 }
 
 export default EventServices;

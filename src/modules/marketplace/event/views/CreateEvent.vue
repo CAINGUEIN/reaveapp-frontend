@@ -1,171 +1,135 @@
 <template>
-  <div class="flex flex-col">
-    <h3>Create an Event</h3>
-    <InputModel
-      class="mt-4"
-      :data="data.name"
-      v-model="data.name.value"
-      :errors="errors"
-    ></InputModel>
-    <InputModel
-      class="mt-4"
-      :data="data.orga"
-      v-model="data.orga.value"
-      :errors="errors"
-    ></InputModel>
-    <DateModel
-      class="mt-4"
-      :data="data.date"
-      v-model="data.date.value"
-      :errors="errors"
-    ></DateModel>
-    <InputModel
-      class="mt-4"
-      :data="data.game"
-      v-model="data.game.value"
-      :errors="errors"
-    ></InputModel>
-    <NumberModel
-      class="mt-4"
-      :data="data.ticket"
-      v-model="data.ticket.value"
-      :errors="errors"
-    ></NumberModel>
-    <NumberModel
-      class="mt-4"
-      :data="data.price"
-      v-model="data.price.value"
-      :errors="errors"
-    ></NumberModel>
-    <InputModel
-      class="mt-4"
-      :data="data.adress"
-      v-model="data.adress.value"
-      :errors="errors"
-    ></InputModel>
-    <InputModel
-      class="mt-4"
-      :data="data.cp"
-      v-model="data.cp.value"
-      :errors="errors"
-    ></InputModel>
-    <InputModel
-      class="mt-4"
-      :data="data.country"
-      v-model="data.country.value"
-      :errors="errors"
-    ></InputModel>
-    <InputModel
-      class="mt-4"
-      :data="data.type"
-      v-model="data.type.value"
-      :errors="errors"
-    ></InputModel>
+  <div>
     <button
-      class="bg-white h-15 rounded-full p-4 mx-auto mt-4"
-      @click.prevent="submit()"
+      v-if="etape > 1"
+      class="absolute left-0 rounded-full px-3 z-10"
+      @click.prevent="(etape = etape - 1), (select = '')"
     >
-      <p class="text-black font-bold">Create</p>
+      <h2 class="text-white">&lsaquo;</h2>
     </button>
+    <button
+      class="absolute right-0 rounded-full px-3 z-10"
+      @click.prevent="closeModal()"
+    >
+      <h2 class="text-white">X</h2>
+    </button>
+    <div class="pt-12 flex flex-col" v-if="etape === 1">
+      <h4 class="text-center">Start a Project</h4>
+      <button
+        @click="(category = 'event'), (etape = 2)"
+        class="bg-img1 rounded-xl pl-8 text-left text-white h-15 mt-4"
+      >
+        <h4>Event</h4>
+      </button>
+      <button
+        @click="(category = 'venue'), (etape = 2)"
+        class="bg-img2 rounded-xl pl-8 text-left text-white h-15 mt-4"
+      >
+        <h4>Venue</h4>
+      </button>
+      <button
+        @click="(category = 'bootcamp'), (etape = 2)"
+        class="bg-img3 rounded-xl pl-8 text-left text-white h-15 mt-4"
+      >
+        <h4>Bootcamp</h4>
+      </button>
+      <button
+        @click="(category = 'shard'), (etape = 2)"
+        class="bg-img4 rounded-xl pl-8 text-left text-white h-15 mt-4"
+      >
+        <h4>Shard</h4>
+      </button>
+
+      <!-- list des project type -->
+    </div>
+
+    <div class="pt-12 flex flex-col space-y-4" v-if="etape === 2">
+      <h4 class="text-center">What type of Event?</h4>
+      <button
+        @click="(type.value = 'spectacle'), (etape = 3)"
+        class="bg-img1 rounded-xl pl-8 text-left text-white h-15 mt-4"
+      >
+        <h4>Spectacle</h4>
+      </button>
+      <button
+        @click="(type.value = 'tournament'), (etape = 3)"
+        class="bg-img2 rounded-xl pl-8 text-left text-white h-15 mt-4"
+      >
+        <h4>Tournament</h4>
+      </button>
+      <button
+        @click="(type.value = 'festival'), (etape = 3)"
+        class="bg-img3 rounded-xl pl-8 text-left text-white h-15 mt-4"
+      >
+        <h4>Festival</h4>
+      </button>
+      <button
+        @click="(type.value = 'ceremony'), (etape = 3)"
+        class="bg-img4 rounded-xl pl-8 text-left text-white h-15 mt-4"
+      >
+        <h4>Ceremony</h4>
+      </button>
+    </div>
+    <div class="pt-12 flex flex-col" v-if="etape === 3">
+      <h4 class="text-center">What’s the name of</h4>
+      <h4 class="text-center">your {{ type.value }}?</h4>
+      <InputModel
+        class="mt-4"
+        :data="name"
+        v-model="name.value"
+        :errors="errors"
+      ></InputModel>
+      <button
+        class="bg-white h-15 rounded-full p-4 px-8 mx-auto mt-4"
+        @click.prevent="submit()"
+      >
+        <p class="text-black font-bold">continue</p>
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
 import InputModel from "@components/inputs/InputModel.vue";
-import DateModel from "@components/inputs/DateModel.vue";
-import NumberModel from "@components/inputs/NumberModel.vue";
 import EventServices from "@axios/services/eventServices";
 export default {
-  components: { InputModel, DateModel, NumberModel },
+  components: { InputModel },
   data() {
     return {
-      data: {
-        name: {
-          label: "Event name",
-          name: "name",
-          type: "text",
-          value: "",
-        },
-        orga: {
-          label: "Organisation name",
-          name: "orga",
-          type: "text",
-          value: "",
-        },
-        date: {
-          label: "Date",
-          name: "date",
-          type: "datetime-local",
-          value: "",
-        },
-        game: {
-          label: "Game",
-          name: "game",
-          type: "text",
-          value: "",
-        },
-        ticket: {
-          label: "Number of tickets",
-          name: "ticket",
-          type: "number",
-          value: "",
-        },
-        price: {
-          label: "Price",
-          name: "price",
-          type: "number",
-          value: "",
-        },
-        adress: {
-          label: "Location Event",
-          name: "adress",
-          type: "text",
-          value: "",
-        },
-        cp: {
-          label: "Postal Code",
-          name: "cp",
-          type: "text",
-          value: "",
-        },
-        country: {
-          label: "Country",
-          name: "orga",
-          type: "text",
-          value: "",
-        },
-        type: {
-          label: "Event type",
-          name: "orga",
-          type: "text",
-          value: "",
-        },
+      name: {
+        label: "Project name",
+        name: "name",
+        type: "text",
+        value: "",
       },
+      type: {
+        label: "Event type",
+        name: "orga",
+        type: "text",
+        value: "",
+      },
+      category: "",
+      etape: 1,
       errors: {},
     };
   },
   methods: {
     async submit() {
       this.errors = {};
-      let submitData = {};
-      for (const property in this.data) {
-        if (this.data[property].value !== "") {
-          submitData[property] = this.data[property].value;
-        } else {
-          this.errors[property] = { message: "This Empty" };
-        }
-      }
-      if (Object.keys(this.errors).length > 0) {
-        console.log(this.errors);
-        return;
+      let submitData = {
+        name: this.name.value,
+        type: this.type.value,
+      };
+      //faire le submit
+      let result = await EventServices.createEvent(submitData);
+      if (result.data.success) {
+        console.log(result.data.data);
+        this.$router.push({
+          name: "ProjectId",
+          params: { id: result.data.data._id },
+        });
       } else {
-        //faire le submit
-        let result = await EventServices.createEvent(submitData);
-        if (result.data.success) {
-          this.closeModal();
-        } else {
-          this.errors = result.data.data.errors;
-        }
+        this.errors = result.data.data.errors;
       }
     },
     closeModal() {
