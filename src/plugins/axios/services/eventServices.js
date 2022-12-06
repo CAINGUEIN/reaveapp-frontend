@@ -61,6 +61,67 @@ class EventServices {
         return e;
       });
   }
+
+  static async updateEvent(body) {
+    return Base.post(`/event/update`, body)
+      .then((response) => {
+        console.log("event update", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error update event", e);
+        return e;
+      });
+  }
+  
+  static async addStaff(body) {
+    return Base.post(`/event/addStaff`, body)
+      .then((response) => {
+        console.log("event addStaff", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error addStaff event", e);
+        return e;
+      });
+  }
+
+  static async addStaffAndSwitchOwner(body) {
+    return Base.post(`/event/addStaffAndSwitchOwner`, body)
+      .then((response) => {
+        console.log("event addStaffAndSwitchOwner", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error addStaffAndSwitchOwner event", e);
+        return e;
+      });
+  }
+
+  static async modifyStaff(body) {
+    return Base.post(`/event/modifyStaff`, body)
+      .then((response) => {
+        console.log("event modifyStaff", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error modifyStaff event", e);
+        return e;
+      });
+  }
+
+  static async modifyStaffAndSwitchOwner(body) {
+    return Base.post(`/event/modifyStaffAndSwitchOwner`, body)
+      .then((response) => {
+        console.log("event modifyStaffAndSwitchOwner", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error modifyStaffAndSwitchOwner event", e);
+        return e;
+      });
+  }
+  
 }
 
 export default EventServices;

@@ -59,7 +59,7 @@ export default {
     /** v-model="inputExemple.value"
      * ce qui va etre submit
      */
-    modelValue: String,
+    modelValue: Number,
     /** :errors="errors[exemple]"
      * retour de l'erreur
      */

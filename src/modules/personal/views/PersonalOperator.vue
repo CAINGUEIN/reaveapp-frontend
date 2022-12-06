@@ -33,7 +33,7 @@
 
 <script>
 //component
-import ModalClear from "@core/components/modal/ModalClear.vue";
+import ModalClear from "@components/modal/ModalClear.vue";
 import InputModel from "@components/inputs/InputModel.vue";
 import WalletCard from "@components/eventCardContent/WalletCard.vue";
 //services

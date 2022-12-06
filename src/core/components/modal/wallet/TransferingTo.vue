@@ -140,14 +140,14 @@
 <script>
 //components
 import { ArrowRightIcon, SearchIcon } from "@heroicons/vue/outline";
-import Checkmark from "../../../assets/icons/Wallet/Checkmark.vue";
-import SilverRC from "../../../assets/icons/Wallet/SilverRC.vue";
-import InputModel from "../../inputs/InputModel.vue";
+import Checkmark from "@assets/icons/Wallet/Checkmark.vue";
+import SilverRC from "@assets/icons/Wallet/SilverRC.vue";
+import InputModel from "@components/inputs/InputModel.vue";
+import XButton36 from "@components/buttons/XButton36.vue";
 // services
 import UserUpdateServices from "@axios/services/userUpdateServices";
 //tool
 import useStoreAuth from "@stores/auth";
-import XButton36 from "../../buttons/XButton36.vue";
 
 export default {
   data() {

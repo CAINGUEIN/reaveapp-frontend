@@ -6,13 +6,13 @@
       <button
         class="border-b-2 flex-1 text-H4 pb-4"
         :class="
-          select === 'Overview'
+          select === 'Venue'
             ? 'border-White text-White'
             : 'border-Gravel text-Gravel hover:border-Cloud hover:text-Cloud'
         "
-        @click="select = 'Overview'"
+        @click="select = 'Venue'"
       >
-        Overview
+        Venue
       </button>
       <button
         class="border-b-2 flex-1 text-H4 pb-4"
@@ -35,17 +35,6 @@
         @click="select = 'Logistics'"
       >
         Logistics
-      </button>
-      <button
-        class="border-b-2 flex-1 text-H4 pb-4"
-        :class="
-          select === 'Venue'
-            ? 'border-White text-White'
-            : 'border-Gravel text-Gravel hover:border-Cloud hover:text-Cloud'
-        "
-        @click="select = 'Venue'"
-      >
-        Venue
       </button>
       <button
         class="border-b-2 flex-1 text-H4 pb-4"
@@ -93,26 +82,36 @@
       </button>
     </div>
     <div name="content" class="w-full px-[60px] mt-10">
-      <Overview
+      <Venue
         :data="infoEvent"
-        v-if="select === 'Overview' && infoEvent !== ''"
-      ></Overview>
+        v-if="select === 'Venue' && infoEvent !== ''"
+      ></Venue>
+      <Staff
+        :data="infoEvent"
+        @update="updateData"
+        v-if="select === 'Staff' && infoEvent !== ''"
+      ></Staff>
     </div>
     <XButton60 @click="goBack" class="absolute right-6 top-6 z-10"></XButton60>
+    <div v-if="infoEvent !== ''" class="absolute left-6 top-6 z-10">
+      <Naming class="flex" :data="infoEvent"></Naming>
+    </div>
   </div>
 </template>
 
 <script>
 import eventServices from "@axios/services/eventServices";
 import XButton60 from "@components/buttons/XButton60.vue";
-import Overview from "@components/projectId/overview/Overview.vue";
+import Naming from "@components/projectId/Naming.vue";
+import Staff from "../../../core/components/projectId/staff/Staff.vue";
+import Venue from "../../../core/components/projectId/venue/Venue.vue";
 export default {
+  components: { XButton60, Naming, Venue, Staff },
   data() {
     return {
       id: "",
       infoEvent: "",
-      infoTicket: "",
-      select: "Overview",
+      select: "Venue",
     };
   },
   methods: {
@@ -132,14 +131,15 @@ export default {
       let result = await eventServices.dataEvent(body);
       if (result.data.success) {
         this.infoEvent = result.data.data;
-        this.infoTicket = result.data.data.soldTicket;
       }
+    },
+    updateData() {
+      this.feadData();
     },
   },
   mounted() {
     this.getUrl();
   },
-  components: { XButton60, Overview },
 };
 </script>
 

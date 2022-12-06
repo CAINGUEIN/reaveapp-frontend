@@ -72,18 +72,6 @@
   h6 {
     @apply text-H6 text-white font-sans font-medium;
   }
-  th {
-    @apply border-hidden;
-  }
-  thead {
-    @apply border-hidden;
-  }
-  table {
-    @apply border-hidden;
-  }
-  tbody {
-    @apply border-hidden;
-  }
   p {
     @apply text-lg text-LightGrey font-sans font-normal;
   }
