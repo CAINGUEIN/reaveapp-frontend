@@ -95,7 +95,7 @@
       </tbody>
     </table>
     <ModalClear :open="open" @action="close()">
-      <EditMember :data="data" :select="select" @action="close()"></EditMember>
+      <EditMember :data="data" :select="select" @action="close"></EditMember>
     </ModalClear>
   </div>
 </template>
@@ -133,10 +133,15 @@ export default {
     };
   },
   methods: {
-    close() {
+    close(value) {
       this.open = false;
+      if (value === "update") {
+        console.log("ici");
+        this.$emit("action", "update");
+      }
     },
     tableOrder() {
+      this.tableOrganized = [];
       let dataOwner = {
         user_id: this.data.owner.user_id._id,
         profileName: this.data.owner.user_id.profileName,
@@ -160,6 +165,11 @@ export default {
       });
       console.log(this.tableOrganized);
     },
+  },
+  watch: {
+    data() {
+      this.tableOrder();
+    }
   },
   mounted() {
     this.tableOrder();

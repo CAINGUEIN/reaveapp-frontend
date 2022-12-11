@@ -266,6 +266,7 @@ export default {
       } else {
         result = await EventServices.modifyStaff(body);
       }
+      console.log("ici");
       if (result.data.success) {
         this.$emit("action", "update");
       }

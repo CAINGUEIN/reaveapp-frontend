@@ -2,6 +2,7 @@
   <div>
     <div class="w-full pr-16 relative">
       <Button40Slot
+        v-if="yourPerm === 'Owner' || yourPerm === 'Admin'"
         :selected="edit"
         class="absolute right-0 top-1"
         @click="edit === true ? (edit = false) : (edit = true)"
@@ -38,7 +39,7 @@ import EventServices from "@axios/services/eventServices";
 import Button40Slot from "../buttons/Button40Slot.vue";
 export default {
   components: { InputModel, PencilIcon, Button40Slot },
-  props: ["data"],
+  props: ["data", "yourPerm"],
   data() {
     return {
       name: {
@@ -71,12 +72,12 @@ export default {
         event_id: this.data._id,
         name: this.name.value,
       };
-      let result = await EventServices.updateEvent(body)
+      let result = await EventServices.updateEvent(body);
       if (result.data.success) {
-        this.edit = false
+        this.edit = false;
       } else {
-        this.errors.push(result.data.errors) 
-        this.name.value = this.data.name
+        this.errors.push(result.data.errors);
+        this.name.value = this.data.name;
       }
     },
   },

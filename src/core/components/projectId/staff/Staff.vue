@@ -7,7 +7,7 @@
     >
       <PlusIcon class="mx-2 h-5 w-5" />
     </button>
-    <Teams :data="data" class="w-full"></Teams>
+    <Teams :data="data" @action="close" class="w-full"></Teams>
     <ModalClear :open="open" @action="close()">
       <AddMembers :data="data" @action="close"></AddMembers>
     </ModalClear>
