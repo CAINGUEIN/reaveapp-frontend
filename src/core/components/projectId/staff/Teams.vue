@@ -79,7 +79,13 @@
                         ]"
                         @click="
                           item.name === 'Modify'
-                            ? ((open = true), (select = user))
+                            ? ((open = true),
+                              (select = user),
+                              (modalView = 'Modify'))
+                            : item.name === 'Remove'
+                            ? ((open = true),
+                              (select = user),
+                              (modalView = 'Remove'))
                             : ''
                         "
                       >
@@ -95,7 +101,18 @@
       </tbody>
     </table>
     <ModalClear :open="open" @action="close()">
-      <EditMember :data="data" :select="select" @action="close"></EditMember>
+      <EditMember
+        v-if="modalView === 'Modify'"
+        :data="data"
+        :select="select"
+        @action="close"
+      ></EditMember>
+      <RemoveMember
+        v-if="modalView === 'Remove'"
+        :data="data"
+        :select="select"
+        @action="close"
+      ></RemoveMember>
     </ModalClear>
   </div>
 </template>
@@ -107,6 +124,7 @@ import EditMember from "@components/modal/projectId/staff/editMember.vue";
 import { DotsHorizontalIcon } from "@heroicons/vue/solid";
 import Button40Slot from "@components/buttons/Button40Slot.vue";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
+import RemoveMember from "../../modal/projectId/staff/RemoveMember.vue";
 
 export default {
   components: {
@@ -118,11 +136,13 @@ export default {
     MenuItems,
     EditMember,
     ModalClear,
+    RemoveMember,
   },
   props: ["data"],
   data() {
     return {
       open: false,
+      modalView: "",
       userNavigation: [
         { name: "Modify" },
         { name: "Activity" },
@@ -169,7 +189,7 @@ export default {
   watch: {
     data() {
       this.tableOrder();
-    }
+    },
   },
   mounted() {
     this.tableOrder();

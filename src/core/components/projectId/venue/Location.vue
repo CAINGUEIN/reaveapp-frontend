@@ -4,14 +4,14 @@
     <div class="w-full h-0.5 bg-White"></div>
     <div class="w-full pr-16 relative">
       <Button40Slot
-      v-if="yourPerm === 'Owner' || yourPerm === 'Admin'"
+      v-if="(yourPerm === 'Owner' || yourPerm === 'Admin') && !data.isPublished"
         :selected="edit"
         class="absolute right-0 top-1"
         @click="edit === true ? (edit = false) : (edit = true)"
         ><PencilIcon class="h-5 m-auto"></PencilIcon
       ></Button40Slot>
       <div
-        v-if="edit && (yourPerm === 'Owner' || yourPerm === 'Admin')"
+        v-if="edit && (yourPerm === 'Owner' || yourPerm === 'Admin') && !data.isPublished"
         class="rounded-xl"
       >
         <InputModel

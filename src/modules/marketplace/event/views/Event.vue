@@ -1,57 +1,50 @@
 <template>
   <div class="w-full">
-    <div class="w-full bg-[#808080] h-0.5"></div>
-    <div class="h-32 flex">
-      <div class="m-auto flex">
+    <div class="flex h-72 bg-[#808080] rounded-2xl mx-8"></div>
+    <div class="h-32 flex -mt-16">
+      <div class="m-auto flex w-1/4">
         <label for="search" class="sr-only">Search</label>
         <div
-          class="relative bg-LightRock text-white border-White m-2 flex rounded-full h-15"
+          class="relative bg-DarkRock text-white border-White m-2 flex rounded-full items-center justify-between h-15 w-full"
         >
-          <input
-            id="search"
-            class="bg-LightRock block w-40 h-15 border-transparent focus:ring-0 border-0 rounded-full text-White placeholder-Gravel"
-            placeholder="Any Esport game"
-            type="search"
-            name="search"
-          />
-          <input
-            id="search"
-            class="bg-LightRock block w-40 h-15 border-transparent focus:ring-0 border-0 rounded-full text-White placeholder-Gravel"
-            placeholder="Anywhere"
-            type="search"
-            name="search"
-          />
-          <input
-            id="search"
-            class="bg-LightRock block w-40 h-15 border-transparent focus:ring-0 border-0 rounded-full text-White placeholder-Gravel"
-            placeholder="Anytime"
-            type="search"
-            name="search"
-          /><SearchIcon
-            class="h-10 w-10 p-2 z-10 my-auto mr-3 bg-white text-black rounded-full"
+        <div class="flex">
+          <SearchIcon
+            class="h-10 w-10 p-2 z-10 my-auto ml-3 text-Gravel rounded-full"
             aria-hidden="true"
           />
+          <input
+            id="search"
+            class="bg-DarkRock block h-15 border-transparent focus:ring-0 border-0 rounded-full text-White placeholder-Gravel"
+            placeholder="Search"
+            type="search"
+            name="search"
+          />
+        </div>
+          <Button50Slot class="mr-3 flex"
+            ><AdjustmentsIcon
+              class="h-12 w-12 p-2 m-auto -rotate-90"
+            ></AdjustmentsIcon
+          ></Button50Slot>
         </div>
       </div>
       <button
-        class="bg-white h-15 rounded-full p-4 my-auto mr-24"
+        class="bg-white h-15 rounded-full py-2 px-8 my-auto mr-24"
         @click.prevent="open = true"
       >
-        <p class="text-black font-bold">Start an Event</p>
+        <h5 class="text-black font-bold">Start an Event</h5>
       </button>
     </div>
-    <div class="w-full bg-[#808080] h-0.5"></div>
 
     <div name="content" class="m-8">
       <ul
         role="list"
-        class="grid grid-cols-1 gap-6 sm:grid-cols-2 ml:grid-cols-3 lg:grid-cols-4 3xl:grid-cols-6"
+        class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  3xl:grid-cols-5"
       >
         <EventCard
           v-for="card in dataCards"
           :key="card._id"
           @reload="feadDataCards"
-          class="col-span-1 flex flex-col divide-y divide-LightRock rounded-lg bg-Rock text-center shadow"
+          class="col-span-1 flex flex-col rounded-lg text-center"
           :data="card"
         ></EventCard>
       </ul>
@@ -69,11 +62,19 @@ import CreateEvent from "@modules/marketPlace/event/views/CreateEvent.vue";
 import EventCard from "@modules/marketPlace/event/views/EventCard.vue";
 import EventServices from "@axios/services/eventServices";
 //tool
-import { SearchIcon } from "@heroicons/vue/outline";
+import { AdjustmentsIcon, SearchIcon } from "@heroicons/vue/outline";
 import useStoreAuth from "@stores/auth";
+import Button50Slot from "@components/buttons/Button50Slot.vue";
 
 export default {
-  components: { SearchIcon, ModalClear, CreateEvent, EventCard },
+  components: {
+    SearchIcon,
+    ModalClear,
+    CreateEvent,
+    EventCard,
+    Button50Slot,
+    AdjustmentsIcon,
+  },
   data() {
     const store = useStoreAuth();
     return {

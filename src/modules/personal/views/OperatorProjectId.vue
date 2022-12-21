@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="overflow-y-auto h-screen">
     <div
       class="relative w-full px-[60px] flex justify-center ring-b-2 border-Gravel pt-28"
     >
@@ -93,11 +93,32 @@
         @update="updateData"
         v-if="select === 'Staff' && infoEvent !== ''"
       ></Staff>
+      <Logistics
+        :yourPerm="yourPerm"
+        :data="infoEvent"
+        @update="updateData"
+        v-if="select === 'Logistics' && infoEvent !== ''"
+      ></Logistics>
+      <Marketing
+        :yourPerm="yourPerm"
+        :data="infoEvent"
+        @update="updateData"
+        v-if="select === 'Marketing' && infoEvent !== ''"
+      ></Marketing>
     </div>
     <XButton60 @click="goBack" class="absolute right-6 top-6 z-10"></XButton60>
-    <div v-if="infoEvent !== ''" class="absolute left-6 top-6 z-10">
+    <div v-if="infoEvent !== ''" class="absolute left-6 top-6 z-10 flex">
       <Naming :yourPerm="yourPerm" class="flex" :data="infoEvent"></Naming>
+      <Button40Slot
+        v-if="(yourPerm === 'Owner' || yourPerm === 'Admin') && !infoEvent.isPublished"
+        class="mt-1 mx-4"
+        @click="open = true"
+        ><SpeakerphoneIcon class="h-5 m-auto"></SpeakerphoneIcon
+      ></Button40Slot>
     </div>
+    <ModalClear :open="open" @action="close()">
+      <Published :data="infoEvent" @action="close"></Published>
+    </ModalClear>
   </div>
 </template>
 
@@ -107,12 +128,29 @@ import XButton60 from "@components/buttons/XButton60.vue";
 import Naming from "@components/projectId/Naming.vue";
 import Staff from "@components/projectId/staff/Staff.vue";
 import Venue from "@components/projectId/venue/Venue.vue";
+import Logistics from "@components/projectId/logistics/Logistics.vue";
+import Button40Slot from "@components//buttons/Button40Slot.vue";
+import Marketing from "@components/projectId/marketing/Marketing.vue";
+import ModalClear from "@components/modal/ModalClear.vue";
+import Published from "@components/modal/projectId/Published.vue";
 //tool
 import useStoreAuth from "@stores/auth";
 //services
 import eventServices from "@axios/services/eventServices";
+import { SpeakerphoneIcon } from "@heroicons/vue/outline";
 export default {
-  components: { XButton60, Naming, Venue, Staff },
+  components: {
+    XButton60,
+    Naming,
+    Venue,
+    Staff,
+    Logistics,
+    Marketing,
+    Button40Slot,
+    SpeakerphoneIcon,
+    ModalClear,
+    Published,
+  },
   data() {
     const store = useStoreAuth();
     return {
@@ -122,6 +160,7 @@ export default {
       select: "Venue",
       index: 1,
       yourPerm: "",
+      open: false,
     };
   },
   methods: {
@@ -145,8 +184,7 @@ export default {
       }
     },
     updateData() {
-      //relance un feadData pour mettre a jour 
-      
+      //relance un feadData pour mettre a jour
       this.feadData();
     },
     perm() {
@@ -162,7 +200,6 @@ export default {
             this.yourPerm = element.permission;
           }
         });
-        console.log("ici");
       } else {
         this.goBack();
       }
@@ -177,6 +214,12 @@ export default {
         }
       });
       return match;
+    },
+    close(value) {
+      this.open = false;
+      if (value === "update") {
+        this.updateData();
+      }
     },
   },
   mounted() {

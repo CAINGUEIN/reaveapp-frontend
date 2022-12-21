@@ -36,4 +36,17 @@ export default [
     component: () => import("@modules/marketPlace/event/views/Event.vue"),
     meta: { layout: "Reave", permission: "log" },
   },
+  {
+    path: "/eventId/:id",
+    name: "EventId",
+    component: () => import("@modules/marketPlace/event/views/EventId.vue"),
+    meta: { layout: "none", permission: "log" },
+  },
+  {
+    path: "/eventBuyTicket/:id",
+    name: "EventBuyTicket",
+    component: () =>
+      import("@modules/marketPlace/event/views/EventBuyTicket.vue"),
+    meta: { layout: "none", permission: "log" },
+  },
 ];

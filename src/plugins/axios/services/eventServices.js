@@ -14,6 +14,19 @@ class EventServices {
       });
   }
 
+  static async createTicketForEvent(data) {
+    let body = data;
+    return Base.post(`/event/createTicketForEvent`, body)
+      .then((response) => {
+        console.log("event create TicketForEvent", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error ", e);
+        return e;
+      });
+  }
+
   static async listEvent(body) {
     return Base.post(`/event/list`, body)
       .then((response) => {
@@ -118,6 +131,18 @@ class EventServices {
       })
       .catch((e) => {
         console.log("error modifyStaffAndSwitchOwner event", e);
+        return e;
+      });
+  }
+
+  static async removeStaff(body) {
+    return Base.post(`/event/removeStaff`, body)
+      .then((response) => {
+        console.log("event removeStaff", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error removeStaff event", e);
         return e;
       });
   }

@@ -135,9 +135,9 @@ import {
   ChevronDownIcon,
   XIcon,
 } from "@heroicons/vue/solid";
-import GoldRC from "../../../assets/icons/Wallet/GoldRC.vue";
-import Arrow from "../../../assets/icons/Wallet/Arrow.vue";
-import Checkmark from "../../../assets/icons/Wallet/Checkmark.vue";
+import GoldRC from "@assets/icons/Wallet/GoldRC.vue";
+import Arrow from "@assets/icons/Wallet/Arrow.vue";
+import Checkmark from "@assets/icons/Wallet/Checkmark.vue";
 //tool
 import useStoreAuth from "@stores/auth";
 

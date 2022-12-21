@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-1 flex-col h-96 p-4">
+  <div class="flex flex-1 flex-col bg-DarkRock" @click="goTo(data._id)">
     <div
-      class="mb-1 h-3/5 w-full flex-shrink-0 bg-slate-500 rounded-xl text-transparent hover:text-white overflow-hidden flex flex-col justify-end"
+      class="w-full flex-shrink-0 bg-slate-500 aspect-1 rounded-xl text-transparent hover:text-white overflow-hidden flex flex-col justify-end"
       v-on:mouseover="mouseover"
       v-on:mouseleave="mouseleave"
     >
@@ -33,26 +33,23 @@
         </button>
       </div>
     </div>
-    <div class="mt-1 flex justify-between items-center">
-      <h4 class="text-white">{{ data.name }}</h4>
-      <h5 class="text-white">{{ data.game }}</h5>
+    <div class="p-4">
+      <div class="mt-1 flex justify-between items-center">
+        <h5 class="text-white">{{ data.name }}</h5>
+      </div>
+      <div class="mt-1 flex justify-between items-center">
+        <p class="text-white">{{ $dayjs(data.date).format("DD/MM/YYYY") }}</p>
+      </div>
+      <div class="mt-1 flex justify-between items-center">
+        <p class="text-white">
+          {{ data.city + " " + data.country }}
+        </p>
+      </div>
+      <div class="mt-1 flex justify-between items-center">
+        <p class="text-white">{{ ticketsRemaining() }} remaining tickets</p>
+      </div>
     </div>
-    <div class="mt-1 flex justify-between items-center">
-      <p class="text-white">{{ $dayjs(data.date).format("DD-MM-YYYY") }}</p>
-      <p class="text-white">
-        {{ $dayjs().to($dayjs(data.date)) }}
-      </p>
-    </div>
-    <div class="mt-1 flex justify-between items-center">
-      <p class="text-white">{{ data.orga }}</p>
-      <p class="text-white">
-        {{ data.country }}
-      </p>
-    </div>
-    <div class="mt-1 flex justify-between items-center">
-      <p class="text-white">{{ data.ticket }} Tickets</p>
-      <p class="text-white">{{ data.price }} €</p>
-    </div>
+
     <ModalClear :open="open" @action="close()">
       <BuyModal
         :data="data"
@@ -87,7 +84,7 @@ export default {
     },
     reload: {
       type: Function,
-    }
+    },
   },
   data() {
     return {
@@ -106,9 +103,9 @@ export default {
     },
     close(value) {
       this.open = false;
-      if (value === 'reload') {
-        console.log('dans le reload');
-        this.$emit('reload')
+      if (value === "reload") {
+        console.log("dans le reload");
+        this.$emit("reload");
       }
     },
     async addCoins(balance) {
@@ -131,6 +128,16 @@ export default {
         this.errors["money"] = result.data.message;
       }
       // fermeture de la modal si ok avec changment du chiffre dans la reavecoin
+    },
+    ticketsRemaining() {
+      let totalTickets = 0;
+      for (let index = 0; index < this.data.tickets.length; index++) {
+        totalTickets = totalTickets + this.data.tickets[index].quantities;
+      }
+      return totalTickets;
+    },
+    goTo(target) {
+      this.$router.push({ name: "EventId", params: { id: target } });
     },
   },
 };
