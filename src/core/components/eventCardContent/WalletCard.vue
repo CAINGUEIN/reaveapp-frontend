@@ -1,12 +1,12 @@
 <template>
-  <div class="group relative">
+  <div class="group relative" @click="open = true">
     <div
-      class="relative aspect-w-1 aspect-h-1 overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75"
+      class="relative aspect-w-1 aspect-h-1 overflow-hidden rounded-md group-hover:opacity-75"
       v-on:mouseover="mouseover"
       v-on:mouseleave="mouseleave"
     >
       <img
-        src="https://tailwindui.com/img/ecommerce-images/order-history-page-05-product-01.jpg"
+        src="../../../../public/placeTicket.png"
         alt="une foto"
         class="object-cover object-center"
       />
@@ -45,13 +45,23 @@
     </div>
     
     <p class="mt-1 text-lg font-medium"></p>-->
+    <ModalClearXL :open="open" @action="close()">
+      <TicketObjView :infoEvent="infoEvent" :infoTicket="infoTicket" @action="close()"></TicketObjView>
+    </ModalClearXL>
   </div>
 </template>
 
 <script>
+//component
+import ModalClearXL from "@core/components/modal/ModalClearXL.vue";
+import TicketObjView from "@components/modal/wallet/TicketObjView.vue";
 import TicketServices from "@axios/services/ticketServices";
 
 export default {
+  components: {
+    ModalClearXL,
+    TicketObjView,
+  },
   props: {
     data: {
       type: String,
@@ -60,12 +70,16 @@ export default {
   },
   data() {
     return {
+      open: false,
       infoEvent: "",
       comparedContent: false,
       infoTicket: "",
     };
   },
   methods: {
+    close() {
+      this.open = false;
+    },
     mouseover: function () {
       this.comparedContent = true;
     },
@@ -77,12 +91,13 @@ export default {
       let result = await TicketServices.info(body);
       if (result.data.success) {
         this.infoEvent = result.data.data.event;
-        this.infoTicket = result.data.data;
+        this.infoTicket = result.data.data.ticket;
       }
     },
   },
   mounted() {
     this.feadInfo();
+    console.log(this.data);
   },
 };
 </script>

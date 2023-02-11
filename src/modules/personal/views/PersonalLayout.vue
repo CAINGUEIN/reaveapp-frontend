@@ -1,7 +1,7 @@
 <template>
-  <div class="pr-[30px]">
+  <div class="">
     <div class="h-full flex flex-col overflow-hidden">
-      <div class="sticky top-0 left-0 right-0 z-20 h-15 bg-Anthracite">
+      <div class="sticky top-0 left-0 right-0 h-15 bg-Anthracite">
         <div class="flex justify-between bg-DarkRock rounded-full items-center">
           <div name="space-name" class="flex ml-4" @click="goTo('Profile')">
             <ImgFormated

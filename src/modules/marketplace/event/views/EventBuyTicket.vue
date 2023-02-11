@@ -1,21 +1,16 @@
 <template>
-  <div v-if="infoEvent" class="overflow-y-auto h-screen">
+  <div v-if="infoEvent && page === 'buy'" class="overflow-y-auto h-screen">
     <XButton60 @click="goBack" class="absolute right-6 top-6 z-10"></XButton60>
     <div class="mx-24 mt-28 flex">
       <div class="w-2/3 flex flex-col">
-        <div class="aspect-2 bg-DarkRock rounded-2xl flex flex-col overflow-auto scrollbarV space-y-2 p-2">
-          <div v-for="typeTicket in infoEvent.tickets" class="flex-1 mx-auto">
-            <div v-if="typeTicket.type === 'Sitting'" class="flex">
-              <div v-for="(ligne, indexRow) in typeTicket.row" class="space-y-2">
-                <div v-for="(seat, indexColumn) in typeTicket.column"
-                :style="'background: #' + typeTicket.color"
-                class="space-x-1 rounded-2xl w-12 h-7 flex">
-                <p class="m-auto text-black">{{ indexRow + "-" + indexColumn }}</p></div>
-              </div>
-
-            </div>
-          </div>
-        </div>
+        <SeatMap
+          :tickets="infoEvent.tickets"
+          :listTicket="listTicket"
+          @push="pushTicket"
+          @remove="removeTicket"
+          class="aspect-2 bg-DarkRock rounded-2xl flex flex-col overflow-auto scrollbarV space-y-2 p-2 h-full"
+        >
+        </SeatMap>
         <div
           class="h-20 mt-8 bg-DarkRock rounded-2xl flex justify-between items-center"
         >
@@ -44,7 +39,9 @@
             </div>
             <div class="">
               <p>Booking time left</p>
-              <h3 class="text-Orange">{{ $dayjs(infoEvent.date).fromNow() }}</h3>
+              <h3 class="text-Orange">
+                {{ $dayjs(infoEvent.date).fromNow() }}
+              </h3>
             </div>
           </div>
         </div>
@@ -73,34 +70,134 @@
             </h4>
           </div>
         </div>
-        <div name="backet"></div>
+        <div
+          name="backet"
+          class="h-[460px] overflow-auto scrollbarV p-2 space-y-2 border-y-2 border-Gravel"
+        >
+          <div v-if="listTicket.length === 0" class="w-full h-full flex">
+            <div class="m-auto text-center">
+              <p>Select Seats on Venue Plan.</p>
+              <p>Tickets will appear here.</p>
+            </div>
+          </div>
+          <div
+            v-else
+            v-for="(item, index) in listTicket"
+            class="flex justify-between bg-DarkRock p-2 rounded-2xl"
+          >
+            <div name="info" class="flex items-center">
+              <div name="img" class="w-16 h-16 bg-slate-700 rounded-2xl"></div>
+              <div class="ml-3">
+                <h3>{{ item.ticket.cathegory }}</h3>
+                <h5>ZoneName</h5>
+                <p>Row {{ item.row }}, Seat {{ item.column }}</p>
+              </div>
+            </div>
+            <div name="other" class="flex flex-col items-end">
+              <div class="flex items-center">
+                <h3>{{ item.ticket.price }}</h3>
+                <GoldRC class="ml-2" :width="14" :height="14"></GoldRC>
+              </div>
+              <div v-if="item.owner_id" class="flex items-center space-x-2">
+                <div class="flex flex-col">
+                  <h5>@{{ item.owner_id.userTag }}</h5>
+                  <p>{{ item.owner_id.profileName }}</p>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-Gravel"></div>
+              </div>
+              <button v-else @click.prevent="selectUser(index)">
+                Select Ticker owner
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-between">
+          <h3>Total</h3>
+          <div>
+            <div class="flex items-center">
+              <h3>{{ totalTicketsCoin() }}</h3>
+              <GoldRC class="ml-2" :width="14" :height="14"></GoldRC>
+            </div>
+            <p>
+              {{ listTicket.length }} ticket{{
+                listTicket.length > 1 ? "s" : ""
+              }}
+            </p>
+          </div>
+        </div>
         <button
           class="text-black rounded-full h-16 px-10 ml-0 w-80 mt-6 bg-white"
+          @click.prevent="
+            totalTicketsCoin() > this.store.dataAccount.coin
+              ? ((view = 'addCoin'), (open = true))
+              : buyAction()
+          "
         >
-          <h4 class="text-black">Buy</h4>
+          <h4 class="text-black">
+            {{
+              totalTicketsCoin() > this.store.dataAccount.coin
+                ? "Add Coin"
+                : "Buy"
+            }}
+          </h4>
         </button>
       </div>
     </div>
+    <ModalClear :open="open" @action="close()">
+      <AddCoin
+        v-if="view === 'addCoin'"
+        :data="parseInt(this.store.dataAccount.coin - totalTicketsCoin())"
+        @action="close"
+      ></AddCoin>
+      <SelectOwner v-else @action="close"></SelectOwner>
+    </ModalClear>
+  </div>
+  <div v-if="infoEvent && page === 'resume'" class="overflow-y-auto h-screen">
+    <ResumeTicketsBuy
+      @action="closeResume()"
+      :dataTickets="listTicket"
+      :dataEvent="infoEvent"
+      :ticketsResumeBuy="ticketsResumeBuy"
+    ></ResumeTicketsBuy>
   </div>
 </template>
 
 <script>
 //components
-import Button60Slot from "@components//buttons/Button60Slot.vue";
 import XButton60 from "@components/buttons/XButton60.vue";
+import ModalClear from "@components/modal/ModalClear.vue";
 import GoldRC from "@assets/icons/Wallet/GoldRC.vue";
+import SeatMap from "@components/eventBuyTicket/SeatMap.vue";
+import ResumeTicketsBuy from "@components/eventBuyTicket/ResumeTicketsBuy.vue";
+import SelectOwner from "@components/modal/eventId/SelectOwner.vue";
+import AddCoin from "@components/modal/eventId/AddCoin.vue";
 //services
 import eventServices from "@axios/services/eventServices";
+import ticketServices from "@axios/services/ticketServices";
+//tool
+import useStoreAuth from "@stores/auth";
 export default {
   components: {
     XButton60,
-    Button60Slot,
     GoldRC,
+    ModalClear,
+    SeatMap,
+    ResumeTicketsBuy,
+    SelectOwner,
+    AddCoin,
   },
   data() {
+    const store = useStoreAuth();
     return {
+      store,
+      open: false,
       id: "",
       infoEvent: "",
+      listTicket: [],
+      indexTicket: "",
+      view: "",
+      page: "buy",
+      ticketsResumeBuy: ""
     };
   },
   methods: {
@@ -117,10 +214,12 @@ export default {
     },
     ticketsRemaining() {
       let totalTickets = 0;
+      let ticketsSold = 0
       for (let index = 0; index < this.infoEvent.tickets.length; index++) {
         totalTickets = totalTickets + this.infoEvent.tickets[index].quantities;
+        ticketsSold = ticketsSold + this.infoEvent.tickets[index].soldTickets.length;
       }
-      return totalTickets;
+      return totalTickets - ticketsSold;
     },
     async feadData() {
       let body = { _id: this.id };
@@ -128,6 +227,53 @@ export default {
       if (result.data.success) {
         this.infoEvent = result.data.data;
       }
+    },
+    pushTicket(data) {
+      console.log(data);
+      this.listTicket.push(data);
+    },
+    removeTicket(index) {
+      console.log(this.listTicket);
+      this.listTicket.splice(index, 1);
+    },
+    totalTicketsCoin() {
+      let result = 0;
+      for (let index = 0; index < this.listTicket.length; index++) {
+        result = result + this.listTicket[index].ticket.price;
+      }
+      return result;
+    },
+    async buyAction() {
+      console.log(this.listTicket);
+      let body = {
+        arrayTickets: this.listTicket,
+        event_id: this.id,
+        eventName: this.infoEvent.name,
+      };
+      let result = await ticketServices.buy(body);
+      console.log(result);
+      if (result.data.success) {
+        this.store.dataAccount = result.data.data;
+        this.feadData();
+        this.page = "resume";
+        this.ticketsResumeBuy = body
+      }
+    },
+    close(userSelect) {
+      this.open = false;
+      if (userSelect) {
+        this.listTicket[this.indexTicket]["owner_id"] = userSelect;
+        console.log(this.listTicket);
+      }
+      this.view = "";
+    },
+    closeResume() {
+      this.listTicket = [];
+      this.page = "buy";
+    },
+    selectUser(index) {
+      this.indexTicket = index;
+      this.open = true;
     },
   },
   mounted() {

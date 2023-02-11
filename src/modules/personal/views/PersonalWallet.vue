@@ -57,9 +57,7 @@
             <a href="">View all transactions</a>
           </div>
 
-          <table
-            class="overflow-hidden text-[18px] text-center w-full"
-          >
+          <table class="overflow-hidden text-[18px] text-center w-full">
             <tr>
               <th><p class="font-medium text-White">Type</p></th>
               <th><p class="font-medium text-White">Name</p></th>
@@ -84,12 +82,21 @@
                     <Debit class="m-auto" :color1="'white'"></Debit>
                   </div>
                 </div>
-                <div v-if="item.type === 'sendCoin' && item.value > 0" class="flex">
+                <div
+                  v-if="item.type === 'sendCoin' && item.value > 0"
+                  class="flex"
+                >
                   <div class="bg-LightRock rounded-full h-10 w-10 flex mx-auto">
-                    <TransferFrom class="m-auto" :color1="'white'"></TransferFrom>
+                    <TransferFrom
+                      class="m-auto"
+                      :color1="'white'"
+                    ></TransferFrom>
                   </div>
                 </div>
-                <div v-if="item.type === 'sendCoin' && item.value < 0" class="flex">
+                <div
+                  v-if="item.type === 'sendCoin' && item.value < 0"
+                  class="flex"
+                >
                   <div class="bg-LightRock rounded-full h-10 w-10 flex mx-auto">
                     <TransferTo class="m-auto" :color1="'white'"></TransferTo>
                   </div>
@@ -99,13 +106,27 @@
                     <Purshase class="m-auto" :color1="'white'"></Purshase>
                   </div>
                 </div>
+                <div v-if="item.type === 'GiftTicket'" class="flex">
+                  <div class="bg-LightRock rounded-full h-10 w-10 flex mx-auto">
+                    <GiftFrom class="m-auto" :color1="'white'"></GiftFrom>
+                  </div>
+                </div>
+                <div v-if="item.type === 'GiftedTicket'" class="flex">
+                  <div class="bg-LightRock rounded-full h-10 w-10 flex mx-auto">
+                    <GiftTo class="m-auto" :color1="'white'"></GiftTo>
+                  </div>
+                </div>
               </td>
               <td>
-                <h5 v-if="item.type === 'sendCoin' && item.value > 0">cadeau</h5>
+                <h5 v-if="item.type === 'sendCoin' && item.value > 0">
+                  cadeau
+                </h5>
                 <h5 v-if="item.type === 'sendCoin' && item.value < 0">don</h5>
                 <h5 v-if="item.type === 'coin' && item.value > 0">Achat</h5>
                 <h5 v-if="item.type === 'coin' && item.value < 0">Vente</h5>
                 <h5 v-if="item.type === 'BuyTicket'">{{ item.message }}</h5>
+                <h5 v-if="item.type === 'GiftTicket'">{{ item.message }}</h5>
+                <h5 v-if="item.type === 'GiftedTicket'">{{ item.message }}</h5>
               </td>
               <td>
                 <h5>{{ $dayjs(item.date).format("DD-MM-YYYY") }}</h5>
@@ -141,7 +162,7 @@
           class="mt-8 grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-2 sm:gap-y-16 xl:grid-cols-3 lg:gap-x-8 2xl:grid-cols-4"
         >
           <WalletCard
-            v-for="ticket in store.dataAccount.ticket"
+            v-for="ticket in dataTicket(20)"
             :data="ticket"
           ></WalletCard>
         </div>
@@ -167,6 +188,8 @@ import Purshase from "@assets/icons/Wallet/Purshase.vue";
 import TransferTo from "@assets/icons/Wallet/TransferTo.vue";
 import TransferFrom from "@assets/icons/Wallet/TransferFrom.vue";
 import GoldRC from "@assets/icons/Wallet/GoldRC.vue";
+import GiftFrom from "@assets/icons/Wallet/GiftFrom.vue";
+import GiftTo from "@assets/icons/Wallet/GiftTo.vue";
 import WalletCard from "@components/eventCardContent/WalletCard.vue";
 import TransferingTo from "@components/modal/wallet/TransferingTo.vue";
 import Debiting from "@components/modal/wallet/Debiting.vue";
@@ -174,6 +197,7 @@ import Crediting from "@components/modal/wallet/Crediting.vue";
 
 //tool
 import useStoreAuth from "@stores/auth";
+import { GiftIcon } from "@heroicons/vue/solid";
 
 export default {
   components: {
@@ -188,7 +212,10 @@ export default {
     TransferingTo,
     Purshase,
     TransferFrom,
-  },
+    GiftIcon,
+    GiftFrom,
+    GiftTo,
+},
   data() {
     const store = useStoreAuth();
     return {
@@ -211,6 +238,17 @@ export default {
         index++
       ) {
         newArray.unshift(this.store.dataAccount.historiesCoin[index]);
+      }
+      return newArray.slice(0, limite);
+    },
+    dataTicket(limite) {
+      let newArray = [];
+      for (
+        let index = 0;
+        index < this.store.dataAccount.ticket.length;
+        index++
+      ) {
+        newArray.unshift(this.store.dataAccount.ticket[index]);
       }
       return newArray.slice(0, limite);
     },

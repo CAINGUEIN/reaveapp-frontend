@@ -1,5 +1,5 @@
 <template>
-  <div class="h-[202px] w-[650px] bg-DarkRock ml-[22px] rounded-2xl mt-5 p-6 hover:bg-[#1f1f1f]">
+  <div class="h-[202px] w-[650px] bg-DarkRock rounded-2xl mt-5 p-6 hover:bg-[#1f1f1f]">
     <div>
       <div>
         <div class="flex items-center">

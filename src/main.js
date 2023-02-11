@@ -29,6 +29,7 @@ import 'cropperjs/dist/cropper.css';
 // TailwindCSS
 import "@core/assets/base.css";
 
+
 const app = createApp(App)
   .use(usePinia)
   .use(router)

@@ -17,7 +17,7 @@
       />
     </div>
     <div v-if="show && store.dataAccount.lolData.lolPuuid">
-      <div name="content" class="flex flex-wrap">
+      <div name="content" class="flex flex-wrap max-w-[1800px] m-auto gap-x-[22px]">
         <ModuleAverageKDA :data="data" />
         <!-- //TODO: voir a reglé l'affichage -->
         <ModuleCompareKDA
@@ -30,7 +30,7 @@
           :data1month="dataProps"
           :paramOptionGame="paramOptionGame"
         />
-        <ModuleAverageKDA :data="data" class="ml-[20px]" />
+        <ModuleAverageKDA :data="data" />
         <ModuleCompareVisionPerMinute
           :data="data"
           :data1month="dataProps"
@@ -41,9 +41,8 @@
           :data1month="dataProps"
           :paramOptionGame="paramOptionGame"
         />
-        <ModuleAverageKDA :data="data" class="ml-[22px]" />
-        <ModuleAverageKDAInv :data="data" class="ml-[20px]" />
-
+        <ModuleAverageKDA :data="data" />
+        <ModuleAverageKDAInv :data="data" />
       </div>
     </div>
   </div>
@@ -70,8 +69,8 @@ export default {
     ModuleCompareGoldEarned,
     ModuleCompareVisionLaneOpponent,
     ModuleCompareVisionPerMinute,
-    ModuleAverageKDAInv
-},
+    ModuleAverageKDAInv,
+  },
   props: ["paramOptionGame", "action"],
   data() {
     const store = useStoreAuth();

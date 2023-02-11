@@ -105,6 +105,12 @@
         @update="updateData"
         v-if="select === 'Marketing' && infoEvent !== ''"
       ></Marketing>
+      <Analytics
+        :yourPerm="yourPerm"
+        :data="infoEvent"
+        @update="updateData"
+        v-if="select === 'Analytics' && infoEvent !== ''"
+      ></Analytics>
     </div>
     <XButton60 @click="goBack" class="absolute right-6 top-6 z-10"></XButton60>
     <div v-if="infoEvent !== ''" class="absolute left-6 top-6 z-10 flex">
@@ -131,6 +137,7 @@ import Venue from "@components/projectId/venue/Venue.vue";
 import Logistics from "@components/projectId/logistics/Logistics.vue";
 import Button40Slot from "@components//buttons/Button40Slot.vue";
 import Marketing from "@components/projectId/marketing/Marketing.vue";
+import Analytics from "@components/projectId/analytics/Analytics.vue";
 import ModalClear from "@components/modal/ModalClear.vue";
 import Published from "@components/modal/projectId/Published.vue";
 //tool
@@ -150,6 +157,7 @@ export default {
     SpeakerphoneIcon,
     ModalClear,
     Published,
+    Analytics,
   },
   data() {
     const store = useStoreAuth();

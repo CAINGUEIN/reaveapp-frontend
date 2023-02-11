@@ -12,6 +12,17 @@ class TicketServices {
         return e;
       });
   }
+  static async buy(body) {
+    return Base.post("ticket/buy", body)
+      .then((response) => {
+        console.log("ticket buy", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error ticket buy", e);
+        return e;
+      });
+  }
 }
 
 export default TicketServices;

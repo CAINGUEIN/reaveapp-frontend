@@ -1,43 +1,188 @@
 <template>
   <div class="flex h-screen">
-    <div
-      name="nav-bar-left"
-      class="sticky top-0 left-0 bottom-0 z-20 flex flex-col justify-between mx-[30px] h-screen items-center"
-    >
-      <div name="top" class="mt-6">
-        <TopLeftNavBar />
-      </div>
-      <div name="bottom" class="mb-6">
-        <div class="bg-LightRock h-0.5 mb-3 w-14 mx-auto rounded-full"></div>
-        <BottomLeftNavBar />
-      </div>
-    </div>
-    <div class="w-full flex flex-col h-screen">
+    <div class="w-full mx-8 flex flex-col h-screen">
       <div
         name="nav-bar-top"
         class="sticky top-0 left-0 right-0 z-20 bg-Anthracite flex pt-6 pb-[18px] items-center"
       >
-        <SpaceNavBar @action="openSpace" :data="store.dataSpaces" />
-        <div class="h-15 flex items-center">
-          <ToolsButtonNav
-            @click="openModal"
-            :dataClass="'top'"
-            class="mr-2"
-            :btnName="'+'"
-            :comparTarget="''"
-          >
-            <Plus />
-          </ToolsButtonNav>
-          <ToolsButtonNav
-            :dataClass="'top'"
-            :target="'Explore'"
-            :comparTarget="store.view"
-          >
-            <Explore />
-          </ToolsButtonNav>
+        <div class="flex justify-between w-full">
+          <div class="flex space-x-4 items-center">
+            <ToolsButtonNav
+              :target="'PersonalMessages'"
+              :dataClass="'reave'"
+              :comparTarget="store.view"
+              class=""
+            >
+              <Reave />
+            </ToolsButtonNav>
+            <SpaceNavBar
+              class=""
+              @action="openSpace"
+              :data="store.dataSpaces"
+            />
+            <div class="h-15 flex items-center">
+              <ToolsButtonNav
+                @click="openModal"
+                :dataClass="'top'"
+                class="mr-2"
+                :btnName="'+'"
+                :comparTarget="''"
+              >
+                <Plus />
+              </ToolsButtonNav>
+              <ToolsButtonNav
+                :dataClass="'top'"
+                :target="'Explore'"
+                :comparTarget="store.view"
+              >
+                <Explore />
+              </ToolsButtonNav>
+            </div>
+          </div>
+
+          <div class="flex space-x-4 items-center">
+            <ToolsButtonNav
+              :target="'Settings'"
+              :subTarget="'account'"
+              :dataClass="''"
+            >
+              <Settings />
+            </ToolsButtonNav>
+
+            <Popover class="relative" v-slot="{ open }">
+              <PopoverButton
+                :class="[
+                  open
+                    ? 'text-Cloud bg-LightRock hover:text-Cloud hover:bg-LightRock'
+                    : 'text-gray-500',
+                  'flex items-center justify-center rounded-full cursor-pointer h-15 w-15 hover:bg-DarkRock hover:text-LightGrey',
+                ]"
+              >
+                <DotsVerticalIcon class="h-10 w-10"></DotsVerticalIcon>
+              </PopoverButton>
+
+              <transition
+                enter-active-class="transition ease-out duration-200"
+                enter-from-class="opacity-0 translate-y-1"
+                enter-to-class="opacity-100 translate-y-0"
+                leave-active-class="transition ease-in duration-150"
+                leave-from-class="opacity-100 translate-y-0"
+                leave-to-class="opacity-0 translate-y-1"
+              >
+                <PopoverPanel class="absolute right-0 z-10 mt-5">
+                  <div class="overflow-hidden rounded-lg">
+                    <div class="relative grid w-80 bg-Anthracite grid-cols-4 p-2">
+                      <ToolsButtonNav
+                        v-for="item in solutions"
+                        :key="item.target"
+                        :target="item.target"
+                        :dataClass="item.dataClass"
+                        :comparTarget="store.view"
+                        class="flex mx-auto rounded-full h-15 w-15 transition duration-150 ease-in-out"
+                      >
+                        <Feed v-if="item.icon === 'Feed'"></Feed>
+                        <Academy v-if="item.icon === 'Academy'"></Academy>
+                        <Jobs v-if="item.icon === 'Jobs'"></Jobs>
+                        <Bootcamps v-if="item.icon === 'Bootcamps'"></Bootcamps>
+                        <Leagues v-if="item.icon === 'Leagues'"></Leagues>
+                        <NFTs v-if="item.icon === 'NFTs'"></NFTs>
+
+                      </ToolsButtonNav>
+                    </div>
+                  </div>
+                </PopoverPanel>
+              </transition>
+            </Popover>
+            <div class="relative">
+              <ToolsButtonNav
+                :target="'Personal'"
+                :subTarget="'dashboard'"
+                :comparTarget="store.view"
+                :dataClass="''"
+                @click.right.prevent="toggleDropdown"
+              >
+                <img
+                  :src="
+                    'https://media.reave.dev/useravatar/s' +
+                    store.dataAccount._id +
+                    'avatar.png'
+                  "
+                  class="h-10 w-10 rounded-full bg-Gravel"
+                  @error="replaceUrl"
+              /></ToolsButtonNav>
+              <div
+                :class="dropdown"
+                class="absolute right-0 bg-white divide-y divide-gray-100 rounded w-44 dark:bg-gray-700"
+              >
+                <ul
+                  class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                  aria-labelledby="dropdownDefault"
+                >
+                  <li>
+                    <a
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >Online</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >Inactif</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >Ne pas déranger</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >Invisible</a
+                    >
+                  </li>
+                </ul>
+                <div class="py-1 text-sm">
+                  <InputModel
+                    class="m-0 p-0 text-gray-700 dark:text-gray-200"
+                    :data="moodMessage"
+                    v-model="moodMessage.value"
+                    :errors="errors"
+                  />
+                </div>
+                <ul
+                  class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                  aria-labelledby="dropdownDividerButton"
+                >
+                  <li>
+                    <a
+                      href="#"
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >list</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >des</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >status perso</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <router-view class="overflow-hidden"/>
+      <router-view class="overflow-hidden" />
     </div>
     <CreateSpaceModal @isOpenModal="closeModal" :isOpenModal="isOpenModal" />
   </div>
@@ -53,12 +198,22 @@ import SpaceNavBar from "@core/components/barNav/SpaceNavBar.vue";
 import TopLeftNavBar from "@core/components/barNav/TopLeftNavBar.vue";
 import BottomLeftNavBar from "@core/components/barNav/BottomLeftNavBar.vue";
 import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
-import { GlobeIcon, PlusIcon } from "@heroicons/vue/outline";
+import { DotsVerticalIcon, GlobeIcon, PlusIcon } from "@heroicons/vue/outline";
+import Settings from "@assets/icons/Settings.vue";
+import Reave from "@assets/icons/Reave.vue";
+import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
+import Plus from "@assets/icons/Plus.vue";
+import Explore from "@assets/icons/Explore.vue";
+import Feed from "@assets/icons/Feed.vue";
+import Academy from "@assets/icons/Academy.vue";
+import Jobs from "@assets/icons/Jobs.vue";
+import Bootcamps from "@assets/icons/Bootcamps.vue";
+import Leagues from "@assets/icons/Leagues.vue";
+import NFTs from "@assets/icons/NFTs.vue";
+
 //data
 import dataTopLeft from "@modules/layout/data/dataTopLeftNavBar";
 import dataBottomLeft from "@modules/layout/data/dataBottomLeftNavBar";
-import Explore from "@assets/icons/Explore.vue";
-import Plus from "@assets/icons/Plus.vue";
 
 export default {
   components: {
@@ -71,6 +226,18 @@ export default {
     PlusIcon,
     Explore,
     Plus,
+    Reave,
+    Settings,
+    Popover,
+    PopoverButton,
+    PopoverPanel,
+    Feed,
+    Academy,
+    Bootcamps,
+    Leagues,
+    NFTs,
+    Jobs,
+    DotsVerticalIcon,
   },
   data() {
     const store = useStoreAuth();
@@ -82,7 +249,45 @@ export default {
       isOpenStatusMenu: false,
       store,
       storeSpace,
-      storeView: store.view
+      storeView: store.view,
+      moodMessage: {
+        name: "moodMessage",
+        type: "text",
+        value: "",
+      },
+      dropdown: "hidden",
+      solutions: [
+        {
+          target: "Event",
+          icon: "Leagues",
+          dataClass: "settings",
+        },
+        {
+          target: "Nft",
+          icon: "NFTs",
+          dataClass: "settings",
+        },
+        {
+          target: "Social",
+          icon: "Feed",
+          dataClass: "settings",
+        },
+        {
+          target: "Jobs",
+          icon: "Jobs",
+          dataClass: "settings",
+        },
+        {
+          target: "Academy",
+          icon: "Academy",
+          dataClass: "settings",
+        },
+        {
+          target: "Bootcamps",
+          icon: "Bootcamps",
+          dataClass: "settings",
+        },
+      ],
     };
   },
   methods: {
@@ -100,20 +305,33 @@ export default {
       }
       console.log("open", "/space/" + type + "/" + target);
     },
-    getUrl () {
+    getUrl() {
       if (this.$route.name !== this.store.view) {
-        this.store.view = this.$route.name
+        this.store.view = this.$route.name;
       }
     },
+    toggleDropdown() {
+      if (this.dropdown === "hidden") {
+        this.dropdown = "";
+      } else {
+        this.dropdown = "hidden";
+      }
+    },
+    replaceUrl (e) {
+      console.log("dans le replace");
+      let randomColor = (Math.floor(Math.random()*0xFFFFFF)).toString(16)
+      let formatSize = "40/"
+      e.target.src = "https://via.placeholder.com/" + formatSize + randomColor
+    }
   },
   watch: {
     $route() {
       if (this.$route.name !== this.store.view) {
-        this.store.view = this.$route.name
+        this.store.view = this.$route.name;
       }
-    }
+    },
   },
-  mounted () {
+  mounted() {
     this.getUrl();
   },
 };

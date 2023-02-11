@@ -17,10 +17,8 @@
       >
         <h3>{{ item.name }}</h3>
         <div class="flex justify-between">
-          <h3>{{ item.ticket }}/ {{ item.ticket + item.soldTicket.length }}</h3>
           <h3 class="ml-4">
-            Nombre de tickets vendu {{ item.soldTicket.length }} pour
-            {{ item.price * item.soldTicket.length }} coin de revenue
+            ICI voir quoi mettre
           </h3>
         </div>
       </div>
