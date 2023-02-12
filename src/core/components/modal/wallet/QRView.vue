@@ -10,7 +10,7 @@
       <h4 class="text-center">{{ event }}</h4>
       <h5 class="text-center">{{ place }}</h5>
       <img
-        src="../../../../../qrimg.png"
+        src="../../../../../public/qrimg.png"
         alt=""
         class="h-48 w-48 mx-auto mt-8 mb-4"
       />
