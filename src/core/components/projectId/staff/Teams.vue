@@ -120,7 +120,7 @@
 <script>
 //components
 import ModalClear from "@components/modal/ModalClear.vue";
-import EditMember from "@components/modal/projectId/staff/editMember.vue";
+import EditMember from "@components/modal/projectId/staff/EditMember.vue";
 import { DotsHorizontalIcon } from "@heroicons/vue/solid";
 import Button40Slot from "@components/buttons/Button40Slot.vue";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
