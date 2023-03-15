@@ -1,24 +1,33 @@
 <template>
-  <div v-if="infoEvent" class="overflow-y-auto h-screen">
+  <div v-if="infoEvent" class="overflow-y-auto h-screen scrollbarV">
     <XButton60 @click="goBack" class="absolute right-6 top-6 z-10"></XButton60>
     <div class="mx-24 mt-28 flex">
-      <div class="w-2/3 aspect-2 bg-slate-500 rounded-2xl"></div>
-      <div class="pl-18 pt-20 flex flex-col justify-between w-1/3">
-        <div class="space-y-4 flex flex-col">
-          <h1>{{ infoEvent.name }}</h1>
+      <div class="w-3/5 rounded-2xl flex">
+        <img src="/img/BigIMG.png" alt="" class="my-auto w-full" />
+      </div>
+      <div class="pl-18 flex flex-col justify-between w-2/5">
+        <div class="flex flex-col justify-between">
+          <h1 class="text-[56px] font-bold">{{ infoEvent.name }}</h1>
           <div class="flex items-center space-x-4">
-            <div class="h-15 w-15 rounded-full bg-slate-300"></div>
-            <p>Organised by @{{ infoEvent.owner.user_id.userTag }}</p>
+            <div class="h-15 w-15 rounded-full bg-slate-300 my-3"></div>
+            <p class="text-base font-medium">
+              Organised by @{{ infoEvent.owner.user_id.userTag }}
+            </p>
           </div>
-          <button
-            class="text-black rounded-full h-16 px-10 ml-0 w-80 mt-6 bg-white"
-            @click="goTo(infoEvent._id)"
-          >
-            <h4 class="text-black">Buy Tickets</h4>
-          </button>
-          <div class="grid-cols-2 grid w-full gap-8">
+          <div class="flex mt-4 w-full">
+            <button
+              class="text-black rounded-full h-16 px-10 ml-0 w-80 bg-white"
+              @click="goTo(infoEvent._id)"
+            >
+              <h4 class="text-black text-xl font-black">Buy Tickets</h4>
+            </button>
+            <Button60Slot class="ml-4 my-auto"
+              ><Auctions :width="32" :height="32" class="m-auto"></Auctions
+            ></Button60Slot>
+          </div>
+          <div class="grid-cols-2 grid w-full gap-4 mt-4">
             <div class="col-span-1">
-              <p>date</p>
+              <p>Date</p>
               <h3>{{ $dayjs(infoEvent.date).format("MM.DD.YYYY") }}</h3>
               <h3>at {{ $dayjs(infoEvent.date).format("hh:mm A") }}</h3>
             </div>
@@ -48,7 +57,7 @@
         </div>
 
         <div class="flex">
-          <Button60Slot class="m-2"
+          <Button60Slot class="my-2 mr-2"
             ><LinkIcon class="h-8 m-auto"></LinkIcon
           ></Button60Slot>
           <Button60Slot class="m-2"
@@ -75,7 +84,10 @@
             "
             @click.prevent="select = 'About'"
           >
-            <p :class="select === 'About' ? 'text-White' : 'hover:text-White'">
+            <p
+              class="text-2xl font-medium"
+              :class="select === 'About' ? 'text-White' : 'hover:text-White'"
+            >
               About
             </p>
           </button>
@@ -88,7 +100,10 @@
             "
             @click.prevent="select = 'Venue'"
           >
-            <p :class="select === 'Venue' ? 'text-White' : 'hover:text-White'">
+            <p
+              class="text-2xl font-medium"
+              :class="select === 'Venue' ? 'text-White' : 'hover:text-White'"
+            >
               Venue
             </p>
           </button>
@@ -101,7 +116,10 @@
             "
             @click.prevent="select = 'People'"
           >
-            <p :class="select === 'People' ? 'text-White' : 'hover:text-White'">
+            <p
+              class="text-2xl font-medium"
+              :class="select === 'People' ? 'text-White' : 'hover:text-White'"
+            >
               People
             </p>
           </button>
@@ -134,6 +152,7 @@ import {
   LinkIcon,
   PaperAirplaneIcon,
 } from "@heroicons/vue/outline";
+import Auctions from "@assets/icons/Auctions.vue";
 export default {
   components: {
     XButton60,
@@ -145,7 +164,8 @@ export default {
     EventIdAbout,
     EventIdVenue,
     EventIdPeople,
-  },
+    Auctions
+},
   data() {
     return {
       id: "",

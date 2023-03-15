@@ -1,5 +1,8 @@
 <template>
-  <div v-if="infoEvent && page === 'buy'" class="overflow-y-auto h-screen">
+  <div
+    v-if="infoEvent && page === 'buy'"
+    class="overflow-y-auto h-screen scrollbarV pb-8"
+  >
     <XButton60 @click="goBack" class="absolute right-6 top-6 z-10"></XButton60>
     <div class="mx-24 mt-28 flex">
       <div class="w-2/3 flex flex-col">
@@ -12,7 +15,7 @@
         >
         </SeatMap>
         <div
-          class="h-20 mt-8 bg-DarkRock rounded-2xl flex justify-between items-center"
+          class="h-[78px] mt-8 bg-DarkRock rounded-2xl flex justify-between items-center"
         >
           <div name="tickets" class="flex space-x-8 ml-4">
             <div
@@ -50,14 +53,14 @@
         <div class="space-y-4 flex flex-col">
           <h1>{{ infoEvent.name }}</h1>
           <div class="flex flex-col">
-            <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-4 mt-6">
               <div class="h-10 w-10 rounded-full bg-slate-300"></div>
               <p>Organised by @{{ infoEvent.owner.user_id.userTag }}</p>
             </div>
-            <h4>
+            <h4 class="mt-4">
               {{ $dayjs(infoEvent.date).format("dddd MM.DD.YYYY hh:mm A") }}
             </h4>
-            <h4>
+            <h4 class="mt-4">
               {{
                 infoEvent.venueName +
                 ", " +
@@ -72,12 +75,12 @@
         </div>
         <div
           name="backet"
-          class="h-[460px] overflow-auto scrollbarV p-2 space-y-2 border-y-2 border-Gravel"
+          class="h-[460px] overflow-auto scrollbarV px-2 py-4 space-y-2 border-y-2 border-Gravel my-6"
         >
           <div v-if="listTicket.length === 0" class="w-full h-full flex">
             <div class="m-auto text-center">
-              <p>Select Seats on Venue Plan.</p>
-              <p>Tickets will appear here.</p>
+              <p class="text-base font-medium">Select Seats on Venue Plan.</p>
+              <p class="text-base font-medium">Tickets will appear here.</p>
             </div>
           </div>
           <div
@@ -113,10 +116,12 @@
         </div>
         <div class="flex justify-between">
           <h3>Total</h3>
-          <div>
+          <div class="flex flex-col items-end">
             <div class="flex items-center">
-              <h3>{{ totalTicketsCoin() }}</h3>
-              <GoldRC class="ml-2" :width="14" :height="14"></GoldRC>
+              <p class="text-[32px] text-white font-medium">
+                {{ totalTicketsCoin() }}
+              </p>
+              <GoldRC class="ml-0.5" :width="14" :height="14"></GoldRC>
             </div>
             <p>
               {{ listTicket.length }} ticket{{
@@ -126,29 +131,38 @@
           </div>
         </div>
         <button
-          class="text-black rounded-full h-16 px-10 ml-0 w-80 mt-6 bg-white"
+          class="rounded-full h-16 px-10 w-80 mt-6 mx-auto"
+          :class="
+            listTicket.length === 0
+              ? 'text-black bg-LightGrey'
+              : 'text-black bg-white'
+          "
           @click.prevent="
             totalTicketsCoin() > this.store.dataAccount.coin
               ? ((view = 'addCoin'), (open = true))
-              : buyAction()
+              : listTicket.length > 0
+              ? buyAction()
+              : ''
           "
         >
           <h4 class="text-black">
             {{
               totalTicketsCoin() > this.store.dataAccount.coin
                 ? "Add Coin"
-                : "Buy"
+                : listTicket.length === 1
+                ? "Buy Ticket"
+                : "Buy Tickets"
             }}
           </h4>
         </button>
       </div>
     </div>
     <ModalClear :open="open" @action="close()">
-      <AddCoin
+      <Crediting
         v-if="view === 'addCoin'"
         :data="parseInt(this.store.dataAccount.coin - totalTicketsCoin())"
         @action="close"
-      ></AddCoin>
+      ></Crediting>
       <SelectOwner v-else @action="close"></SelectOwner>
     </ModalClear>
   </div>
@@ -170,12 +184,12 @@ import GoldRC from "@assets/icons/Wallet/GoldRC.vue";
 import SeatMap from "@components/eventBuyTicket/SeatMap.vue";
 import ResumeTicketsBuy from "@components/eventBuyTicket/ResumeTicketsBuy.vue";
 import SelectOwner from "@components/modal/eventId/SelectOwner.vue";
-import AddCoin from "@components/modal/eventId/AddCoin.vue";
 //services
 import eventServices from "@axios/services/eventServices";
 import ticketServices from "@axios/services/ticketServices";
 //tool
 import useStoreAuth from "@stores/auth";
+import Crediting from "@components/modal/wallet/Crediting.vue";
 export default {
   components: {
     XButton60,
@@ -184,7 +198,7 @@ export default {
     SeatMap,
     ResumeTicketsBuy,
     SelectOwner,
-    AddCoin,
+    Crediting,
   },
   data() {
     const store = useStoreAuth();
@@ -197,7 +211,7 @@ export default {
       indexTicket: "",
       view: "",
       page: "buy",
-      ticketsResumeBuy: ""
+      ticketsResumeBuy: "",
     };
   },
   methods: {
@@ -214,10 +228,11 @@ export default {
     },
     ticketsRemaining() {
       let totalTickets = 0;
-      let ticketsSold = 0
+      let ticketsSold = 0;
       for (let index = 0; index < this.infoEvent.tickets.length; index++) {
         totalTickets = totalTickets + this.infoEvent.tickets[index].quantities;
-        ticketsSold = ticketsSold + this.infoEvent.tickets[index].soldTickets.length;
+        ticketsSold =
+          ticketsSold + this.infoEvent.tickets[index].soldTickets.length;
       }
       return totalTickets - ticketsSold;
     },
@@ -256,7 +271,7 @@ export default {
         this.store.dataAccount = result.data.data;
         this.feadData();
         this.page = "resume";
-        this.ticketsResumeBuy = body
+        this.ticketsResumeBuy = body;
       }
     },
     close(userSelect) {

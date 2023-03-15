@@ -1,9 +1,9 @@
 <template>
   <div class="flex h-screen">
-    <div class="w-full mx-8 flex flex-col h-screen">
+    <div class="w-full flex flex-col h-screen">
       <div
         name="nav-bar-top"
-        class="sticky top-0 left-0 right-0 z-20 bg-Anthracite flex pt-6 pb-[18px] items-center"
+        class="sticky top-0 mx-8 left-0 right-0 z-20 bg-Anthracite flex pt-6 pb-[18px] items-center"
       >
         <div class="flex justify-between w-full">
           <div class="flex space-x-4 items-center">
@@ -182,7 +182,7 @@
           </div>
         </div>
       </div>
-      <router-view class="overflow-hidden" />
+      <router-view class="scrollbarV px-6"/>
     </div>
     <CreateSpaceModal @isOpenModal="closeModal" :isOpenModal="isOpenModal" />
   </div>

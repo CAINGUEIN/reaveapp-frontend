@@ -2,11 +2,25 @@
   <div class="my-14">
     <div class="w-2/3 mx-auto flex flex-col">
       <div>
-        <img class="w-1/3" src="../../../../../public/Sponsors.png" alt="" />
+        <h2 c class="text-5xl font-medium">Sponsors</h2>
+        <div class="flex flex-wrap w-full mt-8 gap-8">
+          <div class="flex flex-col items-center">
+            <img src="/img/Asus_ROG.png" alt="" class="mx-auto mb-2" />
+            <p class=" text-xl font-medium">Asus ROG</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="/img/HermanMiller.png" alt="" class="mx-auto mb-2" />
+            <p class=" text-xl font-medium">Herman Miller</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="/img/Redbull.png" alt="" class="mx-auto mb-2" />
+            <p class=" text-xl font-medium">Redbull</p>
+          </div>
+        </div>
       </div>
       <div class="w-full mt-12">
-        <h2 class="mb-4">Staff</h2>
-        <div class="w-full grid grid-cols-3 gap-4">
+        <h2 class="text-5xl font-medium">Staff</h2>
+        <div class="w-full grid grid-cols-3 gap-4 mt-8">
           <div class="flex col-span-1">
             <div class="bg-White h-15 w-15 rounded-full"></div>
             <div class="ml-4">

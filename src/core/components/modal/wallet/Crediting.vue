@@ -14,8 +14,14 @@
       <h2 class="text-white">X</h2>
     </button>
     <div class="pt-12 flex flex-col" v-if="etape === 1">
-      <h4 class="text-center">How much are you crediting</h4>
-      <h4 class="text-center">your Wallet?</h4>
+      <div v-if="data > 0">
+        <h4 class="text-center">How much are you crediting</h4>
+        <h4 class="text-center">your Wallet?</h4>
+      </div>
+      <div v-else>
+        <h4 class="text-center">You need more funds ( {{ 0 - data }} Coins)</h4>
+        <h4 class="text-center">for your purshase.</h4>
+      </div>
       <InputModel
         :data="money"
         v-model="money.value"
@@ -152,7 +158,7 @@ export default {
     Arrow,
     Checkmark,
   },
-  props: ["action"],
+  props: ["action", "data"],
   data() {
     const store = useStoreAuth();
     return {

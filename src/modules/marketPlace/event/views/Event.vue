@@ -1,25 +1,25 @@
 <template>
-  <div class="w-full">
+  <div class="w-full overflow-auto">
     <div class="flex h-72 bg-[#808080] rounded-2xl mx-8"></div>
-    <div class="h-32 flex -mt-16">
+    <div class="h-32 flex -mt-16 relative">
       <div class="m-auto flex w-1/4">
         <label for="search" class="sr-only">Search</label>
         <div
           class="relative bg-DarkRock text-white border-White m-2 flex rounded-full items-center justify-between h-15 w-full"
         >
-        <div class="flex">
-          <SearchIcon
-            class="h-10 w-10 p-2 z-10 my-auto ml-3 text-Gravel rounded-full"
-            aria-hidden="true"
-          />
-          <input
-            id="search"
-            class="bg-DarkRock block h-15 border-transparent focus:ring-0 border-0 rounded-full text-White placeholder-Gravel"
-            placeholder="Search"
-            type="search"
-            name="search"
-          />
-        </div>
+          <div class="flex">
+            <SearchIcon
+              class="h-10 w-10 p-2 z-10 my-auto ml-3 text-Gravel rounded-full"
+              aria-hidden="true"
+            />
+            <input
+              id="search"
+              class="bg-DarkRock block h-15 border-transparent focus:ring-0 border-0 rounded-full text-White placeholder-Gravel"
+              placeholder="Search"
+              type="search"
+              name="search"
+            />
+          </div>
           <Button50Slot class="mr-3 flex"
             ><AdjustmentsIcon
               class="h-12 w-12 p-2 m-auto -rotate-90"
@@ -28,7 +28,7 @@
         </div>
       </div>
       <button
-        class="bg-white h-15 rounded-full py-2 px-8 my-auto mr-24"
+        class="bg-white h-15 rounded-full right-24 top-8 px-8 absolute"
         @click.prevent="open = true"
       >
         <h5 class="text-black font-bold">Start an Event</h5>
@@ -38,7 +38,7 @@
     <div name="content" class="m-8">
       <ul
         role="list"
-        class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  3xl:grid-cols-5"
+        class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5"
       >
         <EventCard
           v-for="card in dataCards"
