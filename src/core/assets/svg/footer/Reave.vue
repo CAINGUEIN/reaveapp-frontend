@@ -1,0 +1,35 @@
+<template>
+  <div>
+    <svg
+      :width="width"
+      :height="height"
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M30.8455 5.14052C28.9508 7.51332 25.6112 13.0273 29.0013 19.3714C29.2399 19.818 28.9435 20.3616 28.4341 20.4047C25.7654 20.6314 17.7237 20.1451 6.93951 26.8245C6.31814 27.2095 5.48224 26.9221 5.0429 26.3418L1.31161 21.4139C0.906164 20.8784 0.895414 20.1464 1.28497 19.5994C3.64008 16.2932 12.6875 5.3688 30.2263 4.00235C30.8469 3.95411 31.2309 4.65765 30.8455 5.14029V5.14052Z"
+        :fill="color1"
+      />
+    </svg>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    width: {
+      type: Number,
+      default: 32,
+    },
+    height: {
+      type: Number,
+      default: 32,
+    },
+    color1: {
+      type: String,
+      default: "#FFFFFF",
+    },
+  },
+};
+</script>
