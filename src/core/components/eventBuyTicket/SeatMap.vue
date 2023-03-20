@@ -1,23 +1,38 @@
 <template>
   <div>
     <div v-for="typeTicket in tickets" class="m-auto">
-      <div v-if="typeTicket.type === 'Sitting'" class="flex">
-        <div v-for="(ligne, indexRow) in typeTicket.row" class="space-y-2">
-          <button
+      <div
+        v-if="typeTicket.type === 'Sitting'"
+        class="flex justify-center gap-2"
+      >
+        <div
+          v-for="(ligne, indexRow) in typeTicket.row"
+          class="flex flex-col justify-center"
+        >
+          <div
+          class="relative h-[35px] "
             v-for="(seat, indexColumn) in typeTicket.column"
-            :style="'background: #' + typeTicket.color"
-            class="space-x-1 rounded-2xl w-12 h-7 flex"
-            :class="
-              verifyTicketFree(indexRow, indexColumn, typeTicket.cathegory)
-            "
             @click.prevent="
               verifySoldable(indexRow, indexColumn, typeTicket.cathegory)
                 ? ''
                 : addTicket(indexRow, indexColumn, typeTicket)
             "
           >
-            <p class="m-auto text-black">{{ indexRow + "-" + indexColumn }}</p>
-          </button>
+            <Seat
+              :color1="
+                verifyTicketColor(indexRow, indexColumn, typeTicket.cathegory, typeTicket.color)
+              "
+              :width="30"
+              :height="35"
+              class="-rotate-90"
+              :class="
+                verifyTicketClass(indexRow, indexColumn, typeTicket.cathegory)
+              "
+            ></Seat>
+            <p class="text-black text-xs bottom-1 absolute">
+              {{ indexRow + " " + indexColumn }}
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -25,6 +40,8 @@
 </template>
 
 <script>
+import Seat from "@assets/icons/Seat.vue";
+
 export default {
   props: ["tickets", "listTicket"],
   methods: {
@@ -33,7 +50,6 @@ export default {
       if (this.listTicket.length === 0) {
         return this.$emit("push", data);
       }
-
       for (let index = 0; index < this.listTicket.length; index++) {
         console.log(this.listTicket[index]);
         if (
@@ -46,14 +62,16 @@ export default {
       }
       this.$emit("push", data);
     },
-    verifyTicketFree(verifRow, verifColumn, verifCathegory) {
+    verifyTicketClass(verifRow, verifColumn, verifCathegory) {
+      let verifTicket = false;
+      let verifListTicket = false;
       for (let index = 0; index < this.listTicket.length; index++) {
         if (
           this.listTicket[index].row === verifRow &&
           this.listTicket[index].column === verifColumn &&
           this.listTicket[index].ticket.cathegory === verifCathegory
         ) {
-          return "border-2 border-Green opacity-60";
+          return "cursor-pointer";
         }
       }
       for (let index = 0; index < this.tickets.length; index++) {
@@ -67,11 +85,42 @@ export default {
               this.tickets[index].soldTickets[index2].row === verifRow &&
               this.tickets[index].soldTickets[index2].column === verifColumn
             ) {
-              return "border-2 border-Gravel opacity-60 cursor-not-allowed";
+              return "opacity-60 cursor-not-allowed";
             }
           }
         }
       }
+      return "cursor-pointer"
+    },
+    verifyTicketColor(verifRow, verifColumn, verifCathegory, color) {
+      let verifTicket = false;
+      let verifListTicket = false;
+      for (let index = 0; index < this.listTicket.length; index++) {
+        if (
+          this.listTicket[index].row === verifRow &&
+          this.listTicket[index].column === verifColumn &&
+          this.listTicket[index].ticket.cathegory === verifCathegory
+        ) {
+          return "#CD6DFB" ;
+        }
+      }
+      for (let index = 0; index < this.tickets.length; index++) {
+        if (this.tickets[index].cathegory === verifCathegory) {
+          for (
+            let index2 = 0;
+            index2 < this.tickets[index].soldTickets.length;
+            index2++
+          ) {
+            if (
+              this.tickets[index].soldTickets[index2].row === verifRow &&
+              this.tickets[index].soldTickets[index2].column === verifColumn
+            ) {
+              return "#" + color;
+            }
+          }
+        }
+      }
+      return "#" + color;
     },
     verifySoldable(verifRow, verifColumn, verifCathegory) {
       for (let index = 0; index < this.tickets.length; index++) {
@@ -92,7 +141,9 @@ export default {
       }
     },
   },
+  components: { Seat },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+</style>

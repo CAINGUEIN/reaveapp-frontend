@@ -1,7 +1,7 @@
 <template>
-  <div class="group relative" @click="open = true">
+  <div v-if="infoEvent !== ''" class="group relative" @click="open = true">
     <div
-      class="relative aspect-w-1 aspect-h-1 overflow-hidden rounded-md group-hover:opacity-75"
+      class="relative aspect-w-1 aspect-h-1 overflow-hidden rounded-md"
       v-on:mouseover="mouseover"
       v-on:mouseleave="mouseleave"
     >
@@ -11,14 +11,25 @@
         class="object-cover object-center"
       />
       <div
-        class="absolute bg-LightRock h-10 left-0 right-0 top-0"
+        class="absolute left-0 right-0 top-0 bottom-0 hoverCard flex flex-col justify-between p-4"
         :class="
           comparedContent
-            ? 'transition duration-300 ease-in-out'
+            ? 'transition duration-300 ease-in-out '
             : 'opacity-0 transition duration-300 ease-in-out'
         "
       >
-        <h4 class="text-center">Ticket for {{ infoEvent.name }}</h4>
+        <div class="flex items-center">
+          <div class="h-6 w-6 rounded-full bg-Gravel mr-2"></div>
+          <p class="text-xs font-bold text-white">
+            {{ infoEvent.owner.user_id.profileName }}
+          </p>
+        </div>
+        <div>
+          <p class="text-xl font-bold text-white">
+            {{ matchData("cathegory") }}
+          </p>
+          <h4 class="text-xl font-bold text-white">{{ infoEvent.name }}</h4>
+        </div>
       </div>
     </div>
     <!-- 
@@ -46,7 +57,11 @@
     
     <p class="mt-1 text-lg font-medium"></p>-->
     <ModalClearXL :open="open" @action="close()">
-      <TicketObjView :infoEvent="infoEvent" :infoTicket="infoTicket" @action="close()"></TicketObjView>
+      <TicketObjView
+        :infoEvent="infoEvent"
+        :infoTicket="infoTicket"
+        @action="close()"
+      ></TicketObjView>
     </ModalClearXL>
   </div>
 </template>
@@ -89,10 +104,24 @@ export default {
     async feadInfo() {
       let body = { _id: this.data };
       let result = await TicketServices.info(body);
+      console.log(result);
       if (result.data.success) {
         this.infoEvent = result.data.data.event;
         this.infoTicket = result.data.data.ticket;
       }
+    },
+    matchData(value) {
+      let target = this.infoTicket.event_id;
+
+      let ticketsData = this.infoEvent.tickets;
+      for (let index = 0; index < ticketsData.length; index++) {
+        if (ticketsData[index]._id === target) {
+          return ticketsData[index][value];
+        }
+      }
+      console.log(target);
+
+      return "rien";
     },
   },
   mounted() {
@@ -101,3 +130,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.hoverCard {
+  background: linear-gradient(360deg, #000000 0%, rgba(0, 0, 0, 0.06) 72.52%);
+}
+</style>

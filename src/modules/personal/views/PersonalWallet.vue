@@ -1,20 +1,21 @@
 <template>
   <div class="flex flex-wrap overflow-hidden">
-    <div name="leftContent" class="w-2/5 max-w-2/5">
+    <div name="leftContent" class="w-2/5 max-w-2/5 max-h-full hover:overflow-auto overflow-hidden scrollbarV px-4">
       <main
-        class="mx-auto max-w-2xl py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
+        class="mx-auto max-w-2xl py-8 lg:max-w-7xl"
         aria-labelledby="order-history-heading"
       >
-        <h1
-          id="order-history-heading"
-          class="text-3xl font-bold tracking-tight text-white"
-        >
-          Balance
-        </h1>
-        <div
-          name="coin"
-          class="flex flex-col mt-8 bg-LightRock rounded-xl h-24 p-4"
-        >
+        <div class="flex justify-between items-baseline">
+          <h1
+            id="order-history-heading"
+            class="text-3xl font-bold tracking-tight text-white mb-4 flex items-center"
+          >
+          <span><SvgTarget target="Balance" class="mr-4"></SvgTarget></span>
+            Balance
+          </h1>
+          <a @click="changeView('walletBallance')" class=" text-base cursor-pointer">View monitor</a>
+        </div>
+        <div name="coin" class="flex flex-col bg-DarkRock rounded-xl p-4">
           <div class="flex w-full justify-between">
             <div class="flex items-center space-x-2">
               <h2>
@@ -25,42 +26,57 @@
 
             <div class="flex space-x-4">
               <button
-                class="bg-white text-black rounded-full h-10 w-10 flex"
+                class="bg-white text-black rounded-full h-[50px] w-[50px] flex"
                 @click.prevent="(open = true), (modal = 'credit')"
               >
-                <Credit class="m-auto" :color1="'black'"></Credit>
+                <Credit
+                  class="m-auto"
+                  :width="26"
+                  :height="26"
+                  :color1="'black'"
+                ></Credit>
               </button>
               <button
-                class="bg-white text-black rounded-full h-10 w-10 flex"
+                class="bg-white text-black rounded-full h-[50px] w-[50px] flex"
                 @click.prevent="(open = true), (modal = 'debit')"
               >
-                <Debit class="m-auto" :color1="'black'"></Debit>
+                <Debit
+                  class="m-auto"
+                  :width="26"
+                  :height="26"
+                  :color1="'black'"
+                ></Debit>
               </button>
               <button
-                class="bg-white text-black rounded-full h-10 w-10 flex"
+                class="bg-white text-black rounded-full h-[50px] w-[50px] flex"
                 @click.prevent="(open = true), (modal = 'transferTo')"
               >
-                <TransferTo class="m-auto" :color1="'black'"></TransferTo>
+                <TransferTo
+                  class="m-auto"
+                  :width="26"
+                  :height="26"
+                  :color1="'black'"
+                ></TransferTo>
               </button>
             </div>
           </div>
-          <a href="">View details</a>
         </div>
         <div name="Histories">
           <div class="flex justify-between items-baseline">
             <h1
               id="order-history-heading"
-              class="text-3xl font-bold tracking-tight text-white mt-8 mb-4"
+              class="text-3xl font-bold tracking-tight text-white mt-8 flex items-center"
             >
-              Transaction
+            <span><SvgTarget target="Exchanges" class="mr-4"></SvgTarget></span>
+              Transactions
             </h1>
-            <a href="">View all transactions</a>
+            <a @click="changeView('walletTransaction')" class=" text-base cursor-pointer">View all transactions</a>
           </div>
 
-          <table class="overflow-hidden text-[18px] text-center w-full">
+          <table class="overflow-hidden text-[18px] text-center w-full my-4">
             <tr>
-              <th><p class="font-medium text-White">Type</p></th>
-              <th><p class="font-medium text-White">Name</p></th>
+              <th><p class="font-medium text-White mr-6">Type</p></th>
+              <th><p class="font-medium text-White text-left">Name</p></th>
               <th><p class="font-medium text-White">Date</p></th>
               <th><p class="font-medium text-White">Amount</p></th>
             </tr>
@@ -70,15 +86,15 @@
               <th class="bg-white h-0.5"></th>
               <th class="bg-white h-0.5"></th>
             </tr>
-            <tr v-for="item in reverse(10)" class="h-12">
-              <td>
+            <tr v-for="item in reverse(10)" class=" hover:bg-DarkRock ">
+              <td class="rounded-l-2xl overflow-hidden py-3 mr-6 flex justify-around">
                 <div v-if="item.type === 'coin' && item.value > 0" class="flex">
-                  <div class="bg-LightRock rounded-full h-10 w-10 flex mx-auto">
+                  <div class="bg-DarkRock rounded-full h-10 w-10 flex">
                     <Credit class="m-auto" :color1="'white'"></Credit>
                   </div>
                 </div>
                 <div v-if="item.type === 'coin' && item.value < 0" class="flex">
-                  <div class="bg-LightRock rounded-full h-10 w-10 flex mx-auto">
+                  <div class="bg-DarkRock rounded-full h-10 w-10 flex">
                     <Debit class="m-auto" :color1="'white'"></Debit>
                   </div>
                 </div>
@@ -86,7 +102,7 @@
                   v-if="item.type === 'sendCoin' && item.value > 0"
                   class="flex"
                 >
-                  <div class="bg-LightRock rounded-full h-10 w-10 flex mx-auto">
+                  <div class="bg-DarkRock rounded-full h-10 w-10 flex">
                     <TransferFrom
                       class="m-auto"
                       :color1="'white'"
@@ -97,44 +113,81 @@
                   v-if="item.type === 'sendCoin' && item.value < 0"
                   class="flex"
                 >
-                  <div class="bg-LightRock rounded-full h-10 w-10 flex mx-auto">
+                  <div class="bg-DarkRock rounded-full h-10 w-10 flex">
                     <TransferTo class="m-auto" :color1="'white'"></TransferTo>
                   </div>
                 </div>
                 <div v-if="item.type === 'BuyTicket'" class="flex">
-                  <div class="bg-LightRock rounded-full h-10 w-10 flex mx-auto">
+                  <div class="bg-DarkRock rounded-full h-10 w-10 flex">
                     <Purshase class="m-auto" :color1="'white'"></Purshase>
                   </div>
                 </div>
                 <div v-if="item.type === 'GiftTicket'" class="flex">
-                  <div class="bg-LightRock rounded-full h-10 w-10 flex mx-auto">
+                  <div class="bg-DarkRock rounded-full h-10 w-10 flex">
                     <GiftFrom class="m-auto" :color1="'white'"></GiftFrom>
                   </div>
                 </div>
                 <div v-if="item.type === 'GiftedTicket'" class="flex">
-                  <div class="bg-LightRock rounded-full h-10 w-10 flex mx-auto">
+                  <div class="bg-DarkRock rounded-full h-10 w-10 flex">
                     <GiftTo class="m-auto" :color1="'white'"></GiftTo>
                   </div>
                 </div>
               </td>
-              <td>
-                <h5 v-if="item.type === 'sendCoin' && item.value > 0">
+              <td class="py-3 text-left">
+                <p
+                  class="text-xl font-normal"
+                  v-if="item.type === 'sendCoin' && item.value > 0"
+                >
                   cadeau
-                </h5>
-                <h5 v-if="item.type === 'sendCoin' && item.value < 0">don</h5>
-                <h5 v-if="item.type === 'coin' && item.value > 0">Achat</h5>
-                <h5 v-if="item.type === 'coin' && item.value < 0">Vente</h5>
-                <h5 v-if="item.type === 'BuyTicket'">{{ item.message }}</h5>
-                <h5 v-if="item.type === 'GiftTicket'">{{ item.message }}</h5>
-                <h5 v-if="item.type === 'GiftedTicket'">{{ item.message }}</h5>
+                </p>
+
+                <p></p>
+                <p
+                  class="text-xl font-normal"
+                  v-if="item.type === 'sendCoin' && item.value < 0"
+                >
+                  don
+                </p>
+                <p
+                  class="text-xl font-normal"
+                  v-if="item.type === 'coin' && item.value > 0"
+                >
+                  Achat
+                </p>
+                <p
+                  class="text-xl font-normal"
+                  v-if="item.type === 'coin' && item.value < 0"
+                >
+                  Vente
+                </p>
+                <p class="text-xl font-normal" v-if="item.type === 'BuyTicket'">
+                  {{ item.message }}
+                </p>
+                <p
+                  class="text-xl font-normal"
+                  v-if="item.type === 'GiftTicket'"
+                >
+                  {{ item.message }}
+                </p>
+                <p
+                  class="text-xl font-normal"
+                  v-if="item.type === 'GiftedTicket'"
+                >
+                  {{ item.message }}
+                </p>
               </td>
-              <td>
-                <h5>{{ $dayjs(item.date).format("DD-MM-YYYY") }}</h5>
+              <td class="py-3">
+                <p class="text-xl font-normal">
+                  {{ $dayjs(item.date).format("DD-MM-YYYY") }}
+                </p>
               </td>
-              <td>
-                <h5 :class="item.value > 0 ? 'text-Green' : 'text-Red'">
+              <td class="rounded-r-2xl overflow-hidden py-3">
+                <p
+                  class="text-xl font-normal"
+                  :class="item.value > 0 ? 'text-Green' : 'text-Red'"
+                >
                   {{ item.value }}
-                </h5>
+                </p>
               </td>
             </tr>
           </table>
@@ -143,21 +196,21 @@
     </div>
     <div
       name="rightContent"
-      class="w-3/5 max-w-3/5 max-h-full hover:overflow-auto overflow-hidden scrollbarV"
+      class="w-3/5 max-w-3/5 max-h-full hover:overflow-auto overflow-hidden scrollbarV px-4"
     >
       <main
-        class="mx-auto max-w-2xl py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8 h-full"
+        class="mx-auto max-w-2xl py-8 lg:max-w-7xl pl-8 h-full"
         aria-labelledby="order-history-heading"
       >
-        <div class="">
+        <div class="flex justify-between items-baseline">
           <h1
             id="order-history-heading"
-            class="text-3xl font-bold tracking-tight text-white"
-          >
-            Inventory
+            class="text-3xl font-bold tracking-tight text-white mb-4 flex items-center"
+            >
+            <span><SvgTarget target="Inventory" class="mr-4"></SvgTarget></span> Inventory
           </h1>
+          <a @click="changeView('walletInventory')" class=" text-base cursor-pointer">View all items</a>
         </div>
-
         <div
           class="mt-8 grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-2 sm:gap-y-16 xl:grid-cols-3 lg:gap-x-8 2xl:grid-cols-4"
         >
@@ -198,6 +251,7 @@ import Crediting from "@components/modal/wallet/Crediting.vue";
 //tool
 import useStoreAuth from "@stores/auth";
 import { GiftIcon } from "@heroicons/vue/solid";
+import SvgTarget from "../../../core/components/SvgTarget.vue";
 
 export default {
   components: {
@@ -215,6 +269,7 @@ export default {
     GiftIcon,
     GiftFrom,
     GiftTo,
+    SvgTarget
 },
   data() {
     const store = useStoreAuth();
@@ -225,6 +280,9 @@ export default {
     };
   },
   methods: {
+    changeView(value) {
+      this.$emit("action", value);
+    },
     close() {
       this.open = false;
       this.modal = "";

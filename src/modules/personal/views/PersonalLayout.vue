@@ -56,13 +56,20 @@
             >
               <Dashboard />
             </ToolsButtonNav>
-            <ToolsButtonNav
+            <!-- <ToolsButtonNav
               :btnName="'tree'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
               @click="view = 'tree'"
             >
               <Tree />
+            </ToolsButtonNav> --><ToolsButtonNav
+              :btnName="'history'"
+              :dataClass="'spaceIcon'"
+              :comparTarget="view"
+              @click="view = 'history'"
+            >
+              <MatchHistory />
             </ToolsButtonNav>
             <ToolsButtonNav
               :btnName="'calendar'"
@@ -75,30 +82,16 @@
                 {{ this.$dayjs().format("D") }}
               </div>
             </ToolsButtonNav>
-            <ToolsButtonNav
-              :btnName="'history'"
-              :dataClass="'spaceIcon'"
-              :comparTarget="view"
-              @click="view = 'history'"
-            >
-              <MatchHistory />
-            </ToolsButtonNav>
-            <ToolsButtonNav
+
+            <!-- <ToolsButtonNav
               :btnName="'cloud'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
               @click="view = 'cloud'"
             >
               <Cloud />
-            </ToolsButtonNav>
-            <ToolsButtonNav
-              :btnName="'notifs'"
-              :dataClass="'spaceIcon'"
-              :comparTarget="view"
-              @click="view = 'notifs'"
-            >
-              <Notification />
-            </ToolsButtonNav>
+            </ToolsButtonNav> -->
+
             <ToolsButtonNav
               :btnName="'wallet'"
               :dataClass="'spaceIcon'"
@@ -108,26 +101,34 @@
               <Wallet />
             </ToolsButtonNav>
 
-            <ToolsButtonNav
+            <!--  <ToolsButtonNav
               :btnName="'operator'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
               @click="view = 'operator'"
             >
               <Operator />
-            </ToolsButtonNav>
-            <ToolsButtonNav
+            </ToolsButtonNav> -->
+            <!-- <ToolsButtonNav
               :btnName="'championPass'"
               :dataClass="'spaceIcon'"
               :comparTarget="view"
               @click="view = 'championPass'"
             >
               <ChampionPass />
+            </ToolsButtonNav> -->
+            <ToolsButtonNav
+              :btnName="'notifs'"
+              :dataClass="'spaceIcon'"
+              :comparTarget="view"
+              @click="view = 'notifs'"
+            >
+              <Notification />
             </ToolsButtonNav>
           </div>
         </div>
       </div>
-      <div class="flex-1 max-h-fit overflow-hidden">
+      <div class="flex-1 max-h-fit overflow-hidden mx-[90px]">
         <DashboardLol
           v-if="view === 'dashboard' && option === 'lol'"
           class="w-full h-full"
@@ -162,11 +163,24 @@
         <PersonalWallet
           v-if="view === 'wallet'"
           class="w-full h-full"
+          @action="changeView"
         ></PersonalWallet>
         <PersonalOperator
           v-if="view === 'operator'"
           class="w-full h-full"
         ></PersonalOperator>
+        <PersonalWalletBallance
+          v-if="view === 'walletBallance'"
+          class="w-full h-full"
+        ></PersonalWalletBallance>
+        <PersonalWalletInventory
+          v-if="view === 'walletInventory'"
+          class="w-full h-full"
+        ></PersonalWalletInventory>
+        <PersonalWalletTransaction
+          v-if="view === 'walletTransaction'"
+          class="w-full h-full"
+        ></PersonalWalletTransaction>
       </div>
       <CreateCalendarEvent
         @isOpenModal="closeModal"
@@ -192,6 +206,10 @@ import DashboardOw from "@modules/personal/views/DashboardOw.vue";
 import MatchHistoryLol from "@modules/personal/views/MatchHistoryLol.vue";
 import MatchHistoryOw from "@modules/personal/views/MatchHistoryOw.vue";
 import MatchHistoryValo from "@modules/personal/views/MatchHistoryValo.vue";
+import PersonalWalletBallance from "@modules/personal/views/PersonalWalletBallance.vue";
+import PersonalWalletInventory from "@modules/personal/views/PersonalWalletInventory.vue";
+import PersonalWalletTransaction from "@modules/personal/views/PersonalWalletTransaction.vue";
+
 import LolOptionDashboard from "@core/components/layout/LolOptionDashboard.vue";
 import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
 import PersonalWallet from "./PersonalWallet.vue";
@@ -209,8 +227,8 @@ import ChampionPass from "@assets/icons/ChampionPass.vue";
 import LeagueOfLegend from "@assets/icons/LeagueOfLegend.vue";
 import Overwatch from "@assets/icons/Overwatch.vue";
 import Valorant from "@assets/icons/Valorant.vue";
-import ImgFormated from "../../../core/components/img/ImgFormated.vue";
-import Operator from "../../../core/assets/icons/Operator.vue";
+import ImgFormated from "@core/components/img/ImgFormated.vue";
+import Operator from "@core/assets/icons/Operator.vue";
 import PersonalOperator from "./PersonalOperator.vue";
 
 export default {
@@ -241,6 +259,9 @@ export default {
     PersonalWallet,
     Operator,
     PersonalOperator,
+    PersonalWalletBallance,
+    PersonalWalletInventory,
+    PersonalWalletTransaction,
   },
   data() {
     const store = useStoreAuth();
@@ -281,6 +302,9 @@ export default {
     },
     goTo(target) {
       this.$router.push({ name: target });
+    },
+    changeView(value) {
+      this.view = value
     },
     setUrl(value) {
       this.$router.replace({

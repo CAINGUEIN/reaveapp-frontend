@@ -17,6 +17,8 @@ import * as platforms from "@assets/svg/products/platforms/platformsImport";
 import * as systems from "@assets/svg/products/systems/systemsImport";
 import * as experiences from "@assets/svg/products/experiences/experiencesImport";
 import * as tools from "@assets/svg/products/tools/toolsImport";
+import * as wallet from "@assets/icons/Wallet/walletImport";
+import * as iconsOld from "@assets/icons/iconsOldImport";
 
 export default {
   components: {
@@ -27,6 +29,8 @@ export default {
     ...systems,
     ...experiences,
     ...tools,
+    ...wallet,
+    ...iconsOld,
   },
   props: ["target", "width", "color1", "height"],
 };

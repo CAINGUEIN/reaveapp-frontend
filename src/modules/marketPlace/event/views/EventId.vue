@@ -6,7 +6,7 @@
         <img src="/img/BigIMG.png" alt="" class="my-auto w-full" />
       </div>
       <div class="pl-18 flex flex-col justify-between w-2/5">
-        <div class="flex flex-col justify-between">
+        <div class="flex flex-col justify-between mt-18">
           <h1 class="text-[56px] font-bold">{{ infoEvent.name }}</h1>
           <div class="flex items-center space-x-4">
             <div class="h-15 w-15 rounded-full bg-slate-300 my-3"></div>
@@ -25,7 +25,7 @@
               ><Auctions :width="32" :height="32" class="m-auto"></Auctions
             ></Button60Slot>
           </div>
-          <div class="grid-cols-2 grid w-full gap-4 mt-4">
+          <div class="grid-cols-2 grid w-full gap-4 mt-18">
             <div class="col-span-1">
               <p>Date</p>
               <h3>{{ $dayjs(infoEvent.date).format("MM.DD.YYYY") }}</h3>

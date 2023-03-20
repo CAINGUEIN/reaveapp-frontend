@@ -15,34 +15,34 @@
         >
         </SeatMap>
         <div
-          class="h-[78px] mt-8 bg-DarkRock rounded-2xl flex justify-between items-center"
+          class="p-[14px] mt-8 bg-DarkRock rounded-2xl flex justify-between items-center"
         >
-          <div name="tickets" class="flex space-x-8 ml-4">
+          <div name="tickets" class="flex ml-4">
             <div
               v-for="item in infoEvent.tickets"
-              class="flex items-center space-x-4"
+              class="flex items-center mr-16"
             >
               <div
                 :style="'background: #' + item.color"
                 class="h-6 w-6 rounded-full"
               ></div>
-              <div>
-                <p>{{ item.cathegory }}</p>
+              <div class="ml-4">
+                <p class="leading-6">{{ item.cathegory }}</p>
                 <div class="flex items-center">
-                  <h3>{{ item.price }}</h3>
+                  <h3 class="leading-7">{{ item.price }}</h3>
                   <GoldRC class="ml-2" :width="14" :height="14"></GoldRC>
                 </div>
               </div>
             </div>
           </div>
           <div name="info" class="flex space-x-4 mr-4">
-            <div class="">
-              <p>available Tickets</p>
-              <h3>{{ ticketsRemaining() }}</h3>
+            <div class="mr-16">
+              <p class="leading-6">available Tickets</p>
+              <h3 class="leading-7">{{ ticketsRemaining() }}</h3>
             </div>
             <div class="">
-              <p>Booking time left</p>
-              <h3 class="text-Orange">
+              <p class="leading-6">Booking time left</p>
+              <h3 class="text-Orange leading-7">
                 {{ $dayjs(infoEvent.date).fromNow() }}
               </h3>
             </div>
@@ -50,17 +50,17 @@
         </div>
       </div>
       <div class="pl-18 flex flex-col justify-between w-1/3">
-        <div class="space-y-4 flex flex-col">
-          <h1>{{ infoEvent.name }}</h1>
+        <div class="flex flex-col">
+          <h1 class="mb-2 font-bold">{{ infoEvent.name }}</h1>
           <div class="flex flex-col">
             <div class="flex items-center space-x-4 mt-6">
               <div class="h-10 w-10 rounded-full bg-slate-300"></div>
-              <p>Organised by @{{ infoEvent.owner.user_id.userTag }}</p>
+              <p class="text-white font-medium">Organised by @{{ infoEvent.owner.user_id.userTag }}</p>
             </div>
-            <h4 class="mt-4">
+            <h4 class="mt-4 text-base">
               {{ $dayjs(infoEvent.date).format("dddd MM.DD.YYYY hh:mm A") }}
             </h4>
-            <h4 class="mt-4">
+            <h4 class="mt-1 text-base">
               {{
                 infoEvent.venueName +
                 ", " +
@@ -75,7 +75,7 @@
         </div>
         <div
           name="backet"
-          class="h-[460px] overflow-auto scrollbarV px-2 py-4 space-y-2 border-y-2 border-Gravel my-6"
+          class="h-[460px] overflow-auto scrollbarV px-2 py-4 space-y-2 border-y-2 border-Gravel my-5"
         >
           <div v-if="listTicket.length === 0" class="w-full h-full flex">
             <div class="m-auto text-center">
@@ -89,16 +89,35 @@
             class="flex justify-between bg-DarkRock p-2 rounded-2xl"
           >
             <div name="info" class="flex items-center">
-              <div name="img" class="w-16 h-16 bg-slate-700 rounded-2xl"></div>
+              <div name="img" class="w-16 h-16 bg-slate-700 rounded-2xl">
+                <div
+                  class="absolute flex right-0 bottom-0 h-6 w-6 bg-white rounded-full"
+                >
+                  <SvgTarget
+                    target="Bootcamps"
+                    color1="#000"
+                    :width="16"
+                    :height="16"
+                    class="m-auto"
+                  ></SvgTarget>
+                </div>
+              </div>
               <div class="ml-3">
-                <h3>{{ item.ticket.cathegory }}</h3>
-                <h5>ZoneName</h5>
-                <p>Row {{ item.row }}, Seat {{ item.column }}</p>
+                <h3
+                  class="leading-7 font-medium"
+                  :style="'color: #' + item.ticket.color"
+                >
+                  {{ item.ticket.cathegory }}
+                </h3>
+                <p class="leading-6">ZoneName</p>
+                <p class="leading-6">
+                  Row {{ item.row }}, Seat {{ item.column }}
+                </p>
               </div>
             </div>
             <div name="other" class="flex flex-col items-end">
               <div class="flex items-center">
-                <h3>{{ item.ticket.price }}</h3>
+                <h3 class="">{{ item.ticket.price }}</h3>
                 <GoldRC class="ml-2" :width="14" :height="14"></GoldRC>
               </div>
               <div v-if="item.owner_id" class="flex items-center space-x-2">
@@ -109,16 +128,16 @@
                 <div class="w-10 h-10 rounded-full bg-Gravel"></div>
               </div>
               <button v-else @click.prevent="selectUser(index)">
-                Select Ticker owner
+                Select Ticket owner
               </button>
             </div>
           </div>
         </div>
         <div class="flex justify-between">
-          <h3>Total</h3>
+          <h3 class="font-medium">Total</h3>
           <div class="flex flex-col items-end">
             <div class="flex items-center">
-              <p class="text-[32px] text-white font-medium">
+              <p class="text-[32px] text-white font-black">
                 {{ totalTicketsCoin() }}
               </p>
               <GoldRC class="ml-0.5" :width="14" :height="14"></GoldRC>
@@ -131,7 +150,7 @@
           </div>
         </div>
         <button
-          class="rounded-full h-16 px-10 w-80 mt-6 mx-auto"
+          class="rounded-full h-16 w-80 mt-6 mx-auto"
           :class="
             listTicket.length === 0
               ? 'text-black bg-LightGrey'
@@ -145,15 +164,24 @@
               : ''
           "
         >
-          <h4 class="text-black">
-            {{
-              totalTicketsCoin() > this.store.dataAccount.coin
-                ? "Add Coin"
-                : listTicket.length === 1
-                ? "Buy Ticket"
-                : "Buy Tickets"
-            }}
-          </h4>
+          <div class="mx-auto flex justify-center">
+            <SvgTarget
+              :target="totalTicketsCoin() > this.store.dataAccount.coin ? 'Credit' : 'Tickets'"
+              color1="#000"
+              :width="32"
+              :height="32"
+              class="my-auto mr-2"
+            ></SvgTarget>
+            <h4 class="text-black my-auto">
+              {{
+                totalTicketsCoin() > this.store.dataAccount.coin
+                  ? "Add Coins"
+                  : listTicket.length === 1
+                  ? "Buy Ticket"
+                  : "Buy Tickets"
+              }}
+            </h4>
+          </div>
         </button>
       </div>
     </div>
@@ -190,6 +218,7 @@ import ticketServices from "@axios/services/ticketServices";
 //tool
 import useStoreAuth from "@stores/auth";
 import Crediting from "@components/modal/wallet/Crediting.vue";
+import SvgTarget from "@components/SvgTarget.vue";
 export default {
   components: {
     XButton60,
@@ -199,6 +228,7 @@ export default {
     ResumeTicketsBuy,
     SelectOwner,
     Crediting,
+    SvgTarget,
   },
   data() {
     const store = useStoreAuth();

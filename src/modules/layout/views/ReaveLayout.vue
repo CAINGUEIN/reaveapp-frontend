@@ -46,7 +46,7 @@
               :subTarget="'account'"
               :dataClass="''"
             >
-              <Settings />
+              <Settings color1="#BEBEBE" />
             </ToolsButtonNav>
 
             <Popover class="relative" v-slot="{ open }">
@@ -58,7 +58,7 @@
                   'flex items-center justify-center rounded-full cursor-pointer h-15 w-15 hover:bg-DarkRock hover:text-LightGrey',
                 ]"
               >
-                <DotsVerticalIcon class="h-10 w-10"></DotsVerticalIcon>
+                <Bento :color1="open ? '#BEBEBE' :'#BEBEBE'"></Bento>
               </PopoverButton>
 
               <transition
@@ -182,7 +182,7 @@
           </div>
         </div>
       </div>
-      <router-view class="scrollbarV px-6"/>
+      <router-view class=" overflow-hidden px-6 max-h-fit"/>
     </div>
     <CreateSpaceModal @isOpenModal="closeModal" :isOpenModal="isOpenModal" />
   </div>
@@ -214,6 +214,7 @@ import NFTs from "@assets/icons/NFTs.vue";
 //data
 import dataTopLeft from "@modules/layout/data/dataTopLeftNavBar";
 import dataBottomLeft from "@modules/layout/data/dataBottomLeftNavBar";
+import Bento from "../../../core/assets/icons/Bento.vue";
 
 export default {
   components: {
@@ -238,7 +239,8 @@ export default {
     NFTs,
     Jobs,
     DotsVerticalIcon,
-  },
+    Bento
+},
   data() {
     const store = useStoreAuth();
     const storeSpace = useStoreSpace();
