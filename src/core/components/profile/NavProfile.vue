@@ -1,51 +1,86 @@
 <template>
-  <div class="w-[1322px]">
+  <div class="mx-auto w-[1000px]">
     <nav class="flex justify-center p-4 z-10">
-      <a
-        class="px-8 pb-2 cursor-pointer border-b-2"
+      <p
+        class="px-8 pb-2 cursor-pointer border-b-2 font-medium text-lg"
         :class="
-          view === 'posts' ? 'text-White border-White' : 'border-LightRock'
+          view === 'Posts'
+            ? 'text-White border-White'
+            : 'border-Gravel text-Gravel'
         "
-        @click="view = 'posts'"
-        >Posts</a
+        @click="changeView('Posts')"
       >
-      <a
-        class="px-8 pb-2 cursor-pointer border-b-2"
+        Posts
+      </p>
+      <p
+        class="px-8 pb-2 cursor-pointer border-b-2 font-medium text-lg"
         :class="
-          view === 'career' ? 'text-White border-White' : 'border-LightRock'
+          view === 'Events'
+            ? 'text-White border-White'
+            : 'border-Gravel text-Gravel'
         "
-        @click="view = 'career'"
-        >Career</a
+        @click="changeView('Events')"
       >
-      <a
-        class="px-8 pb-2 cursor-pointer border-b-2"
+        Events
+      </p>
+      <p
+        class="px-8 pb-2 cursor-pointer border-b-2 font-medium text-lg"
         :class="
-          view === 'inventory' ? 'text-White border-White' : 'border-LightRock'
+          view === 'Products'
+            ? 'text-White border-White'
+            : 'border-Gravel text-Gravel'
         "
-        @click="view = 'inventory'"
-        >Inventory</a
+        @click="changeView('Products')"
       >
-      <a
-        class="px-8 pb-2 cursor-pointer border-b-2"
+        Products
+      </p>
+      <p
+        class="px-8 pb-2 cursor-pointer border-b-2 font-medium text-lg"
         :class="
-          view === 'tags' ? 'text-White border-White' : 'border-LightRock'
+          view === 'Career'
+            ? 'text-White border-White'
+            : 'border-Gravel text-Gravel'
         "
-        @click="view = 'tags'"
-        >Tags</a
+        @click="changeView('Career')"
       >
+        Career
+      </p>
+      <p
+        class="px-8 pb-2 cursor-pointer border-b-2 font-medium text-lg"
+        :class="
+          view === 'People'
+            ? 'text-White border-White'
+            : 'border-Gravel text-Gravel'
+        "
+        @click="changeView('People')"
+      >
+        People
+      </p>
+      <p
+        class="px-8 pb-2 cursor-pointer border-b-2 font-medium text-lg"
+        :class="
+          view === 'About'
+            ? 'text-White border-White'
+            : 'border-Gravel text-Gravel'
+        "
+        @click="changeView('About')"
+      >
+        About
+      </p>
     </nav>
     <div
-      class="absolute bottom-4 z-0 w-[1322px] bg-LightRock h-0.5 rounded-full"
+      class="absolute bottom-4 z-0 w-[1000px] bg-Gravel h-0.5 rounded-full"
     ></div>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      view: "posts",
-    };
+  props: ["view"],
+  methods: {
+    changeView(value) {
+      this.$emit("action", value);
+    },
   },
 };
 </script>

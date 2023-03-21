@@ -1,7 +1,6 @@
 <template>
-  <div class="">
-    <div class="h-full flex flex-col overflow-hidden">
-      <div class="sticky top-0 left-0 right-0 h-15 bg-Anthracite">
+  <div class=" h-full max-h-full overflow-auto scrollbarV">
+      <div class="mx-8 sticky top-0 left-0 right-0 h-15 z-10 bg-Anthracite">
         <div class="flex justify-between bg-DarkRock rounded-full items-center">
           <div name="space-name" class="flex ml-4" @click="goTo('Profile')">
             <ImgFormated
@@ -128,7 +127,7 @@
           </div>
         </div>
       </div>
-      <div class="flex-1 max-h-fit overflow-hidden mx-[90px]">
+      <div class="flex-1 max-h-fit mx-[90px]">
         <DashboardLol
           v-if="view === 'dashboard' && option === 'lol'"
           class="w-full h-full"
@@ -172,14 +171,17 @@
         <PersonalWalletBallance
           v-if="view === 'walletBallance'"
           class="w-full h-full"
+          @action="changeView"
         ></PersonalWalletBallance>
         <PersonalWalletInventory
           v-if="view === 'walletInventory'"
           class="w-full h-full"
+          @action="changeView"
         ></PersonalWalletInventory>
         <PersonalWalletTransaction
           v-if="view === 'walletTransaction'"
           class="w-full h-full"
+          @action="changeView"
         ></PersonalWalletTransaction>
       </div>
       <CreateCalendarEvent
@@ -188,7 +190,6 @@
         :data="data"
       />
     </div>
-  </div>
 </template>
 
 <script>
@@ -301,7 +302,7 @@ export default {
       this.paramOptionGame = value;
     },
     goTo(target) {
-      this.$router.push({ name: target });
+      this.$router.push({ name: target, params: { view: 'Events' }, });
     },
     changeView(value) {
       this.view = value

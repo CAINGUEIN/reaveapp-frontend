@@ -32,7 +32,7 @@ export default [
     meta: { layout: "none", permission: "log" },
   },
   {
-    path: "/profile",
+    path: "/profile/:view",
     name: "Profile",
     component: () => import("@modules/personal/views/ProfileMain.vue"),
     meta: { layout: "Reave", permission: "log" },

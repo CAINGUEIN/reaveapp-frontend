@@ -9,7 +9,7 @@
         <div class="flex flex-col justify-between mt-18">
           <h1 class="text-[56px] font-bold">{{ infoEvent.name }}</h1>
           <div class="flex items-center space-x-4">
-            <div class="h-15 w-15 rounded-full bg-slate-300 my-3"></div>
+            <div class="h-10 w-10 rounded-full bg-slate-300 my-3"></div>
             <p class="text-base font-medium">
               Organised by @{{ infoEvent.owner.user_id.userTag }}
             </p>

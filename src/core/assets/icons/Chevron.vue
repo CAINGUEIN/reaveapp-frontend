@@ -1,24 +1,47 @@
 <template>
   <div>
     <svg
-      width="14"
-      height="9"
-      viewBox="0 0 14 9"
+      :width="width"
+      :height="height"
+      viewBox="0 0 32 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M13 1L7 8"
-        stroke="currentColor"
+        d="M22 12L16 19"
+        :stroke="color1"
         stroke-width="2"
         stroke-linecap="round"
       />
       <path
-        d="M1 1L7 8"
-        stroke="currentColor"
+        d="M10 12L16 19"
+        :stroke="color1"
         stroke-width="2"
         stroke-linecap="round"
       />
     </svg>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    width: {
+      type: Number,
+      default: 32,
+    },
+    height: {
+      type: Number,
+      default: 32,
+    },
+    color1: {
+      type: String,
+      default: "#FFFFFF",
+    },
+    color2: {
+      type: String,
+      default: "#111111",
+    },
+  },
+};
+</script>

@@ -182,7 +182,7 @@
           </div>
         </div>
       </div>
-      <router-view class=" overflow-hidden px-6 max-h-fit"/>
+      <router-view class="max-h-fit"/>
     </div>
     <CreateSpaceModal @isOpenModal="closeModal" :isOpenModal="isOpenModal" />
   </div>

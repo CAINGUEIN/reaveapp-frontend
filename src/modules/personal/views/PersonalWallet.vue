@@ -1,6 +1,9 @@
 <template>
-  <div class="flex flex-wrap overflow-hidden">
-    <div name="leftContent" class="w-2/5 max-w-2/5 max-h-full hover:overflow-auto overflow-hidden scrollbarV px-4">
+  <div class="flex overflow-hidden max-h-full">
+    <div
+      name="leftContent"
+      class="w-2/5 max-w-2/5 max-h-full hover:overflow-auto overflow-hidden scrollbarV px-4"
+    >
       <main
         class="mx-auto max-w-2xl py-8 lg:max-w-7xl"
         aria-labelledby="order-history-heading"
@@ -10,10 +13,14 @@
             id="order-history-heading"
             class="text-3xl font-bold tracking-tight text-white mb-4 flex items-center"
           >
-          <span><SvgTarget target="Balance" class="mr-4"></SvgTarget></span>
+            <span><SvgTarget target="Balance" class="mr-4"></SvgTarget></span>
             Balance
           </h1>
-          <a @click="changeView('walletBallance')" class=" text-base cursor-pointer">View monitor</a>
+          <a
+            @click="changeView('walletBallance')"
+            class="text-base cursor-pointer"
+            >View monitor</a
+          >
         </div>
         <div name="coin" class="flex flex-col bg-DarkRock rounded-xl p-4">
           <div class="flex w-full justify-between">
@@ -67,69 +74,85 @@
               id="order-history-heading"
               class="text-3xl font-bold tracking-tight text-white mt-8 flex items-center"
             >
-            <span><SvgTarget target="Exchanges" class="mr-4"></SvgTarget></span>
+              <span
+                ><SvgTarget target="Exchanges" class="mr-4"></SvgTarget
+              ></span>
               Transactions
             </h1>
-            <a @click="changeView('walletTransaction')" class=" text-base cursor-pointer">View all transactions</a>
+            <a
+              @click="changeView('walletTransaction')"
+              class="text-base cursor-pointer"
+              >View all transactions</a
+            >
           </div>
 
           <table class="overflow-hidden text-[18px] text-center w-full my-4">
             <tr>
-              <th><p class="font-medium text-White mr-6">Type</p></th>
+              <th class="py-2">
+                <p class="font-medium text-White mr-6">Type</p>
+              </th>
               <th><p class="font-medium text-White text-left">Name</p></th>
               <th><p class="font-medium text-White">Date</p></th>
               <th><p class="font-medium text-White">Amount</p></th>
             </tr>
-            <tr>
+            <tr class="">
               <th class="bg-white h-0.5"></th>
               <th class="bg-white h-0.5"></th>
               <th class="bg-white h-0.5"></th>
               <th class="bg-white h-0.5"></th>
             </tr>
-            <tr v-for="item in reverse(10)" class=" hover:bg-DarkRock ">
-              <td class="rounded-l-2xl overflow-hidden py-3 mr-6 flex justify-around">
-                <div v-if="item.type === 'coin' && item.value > 0" class="flex">
-                  <div class="bg-DarkRock rounded-full h-10 w-10 flex">
-                    <Credit class="m-auto" :color1="'white'"></Credit>
+            <tr v-for="item in reverse(10)" class="hover:bg-DarkRock">
+              <td class="py-3 rounded-l-2xl">
+                <div class="flex justify-center mr-6">
+                  <div
+                    v-if="item.type === 'coin' && item.value > 0"
+                    class="flex"
+                  >
+                    <div class="bg-DarkRock rounded-full h-10 w-10 flex">
+                      <Credit class="m-auto" :color1="'white'"></Credit>
+                    </div>
                   </div>
-                </div>
-                <div v-if="item.type === 'coin' && item.value < 0" class="flex">
-                  <div class="bg-DarkRock rounded-full h-10 w-10 flex">
-                    <Debit class="m-auto" :color1="'white'"></Debit>
+                  <div
+                    v-if="item.type === 'coin' && item.value < 0"
+                    class="flex"
+                  >
+                    <div class="bg-DarkRock rounded-full h-10 w-10 flex">
+                      <Debit class="m-auto" :color1="'white'"></Debit>
+                    </div>
                   </div>
-                </div>
-                <div
-                  v-if="item.type === 'sendCoin' && item.value > 0"
-                  class="flex"
-                >
-                  <div class="bg-DarkRock rounded-full h-10 w-10 flex">
-                    <TransferFrom
-                      class="m-auto"
-                      :color1="'white'"
-                    ></TransferFrom>
+                  <div
+                    v-if="item.type === 'sendCoin' && item.value > 0"
+                    class="flex"
+                  >
+                    <div class="bg-DarkRock rounded-full h-10 w-10 flex">
+                      <TransferFrom
+                        class="m-auto"
+                        :color1="'white'"
+                      ></TransferFrom>
+                    </div>
                   </div>
-                </div>
-                <div
-                  v-if="item.type === 'sendCoin' && item.value < 0"
-                  class="flex"
-                >
-                  <div class="bg-DarkRock rounded-full h-10 w-10 flex">
-                    <TransferTo class="m-auto" :color1="'white'"></TransferTo>
+                  <div
+                    v-if="item.type === 'sendCoin' && item.value < 0"
+                    class="flex"
+                  >
+                    <div class="bg-DarkRock rounded-full h-10 w-10 flex">
+                      <TransferTo class="m-auto" :color1="'white'"></TransferTo>
+                    </div>
                   </div>
-                </div>
-                <div v-if="item.type === 'BuyTicket'" class="flex">
-                  <div class="bg-DarkRock rounded-full h-10 w-10 flex">
-                    <Purshase class="m-auto" :color1="'white'"></Purshase>
+                  <div v-if="item.type === 'BuyTicket'" class="flex">
+                    <div class="bg-DarkRock rounded-full h-10 w-10 flex">
+                      <Purshase class="m-auto" :color1="'white'"></Purshase>
+                    </div>
                   </div>
-                </div>
-                <div v-if="item.type === 'GiftTicket'" class="flex">
-                  <div class="bg-DarkRock rounded-full h-10 w-10 flex">
-                    <GiftFrom class="m-auto" :color1="'white'"></GiftFrom>
+                  <div v-if="item.type === 'GiftTicket'" class="flex">
+                    <div class="bg-DarkRock rounded-full h-10 w-10 flex">
+                      <GiftFrom class="m-auto" :color1="'white'"></GiftFrom>
+                    </div>
                   </div>
-                </div>
-                <div v-if="item.type === 'GiftedTicket'" class="flex">
-                  <div class="bg-DarkRock rounded-full h-10 w-10 flex">
-                    <GiftTo class="m-auto" :color1="'white'"></GiftTo>
+                  <div v-if="item.type === 'GiftedTicket'" class="flex">
+                    <div class="bg-DarkRock rounded-full h-10 w-10 flex">
+                      <GiftTo class="m-auto" :color1="'white'"></GiftTo>
+                    </div>
                   </div>
                 </div>
               </td>
@@ -181,7 +204,7 @@
                   {{ $dayjs(item.date).format("DD-MM-YYYY") }}
                 </p>
               </td>
-              <td class="rounded-r-2xl overflow-hidden py-3">
+              <td class="rounded-r-2xl py-3">
                 <p
                   class="text-xl font-normal"
                   :class="item.value > 0 ? 'text-Green' : 'text-Red'"
@@ -206,10 +229,15 @@
           <h1
             id="order-history-heading"
             class="text-3xl font-bold tracking-tight text-white mb-4 flex items-center"
-            >
-            <span><SvgTarget target="Inventory" class="mr-4"></SvgTarget></span> Inventory
+          >
+            <span><SvgTarget target="Inventory" class="mr-4"></SvgTarget></span>
+            Inventory
           </h1>
-          <a @click="changeView('walletInventory')" class=" text-base cursor-pointer">View all items</a>
+          <a
+            @click="changeView('walletInventory')"
+            class="text-base cursor-pointer"
+            >View all items</a
+          >
         </div>
         <div
           class="mt-8 grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-2 sm:gap-y-16 xl:grid-cols-3 lg:gap-x-8 2xl:grid-cols-4"
@@ -251,7 +279,7 @@ import Crediting from "@components/modal/wallet/Crediting.vue";
 //tool
 import useStoreAuth from "@stores/auth";
 import { GiftIcon } from "@heroicons/vue/solid";
-import SvgTarget from "../../../core/components/SvgTarget.vue";
+import SvgTarget from "@components/SvgTarget.vue";
 
 export default {
   components: {
@@ -269,8 +297,8 @@ export default {
     GiftIcon,
     GiftFrom,
     GiftTo,
-    SvgTarget
-},
+    SvgTarget,
+  },
   data() {
     const store = useStoreAuth();
     return {

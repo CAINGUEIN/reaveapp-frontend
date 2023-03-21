@@ -19,8 +19,8 @@
         "
       >
         <div class="flex items-center">
-          <div class="h-6 w-6 rounded-full bg-Gravel mr-2"></div>
-          <p class="text-xs font-bold text-white">
+          <div class="h-9 w-9 rounded-full bg-Gravel mr-3"></div>
+          <p class=" text-xl font-bold text-white">
             {{ infoEvent.owner.user_id.profileName }}
           </p>
         </div>

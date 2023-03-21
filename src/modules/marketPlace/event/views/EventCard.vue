@@ -1,19 +1,28 @@
 <template>
-  <div class="flex flex-1 flex-col bg-DarkRock" @click="goTo(data._id)">
+  <div class="flex flex-1 flex-col cursor-pointer" @click="goTo(data._id)">
     <div
-      class="w-full flex-shrink-0 bg-slate-500 aspect-1 rounded-xl text-transparent hover:text-white overflow-hidden flex flex-col justify-end"
-      v-on:mouseover="mouseover"
-      v-on:mouseleave="mouseleave"
+      class="w-full flex-shrink-0 bg-slate-500 aspect-1 rounded-xl text-transparent hover:text-white overflow-hidden flex flex-col justify-end z-10"
     >
+      <img src="/img/imageeventcard.png" alt="" class="z-0" />
       <div
-        class="bg-LightRock h-15 flex"
+      class="absolute w-full h-full"
+        :class="
+          comparedContent
+            ? 'transition duration-300 ease-in-out hoverCardEvent'
+            : 'transition duration-300 ease-in-out opacity-0'
+        "
+        v-on:mouseover="mouseover"
+        v-on:mouseleave="mouseleave"
+      ></div>
+      <!--   <div
+        class="h-full flex"
         :class="
           comparedContent
             ? 'transition duration-300 ease-in-out'
-            : 'opacity-0 transition duration-300 ease-in-out'
+            : 'hoverCardEvent transition duration-300 ease-in-out'
         "
       >
-        <button
+       <button
           @click.prevent="(open = true), (viewModal = 'info')"
           class="m-auto bg-Rock rounded-full py-2 px-5 font-black"
         >
@@ -31,22 +40,25 @@
         >
           Gift
         </button>
-      </div>
+      </div> -->
     </div>
-    <div class="p-4">
-      <div class="mt-1 flex justify-between items-center">
-        <h5 class="text-white">{{ data.name }}</h5>
+    <div class="pl-1 pt-4">
+      <div class="flex items-center">
+        <div class="h-6 w-6 bg-Gravel rounded-full mr-2"></div>
+        <p class="text-white text-base font-medium">{{ data.owner.user_id }}</p>
       </div>
-      <div class="mt-1 flex justify-between items-center">
-        <p class="text-white">{{ $dayjs(data.date).format("DD/MM/YYYY") }}</p>
+      <div class="flex mt-2">
+        <p class="text-white font-bold text-2xl">{{ data.name }}</p>
       </div>
-      <div class="mt-1 flex justify-between items-center">
-        <p class="text-white">
-          {{ data.city + " " + data.country }}
+      <div class="flex mt-2">
+        <p class="text-LightGrey font-bool text-xl">
+          {{ $dayjs(data.date).format("DD/MM/YYYY") }}
         </p>
       </div>
-      <div class="mt-1 flex justify-between items-center">
-        <p class="text-white">{{ ticketsRemaining() }} remaining tickets</p>
+      <div class="flex">
+        <p class="text-LightGrey font-bool text-xl">
+          {{ data.city + " " + data.country }}
+        </p>
       </div>
     </div>
 
@@ -143,4 +155,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.hoverCardEvent {
+  background: linear-gradient(45.07deg, #484848 0%, #c9c9c9 100%);
+  opacity: 0.15;
+}
+</style>
