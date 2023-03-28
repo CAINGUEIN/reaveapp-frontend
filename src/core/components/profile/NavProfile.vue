@@ -11,6 +11,9 @@
         @click="changeView('Posts')"
       >
         Posts
+        <div class="absolute top-0 left-0 right-0 flex">
+          <SvgTarget target="SOON" class="mx-auto" :height="30" :width="30"></SvgTarget>
+        </div>
       </p>
       <p
         class="px-8 pb-2 cursor-pointer border-b-2 font-medium text-lg"
@@ -44,6 +47,9 @@
         @click="changeView('Career')"
       >
         Career
+        <div class="absolute top-0 left-0 right-0 flex">
+          <SvgTarget target="SOON" class="mx-auto" :height="30" :width="30"></SvgTarget>
+        </div>
       </p>
       <p
         class="px-8 pb-2 cursor-pointer border-b-2 font-medium text-lg"
@@ -75,12 +81,15 @@
 </template>
 
 <script>
+import SvgTarget from '@components/SvgTarget.vue';
+
 export default {
-  props: ["view"],
-  methods: {
-    changeView(value) {
-      this.$emit("action", value);
+    props: ["view"],
+    methods: {
+        changeView(value) {
+            this.$emit("action", value);
+        },
     },
-  },
+    components: { SvgTarget }
 };
 </script>

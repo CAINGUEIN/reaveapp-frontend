@@ -330,7 +330,7 @@
 </template>
 
 <script>
-import SvgTarget from "../../SvgTarget.vue";
+import SvgTarget from "@components/SvgTarget.vue";
 
 export default {
   components: { SvgTarget },
