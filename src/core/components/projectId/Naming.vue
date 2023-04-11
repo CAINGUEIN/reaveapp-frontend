@@ -24,7 +24,7 @@
         </button>
       </div>
       <div class="w-full" v-else>
-        <p class="flex text-H4 text-White font-black leading-none mt-4">
+        <p class="flex text-H4 text-White font-black leading-none">
           {{ name.value }}
         </p>
       </div>

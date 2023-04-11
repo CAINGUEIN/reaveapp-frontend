@@ -14,7 +14,7 @@
               />
               <input
                 id="search"
-                class="bg-DarkRock block h-15 border-transparent focus:ring-0 border-0 rounded-full text-White placeholder-Gravel"
+                class="bg-DarkRock block h-15 border-transparent focus:ring-0 border-0 rounded-full text-White placeholder-Gravel text-xl font-medium"
                 placeholder="Search"
                 type="search"
                 name="search"
@@ -28,12 +28,6 @@
           </div>
         </div>
       </div>
-      <button
-        class="bg-white h-15 rounded-full right-[48px] -bottom-7 px-8 absolute"
-        @click.prevent="open = true"
-      >
-        <h5 class="text-black font-bold">Start an Event</h5>
-      </button>
     </div>
 
     <div name="filters" class="w-[40%] flex mx-auto mt-20 mb-14 justify-between">

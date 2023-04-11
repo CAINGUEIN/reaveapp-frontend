@@ -1,17 +1,10 @@
 <template>
-  <div class="">
-    <div name="layout" class="flex justify-between items-center">
-      <p>
-        <span class="font-black text-xl text-LightGrey">PEOPLE</span>
-        <span class="font-black text-xl text-white"> > STAFF</span>
-      </p>
-      <XButton36 @click="goBack" class="z-10"></XButton36>
-    </div>
-    <div name="topContent" class="mt-8 flex justify-between max-w-7xl w-[95%] mx-auto">
+  <div>
+    <div name="topContent" class="mt-8 flex justify-between">
       <div class="flex">
         <button
           class="bg-White text-Anthracite h-9 rounded-full items-center hover:bg-DarkRock hover:text-White"
-          @click.prevent="open = true"
+          @click.prevent=""
         >
           <PlusIcon class="mx-2 h-5 w-5" />
         </button>
@@ -135,68 +128,40 @@
         </Menu>
       </div>
     </div>
-    <Teams :data="data" @action="close" class="max-w-7xl w-[95%] mx-auto"></Teams>
-    <ModalClear :open="open" @action="close()">
-      <AddMembers :data="data" @action="close"></AddMembers>
-    </ModalClear>
   </div>
 </template>
 
 <script>
-import XButton36 from "@components/buttons/XButton36.vue";
-import ModalClear from "@components/modal/ModalClear.vue";
-import { PlusIcon } from "@heroicons/vue/outline";
-import AddMembers from "@components/modal/projectId/staff/AddMembers.vue";
-import Teams from "./Teams.vue";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import {
   AdjustmentsIcon,
-  ChevronDownIcon,
+  PlusIcon,
   SearchIcon,
-  ViewBoardsIcon,
-  ViewGridIcon,
+  ChevronDownIcon,
   ViewListIcon,
+  ViewGridIcon,
+ViewBoardsIcon,
 } from "@heroicons/vue/solid";
-import Button40Slot from "../../buttons/Button40Slot.vue";
-
+import Button40Slot from "@components/buttons/Button40Slot.vue";
 export default {
-  props: ["data"],
   components: {
-    Teams,
     PlusIcon,
-    ModalClear,
-    AddMembers,
-    XButton36,
+    Button40Slot,
+    SearchIcon,
+    AdjustmentsIcon,
+    ChevronDownIcon,
     Menu,
     MenuButton,
     MenuItem,
     MenuItems,
-    SearchIcon,
-    AdjustmentsIcon,
     ViewListIcon,
-    ViewBoardsIcon,
     ViewGridIcon,
-    ChevronDownIcon,
-    Button40Slot
+    ViewBoardsIcon
 },
   data() {
     return {
       show: "list",
-      open: false,
     };
-  },
-  methods: {
-    close(value) {
-      this.open = false;
-      if (value === "update") {
-        this.$emit("update");
-      }
-    },
-    goBack() {
-      this.$router.back();
-    },
   },
 };
 </script>
-
-<style lang="scss" scoped></style>

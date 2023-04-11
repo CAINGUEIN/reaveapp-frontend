@@ -3,17 +3,17 @@
     <div class="w-2/3 mx-auto flex flex-col">
       <div>
         <h2 c class="text-5xl font-medium">Sponsors</h2>
-        <div class="flex flex-wrap w-full mt-8 gap-8">
+        <div class="flex flex-wrap w-full mt-8 gap-8 gap-x-10">
           <div class="flex flex-col items-center">
-            <img src="/img/Asus_ROG.png" alt="" class="mx-auto mb-2" />
+            <img src="/img/Asus_ROG.png" alt="" class="mx-auto mb-3" />
             <p class=" text-xl font-medium">Asus ROG</p>
           </div>
           <div class="flex flex-col items-center">
-            <img src="/img/HermanMiller.png" alt="" class="mx-auto mb-2" />
+            <img src="/img/HermanMiller.png" alt="" class="mx-auto mb-3" />
             <p class=" text-xl font-medium">Herman Miller</p>
           </div>
           <div class="flex flex-col items-center">
-            <img src="/img/Redbull.png" alt="" class="mx-auto mb-2" />
+            <img src="/img/Redbull.png" alt="" class="mx-auto mb-3" />
             <p class=" text-xl font-medium">Redbull</p>
           </div>
         </div>

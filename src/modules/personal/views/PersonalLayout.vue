@@ -230,7 +230,7 @@ import Overwatch from "@assets/icons/Overwatch.vue";
 import Valorant from "@assets/icons/Valorant.vue";
 import ImgFormated from "@core/components/img/ImgFormated.vue";
 import Operator from "@core/assets/icons/Operator.vue";
-import PersonalOperator from "./PersonalOperator.vue";
+import PersonalOperator from "../../operator/EventOperator.vue";
 
 export default {
   components: {

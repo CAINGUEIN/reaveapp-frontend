@@ -54,18 +54,23 @@
           <div class="flex">
             <button
               @click="(view = 'qr'), (open = true)"
-              class="text-black rounded-full h-15 w-15 bg-white"
+              class="text-black flex rounded-full h-15 w-15 bg-white"
             >
-              <h4 class="text-black">QR</h4>
+              <SvgTarget
+                color1="#000000"
+                class="m-auto"
+                :width="32"
+                :height="32"
+                target="QRCode"
+              >
+              </SvgTarget>
             </button>
             <Button60Slot class="flex ml-6 relative">
-              <SvgTarget
-                color1="#BEBEBE"
-                class="m-auto"
-                target="Conceptor"
-              ></SvgTarget>
+              <SvgTarget color1="#BEBEBE" class="m-auto" target="Conceptor">
+              </SvgTarget>
               <div class="absolute bottom-2 left-0 right-0 flex">
-                <SvgTarget class="mx-auto" target="SOON"></SvgTarget>
+                <SvgTarget class="mx-auto" target="SOON" 
+                :height="32"></SvgTarget>
               </div>
             </Button60Slot>
 
@@ -76,19 +81,24 @@
                 target="Gift"
               ></SvgTarget>
               <div class="absolute bottom-2 left-0 right-0 flex">
-                <SvgTarget class="mx-auto" target="SOON"></SvgTarget></div
-            ></Button60Slot>
-            <Button60Slot class="flex ml-6"
-              ><SvgTarget
+                <SvgTarget class="mx-auto" target="SOON" 
+                :height="32"></SvgTarget>
+              </div>
+            </Button60Slot>
+            <Button60Slot class="flex ml-6">
+              <SvgTarget
                 color1="#BEBEBE"
                 class="m-auto"
                 :width="32"
                 :height="32"
                 target="Cash"
-              ></SvgTarget>
+              >
+              </SvgTarget>
               <div class="absolute bottom-2 left-0 right-0 flex">
-                <SvgTarget class="mx-auto" target="SOON"></SvgTarget></div
-            ></Button60Slot>
+                <SvgTarget class="mx-auto" target="SOON" 
+                :height="32"></SvgTarget>
+              </div>
+            </Button60Slot>
           </div>
         </div>
       </div>

@@ -16,14 +16,31 @@
           </div>
           <div class="flex mt-4 w-full">
             <button
-              class="text-black rounded-full h-16 px-10 ml-0 w-80 bg-white"
+              class="text-black rounded-full h-16 px-10 ml-0 w-80 bg-white flex"
               @click="goTo(infoEvent._id)"
             >
-              <h4 class="text-black text-xl font-black">Buy Tickets</h4>
+              <div class="flex items-center m-auto">
+                <SvgTarget
+                  :target="'Tickets'"
+                  color1="#000"
+                  :width="32"
+                  :height="32"
+                  class="mr-2"
+                ></SvgTarget>
+                <h4 class="text-black text-xl font-black">Buy Tickets</h4>
+              </div>
             </button>
-            <Button60Slot class="ml-4 my-auto"
-              ><Auctions :width="32" :height="32" class="m-auto"></Auctions
-            ></Button60Slot>
+            <Button60Slot class="ml-4 my-auto relative">
+              <Auctions :width="32" :height="32" class="m-auto"></Auctions>
+              <div class="absolute bottom-0 left-0 right-0 flex">
+                <SvgTarget
+                  :height="40"
+                  :width="40"
+                  class="mx-auto"
+                  target="SOON"
+                ></SvgTarget>
+              </div>
+            </Button60Slot>
           </div>
           <div class="grid-cols-2 grid w-full gap-4 mt-18">
             <div class="col-span-1">
@@ -60,15 +77,20 @@
           <Button60Slot class="my-2 mr-2"
             ><LinkIcon class="h-8 m-auto"></LinkIcon
           ></Button60Slot>
-          <Button60Slot class="m-2"
-            ><PaperAirplaneIcon class="h-8 m-auto rotate-45"></PaperAirplaneIcon
-          ></Button60Slot>
-          <Button60Slot class="m-2"
-            ><HeartIcon class="h-8 m-auto"></HeartIcon
-          ></Button60Slot>
-          <Button60Slot class="m-2"
-            ><BookmarkIcon class="h-8 m-auto"></BookmarkIcon
-          ></Button60Slot>
+          <Button60Slot class="m-2">
+            <SvgTarget class="m-auto" target="Share"></SvgTarget>
+          </Button60Slot>
+          <Button60Slot class="m-2">
+            <SvgTarget
+              class="m-auto"
+              target="Heart"
+              :width="32"
+              :height="32"
+            ></SvgTarget>
+          </Button60Slot>
+          <Button60Slot class="m-2">
+            <SvgTarget class="m-auto" target="Save"></SvgTarget>
+          </Button60Slot>
         </div>
       </div>
     </div>
@@ -94,6 +116,22 @@
           <button
             class="border-b-2 pb-2 px-10"
             :class="
+              select === 'Format'
+                ? 'border-White'
+                : 'hover:border-White border-Gravel'
+            "
+            @click.prevent="select = 'Format'"
+          >
+            <p
+              class="text-2xl font-medium"
+              :class="select === 'Format' ? 'text-White' : 'hover:text-White'"
+            >
+              Format
+            </p>
+          </button>
+          <button
+            class="border-b-2 pb-2 px-10"
+            :class="
               select === 'Venue'
                 ? 'border-White'
                 : 'hover:border-White border-Gravel'
@@ -105,6 +143,22 @@
               :class="select === 'Venue' ? 'text-White' : 'hover:text-White'"
             >
               Venue
+            </p>
+          </button>
+          <button
+            class="border-b-2 pb-2 px-10"
+            :class="
+              select === 'Products'
+                ? 'border-White'
+                : 'hover:border-White border-Gravel'
+            "
+            @click.prevent="select = 'Products'"
+          >
+            <p
+              class="text-2xl font-medium"
+              :class="select === 'Products' ? 'text-White' : 'hover:text-White'"
+            >
+              Products
             </p>
           </button>
           <button
@@ -128,7 +182,16 @@
     </div>
     <div>
       <EventIdAbout v-if="select === 'About'" :data="infoEvent"></EventIdAbout>
+      <EventIdFormat
+        v-if="select === 'Format'"
+        :data="infoEvent"
+      ></EventIdFormat>
       <EventIdVenue v-if="select === 'Venue'" :data="infoEvent"></EventIdVenue>
+      <EventIdProducts
+        v-if="select === 'Products'"
+        :data="infoEvent"
+      ></EventIdProducts>
+
       <EventIdPeople
         v-if="select === 'People'"
         :data="infoEvent"
@@ -142,10 +205,14 @@
 import Button60Slot from "@components//buttons/Button60Slot.vue";
 import XButton60 from "@components/buttons/XButton60.vue";
 import EventIdAbout from "@modules/marketPlace/event/views/EventIdAbout.vue";
+import EventIdFormat from "@modules/marketPlace/event/views/EventIdFormat.vue";
 import EventIdVenue from "@modules/marketPlace/event/views/EventIdVenue.vue";
+import EventIdProducts from "@modules/marketPlace/event/views/EventIdProducts.vue";
 import EventIdPeople from "@modules/marketPlace/event/views/EventIdPeople.vue";
 //services
 import eventServices from "@axios/services/eventServices";
+import SvgTarget from "@components/SvgTarget.vue";
+
 import {
   BookmarkIcon,
   HeartIcon,
@@ -162,10 +229,13 @@ export default {
     HeartIcon,
     BookmarkIcon,
     EventIdAbout,
+    EventIdFormat,
     EventIdVenue,
     EventIdPeople,
-    Auctions
-},
+    EventIdProducts,
+    Auctions,
+    SvgTarget,
+  },
   data() {
     return {
       id: "",

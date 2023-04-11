@@ -1,9 +1,33 @@
 <template>
-  <div class="my-14">
-    <div class="w-2/3 mx-auto flex flex-col">
-      <img src="../../../../../public/Maps.png" alt="">
-      <img class="mt-12" src="../../../../../public/Explore.png" alt="">
-      <img class="mt-12 w-2/3" src="../../../../../public/Rules.png" alt="">
+  <div class="my-14 w-[90%] max-w-[1260] mx-auto">
+    <div class="flex flex-col">
+      <img src="/Maps.png" alt="" />
+    </div>
+    <h2 class="text-5xl font-medium">Explore</h2>
+    <div class="flex flex-col justify-between pt-12">
+      <div class="mt-8 grid grid-cols-3 gap-8">
+        <div class="flex items-center">
+          <img src="/img/Eventpage/Mcdonalds.png" alt="">
+          <div>
+            <p class="ml-4 text-xl text-white font-medium">McDonalds</p>
+            <p class="ml-4 text-xl text-white font-normal">10min away</p>
+          </div>
+        </div>
+        <div class="flex items-center">
+          <img src="/img/Eventpage/Louvre.png" alt="">
+          <div>
+            <p class="ml-4 text-xl text-white font-medium">Musée du Louvre</p>
+            <p class="ml-4 text-xl text-white font-normal">3min away</p>
+          </div>
+        </div>
+        <div class="flex items-center">
+          <img src="/img/Eventpage/Pretamanger.png" alt="">
+          <div>
+            <p class="ml-4 text-xl text-white font-medium">Musée du Louvre</p>
+            <p class="ml-4 text-xl text-white font-normal">5min away</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

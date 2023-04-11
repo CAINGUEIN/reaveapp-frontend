@@ -37,7 +37,7 @@
           </div>
           <div name="info" class="flex space-x-4 mr-4">
             <div class="mr-16">
-              <p class="leading-6">available Tickets</p>
+              <p class="leading-6">Available Tickets</p>
               <h3 class="leading-7">{{ ticketsRemaining() }}</h3>
             </div>
             <div class="">
@@ -55,7 +55,9 @@
           <div class="flex flex-col">
             <div class="flex items-center space-x-4 mt-6">
               <div class="h-10 w-10 rounded-full bg-slate-300"></div>
-              <p class="text-white font-medium">Organised by @{{ infoEvent.owner.user_id.userTag }}</p>
+              <p class="text-white font-medium">
+                Organised by @{{ infoEvent.owner.user_id.userTag }}
+              </p>
             </div>
             <h4 class="mt-4 text-base">
               {{ $dayjs(infoEvent.date).format("dddd MM.DD.YYYY hh:mm A") }}
@@ -166,13 +168,17 @@
         >
           <div class="mx-auto flex justify-center">
             <SvgTarget
-              :target="totalTicketsCoin() > this.store.dataAccount.coin ? 'Credit' : 'Tickets'"
+              :target="
+                totalTicketsCoin() > this.store.dataAccount.coin
+                  ? 'Credit'
+                  : 'Tickets'
+              "
               color1="#000"
               :width="32"
               :height="32"
               class="my-auto mr-2"
             ></SvgTarget>
-            <h4 class="text-black my-auto">
+            <h4 class="text-black font-black my-auto">
               {{
                 totalTicketsCoin() > this.store.dataAccount.coin
                   ? "Add Coins"

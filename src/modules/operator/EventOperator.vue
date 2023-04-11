@@ -1,17 +1,10 @@
 <template>
   <div class="">
-    <div name="layout" class="flex justify-between items-center">
-      <p>
-        <span class="font-black text-xl text-LightGrey">PEOPLE</span>
-        <span class="font-black text-xl text-white"> > STAFF</span>
-      </p>
-      <XButton36 @click="goBack" class="z-10"></XButton36>
-    </div>
-    <div name="topContent" class="mt-8 flex justify-between max-w-7xl w-[95%] mx-auto">
+    <div name="topContent" class="mt-8 flex justify-between">
       <div class="flex">
         <button
           class="bg-White text-Anthracite h-9 rounded-full items-center hover:bg-DarkRock hover:text-White"
-          @click.prevent="open = true"
+          @click.prevent=""
         >
           <PlusIcon class="mx-2 h-5 w-5" />
         </button>
@@ -135,68 +128,93 @@
         </Menu>
       </div>
     </div>
-    <Teams :data="data" @action="close" class="max-w-7xl w-[95%] mx-auto"></Teams>
+    <div name="Content" class="mt-8 space-y-4">
+      <div
+        v-for="item in data"
+        class="w-full rounded-lg flex items-center"
+        @click="goTo(item._id)"
+      >
+        <div class="h-10 w-10 bg-slate-500 mr-3"></div>
+        <h3>{{ item.name }}</h3>
+        <div class="flex justify-between">
+          <h3 class="ml-4">ICI voir quoi mettre</h3>
+        </div>
+      </div>
+    </div>
     <ModalClear :open="open" @action="close()">
-      <AddMembers :data="data" @action="close"></AddMembers>
+      <CreateEvent @action="close()"></CreateEvent>
     </ModalClear>
   </div>
 </template>
 
 <script>
-import XButton36 from "@components/buttons/XButton36.vue";
+//component
 import ModalClear from "@components/modal/ModalClear.vue";
-import { PlusIcon } from "@heroicons/vue/outline";
-import AddMembers from "@components/modal/projectId/staff/AddMembers.vue";
-import Teams from "./Teams.vue";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
+import InputModel from "@components/inputs/InputModel.vue";
+import WalletCard from "@components/eventCardContent/WalletCard.vue";
+//services
+import EventServices from "@axios/services/eventServices";
+//tool
+import useStoreAuth from "@stores/auth";
 import {
+  PlusIcon,
   AdjustmentsIcon,
-  ChevronDownIcon,
   SearchIcon,
-  ViewBoardsIcon,
-  ViewGridIcon,
+  ChevronDownIcon,
   ViewListIcon,
+  ViewGridIcon,
+  ViewBoardsIcon,
 } from "@heroicons/vue/solid";
-import Button40Slot from "../../buttons/Button40Slot.vue";
+import Button40Slot from "@components/buttons/Button40Slot.vue";
+import CreateEvent from "../marketPlace/event/views/CreateEvent.vue";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 
 export default {
-  props: ["data"],
   components: {
-    Teams,
-    PlusIcon,
     ModalClear,
-    AddMembers,
-    XButton36,
+    InputModel,
+    WalletCard,
+    PlusIcon,
+    CreateEvent,
+    Button40Slot,
+    SearchIcon,
+    AdjustmentsIcon,
+    ChevronDownIcon,
     Menu,
     MenuButton,
     MenuItem,
     MenuItems,
-    SearchIcon,
-    AdjustmentsIcon,
     ViewListIcon,
-    ViewBoardsIcon,
     ViewGridIcon,
-    ChevronDownIcon,
-    Button40Slot
-},
+    ViewBoardsIcon,
+  },
   data() {
+    const store = useStoreAuth();
     return {
-      show: "list",
       open: false,
+      store,
+      errors: {},
+      show: "list",
+      data: "",
     };
   },
   methods: {
-    close(value) {
+    close() {
       this.open = false;
-      if (value === "update") {
-        this.$emit("update");
+    },
+    goTo(target) {
+      this.$router.push({ name: "ProjectId", params: { id: target } });
+    },
+    async searchEventOperator() {
+      //recup de toute les datas dans les event qui on pour owner le id du user
+      let result = await EventServices.searchPersonalEventOperator();
+      if (result.data.success) {
+        this.data = result.data.data;
       }
     },
-    goBack() {
-      this.$router.back();
-    },
+  },
+  mounted() {
+    this.searchEventOperator();
   },
 };
 </script>
-
-<style lang="scss" scoped></style>

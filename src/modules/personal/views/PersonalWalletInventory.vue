@@ -124,9 +124,9 @@
 
 <script>
 import SvgTarget from "@components/SvgTarget.vue";
-import { Chevron } from "../../../core/assets/icons/iconsOldImport";
+import { Chevron } from "@assets/icons/iconsOldImport";
 import { SearchIcon } from "@heroicons/vue/solid";
-import WalletCard from "../../../core/components/eventCardContent/WalletCard.vue";
+import WalletCard from "@components/eventCardContent/WalletCard.vue";
 import useStoreAuth from "@stores/auth";
 
 export default {

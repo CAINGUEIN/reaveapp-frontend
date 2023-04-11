@@ -7,6 +7,12 @@ export default [
     meta: { layout: "Reave", permission: "log" },
   },
   {
+    path: "/operator/:target?/:view?",
+    name: "Operator",
+    component: () => import("@modules/operator/Operator.vue"),
+    meta: { layout: "none", permission: "log" },
+  },
+  {
     path: "/personalMessages",
     name: "PersonalMessages",
     component: () => import("@modules/personal/views/PersonalMessagePage.vue"),
@@ -26,9 +32,10 @@ export default [
     meta: { layout: "none", permission: "log" },
   },
   {
-    path: "/projectId/:id",
+    path: "/operator/projectId/:id",
     name: "ProjectId",
-    component: () => import("@modules/personal/views/OperatorProjectId.vue"),
+    component: () =>
+      import("@modules/operator/eventPageOperator/OperatorProjectId.vue"),
     meta: { layout: "none", permission: "log" },
   },
   {

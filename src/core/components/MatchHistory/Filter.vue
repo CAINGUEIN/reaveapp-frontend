@@ -433,7 +433,7 @@
           :class="
             itemState
               ? 'transition-all ease-in-out duration-200 transform opacity-100 scale-100 mt-3'
-              : 'transition-all ease-in-out duration-100 transform opacity-0 scale-0 -mb-[109px]'
+              : 'transition-all ease-in-out duration-100 transform opacity-0 scale-0 h-0'
           "
         >
           <div v-if="itemSelect.length > 0" name="selectedItem">

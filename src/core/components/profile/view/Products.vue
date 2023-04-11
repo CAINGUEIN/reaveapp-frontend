@@ -5,7 +5,7 @@
         <p class="font-bold text-xl text-white">Drops</p>
         <p class="font-normal text-sm text-LightGrey">View all items</p>
       </div>
-      <div class="mx-4">
+      <div>
         <div
           class="flex items-center mt-6"
           @click="LolState === true ? (LolState = false) : (LolState = true)"
@@ -46,7 +46,7 @@
           </div>
         </div>
       </div>
-      <div class="mx-4">
+      <div>
         <div
           class="flex items-center mt-6"
           @click="ValoState === true ? (ValoState = false) : (ValoState = true)"
