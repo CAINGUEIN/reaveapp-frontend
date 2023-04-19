@@ -1,6 +1,7 @@
 <template>
-  <div class="overflow-y-auto h-screen flex">
+  <div class="overflow-y-auto h-screen w-screen flex">
     <SideNav
+      class="w-[270px]"
       v-model="select"
       :select="select"
       :yourPerm="yourPerm"
@@ -11,6 +12,8 @@
         :is="select"
         v-if="infoEvent !== ''"
         :data="infoEvent"
+        :yourPerm="yourPerm"
+        @action="updateData()"
       ></component>
     </div>
   </div>
@@ -22,10 +25,12 @@ import SideNav from "./SideNav.vue";
 import XButton36 from "@components/buttons/XButton36.vue";
 //pages
 import Staff from "@components/projectId/staff/Staff.vue";
-import Venue from "@components/projectId/venue/Venue.vue";
-import Logistics from "@components/projectId/logistics/Logistics.vue";
-import Marketing from "@components/projectId/marketing/Marketing.vue";
+import Format from "@components/projectId/logistics/Format.vue";
+import Equipements from "@components/projectId/logistics/Equipements.vue";
+import Tickets from "@components/projectId/products/Tickets.vue";
+import Overview from "@components/projectId/Overview.vue";
 import Analytics from "@components/projectId/analytics/Analytics.vue";
+import Panel from "@components/projectId/finance/Panel.vue";
 //tool
 import useStoreAuth from "@stores/auth";
 //services
@@ -33,10 +38,12 @@ import eventServices from "@axios/services/eventServices";
 export default {
   components: {
     XButton36,
-    Venue,
+    Overview,
+    Format,
+    Equipements,
     Staff,
-    Logistics,
-    Marketing,
+    Tickets,
+    Panel,
     Analytics,
     SideNav,
   },
@@ -46,7 +53,7 @@ export default {
       store,
       id: "",
       infoEvent: "",
-      select: "Venue",
+      select: "Overview",
       index: 1,
       yourPerm: "",
     };

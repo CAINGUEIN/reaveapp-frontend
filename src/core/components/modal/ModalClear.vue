@@ -29,7 +29,8 @@
             leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
             <DialogPanel
-              class="relative transform rounded-lg bg-Anthracite px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"
+              class="relative transform rounded-lg bg-Anthracite px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:p-6"
+              :class="width === 728 ? 'sm:max-w-[728px]' : 'sm:max-w-lg'"
             >
               <!-- content here -->
               <slot></slot>
@@ -58,7 +59,7 @@ export default {
     TransitionChild,
     TransitionRoot,
   },
-  props: ["open", "action"],
+  props: ["open", "action", "width"],
   methods: {
     closeModal() {
       this.$emit("action");

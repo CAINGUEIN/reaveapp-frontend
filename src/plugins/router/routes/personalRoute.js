@@ -44,4 +44,10 @@ export default [
     component: () => import("@modules/personal/views/ProfileMain.vue"),
     meta: { layout: "Reave", permission: "log" },
   },
+  {
+    path: "/spacePrivate",
+    name: "SpacePrivate",
+    component: () => import("@modules/spacePrivate/SpacePrivateLayout.vue"),
+    meta: { layout: "Reave", permission: "log" },
+  },
 ];

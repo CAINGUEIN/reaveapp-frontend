@@ -18,7 +18,7 @@
         <label for="search" class="text-white"
           >ENTER USER TAG OR PROFILE NAME</label
         >
-        <div class="relative text-gray-400 border-White mt-2">
+        <div class="relative text-gray-400 border-White my-4">
           <SearchIcon
             class="absolute h-5 w-5 z-10 my-1.5 ml-3"
             aria-hidden="true"

@@ -216,7 +216,7 @@ export default {
     RefreshIcon,
     Switch,
   },
-  props: ["data", "yourPerm"],
+  props: ["data", "yourPerm", "action"],
   data() {
     return {
       etape: 1,
@@ -287,6 +287,9 @@ export default {
     };
   },
   methods: {
+    closeModal() {
+      this.$emit("action");
+    },
     generateColor() {
       let randomColor = Math.floor(Math.random() * 0xffffff).toString(16);
       return randomColor;
@@ -318,10 +321,8 @@ export default {
       ];
     },
     async submit() {
-      console.log(
-        this.data._id
-      );
-      
+      console.log(this.data._id);
+
       let body = {
         project_id: this.data._id,
         quantities: this.quantities.value,
@@ -331,16 +332,16 @@ export default {
         type: this.type,
         column: this.column.value,
         row: this.row.value,
-      }
+      };
       if (body.quantities === "") {
-        body.quantities = body.row * body.column
+        body.quantities = body.row * body.column;
       }
       if (this.enabled === false) {
-        body.type = "Sitting"
+        body.type = "Sitting";
       } else {
-        body.type = "Standing"
+        body.type = "Standing";
       }
-      let result = await EventServices.createTicketForEvent(body)
+      let result = await EventServices.createTicketForEvent(body);
       if (result.data.success) {
         this.$emit("action", "update");
       }

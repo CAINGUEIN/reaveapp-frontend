@@ -146,6 +146,42 @@ class EventServices {
         return e;
       });
   }
+
+  static async addItem(body) {
+    return Base.post(`/event/addItem`, body)
+      .then((response) => {
+        console.log("event addItem", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error addItem event", e);
+        return e;
+      });
+  }
+
+  static async modifyItem(body) {
+    return Base.post(`/event/modifyItem`, body)
+      .then((response) => {
+        console.log("event modifyItem", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error modifyItem event", e);
+        return e;
+      });
+  }
+
+  static async removeItem(body) {
+    return Base.post(`/event/removeItem`, body)
+      .then((response) => {
+        console.log("event removeItem", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error removeItem event", e);
+        return e;
+      });
+  }
   
 }
 

@@ -128,11 +128,158 @@
         </Menu>
       </div>
     </div>
+    <div name="Content" class="mt-8 space-y-4">
+      <table class="max-w-7xl w-[95%] mx-auto">
+        <thead class="border-b-2 border-LightGrey">
+          <tr>
+            <th
+              scope="col"
+              class="text-left text-base font-black text-LightGrey pl-4"
+            >
+              ITEM
+            </th>
+            <th
+              scope="col"
+              class="text-left text-base font-black text-LightGrey"
+            >
+              EVENT
+            </th>
+            <th
+              scope="col"
+              class="text-left text-base font-black text-LightGrey"
+            >
+              QUANTITY
+            </th>
+            <th
+              scope="col"
+              class="text-left text-base font-black text-LightGrey"
+            >
+              BUNDLE
+            </th>
+            <th
+              scope="col"
+              class="text-left text-base font-black text-LightGrey"
+            >
+              KIT
+            </th>
+            <th
+              scope="col"
+              class="text-right text-base font-black text-LightGrey pr-4"
+            >
+              TAGS
+            </th>
+            <th scope="col" class="">
+              <span class="sr-only">Edit</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody v-for="event in data">
+          <tr v-for="item in event.equipements" :key="item._id">
+            <td>
+              <div class="flex items-center ml-4 my-2">
+                <div class="h-15 w-15 rounded-xl mr-4 bg-slate-400"></div>
+                <p class="text-base font-black text-LightGrey">
+                  {{ item.name }}
+                </p>
+              </div>
+            </td>
+            <td>
+              <p class="text-base font-black text-LightGrey">
+                {{ event.name }}
+              </p>
+            </td>
+            <td>
+              <p class="text-base font-black text-LightGrey">
+                {{ item.quantity }}
+              </p>
+            </td>
+            <td>
+              <p class="text-base font-black text-LightGrey">
+                {{ item.bundle }}
+              </p>
+            </td>
+            <td>
+              <p class="text-base font-black text-LightGrey">
+                {{ item.kit }}
+              </p>
+            </td>
+            <td>
+              <p class="text-right text-base font-black text-LightGrey mr-4">
+                {{ item.tags }}
+              </p>
+            </td>
+            <td class="py-4 px-3">
+              <div class="flex justify-end">
+                <Menu as="div" class="relative ml-3">
+                  <div>
+                    <MenuButton class="flex max-w-xs items-center rounded-full"
+                      ><Button40Slot class="flex my-auto"
+                        ><DotsHorizontalIcon class="m-1.5"></DotsHorizontalIcon
+                      ></Button40Slot>
+                    </MenuButton>
+                  </div>
+                  <transition
+                    enter-active-class="transition ease-out duration-100"
+                    enter-from-class="transform opacity-0 scale-95"
+                    enter-to-class="transform opacity-100 scale-100"
+                    leave-active-class="transition ease-in duration-75"
+                    leave-from-class="transform opacity-100 scale-100"
+                    leave-to-class="transform opacity-0 scale-95"
+                  >
+                    <MenuItems
+                      class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-LightRock py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    >
+                      <MenuItem v-for="nav in navs" :key="nav.name">
+                        <button
+                          :class="[
+                            nav.name === 'Remove' ? 'text-Red' : 'text-White',
+                            'block px-4 py-2 text-sm',
+                          ]"
+                          @click="
+                            nav.name === 'Modify'
+                              ? ((open = true),
+                                (select = item),
+                                (modalView = 'EditItem'))
+                              : nav.name === 'Remove'
+                              ? ((open = true),
+                                (select = item),
+                                (modalView = 'RemoveItem'))
+                              : ''
+                          "
+                        >
+                          {{ nav.name }}
+                        </button>
+                      </MenuItem>
+                    </MenuItems>
+                  </transition>
+                </Menu>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ModalClear
+      :width="modalView === 'RemoveItem' ? '' : 728"
+      :open="open"
+      @action="close()"
+    >
+      <component
+        :is="modalView"
+        :data="data"
+        :select="select"
+        @action="close"
+      ></component>
+    </ModalClear>
   </div>
 </template>
 
 <script>
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
+import ModalClear from "@components/modal/ModalClear.vue";
+
+import EditItem from "@components/modal/projectId/equipements/EditItem.vue";
+import RemoveItem from "@components/modal/projectId/equipements/RemoveItem.vue";
 import {
   AdjustmentsIcon,
   PlusIcon,
@@ -140,9 +287,13 @@ import {
   ChevronDownIcon,
   ViewListIcon,
   ViewGridIcon,
-ViewBoardsIcon,
+  ViewBoardsIcon,
 } from "@heroicons/vue/solid";
 import Button40Slot from "@components/buttons/Button40Slot.vue";
+//services
+import EventServices from "@axios/services/eventServices";
+import useStoreAuth from "@stores/auth";
+import { DotsHorizontalIcon } from "@heroicons/vue/outline";
 export default {
   components: {
     PlusIcon,
@@ -156,12 +307,41 @@ export default {
     MenuItems,
     ViewListIcon,
     ViewGridIcon,
-    ViewBoardsIcon
-},
+    ViewBoardsIcon,
+    DotsHorizontalIcon,
+    ModalClear,
+    EditItem,
+    RemoveItem,
+  },
   data() {
+    const store = useStoreAuth();
     return {
+      open: false,
+      store,
+      modalView: "EditItem",
+      select: "",
       show: "list",
+      data: "",
+      navs: [{ name: "Modify" }, { name: "Remove" }],
     };
+  },
+  methods: {
+    close(value) {
+      this.open = false;
+      if (value === "update") {
+        this.$emit("action");
+      }
+    },
+    async searchEventOperator() {
+      //recup de toute les datas dans les event qui on pour owner le id du user
+      let result = await EventServices.searchPersonalEventOperator();
+      if (result.data.success) {
+        this.data = result.data.data;
+      }
+    },
+  },
+  mounted() {
+    this.searchEventOperator();
   },
 };
 </script>

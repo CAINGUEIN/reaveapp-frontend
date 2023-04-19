@@ -4,7 +4,7 @@
       <div class="flex">
         <button
           class="bg-White text-Anthracite h-9 rounded-full items-center hover:bg-DarkRock hover:text-White"
-          @click.prevent=""
+          @click.prevent="open = true"
         >
           <PlusIcon class="mx-2 h-5 w-5" />
         </button>
@@ -150,7 +150,7 @@
 <script>
 //component
 import ModalClear from "@components/modal/ModalClear.vue";
-import InputModel from "@components/inputs/InputModel.vue";
+import CreateEvent from "../marketPlace/event/views/CreateEvent.vue";
 import WalletCard from "@components/eventCardContent/WalletCard.vue";
 //services
 import EventServices from "@axios/services/eventServices";
@@ -166,13 +166,11 @@ import {
   ViewBoardsIcon,
 } from "@heroicons/vue/solid";
 import Button40Slot from "@components/buttons/Button40Slot.vue";
-import CreateEvent from "../marketPlace/event/views/CreateEvent.vue";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 
 export default {
   components: {
     ModalClear,
-    InputModel,
     WalletCard,
     PlusIcon,
     CreateEvent,
@@ -193,7 +191,6 @@ export default {
     return {
       open: false,
       store,
-      errors: {},
       show: "list",
       data: "",
     };

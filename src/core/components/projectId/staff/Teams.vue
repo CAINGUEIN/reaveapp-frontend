@@ -1,29 +1,29 @@
 <template>
-  <div>
-    <table class="min-w-full divide-y divide-White">
-      <thead class="border-b-2 border-white">
+  <div class="flex flex-col space-y-4 mt-4">
+    <table class="min-w-full divide-y divide-LightGrey">
+      <thead class="border-b-2 border-LightGrey">
         <tr>
           <th
             scope="col"
-            class="py-3.5 pl-4 pr-3 text-left text-lg font-semibold text-White sm:pl-6 md:pl-0"
+            class="text-left text-base font-black text-LightGrey pl-4"
           >
             Member
           </th>
           <th
             scope="col"
-            class="py-3.5 px-3 text-left text-lg font-semibold text-White"
+            class="text-left text-base font-black text-LightGrey"
           >
             Permission
           </th>
           <th
             scope="col"
-            class="py-3.5 px-3 text-left text-lg font-semibold text-White"
+            class="text-left text-base font-black text-LightGrey"
           >
             Team
           </th>
           <th
             scope="col"
-            class="py-3.5 px-3 text-left text-lg font-semibold text-White"
+            class="text-left text-base font-black text-LightGrey"
           >
             Role
           </th>
@@ -36,18 +36,24 @@
       <tbody class="">
         <tr v-for="user in tableOrganized" :key="user._id">
           <td
-            class="whitespace-nowrap py-2 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0"
+            class="whitespace-nowrap py-2 pl-4 pr-3 text-sm font-medium text-gray-900 flex items-center"
           >
-            <p class="text-White">{{ user.profileName }}</p>
-            <p class="text-LightGrey">@{{ user.userTag }}</p>
+            <div class="h-10 w-10 bg-slate-400 rounded-full mr-4">
+
+            </div>
+            <div>
+
+              <p class="text-White">{{ user.profileName }}</p>
+              <p class="text-LightGrey">@{{ user.userTag }}</p>
+            </div>
           </td>
-          <td class="whitespace-nowrap py-4 px-3">
+          <td class="whitespace-nowrap py-4">
             <p class="text-Gravel">{{ user.permission }}</p>
           </td>
-          <td class="whitespace-nowrap py-4 px-3">
+          <td class="whitespace-nowrap py-4">
             <p class="text-Gravel">{{ user.team }}</p>
           </td>
-          <td class="whitespace-nowrap py-4 px-3">
+          <td class="whitespace-nowrap py-4">
             <p class="text-Gravel">{{ user.role }}</p>
           </td>
           <td class="py-4 px-3">

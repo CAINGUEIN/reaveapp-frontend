@@ -15,7 +15,7 @@
             >
               <Reave />
             </ToolsButtonNav>
-            <ToolsButtonNav target="Operator">
+            <ToolsButtonNav target="SpacePrivate">
               <div class="h-15 w-15 bg-slate-600 rounded-full"></div>
             </ToolsButtonNav>
             <SpaceNavBar

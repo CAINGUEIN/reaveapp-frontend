@@ -18,6 +18,7 @@ import * as systems from "@assets/svg/products/systems/systemsImport";
 import * as experiences from "@assets/svg/products/experiences/experiencesImport";
 import * as tools from "@assets/svg/products/tools/toolsImport";
 import * as wallet from "@assets/icons/Wallet/walletImport";
+import * as operator from "@assets/icons/Operator/operatorImport";
 import * as iconsOld from "@assets/icons/iconsOldImport";
 
 export default {
@@ -30,6 +31,7 @@ export default {
     ...experiences,
     ...tools,
     ...wallet,
+    ...operator,
     ...iconsOld,
   },
   props: ["target", "width", "color1", "height"],

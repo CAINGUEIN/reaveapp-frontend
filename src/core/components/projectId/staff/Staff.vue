@@ -189,7 +189,7 @@ export default {
     close(value) {
       this.open = false;
       if (value === "update") {
-        this.$emit("update");
+        this.$emit("action");
       }
     },
     goBack() {

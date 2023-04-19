@@ -1,13 +1,18 @@
 <template>
   <div class="w-full flex">
     <div
-      class="absolute left-8 top-6 z-10 h-9 w-9 bg-white rounded-full"
+      class="absolute left-8 top-6 z-10 h-10 w-10 bg-white rounded-full"
+      
     ></div>
     <div class="mx-auto mt-6">
       <button
         v-for="item in nav"
         class="py-1 px-4 mx-2 hover:bg-LightRock hover:text-white rounded-lg font-medium"
-        :class="target === item.target ? 'bg-LightRock text-white':'hover:bg-LightRock hover:text-white'"
+        :class="
+          target === item.target
+            ? 'bg-LightRock text-white'
+            : 'hover:bg-LightRock hover:text-white'
+        "
         @click="target = item.target"
       >
         {{ item.name }}
@@ -22,22 +27,18 @@
 //components
 import XButton36 from "@components/buttons/XButton36.vue";
 import SvgTarget from "@components/SvgTarget.vue";
-//tool
-import useStoreAuth from "@stores/auth";
 //pages
-import projects from "./EventOperator.vue"
-import items from "./ItemsOperator.vue"
+import projects from "./EventOperator.vue";
+import items from "./ItemsOperator.vue";
 export default {
   components: {
     XButton36,
     SvgTarget,
     projects,
-    items
+    items,
   },
   data() {
-    const store = useStoreAuth();
     return {
-      store,
       target: "projects",
       nav: [
         { name: "Projects", icon: "", target: "projects" },

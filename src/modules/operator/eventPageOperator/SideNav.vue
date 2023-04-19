@@ -1,31 +1,68 @@
 <template>
   <div
-    class="w-[270px] h-full border-r-2 border-DarkRock px-8 overflow-auto scrollbarV"
+    class="min-w-[270px] h-full border-r-2 border-DarkRock overflow-auto scrollbarV"
   >
-    <div v-if="infoEvent !== ''" class="z-10 flex items-center mt-6">
-      <div class="h-10 w-10 rounded-full bg-slate-400"></div>
-      <Naming :yourPerm="yourPerm" class="flex ml-3" :data="infoEvent"></Naming>
-      <Button40Slot
-        v-if="
-          (yourPerm === 'Owner' || yourPerm === 'Admin') &&
-          !infoEvent.isPublished
-        "
-        class="mx-4"
-        @click="open = true"
-        ><SpeakerphoneIcon class="h-5 m-auto"></SpeakerphoneIcon
-      ></Button40Slot>
+    <div
+      v-if="infoEvent !== ''"
+      class="z-10 flex items-center justify-between mt-6 pl-8 pr-3"
+    >
+      <p class="truncate">{{ infoEvent.name }}</p>
+      <div class="flex justify-end">
+        <Menu as="div" class="relative ml-3">
+          <div>
+            <MenuButton class="flex max-w-xs items-center rounded-full"
+              ><Button40Slot class="flex my-auto"
+                ><DotsHorizontalIcon class="m-1.5"></DotsHorizontalIcon
+              ></Button40Slot>
+            </MenuButton>
+          </div>
+          <transition
+            enter-active-class="transition ease-out duration-100"
+            enter-from-class="transform opacity-0 scale-95"
+            enter-to-class="transform opacity-100 scale-100"
+            leave-active-class="transition ease-in duration-75"
+            leave-from-class="transform opacity-100 scale-100"
+            leave-to-class="transform opacity-0 scale-95"
+          >
+            <MenuItems
+              class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-LightRock py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+            >
+              <MenuItem v-for="item in userNavigation" :key="item.name">
+                <button
+                  :class="[
+                    item.name === 'Remove' ? 'text-Red' : 'text-White',
+                    'block px-4 py-2 text-sm',
+                  ]"
+                  @click="
+                    item.name === 'Modify'
+                      ? ((open = true), (select = user), (modalView = 'Modify'))
+                      : item.name === 'Remove'
+                      ? ((open = true), (select = user), (modalView = 'Remove'))
+                      : ''
+                  "
+                >
+                  {{ item.name }}
+                </button>
+              </MenuItem>
+            </MenuItems>
+          </transition>
+        </Menu>
+      </div>
     </div>
-    <div v-for="section in nav" class="flex flex-col mt-4">
+    <div v-for="section in nav" class="flex flex-col mt-4 mx-8">
       <p
-        class="flex items-center text-LightGrey font-medium text-base"
+        class="flex items-center text-LightGrey font-medium text-base cursor-pointer"
         @click="
           section.items.length > 0
             ? section.open === true
               ? (section.open = false)
               : (section.open = true)
+            : section.target !== ''
+            ? $emit('update:modelValue', section.target)
             : ''
         "
       >
+        <SvgTarget :target="section.icon" :height="20" :width="20" class="mr-2"></SvgTarget>
         {{ section.cathegory
         }}<ChevronUpIcon
           v-if="section.items.length > 0"
@@ -76,44 +113,50 @@
       </div>
     </div>
   </div>
-  <ModalClear :open="open" @action="close()">
-    <Published :data="infoEvent" @action="close"></Published>
-  </ModalClear>
 </template>
 
 <script>
-import Naming from "@components/projectId/Naming.vue";
-import Button40Slot from "@components//buttons/Button40Slot.vue";
+import Button40Slot from "@components/buttons/Button40Slot.vue";
 import { SpeakerphoneIcon } from "@heroicons/vue/outline";
-import ModalClear from "@components/modal/ModalClear.vue";
-import Published from "@components/modal/projectId/Published.vue";
 import SvgTarget from "@components/SvgTarget.vue";
-import { ChevronUpIcon } from "@heroicons/vue/solid";
+import { DotsHorizontalIcon, ChevronUpIcon } from "@heroicons/vue/solid";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
+
 export default {
   components: {
-    Naming,
     Button40Slot,
     SpeakerphoneIcon,
-    ModalClear,
-    Published,
     SvgTarget,
     ChevronUpIcon,
+    DotsHorizontalIcon,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuItems,
   },
   props: ["yourPerm", "infoEvent", "select", "modelValue"],
   data() {
     return {
-      open: false,
+      userNavigation: [
+        { name: "opt1" },
+        { name: "opt2" },
+        { name: "Remove" },
+      ],
       nav: [
         {
           cathegory: "Overview",
+          target: "Overview",
+          icon: "Overview",
           open: true,
           items: [],
         },
         {
           cathegory: "Products",
+          target: "",
+          icon: "Products",
           open: true,
           items: [
-            { target: "Ticket", icon: "Tickets", name: "Tickets" },
+            { target: "Tickets", icon: "Tickets", name: "Tickets" },
             { target: "", icon: "Trophees", name: "Prizes" },
             { target: "", icon: "Merch", name: "Merch" },
             { target: "", icon: "Skins", name: "Drops" },
@@ -122,10 +165,12 @@ export default {
         },
         {
           cathegory: "Logistics",
+          target: "",
+          icon: "Logistics",
           open: true,
           items: [
             { target: "Format", icon: "Format", name: "Format" },
-            { target: "Equipment", icon: "Equipment", name: "Equipment" },
+            { target: "Equipements", icon: "Equipment", name: "Equipment" },
             { target: "", icon: "ReaveMaps", name: "Travel" },
             { target: "", icon: "Calendar", name: "Calendar" },
             { target: "", icon: "Tasks", name: "Tasks" },
@@ -133,18 +178,22 @@ export default {
         },
         {
           cathegory: "People",
+          target: "",
+          icon: "People",
           open: true,
           items: [
             { target: "Staff", icon: "Heart", name: "Staff" },
             { target: "", icon: "Eye", name: "Spectators" },
             { target: "", icon: "Fist", name: "Participants" },
             { target: "", icon: "Stand", name: "Stands" },
-            { target: "Venue", icon: "Events", name: "Venues" },
-            { target: "Sponsors", icon: "Sponsors", name: "Sponsors" },
+            { target: "", icon: "Events", name: "Venues" },
+            { target: "", icon: "Sponsors", name: "Sponsors" },
           ],
         },
         {
           cathegory: "Analytics",
+          target: "",
+          icon: "Analytics",
           open: true,
           items: [
             { target: "", icon: "Products", name: "Products" },
@@ -156,6 +205,8 @@ export default {
         },
         {
           cathegory: "Marketing",
+          target: "",
+          icon: "Marketing",
           open: true,
           items: [
             { target: "", icon: "Profiles", name: "Profiles" },
@@ -164,9 +215,11 @@ export default {
         },
         {
           cathegory: "Finance",
+          target: "",
+          icon: "Finance",
           open: true,
           items: [
-            { target: "", icon: "Panel", name: "Panel" },
+            { target: "Panel", icon: "Panel", name: "Panel" },
             { target: "", icon: "Budgets", name: "Budgets" },
             { target: "", icon: "Documents", name: "Contracts" },
           ],
