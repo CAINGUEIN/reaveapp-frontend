@@ -3,22 +3,22 @@
     <h2>Analytics</h2>
     <h4>SALES</h4>
     <div class="flex">
-      <img class="mr-4" src="../../../../../public/Sales.png" alt="" />
+      <img class="mr-4" src="/Sales.png" alt="" />
       <div>
         <div class="flex flex-wrap gap-4">
           <img
             class="basis-1/3"
-            src="../../../../../public/Tickets_Sold.png"
+            src="/Tickets_Sold.png"
             alt=""
           />
           <img
             class="basis-1/3"
-            src="../../../../../public/Tickets_Resold.png"
+            src="/Tickets_Resold.png"
             alt=""
           />
           <img
             class="basis-1/3"
-            src="../../../../../public/Booking_time_left.png"
+            src="/Booking_time_left.png"
             alt=""
           />
         </div>
@@ -26,7 +26,7 @@
     </div>
     <h4>REVENUE</h4>
     <div class="flex">
-      <img class="mr-4" src="../../../../../public/Revenue.png" alt="" />
+      <img class="mr-4" src="/Revenue.png" alt="" />
     </div>
     <h4>PEOPLE</h4>
     <div class="flex">
@@ -34,12 +34,12 @@
         <div class="flex flex-wrap gap-4">
           <img
             class="basis-1/3"
-            src="../../../../../public/Staff.png"
+            src="/Staff.png"
             alt=""
           />
           <img
             class="basis-1/3"
-            src="../../../../../public/Spectators.png"
+            src="/Spectators.png"
             alt=""
           />
         </div>

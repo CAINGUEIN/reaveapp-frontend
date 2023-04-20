@@ -121,12 +121,12 @@
       <img
         class=""
         v-if="view === 'owner'"
-        src="../../../../../public/walletModal/owner.png"
+        src="/walletModal/owner.png"
         alt=""
       />
       <img
         v-if="view === 'item'"
-        src="../../../../../public/walletModal/item.png"
+        src="/walletModal/item.png"
         alt=""
       />
     </ModalClearVarient>

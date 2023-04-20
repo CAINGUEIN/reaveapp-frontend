@@ -6,7 +6,7 @@
       v-on:mouseleave="mouseleave"
     >
       <img
-        src="../../../../public/placeTicket.png"
+        src="/placeTicket.png"
         alt="une foto"
         class="object-cover object-center"
       />

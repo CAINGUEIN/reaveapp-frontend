@@ -13,12 +13,12 @@
     >
       <p class="font-black text-xl text-white">REVENUE</p>
       <div class="grid grid-cols-2 gap-4 mt-6">
-        <img class="mr-4" src="../../../../../public/Sales.png" alt="" />
-        <img class="mr-4" src="../../../../../public/Revenue.png" alt="" />
-        <img class="mr-4" src="../../../../../public/Sales.png" alt="" />
-        <img class="mr-4" src="../../../../../public/Revenue.png" alt="" />
-        <img class="mr-4" src="../../../../../public/Sales.png" alt="" />
-        <img class="mr-4" src="../../../../../public/Revenue.png" alt="" />
+        <img class="mr-4" src="/Sales.png" alt="" />
+        <img class="mr-4" src="/Revenue.png" alt="" />
+        <img class="mr-4" src="/Sales.png" alt="" />
+        <img class="mr-4" src="/Revenue.png" alt="" />
+        <img class="mr-4" src="/Sales.png" alt="" />
+        <img class="mr-4" src="/Revenue.png" alt="" />
       </div>
     </div>
   </div>
