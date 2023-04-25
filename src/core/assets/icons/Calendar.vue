@@ -13,25 +13,25 @@
         width="24"
         height="22.5556"
         rx="3"
-        stroke="currentColor"
+        :stroke="color1"
         stroke-width="2"
         stroke-linejoin="round"
       />
       <path
         d="M3.35938 12.3057H28.6372"
-        stroke="currentColor"
+        :stroke="color1"
         stroke-width="2"
         stroke-linejoin="round"
       />
       <path
         d="M11 7V4"
-        stroke="currentColor"
+        :stroke="color1"
         stroke-width="2"
         stroke-linecap="round"
       />
       <path
         d="M21 7V4"
-        stroke="currentColor"
+        :stroke="color1"
         stroke-width="2"
         stroke-linecap="round"
       />
@@ -52,7 +52,7 @@ export default {
     },
     color1: {
       type: String,
-      default: "#FFFFFF",
+      default: "currentColor",
     },
     color2: {
       type: String,

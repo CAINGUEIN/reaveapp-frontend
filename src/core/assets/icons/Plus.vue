@@ -9,16 +9,39 @@
     >
       <path
         d="M9 16H23"
-        stroke="currentColor"
+        :stroke="color1"
         stroke-width="2"
         stroke-linecap="round"
       />
       <path
         d="M16 9V23"
-        stroke="currentColor"
+        :stroke="color1"
         stroke-width="2"
         stroke-linecap="round"
       />
     </svg>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    width: {
+      type: Number,
+      default: 24,
+    },
+    height: {
+      type: Number,
+      default: 24,
+    },
+    color1: {
+      type: String,
+      default: "currentColor",
+    },
+    color2: {
+      type: String,
+      default: "#111111",
+    },
+  },
+};
+</script>

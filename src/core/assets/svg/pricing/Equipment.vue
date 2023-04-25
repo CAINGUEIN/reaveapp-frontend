@@ -57,7 +57,7 @@ export default {
     },
     color1: {
       type: String,
-      default: "#FFFFFF",
+      default: "currentColor",
     },
     color2: {
       type: String,

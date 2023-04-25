@@ -1,12 +1,20 @@
 <template>
   <div
-    class="min-w-[270px] h-full border-r-2 border-DarkRock overflow-auto scrollbarV"
+    class="min-w-[270px] border-r-2 border-DarkRock overflow-auto scrollbarV pb-4"
   >
     <div
       v-if="infoEvent !== ''"
-      class="z-10 flex items-center justify-between mt-6 pl-8 pr-3"
+      class="z-10 flex items-center justify-between my-6 pl-8 pr-3"
     >
-      <p class="truncate">{{ infoEvent.name }}</p>
+      <div class="flex items-center">
+        <ImgFormated
+          :key="infoEvent.name"
+          :size="'s'"
+          :type="'avatar'"
+          class="z-10 h-10 w-10 bg-white rounded-full mr-3"
+        />
+        <p class="truncate font-bold text-xl">{{ infoEvent.name }}</p>
+      </div>
       <div class="flex justify-end">
         <Menu as="div" class="relative ml-3">
           <div>
@@ -49,9 +57,9 @@
         </Menu>
       </div>
     </div>
-    <div v-for="section in nav" class="flex flex-col mt-4 mx-8">
+    <div v-for="section in nav" class="flex flex-col mt-5 mx-8">
       <p
-        class="flex items-center text-LightGrey font-medium text-base cursor-pointer"
+        class="flex items-center text-LightGrey font-medium text-xl cursor-pointer p-2 rounded-lg"
         @click="
           section.items.length > 0
             ? section.open === true
@@ -61,8 +69,18 @@
             ? $emit('update:modelValue', section.target)
             : ''
         "
+        :class="
+          select === section.target
+            ? 'text-LightGrey bg-DarkRock'
+            : 'text-Gravel hover:text-LightGrey hover:bg-LightRock'
+        "
       >
-        <SvgTarget :target="section.icon" :height="20" :width="20" class="mr-2"></SvgTarget>
+        <SvgTarget
+          :target="section.icon"
+          :height="20"
+          :width="20"
+          class="mr-2"
+        ></SvgTarget>
         {{ section.cathegory
         }}<ChevronUpIcon
           v-if="section.items.length > 0"
@@ -86,23 +104,16 @@
           @click="
             item.target !== '' ? $emit('update:modelValue', item.target) : ''
           "
-          class="ml-6 text-left px-2 py-1 rounded-lg my-0.5 flex items-center text-xs font-medium"
+          class="ml-6 text-left px-2 py-1.5 rounded-lg my-0.5 flex items-center text-base font-medium"
           :class="
             select === item.target
-              ? 'text-white bg-LightRock'
+              ? 'text-white bg-DarkRock'
               : item.target !== ''
               ? 'text-Gravel hover:text-white hover:bg-LightRock'
-              : 'text-LightRock'
+              : 'text-LightRock cursor-not-allowed'
           "
         >
           <SvgTarget
-            :color1="
-              select === item.target
-                ? '#fff'
-                : item.target !== ''
-                ? '#808080'
-                : '#2a2a2a'
-            "
             :target="item.icon"
             :height="12"
             :width="12"
@@ -117,8 +128,10 @@
 
 <script>
 import Button40Slot from "@components/buttons/Button40Slot.vue";
-import { SpeakerphoneIcon } from "@heroicons/vue/outline";
+import ImgFormated from "@core/components/img/ImgFormated.vue";
 import SvgTarget from "@components/SvgTarget.vue";
+
+import { SpeakerphoneIcon } from "@heroicons/vue/outline";
 import { DotsHorizontalIcon, ChevronUpIcon } from "@heroicons/vue/solid";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 
@@ -129,6 +142,7 @@ export default {
     SvgTarget,
     ChevronUpIcon,
     DotsHorizontalIcon,
+    ImgFormated,
     Menu,
     MenuButton,
     MenuItem,
@@ -137,11 +151,7 @@ export default {
   props: ["yourPerm", "infoEvent", "select", "modelValue"],
   data() {
     return {
-      userNavigation: [
-        { name: "opt1" },
-        { name: "opt2" },
-        { name: "Remove" },
-      ],
+      userNavigation: [{ name: "opt1" }, { name: "opt2" }, { name: "Remove" }],
       nav: [
         {
           cathegory: "Overview",

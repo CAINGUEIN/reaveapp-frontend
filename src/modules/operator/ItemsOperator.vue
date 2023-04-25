@@ -1,16 +1,21 @@
 <template>
   <div>
     <div name="topContent" class="mt-8 flex justify-between">
-      <div class="flex">
+      <div class="w-1/3 flex">
         <button
-          class="bg-White text-Anthracite h-9 rounded-full items-center hover:bg-DarkRock hover:text-White"
+          class="bg-White text-Anthracite h-10 w-10 rounded-full items-center hover:bg-DarkRock hover:text-White flex"
           @click.prevent=""
         >
-          <PlusIcon class="mx-2 h-5 w-5" />
+          <SvgTarget
+            target="Plus"
+            height="16"
+            width="16"
+            class="mx-auto"
+          ></SvgTarget>
         </button>
         <label for="search" class="sr-only">Search</label>
         <div
-          class="relative text-white border-White flex items-center justify-between h-10 w-full ml-3"
+          class="relative text-white border-White flex justify-between h-10 w-2/3 ml-3"
         >
           <div class="flex bg-DarkRock rounded-full">
             <SearchIcon
@@ -25,48 +30,70 @@
               name="search"
             />
           </div>
-          <Button40Slot class="flex bg-LightRock rounded-full ml-3"
-            ><AdjustmentsIcon
-              class="h-10 w-10 p-2 m-auto -rotate-90"
-            ></AdjustmentsIcon
-          ></Button40Slot>
+          <Button40Slot class="flex bg-LightRock rounded-full ml-3">
+            <SvgTarget
+              target="Filters"
+              height="24"
+              width="24"
+              class="mx-auto my-auto"
+            ></SvgTarget>
+          </Button40Slot>
         </div>
       </div>
       <div class="flex">
-        <div class="rounded-lg bg-DarkRock h-10">
+        <div class="rounded-lg bg-DarkRock h-10 flex">
           <button
-            class="w-12 h-10 rounded-lg"
-            :class="show === 'list' ? 'bg-LightRock' : 'bg-DarkRock'"
+            class="w-12 h-10 rounded-lg flex"
+            :class="show === 'list' ? 'bg-LightRock text-White' : 'bg-DarkRock'"
             @click="show = 'list'"
           >
-            <ViewListIcon class="h-8 mx-auto"></ViewListIcon>
+            <SvgTarget
+              target="Ligns"
+              height="24"
+              width="24"
+              class="mx-auto my-auto"
+            ></SvgTarget>
           </button>
           <button
-            class="w-12 h-10 rounded-lg"
-            :class="show === 'board' ? 'bg-LightRock' : 'bg-DarkRock'"
+            class="w-12 h-10 rounded-lg flex"
+            :class="
+              show === 'board' ? 'bg-LightRock text-White' : 'bg-DarkRock'
+            "
             @click="show = 'board'"
           >
-            <ViewBoardsIcon class="h-8 mx-auto"></ViewBoardsIcon>
+            <SvgTarget
+              target="smsq"
+              height="24"
+              width="24"
+              class="mx-auto my-auto"
+            ></SvgTarget>
           </button>
           <button
-            class="w-12 h-10 rounded-lg"
-            :class="show === 'grid' ? 'bg-LightRock' : 'bg-DarkRock'"
+            class="w-12 h-10 rounded-lg flex"
+            :class="show === 'grid' ? 'bg-LightRock text-White' : 'bg-DarkRock'"
             @click="show = 'grid'"
           >
-            <ViewGridIcon class="h-8 mx-auto"></ViewGridIcon>
+            <SvgTarget
+              target="lgsq"
+              height="24"
+              width="24"
+              class="mx-auto my-auto"
+            ></SvgTarget>
           </button>
         </div>
         <Menu as="div" class="relative inline-block text-left ml-3">
           <div class="">
             <MenuButton
-              class="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 h-10 bg-DarkRock text-white"
+              class="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 h-10 bg-DarkRock text-white font-medium items-baseline"
             >
               <span class="text-LightGrey text-base font-medium">Order by</span>
               Most Recent
-              <ChevronDownIcon
-                class="-mr-1 h-5 w-5 text-white"
-                aria-hidden="true"
-              />
+              <SvgTarget
+                target="Chevron"
+                height="24"
+                width="24"
+                class="mx-auto my-auto"
+              ></SvgTarget>
             </MenuButton>
           </div>
 
@@ -129,7 +156,7 @@
       </div>
     </div>
     <div name="Content" class="mt-8 space-y-4">
-      <table class="max-w-7xl w-[95%] mx-auto">
+      <table class="w-full">
         <thead class="border-b-2 border-LightGrey">
           <tr>
             <th
@@ -142,13 +169,13 @@
               scope="col"
               class="text-left text-base font-black text-LightGrey"
             >
-              EVENT
+              QUANTITY
             </th>
             <th
               scope="col"
               class="text-left text-base font-black text-LightGrey"
             >
-              QUANTITY
+              PROJECT
             </th>
             <th
               scope="col"
@@ -185,12 +212,12 @@
             </td>
             <td>
               <p class="text-base font-black text-LightGrey">
-                {{ event.name }}
+                {{ item.quantity }}
               </p>
             </td>
             <td>
               <p class="text-base font-black text-LightGrey">
-                {{ item.quantity }}
+                {{ event.name }}
               </p>
             </td>
             <td>
@@ -275,32 +302,34 @@
 </template>
 
 <script>
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
+//component
 import ModalClear from "@components/modal/ModalClear.vue";
-
 import EditItem from "@components/modal/projectId/equipements/EditItem.vue";
 import RemoveItem from "@components/modal/projectId/equipements/RemoveItem.vue";
+import Button40Slot from "@components/buttons/Button40Slot.vue";
+import SvgTarget from "@components/SvgTarget.vue";
+//tool
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import {
   AdjustmentsIcon,
-  PlusIcon,
   SearchIcon,
   ChevronDownIcon,
   ViewListIcon,
   ViewGridIcon,
   ViewBoardsIcon,
 } from "@heroicons/vue/solid";
-import Button40Slot from "@components/buttons/Button40Slot.vue";
+import { DotsHorizontalIcon } from "@heroicons/vue/outline";
 //services
 import EventServices from "@axios/services/eventServices";
 import useStoreAuth from "@stores/auth";
-import { DotsHorizontalIcon } from "@heroicons/vue/outline";
+
 export default {
   components: {
-    PlusIcon,
     Button40Slot,
     SearchIcon,
     AdjustmentsIcon,
     ChevronDownIcon,
+    SvgTarget,
     Menu,
     MenuButton,
     MenuItem,

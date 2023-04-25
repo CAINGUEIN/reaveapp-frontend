@@ -1,9 +1,20 @@
 <template>
   <div class="">
     <div name="layout" class="flex justify-between items-center">
-      <p>
+      <p class="flex items-center">
+        <SvgTarget
+            target="People"
+            :height="20"
+            :width="20"
+            class="mx-2"
+          ></SvgTarget>
         <span class="font-black text-xl text-LightGrey">PEOPLE</span>
-        <span class="font-black text-xl text-white"> > STAFF</span>
+        <span class="font-black text-xl text-white flex items-center"> ><SvgTarget
+            target="Heart"
+            :height="20"
+            :width="20"
+            class="mx-2"
+          ></SvgTarget> STAFF</span>
       </p>
       <XButton36 @click="goBack" class="z-10"></XButton36>
     </div>
@@ -145,6 +156,8 @@
 <script>
 import XButton36 from "@components/buttons/XButton36.vue";
 import ModalClear from "@components/modal/ModalClear.vue";
+import SvgTarget from "@components/SvgTarget.vue";
+
 import { PlusIcon } from "@heroicons/vue/outline";
 import AddMembers from "@components/modal/projectId/staff/AddMembers.vue";
 import Teams from "./Teams.vue";
@@ -163,6 +176,7 @@ export default {
   props: ["data"],
   components: {
     Teams,
+    SvgTarget,
     PlusIcon,
     ModalClear,
     AddMembers,

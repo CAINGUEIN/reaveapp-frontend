@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div name="layout" class="flex justify-between items-center">
+    <div name="layout" class="flex justify-between items-center pb-8">
       <p class="flex items-center">
         <button
           v-if="view === 'Calendar' || view === 'Plan'"
@@ -21,13 +21,27 @@
           class="mr-2"
         ></SvgTarget>
         <span class="font-black text-xl text-LightGrey">PRODUCTS ></span>
-        <SvgTarget
-          target="Tickets"
-          :height="20"
-          :width="20"
-          class="mx-2"
-        ></SvgTarget>
-        <span class="font-black text-xl text-white">TICKETS</span>
+
+        <span class="font-black text-xl text-white flex items-center"
+          ><SvgTarget
+            target="Tickets"
+            :height="20"
+            :width="20"
+            class="mx-2"
+          ></SvgTarget
+          >TICKETS
+        </span>
+        <span
+          v-if="view === 'Calendar' || view === 'Plan'"
+          class="font-black text-xl text-white flex items-center mx-2"
+        >
+          ><SvgTarget
+            :target="view"
+            :width="20"
+            :height="20"
+            class="mx-2"
+          ></SvgTarget
+        ></span>
       </p>
       <XButton36 @click="goBack" class="z-10"></XButton36>
     </div>
@@ -44,7 +58,9 @@
             <span class="font-black text-xl text-white">TICKETS</span>
           </p>
           <p class="mt-6 text-base">xxx</p>
-          <p class="mt-6 text-base">No ticket category has been added here yet.</p>
+          <p class="mt-6 text-base">
+            No ticket category has been added here yet.
+          </p>
           <button
             class="text-black rounded-full h-10 px-10 mx-auto bg-white mt-9"
             @click.prevent="open = true"

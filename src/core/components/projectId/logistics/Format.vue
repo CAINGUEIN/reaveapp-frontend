@@ -9,23 +9,23 @@
           class="mr-2"
         ></SvgTarget>
         <span class="font-black text-xl text-LightGrey">PRODUCTS ></span>
-        <SvgTarget
-          target="Format"
-          :height="20"
-          :width="20"
-          class="mx-2"
-        ></SvgTarget>
-        <span class="font-black text-xl text-white"> FORMAT</span>
+
+        <span class="font-black text-xl text-white flex items-center"
+          ><SvgTarget
+            target="Format"
+            :height="20"
+            :width="20"
+            class="mx-2"
+          ></SvgTarget>
+          FORMAT</span
+        >
       </p>
       <XButton36 @click="goBack" class="z-10"></XButton36>
     </div>
     <div class="max-w-7xl w-[95%] mx-auto">
       <div name="formatSection">
-        <div
-          name="headerSchedule"
-          class="flex items-center justify-between mt-10"
-        >
-          <p class="text-xl text-LightGrey font-black">SCHEDULE</p>
+        <div name="headerSchedule" class="flex items-end justify-between mt-10">
+          <p class="text-xl text-LightGrey font-black leading-none">SCHEDULE</p>
           <div>
             <button
               v-if="edit"
@@ -35,7 +35,7 @@
               class="text-black rounded-full h-10 px-10 mx-auto"
               @click.prevent="update()"
             >
-              <h4 class="text-black">Save</h4>
+              <h4 class="text-black text-xl">Save</h4>
             </button>
             <Button40Slot
               v-if="
@@ -71,11 +71,8 @@
             </p>
           </div>
         </div>
-        <div
-          name="headerEsport"
-          class="flex items-center justify-between mt-10"
-        >
-          <p class="text-xl text-LightGrey font-black">ESPORT</p>
+        <div name="headerEsport" class="flex items-end justify-between mt-10">
+          <p class="text-xl text-LightGrey font-black leading-none">ESPORT</p>
           <div>
             <button
               v-if="editEsport"
@@ -85,7 +82,7 @@
               class="text-black rounded-full h-10 px-10 mx-auto"
               @click.prevent="updateEsport()"
             >
-              <h4 class="text-black">Save</h4>
+              <h4 class="text-black text-xl">Save</h4>
             </button>
             <Button40Slot
               v-if="
@@ -120,17 +117,17 @@
           </div>
           <div v-else>
             <p class="flex text-H4 text-White font-black leading-none mt-4">
-                  {{ platform.label }}
-                </p>
-                <p class="mt-4 font-medium text-H4 text-LightGrey">
-                  {{ platform.value === "" ? "Empty" : platform.value }}
-                </p>
-                <p class="flex text-H4 text-White font-black leading-none mt-4">
-                  {{ game.label }}
-                </p>
-                <p class="mt-4 font-medium text-H4 text-LightGrey">
-                  {{ game.value === "" ? "Empty" : game.value }}
-                </p>
+              {{ platform.label }}
+            </p>
+            <p class="mt-4 font-medium text-H4 text-LightGrey">
+              {{ platform.value === "" ? "Empty" : platform.value }}
+            </p>
+            <p class="flex text-H4 text-White font-black leading-none mt-4">
+              {{ game.label }}
+            </p>
+            <p class="mt-4 font-medium text-H4 text-LightGrey">
+              {{ game.value === "" ? "Empty" : game.value }}
+            </p>
           </div>
         </div>
       </div>

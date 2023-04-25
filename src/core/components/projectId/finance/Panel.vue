@@ -1,9 +1,33 @@
 <template>
   <div>
     <div name="layout" class="flex justify-between items-center">
-      <p>
-        <span class="font-black text-xl text-LightGrey">FINANCE</span>
-        <span class="font-black text-xl text-white"> > PANEL</span>
+      <p class="flex items-center">
+        <button
+          v-if="view === 'Calendar' || view === 'Plan'"
+          class="bg-DarkRock text-white h-8 w-8 rounded-full items-center hover:bg-LightRock flex mr-2"
+          @click.prevent="view = 'list'"
+        >
+          <SvgTarget
+            target="Chevron"
+            :width="24"
+            :height="24"
+            class="m-auto rotate-90"
+          ></SvgTarget>
+        </button>
+        <SvgTarget
+          target="Finance"
+          :height="20"
+          :width="20"
+          class="mr-2"
+        ></SvgTarget>
+        <span class="font-black text-xl text-LightGrey">FINANCE ></span>
+        
+        <span class="font-black text-xl text-white flex items-center"><SvgTarget
+          target="Panel"
+          :height="20"
+          :width="20"
+          class="mx-2"
+        ></SvgTarget>PANEL</span>
       </p>
       <XButton36 @click="goBack" class="z-10"></XButton36>
     </div>
@@ -13,12 +37,12 @@
     >
       <p class="font-black text-xl text-white">REVENUE</p>
       <div class="grid grid-cols-2 gap-4 mt-6">
-        <img class="mr-4" src="/Sales.png" alt="" />
-        <img class="mr-4" src="/Revenue.png" alt="" />
-        <img class="mr-4" src="/Sales.png" alt="" />
-        <img class="mr-4" src="/Revenue.png" alt="" />
-        <img class="mr-4" src="/Sales.png" alt="" />
-        <img class="mr-4" src="/Revenue.png" alt="" />
+        <img class="mr-4" src=" /Sales.png" alt="" />
+        <img class="mr-4" src=" /Revenue.png" alt="" />
+        <img class="mr-4" src=" /Sales.png" alt="" />
+        <img class="mr-4" src=" /Revenue.png" alt="" />
+        <img class="mr-4" src=" /Sales.png" alt="" />
+        <img class="mr-4" src=" /Revenue.png" alt="" />
       </div>
     </div>
   </div>
@@ -26,6 +50,8 @@
 
 <script>
 import Button40Slot from "../../buttons/Button40Slot.vue";
+import XButton36 from "@components/buttons/XButton36.vue";
+import SvgTarget from "../../SvgTarget.vue";
 import { PlusIcon, PencilIcon } from "@heroicons/vue/outline";
 import EventServices from "@axios/services/eventServices";
 import {
@@ -41,6 +67,8 @@ export default {
   components: {
     Button40Slot,
     PlusIcon,
+    SvgTarget,
+    XButton36,
     PencilIcon,
     AdjustmentsIcon,
     ChevronDownIcon,
@@ -93,6 +121,9 @@ export default {
         this.errors.push(result.data.errors);
         this.venueName.value = this.data.venueName;
       }
+    },
+    goBack() {
+      this.$router.back();
     },
   },
   mounted() {

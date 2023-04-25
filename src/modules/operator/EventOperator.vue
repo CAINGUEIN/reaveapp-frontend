@@ -1,16 +1,21 @@
 <template>
-  <div class="">
+  <div class="overflow-auto">
     <div name="topContent" class="mt-8 flex justify-between">
-      <div class="flex">
+      <div class="w-1/3 flex">
         <button
-          class="bg-White text-Anthracite h-9 rounded-full items-center hover:bg-DarkRock hover:text-White"
+          class="bg-White text-Anthracite h-10 w-10 rounded-full items-center hover:bg-DarkRock hover:text-White flex"
           @click.prevent="open = true"
         >
-          <PlusIcon class="mx-2 h-5 w-5" />
+          <SvgTarget
+            target="Plus"
+            height="16"
+            width="16"
+            class="mx-auto"
+          ></SvgTarget>
         </button>
         <label for="search" class="sr-only">Search</label>
         <div
-          class="relative text-white border-White flex items-center justify-between h-10 w-full ml-3"
+          class="relative text-white border-White flex justify-between h-10 w-2/3 ml-3"
         >
           <div class="flex bg-DarkRock rounded-full">
             <SearchIcon
@@ -25,48 +30,70 @@
               name="search"
             />
           </div>
-          <Button40Slot class="flex bg-LightRock rounded-full ml-3"
-            ><AdjustmentsIcon
-              class="h-10 w-10 p-2 m-auto -rotate-90"
-            ></AdjustmentsIcon
-          ></Button40Slot>
+          <Button40Slot class="flex bg-LightRock rounded-full ml-3">
+            <SvgTarget
+              target="Filters"
+              height="24"
+              width="24"
+              class="mx-auto my-auto"
+            ></SvgTarget>
+          </Button40Slot>
         </div>
       </div>
       <div class="flex">
-        <div class="rounded-lg bg-DarkRock h-10">
+        <div class="rounded-lg bg-DarkRock h-10 flex">
           <button
-            class="w-12 h-10 rounded-lg"
-            :class="show === 'list' ? 'bg-LightRock' : 'bg-DarkRock'"
+            class="w-12 h-10 rounded-lg flex"
+            :class="show === 'list' ? 'bg-LightRock text-White' : 'bg-DarkRock'"
             @click="show = 'list'"
           >
-            <ViewListIcon class="h-8 mx-auto"></ViewListIcon>
+            <SvgTarget
+              target="Ligns"
+              height="24"
+              width="24"
+              class="mx-auto my-auto"
+            ></SvgTarget>
           </button>
           <button
-            class="w-12 h-10 rounded-lg"
-            :class="show === 'board' ? 'bg-LightRock' : 'bg-DarkRock'"
+            class="w-12 h-10 rounded-lg flex"
+            :class="
+              show === 'board' ? 'bg-LightRock text-White' : 'bg-DarkRock'
+            "
             @click="show = 'board'"
           >
-            <ViewBoardsIcon class="h-8 mx-auto"></ViewBoardsIcon>
+            <SvgTarget
+              target="smsq"
+              height="24"
+              width="24"
+              class="mx-auto my-auto"
+            ></SvgTarget>
           </button>
           <button
-            class="w-12 h-10 rounded-lg"
-            :class="show === 'grid' ? 'bg-LightRock' : 'bg-DarkRock'"
+            class="w-12 h-10 rounded-lg flex"
+            :class="show === 'grid' ? 'bg-LightRock text-White' : 'bg-DarkRock'"
             @click="show = 'grid'"
           >
-            <ViewGridIcon class="h-8 mx-auto"></ViewGridIcon>
+            <SvgTarget
+              target="lgsq"
+              height="24"
+              width="24"
+              class="mx-auto my-auto"
+            ></SvgTarget>
           </button>
         </div>
         <Menu as="div" class="relative inline-block text-left ml-3">
           <div class="">
             <MenuButton
-              class="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 h-10 bg-DarkRock text-white"
+              class="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 h-10 bg-DarkRock text-white font-medium items-baseline"
             >
               <span class="text-LightGrey text-base font-medium">Order by</span>
               Most Recent
-              <ChevronDownIcon
-                class="-mr-1 h-5 w-5 text-white"
-                aria-hidden="true"
-              />
+              <SvgTarget
+                target="Chevron"
+                height="24"
+                width="24"
+                class="mx-auto my-auto"
+              ></SvgTarget>
             </MenuButton>
           </div>
 
@@ -129,17 +156,102 @@
       </div>
     </div>
     <div name="Content" class="mt-8 space-y-4">
-      <div
-        v-for="item in data"
-        class="w-full rounded-lg flex items-center"
-        @click="goTo(item._id)"
-      >
-        <div class="h-10 w-10 bg-slate-500 mr-3"></div>
-        <h3>{{ item.name }}</h3>
-        <div class="flex justify-between">
-          <h3 class="ml-4">ICI voir quoi mettre</h3>
-        </div>
-      </div>
+      <table class="w-full">
+        <thead class="border-b-2 border-LightGrey">
+          <tr>
+            <th
+              scope="col"
+              class="text-left text-base font-black text-LightGrey pl-4"
+            >
+              NAME
+            </th>
+            <th
+              scope="col"
+              class="text-left text-base font-black text-LightGrey"
+            >
+              LAST EDIT
+            </th>
+            <th
+              scope="col"
+              class="text-left text-base font-black text-LightGrey"
+            >
+              OWNED BY
+            </th>
+            <th scope="col" class="">
+              <span class="sr-only">Edit</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in data" :key="item._id" @click="goTo(item._id)" class=" cursor-pointer hover:bg-DarkRock">
+            <td class=" rounded-l-xl">
+              <div class="flex items-center ml-4 my-2">
+                <div class="h-15 w-15 rounded-xl mr-4 bg-slate-400"></div>
+                <p class="text-base font-black text-LightGrey">
+                  {{ item.name }}
+                </p>
+              </div>
+            </td>
+            <td>
+              <p class="text-base font-black text-LightGrey">
+                {{ $dayjs(item.updatedAt ).format("DD/MM/YYYY") }}
+              </p>
+            </td>
+            <td>
+              <p class="text-base font-black text-LightGrey">
+                {{ item.owner.user_id.userTag }}
+              </p>
+            </td>
+            <td class="py-4 px-3 rounded-r-xl">
+              <div class="flex justify-end">
+                <Menu as="div" class="relative ml-3">
+                  <div>
+                    <MenuButton class="flex max-w-xs items-center rounded-full"
+                      ><Button40Slot class="flex my-auto"
+                        ><DotsHorizontalIcon class="m-1.5"></DotsHorizontalIcon
+                      ></Button40Slot>
+                    </MenuButton>
+                  </div>
+                  <transition
+                    enter-active-class="transition ease-out duration-100"
+                    enter-from-class="transform opacity-0 scale-95"
+                    enter-to-class="transform opacity-100 scale-100"
+                    leave-active-class="transition ease-in duration-75"
+                    leave-from-class="transform opacity-100 scale-100"
+                    leave-to-class="transform opacity-0 scale-95"
+                  >
+                    <MenuItems
+                      class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-LightRock py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    >
+                      <MenuItem v-for="nav in navs" :key="nav.name">
+                        <button
+                          :class="[
+                            nav.name === 'Remove' ? 'text-Red' : 'text-White',
+                            'block px-4 py-2 text-sm',
+                          ]"
+                          @click="
+                            nav.name === 'Modify'
+                              ? ((open = true),
+                                (select = item),
+                                (modalView = 'EditItem'))
+                              : nav.name === 'Remove'
+                              ? ((open = true),
+                                (select = item),
+                                (modalView = 'RemoveItem'))
+                              : ''
+                          "
+                        >
+                          {{ nav.name }}
+                        </button>
+                      </MenuItem>
+                    </MenuItems>
+                  </transition>
+                </Menu>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <ModalClear :open="open" @action="close()">
       <CreateEvent @action="close()"></CreateEvent>
@@ -152,12 +264,13 @@
 import ModalClear from "@components/modal/ModalClear.vue";
 import CreateEvent from "../marketPlace/event/views/CreateEvent.vue";
 import WalletCard from "@components/eventCardContent/WalletCard.vue";
+import Button40Slot from "@components/buttons/Button40Slot.vue";
+import SvgTarget from "@components/SvgTarget.vue";
 //services
 import EventServices from "@axios/services/eventServices";
 //tool
 import useStoreAuth from "@stores/auth";
 import {
-  PlusIcon,
   AdjustmentsIcon,
   SearchIcon,
   ChevronDownIcon,
@@ -165,23 +278,24 @@ import {
   ViewGridIcon,
   ViewBoardsIcon,
 } from "@heroicons/vue/solid";
-import Button40Slot from "@components/buttons/Button40Slot.vue";
+import { DotsHorizontalIcon } from "@heroicons/vue/outline";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 
 export default {
   components: {
     ModalClear,
     WalletCard,
-    PlusIcon,
     CreateEvent,
     Button40Slot,
     SearchIcon,
     AdjustmentsIcon,
+    SvgTarget,
     ChevronDownIcon,
     Menu,
     MenuButton,
     MenuItem,
     MenuItems,
+    DotsHorizontalIcon,
     ViewListIcon,
     ViewGridIcon,
     ViewBoardsIcon,
@@ -193,6 +307,7 @@ export default {
       store,
       show: "list",
       data: "",
+      navs: [{ name: "Modify" }, { name: "Remove" }],
     };
   },
   methods: {

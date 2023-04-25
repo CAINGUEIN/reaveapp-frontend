@@ -2,15 +2,15 @@
   <div>
     <div name="layout" class="flex justify-between items-center">
       <p class="flex items-center">
-        <SvgTarget
+        
+        <span class="font-black text-xl text-white flex items-center"><SvgTarget
           target="Overview"
           :height="20"
           :width="20"
           class="mr-2"
-        ></SvgTarget>
-        <span class="font-black text-xl text-white"> OVERVIEW</span>
+        ></SvgTarget> OVERVIEW</span>
         <button
-          class="ml-6 text-left px-2 py-1 my-0.5 flex items-center text-xs font-bold text-Anthracite bg-white rounded-full h-10"
+          class="ml-6 text-left pl-3 pr-4 py-1 my-0.5 flex items-center text-base font-black text-Anthracite bg-white rounded-full h-10"
           v-if="
             (yourPerm === 'Owner' || yourPerm === 'Admin') && !data.isPublished
           "
@@ -30,8 +30,8 @@
     </div>
     <div class="max-w-7xl w-[95%] mx-auto">
       <div name="eventSection">
-        <div name="headerEvent" class="flex items-center justify-between mt-10">
-          <p class="text-xl text-LightGrey font-black">EVENT</p>
+        <div name="headerEvent" class="flex items-end justify-between mt-10">
+          <p class="text-xl text-LightGrey font-black leading-none">EVENT</p>
           <div>
             <button
               v-if="edit"
@@ -41,7 +41,7 @@
               class="text-black rounded-full h-10 px-10 mx-auto"
               @click.prevent="update()"
             >
-              <h4 class="text-black">Save</h4>
+              <h4 class="text-black text-xl">Save</h4>
             </button>
             <Button40Slot
               v-if="
@@ -112,9 +112,9 @@
       <div name="locationSection">
         <div
           name="headerLocation"
-          class="flex items-center justify-between mt-10"
+          class="flex items-end justify-between mt-8"
         >
-          <p class="text-xl text-LightGrey font-black">LOCATION</p>
+          <p class="text-xl text-LightGrey font-black leading-none">LOCATION</p>
           <div>
             <button
               v-if="editLocation"
@@ -124,7 +124,7 @@
               class="text-black rounded-full h-10 px-10 mx-auto"
               @click.prevent="updateLocation()"
             >
-              <h4 class="text-black">Save</h4>
+              <h4 class="text-black text-xl">Save</h4>
             </button>
             <Button40Slot
               v-if="

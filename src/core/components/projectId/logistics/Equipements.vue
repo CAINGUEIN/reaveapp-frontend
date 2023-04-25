@@ -9,13 +9,16 @@
           class="mr-2"
         ></SvgTarget>
         <span class="font-black text-xl text-LightGrey">LOGISTICS ></span>
-        <SvgTarget
-          target="Equipment"
-          :height="20"
-          :width="20"
-          class="mx-2"
-        ></SvgTarget>
-        <span class="font-black text-xl text-white"> EQUIPMENT</span>
+
+        <span class="font-black text-xl text-white flex items-center"
+          ><SvgTarget
+            target="Equipment"
+            :height="20"
+            :width="20"
+            class="mx-2"
+          ></SvgTarget>
+          EQUIPMENT</span
+        >
       </p>
       <XButton36 @click="goBack" class="z-10"></XButton36>
     </div>
@@ -58,16 +61,21 @@
       </div>
       <div v-else>
         <div name="topContent" class="mt-8 flex justify-between">
-          <div class="flex">
+          <div class="w-1/3 flex">
             <button
-              class="bg-White text-Anthracite h-9 rounded-full items-center hover:bg-DarkRock hover:text-White"
+              class="bg-White text-Anthracite h-10 w-10 rounded-full items-center hover:bg-DarkRock hover:text-White flex"
               @click.prevent="(open = true), (modalView = 'AddItem')"
             >
-              <PlusIcon class="mx-2 h-5 w-5" />
+              <SvgTarget
+                target="Plus"
+                height="16"
+                width="16"
+                class="mx-auto"
+              ></SvgTarget>
             </button>
             <label for="search" class="sr-only">Search</label>
             <div
-              class="relative text-white border-White flex items-center justify-between h-10 w-full ml-3"
+              class="relative text-white border-White flex justify-between h-10 w-2/3 ml-3"
             >
               <div class="flex bg-DarkRock rounded-full">
                 <SearchIcon
@@ -82,50 +90,76 @@
                   name="search"
                 />
               </div>
-              <Button40Slot class="flex bg-LightRock rounded-full ml-3"
-                ><AdjustmentsIcon
-                  class="h-10 w-10 p-2 m-auto -rotate-90"
-                ></AdjustmentsIcon
-              ></Button40Slot>
+              <Button40Slot class="flex bg-LightRock rounded-full ml-3">
+                <SvgTarget
+                  target="Filters"
+                  height="24"
+                  width="24"
+                  class="mx-auto my-auto"
+                ></SvgTarget>
+              </Button40Slot>
             </div>
           </div>
           <div class="flex">
-            <div class="rounded-lg bg-DarkRock h-10">
+            <div class="rounded-lg bg-DarkRock h-10 flex">
               <button
-                class="w-12 h-10 rounded-lg"
-                :class="show === 'list' ? 'bg-LightRock' : 'bg-DarkRock'"
+                class="w-12 h-10 rounded-lg flex"
+                :class="
+                  show === 'list' ? 'bg-LightRock text-White' : 'bg-DarkRock'
+                "
                 @click="show = 'list'"
               >
-                <ViewListIcon class="h-8 mx-auto"></ViewListIcon>
+                <SvgTarget
+                  target="Ligns"
+                  height="24"
+                  width="24"
+                  class="mx-auto my-auto"
+                ></SvgTarget>
               </button>
               <button
-                class="w-12 h-10 rounded-lg"
-                :class="show === 'board' ? 'bg-LightRock' : 'bg-DarkRock'"
+                class="w-12 h-10 rounded-lg flex"
+                :class="
+                  show === 'board' ? 'bg-LightRock text-White' : 'bg-DarkRock'
+                "
                 @click="show = 'board'"
               >
-                <ViewBoardsIcon class="h-8 mx-auto"></ViewBoardsIcon>
+                <SvgTarget
+                  target="smsq"
+                  height="24"
+                  width="24"
+                  class="mx-auto my-auto"
+                ></SvgTarget>
               </button>
               <button
-                class="w-12 h-10 rounded-lg"
-                :class="show === 'grid' ? 'bg-LightRock' : 'bg-DarkRock'"
+                class="w-12 h-10 rounded-lg flex"
+                :class="
+                  show === 'grid' ? 'bg-LightRock text-White' : 'bg-DarkRock'
+                "
                 @click="show = 'grid'"
               >
-                <ViewGridIcon class="h-8 mx-auto"></ViewGridIcon>
+                <SvgTarget
+                  target="lgsq"
+                  height="24"
+                  width="24"
+                  class="mx-auto my-auto"
+                ></SvgTarget>
               </button>
             </div>
             <Menu as="div" class="relative inline-block text-left ml-3">
               <div class="">
                 <MenuButton
-                  class="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 h-10 bg-DarkRock text-white"
+                  class="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 h-10 bg-DarkRock text-white font-medium items-baseline"
                 >
                   <span class="text-LightGrey text-base font-medium"
                     >Order by</span
                   >
                   Most Recent
-                  <ChevronDownIcon
-                    class="-mr-1 h-5 w-5 text-white"
-                    aria-hidden="true"
-                  />
+                  <SvgTarget
+                    target="Chevron"
+                    height="24"
+                    width="24"
+                    class="mx-auto my-auto"
+                  ></SvgTarget>
                 </MenuButton>
               </div>
 

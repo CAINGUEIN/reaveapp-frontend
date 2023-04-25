@@ -1,13 +1,13 @@
 <template>
-  <div class="overflow-y-auto h-screen w-screen flex">
+  <div class="overflow-hidden h-screen w-screen flex scrollbarV">
     <SideNav
-      class="w-[270px]"
+      class="w-[270px] sticky top-0"
       v-model="select"
       :select="select"
       :yourPerm="yourPerm"
       :infoEvent="infoEvent"
     ></SideNav>
-    <div name="content" class="w-full px-[30px] mt-8">
+    <div name="content" class="w-full px-[30px] pt-8 overflow-auto scrollbarV pb-4">
       <component
         :is="select"
         v-if="infoEvent !== ''"
