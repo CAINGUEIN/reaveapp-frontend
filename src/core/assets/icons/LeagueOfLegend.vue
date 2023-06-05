@@ -5,6 +5,7 @@
       :height="height"
       viewBox="0 0 32 32"
       fill="none"
+      style="display: inline;"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
