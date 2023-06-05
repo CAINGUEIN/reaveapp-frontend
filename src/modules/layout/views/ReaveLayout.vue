@@ -6,7 +6,7 @@
         class="sticky top-0 mx-8 left-0 right-0 z-20 bg-Anthracite flex pt-6 pb-[18px] items-center"
       >
         <div class="flex justify-between w-full">
-          <div class="flex space-x-4 items-center">
+          <div class="flex space-x-4 items-center" style="scale: 0.84;">
             <ToolsButtonNav
               :target="'PersonalMessages'"
               :dataClass="'reave'"
@@ -43,7 +43,7 @@
             </div>
           </div>
 
-          <div class="flex space-x-4 items-center">
+          <div class="flex space-x-4 items-center" style="scale: 0.84;">
             <ToolsButtonNav
               :target="'Settings'"
               :subTarget="'account'"
