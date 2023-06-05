@@ -1,8 +1,7 @@
 <template>
   <div>
     <div v-if="!store.dataAccount.lolData.lolPuuid" class="mt-8 text-center">
-      <h3>pour commencer ici il va nous faloir votre Puuid</h3>
-      <h5>suivre les infos pour le trouver si vous ne l'avais pas</h5>
+      <h3>Enter your <LeagueOfLegend :width="24" :height="24" style="display: inline;" /> Puuid</h3>
       <InputModel
         class="mt-8 mx-auto w-144"
         :data="puuid"
@@ -28,9 +27,10 @@ import InputModel from "@core/components/inputs/InputModel.vue";
 import ToolsButtonSubmit from "@core/components/buttons/ToolsButtonSubmit.vue";
 import UsersServices from "@axios/services/userServices";
 import MatchHistoryPage from "@core/components/MatchHistory/MatchHistoryPage.vue";
+import LeagueOfLegend from "../../../core/assets/icons/LeagueOfLegend.vue";
 
 export default {
-  components: { InputModel, ToolsButtonSubmit, MatchHistoryPage },
+  components: { InputModel, ToolsButtonSubmit, MatchHistoryPage, LeagueOfLegend },
   data() {
     const store = useStoreAuth();
     return {

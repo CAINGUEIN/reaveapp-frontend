@@ -1,8 +1,7 @@
 <template>
   <div>
     <div v-if="!store.dataAccount.lolData.lolPuuid" class="mt-8 text-center">
-      <h3>pour commencer ici il va nous faloir votre Puuid</h3>
-      <h5>suivre les infos pour le trouver si vous ne l'avais pas</h5>
+      <h3>Enter your <LeagueOfLegend :width="24" :height="24" style="display: inline;" /> Puuid</h3>
       <InputModel
         class="mt-8 mx-auto w-144"
         :data="puuid"
@@ -59,6 +58,8 @@ import ModuleCompareGoldEarned from "../../../core/components/dashboard/ModuleCo
 import ModuleCompareVisionLaneOpponent from "../../../core/components/dashboard/ModuleCompareVisionLaneOpponent.vue";
 import ModuleCompareVisionPerMinute from "../../../core/components/dashboard/ModuleCompareVisionPerMinute.vue";
 import ModuleAverageKDAInv from "../../../core/components/dashboard/ModuleAverageKDAInv.vue";
+import LeagueOfLegend from "../../../core/assets/icons/LeagueOfLegend.vue";
+
 
 export default {
   components: {
@@ -70,6 +71,7 @@ export default {
     ModuleCompareVisionLaneOpponent,
     ModuleCompareVisionPerMinute,
     ModuleAverageKDAInv,
+    LeagueOfLegend
   },
   props: ["paramOptionGame", "action"],
   data() {
