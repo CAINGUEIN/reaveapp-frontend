@@ -181,3 +181,11 @@
     background-color: #212121 !important;
   }
 }
+
+
+:root {
+  --color-text: rgb(190 190 190);
+}
+body {
+  font-family: 'Gotham';
+}

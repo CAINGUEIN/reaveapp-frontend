@@ -59,8 +59,8 @@
         <div name="separateEvent" class="h-0.5 w-full bg-Gravel mt-4"></div>
         <div name="contentEvent" class="flex mt-8">
           <button
-            class="h-[220px] w-[220px] border-2 border-dashed rounded-xl px-10"
-          >
+            class="h-[220px] w-[220px] rounded-xl px-10 uploadPosterInput"
+            >
             Upload Event Poster
           </button>
           <div class="ml-6 w-[400px]">
@@ -382,3 +382,12 @@ export default {
   },
 };
 </script>
+
+
+
+<style scoped>
+.uploadPosterInput {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='14' ry='14' stroke='%23E5E5E5FF' stroke-width='4' stroke-dasharray='10' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  border-radius: 14px;
+}
+</style>
