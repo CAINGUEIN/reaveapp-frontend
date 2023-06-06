@@ -16,7 +16,7 @@
           @click.prevent="$emit('change', 'Plan')"
         >
           <SvgTarget
-            target="Events"
+            target="Plan"
             :width="24"
             :height="24"
             class="m-auto"
