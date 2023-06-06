@@ -61,8 +61,8 @@
         COLOUR
       </label>
       <div class="flex justify-between items-center">
-        <div>
-          <div class="flex space-x-2 mt-1">
+        <div class="flex gap-2 flex-col">
+          <div class="flex space-x-2">
             <div
               v-for="item in colorArray"
               class="h-6 w-6 rounded"
@@ -71,7 +71,7 @@
               @click.prevent="color = item"
             ></div>
           </div>
-          <div class="flex space-x-2 mt-1">
+          <div class="flex space-x-2">
             <div
               v-for="item in colorArrayBis"
               class="h-6 w-6 rounded"
@@ -81,9 +81,6 @@
             ></div>
           </div>
         </div>
-        <Button40Slot class="mr-8" @click="refreshColor()">
-          <RefreshIcon class="h-5 m-auto"></RefreshIcon>
-        </Button40Slot>
       </div>
 
       <button
@@ -203,25 +200,32 @@
 <script>
 //components
 import InputModel from "@components/inputs/InputModel.vue";
+import PriceInputModel from "@components/inputs/PriceInputModel.vue";
 import XButton36 from "@components/buttons/XButton36.vue";
 import EventServices from "@axios/services/eventServices";
 import Button40Slot from "@components/buttons/Button40Slot.vue";
 import { RefreshIcon } from "@heroicons/vue/outline";
 import { Switch } from "@headlessui/vue";
+import SvgTarget from "../../../SvgTarget.vue";
+import { nextTick } from 'vue';
+
+
 export default {
   components: {
     XButton36,
     InputModel,
+    PriceInputModel,
     Button40Slot,
     RefreshIcon,
     Switch,
+    SvgTarget,
   },
   props: ["data", "yourPerm", "action"],
   data() {
     return {
       etape: 1,
       cathegory: {
-        label: "Cathegory name",
+        label: "Category name",
         placeholder: "Name",
         name: "cathegory",
         type: "text",
@@ -236,28 +240,24 @@ export default {
         class: "text-center",
       },
       colorArray: [
-        this.generateColor(),
-        this.generateColor(),
-        this.generateColor(),
-        this.generateColor(),
-        this.generateColor(),
-        this.generateColor(),
-        this.generateColor(),
-        this.generateColor(),
-        this.generateColor(),
-        this.generateColor(),
+        '1ABC9C',
+        '5BFFA1',
+        '71C6FF',
+        '9B59B6',
+        'E91E63',
+        'FFB800',
+        'E74C3C',
+        'BEBEBE'
       ],
       colorArrayBis: [
-        this.generateColor(),
-        this.generateColor(),
-        this.generateColor(),
-        this.generateColor(),
-        this.generateColor(),
-        this.generateColor(),
-        this.generateColor(),
-        this.generateColor(),
-        this.generateColor(),
-        this.generateColor(),
+        '005B14',
+        '00AE40',
+        '0066FF',
+        'CD6DFB',
+        '7500BD',
+        'FF7A30',
+        'F82E2E',
+        '505050',
       ],
       color: "",
       type: "",
