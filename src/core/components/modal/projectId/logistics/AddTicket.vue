@@ -34,13 +34,13 @@
     <div class="pt-12 flex flex-col" v-if="etape === 2">
       <h4 class="text-center">What’s the price of</h4>
       <h4 class="text-center">this Ticket Category?</h4>
-      <InputModel
+      <PriceInputModel
         class="mt-6"
         :data="price"
         v-model="price.value"
         :errors="errors[price.name]"
       >
-      </InputModel>
+      </PriceInputModel>
       <button
         :class="
           price.value !== '' ? 'bg-white' : 'bg-Gravel cursor-not-allowed'
