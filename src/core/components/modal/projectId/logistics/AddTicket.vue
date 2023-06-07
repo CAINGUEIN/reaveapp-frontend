@@ -55,7 +55,23 @@
       <h4 class="text-center">What’s the colour of</h4>
       <h4 class="text-center">this Ticket Category?</h4>
       <label
-        class="flex text-H4 text-White font-black leading-none mt-6"
+        class="flex text-H4 text-White font-black leading-none my-4"
+        for=""
+      >
+        MODEL
+      </label>
+      <div style="display: flex; justify-content: center; align-items: center; width: 100%;" v-if="model">
+        <video id="videoI" src="/img/diamondticket.mp4" autoplay loop style="width: 70%; height: auto; object-fit: cover;"></video>
+        <!-- <canvas id="videoT" width="400" height="300"></canvas> -->
+      </div>
+      <div class="flex items-start self-start gap-3 items-center">
+        <SvgTarget color1="#BEBEBE" class="m-auto" target="Conceptor">
+        </SvgTarget>
+        <label class="underline cursor-pointer" for="modelFileInput">Upload 3d File</label>
+        <input class="hidden" type="file" @change="uploadModel($event)" id="modelFileInput">
+      </div>
+      <label
+        class="flex text-H4 text-White font-black leading-none my-4 mt-8"
         for=""
       >
         COLOUR
@@ -80,6 +96,12 @@
               @click.prevent="color = item"
             ></div>
           </div>
+        <div class="flex items-start my-2 self-start gap-3 items-center">
+          <SvgTarget color1="#BEBEBE" class="m-auto" :height="32" :width="32" target="Colour">
+          </SvgTarget>
+          <label class="underline cursor-pointer">Pick a custom color</label>
+        </div>
+
         </div>
       </div>
 
@@ -101,58 +123,22 @@
         TYPE
       </label>
       <p class="mt-1">Standing or Sitting?</p>
-      <Switch
-        v-model="enabled"
-        class="bg-DarkRock relative inline-flex h-8 w-16 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-      >
-        <span class="sr-only">Use setting</span>
-        <span
-          :class="[
-            enabled ? 'translate-x-8' : 'translate-x-0',
-            'pointer-events-none relative inline-block h-7 w-7 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out',
-          ]"
-        >
-          <span
-            :class="[
-              enabled
-                ? 'opacity-0 ease-out duration-100'
-                : 'opacity-100 ease-in duration-200',
-              'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity',
-            ]"
-            aria-hidden="true"
-          >
-            <svg class="h-3 w-3 text-Black" fill="none" viewBox="0 0 12 12">
-              <path
-                d="M4 8l2-2m0 0l2-2M6 6L4 4m2 2l2 2"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </span>
-          <span
-            :class="[
-              enabled
-                ? 'opacity-100 ease-in duration-200'
-                : 'opacity-0 ease-out duration-100',
-              'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity',
-            ]"
-            aria-hidden="true"
-          >
-            <svg
-              class="h-3 w-3 text-Black"
-              fill="currentColor"
-              viewBox="0 0 12 12"
-            >
-              <path
-                d="M3.707 5.293a1 1 0 00-1.414 1.414l1.414-1.414zM5 8l-.707.707a1 1 0 001.414 0L5 8zm4.707-3.293a1 1 0 00-1.414-1.414l1.414 1.414zm-7.414 2l2 2 1.414-1.414-2-2-1.414 1.414zm3.414 2l4-4-1.414-1.414-4 4 1.414 1.414z"
-              />
-            </svg>
-          </span>
-        </span>
-      </Switch>
-      <p>{{ enabled }}</p>
+
+      <div class="switchParent">
+        <input type="checkbox" v-model="enabled" class="switch" id="stand">
+        <div class="switch_1_ON" v-if="!enabled">
+          <BootcampsVue color1="#111111" width="24" height="24" />
+        </div>
+        <div class="switch_1_OFF" v-else >
+          <BootcampsVue color1="#404040" width="24" height="24" />
+        </div>
+        <div class="switch_2_ON" v-if="enabled">
+          <StandingVue color1="#111111" width="24" height="24"  />
+        </div>
+        <div class="switch_2_OFF" v-else>
+          <StandingVue :color1="'#404040'" width="24" height="24"/>
+        </div>
+      </div>
       <div v-if="!enabled" class="flex justify-between items-center">
         <div class="flex w-1/2 space-x-2">
           <InputModel
@@ -208,6 +194,8 @@ import { RefreshIcon } from "@heroicons/vue/outline";
 import { Switch } from "@headlessui/vue";
 import SvgTarget from "../../../SvgTarget.vue";
 import { nextTick } from 'vue';
+import StandingVue from '../../../../assets/icons/Standing.vue';
+import BootcampsVue from '../../../../assets/icons/Bootcamps.vue';
 
 
 export default {
@@ -219,6 +207,8 @@ export default {
     RefreshIcon,
     Switch,
     SvgTarget,
+    StandingVue,
+    BootcampsVue
   },
   props: ["data", "yourPerm", "action"],
   data() {
@@ -261,6 +251,7 @@ export default {
       ],
       color: "",
       type: "",
+      model: false,
       column: {
         label: "COLUMNS",
         placeholder: "12",
@@ -320,6 +311,77 @@ export default {
         this.generateColor(),
       ];
     },
+    uploadModel(event) {
+      console.log(event)
+      this.model = true
+      // nextTick(() => {
+      //   this.draw()
+      // })
+    },
+    draw() {
+      const videoUrl = "/img/ticketLogo.mp4"; // Remplacez par le lien direct vers votre vidéo
+      const canvas = document.getElementById('videoT');
+      console.log(canvas)
+      const ctx = canvas.getContext('2d');
+      const video = document.createElement('video');
+      video.src = videoUrl;
+
+      video.addEventListener('loadedmetadata', () => {
+        console.log("lodaded video")
+        video.play()
+
+        this.processFrames(video, ctx);
+      });
+
+      video.addEventListener('ended', () => {
+        video.pause();
+      }); 
+
+      video.addEventListener('play', () => {
+        this.updateCanvas(video, ctx);
+      });
+
+      video.load();
+    },
+    processFrames(video, ctx) {
+      // if (video.paused || video.ended) {
+      //   return;
+      // }
+
+      ctx.drawImage(video, 0, 0, ctx.canvas.width, ctx.canvas.height);
+
+      const imageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+      const data = imageData.data;
+
+
+      for (let i = 0; i < data.length; i += 4) {
+        const red = data[i];
+        const green = data[i + 1];
+        const blue = data[i + 2];
+
+
+        if (red === 1 && green === 1 && blue === 1) {
+          data[i + 3] = 0; // Définir la transparence à 0 pour rendre le pixel transparent
+        }
+      }
+
+      ctx.putImageData(imageData, 0, 0);
+
+      requestAnimationFrame(() => {
+        this.processFrames(video, ctx);
+      });
+    },
+    updateCanvas(video, ctx) {
+      if (video.paused || video.ended) {
+        return;
+      }
+
+      ctx.drawImage(video, 0, 0, ctx.canvas.width, ctx.canvas.height);
+
+      requestAnimationFrame(() => {
+        this.updateCanvas(video, ctx);
+      });
+    },
     async submit() {
       console.log(this.data._id);
 
@@ -350,4 +412,106 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+
+video {
+  filter: url(#fff)
+}
+
+/* svg {
+  display: initial;
+} */
+
+
+/* #stand {
+    display: none;
+} */
+
+/* #stand:not(:checked)~label.checkbox_true {
+    display: none;
+}
+
+#stand:not(:checked)~label.checkbox_false {
+    display: inline;
+}
+
+#stand:checked~label.checkbox_true {
+    display: inline;
+}
+
+#stand:checked~label.checkbox_false {
+    display: none;
+} */
+
+span.selected {
+    text-decoration: underline;
+}
+
+
+
+:root{
+    --switch-height: 50px;
+    --switch-width: 100px;
+    --switch-knob-diameter: 45px;
+}
+
+
+.switch{
+    display: block;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 95px;
+    height: 50px;
+    background-color: #1A1A1A !important;
+    background-image: none !important;
+    border-radius: calc(50px / 2);
+    position: relative;
+    border: none;
+}
+
+
+
+
+.switchParent {
+    margin: 4px 0;
+    width: 95px;
+    height: 50px;
+    position: relative;
+}
+
+.switch_1_ON, .switch_1_OFF, .switch_2_ON, .switch_2_OFF {
+  width: 38px;
+  top: 6px;
+  height: 38px;
+  position: absolute;
+  border-radius: 19px;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.switchParent > *:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.switch_1_ON, .switch_1_OFF {
+  left: 6px;
+}
+
+.switch_1_ON, .switch_2_ON {
+  background-color: white;
+}
+
+.switch_2_ON, .switch_2_OFF {
+  right: 6px;
+}
+
+
+
+</style>
+
+
