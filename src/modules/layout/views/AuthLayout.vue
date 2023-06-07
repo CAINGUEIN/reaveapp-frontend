@@ -2,9 +2,10 @@
   <div class="flex">
     <div
       class="hidden md:flex w-imgAuthPAge h-screen bg-cover bg-center"
+      style="flex: 1"
       :style="{ backgroundImage: 'url(' + imageUrl + ')' }"
     ></div>
-    <router-view />
+    <router-view style="flex: 2" />
   </div>
 </template>
 

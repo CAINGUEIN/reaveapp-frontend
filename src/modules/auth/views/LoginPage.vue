@@ -5,8 +5,8 @@
       <Settings />
     </div>
     <div class="flex m-auto flex-col">
-      <h1 class="w-164 mb-16">{{ title }}</h1>
-      <div class="flex">
+      <h1 class="w-144 mb-16" style="font-size: 54px;">Everything about Esport in one place,<br>for everyone.</h1>
+      <div class="flex items-center">
         <form class="w-input">
           <InputModel :data="email" v-model="email.value" :errors="errors" />
           <InputModel
@@ -32,19 +32,14 @@
             <span class="text-Gravel test-H5 font-normal"
               >Need an account ?
             </span>
-            <router-link to="Signup" class="text-Blue test-H5 font-bold ml-1"
-              >Register</router-link
-            >
+            <router-link to="Signup" class="text-Blue test-H5 font-bold ml-1">Register</router-link>
           </div>
         </form>
-        <div class="mt-8 ml-8">
-          <img src="https://via.placeholder.com/190" alt="" class="rounded" />
-        </div>
       </div>
     </div>
     <div class="flex justify-between mt-auto">
       <span class="text-H6 font-normal">V0.0.1</span>
-      <span>Copyright © 2022 REAVE</span>
+      <span>Copyright © 2023 REAVE</span>
     </div>
   </div>
 </template>
