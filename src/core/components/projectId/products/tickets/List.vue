@@ -27,7 +27,7 @@
           @click.prevent="$emit('change', 'Calendar')"
         >
           <SvgTarget
-            target="Calendar"
+            target="Schedule"
             :width="24"
             :height="24"
             class="m-auto"

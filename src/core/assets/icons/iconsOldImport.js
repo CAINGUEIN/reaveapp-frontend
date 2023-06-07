@@ -1,5 +1,6 @@
 import Block from "./Block.vue";
 import Calendar from "./Calendar.vue";
+import Schedule from "./Schedule.vue";
 import Check from "./Check.vue";
 import CheckVoid from "./CheckVoid.vue";
 import Chevron from "./Chevron.vue";
@@ -34,6 +35,7 @@ export {
   Plan,
   Plus,
   Projects,
+  Schedule,
   Seat,
   smsq,
   Standing,
