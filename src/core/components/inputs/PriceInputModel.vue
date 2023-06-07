@@ -4,7 +4,7 @@
       class="flex text-H4 text-White font-black leading-none"
       :for="data.name"
     >
-      {{ data.label }}
+      {{ data.label }} <GoldRC style="margin-left: 4px; margin-top: 2px;" width="16" height="16" />
       <span class="text-Red ml-2 text-H6 font-normal" id="email-error">{{
         !errors.hasOwnProperty(data.name)
           ? ""
@@ -41,6 +41,7 @@
 import { ExclamationCircleIcon } from "@heroicons/vue/solid";
 import errorsHelpers from "@core/support/functions/errorsHelpers";
 import useStoreAuth from "@stores/auth";
+import GoldRC from "../../assets/icons/Wallet/GoldRC.vue";
 
 /**
  * composant qui gere l'affichage
@@ -48,7 +49,7 @@ import useStoreAuth from "@stores/auth";
  */
 export default {
   components: {
-    ExclamationCircleIcon,
+    ExclamationCircleIcon,GoldRC
   },
   props: {
     /** :data="inputExemple"
