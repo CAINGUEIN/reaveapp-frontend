@@ -1,6 +1,6 @@
 <template>
-  <div class="flex"> 
-    <NumberModel :data="number" v-model="numberValue" />
+  <div class="flex items-center gap-1"> 
+    <NumberModel style="height: 44;" :data="number" v-model="numberValue" />
     <SelectModel :data="selectType" v-model="selectTypeValue" />
     <SelectModel :data="selectChampion" v-model="selectChampionValue" />
   </div>

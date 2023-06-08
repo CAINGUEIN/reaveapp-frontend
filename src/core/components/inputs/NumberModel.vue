@@ -10,7 +10,7 @@
           : errorsHelpers.affichageError(errors[data.name].message)
       }}</span></label
     >
-    <div class="mt-1 relative rounded-md shadow-sm">
+    <div class="relative rounded-md shadow-sm">
       <input
         :type="data.type"
         :name="data.name"

@@ -15,6 +15,7 @@
     <select
       :id="data.name"
       :value="modelValue"
+      style="    background-position: right 0rem center;"
       @input="$emit('update:modelValue', $event.target.value)"
       class="block border-0 file:border file:border-solid w-full font-normal py-3 px-6 rounded-Large text-H4 text-White bg-Anthracite focus:ring-0 leading-none"
     >
