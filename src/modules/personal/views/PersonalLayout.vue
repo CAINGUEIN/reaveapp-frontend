@@ -19,7 +19,6 @@
           <div
             v-if="view === 'dashboard' || view === 'tree' || view === 'history'"
             name="select-game"
-            style="position: absolute; transform: translateX(calc(50vw - 67%)) scale(0.84);"
             class="flex bg-LightRock rounded-full"
           >
             <ToolsButtonNav
@@ -47,9 +46,7 @@
               <Valorant />
             </ToolsButtonNav>
           </div>
-          <div name="icon" class="flex"
-          style="scale: 0.84;"
-          >
+          <div name="icon" class="flex">
             <ToolsButtonNav
               :btnName="'dashboard'"
               :dataClass="'spaceIcon'"
