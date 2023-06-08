@@ -183,10 +183,21 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in data" :key="item._id" @click="goTo(item._id)" class=" cursor-pointer hover:bg-DarkRock">
-            <td class=" rounded-l-xl">
+          <tr
+            v-for="item in data"
+            :key="item._id"
+            @click="goTo(item._id)"
+            class="cursor-pointer hover:bg-DarkRock"
+          >
+            <td class="rounded-l-xl">
               <div class="flex items-center ml-4 my-2">
-                <div class="h-15 w-15 rounded-xl mr-4 bg-slate-400"></div>
+                <ImgFormated
+                  :key="item._id"
+                  :size="'s'"
+                  :targetSpace="item._id"
+                  :type="'event'"
+                  class="h-15 w-15 rounded-xl mr-4 bg-white"
+                />
                 <p class="text-base font-black text-LightGrey">
                   {{ item.name }}
                 </p>
@@ -194,7 +205,7 @@
             </td>
             <td>
               <p class="text-base font-black text-LightGrey">
-                {{ $dayjs(item.updatedAt ).format("DD/MM/YYYY") }}
+                {{ $dayjs(item.updatedAt).format("DD/MM/YYYY") }}
               </p>
             </td>
             <td>
@@ -266,6 +277,8 @@ import CreateEvent from "../marketPlace/event/views/CreateEvent.vue";
 import WalletCard from "@components/eventCardContent/WalletCard.vue";
 import Button40Slot from "@components/buttons/Button40Slot.vue";
 import SvgTarget from "@components/SvgTarget.vue";
+import ImgFormated from "@core/components/img/ImgFormated.vue";
+
 //services
 import EventServices from "@axios/services/eventServices";
 //tool
@@ -286,6 +299,7 @@ export default {
     ModalClear,
     WalletCard,
     CreateEvent,
+    ImgFormated,
     Button40Slot,
     SearchIcon,
     AdjustmentsIcon,

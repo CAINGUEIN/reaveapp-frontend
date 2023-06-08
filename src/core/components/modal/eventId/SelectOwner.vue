@@ -41,7 +41,13 @@
             class="h-20 flex justify-between items-center p-4 rounded-2xl hover:bg-Rock"
           >
             <div class="flex items-center">
-              <div class="h-9 w-9 bg-slate-500 rounded-full"></div>
+              <ImgFormated
+              :key="friend._id"
+              :size="'l'"
+              :targetSpace="friend._id"
+              :type="'avatar'"
+              class="h-9 w-9 bg-slate-500 rounded-full"
+            />
               <div class="ml-4">
                 <h4>{{ friend.userTag }}</h4>
                 <h5 class="text-Gravel">@{{ friend.profileName }}</h5>
@@ -69,6 +75,7 @@ import XButton36 from "@components/buttons/XButton36.vue";
 //tool
 import useStoreAuth from "@stores/auth";
 import { ChevronUpIcon } from "@heroicons/vue/solid";
+import ImgFormated from "../../img/ImgFormated.vue";
 //services
 
 export default {
@@ -82,7 +89,8 @@ export default {
     MenuButton,
     MenuItem,
     MenuItems,
-  },
+    ImgFormated
+},
   data() {
     const store = useStoreAuth();
     return {

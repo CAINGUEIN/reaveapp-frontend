@@ -22,7 +22,13 @@
         <h2 class="text-5xl font-medium">Staff</h2>
         <div class="w-full grid grid-cols-3 gap-4 mt-8">
           <div class="flex col-span-1">
-            <div class="bg-White h-15 w-15 rounded-full"></div>
+            <ImgFormated
+                :key="data.owner._id"
+                :size="'l'"
+                :targetSpace="data.owner._id"
+                :type="'avatar'"
+                class="bg-White h-15 w-15 rounded-full"
+              />
             <div class="ml-4">
               <p>@{{ data.owner.user_id.userTag }}</p>
               <p>{{ data.owner.role }} {{ data.owner.team }}</p>
@@ -42,8 +48,11 @@
 </template>
 
 <script>
+import ImgFormated from '@components/img/ImgFormated.vue';
+
 export default {
-  props: ["data"],
+    props: ["data"],
+    components: { ImgFormated }
 };
 </script>
 

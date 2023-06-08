@@ -1,5 +1,11 @@
 <template>
-  <div class="flex flex-col">
+  <CropperEquipement
+        v-if="img !== ''"
+        :data="select"
+        :src="img"
+        @closeAction="close"
+      />
+  <div v-else class="flex flex-col">
     <XButton36
       class="absolute right-0 z-10"
       @click.prevent="closeModal()"
@@ -16,11 +22,28 @@
       <p class="text-xl font-medium text-white">Modify an Item</p>
     </div>
     <div name="sectionName" class="flex mt-8 mx-auto justify-center">
-      <button
-        class="h-[160px] w-[160px] border-2 border-dashed rounded-xl my-auto"
+      <label
+        class="h-[160px] w-[160px] border-2 border-dashed rounded-xl px-10 cursor-pointer flex"
+        for="eventUpload"
       >
-        Upload file
-      </button>
+        <input
+          id="eventUpload"
+          name="eventUpload"
+          type="file"
+          class="sr-only"
+          @input="imgUpload"
+          accept="image/png"
+          @change="submitImg"
+        />
+        <ImgFormated
+          :key="data._id"
+          :size="'m'"
+          :targetSpace="select._id"
+          :type="'item'"
+          class="absolute opacity-50 left-0 right-0 top-0 bottom-0 w-full rounded-xl bg-white"
+        />
+        <p class="text-center my-auto">Upload file</p>
+      </label>
       <div class="ml-6">
         <div name="inputName">
           <InputModel
@@ -244,11 +267,13 @@
 import XButton36 from "@components/buttons/XButton36.vue";
 
 import InputModel from "@components/inputs/InputModel.vue";
-import SvgTarget from "../../../SvgTarget.vue";
+import SvgTarget from "@components/SvgTarget.vue";
 
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 //services
 import EventServices from "@axios/services/eventServices";
+import ImgFormated from "@components/img/ImgFormated.vue";
+import CropperEquipement from "@components/cropper/CropperEquipement.vue";
 
 export default {
   components: {
@@ -259,10 +284,14 @@ export default {
     MenuButton,
     MenuItem,
     MenuItems,
-  },
+    ImgFormated,
+    CropperEquipement
+},
   props: ["data", "select"],
   data() {
     return {
+      imgUpload: "",
+      img: "",
       name: {
         label: "ITEM NAME",
         placeholder: " ",
@@ -287,6 +316,10 @@ export default {
     closeModal() {
       this.$emit("action");
     },
+    close() {
+      this.img = "";
+      this.imgUpload = "";
+    },
     setupData() {
       this.select.name ? (this.name.value = this.select.name) : "";
       this.select.quantity ? (this.quantity.value = this.select.quantity) : "";
@@ -310,6 +343,11 @@ export default {
       if (result.data.success) {
         this.$emit("action", "update");
       }
+    },
+    submitImg() {
+      let cache = document.getElementById("eventUpload").files[0];
+      this.img = URL.createObjectURL(cache);
+      this.open = true;
     },
   },
   mounted() {

@@ -4,55 +4,32 @@
       <section class="">
         <div class="img-cropper">
           <vue-cropper
-            class="h-144 w-144 mx-auto"
+            class="h-[450px] w-[450px] mx-auto"
             ref="cropper"
-            :aspect-ratio="160 / 160"
+            :aspect-ratio="100 / 100"
             :src="src"
             preview=".preview"
           />
         </div>
       </section>
       <section class="preview-area">
-        <!-- <p>Preview</p>
-        <div class="preview w-[160px] h-[160px] overflow-hidden rounded-full" />
-        <div class="preview w-[24px] h-[24px] overflow-hidden rounded-full" /> -->
-        <div class="flex">
-          <toolsButtonSubmit
-            class="w-40 mx-2 mt-5"
-            @action="reset"
-            txtButton="Reset"
-            :color="''"
-          />
-          <toolsButtonSubmit
-            class="w-15 mx-2 mt-5"
-            @action="rotate(90)"
-            txtButton="R+"
-            :color="''"
-          />
-          <toolsButtonSubmit
-            class="w-15 mx-2 mt-5"
-            @action="rotate(-90)"
-            txtButton="R-"
-            :color="''"
-          /><!-- 
-          <toolsButtonSubmit
-            class="w-15 mx-2 mt-5"
-            @action="flipX"
-            txtButton="X"
-            :color="''"
-          />
-          <toolsButtonSubmit
-            class="w-15 mx-2 mt-5"
-            @action="flipY"
-            txtButton="Y"
-            :color="''"
-          /> -->
-          <toolsButtonSubmit
-            class="w-40 mx-2 mt-5"
-            @action="cropImage"
-            txtButton="Save"
-            :color="''"
-          />
+        <div class="flex justify-center">
+          <button
+            class="w-40 h-10 mx-2 mt-5 bg-white text-Anthracite rounded-full"
+            @click="reset"
+          >Reset</button>
+          <button
+            class="w-10 h-10 mx-2 mt-5 bg-white text-Anthracite rounded-full"
+            @click="rotate(90)"
+          >R+</button>
+          <button
+            class="w-10 h-10 mx-2 mt-5 bg-white text-Anthracite rounded-full"
+            @click="rotate(-90)"
+          >R-</button>
+          <button
+            class="w-40 h-10 mx-2 mt-5 bg-white text-Anthracite rounded-full"
+            @click="cropImage"
+          >Save</button>
         </div>
       </section>
     </div>
@@ -76,6 +53,9 @@ export default {
     src: {
       type: String,
     },
+    data: {
+      type: Object,
+    },
   },
   data() {
     const store = useStoreAuth();
@@ -98,7 +78,7 @@ export default {
       }
       return new File(
         [u8arr],
-        this.store.dataAccount._id + "avatar." + type[1],
+        this.data._id + "item." + type[1],
         {
           type: mime,
         }
@@ -112,7 +92,7 @@ export default {
       let formData = new FormData();
       formData.append("img", submitImg);
       console.log(submitImg);
-      let result = await UserUpdateServices.imgAvatar(formData);
+      let result = await UserUpdateServices.imgItem(formData);
       if (result.data.success) {
         this.$emit("closeAction");
         this.store.loading = false;

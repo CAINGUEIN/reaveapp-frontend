@@ -43,7 +43,13 @@
             :class="select === friend._id ? 'bg-LightRock' : 'hover:bg-Rock'"
           >
             <div class="flex items-center">
-              <div class="h-9 w-9 bg-slate-500 rounded-full"></div>
+              <ImgFormated
+              :key="friend._id"
+              :size="'l'"
+              :targetSpace="friend._id"
+              :type="'avatar'"
+              class="h-9 w-9 rounded-full"
+            />
               <div class="ml-4">
                 <h4>{{ friend.userTag }}</h4>
                 <h5 class="text-Gravel">@{{ friend.profileName }}</h5>
@@ -148,6 +154,7 @@ import XButton36 from "@components/buttons/XButton36.vue";
 import UserUpdateServices from "@axios/services/userUpdateServices";
 //tool
 import useStoreAuth from "@stores/auth";
+import ImgFormated from "../../img/ImgFormated.vue";
 
 export default {
   data() {
@@ -200,6 +207,6 @@ export default {
       // fermeture de la modal si ok avec changment du chiffre dans la reavecoin
     },
   },
-  components: { SearchIcon, ArrowRightIcon, InputModel, SilverRC, Checkmark, XButton36 },
+  components: { SearchIcon, ArrowRightIcon, InputModel, SilverRC, Checkmark, XButton36, ImgFormated },
 };
 </script>

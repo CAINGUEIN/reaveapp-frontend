@@ -3,7 +3,13 @@
     <div
       class="w-full flex-shrink-0 bg-slate-500 aspect-1 rounded-xl text-transparent hover:text-white overflow-hidden flex flex-col justify-end z-10"
     >
-      <img src="/img/imageeventcard.png" alt="" class="z-0" />
+      <ImgFormated
+                :key="data._id"
+                :size="'s'"
+                :targetSpace="data._id"
+                :type="'event'"
+                class="z-0"
+              />
       <div
       class="absolute w-full h-full"
         :class="
@@ -14,38 +20,16 @@
         v-on:mouseover="mouseover"
         v-on:mouseleave="mouseleave"
       ></div>
-      <!--   <div
-        class="h-full flex"
-        :class="
-          comparedContent
-            ? 'transition duration-300 ease-in-out'
-            : 'hoverCardEvent transition duration-300 ease-in-out'
-        "
-      >
-       <button
-          @click.prevent="(open = true), (viewModal = 'info')"
-          class="m-auto bg-Rock rounded-full py-2 px-5 font-black"
-        >
-          Info
-        </button>
-        <button
-          @click.prevent="(open = true), (viewModal = 'buy')"
-          class="m-auto bg-Rock rounded-full py-2 px-5 font-black"
-        >
-          Buy
-        </button>
-        <button
-          @click.prevent="(open = true), (viewModal = 'gift')"
-          class="m-auto bg-Rock rounded-full py-2 px-5 font-black"
-        >
-          Gift
-        </button>
-      </div> -->
     </div>
     <div class="pl-1 pt-4">
       <div class="flex items-center">
-        <div class="h-6 w-6 bg-Gravel rounded-full mr-2"></div>
-        <p class="text-white text-base font-medium">{{ data.owner.user_id }}</p>
+        <ImgFormated
+                :key="data._id"
+                :size="'s'"
+                :type="'avatar'"
+                class="h-6 w-6 bg-Gravel rounded-full mr-2"
+              />
+        <p class="text-white text-base font-medium">{{ data.owner.user_id.userTag  }}</p>
       </div>
       <div class="flex mt-2">
         <p class="text-white font-bold text-2xl">{{ data.name }}</p>
@@ -87,8 +71,9 @@ import ModalClear from "@core/components/modal/ModalClear.vue";
 import BuyModal from "@core/components/eventCardContent/BuyModal.vue";
 import GiftModal from "@core/components/eventCardContent/GiftModal.vue";
 import InfoModal from "@core/components/eventCardContent/InfoModal.vue";
+import ImgFormated from "../../../../core/components/img/ImgFormated.vue";
 export default {
-  components: { ModalClear, BuyModal, GiftModal, InfoModal },
+  components: { ModalClear, BuyModal, GiftModal, InfoModal, ImgFormated },
   props: {
     data: {
       type: Object,

@@ -9,7 +9,13 @@
         <div class="flex flex-col justify-between mt-18">
           <h1 class="text-[56px] font-bold">{{ infoEvent.name }}</h1>
           <div class="flex items-center space-x-4">
-            <div class="h-10 w-10 rounded-full bg-slate-300 my-3"></div>
+            <ImgFormated
+                :key="infoEvent.owner._id"
+                :size="'s'"
+                :targetSpace="infoEvent.owner._id"
+                :type="'avatar'"
+                class="h-10 w-10 rounded-full bg-slate-300 my-3"
+              />
             <p class="text-base font-medium">
               Organised by @{{ infoEvent.owner.user_id.userTag }}
             </p>
@@ -220,6 +226,7 @@ import {
   PaperAirplaneIcon,
 } from "@heroicons/vue/outline";
 import Auctions from "@assets/icons/Auctions.vue";
+import ImgFormated from "../../../../core/components/img/ImgFormated.vue";
 export default {
   components: {
     XButton60,
@@ -235,7 +242,8 @@ export default {
     EventIdProducts,
     Auctions,
     SvgTarget,
-  },
+    ImgFormated
+},
   data() {
     return {
       id: "",

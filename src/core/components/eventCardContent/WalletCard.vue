@@ -19,7 +19,12 @@
         "
       >
         <div class="flex items-center">
-          <div class="h-9 w-9 rounded-full bg-Gravel mr-3"></div>
+          <ImgFormated
+                :key="data._id"
+                :size="'s'"
+                :type="'avatar'"
+                class="h-9 w-9 rounded-full bg-Gravel mr-3"
+              />
           <p class=" text-xl font-bold text-white">
             {{ infoEvent.owner.user_id.profileName }}
           </p>
@@ -32,30 +37,6 @@
         </div>
       </div>
     </div>
-    <!-- 
-    <div class="flex justify-between">
-        <h3 class="mt-4 text-sm text-gray-500">
-      {{ infoEvent.name }}
-    </h3>
-    <h3 class="mt-4 text-sm text-gray-500"> Le</h3>
-    
-    <h3 class="mt-4 text-sm text-gray-500">
-      {{ $dayjs(infoEvent.date).format("DD-MM-YY HH:mm") }}
-    </h3>
-    </div>
-    <div class="flex justify-between">
-        <h3 class="mt-4 text-sm text-gray-500">
-      {{ infoEvent.game }}
-    </h3>
-    <h3 class="mt-4 text-sm text-gray-500">
-      Acheter le
-    </h3>
-    <h3 class="mt-4 text-sm text-gray-500">
-      {{ $dayjs(infoTicket.createdAt).format("DD-MM-YY HH:mm") }}
-    </h3>
-    </div>
-    
-    <p class="mt-1 text-lg font-medium"></p>-->
     <ModalClearXL :open="open" @action="close()">
       <TicketObjView
         :infoEvent="infoEvent"
@@ -71,12 +52,14 @@
 import ModalClearXL from "@core/components/modal/ModalClearXL.vue";
 import TicketObjView from "@components/modal/wallet/TicketObjView.vue";
 import TicketServices from "@axios/services/ticketServices";
+import ImgFormated from "../img/ImgFormated.vue";
 
 export default {
   components: {
     ModalClearXL,
     TicketObjView,
-  },
+    ImgFormated
+},
   props: {
     data: {
       type: String,

@@ -9,22 +9,13 @@
           >
             Member
           </th>
-          <th
-            scope="col"
-            class="text-left text-base font-black text-LightGrey"
-          >
+          <th scope="col" class="text-left text-base font-black text-LightGrey">
             Permission
           </th>
-          <th
-            scope="col"
-            class="text-left text-base font-black text-LightGrey"
-          >
+          <th scope="col" class="text-left text-base font-black text-LightGrey">
             Team
           </th>
-          <th
-            scope="col"
-            class="text-left text-base font-black text-LightGrey"
-          >
+          <th scope="col" class="text-left text-base font-black text-LightGrey">
             Role
           </th>
 
@@ -38,11 +29,15 @@
           <td
             class="whitespace-nowrap py-2 pl-4 pr-3 text-sm font-medium text-gray-900 flex items-center"
           >
-            <div class="h-10 w-10 bg-slate-400 rounded-full mr-4">
+            <ImgFormated
+              :key="user.user_id"
+              :size="'s'"
+              :targetSpace="user.user_id"
+              :type="'avatar'"
+              class="h-10 w-10 bg-slate-400 rounded-full mr-4"
+            />
 
-            </div>
             <div>
-
               <p class="text-White">{{ user.profileName }}</p>
               <p class="text-LightGrey">@{{ user.userTag }}</p>
             </div>
@@ -131,6 +126,7 @@ import { DotsHorizontalIcon } from "@heroicons/vue/solid";
 import Button40Slot from "@components/buttons/Button40Slot.vue";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import RemoveMember from "../../modal/projectId/staff/RemoveMember.vue";
+import ImgFormated from "../../img/ImgFormated.vue";
 
 export default {
   components: {
@@ -143,6 +139,7 @@ export default {
     EditMember,
     ModalClear,
     RemoveMember,
+    ImgFormated,
   },
   props: ["data"],
   data() {

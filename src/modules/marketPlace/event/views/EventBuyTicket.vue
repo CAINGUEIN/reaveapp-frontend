@@ -54,7 +54,13 @@
           <h1 class="mb-2 font-bold">{{ infoEvent.name }}</h1>
           <div class="flex flex-col">
             <div class="flex items-center space-x-4 mt-6">
-              <div class="h-10 w-10 rounded-full bg-slate-300"></div>
+              <ImgFormated
+                :key="infoEvent.owner._id"
+                :size="'l'"
+                :targetSpace="infoEvent.owner._id"
+                :type="'avatar'"
+                class="h-10 w-10 rounded-full bg-slate-300"
+              />
               <p class="text-white font-medium">
                 Organised by @{{ infoEvent.owner.user_id.userTag }}
               </p>
@@ -91,7 +97,14 @@
             class="flex justify-between bg-DarkRock p-2 rounded-2xl"
           >
             <div name="info" class="flex items-center">
-              <div name="img" class="w-16 h-16 bg-slate-700 rounded-2xl">
+              <div name="img" class="w-16 h-16 rounded-2xl">
+                <ImgFormated
+                  :key="infoEvent._id"
+                  :size="'m'"
+                  :targetSpace="infoEvent._id"
+                  :type="'event'"
+                  class="absolute rounded-2xl top-0 bottom-0"
+                />
                 <div
                   class="absolute flex right-0 bottom-0 h-6 w-6 bg-white rounded-full"
                 >
@@ -127,7 +140,13 @@
                   <h5>@{{ item.owner_id.userTag }}</h5>
                   <p>{{ item.owner_id.profileName }}</p>
                 </div>
-                <div class="w-10 h-10 rounded-full bg-Gravel"></div>
+                <ImgFormated
+                  :key="item.owner_id._id"
+                  :size="'s'"
+                  :targetSpace="item.owner_id._id"
+                  :type="'avatar'"
+                  class="w-10 h-10 rounded-full bg-Gravel"
+                />
               </div>
               <button v-else @click.prevent="selectUser(index)">
                 Select Ticket owner
@@ -225,6 +244,7 @@ import ticketServices from "@axios/services/ticketServices";
 import useStoreAuth from "@stores/auth";
 import Crediting from "@components/modal/wallet/Crediting.vue";
 import SvgTarget from "@components/SvgTarget.vue";
+import ImgFormated from "../../../../core/components/img/ImgFormated.vue";
 export default {
   components: {
     XButton60,
@@ -235,6 +255,7 @@ export default {
     SelectOwner,
     Crediting,
     SvgTarget,
+    ImgFormated,
   },
   data() {
     const store = useStoreAuth();

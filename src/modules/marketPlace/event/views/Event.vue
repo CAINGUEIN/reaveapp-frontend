@@ -1,5 +1,5 @@
 <template>
-  <div class="px-[144px] w-full max-h-full overflow-auto scrollbarV">
+  <div class="px-[144px] w-full max-h-full overflow-auto scrollbarV pb-8">
     <div class="h-72 bg-[#808080] rounded-2xl flex">
       <div class="flex absolute -bottom-7 w-full">
         <div class="mx-auto w-1/3 flex">
