@@ -10,7 +10,7 @@
       />
       <ToolsButtonSubmit
         @action="submit"
-        txtButton="enregistrer"
+        txtButton="Enter"
         class="w-96 mx-auto mt-8"
         :color="puuid.value === '' ? 'desactivated' : ''"
       />
