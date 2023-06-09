@@ -62,7 +62,7 @@ export default {
       nav: [
         { name: "Projects", icon: "Projects", target: "projects" },
         { name: "Equipement", icon: "Equipment", target: "items" },
-        { name: "Calendar", icon: "Calendar", target: "calendar" },
+        { name: "Calendar", icon: "Schedule", target: "schedule" },
         { name: "Analytics", icon: "Analytics", target: "analytics" },
         { name: "Finance", icon: "PileOfCoins", target: "finance" },
       ],
