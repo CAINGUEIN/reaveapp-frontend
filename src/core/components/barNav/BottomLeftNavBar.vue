@@ -143,7 +143,7 @@ export default {
       }
     },
     replaceUrl (e) {
-      console.log("dans le replace");
+      console.log("dans le replace bottom");
       let randomColor = (Math.floor(Math.random()*0xFFFFFF)).toString(16)
       let formatSize = "40/"
       e.target.src = "https://via.placeholder.com/" + formatSize + randomColor

@@ -25,7 +25,7 @@ import SOON from "./reavewallet/SOON.vue";
 import Gift from "./reavewallet/Gift.vue";
 
 //Reave Maps
-import ReaveMaps from "./reavemaps/ReaveMaps.vue";
+import Maps from "./maps/maps.vue";
 
 //Calendar
 import Calendar from "./calendar/Calendar.vue";
@@ -61,7 +61,7 @@ export {
   TicketsViewer,
   Trophees,
   TropheesViewer,
-  ReaveMaps,
+  Maps,
   Calendar,
   Messages,
   Shorts,

@@ -89,6 +89,7 @@
                         <Bootcamps v-if="item.icon === 'Bootcamps'"></Bootcamps>
                         <Leagues v-if="item.icon === 'Leagues'"></Leagues>
                         <NFTs v-if="item.icon === 'NFTs'"></NFTs>
+                        <Maps v-if="item.icon === 'Maps'"></Maps>
 
                       </ToolsButtonNav>
                     </div>
@@ -213,6 +214,7 @@ import Jobs from "@assets/icons/Jobs.vue";
 import Bootcamps from "@assets/icons/Bootcamps.vue";
 import Leagues from "@assets/icons/Leagues.vue";
 import NFTs from "@assets/icons/NFTs.vue";
+import Maps from "@assets/icons/Maps.vue";
 
 //data
 import dataTopLeft from "@modules/layout/data/dataTopLeftNavBar";
@@ -242,6 +244,7 @@ export default {
     NFTs,
     Jobs,
     DotsVerticalIcon,
+    Maps,
     Bento
 },
   data() {
@@ -292,6 +295,11 @@ export default {
           icon: "Bootcamps",
           dataClass: "settings",
         },
+        {
+          target: "Maps",
+          icon: "Maps",
+          dataClass: "settings",
+        },
       ],
     };
   },
@@ -323,7 +331,7 @@ export default {
       }
     },
     replaceUrl (e) {
-      console.log("dans le replace");
+      console.log("dans le replace layout");
       let randomColor = (Math.floor(Math.random()*0xFFFFFF)).toString(16)
       let formatSize = "40/"
       e.target.src = "https://via.placeholder.com/" + formatSize + randomColor

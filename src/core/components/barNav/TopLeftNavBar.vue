@@ -28,18 +28,31 @@
     <ToolsButtonNav :target="'Jobs'" :comparTarget="store.view" :dataClass="''">
       <Jobs />
     </ToolsButtonNav>
+
     <ToolsButtonNav
       :target="'Bootcamps'"
       :comparTarget="store.view"
       :dataClass="''"
     >
       <Bootcamps />
+
     </ToolsButtonNav>
+
     <ToolsButtonNav
       :target="'Event'"
       :comparTarget="store.view"
       :dataClass="''"
     >
+      <Leagues />
+    </ToolsButtonNav>
+
+    <ToolsButtonNav
+      :target="'Maps'"
+      :comparTarget="store.view"
+      :dataClass="''"
+    >
+      <Maps />
+
       <Leagues />
     </ToolsButtonNav>
     <ToolsButtonNav :target="'Nft'" :comparTarget="store.view" :dataClass="''">
@@ -63,6 +76,8 @@ import NFTs from "../../assets/icons/NFTs.vue";
 import News from "../../assets/icons/News.vue";
 import useStoreAuth from "@stores/auth";
 import Reave from "../../assets/icons/Reave.vue";
+import Maps from "../../assets/icons/Maps.vue";
+//import { Maps } from "../../assets/svg/products/systems/systemsImport";
 export default {
   components: {
     ToolsButtonNav,
@@ -75,7 +90,8 @@ export default {
     NFTs,
     News,
     Reave,
-  },
+    Maps
+},
   data() {
     const store = useStoreAuth();
     return {

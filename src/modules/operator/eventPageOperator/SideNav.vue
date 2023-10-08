@@ -181,7 +181,7 @@ export default {
           items: [
             { target: "Format", icon: "Format", name: "Format" },
             { target: "Equipements", icon: "Equipment", name: "Equipment" },
-            { target: "", icon: "ReaveMaps", name: "Travel" },
+            { target: "", icon: "Maps", name: "Travel" },
             { target: "", icon: "Calendar", name: "Calendar" },
             { target: "", icon: "Tasks", name: "Tasks" },
           ],
