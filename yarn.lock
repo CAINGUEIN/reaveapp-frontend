@@ -964,12 +964,12 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
-"@babylonjs/core@^4.0.3", "@babylonjs/core@^5.22.0", "@babylonjs/core@^5.40.1":
+"@babylonjs/core@^5.22.0", "@babylonjs/core@^5.40.1":
   version "5.57.1"
   resolved "https://registry.npmjs.org/@babylonjs/core/-/core-5.57.1.tgz"
   integrity sha512-k8U+SFPVGvHgeNr651nxZL26iVCmTzjmRrdbQa0BGas+lg8PIV/tfhN4uTeWWQeRFLvjbkcHA5qD8x/Xk3EpMQ==
 
-"@babylonjs/loaders@^4.0.3", "@babylonjs/loaders@^5.40.1":
+"@babylonjs/loaders@^5.40.1":
   version "5.57.1"
   resolved "https://registry.npmjs.org/@babylonjs/loaders/-/loaders-5.57.1.tgz"
   integrity sha512-DHk0iOwJgnTcj8vI+cQVzpiUvWGJvYqWyZxsf7nzhbeND+ZwNWSG0AelaGbGHpWTaDSd/DjUcoWVZuT4Cg6/Xg==
@@ -1036,14 +1036,6 @@
   dependencies:
     "@fullcalendar/common" "~5.11.5"
     "@fullcalendar/daygrid" "~5.11.5"
-    tslib "^2.1.0"
-
-"@fullcalendar/vue@^5.11.0":
-  version "5.11.5"
-  resolved "https://registry.npmjs.org/@fullcalendar/vue/-/vue-5.11.5.tgz"
-  integrity sha512-cgeLwrU6Idx2C6cYiswhILiQMFZCzhlhz9a7ydcMpFwGgba1rVC9A+PZEEe5bZt8MfOwGhh01V/vngCpI8t8jA==
-  dependencies:
-    "@fullcalendar/core" "~5.11.5"
     tslib "^2.1.0"
 
 "@fullcalendar/vue3@^5.11.1":
@@ -1252,22 +1244,10 @@
   resolved "https://registry.npmjs.org/@types/estree/-/estree-0.0.39.tgz"
   integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
 
-"@types/geojson@*":
-  version "7946.0.11"
-  resolved "https://registry.npmjs.org/@types/geojson/-/geojson-7946.0.11.tgz"
-  integrity sha512-L7A0AINMXQpVwxHJ4jxD6/XjZ4NDufaRlUJHjNIFKYUFBH1SvOW+neaqb0VTRSLW5suSrSu19ObFEFnfNcr+qg==
-
 "@types/json-schema@*", "@types/json-schema@^7.0.8":
   version "7.0.13"
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.13.tgz"
   integrity sha512-RbSSoHliUbnXj3ny0CNFOoxrIDV6SUGyStHsvDqosw6CkdPV8TtWGlfecuK4ToyMEAql6pzNxgCFKanovUzlgQ==
-
-"@types/leaflet@^1.5.7":
-  version "1.9.6"
-  resolved "https://registry.npmjs.org/@types/leaflet/-/leaflet-1.9.6.tgz"
-  integrity sha512-HakGTK5LBBWegNWsAmTlG55zN1zszYec7aG47/z6SzT90bW2vqjmbqk3YKAbrtveO+G7fSTKTYqVbIwAFnTrbg==
-  dependencies:
-    "@types/geojson" "*"
 
 "@types/node@*":
   version "20.8.3"
@@ -1307,6 +1287,13 @@
   version "2.2.4"
   resolved "https://registry.npmjs.org/@vitejs/plugin-vue/-/plugin-vue-2.2.4.tgz"
   integrity sha512-ev9AOlp0ljCaDkFZF3JwC/pD2N4Hh+r5srl5JHM6BKg5+99jiiK0rE/XaRs3pVm1wzyKkjUy/StBSoXX5fFzcw==
+
+"@vue-leaflet/vue-leaflet@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.npmjs.org/@vue-leaflet/vue-leaflet/-/vue-leaflet-0.10.1.tgz"
+  integrity sha512-RNEDk8TbnwrJl8ujdbKgZRFygLCxd0aBcWLQ05q/pGv4+d0jamE3KXQgQBqGAteE1mbQsk3xoNcqqUgaIGfWVg==
+  dependencies:
+    vue "^3.2.25"
 
 "@vue/babel-helper-vue-transform-on@^1.0.2":
   version "1.0.2"
@@ -3066,7 +3053,12 @@ last@^1.1.0:
   resolved "https://registry.npmjs.org/last/-/last-1.1.0.tgz"
   integrity sha512-aX24h3/CP3d+/td9QkVJK6K4Cu/m+7B7ncQpU+DCqHYRxxNmc3Sii3+NBWwHjtekGL2gcW2hkBSkVaXMOpj9Bg==
 
-leaflet@^1.3.4, leaflet@^1.9.4:
+leaflet-css@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/leaflet-css/-/leaflet-css-0.1.0.tgz"
+  integrity sha512-KWbt3jNLkEBYl7S/rcj5CAUgHeVVvniHgv2qmkpRrQnyLy3cV1FkY3c68cbKXuYvQMR4J8NQxiPHrRmKq6t+dA==
+
+leaflet@^1.6.0, leaflet@^1.9.4:
   version "1.9.4"
   resolved "https://registry.npmjs.org/leaflet/-/leaflet-1.9.4.tgz"
   integrity sha512-nxS1ynzJOmOlHp+iL3FyWqK89GtNL8U8rvlMOsQdTTssxZwCXh8N2NB3GDQOL+YR3XnWyZAxwQixURb+FA74PA==
@@ -4281,11 +4273,6 @@ vue-axios@^3.4.1:
   resolved "https://registry.npmjs.org/vue-axios/-/vue-axios-3.4.1.tgz"
   integrity sha512-8YZYUOQrBEJktxoQtrM4rr2LfVcDaWfJqv8MqtLlgLlkuBvCYKFSZSo6AXQ4YcCzdgccDqstmuaEh68lcH9xWA==
 
-vue-babylonjs@^1.0.0-beta.7:
-  version "1.0.0-beta.7"
-  resolved "https://registry.npmjs.org/vue-babylonjs/-/vue-babylonjs-1.0.0-beta.7.tgz"
-  integrity sha512-bf6M7uZ+1k89/s4ImLoHwOa4O3i3aMTv5UO3vGJ8k18O6ynfk3o+ZkoTV1M2wiF+UJiDWXuRZEIqC8Ka3jMrBA==
-
 vue-chartjs@^4.1.1:
   version "4.1.2"
   resolved "https://registry.npmjs.org/vue-chartjs/-/vue-chartjs-4.1.2.tgz"
@@ -4323,7 +4310,7 @@ vue-router@^4.0.12:
   dependencies:
     "@vue/devtools-api" "^6.0.0"
 
-vue@^2.2.0, vue@^2.5.17, vue@^2.6.12, "vue@^2.6.14 || ^3.2.0", vue@^3.0.0, "vue@^3.0.0 || ^2.0.0", "vue@^3.0.0-0 || ^2.6.0", vue@^3.0.11, vue@^3.2.0, vue@^3.2.25, vue@^3.2.31, "vue@>= 3", vue@>=3.0.0, vue@3.2.31:
+"vue@^2.6.14 || ^3.2.0", vue@^3.0.0, "vue@^3.0.0 || ^2.0.0", "vue@^3.0.0-0 || ^2.6.0", vue@^3.0.11, vue@^3.2.0, vue@^3.2.25, vue@^3.2.31, "vue@>= 3", vue@>=3.0.0, vue@3.2.31:
   version "3.2.31"
   resolved "https://registry.npmjs.org/vue/-/vue-3.2.31.tgz"
   integrity sha512-odT3W2tcffTiQCy57nOT93INw1auq5lYLLYtWpPYQQYQOOdHiqFct9Xhna6GJ+pJQaF67yZABraH47oywkJgFw==
@@ -4333,11 +4320,6 @@ vue@^2.2.0, vue@^2.5.17, vue@^2.6.12, "vue@^2.6.14 || ^3.2.0", vue@^3.0.0, "vue@
     "@vue/runtime-dom" "3.2.31"
     "@vue/server-renderer" "3.2.31"
     "@vue/shared" "3.2.31"
-
-vue2-leaflet@^2.7.1:
-  version "2.7.1"
-  resolved "https://registry.npmjs.org/vue2-leaflet/-/vue2-leaflet-2.7.1.tgz"
-  integrity sha512-K7HOlzRhjt3Z7+IvTqEavIBRbmCwSZSCVUlz9u4Rc+3xGCLsHKz4TAL4diAmfHElCQdPPVdZdJk8wPUt2fu6WQ==
 
 vue3-cookies@^1.0.6:
   version "1.0.6"
