@@ -181,7 +181,7 @@ export default {
         let resultDataAccount = await this.store.feedDataAccount();
         if (resultDataAccount) {
           this.errors = errorsHelpers.resetError();
-          this.$router.push({ name: "Personal", params: {view: 'dashboard'} });
+          this.$router.push({ path: "/event"});
           this.store.loading = false;
         }
       } else {
