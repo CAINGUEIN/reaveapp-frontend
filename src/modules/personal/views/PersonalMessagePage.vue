@@ -2,7 +2,7 @@
   <div class="flex h-screen w-full">
     <div name="contact" class="w-72 bg-Rock rounded-tl-2xl">
       <div class="w-full pt-1 px-1 flex justify-between">
-        <h4>Direct Messages</h4>
+        <h4>Direct Message</h4>
         <button
           name="addFriends"
           class="bg-White text-Anthracite h-9 rounded-full items-center hover:bg-DarkRock hover:text-White"

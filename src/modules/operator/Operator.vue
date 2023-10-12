@@ -61,6 +61,7 @@ export default {
       target: "projects",
       nav: [
         { name: "Projects", icon: "Projects", target: "projects" },
+        { name: "Venue", icon: "Venue", target: "venue" },
         { name: "Equipement", icon: "Equipment", target: "items" },
         { name: "Calendar", icon: "Calendar", target: "calendar" },
         { name: "Analytics", icon: "Analytics", target: "analytics" },

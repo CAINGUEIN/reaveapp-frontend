@@ -14,9 +14,10 @@
               class=""
             >
               <Reave />
+              
             </ToolsButtonNav>
             <ToolsButtonNav target="SpacePrivate">
-              <div class="h-15 w-15 bg-slate-600 rounded-full"></div>
+              <div class="h-12 w-12 bg-slate-600 rounded-full"></div>
             </ToolsButtonNav>
             <SpaceNavBar
               class=""
@@ -58,7 +59,7 @@
                   open
                     ? 'text-Cloud bg-LightRock hover:text-Cloud hover:bg-LightRock'
                     : 'text-gray-500',
-                  'flex items-center justify-center rounded-full cursor-pointer h-15 w-15 hover:bg-DarkRock hover:text-LightGrey',
+                  'flex items-center justify-center rounded-full cursor-pointer h-12 w-12 hover:bg-DarkRock hover:text-LightGrey',
                 ]"
               >
                 <Bento :color1="open ? '#BEBEBE' :'#BEBEBE'"></Bento>
@@ -73,23 +74,37 @@
                 leave-to-class="opacity-0 translate-y-1"
               >
                 <PopoverPanel class="absolute right-0 z-10 mt-5">
-                  <div class="overflow-hidden rounded-lg">
-                    <div class="relative grid w-80 bg-Anthracite grid-cols-4 p-2">
+                  <div class="overflow-visible rounded-lg">
+                    <div class="transition ease-out rounded-lg duration-300 relative grid w-80 bg-Anthracite grid-cols-4 p-2">
+                      
                       <ToolsButtonNav
                         v-for="item in solutions"
+                        :btnName="item.icon"
                         :key="item.target"
                         :target="item.target"
                         :dataClass="item.dataClass"
                         :comparTarget="store.view"
+                        :isMouseOver="item.icon"
+                        
                         class="flex mx-auto rounded-full h-15 w-15 transition duration-150 ease-in-out"
                       >
-                        <Feed v-if="item.icon === 'Feed'"></Feed>
-                        <Academy v-if="item.icon === 'Academy'"></Academy>
-                        <Jobs v-if="item.icon === 'Jobs'"></Jobs>
-                        <Bootcamps v-if="item.icon === 'Bootcamps'"></Bootcamps>
-                        <Leagues v-if="item.icon === 'Leagues'"></Leagues>
-                        <NFTs v-if="item.icon === 'NFTs'"></NFTs>
-                        <Maps v-if="item.icon === 'Maps'"></Maps>
+                      <!-- <template v-slot:custom>
+                        <div class="tag" v-if="showTag">{{ btnName }}</div>
+                      </template> -->
+
+                      <Feed v-if="item.icon === 'Feed'"></Feed>
+                      
+                      <Academy v-if="item.icon === 'Academy'"></Academy>
+
+                      <Jobs v-if="item.icon === 'Jobs'"></Jobs>
+
+                      <Bootcamps v-if="item.icon === 'Bootcamps'"></Bootcamps>
+
+                      <Leagues v-if="item.icon === 'Leagues'"></Leagues>
+
+                      <NFTs v-if="item.icon === 'NFTs'"></NFTs>
+
+                      <Maps v-if="item.icon === 'Maps'"></Maps>
 
                       </ToolsButtonNav>
                     </div>
@@ -216,6 +231,7 @@ import Leagues from "@assets/icons/Leagues.vue";
 import NFTs from "@assets/icons/NFTs.vue";
 import Maps from "@assets/icons/Maps.vue";
 
+
 //data
 import dataTopLeft from "@modules/layout/data/dataTopLeftNavBar";
 import dataBottomLeft from "@modules/layout/data/dataBottomLeftNavBar";
@@ -251,6 +267,7 @@ export default {
     const store = useStoreAuth();
     const storeSpace = useStoreSpace();
     return {
+     
       dataTopLeft,
       dataBottomLeft,
       isOpenModal: false,
@@ -269,36 +286,43 @@ export default {
           target: "Event",
           icon: "Leagues",
           dataClass: "settings",
+          btnName: 'Event',
         },
         {
           target: "Nft",
           icon: "NFTs",
           dataClass: "settings",
+          btnName: 'Item',
         },
         {
           target: "Social",
           icon: "Feed",
           dataClass: "settings",
+          btnName: 'Social',
         },
         {
           target: "Jobs",
           icon: "Jobs",
           dataClass: "settings",
+          btnName: 'Jobs',
         },
         {
           target: "Academy",
           icon: "Academy",
           dataClass: "settings",
+          btnName: 'Academy',
         },
         {
           target: "Bootcamps",
           icon: "Bootcamps",
           dataClass: "settings",
+          btnName: 'Bootcamps',
         },
         {
           target: "Maps",
           icon: "Maps",
           dataClass: "settings",
+          btnName: 'Maps',
         },
       ],
     };
@@ -349,3 +373,10 @@ export default {
   },
 };
 </script>
+
+
+
+
+
+
+

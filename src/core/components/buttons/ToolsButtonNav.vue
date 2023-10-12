@@ -3,14 +3,19 @@
     class="flex items-center justify-center rounded-full cursor-pointer"
     :class="[classBTN, classCompar]"
     @click="goTo(target)"
-  >
+    @mouseover="showTag = isMouseOver"
+    @mouseleave="showTag = false">
+
     <slot></slot>
+    <div class="font-bold block p-[3px] rounded-[5px] -bottom-5 z-50 text-black absolute translate-x--1/2 bg-neutral-300 transition duration-[300ms] ease-out"
+      :class="{ 'opacity-100': showTag, 'opacity-0': !showTag  }">{{ btnName }}</div>
+    
   </div>
 </template>
 
 <script>
 import useStoreAuth from "@stores/auth";
-/** ce que j'ai besoin
+/** ce dont j'ai besoin
  * - le goTo
  * - le src de l'image
  * - la class pour le bouton
@@ -18,10 +23,23 @@ import useStoreAuth from "@stores/auth";
  *  bouton en select
  */
 export default {
-  props: ["target", "subTarget", "src", "dataClass", "slot", "comparTarget", "btnName"],
+  props: {
+    target: String,
+    subTarget: String,
+    src: String,
+    dataClass: String,
+    slot: String,
+    comparTarget: String,
+    btnName: String,
+    isMouseOver: {
+      type: Boolean,
+      default: false, 
+    },
+  },
   data() {
     const store = useStoreAuth();
     return {
+      showTag: false,
       classBTN: "",
       classCompar: "",
       stat: "",
@@ -40,13 +58,13 @@ export default {
         this.classBTN = "h-10 w-10 ";
         this.classCompar = "hover:bg-Stone hover:text-White";
       } else if (this.dataClass === "") {
-        this.classBTN = "h-15 w-15";
+        this.classBTN = "h-12 w-12";
         this.classCompar = " hover:bg-DarkRock hover:text-LightGrey";
       } else if (this.dataClass === "settings") {
         this.classBTN = "h-15 w-15";
         this.classCompar = " hover:bg-DarkRock text-White";
       } else if (this.dataClass === "reave") {
-        this.classBTN = "h-15 w-15";
+        this.classBTN = "h-12 w-12";
         this.classCompar = " bg-DarkRock text-White hover:bg-LightRock";
       } else if (this.dataClass === "top") {
         this.classBTN = "h-9 w-9";
