@@ -54,7 +54,7 @@
                       <ToolsButtonNav v-for="item in solutions" :btnName="item.icon" :key="item.target"
                         :target="item.target" :dataClass="item.dataClass" :comparTarget="store.view"
                         :isMouseOver="item.icon"
-                        class="flex mx-auto rounded-full h-12 w-12 transition duration-150 ease-in-out">
+                        class="flex mx-auto rounded-full h-15 w-15 transition duration-150 ease-in-out">
                         <!-- <template v-slot:custom>
                         <div class="tag" v-if="showTag">{{ btnName }}</div>
                       </template> -->

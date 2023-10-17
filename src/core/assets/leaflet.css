@@ -1,14 +1,8 @@
-body {
+#reaveMaps {
     font-family: "Gotham", sans-serif;
-  }
-
-  * {
-    font-family: "Gotham", sans-serif;
-  }
+}
 
 /* Add this CSS code to styles.css to make the map cover the entire screen */
-html,
-body,
 #map {
     width: 100%;
     height: 100%;
@@ -17,23 +11,18 @@ body,
     overflow: hidden;
 }
 
-#imgPopup {
+#rmImgPopup {
     height: 64px;
     width: 64px;
     border-radius: 12px;
     margin-right: 11px;
 }
 
-#pPopup {
+#rmPopup {
     margin-right: 12px;
 }
 
-.leaflet-top {
-    width: 100%;
-    height: 100%;
-}
-
-#layoutTop {
+#rmLayoutTop {
     width: calc(100% - 44px);
     height: 66px;
     margin-left: 22px;
@@ -45,7 +34,7 @@ body,
     position: absolute;
 }
 
-#layoutLeft {
+#rmLayoutLeft {
     width: auto;
     height: auto;
     max-height: calc(100% - 188px);
@@ -59,16 +48,16 @@ body,
     overflow-y: auto;
 }
 
-#layoutLeft::-webkit-scrollbar {
+#rmLayoutLeft::-webkit-scrollbar {
     display: none;
 }
 
-#layoutLeftImg {
+#rmLayoutLeftImg {
     height: 318px;
     width: 318px;
 }
 
-#position {
+#rmPosition {
     position: absolute;
     height: 40px;
     width: 40px;
@@ -83,7 +72,7 @@ body,
     z-index: 1000;
 }
 
-#settings {
+#rmSettings {
     position: absolute;
     height: 40px;
     width: 40px;
@@ -98,23 +87,24 @@ body,
     z-index: 1000;
 }
 
-#venuesBar{
-    overflow-x:auto;
-    position:absolute;
+#rmVenuesBar {
+    overflow-x: auto;
+    position: absolute;
     top: 98px;
     left: 376px;
     height: 40px;
     width: 790px;
     max-width: calc(100% - 376px);
     display: flex;
+    color: #111111;
 }
 
-#venuesBar::-webkit-scrollbar {
+#rmVenuesBar::-webkit-scrollbar {
     display: none;
 }
 
 .venueType {
-    flex-shrink: 0 ;
+    flex-shrink: 0;
     position: relative;
     height: 40px;
     width: auto;
@@ -130,7 +120,7 @@ body,
     margin-right: 7px;
 }
 
-#search {
+#rmSearch {
     position: absolute;
     height: 40px;
     width: 270px;
@@ -141,6 +131,11 @@ body,
     padding-left: 16px;
     border: none;
     z-index: 1000;
+}
+
+.leaflet-top {
+    width: 100%;
+    height: 100%;
 }
 
 .leaflet-control-zoom.leaflet-bar.leaflet-control {

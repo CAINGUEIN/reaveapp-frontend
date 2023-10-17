@@ -513,12 +513,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 }
 
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
-  position: relative;
+  /*position: relative;  // conflict with reavemaps*/
   font-weight: normal;
 }
 
