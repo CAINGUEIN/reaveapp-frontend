@@ -22,7 +22,7 @@ dayjs.extend(relativeTime)
 dayjs.extend(duration)
 
 //leaflet
-import "@core/assets/leaflet.css";
+//import "@core/assets/leaflet.css"; importé dans le composant
 
 // CropperJS
 import VueCropper from 'vue-cropperjs';

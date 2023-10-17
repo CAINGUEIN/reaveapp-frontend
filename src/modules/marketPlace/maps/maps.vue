@@ -1,6 +1,8 @@
 <template>
   <div class="span9" style="height: 100%">
     <div id="map"></div>
+    <div id="layoutTop">
+    </div>
     <button id="settings">⚙️</button>
     <div id="venuesBar">
       <button class="venueType">✨ Events</button>
@@ -10,7 +12,6 @@
       <button class="venueType">🏪 Stores</button>
     </div>
     <button id="position">📍</button>
-    <div id="layoutTop"></div>
     <div id="layoutLeft">
       <img src="./img/kcx.png" id="layoutLeftImg" />
 
@@ -20,12 +21,13 @@
 </template>
 
 <script>
+  import "@core/assets/leaflet.css";
   export default {
     mounted() {
       console.log('Maps mounted');
       const position = document.getElementById("position");
       import('leaflet').then((L) => {
-        const map = L.map('map').setView([51.505, -0.09], 13);
+        const map = L.map('map').setView([48.839220, 2.377760], 13);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 19,
           attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -42,7 +44,8 @@
           icon: customIcon
         }).addTo(map);
         marker.bindPopup(
-          '<img id="imgPopup" src="https://media.discordapp.net/attachments/696115202185232497/1163095612414238811/kcx.png?ex=653e5433&is=652bdf33&hm=6421b0e3e0b5a0369322440cab52ab9f5bcb91483c023c22d0268cf9261f9b29&=" /><p id="pPopup"> <b> KCX3 </b><br/> Paris, France </p>');
+          '<img id="imgPopup" src="https://media.discordapp.net/attachments/696115202185232497/1163095612414238811/kcx.png?ex=653e5433&is=652bdf33&hm=6421b0e3e0b5a0369322440cab52ab9f5bcb91483c023c22d0268cf9261f9b29&=" /><p id="pPopup"> <b> KCX3 </b><br/> Paris, France </p>'
+          );
 
         // Center the map on the user's location when the position button is clicked
         position.addEventListener('click', function () {
@@ -63,4 +66,6 @@
   };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  @import "@core/assets/leaflet.css";
+</style>
