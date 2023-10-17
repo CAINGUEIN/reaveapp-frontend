@@ -69,7 +69,10 @@ export default {
         e.target.src = "/img/imageeventcard.png";
       } else if (this.type === "item") {
         e.target.src = "/chaire.jpeg";
-      } else {
+      } else if (this.type === "venue") {
+        e.target.src = "/img/adidasArena.jpg"
+      }
+      else {
         e.target.src =
           "https://via.placeholder.com/" + formatSize + randomColor;
       }

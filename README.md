@@ -33,3 +33,4 @@ npm run build
 ```sh
 npm run lint
 ```
+![Alt text](src/core/assets/img/reaveLogo.png)

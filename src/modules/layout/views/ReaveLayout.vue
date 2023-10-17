@@ -47,12 +47,16 @@
                 leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100 translate-y-0"
                 leave-to-class="opacity-0 translate-y-1">
                 <PopoverPanel class="absolute right-0 z-10 mt-5">
-                  <div class="overflow-visible rounded-lg">
-                    <div
-                      class="transition ease-out rounded-lg duration-300 relative grid w-80 bg-Anthracite grid-cols-4 p-2">
-
-                      <ToolsButtonNav v-for="item in solutions" :btnName="item.icon" :key="item.target"
-                        :target="item.target" :dataClass="item.dataClass" :comparTarget="store.view"
+                  <div class="overflow-visible">
+                    <div class="transition ease-out rounded-[20px] duration-300 relative grid w-80 bg-Anthracite grid-cols-4 p-2">
+                      
+                      <ToolsButtonNav
+                        v-for="item in solutions"
+                        :btnName="item.icon"
+                        :key="item.target"
+                        :target="item.target"
+                        :dataClass="item.dataClass"
+                        :comparTarget="store.view"
                         :isMouseOver="item.icon"
                         class="flex mx-auto rounded-full h-15 w-15 transition duration-150 ease-in-out">
                         <!-- <template v-slot:custom>

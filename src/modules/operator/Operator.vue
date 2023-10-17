@@ -10,7 +10,7 @@
       <div class="mx-auto mt-6 flex">
         <button
           v-for="item in nav"
-          class="py-1 px-4 mx-2 hover:bg-LightRock hover:text-white rounded-lg font-medium flex items-center"
+          class="py-1 px-4 mx-2 text-xl hover:bg-LightRock hover:text-white rounded-lg font-medium flex items-center"
           :class="
             target === item.target
               ? 'bg-LightRock text-white'
@@ -44,6 +44,7 @@ import ImgFormated from "@core/components/img/ImgFormated.vue";
 //pages
 import projects from "./EventOperator.vue";
 import items from "./ItemsOperator.vue";
+import venue from "./VenueOperator.vue"
 //tool
 import useStoreAuth from "@stores/auth";
 export default {
@@ -53,6 +54,7 @@ export default {
     projects,
     ImgFormated,
     items,
+    venue,
   },
   data() {
     const store = useStoreAuth();
@@ -60,12 +62,14 @@ export default {
       store,
       target: "projects",
       nav: [
-        { name: "Projects", icon: "Projects", target: "projects" },
-        { name: "Venue", icon: "Venue", target: "venue" },
+        { name: "Events", icon: "Stars", target: "projects" },
+        { name: "Venues", icon: "Venue", target: "venue" },
+        { name: "Packages", icon: "Packages", target: "package" },
         { name: "Equipement", icon: "Equipment", target: "items" },
-        { name: "Calendar", icon: "Calendar", target: "calendar" },
+      
+        /* { name: "Calendar", icon: "Calendar", target: "calendar" },
         { name: "Analytics", icon: "Analytics", target: "analytics" },
-        { name: "Finance", icon: "PileOfCoins", target: "finance" },
+        { name: "Finance", icon: "PileOfCoins", target: "finance" }, */
       ],
     };
   },

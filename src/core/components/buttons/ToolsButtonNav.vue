@@ -7,7 +7,7 @@
     @mouseleave="showTag = false">
 
     <slot></slot>
-    <div class="font-bold block p-[3px] rounded-[5px] -bottom-5 z-50 text-black absolute translate-x--1/2 bg-neutral-300 transition duration-[300ms] ease-out"
+    <div class="font-bold block p-[4px] rounded-[5px] -bottom-5 z-50 text-White absolute translate-x--1/2 bg-LightRock transition duration-[300ms] ease-out"
       :class="{ 'opacity-100': showTag, 'opacity-0': !showTag  }">{{ btnName }}</div>
     
   </div>

@@ -39,6 +39,13 @@ export default [
     meta: { layout: "none", permission: "log" },
   },
   {
+    path: "/operator/venueId/:id",
+    name: "VenueId",
+    component: () =>
+      import("@modules/operator/venuePageOperator/OperatorVenueId.vue"),
+    meta: { layout: "none", permission: "log" },
+  },
+  {
     path: "/profile/:view",
     name: "Profile",
     component: () => import("@modules/personal/views/ProfileMain.vue"),
