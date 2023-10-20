@@ -1,8 +1,6 @@
 <template>
   <div>
     <div v-if="!store.dataAccount.lolData.lolPuuid" class="mt-8 text-center">
-      <h3>pour commencer ici il va nous faloir votre Puuid</h3>
-      <h5>suivre les infos pour le trouver si vous ne l'avais pas</h5>
       <InputModel
         class="mt-8 mx-auto w-144"
         :data="puuid"
@@ -11,7 +9,7 @@
       />
       <ToolsButtonSubmit
         @action="submit"
-        txtButton="enregistrer"
+        txtButton="OK"
         class="w-96 mx-auto mt-8"
         :color="puuid.value === '' ? 'desactivated' : ''"
       />

@@ -11,20 +11,24 @@
           <div class="flex space-x-4 items-center">
             <ToolsButtonNav :target="'PersonalMessages'" :dataClass="'reave'" :comparTarget="store.view" class="">
               <Reave />
-
             </ToolsButtonNav>
+
             <ToolsButtonNav target="SpacePrivate">
               <div class="h-12 w-12 bg-slate-600 rounded-full"></div>
             </ToolsButtonNav>
+
             <SpaceNavBar class="" @action="openSpace" :data="store.dataSpaces" />
             <!--marked-->
             <div class="h-15 flex items-center">
+
               <ToolsButtonNav @click="openModal" :dataClass="'top'" class="mr-2" :btnName="'+'" :comparTarget="''">
                 <Plus />
               </ToolsButtonNav>
-              <ToolsButtonNav :dataClass="'top'" :target="'Explore'" :comparTarget="store.view">
-                <Explore />
+
+              <ToolsButtonNav :dataClass="'top'" :target="'Spaces'" :comparTarget="store.view">
+                <Spaces />
               </ToolsButtonNav>
+
             </div>
           </div>
 
@@ -67,14 +71,6 @@
                         <Jobs v-if="item.icon === 'Jobs'"></Jobs>
                         <Academy v-if="item.icon === 'Academy'"></Academy>
                         <Bootcamps v-if="item.icon === 'Bootcamps'"></Bootcamps>
-<<<<<<< HEAD
-=======
-
-                        <Stars v-if="item.icon === 'Stars'"></Stars>
-
-                        <NFTs v-if="item.icon === 'NFTs'"></NFTs>
-
->>>>>>> b6f366d ( layer 1 completion + layer 2 start)
                         <Maps v-if="item.icon === 'Maps'"></Maps>
                         <Conceptor v-if="item.icon === 'Conceptor'"></Conceptor>
 
@@ -175,6 +171,7 @@
     PopoverPanel
   } from "@headlessui/vue";
   import Plus from "@assets/icons/Plus.vue";
+  import Spaces from "@assets/icons/Spaces.vue";
 
   /* OLD */
   /*
@@ -186,11 +183,7 @@
   import Leagues from "@assets/icons/Leagues.vue";
   import NFTs from "@assets/icons/NFTs.vue";
   import Maps from "@assets/icons/Maps.vue";
-<<<<<<< HEAD
-  */
-=======
   import Stars from "@core/assets/svg/general/Stars.vue"
->>>>>>> b6f366d ( layer 1 completion + layer 2 start)
 
   /* NEW */
   import Events from "@assets/icons/Events.vue";
@@ -217,6 +210,7 @@
       GlobeIcon,
       PlusIcon,
       Plus,
+      Spaces,
       Reave,
       Settings,
       Popover,
@@ -266,108 +260,12 @@
           value: "",
         },
         dropdown: "hidden",
-<<<<<<< HEAD
         solutions: [
-            /*OLD*/
-            /*
-            {
-              target: "Event",
-              icon: "Leagues",
-              dataClass: "settings",
-              btnName: 'Event',
-            },
-            {
-              target: "Nft",
-              icon: "NFTs",
-              dataClass: "settings",
-              btnName: 'Item',
-            },
-            {
-              target: "Social",
-              icon: "Feed",
-              dataClass: "settings",
-              btnName: 'Social',
-            },
-            {
-              target: "Jobs",
-              icon: "Jobs",
-              dataClass: "settings",
-              btnName: 'Jobs',
-            },
-            {
-              target: "Academy",
-              icon: "Academy",
-              dataClass: "settings",
-              btnName: 'Academy',
-            },
-            {
-              target: "Bootcamps",
-              icon: "Bootcamps",
-              dataClass: "settings",
-              btnName: 'Bootcamps',
-            },
-            {
-              target: "Maps",
-              icon: "Maps",
-              dataClass: "settings",
-              btnName: 'Maps',
-            },
-            */
-            /*NEW*/
-            {
-              target: "Events",
-              icon: "Events",
-              dataClass: "settings",
-              btnName: 'Events',
-            },
-            {
-              target: "Shards",
-              icon: "Shards",
-              dataClass: "settings",
-              btnName: 'Shards',
-            },
-            {
-              target: "Hub",
-              icon: "Hub",
-              dataClass: "settings",
-              btnName: 'Hub',
-            },
-            {
-              target: "Jobs",
-              icon: "Jobs",
-              dataClass: "settings",
-              btnName: 'Jobs',
-            },
-            {
-              target: "Academy",
-              icon: "Academy",
-              dataClass: "settings",
-              btnName: 'Academy',
-            },
-            {
-              target: "Bootcamps",
-              icon: "Bootcamps",
-              dataClass: "settings",
-              btnName: 'Bootcamps',
-            },
-            {
-              target: "Maps",
-              icon: "Maps",
-              dataClass: "settings",
-              btnName: 'Maps',
-            },
-            {
-              target: "Conceptor",
-              icon: "Conceptor",
-              dataClass: "settings",
-              btnName: 'Conceptor',
-            },
-          ],
-        };
-=======
-        solutions: [{
+          /*OLD*/
+          /*
+          {
             target: "Event",
-            icon: "Stars",
+            icon: "Leagues",
             dataClass: "settings",
             btnName: 'Event',
           },
@@ -407,70 +305,115 @@
             dataClass: "settings",
             btnName: 'Maps',
           },
+          */
+          /*NEW*/
+          {
+            target: "Events",
+            icon: "Events",
+            dataClass: "settings",
+            btnName: 'Events',
+          },
+          {
+            target: "Shards",
+            icon: "Shards",
+            dataClass: "settings",
+            btnName: 'Shards',
+          },
+          {
+            target: "Hub",
+            icon: "Hub",
+            dataClass: "settings",
+            btnName: 'Hub',
+          },
+          {
+            target: "Jobs",
+            icon: "Jobs",
+            dataClass: "settings",
+            btnName: 'Jobs',
+          },
+          {
+            target: "Academy",
+            icon: "Academy",
+            dataClass: "settings",
+            btnName: 'Academy',
+          },
+          {
+            target: "Bootcamps",
+            icon: "Bootcamps",
+            dataClass: "settings",
+            btnName: 'Bootcamps',
+          },
+          {
+            target: "Maps",
+            icon: "Maps",
+            dataClass: "settings",
+            btnName: 'Maps',
+          },
+          {
+            target: "Conceptor",
+            icon: "Conceptor",
+            dataClass: "settings",
+            btnName: 'Conceptor',
+          },
         ],
       };
     },
     methods: {
       openModal() {
         this.isOpenModal = true;
->>>>>>> b6f366d ( layer 1 completion + layer 2 start)
       },
-      methods: {
-          openModal() {
-            this.isOpenModal = true;
-          },
-          closeModal() {
-            this.isOpenModal = false;
-          },
-          async openSpace(target, type) {
-            if (await this.storeSpace.feedDataSpace({
-                id: target
-              })) {
-              this.$router.push({
-                path: "/space/" + type,
-                query: {
-                  id: target
-                }
-              });
-            } else {
-              this.$router.push({
-                name: "Personal"
-              });
+      closeModal() {
+        this.isOpenModal = false;
+      },
+      async openSpace(target, type) {
+        if (await this.storeSpace.feedDataSpace({
+            id: target
+          })) {
+          this.$router.push({
+            path: "/space/" + type,
+            query: {
+              id: target
             }
-            console.log("open", "/space/" + type + "/" + target);
-          },
-          getUrl() {
-            if (this.$route.name !== this.store.view) {
-              this.store.view = this.$route.name;
-            }
-          },
-          toggleDropdown() {
-            if (this.dropdown === "hidden") {
-              this.dropdown = "";
-            } else {
-              this.dropdown = "hidden";
-            }
-          },
-          replaceUrl(e) {
-            console.log("dans le replace layout");
-            let randomColor = (Math.floor(Math.random() * 0xFFFFFF)).toString(16)
-            let formatSize = "40/"
-            e.target.src = "https://via.placeholder.com/" + formatSize + randomColor
-          }
-        },
-        watch: {
-          $route() {
-            if (this.$route.name !== this.store.view) {
-              this.store.view = this.$route.name;
-            }
-          },
-          $route(to, from) {
-            this.isMapsRoute = to.path === '/maps';
-          },
-        },
-        mounted() {
-          this.getUrl();
-          this.isMapsRoute = this.$route.path === '/maps';
-        },
-    };
+          });
+        } else {
+          this.$router.push({
+            name: "Personal"
+          });
+        }
+        console.log("open", "/space/" + type + "/" + target);
+      },
+      getUrl() {
+        if (this.$route.name !== this.store.view) {
+          this.store.view = this.$route.name;
+        }
+      },
+      toggleDropdown() {
+        if (this.dropdown === "hidden") {
+          this.dropdown = "";
+        } else {
+          this.dropdown = "hidden";
+        }
+      },
+      replaceUrl(e) {
+        console.log("dans le replace layout");
+        let randomColor = (Math.floor(Math.random() * 0xFFFFFF)).toString(16)
+        let formatSize = "40/"
+        e.target.src = "https://via.placeholder.com/" + formatSize + randomColor
+      }
+    },
+    watch: {
+      $route() {
+        if (this.$route.name !== this.store.view) {
+          this.store.view = this.$route.name;
+        }
+      },
+      $route(to, from) {
+        this.isMapsRoute = to.path === '/maps';
+      },
+    },
+    mounted() {
+      this.getUrl();
+      this.isMapsRoute = this.$route.path === '/maps';
+    },
+  };
 </script>
