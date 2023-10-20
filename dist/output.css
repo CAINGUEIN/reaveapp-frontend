@@ -519,7 +519,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 *::after {
   box-sizing: border-box;
   margin: 0;
-  /*position: relative;  // conflict with reavemaps*/
+  position: relative;  /*conflict with reavemaps*/
   font-weight: normal;
 }
 
