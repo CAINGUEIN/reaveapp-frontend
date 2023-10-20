@@ -62,7 +62,7 @@ export default {
       store,
       target: "projects",
       nav: [
-        { name: "Events", icon: "Stars", target: "projects" },
+        { name: "Events", icon: "Events", target: "projects" },
         { name: "Venues", icon: "Venue", target: "venue" },
         { name: "Packages", icon: "Packages", target: "package" },
         { name: "Equipement", icon: "Equipment", target: "items" },
