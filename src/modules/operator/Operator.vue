@@ -10,7 +10,7 @@
       <div class="mx-auto mt-6 flex">
         <button
           v-for="item in nav"
-          class="py-1 px-4 mx-2 text-xl hover:bg-LightRock hover:text-white rounded-lg font-medium flex items-center"
+          class="py-1 px-4 mx-2 text-base hover:bg-LightRock hover:text-white rounded-lg font-medium flex items-center"
           :class="
             target === item.target
               ? 'bg-LightRock text-white'

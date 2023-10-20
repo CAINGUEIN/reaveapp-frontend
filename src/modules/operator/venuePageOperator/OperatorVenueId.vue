@@ -28,7 +28,7 @@
   import Format from "@components/projectId/logistics/Format.vue";
   import Equipements from "@components/projectId/logistics/Equipements.vue";
   import Tickets from "@components/projectId/products/Tickets.vue";
-  import Overview from "@components/projectId/Overview.vue";
+  import OverviewVenue from "@components/projectId/OverviewVenue.vue";
   import Analytics from "@components/projectId/analytics/Analytics.vue";
   import Panel from "@components/projectId/finance/Panel.vue";
   //tool
@@ -38,7 +38,7 @@
   export default {
     components: {
       XButton36,
-      Overview,
+      OverviewVenue,
       Format,
       Equipements,
       Staff,

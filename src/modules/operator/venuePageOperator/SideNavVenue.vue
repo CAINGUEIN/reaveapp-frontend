@@ -154,24 +154,11 @@
         userNavigation: [{ name: "opt1" }, { name: "opt2" }, { name: "Remove" }],
         nav: [
           {
-            cathegory: "Overviewoo",
-            target: "Overview",
+            cathegory: "Overview",
+            target: "OverviewVenue",
             icon: "Overview",
             open: true,
             items: [],
-          },
-          {
-            cathegory: "Products",
-            target: "",
-            icon: "Products",
-            open: true,
-            items: [
-              { target: "Tickets", icon: "Tickets", name: "Tickets" },
-              { target: "", icon: "Trophees", name: "Prizes" },
-              { target: "", icon: "Merch", name: "Merch" },
-              { target: "", icon: "Skins", name: "Drops" },
-              { target: "", icon: "ReaveCards", name: "Reave Cards" },
-            ],
           },
           {
             cathegory: "Logistics",
@@ -179,11 +166,12 @@
             icon: "Logistics",
             open: true,
             items: [
-              { target: "Format", icon: "Format", name: "Format" },
+              { target: "Format", icon: "Plans", name: "Plans" },
               { target: "Equipements", icon: "Equipment", name: "Equipment" },
               { target: "", icon: "Maps", name: "Travel" },
               { target: "", icon: "Calendar", name: "Calendar" },
               { target: "", icon: "Tasks", name: "Tasks" },
+              { target: "", icon: "Programs", name: "Programs" },
             ],
           },
           {
@@ -193,11 +181,11 @@
             open: true,
             items: [
               { target: "Staff", icon: "Heart", name: "Staff" },
-              { target: "", icon: "Eye", name: "Spectators" },
-              { target: "", icon: "Fist", name: "Participants" },
-              { target: "", icon: "Stand", name: "Stands" },
-              { target: "", icon: "Events", name: "Venues" },
-              { target: "", icon: "Sponsors", name: "Sponsors" },
+              { target: "", icon: "Stars", name: "Events" },
+              { target: "", icon: "Fist", name: "Sponsors" },
+              { target: "", icon: "Stand", name: "Booths" },
+              { target: "", icon: "Events", name: "Guests" },
+              { target: "", icon: "Sponsors", name: "Subscribers" },
             ],
           },
           {
@@ -206,9 +194,8 @@
             icon: "Analytics",
             open: true,
             items: [
-              { target: "", icon: "Products", name: "Products" },
+              { target: "", icon: "Products", name: "Items" },
               { target: "", icon: "Logistics", name: "Logistics" },
-              { target: "", icon: "Game", name: "Game" },
               { target: "", icon: "Marketing", name: "Marketing" },
               { target: "", icon: "People", name: "People" },
             ],
@@ -219,7 +206,7 @@
             icon: "Marketing",
             open: true,
             items: [
-              { target: "", icon: "Profiles", name: "Profiles" },
+              { target: "", icon: "Profiles", name: "Notifications" },
               { target: "", icon: "Campaigns", name: "Campaigns" },
             ],
           },

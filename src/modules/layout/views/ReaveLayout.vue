@@ -67,6 +67,14 @@
                         <Jobs v-if="item.icon === 'Jobs'"></Jobs>
                         <Academy v-if="item.icon === 'Academy'"></Academy>
                         <Bootcamps v-if="item.icon === 'Bootcamps'"></Bootcamps>
+<<<<<<< HEAD
+=======
+
+                        <Stars v-if="item.icon === 'Stars'"></Stars>
+
+                        <NFTs v-if="item.icon === 'NFTs'"></NFTs>
+
+>>>>>>> b6f366d ( layer 1 completion + layer 2 start)
                         <Maps v-if="item.icon === 'Maps'"></Maps>
                         <Conceptor v-if="item.icon === 'Conceptor'"></Conceptor>
 
@@ -178,7 +186,11 @@
   import Leagues from "@assets/icons/Leagues.vue";
   import NFTs from "@assets/icons/NFTs.vue";
   import Maps from "@assets/icons/Maps.vue";
+<<<<<<< HEAD
   */
+=======
+  import Stars from "@core/assets/svg/general/Stars.vue"
+>>>>>>> b6f366d ( layer 1 completion + layer 2 start)
 
   /* NEW */
   import Events from "@assets/icons/Events.vue";
@@ -214,6 +226,7 @@
       /*
       Explore,
       Feed,
+      Stars,
       Academy,
       Bootcamps,
       Leagues,
@@ -253,6 +266,7 @@
           value: "",
         },
         dropdown: "hidden",
+<<<<<<< HEAD
         solutions: [
             /*OLD*/
             /*
@@ -350,6 +364,56 @@
             },
           ],
         };
+=======
+        solutions: [{
+            target: "Event",
+            icon: "Stars",
+            dataClass: "settings",
+            btnName: 'Event',
+          },
+          {
+            target: "Nft",
+            icon: "NFTs",
+            dataClass: "settings",
+            btnName: 'Item',
+          },
+          {
+            target: "Social",
+            icon: "Feed",
+            dataClass: "settings",
+            btnName: 'Social',
+          },
+          {
+            target: "Jobs",
+            icon: "Jobs",
+            dataClass: "settings",
+            btnName: 'Jobs',
+          },
+          {
+            target: "Academy",
+            icon: "Academy",
+            dataClass: "settings",
+            btnName: 'Academy',
+          },
+          {
+            target: "Bootcamps",
+            icon: "Bootcamps",
+            dataClass: "settings",
+            btnName: 'Bootcamps',
+          },
+          {
+            target: "Maps",
+            icon: "Maps",
+            dataClass: "settings",
+            btnName: 'Maps',
+          },
+        ],
+      };
+    },
+    methods: {
+      openModal() {
+        this.isOpenModal = true;
+>>>>>>> b6f366d ( layer 1 completion + layer 2 start)
       },
       methods: {
           openModal() {

@@ -153,12 +153,14 @@
 }
 
 .leaflet-control-zoom-in {
+    position: initial;
     color: white;
     height: 40px;
     width: 40px;
 }
 
 .leaflet-control-zoom-out {
+    position: initial;
     color: white;
     height: 40px;
     width: 40px;
