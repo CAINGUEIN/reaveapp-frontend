@@ -3,7 +3,7 @@ import Base from "@axios/axiosPlugin";
 class VenueServices {
   static async createVenue(data) {
     let body = data;
-    console.log('voici le body ',body);
+    console.log('voici le body ', body);
     return Base.post(`/venue/createV`, body)
       .then((response) => {
         console.log("venue create lool", response);
@@ -40,7 +40,7 @@ class VenueServices {
   }
 
   static async searchPersonalVenueOperator() {
-    return Base.get(`/event/personalOperator`)
+    return Base.get(`/events/personalOperator`)
       .then((response) => {
         console.log("event personalOperator", response);
         return response;
@@ -74,7 +74,7 @@ class VenueServices {
         return e;
       });
   }
-  
+
   static async addStaff(body) {
     return Base.post(`/venue/addStaff`, body)
       .then((response) => {
@@ -170,7 +170,7 @@ class VenueServices {
         return e;
       });
   }
-  
+
 }
 
 export default VenueServices;

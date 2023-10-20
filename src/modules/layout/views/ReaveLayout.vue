@@ -6,7 +6,7 @@
             !isMapsRoute,
           'absolute top-0 left-0 right-0 flex pt-6 pb-[18px] items-center':
             isMapsRoute,
-        }" style="z-index: 100000;margin-left: 30px;margin-right: 30px;padding-top: 0px;margin-top: 20px;;">
+        }" style="z-index: 100000;margin-left: 30px;margin-right: 30px;padding-top: 0px;margin-top: 20px;">
         <div class="flex justify-between w-full">
           <div class="flex space-x-4 items-center">
             <ToolsButtonNav :target="'PersonalMessages'" :dataClass="'reave'" :comparTarget="store.view" class="">
@@ -16,7 +16,8 @@
             <ToolsButtonNav target="SpacePrivate">
               <div class="h-12 w-12 bg-slate-600 rounded-full"></div>
             </ToolsButtonNav>
-            <SpaceNavBar class="" @action="openSpace" :data="store.dataSpaces" /> <!--marked-->
+            <SpaceNavBar class="" @action="openSpace" :data="store.dataSpaces" />
+            <!--marked-->
             <div class="h-15 flex items-center">
               <ToolsButtonNav @click="openModal" :dataClass="'top'" class="mr-2" :btnName="'+'" :comparTarget="''">
                 <Plus />
@@ -48,34 +49,37 @@
                 leave-to-class="opacity-0 translate-y-1">
                 <PopoverPanel class="absolute right-0 z-10 mt-5">
                   <div class="overflow-visible">
-                    <div class="transition ease-out rounded-[20px] duration-300 relative grid w-80 bg-Anthracite grid-cols-4 p-2">
-                      
-                      <ToolsButtonNav
-                        v-for="item in solutions"
-                        :btnName="item.icon"
-                        :key="item.target"
-                        :target="item.target"
-                        :dataClass="item.dataClass"
-                        :comparTarget="store.view"
+                    <div
+                      class="transition ease-out rounded-[20px] duration-300 relative grid w-80 bg-Anthracite grid-cols-4 p-2">
+
+                      <ToolsButtonNav v-for="item in solutions" :btnName="item.icon" :key="item.target"
+                        :target="item.target" :dataClass="item.dataClass" :comparTarget="store.view"
                         :isMouseOver="item.icon"
                         class="flex mx-auto rounded-full h-15 w-15 transition duration-150 ease-in-out">
                         <!-- <template v-slot:custom>
                         <div class="tag" v-if="showTag">{{ btnName }}</div>
                       </template> -->
 
-                        <Feed v-if="item.icon === 'Feed'"></Feed>
-
-                        <Academy v-if="item.icon === 'Academy'"></Academy>
-
+                        <!-- NEW -->
+                        <Events v-if="item.icon === 'Events'"></Events>
+                        <Shards v-if="item.icon === 'Shards'"></Shards>
+                        <Hub v-if="item.icon === 'Hub'"></Hub>
                         <Jobs v-if="item.icon === 'Jobs'"></Jobs>
-
+                        <Academy v-if="item.icon === 'Academy'"></Academy>
                         <Bootcamps v-if="item.icon === 'Bootcamps'"></Bootcamps>
-
-                        <Leagues v-if="item.icon === 'Leagues'"></Leagues>
-
-                        <NFTs v-if="item.icon === 'NFTs'"></NFTs>
-
                         <Maps v-if="item.icon === 'Maps'"></Maps>
+                        <Conceptor v-if="item.icon === 'Conceptor'"></Conceptor>
+
+                        <!-- OLD -->
+                        <!--
+                        <Feed v-if="item.icon === 'Events'"></Feed>
+                        <Academy v-if="item.icon === 'Academy'"></Academy>
+                        <Jobs v-if="item.icon === 'Jobs'"></Jobs>
+                        <Bootcamps v-if="item.icon === 'Bootcamps'"></Bootcamps>
+                        <Leagues v-if="item.icon === 'Leagues'"></Leagues>
+                        <NFTs v-if="item.icon === 'NFTs'"></NFTs>
+                        <Maps v-if="item.icon === 'Maps'"></Maps>
+                        -->
 
                       </ToolsButtonNav>
                     </div>
@@ -163,6 +167,9 @@
     PopoverPanel
   } from "@headlessui/vue";
   import Plus from "@assets/icons/Plus.vue";
+
+  /* OLD */
+  /*
   import Explore from "@assets/icons/Explore.vue";
   import Feed from "@assets/icons/Feed.vue";
   import Academy from "@assets/icons/Academy.vue";
@@ -171,7 +178,17 @@
   import Leagues from "@assets/icons/Leagues.vue";
   import NFTs from "@assets/icons/NFTs.vue";
   import Maps from "@assets/icons/Maps.vue";
+  */
 
+  /* NEW */
+  import Events from "@assets/icons/Events.vue";
+  import Shards from "@assets/icons/Shards.vue";
+  import Hub from "@assets/icons/Hub.vue";
+  import Jobs from "@assets/icons/Jobs.vue";
+  import Academy from "@assets/icons/Academy.vue";
+  import Bootcamps from "@assets/icons/Bootcamps.vue";
+  import Maps from "@assets/icons/Maps.vue";
+  import Conceptor from "@assets/icons/Conceptor.vue";
 
   //data
   import dataTopLeft from "@modules/layout/data/dataTopLeftNavBar";
@@ -187,13 +204,15 @@
       BottomLeftNavBar,
       GlobeIcon,
       PlusIcon,
-      Explore,
       Plus,
       Reave,
       Settings,
       Popover,
       PopoverButton,
       PopoverPanel,
+      /*OLD*/
+      /*
+      Explore,
       Feed,
       Academy,
       Bootcamps,
@@ -202,6 +221,17 @@
       Jobs,
       DotsVerticalIcon,
       Maps,
+      */
+
+      /*NEW*/
+      Events,
+      Shards,
+      Hub,
+      Jobs,
+      Academy,
+      Bootcamps,
+      Maps,
+      Conceptor,
       Bento
     },
     data() {
@@ -223,107 +253,160 @@
           value: "",
         },
         dropdown: "hidden",
-        solutions: [{
-            target: "Event",
-            icon: "Leagues",
-            dataClass: "settings",
-            btnName: 'Event',
-          },
-          {
-            target: "Nft",
-            icon: "NFTs",
-            dataClass: "settings",
-            btnName: 'Item',
-          },
-          {
-            target: "Social",
-            icon: "Feed",
-            dataClass: "settings",
-            btnName: 'Social',
-          },
-          {
-            target: "Jobs",
-            icon: "Jobs",
-            dataClass: "settings",
-            btnName: 'Jobs',
-          },
-          {
-            target: "Academy",
-            icon: "Academy",
-            dataClass: "settings",
-            btnName: 'Academy',
-          },
-          {
-            target: "Bootcamps",
-            icon: "Bootcamps",
-            dataClass: "settings",
-            btnName: 'Bootcamps',
-          },
-          {
-            target: "Maps",
-            icon: "Maps",
-            dataClass: "settings",
-            btnName: 'Maps',
-          },
-        ],
-      };
-    },
-    methods: {
-      openModal() {
-        this.isOpenModal = true;
+        solutions: [
+            /*OLD*/
+            /*
+            {
+              target: "Event",
+              icon: "Leagues",
+              dataClass: "settings",
+              btnName: 'Event',
+            },
+            {
+              target: "Nft",
+              icon: "NFTs",
+              dataClass: "settings",
+              btnName: 'Item',
+            },
+            {
+              target: "Social",
+              icon: "Feed",
+              dataClass: "settings",
+              btnName: 'Social',
+            },
+            {
+              target: "Jobs",
+              icon: "Jobs",
+              dataClass: "settings",
+              btnName: 'Jobs',
+            },
+            {
+              target: "Academy",
+              icon: "Academy",
+              dataClass: "settings",
+              btnName: 'Academy',
+            },
+            {
+              target: "Bootcamps",
+              icon: "Bootcamps",
+              dataClass: "settings",
+              btnName: 'Bootcamps',
+            },
+            {
+              target: "Maps",
+              icon: "Maps",
+              dataClass: "settings",
+              btnName: 'Maps',
+            },
+            */
+            /*NEW*/
+            {
+              target: "Events",
+              icon: "Events",
+              dataClass: "settings",
+              btnName: 'Events',
+            },
+            {
+              target: "Shards",
+              icon: "Shards",
+              dataClass: "settings",
+              btnName: 'Shards',
+            },
+            {
+              target: "Hub",
+              icon: "Hub",
+              dataClass: "settings",
+              btnName: 'Hub',
+            },
+            {
+              target: "Jobs",
+              icon: "Jobs",
+              dataClass: "settings",
+              btnName: 'Jobs',
+            },
+            {
+              target: "Academy",
+              icon: "Academy",
+              dataClass: "settings",
+              btnName: 'Academy',
+            },
+            {
+              target: "Bootcamps",
+              icon: "Bootcamps",
+              dataClass: "settings",
+              btnName: 'Bootcamps',
+            },
+            {
+              target: "Maps",
+              icon: "Maps",
+              dataClass: "settings",
+              btnName: 'Maps',
+            },
+            {
+              target: "Conceptor",
+              icon: "Conceptor",
+              dataClass: "settings",
+              btnName: 'Conceptor',
+            },
+          ],
+        };
       },
-      closeModal() {
-        this.isOpenModal = false;
-      },
-      async openSpace(target, type) {
-        if (await this.storeSpace.feedDataSpace({
-            id: target
-          })) {
-          this.$router.push({
-            path: "/space/" + type,
-            query: {
-              id: target
+      methods: {
+          openModal() {
+            this.isOpenModal = true;
+          },
+          closeModal() {
+            this.isOpenModal = false;
+          },
+          async openSpace(target, type) {
+            if (await this.storeSpace.feedDataSpace({
+                id: target
+              })) {
+              this.$router.push({
+                path: "/space/" + type,
+                query: {
+                  id: target
+                }
+              });
+            } else {
+              this.$router.push({
+                name: "Personal"
+              });
             }
-          });
-        } else {
-          this.$router.push({
-            name: "Personal"
-          });
-        }
-        console.log("open", "/space/" + type + "/" + target);
-      },
-      getUrl() {
-        if (this.$route.name !== this.store.view) {
-          this.store.view = this.$route.name;
-        }
-      },
-      toggleDropdown() {
-        if (this.dropdown === "hidden") {
-          this.dropdown = "";
-        } else {
-          this.dropdown = "hidden";
-        }
-      },
-      replaceUrl(e) {
-        console.log("dans le replace layout");
-        let randomColor = (Math.floor(Math.random() * 0xFFFFFF)).toString(16)
-        let formatSize = "40/"
-        e.target.src = "https://via.placeholder.com/" + formatSize + randomColor
-      }
-    },
-    watch: {
-      $route() {
-        if (this.$route.name !== this.store.view) {
-          this.store.view = this.$route.name;
-        }
-      },
-      $route(to, from) {
-        this.isMapsRoute = to.path === '/maps';
-      },
-    },
-    mounted() {
-      this.getUrl();
-      this.isMapsRoute = this.$route.path === '/maps';
-    },
-  };
+            console.log("open", "/space/" + type + "/" + target);
+          },
+          getUrl() {
+            if (this.$route.name !== this.store.view) {
+              this.store.view = this.$route.name;
+            }
+          },
+          toggleDropdown() {
+            if (this.dropdown === "hidden") {
+              this.dropdown = "";
+            } else {
+              this.dropdown = "hidden";
+            }
+          },
+          replaceUrl(e) {
+            console.log("dans le replace layout");
+            let randomColor = (Math.floor(Math.random() * 0xFFFFFF)).toString(16)
+            let formatSize = "40/"
+            e.target.src = "https://via.placeholder.com/" + formatSize + randomColor
+          }
+        },
+        watch: {
+          $route() {
+            if (this.$route.name !== this.store.view) {
+              this.store.view = this.$route.name;
+            }
+          },
+          $route(to, from) {
+            this.isMapsRoute = to.path === '/maps';
+          },
+        },
+        mounted() {
+          this.getUrl();
+          this.isMapsRoute = this.$route.path === '/maps';
+        },
+    };
 </script>

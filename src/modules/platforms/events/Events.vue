@@ -105,8 +105,8 @@
 <script>
 //component
 import ModalClear from "@components/modal/ModalClear.vue";
-import CreateEvent from "@modules/marketPlace/event/views/CreateEvent.vue";
-import EventCard from "@modules/marketPlace/event/views/EventCard.vue";
+import CreateEvent from "@modules/platforms/events/views/CreateEvent.vue";
+import EventCard from "@modules/platforms/events/views/EventCard.vue";
 import EventServices from "@axios/services/eventServices";
 //tool
 import { AdjustmentsIcon, SearchIcon } from "@heroicons/vue/outline";

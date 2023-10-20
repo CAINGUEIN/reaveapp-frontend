@@ -3,7 +3,7 @@ import Base from "@axios/axiosPlugin";
 class EventServices {
   static async createEvent(data) {
     let body = data;
-    return Base.post(`/event/create`, body)
+    return Base.post(`/events/create`, body)
       .then((response) => {
         console.log("event create", response);
         return response;
@@ -16,7 +16,7 @@ class EventServices {
 
   static async createVenue(data) {
     let body = data;
-    return Base.post(`/event/createVenue`, body)
+    return Base.post(`/events/createVenue`, body)
       .then((response) => {
         console.log("venue create", response);
         return response;
@@ -29,7 +29,7 @@ class EventServices {
 
   static async createTicketForEvent(data) {
     let body = data;
-    return Base.post(`/event/createTicketForEvent`, body)
+    return Base.post(`/events/createTicketForEvent`, body)
       .then((response) => {
         console.log("event create TicketForEvent", response);
         return response;
@@ -41,7 +41,7 @@ class EventServices {
   }
 
   static async listEvent(body) {
-    return Base.post(`/event/list`, body)
+    return Base.post(`/events/list`, body)
       .then((response) => {
         console.log("event list", response);
         return response;
@@ -53,7 +53,7 @@ class EventServices {
   }
 
   static async buyEvent(body) {
-    return Base.post(`/event/buy`, body)
+    return Base.post(`/events/buy`, body)
       .then((response) => {
         console.log("event buy", response);
         return response;
@@ -65,7 +65,7 @@ class EventServices {
   }
 
   static async searchPersonalEventOperator() {
-    return Base.get(`/event/personalOperator`)
+    return Base.get(`/events/personalOperator`)
       .then((response) => {
         console.log("event personalOperator", response);
         return response;
@@ -77,7 +77,7 @@ class EventServices {
   }
 
   static async searchPersonalVenueOperator() {
-    return Base.get(`/event/personalOperatorVenue`)
+    return Base.get(`/events/personalOperatorVenue`)
       .then((response) => {
         console.log("venue personalOperator", response);
         return response;
@@ -89,7 +89,7 @@ class EventServices {
   }
 
   static async dataEvent(body) {
-    return Base.post(`/event/data`, body)
+    return Base.post(`/events/data`, body)
       .then((response) => {
         console.log("event data", response);
         return response;
@@ -101,7 +101,7 @@ class EventServices {
   }
 
   static async dataVenue(body) {
-    return Base.post(`/event/dataVenue`, body)
+    return Base.post(`/events/dataVenue`, body)
       .then((response) => {
         console.log("venue data", response);
         return response;
@@ -113,7 +113,7 @@ class EventServices {
   }
 
   static async updateEvent(body) {
-    return Base.post(`/event/update`, body)
+    return Base.post(`/events/update`, body)
       .then((response) => {
         console.log("event update", response);
         return response;
@@ -123,9 +123,9 @@ class EventServices {
         return e;
       });
   }
-  
+
   static async addStaff(body) {
-    return Base.post(`/event/addStaff`, body)
+    return Base.post(`/events/addStaff`, body)
       .then((response) => {
         console.log("event addStaff", response);
         return response;
@@ -137,7 +137,7 @@ class EventServices {
   }
 
   static async addStaffAndSwitchOwner(body) {
-    return Base.post(`/event/addStaffAndSwitchOwner`, body)
+    return Base.post(`/events/addStaffAndSwitchOwner`, body)
       .then((response) => {
         console.log("event addStaffAndSwitchOwner", response);
         return response;
@@ -149,7 +149,7 @@ class EventServices {
   }
 
   static async modifyStaff(body) {
-    return Base.post(`/event/modifyStaff`, body)
+    return Base.post(`/events/modifyStaff`, body)
       .then((response) => {
         console.log("event modifyStaff", response);
         return response;
@@ -161,7 +161,7 @@ class EventServices {
   }
 
   static async modifyStaffAndSwitchOwner(body) {
-    return Base.post(`/event/modifyStaffAndSwitchOwner`, body)
+    return Base.post(`/events/modifyStaffAndSwitchOwner`, body)
       .then((response) => {
         console.log("event modifyStaffAndSwitchOwner", response);
         return response;
@@ -173,7 +173,7 @@ class EventServices {
   }
 
   static async removeStaff(body) {
-    return Base.post(`/event/removeStaff`, body)
+    return Base.post(`/events/removeStaff`, body)
       .then((response) => {
         console.log("event removeStaff", response);
         return response;
@@ -185,7 +185,7 @@ class EventServices {
   }
 
   static async addItem(body) {
-    return Base.post(`/event/addItem`, body)
+    return Base.post(`/events/addItem`, body)
       .then((response) => {
         console.log("event addItem", response);
         return response;
@@ -197,7 +197,7 @@ class EventServices {
   }
 
   static async modifyItem(body) {
-    return Base.post(`/event/modifyItem`, body)
+    return Base.post(`/events/modifyItem`, body)
       .then((response) => {
         console.log("event modifyItem", response);
         return response;
@@ -209,7 +209,7 @@ class EventServices {
   }
 
   static async removeItem(body) {
-    return Base.post(`/event/removeItem`, body)
+    return Base.post(`/events/removeItem`, body)
       .then((response) => {
         console.log("event removeItem", response);
         return response;
@@ -219,7 +219,7 @@ class EventServices {
         return e;
       });
   }
-  
+
 }
 
 export default EventServices;

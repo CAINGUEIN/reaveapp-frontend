@@ -273,7 +273,7 @@
 <script>
 //component
 import ModalClear from "@components/modal/ModalClear.vue";
-import CreateEvent from "../marketPlace/event/views/CreateEvent.vue";
+import CreateEvent from "../marketPlace/events/views/CreateEvent.vue";
 import WalletCard from "@components/eventCardContent/WalletCard.vue";
 import Button40Slot from "@components/buttons/Button40Slot.vue";
 import SvgTarget from "@components/SvgTarget.vue";

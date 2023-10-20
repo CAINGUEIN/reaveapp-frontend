@@ -210,11 +210,11 @@
 //components
 import Button60Slot from "@components//buttons/Button60Slot.vue";
 import XButton60 from "@components/buttons/XButton60.vue";
-import EventIdAbout from "@modules/marketPlace/event/views/EventIdAbout.vue";
-import EventIdFormat from "@modules/marketPlace/event/views/EventIdFormat.vue";
-import EventIdVenue from "@modules/marketPlace/event/views/EventIdVenue.vue";
-import EventIdProducts from "@modules/marketPlace/event/views/EventIdProducts.vue";
-import EventIdPeople from "@modules/marketPlace/event/views/EventIdPeople.vue";
+import EventIdAbout from "@modules/platforms/events/views/EventIdAbout.vue";
+import EventIdFormat from "@modules/platforms/events/views/EventIdFormat.vue";
+import EventIdVenue from "@modules/platforms/events/views/EventIdVenue.vue";
+import EventIdProducts from "@modules/platforms/events/views/EventIdProducts.vue";
+import EventIdPeople from "@modules/platforms/events/views/EventIdPeople.vue";
 //services
 import eventServices from "@axios/services/eventServices";
 import SvgTarget from "@components/SvgTarget.vue";
