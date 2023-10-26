@@ -152,7 +152,6 @@
           </div>
         </div>
       </div>
-      <LeftNavBar />
     </div>
     <CreateSpaceModal @isOpenModal="closeModal" :isOpenModal="isOpenModal" />
   </div>
@@ -167,9 +166,7 @@
   import SpaceNavBar from "@core/components/barNav/SpaceNavBar.vue";
   import TopLeftNavBar from "@core/components/barNav/TopLeftNavBar.vue";
   import BottomLeftNavBar from "@core/components/barNav/BottomLeftNavBar.vue";
-  import LeftNavBar from "../../../core/components/barNav/LeftNavBar.vue";
   import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
-  import SpaceButtonNav from "@core/components/buttons/SpaceButtonNav.vue";
   import {
     DotsVerticalIcon,
     GlobeIcon,
@@ -210,43 +207,43 @@
   import dataTopLeft from "@modules/layout/data/dataTopLeftNavBar";
   import dataBottomLeft from "@modules/layout/data/dataBottomLeftNavBar";
   import Bento from "../../../core/assets/icons/Bento.vue";
+
   export default {
     components: {
-    CreateSpaceModal,
-    SpaceNavBar,
-    ToolsButtonNav,
-    LeftNavBar,
-    Plus,
-    Spaces,
-    Reave,
-    Settings,
-    Popover,
-    PopoverButton,
-    PopoverPanel,
-    /*OLD*/
-    /*
-    Explore,
-    Feed,
-    Stars,
-    Academy,
-    Bootcamps,
-    Leagues,
-    NFTs,
-    Jobs,
-    DotsVerticalIcon,
-    Maps,
-    */
-    /*NEW*/
-    Events,
-    Shards,
-    Hub,
-    Jobs,
-    Academy,
-    Bootcamps,
-    Maps,
-    Conceptor,
-    Bento,
-},
+      CreateSpaceModal,
+      SpaceNavBar,
+      Plus,
+      Spaces,
+      Reave,
+      Settings,
+      Popover,
+      PopoverButton,
+      PopoverPanel,
+      /*OLD*/
+      /*
+      Explore,
+      Feed,
+      Stars,
+      Academy,
+      Bootcamps,
+      Leagues,
+      NFTs,
+      Jobs,
+      DotsVerticalIcon,
+      Maps,
+      */
+
+      /*NEW*/
+      Events,
+      Shards,
+      Hub,
+      Jobs,
+      Academy,
+      Bootcamps,
+      Maps,
+      Conceptor,
+      Bento,
+    },
     data() {
       const store = useStoreAuth();
       const storeSpace = useStoreSpace();
@@ -266,7 +263,6 @@
           value: "",
         },
         dropdown: "hidden",
-
         solutions: [
           /*OLD*/
           /*

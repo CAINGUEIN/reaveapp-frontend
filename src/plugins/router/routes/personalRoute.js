@@ -10,7 +10,7 @@ export default [
     path: "/operator/:target?/:view?",
     name: "Operator",
     component: () => import("@modules/operator/Operator.vue"),
-    meta: { layout: "none", permission: "log" },
+    meta: { layout: "Reave", permission: "log" },
   },
   {
     path: "/personalMessages",

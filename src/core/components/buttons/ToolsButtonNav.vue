@@ -33,7 +33,7 @@ export default {
     btnName: String,
     isMouseOver: {
       type: Boolean,
-      default: false, 
+      default: false,
     },
   },
   data() {
@@ -78,6 +78,9 @@ export default {
         this.classBTN = "h-15 w-15";
         this.classCompar =
           " bg-DarckRock text-Gravel hover:bg-Rock hover:text-LightGrey";
+      } else if (this.dataClass === "spaces") {
+        this.classBTN = "h-10 w-10";
+        this.classCompar = " hover:bg-DarkRock text-Gravel";
       }
     },
     compar() {
@@ -131,6 +134,14 @@ export default {
       if (this.dataClass === "spaceIcon" && this.comparTarget !== this.stat) {
         this.classCompar =
           "bg-DarkRock text-Gravel hover:bg-Rock hover:text-LightGrey";
+      }
+      // Icone selectionnée
+      if (this.dataClass === "spaces" && this.comparTarget === this.stat) {
+        this.classCompar = "text-White bg-LightRock";
+      }
+      // Icone non sélectionnée
+      if (this.dataClass === "spaces" && this.comparTarget !== this.stat) {
+        this.classCompar = " hover:bg-Rock text-Gravel";
       }
     },
     verif() {

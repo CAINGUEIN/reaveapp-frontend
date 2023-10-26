@@ -1,8 +1,9 @@
 import Overview from "./Overview.vue";
 //import OverviewVenue from "./OverviewVenue.vue";
 import Publish from "./Publish.vue";
-import Venue from "./Venue.vue"
-import Packages from "./Packages.vue"
+import Venue from "./Venue.vue";
+import Packages from "./Packages.vue";
+import Stars from "./Stars.vue";
 
 export {
   Overview,
@@ -10,4 +11,5 @@ export {
   Publish,
   Venue,
   Packages,
+  Stars
 };

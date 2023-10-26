@@ -153,8 +153,8 @@ export default [
     name: "Maps",
     component: () => import("@modules/systems/maps/maps.vue"),
     meta: {
-      layout: "Reave",
-      permission: "log"
+      layout: "Maps",
+      permission: "log",
     },
   },
 

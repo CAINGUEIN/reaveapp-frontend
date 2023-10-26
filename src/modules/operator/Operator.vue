@@ -1,15 +1,10 @@
 <template>
-  <div class=" h-full max-h-screen overflow-auto scrollbarV">
-    <div class="w-full flex">
-      <ImgFormated
-        :key="store.avatarKey"
-        :size="'s'"
-        :type="'avatar'"
-        class="absolute left-8 top-6 z-10 h-10 w-10 bg-white rounded-full"
-      />
+  <div class="h-full w-full max-h-screen overflow-auto scrollbarV">
+    <div class="w-full flex h-16">
       <div class="mx-auto mt-6 flex">
         <button
           v-for="item in nav"
+          :key="item.name"
           class="py-1 px-4 mx-2 text-base hover:bg-LightRock hover:text-white rounded-lg font-medium flex items-center"
           :class="
             target === item.target
@@ -27,12 +22,11 @@
           {{ item.name }}
         </button>
       </div>
-      <XButton40
-        @click="goBack"
-        class="absolute right-8 top-6 z-10"
-      ></XButton40>
     </div>
-    <component :is="target" class="mx-auto w-[95%] max-w-[1680px] mb-8"></component>
+    <component
+      :is="target"
+      class="mx-auto w-[95%] max-w-[1680px] mb-8"
+    ></component>
   </div>
 </template>
 
@@ -44,7 +38,7 @@ import ImgFormated from "@core/components/img/ImgFormated.vue";
 //pages
 import projects from "./EventOperator.vue";
 import items from "./ItemsOperator.vue";
-import venue from "./VenueOperator.vue"
+import venue from "./VenueOperator.vue";
 //tool
 import useStoreAuth from "@stores/auth";
 export default {
@@ -62,7 +56,7 @@ export default {
       store,
       target: "projects",
       nav: [
-        { name: "Events", icon: "Events", target: "projects" },
+        { name: "Events", icon: "Stars", target: "projects" },
         { name: "Venues", icon: "Venue", target: "venue" },
         { name: "Packages", icon: "Packages", target: "package" },
         { name: "Equipement", icon: "Equipment", target: "items" },

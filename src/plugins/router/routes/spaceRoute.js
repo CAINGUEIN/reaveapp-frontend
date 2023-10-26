@@ -6,12 +6,12 @@ export default [
     meta: { layout: "Reave", permission: "log" },
     children: [
       {
-        path: "friends",
+        path: "/friends",
         name: "SpaceFriendsChat",
         component: () => import("@modules/friends/views/FriendsChat.vue"),
       },
       {
-        path: "friendsCalendar",
+        path: "/friendsCalendar",
         name: "SpaceFriendsCalendar",
         component: () => import("@modules/friends/views/FriendsCalendar.vue"),
       },
