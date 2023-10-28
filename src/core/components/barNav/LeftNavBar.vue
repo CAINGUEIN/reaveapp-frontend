@@ -1,17 +1,17 @@
 <template>
-  <div class="mx-8 h-full flex border-2 border-Rock rounded-xl">
-    <div
-      class="flex-col px-3 py-3 items-center space-y-2 border-r-2 border-Rock"
+  <div
+    class="flex-col justify-between px-3 py-3 items-center space-y-2 border-r-2 border-Rock"
+  >
+    <ToolsButtonNav
+      v-for="item in buttonsMenu"
+      :btnName="item.icon"
+      :key="item.target"
+      :target="item.target"
+      :dataClass="item.dataClass"
+      :comparTarget="store.view"
+      class="transition duration-150 py-2 flex-col justify-between ease-in-out hover:text-White"
     >
-      <ToolsButtonNav
-        v-for="item in buttonsMenu"
-        :btnName="item.icon"
-        :key="item.target"
-        :target="item.target"
-        :dataClass="item.dataClass"
-        :comparTarget="store.view"
-        class="transition duration-150 py-2 ease-in-out hover:text-White"
-      >
+      <div class="flex-1">
         <Riot v-if="item.icon === 'Riot'" :width="24" :height="24"></Riot>
         <Messages
           v-if="item.icon === 'Messages'"
@@ -43,17 +43,16 @@
           :width="24"
           :height="24"
         ></Analytics>
-      </ToolsButtonNav>
-    </div>
-    <router-view class="max-h-fit" />
+      </div>
+    </ToolsButtonNav>
   </div>
 </template>
 
 <script setup>
 // hooks
 import useStoreAuth from "@stores/auth";
-import { watch } from 'vue';
-import { useRoute } from 'vue-router'
+import { watch } from "vue";
+import { useRoute } from "vue-router";
 // Components
 import Operator from "@assets/icons/Operator.vue";
 import Analytics from "@assets/svg/pricing/Analytics.vue";
@@ -61,6 +60,7 @@ import Conceptor from "@assets/icons/Conceptor.vue";
 import Riot from "@assets/icons/Riot.vue";
 import Calendar from "@assets/icons/Calendar.vue";
 import Messages from "@assets/icons/Messages.vue";
+import Settings from "@assets/icons/Settings.vue";
 import ToolsButtonNav from "../buttons/ToolsButtonNav.vue";
 import Dashboard from "../../assets/icons/Dashboard.vue";
 
@@ -99,6 +99,11 @@ const buttonsMenu = [
   {
     target: "Analytics",
     icon: "Analytics",
+    dataClass: "spaces",
+  },
+  {
+    target: "Settings",
+    icon: "Settings",
     dataClass: "spaces",
   },
 ];

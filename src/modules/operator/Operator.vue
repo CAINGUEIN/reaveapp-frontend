@@ -1,7 +1,7 @@
 <template>
   <div class="h-full w-full max-h-screen overflow-auto scrollbarV">
     <div class="w-full flex h-16">
-      <div class="mx-auto mt-6 flex">
+      <div class="mx-auto mt-3 mb-3 flex">
         <button
           v-for="item in nav"
           :key="item.name"

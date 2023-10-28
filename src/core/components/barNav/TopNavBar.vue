@@ -2,9 +2,9 @@
   <div
     name="nav-bar-top"
     :class="{
-      'sticky top-0 mx-8 left-0 right-0 flex pt-6 pb-[18px] items-center bg-Anthracite':
+      'sticky top-0 mx-8 left-0 right-0 flex pt-6 pb-6 items-center bg-Anthracite':
         !isMapsRoute,
-      'absolute top-0 left-0 right-0 flex pt-6 pb-[18px] items-center':
+      'absolute top-0 left-0 right-0 flex pt-6 pb-6 items-center':
         isMapsRoute,
     }"
     style="
@@ -399,9 +399,7 @@ export default {
   methods: {
     openModal() {
       this.isOpenModal = true;
-    },
-    closeModal() {
-      this.isOpenModal = false;
+      this.$emit('modal-changed',this.isOpenModal);
     },
     async openSpace(target, type) {
       if (

@@ -8,6 +8,7 @@ export default [
   },
   {
     path: "/operator/:target?/:view?",
+    redirect:""
     name: "Operator",
     component: () => import("@modules/operator/Operator.vue"),
     meta: { layout: "Space", permission: "log" },
@@ -53,8 +54,8 @@ export default [
   },
   {
     path: "/spacePrivate",
+    redirect:"operator",
     name: "SpacePrivate",
-    component: () => import("@modules/spacePrivate/SpacePrivateLayout.vue"),
     meta: { layout: "Space", permission: "log" },
   },
 ];

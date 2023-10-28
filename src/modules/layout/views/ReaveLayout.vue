@@ -1,7 +1,7 @@
 <template>
   <div class="flex h-screen pb-5">
     <div class="w-full flex flex-col h-full"> 
-      <TopNavBar />
+      <TopNavBar @modal-changed="handleModalValueChanged" />
     </div>
     <CreateSpaceModal @isOpenModal="closeModal" :isOpenModal="isOpenModal" />
   </div>
@@ -209,12 +209,12 @@
       };
     },
     methods: {
-      openModal() {
-        this.isOpenModal = true;
-      },
-      closeModal() {
-        this.isOpenModal = false;
-      },
+      handleModalValueChanged(value) {
+      this.isOpenModal = value;
+    },
+    closeModal() {
+      this.isOpenModal = false;
+    },
       async openSpace(target, type) {
         if (await this.storeSpace.feedDataSpace({
             id: target

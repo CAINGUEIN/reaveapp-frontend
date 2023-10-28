@@ -1,8 +1,11 @@
 <template>
   <div class="flex h-screen">
     <div class="w-full flex flex-col h-full">
-      <TopNavBar />
-      <LeftNavBar />
+      <TopNavBar @modal-changed="handleModalValueChanged" />
+      <div class="mx-8 h-full flex border-2 border-Rock rounded-t-xl border-b-0">
+        <LeftNavBar />
+        <router-view class="max-h-fit" />
+      </div>
     </div>
     <CreateSpaceModal @isOpenModal="closeModal" :isOpenModal="isOpenModal" />
   </div>
@@ -45,8 +48,8 @@ export default {
     };
   },
   methods: {
-    openModal() {
-      this.isOpenModal = true;
+    handleModalValueChanged(value) {
+      this.isOpenModal = value;
     },
     closeModal() {
       this.isOpenModal = false;
