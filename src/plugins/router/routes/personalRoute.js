@@ -8,7 +8,6 @@ export default [
   },
   {
     path: "/operator/:target?/:view?",
-    redirect:""
     name: "Operator",
     component: () => import("@modules/operator/Operator.vue"),
     meta: { layout: "Space", permission: "log" },
