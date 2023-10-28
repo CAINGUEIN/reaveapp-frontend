@@ -18,6 +18,11 @@
           :width="24"
           :height="24"
         ></Messages>
+        <Dashboard
+          v-if="item.icon === 'Dashboard'"
+          :width="24"
+          :height="24"
+        ></Dashboard>
         <Operator
           v-if="item.icon === 'Operator'"
           :width="24"
@@ -57,6 +62,7 @@ import Riot from "@assets/icons/Riot.vue";
 import Calendar from "@assets/icons/Calendar.vue";
 import Messages from "@assets/icons/Messages.vue";
 import ToolsButtonNav from "../buttons/ToolsButtonNav.vue";
+import Dashboard from "../../assets/icons/Dashboard.vue";
 
 const store = useStoreAuth();
 const buttonsMenu = [
@@ -68,6 +74,11 @@ const buttonsMenu = [
   {
     target: "SpaceFriendsChat",
     icon: "Messages",
+    dataClass: "spaces",
+  },
+  {
+    target: "Dashboard",
+    icon: "Dashboard",
     dataClass: "spaces",
   },
   {

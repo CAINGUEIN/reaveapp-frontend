@@ -10,7 +10,7 @@ export default [
     path: "/operator/:target?/:view?",
     name: "Operator",
     component: () => import("@modules/operator/Operator.vue"),
-    meta: { layout: "Reave", permission: "log" },
+    meta: { layout: "Space", permission: "log" },
   },
   {
     path: "/personalMessages",
@@ -36,14 +36,14 @@ export default [
     name: "ProjectId",
     component: () =>
       import("@modules/operator/eventPageOperator/OperatorProjectId.vue"),
-    meta: { layout: "none", permission: "log" },
+    meta: { layout: "Space", permission: "log" },
   },
   {
     path: "/operator/venueId/:id",
     name: "VenueId",
     component: () =>
       import("@modules/operator/venuePageOperator/OperatorVenueId.vue"),
-    meta: { layout: "none", permission: "log" },
+    meta: { layout: "Space", permission: "log" },
   },
   {
     path: "/profile/:view",
@@ -55,6 +55,6 @@ export default [
     path: "/spacePrivate",
     name: "SpacePrivate",
     component: () => import("@modules/spacePrivate/SpacePrivateLayout.vue"),
-    meta: { layout: "Reave", permission: "log" },
+    meta: { layout: "Space", permission: "log" },
   },
 ];

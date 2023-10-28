@@ -3,8 +3,13 @@ export default [
     path: "/space",
     name: "Space",
     component: () => import("@modules/space/views/space.vue"),
-    meta: { layout: "Reave", permission: "log" },
+    meta: { layout: "Space", permission: "log" },
     children: [
+      {
+        path: "/conceptor",
+        name: "Conceptor",
+        component: () => import("@modules/tools/conceptor/Conceptor.vue"),
+      },
       {
         path: "/friends",
         name: "SpaceFriendsChat",

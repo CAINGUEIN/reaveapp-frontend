@@ -157,14 +157,4 @@ export default [
       permission: "log",
     },
   },
-
-  {
-    path: "/conceptor",
-    name: "Conceptor",
-    component: () => import("@modules/tools/conceptor/Conceptor.vue"),
-    meta: {
-      layout: "Reave",
-      permission: "log"
-    },
-  }
 ];

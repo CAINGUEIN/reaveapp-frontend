@@ -23,6 +23,7 @@ import personalRoute from "@router/routes/personalRoute";
 import friendsRoute from "@router/routes/friendsRoute";
 import socialRoute from "@router/routes/socialRoute";
 import productsRoute from "@router/routes/productsRoute";
+import spaceRoute from "@router/routes/spaceRoute";
 import newRoute from "@router/routes/newRoute";
 
 routes = routes.concat(
@@ -30,6 +31,7 @@ routes = routes.concat(
   personalRoute,
   friendsRoute,
   socialRoute,
+  spaceRoute,
   productsRoute,
   newRoute
 );
