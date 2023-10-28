@@ -7,7 +7,7 @@
     @mouseleave="showTag = false">
 
     <slot></slot>
-    <div class="font-bold block p-[4px] rounded-[5px] -bottom-5 z-50 text-White absolute translate-x--1/2 bg-LightRock transition duration-[300ms] ease-out"
+    <div class="font-bold block p-[4px] rounded-[5px] -bottom-5 z-50 text-White absolute translate-y-1 translate-x--1/2 bg-LightRock transition duration-[300ms] ease-out"
       :class="{ 'opacity-100': showTag, 'opacity-0': !showTag  }">{{ btnName }}</div>
     
   </div>
@@ -61,8 +61,8 @@ export default {
         this.classBTN = "h-12 w-12";
         this.classCompar = " hover:bg-DarkRock hover:text-LightGrey";
       } else if (this.dataClass === "settings") {
-        this.classBTN = "h-15 w-15";
-        this.classCompar = " hover:bg-DarkRock text-White";
+        this.classBTN = "h-10 w-10";
+        this.classCompar = "text-Gravel hover:text-LightGrey";
       } else if (this.dataClass === "reave") {
         this.classBTN = "h-12 w-12";
         this.classCompar = " bg-DarkRock text-White hover:bg-LightRock";
@@ -102,7 +102,7 @@ export default {
         this.classCompar = "text-White bg-LightRock";
       }
       if (this.dataClass === "settings" && this.comparTarget !== this.stat) {
-        this.classCompar = " hover:bg-DarkRock text-White";
+        this.classCompar = " hover:bg-LightRock hover:text-LightGrey text-Gravel";
       }
 
       if (this.dataClass === "reave" && this.comparTarget === this.stat) {

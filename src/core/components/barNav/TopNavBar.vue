@@ -85,7 +85,7 @@
             <PopoverPanel class="absolute right-0 z-10 mt-5">
               <div class="overflow-visible">
                 <div
-                  class="transition ease-out rounded-[20px] duration-300 relative grid w-80 bg-Anthracite grid-cols-4 p-2"
+                  class="transition ease-out rounded-[20px] duration-300 relative grid w-52 bg-DarkRock grid-cols-4 p-2"
                 >
                   <ToolsButtonNav
                     v-for="item in solutions"
@@ -95,21 +95,21 @@
                     :dataClass="item.dataClass"
                     :comparTarget="store.view"
                     :isMouseOver="item.icon"
-                    class="flex mx-auto rounded-full h-15 w-15 transition duration-150 ease-in-out"
+                    class="flex rounded-full transition duration-150 ease-in-out my-1 mx-1"
                   >
                     <!-- <template v-slot:custom>
                         <div class="tag" v-if="showTag">{{ btnName }}</div>
                       </template> -->
 
                     <!-- NEW -->
-                    <Events width="40" height="40" v-if="item.icon === 'Events'"></Events>
-                    <Shards v-if="item.icon === 'Shards'"></Shards>
-                    <Hub v-if="item.icon === 'Hub'"></Hub>
-                    <Jobs v-if="item.icon === 'Jobs'"></Jobs>
-                    <Academy v-if="item.icon === 'Academy'"></Academy>
-                    <Bootcamps v-if="item.icon === 'Bootcamps'"></Bootcamps>
-                    <Maps v-if="item.icon === 'Maps'"></Maps>
-                    <Scrims v-if="item.icon === 'Scrims'"></Scrims>
+                    <Events width="24" height="24" v-if="item.icon === 'Events'"></Events>
+                    <Shards width="24" height="24" v-if="item.icon === 'Shards'"></Shards>
+                    <Hub width="24" height="24" v-if="item.icon === 'Hub'"></Hub>
+                    <Jobs width="24" height="24" v-if="item.icon === 'Jobs'"></Jobs>
+                    <Academy width="24" height="24" v-if="item.icon === 'Academy'"></Academy>
+                    <Bootcamps width="24" height="24" v-if="item.icon === 'Bootcamps'"></Bootcamps>
+                    <Maps width="24" height="24" v-if="item.icon === 'Maps'"></Maps>
+                    <Scrims width="24" height="24" v-if="item.icon === 'Scrims'"></Scrims>
 
                     <!-- OLD -->
                     <!--
