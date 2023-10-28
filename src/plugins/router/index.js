@@ -25,7 +25,6 @@ import socialRoute from "@router/routes/socialRoute";
 import productsRoute from "@router/routes/productsRoute";
 import spaceRoute from "@router/routes/spaceRoute";
 import newRoute from "@router/routes/newRoute";
-import mapsRoute from "@router/routes/mapsRoute";
 
 routes = routes.concat(
   routesAuth,
@@ -34,8 +33,7 @@ routes = routes.concat(
   socialRoute,
   spaceRoute,
   productsRoute,
-  newRoute,
-  mapsRoute
+  newRoute
 );
 
 const router = createRouter({
