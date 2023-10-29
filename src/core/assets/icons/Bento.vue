@@ -1,26 +1,20 @@
 <template>
-    <div>
-      <svg
-        :width="width"
-        :height="height"
-        viewBox="0 0 32 32"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle cx="5.78571" cy="5.78571" r="2.78571" :fill="color1" />
-        <circle cx="16.0006" cy="5.78571" r="2.78571" :fill="color1" />
-        <circle cx="26.2154" cy="5.78571" r="2.78571" :fill="color1" />
-        <circle cx="5.78571" cy="15.9999" r="2.78571" :fill="color1" />
-        <circle cx="16.0006" cy="16.0001" r="2.78571" :fill="color1" />
-        <circle cx="26.2154" cy="16.0001" r="2.78571" :fill="color1" />
-        <circle cx="5.78571" cy="26.2143" r="2.78571" :fill="color1" />
-        <circle cx="16.0006" cy="26.2143" r="2.78571" :fill="color1" />
-        <circle cx="26.2154" cy="26.2143" r="2.78571" :fill="color1" />
-      </svg>
-    </div>
-  </template>
-  
-  <script>
+  <div>
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="7.35717" cy="7.35717" rx="2.35717" ry="2.35717" fill="currentColor" />
+      <ellipse cx="15.9939" cy="7.35717" rx="2.35717" ry="2.35717" fill="currentColor" />
+      <ellipse cx="24.6482" cy="7.35717" rx="2.35717" ry="2.35717" fill="currentColor" />
+      <ellipse cx="7.35717" cy="16.0002" rx="2.35717" ry="2.35717" fill="currentColor" />
+      <ellipse cx="15.9939" cy="16.0002" rx="2.35717" ry="2.35717" fill="currentColor" />
+      <ellipse cx="24.6482" cy="16.0002" rx="2.35717" ry="2.35717" fill="currentColor" />
+      <ellipse cx="7.35717" cy="24.6428" rx="2.35717" ry="2.35717" fill="currentColor" />
+      <ellipse cx="15.9939" cy="24.6428" rx="2.35717" ry="2.35717" fill="currentColor" />
+      <ellipse cx="24.6482" cy="24.6428" rx="2.35717" ry="2.35717" fill="currentColor" />
+    </svg>
+  </div>
+</template>
+
+<script>
   export default {
     props: {
       width: {
@@ -41,4 +35,4 @@
       },
     },
   };
-  </script>
+</script>

@@ -1,10 +1,17 @@
 <template>
   <div>
- <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M27.5873 16.9956L16.9972 27.5871C16.4469 28.1376 15.5544 28.1376 15.0041 27.5871L4.41273 16.9956C3.86242 16.4453 3.86242 15.5529 4.41273 15.0026L15.0043 4.41273C15.5546 3.86242 16.4469 3.86242 16.9972 4.41273L27.5873 15.0028C28.1376 15.5531 28.1376 16.4453 27.5873 16.9956Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M20.6587 17.0339L16.6534 26.8203C16.4144 27.404 15.5881 27.404 15.3491 26.8203L11.3438 17.0339L15.3336 5.2209C15.5493 4.58213 16.453 4.58213 16.6687 5.2209L20.6587 17.0339Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M4.16016 15.3487C6.39376 15.9017 8.89181 16.3034 11.5588 16.5148C12.9945 16.6293 14.4812 16.691 16.0015 16.691C17.5217 16.691 19.0085 16.6293 20.4442 16.5148C23.1111 16.3034 25.609 15.9017 27.8428 15.3487" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M20.6905 12.7467L12.7479 20.6904C12.3352 21.1032 11.6658 21.1032 11.2531 20.6904L3.30955 12.7467C2.89682 12.334 2.89682 11.6647 3.30955 11.252L11.2532 3.30955C11.666 2.89682 12.3352 2.89682 12.7479 3.30955L20.6905 11.2521C21.1032 11.6648 21.1032 12.334 20.6905 12.7467Z"
+        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      <path
+        d="M15.494 12.7754L12.49 20.1153C12.3108 20.553 11.691 20.553 11.5118 20.1153L8.50781 12.7754L11.5002 3.91571C11.662 3.43663 12.3398 3.43663 12.5015 3.91571L15.494 12.7754Z"
+        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      <path
+        d="M3.11914 11.5115C4.79435 11.9263 6.66788 12.2275 8.66812 12.3861C9.7449 12.472 10.8599 12.5182 12.0001 12.5182C13.1403 12.5182 14.2554 12.472 15.3321 12.3861C17.3324 12.2275 19.2058 11.9263 20.8811 11.5115"
+        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
 
   </div>
 </template>
