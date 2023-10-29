@@ -11,6 +11,11 @@ export default [
         component: () => import("@modules/tools/conceptor/Conceptor.vue"),
       },
       {
+        path: "dashboard",
+        name: "Dashboard",
+        component: () => import("@modules/space/views/Dashboard.vue"),
+      },
+      {
         path: "friends",
         name: "SpaceFriendsChat",
         component: () => import("@modules/friends/views/FriendsChat.vue"),
