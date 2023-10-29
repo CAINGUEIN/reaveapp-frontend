@@ -1,15 +1,12 @@
 <template>
   <div class="flex h-screen pb-5">
     <div class="w-full flex flex-col h-full">
-      <TopNavBar
-        :class="{
+      <TopNavBar :class="{
           'sticky top-0 mx-8 left-0 right-0 flex pt-6 pb-[18px] items-center bg-Anthracite':
             !isMapsRoute,
           'absolute top-0 left-0 right-0 flex pt-6 pb-[18px] items-center':
             isMapsRoute,
-        }"
-        @modal-changed="handleModalValueChanged"
-      />
+        }" @modal-changed="handleModalValueChanged" />
       <router-view class="max-h-fit" />
     </div>
     <CreateSpaceModal @isOpenModal="closeModal" :isOpenModal="isOpenModal" />
@@ -17,250 +14,257 @@
 </template>
 
 <script>
-//store
-import useStoreAuth from "@stores/auth";
-import useStoreSpace from "@stores/storeSpace";
-//components
-import CreateSpaceModal from "@core/components/modal/CreateSpaceModal.vue";
-import SpaceNavBar from "@core/components/barNav/SpaceNavBar.vue";
-import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
-import TopNavBar from "@core/components/barNav/TopNavBar.vue";
-import Settings from "@assets/icons/Settings.vue";
-import Reave from "@assets/icons/Reave.vue";
-import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
-import Plus from "@assets/icons/Plus.vue";
-import Spaces from "@assets/icons/Spaces.vue";
-
-/* OLD */
-/*
-  import Explore from "@assets/icons/Explore.vue";
-  import Feed from "@assets/icons/Feed.vue";
-  import Academy from "@assets/icons/Academy.vue";
-  import Jobs from "@assets/icons/Jobs.vue";
-  import Bootcamps from "@assets/icons/Bootcamps.vue";
-  import Leagues from "@assets/icons/Leagues.vue";
-  import NFTs from "@assets/icons/NFTs.vue";
-  import Maps from "@assets/icons/Maps.vue";
-  import Stars from "@core/assets/svg/general/Stars.vue"
-
-  /* NEW */
-import Events from "@assets/icons/Events.vue";
-import Shards from "@assets/icons/Shards.vue";
-import Hub from "@assets/icons/Hub.vue";
-import Jobs from "@assets/icons/Jobs.vue";
-import Academy from "@assets/icons/Academy.vue";
-import Bootcamps from "@assets/icons/Bootcamps.vue";
-import Maps from "@assets/icons/Maps.vue";
-import Conceptor from "@assets/icons/Conceptor.vue";
-import Riot from "@assets/icons/Riot.vue";
-//data
-import dataTopLeft from "@modules/layout/data/dataTopLeftNavBar";
-import dataBottomLeft from "@modules/layout/data/dataBottomLeftNavBar";
-import Bento from "../../../core/assets/icons/Bento.vue";
-export default {
-  components: {
-    CreateSpaceModal,
-    SpaceNavBar,
-    TopNavBar,
-    ToolsButtonNav,
-    Plus,
-    Spaces,
-    Reave,
-    Riot,
-    Settings,
+  //store
+  import useStoreAuth from "@stores/auth";
+  import useStoreSpace from "@stores/storeSpace";
+  //components
+  import CreateSpaceModal from "@core/components/modal/CreateSpaceModal.vue";
+  import SpaceNavBar from "@core/components/barNav/SpaceNavBar.vue";
+  import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
+  import TopNavBar from "@core/components/barNav/TopNavBar.vue";
+  import Settings from "@assets/icons/Settings.vue";
+  import Reave from "@assets/icons/Reave.vue";
+  import {
     Popover,
     PopoverButton,
-    PopoverPanel,
-    /*OLD*/
-    /*
-    Explore,
-    Feed,
-    Stars,
-    Academy,
-    Bootcamps,
-    Leagues,
-    NFTs,
-    Jobs,
-    DotsVerticalIcon,
-    Maps,
-    */
-    /*NEW*/
-    Events,
-    Shards,
-    Hub,
-    Jobs,
-    Academy,
-    Bootcamps,
-    Maps,
-    Conceptor,
-    Bento,
-  },
-  data() {
-    const store = useStoreAuth();
-    const storeSpace = useStoreSpace();
-    return {
-      dataTopLeft,
-      dataBottomLeft,
-      isMapsRoute: false,
-      isOpenModal: false,
-      isOpenStatusMenu: false,
-      store,
-      storeSpace,
-      storeView: store.view,
-      moodMessage: {
-        name: "moodMessage",
-        type: "text",
-        value: "",
-      },
-      dropdown: "hidden",
+    PopoverPanel
+  } from "@headlessui/vue";
+  import Plus from "@assets/icons/Plus.vue";
+  import Spaces from "@assets/icons/Spaces.vue";
 
-      solutions: [
-        /*OLD*/
-        /*
+  /* OLD */
+  /*
+    import Explore from "@assets/icons/Explore.vue";
+    import Feed from "@assets/icons/Feed.vue";
+    import Academy from "@assets/icons/Academy.vue";
+    import Jobs from "@assets/icons/Jobs.vue";
+    import Bootcamps from "@assets/icons/Bootcamps.vue";
+    import Leagues from "@assets/icons/Leagues.vue";
+    import NFTs from "@assets/icons/NFTs.vue";
+    import Maps from "@assets/icons/Maps.vue";
+    import Stars from "@core/assets/svg/general/Stars.vue"
+
+    /* NEW */
+  import Events from "@assets/icons/Events.vue";
+  import Shards from "@assets/icons/Shards.vue";
+  import Hub from "@assets/icons/Hub.vue";
+  import Jobs from "@assets/icons/Jobs.vue";
+  import Academy from "@assets/icons/Academy.vue";
+  import Bootcamps from "@assets/icons/Bootcamps.vue";
+  import Maps from "@assets/icons/Maps.vue";
+  import Conceptor from "@assets/icons/Conceptor.vue";
+  import Riot from "@assets/icons/Riot.vue";
+  //data
+  import dataTopLeft from "@modules/layout/data/dataTopLeftNavBar";
+  import dataBottomLeft from "@modules/layout/data/dataBottomLeftNavBar";
+  import Bento from "../../../core/assets/icons/Bento.vue";
+  export default {
+    components: {
+      CreateSpaceModal,
+      SpaceNavBar,
+      TopNavBar,
+      ToolsButtonNav,
+      Plus,
+      Spaces,
+      Reave,
+      Riot,
+      Settings,
+      Popover,
+      PopoverButton,
+      PopoverPanel,
+      /*OLD*/
+      /*
+      Explore,
+      Feed,
+      Stars,
+      Academy,
+      Bootcamps,
+      Leagues,
+      NFTs,
+      Jobs,
+      DotsVerticalIcon,
+      Maps,
+      */
+      /*NEW*/
+      Events,
+      Shards,
+      Hub,
+      Jobs,
+      Academy,
+      Bootcamps,
+      Maps,
+      Conceptor,
+      Bento,
+    },
+    data() {
+      const store = useStoreAuth();
+      const storeSpace = useStoreSpace();
+      return {
+        dataTopLeft,
+        dataBottomLeft,
+        isMapsRoute: false,
+        isOpenModal: false,
+        isOpenStatusMenu: false,
+        store,
+        storeSpace,
+        storeView: store.view,
+        moodMessage: {
+          name: "moodMessage",
+          type: "text",
+          value: "",
+        },
+        dropdown: "hidden",
+
+        solutions: [
+          /*OLD*/
+          /*
+            {
+              target: "Event",
+              icon: "Leagues",
+              dataClass: "settings",
+              btnName: 'Event',
+            },
+            {
+              target: "Nft",
+              icon: "NFTs",
+              dataClass: "settings",
+              btnName: 'Item',
+            },
+            {
+              target: "Social",
+              icon: "Feed",
+              dataClass: "settings",
+              btnName: 'Social',
+            },
+            {
+              target: "Jobs",
+              icon: "Jobs",
+              dataClass: "settings",
+              btnName: 'Jobs',
+            },
+            {
+              target: "Academy",
+              icon: "Academy",
+              dataClass: "settings",
+              btnName: 'Academy',
+            },
+            {
+              target: "Bootcamps",
+              icon: "Bootcamps",
+              dataClass: "settings",
+              btnName: 'Bootcamps',
+            },
+            {
+              target: "Maps",
+              icon: "Maps",
+              dataClass: "settings",
+              btnName: 'Maps',
+            },
+            */
+          /*NEW*/
           {
-            target: "Event",
-            icon: "Leagues",
+            target: "Events",
+            icon: "Events",
             dataClass: "settings",
-            btnName: 'Event',
+            btnName: "Events",
           },
           {
-            target: "Nft",
-            icon: "NFTs",
+            target: "Shards",
+            icon: "Shards",
             dataClass: "settings",
-            btnName: 'Item',
+            btnName: "Shards",
           },
           {
-            target: "Social",
-            icon: "Feed",
+            target: "Hub",
+            icon: "Hub",
             dataClass: "settings",
-            btnName: 'Social',
+            btnName: "Hub",
           },
           {
             target: "Jobs",
             icon: "Jobs",
             dataClass: "settings",
-            btnName: 'Jobs',
+            btnName: "Jobs",
           },
           {
             target: "Academy",
             icon: "Academy",
             dataClass: "settings",
-            btnName: 'Academy',
+            btnName: "Academy",
           },
           {
             target: "Bootcamps",
             icon: "Bootcamps",
             dataClass: "settings",
-            btnName: 'Bootcamps',
+            btnName: "Bootcamps",
           },
           {
             target: "Maps",
             icon: "Maps",
             dataClass: "settings",
-            btnName: 'Maps',
+            btnName: "Maps",
           },
-          */
-        /*NEW*/
-        {
-          target: "Events",
-          icon: "Events",
-          dataClass: "settings",
-          btnName: "Events",
-        },
-        {
-          target: "Shards",
-          icon: "Shards",
-          dataClass: "settings",
-          btnName: "Shards",
-        },
-        {
-          target: "Hub",
-          icon: "Hub",
-          dataClass: "settings",
-          btnName: "Hub",
-        },
-        {
-          target: "Jobs",
-          icon: "Jobs",
-          dataClass: "settings",
-          btnName: "Jobs",
-        },
-        {
-          target: "Academy",
-          icon: "Academy",
-          dataClass: "settings",
-          btnName: "Academy",
-        },
-        {
-          target: "Bootcamps",
-          icon: "Bootcamps",
-          dataClass: "settings",
-          btnName: "Bootcamps",
-        },
-        {
-          target: "Maps",
-          icon: "Maps",
-          dataClass: "settings",
-          btnName: "Maps",
-        },
-        {
-          target: "Conceptor",
-          icon: "Conceptor",
-          dataClass: "settings",
-          btnName: "Conceptor",
-        },
-      ],
-    };
-  },
-  methods: {
-    handleModalValueChanged(value) {
-      this.isOpenModal = value;
+          {
+            target: "Conceptor",
+            icon: "Conceptor",
+            dataClass: "settings",
+            btnName: "Conceptor",
+          },
+        ],
+      };
     },
-    closeModal() {
-      this.isOpenModal = false;
-    },
-    async openSpace(target, type) {
-      if (
-        await this.storeSpace.feedDataSpace({
-          id: target,
-        })
-      ) {
-        this.$router.push({
-          path: "/space/" + type,
-          query: {
+    methods: {
+      handleModalValueChanged(value) {
+        this.isOpenModal = value;
+      },
+      closeModal() {
+        this.isOpenModal = false;
+      },
+      async openSpace(target, type) {
+        if (
+          await this.storeSpace.feedDataSpace({
             id: target,
-          },
-        });
-      } else {
-        this.$router.push({
-          name: "Personal",
-        });
-      }
-      console.log("open", "/space/" + type + "/" + target);
+          })
+        ) {
+          this.$router.push({
+            path: "/space/" + type,
+            query: {
+              id: target,
+            },
+          });
+        } else {
+          this.$router.push({
+            name: "Personal",
+          });
+        }
+        console.log("open", "/space/" + type + "/" + target);
+      },
+      getUrl() {
+        if (this.$route.name !== this.store.view) {
+          this.store.view = this.$route.name;
+        }
+      },
+      replaceUrl(e) {
+        console.log("dans le replace layout");
+        let randomColor = Math.floor(Math.random() * 0xffffff).toString(16);
+        let formatSize = "40/";
+        e.target.src = "https://via.placeholder.com/" + formatSize + randomColor;
+      },
     },
-    getUrl() {
-      if (this.$route.name !== this.store.view) {
-        this.store.view = this.$route.name;
-      }
+    watch: {
+      $route() {
+        if (this.$route.name !== this.store.view) {
+          this.store.view = this.$route.name;
+        }
+      },
+      $route(to, from) {
+        this.isMapsRoute = to.path === '/maps';
+      },
     },
-    replaceUrl(e) {
-      console.log("dans le replace layout");
-      let randomColor = Math.floor(Math.random() * 0xffffff).toString(16);
-      let formatSize = "40/";
-      e.target.src = "https://via.placeholder.com/" + formatSize + randomColor;
+    mounted() {
+      this.getUrl();
+      this.isMapsRoute = this.$route.path === "/maps";
+      console.log(this.isMapsRoute);
     },
-  },
-  watch: {
-    $route() {
-      if (this.$route.name !== this.store.view) {
-        this.store.view = this.$route.name;
-      }
-    },
-  },
-  mounted() {
-    this.getUrl();
-    this.isMapsRoute = this.$route.path === "/maps";
-    console.log(this.isMapsRoute);
-  },
-};
+  };
 </script>
