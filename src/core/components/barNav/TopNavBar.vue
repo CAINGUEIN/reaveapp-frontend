@@ -1,12 +1,6 @@
 <template>
   <div
     name="nav-bar-top"
-    :class="{
-      'sticky top-0 mx-8 left-0 right-0 flex pt-6 pb-6 items-center bg-Anthracite':
-        !isMapsRoute,
-      'absolute top-0 left-0 right-0 flex pt-6 pb-6 items-center':
-        isMapsRoute,
-    }"
     style="
       z-index: 100000;
       margin-left: 30px;
@@ -102,14 +96,46 @@
                       </template> -->
 
                     <!-- NEW -->
-                    <Events width="24" height="24" v-if="item.icon === 'Events'"></Events>
-                    <Shards width="24" height="24" v-if="item.icon === 'Shards'"></Shards>
-                    <Hub width="24" height="24" v-if="item.icon === 'Hub'"></Hub>
-                    <Jobs width="24" height="24" v-if="item.icon === 'Jobs'"></Jobs>
-                    <Academy width="24" height="24" v-if="item.icon === 'Academy'"></Academy>
-                    <Bootcamps width="24" height="24" v-if="item.icon === 'Bootcamps'"></Bootcamps>
-                    <Maps width="24" height="24" v-if="item.icon === 'Maps'"></Maps>
-                    <Scrims width="24" height="24" v-if="item.icon === 'Scrims'"></Scrims>
+                    <Events
+                      width="24"
+                      height="24"
+                      v-if="item.icon === 'Events'"
+                    ></Events>
+                    <Shards
+                      width="24"
+                      height="24"
+                      v-if="item.icon === 'Shards'"
+                    ></Shards>
+                    <Hub
+                      width="24"
+                      height="24"
+                      v-if="item.icon === 'Hub'"
+                    ></Hub>
+                    <Jobs
+                      width="24"
+                      height="24"
+                      v-if="item.icon === 'Jobs'"
+                    ></Jobs>
+                    <Academy
+                      width="24"
+                      height="24"
+                      v-if="item.icon === 'Academy'"
+                    ></Academy>
+                    <Bootcamps
+                      width="24"
+                      height="24"
+                      v-if="item.icon === 'Bootcamps'"
+                    ></Bootcamps>
+                    <Maps
+                      width="24"
+                      height="24"
+                      v-if="item.icon === 'Maps'"
+                    ></Maps>
+                    <Scrims
+                      width="24"
+                      height="24"
+                      v-if="item.icon === 'Scrims'"
+                    ></Scrims>
 
                     <!-- OLD -->
                     <!--
@@ -278,14 +304,13 @@ export default {
     Maps,
     Bento,
     Scrims,
-},
+  },
   data() {
     const store = useStoreAuth();
     const storeSpace = useStoreSpace();
     return {
       dataTopLeft,
       dataBottomLeft,
-      isMapsRoute: false,
       isOpenModal: false,
       isOpenStatusMenu: false,
       store,
@@ -399,7 +424,7 @@ export default {
   methods: {
     openModal() {
       this.isOpenModal = true;
-      this.$emit('modal-changed',this.isOpenModal);
+      this.$emit("modal-changed", this.isOpenModal);
     },
     async openSpace(target, type) {
       if (
@@ -431,6 +456,7 @@ export default {
       } else {
         this.dropdown = "hidden";
       }
+      this.$emit("toggleDropdown", this.dropdown);
     },
     replaceUrl(e) {
       console.log("dans le replace layout");
@@ -444,14 +470,7 @@ export default {
       if (this.$route.name !== this.store.view) {
         this.store.view = this.$route.name;
       }
-    },
-    $route(to, from) {
-      this.isMapsRoute = to.path === "/maps";
-    },
-  },
-  mounted() {
-    this.getUrl();
-    this.isMapsRoute = this.$route.path === "/maps";
-  },
+    }
+  }
 };
 </script>

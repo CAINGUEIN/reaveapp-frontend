@@ -2,9 +2,11 @@
   <div class="flex h-screen">
     <div class="w-full flex flex-col h-full">
       <TopNavBar @modal-changed="handleModalValueChanged" />
-      <div class="mx-8 h-full flex border-2 border-Rock rounded-t-xl border-b-0">
+      <div
+        class="mx-8 h-full flex border-2 border-Rock rounded-t-xl border-b-0"
+      >
         <LeftNavBar />
-        <router-view class="max-h-fit" />
+        <router-view class="max-h-fit w-full" />
       </div>
     </div>
     <CreateSpaceModal @isOpenModal="closeModal" :isOpenModal="isOpenModal" />
