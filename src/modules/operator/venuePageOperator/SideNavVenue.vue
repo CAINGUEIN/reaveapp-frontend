@@ -57,7 +57,9 @@
           </Menu>
         </div>
       </div>
-      <div v-for="section in nav" class="flex flex-col mt-5 mx-8">
+      <div v-for="section in nav" 
+        :class="section.cathegory == 'Search' ? 
+        'flex flex-col mx-8' : 'flex flex-col mt-5 mx-8'">
         <p
           class="flex items-center text-LightGrey font-medium text-xl cursor-pointer p-2 rounded-lg"
           @click="
@@ -69,17 +71,18 @@
               ? $emit('update:modelValue', section.target)
               : ''
           "
-          :class="
+          :class=" 
             select === section.target
-              ? 'text-LightGrey bg-DarkRock'
-              : 'text-Gravel hover:text-LightGrey hover:bg-LightRock'
+              ? section.cathegory == 'Search' ? 'text-LightRock cursor-not-allowed' : 'text-LightGrey bg-DarkRock'
+              : section.cathegory == 'Search' ? 'text-LightRock cursor-not-allowed' : 'text-Gravel hover:text-LightGrey hover:bg-LightRock'
           "
         >
           <SvgTarget
             :target="section.icon"
             :height="20"
             :width="20"
-            class="mr-2"
+            :class="section.cathegory == 'Search' ? 'text-LightRock mr-[10px]' : 'mr-2'"
+            
           ></SvgTarget>
           {{ section.cathegory
           }}<ChevronUpIcon
@@ -148,10 +151,10 @@
       MenuItem,
       MenuItems,
     },
-    props: ["yourPerm", "infoEvent", "select", "modelValue"],
+    props: ["yourPerm", "infoEvent", "select", "modelValue", "oui"],
     data() {
       return {
-        userNavigation: [{ name: "opt1" }, { name: "opt2" }, { name: "Remove" }],
+        userNavigation: [{ name: "Option 1" }, { name: "Option 2" }, { name: "Remove" }],
         nav: [
           {
             cathegory: "Overview",
@@ -161,13 +164,20 @@
             items: [],
           },
           {
+            cathegory: "Search",
+            target: "",
+            icon: "Search",
+            open: true,
+            items: [],
+          },
+          {
             cathegory: "Logistics",
             target: "",
             icon: "Logistics",
             open: true,
             items: [
-              { target: "Format", icon: "Plans", name: "Plans" },
-              { target: "Equipements", icon: "Equipment", name: "Equipment" },
+              { target: "", icon: "Plan", name: "Plans" },
+              { target: "", icon: "Equipment", name: "Equipment" },
               { target: "", icon: "Maps", name: "Travel" },
               { target: "", icon: "Calendar", name: "Calendar" },
               { target: "", icon: "Tasks", name: "Tasks" },
@@ -180,7 +190,7 @@
             icon: "People",
             open: true,
             items: [
-              { target: "Staff", icon: "Heart", name: "Staff" },
+              { target: "", icon: "Heart", name: "Staff" },
               { target: "", icon: "Stars", name: "Events" },
               { target: "", icon: "Fist", name: "Sponsors" },
               { target: "", icon: "Stand", name: "Booths" },
@@ -216,7 +226,7 @@
             icon: "Finance",
             open: true,
             items: [
-              { target: "Panel", icon: "Panel", name: "Panel" },
+              { target: "", icon: "Panel", name: "Panel" },
               { target: "", icon: "Budgets", name: "Budgets" },
               { target: "", icon: "Documents", name: "Contracts" },
             ],

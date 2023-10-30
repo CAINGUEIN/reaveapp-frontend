@@ -113,14 +113,15 @@
             </td>
             <td>
               <p class="text-base font-black text-LightGrey">
-                {{ $dayjs(item.updatedAt).format("DD/MM/YYYY") }}
+                {{ item.owner.user_id.userTag }}
               </p>
             </td>
             <td>
               <p class="text-base font-black text-LightGrey">
-                {{ item.owner.user_id.userTag }}
+                {{ $dayjs(item.updatedAt).format("DD/MM/YYYY") }}
               </p>
             </td>
+            
             <td class="py-4 px-3 rounded-r-xl">
               <div class="flex justify-end">
                 <Menu as="div" class="relative ml-3">
@@ -232,7 +233,7 @@ export default {
     },
     goTo(target) {
       this.$router.push({ name: "VenueId", params: { id: target } });
-    }, 
+    },
     async searchVenueOperator() {
       //recup de toute les datas dans les event qui on pour owner le id du user
       let result = await EventServices.searchPersonalVenueOperator();

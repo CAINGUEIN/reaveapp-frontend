@@ -1,6 +1,8 @@
 <template>
   <div>
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg 
+    :width=width 
+    :height=height viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="2.86768" y="9.80916" width="14.2593" height="8.14815" rx="1" :stroke="color1" stroke-width="1.25" />
       <rect width="18.3333" height="4.07407" rx="1" transform="matrix(1 0 0 -1 0.829102 9.80916)" :stroke="color1"
         stroke-width="1.25" />

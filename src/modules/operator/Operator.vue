@@ -15,8 +15,8 @@
         >
           <SvgTarget
             :target="item.icon"
-            height="18"
-            width="18"
+            height="20"
+            width="20"
             class="mr-2"
           ></SvgTarget>
           {{ item.name }}

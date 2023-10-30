@@ -31,20 +31,6 @@
   } from "@headlessui/vue";
   import Plus from "@assets/icons/Plus.vue";
   import Spaces from "@assets/icons/Spaces.vue";
-
-  /* OLD */
-  /*
-    import Explore from "@assets/icons/Explore.vue";
-    import Feed from "@assets/icons/Feed.vue";
-    import Academy from "@assets/icons/Academy.vue";
-    import Jobs from "@assets/icons/Jobs.vue";
-    import Bootcamps from "@assets/icons/Bootcamps.vue";
-    import Leagues from "@assets/icons/Leagues.vue";
-    import NFTs from "@assets/icons/NFTs.vue";
-    import Maps from "@assets/icons/Maps.vue";
-    import Stars from "@core/assets/svg/general/Stars.vue"
-
-    /* NEW */
   import Events from "@assets/icons/Events.vue";
   import Shards from "@assets/icons/Shards.vue";
   import Hub from "@assets/icons/Hub.vue";
@@ -72,20 +58,6 @@
       Popover,
       PopoverButton,
       PopoverPanel,
-      /*OLD*/
-      /*
-      Explore,
-      Feed,
-      Stars,
-      Academy,
-      Bootcamps,
-      Leagues,
-      NFTs,
-      Jobs,
-      DotsVerticalIcon,
-      Maps,
-      */
-      /*NEW*/
       Events,
       Shards,
       Hub,
@@ -116,52 +88,6 @@
         dropdown: "hidden",
 
         solutions: [
-          /*OLD*/
-          /*
-            {
-              target: "Event",
-              icon: "Leagues",
-              dataClass: "settings",
-              btnName: 'Event',
-            },
-            {
-              target: "Nft",
-              icon: "NFTs",
-              dataClass: "settings",
-              btnName: 'Item',
-            },
-            {
-              target: "Social",
-              icon: "Feed",
-              dataClass: "settings",
-              btnName: 'Social',
-            },
-            {
-              target: "Jobs",
-              icon: "Jobs",
-              dataClass: "settings",
-              btnName: 'Jobs',
-            },
-            {
-              target: "Academy",
-              icon: "Academy",
-              dataClass: "settings",
-              btnName: 'Academy',
-            },
-            {
-              target: "Bootcamps",
-              icon: "Bootcamps",
-              dataClass: "settings",
-              btnName: 'Bootcamps',
-            },
-            {
-              target: "Maps",
-              icon: "Maps",
-              dataClass: "settings",
-              btnName: 'Maps',
-            },
-            */
-          /*NEW*/
           {
             target: "Events",
             icon: "Events",

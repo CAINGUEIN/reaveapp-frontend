@@ -53,7 +53,7 @@
         store,
         id: "",
         infoEvent: "",
-        select: "Overview",
+        select: "OverviewVenue",
         index: 1,
         yourPerm: "",
       };
@@ -69,6 +69,7 @@
       },
       async feadData() {
         let body = { _id: this.id };
+        console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY', body);
         let result = await eventServices.dataVenue(body);
         if (result.data.success) {
           this.infoEvent = result.data.data;

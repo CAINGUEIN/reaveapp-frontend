@@ -26,7 +26,7 @@ class UserUpdateServices {
   static async imgEvent(formdata) {
     return Base.post("/user/update/img/event", formdata)
       .then((response) => {
-        console.log("event img", response);
+        console.log("We are in the route /img/event and the response is :", response);
         return response;
       })
       .catch((e) => {
@@ -34,6 +34,7 @@ class UserUpdateServices {
         return e;
       });
   }
+
   static async imgItem(formdata) {
     return Base.post("/user/update/img/item", formdata)
       .then((response) => {
