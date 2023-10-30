@@ -18,5 +18,4 @@ export {
   Publish,
   Venue,
   Packages,
-  Stars
 };
