@@ -35,9 +35,9 @@
 
         //accorHotel
         var customIcon = L.icon({
-          iconUrl: 'https://cdn.discordapp.com/attachments/1036316227179647086/1168295909281513523/Accor_Arena.png?ex=65513f5a&is=653eca5a&hm=b0fd41c720f6b2c6fb8e68151ee27736c61bd7b9d0eb050a0ba0fac98451fa06&',
-          iconSize: [200, 50], // Définissez la taille de l'icône
-          iconAnchor: [50, 12], // Définissez l'ancre de l'icône
+          iconUrl: 'https://media.discordapp.net/attachments/1036309161140572160/1168296298508718211/Accor_Arena.png?ex=65513fb7&is=653ecab7&hm=746de807dfb2bba52485cca85eb3fdaf8a584ba93a4bac174961272cc8b1be83&=&width=1440&height=406',
+          iconSize: [150, 37], // Définissez la taille de l'icône
+          iconAnchor: [75, 18], // Définissez l'ancre de l'icône
         });
         var accorHotelsArenaCoords = [48.839220, 2.377760]; // Latitude et longitude
         var marker = L.marker(accorHotelsArenaCoords, {
