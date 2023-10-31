@@ -12,13 +12,6 @@
       <button class="venueType">🏪 Stores</button>
     </div>
     <button id="rmPosition">📍</button>
-
-    <!-- LEFT SIDE CARD (DEPRECATED)
-    <div id="rmLayoutLeft">
-      <img src="" id="rmLayoutLeftImg" />
-    </div>
-    -->
-
     <input id="rmSearch" type="text" placeholder="🔎 Search" />
   </div>
 </template>
@@ -59,10 +52,10 @@
       function addVenue(venue) {
         //marker setup
         var customIcon = L.icon({
-          iconUrl: 'https://media.discordapp.net/attachments/1036309161140572160/1168296298508718211/Accor_Arena.png?ex=65513fb7&is=653ecab7&hm=746de807dfb2bba52485cca85eb3fdaf8a584ba93a4bac174961272cc8b1be83&=&width=1440&height=406',
+          iconUrl: 'src/core/assets/img/defaultVenue.png',
           imageUrl: 'https://media.discordapp.net/attachments/696115202185232497/1163095612414238811/kcx.png?ex=653e5433&is=652bdf33&hm=6421b0e3e0b5a0369322440cab52ab9f5bcb91483c023c22d0268cf9261f9b29&=',
-          iconSize: [150, 37], // taille de l'icône
-          iconAnchor: [75, 18], // ancre de l'icône
+          iconSize: [36, 36], // taille de l'icône
+          iconAnchor: [18, 18], // ancre de l'icône
         });
 
         //marker creation
@@ -77,7 +70,6 @@
           `<img id="rmImgPopup" src="${venueIllustration}" /><p id="rmPopup"> <b> KCX3 </b><br/> Paris, France </p>`
         );
       }
-
 
       async function putVenuesOnMap() {
         let result = await EventServices.searchPersonalVenueOperator();
