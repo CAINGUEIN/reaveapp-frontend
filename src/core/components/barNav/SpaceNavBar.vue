@@ -29,7 +29,7 @@ export default {
     const storeSpace = useStoreSpace();
     return {
       store,
-      storeSpace
+      storeSpace,
     };
   },
   components: { ToolsButtonNav, ImgFormated },

@@ -67,6 +67,12 @@ const Data = [
         target: "New",
         src: "@core/assets/icons/News.svg",
         class: "small"
+    },
+    {
+        name: "Maps",
+        target: "Maps",
+        src: "@core/assets/icons/Maps.svg",
+        class: "small"
     }
 ];
 

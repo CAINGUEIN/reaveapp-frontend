@@ -2,19 +2,21 @@
   <div>
     <div name="layout" class="flex justify-between items-center">
       <p class="flex items-center">
-        
-        <span class="font-black text-xl text-white flex items-center"><SvgTarget
-          target="Overview"
-          :height="20"
-          :width="20"
-          class="mr-2"
-        ></SvgTarget> OVERVIEW</span>
+        <span class="font-black text-xl text-white flex items-center"
+          ><SvgTarget
+            target="Overview"
+            :height="20"
+            :width="20"
+            class="mr-2"
+          ></SvgTarget>
+          OVERVIEW</span
+        >
         <button
           class="ml-6 text-left pl-3 pr-4 py-1 my-0.5 flex items-center text-base font-black text-Anthracite bg-white rounded-full h-10"
           v-if="
             (yourPerm === 'Owner' || yourPerm === 'Admin') && !data.isPublished
           "
-          @click="open = true"
+          @click="(open = true), (modalView = 'publish')"
         >
           <SvgTarget
             target="Publish"
@@ -58,11 +60,28 @@
         </div>
         <div name="separateEvent" class="h-0.5 w-full bg-Gravel mt-4"></div>
         <div name="contentEvent" class="flex mt-8">
-          <button
-            class="h-[220px] w-[220px] rounded-xl px-10 uploadPosterInput"
-            >
-            Upload Event Poster
-          </button>
+          <label
+            class="h-[220px] w-[220px] border-2 border-dashed rounded-xl px-10 cursor-pointer flex"
+            for="eventUpload"
+          >
+            <input
+              id="eventUpload"
+              name="eventUpload"
+              type="file"
+              class="sr-only"
+              @input="imgUpload"
+              accept="image/png"
+              @change="submit"
+            />
+            <ImgFormated
+              :key="data._id"
+              :size="'xl'"
+              :targetSpace="data._id"
+              :type="'event'"
+              class="absolute opacity-50 left-0 right-0 top-0 bottom-0 rounded-xl bg-white"
+            />
+            <p class="text-center my-auto">Upload Event Poster</p>
+          </label>
           <div class="ml-6 w-[400px]">
             <div name="inputName">
               <InputModel
@@ -110,16 +129,15 @@
         </div>
       </div>
       <div name="locationSection">
-        <div
-          name="headerLocation"
-          class="flex items-end justify-between mt-8"
-        >
+        <div name="headerLocation" class="flex items-end justify-between mt-8">
           <p class="text-xl text-LightGrey font-black leading-none">LOCATION</p>
           <div>
             <button
               v-if="editLocation"
               :class="
-                ifUpdatingLocation() ? 'bg-white' : 'bg-Gravel cursor-not-allowed'
+                ifUpdatingLocation()
+                  ? 'bg-white'
+                  : 'bg-Gravel cursor-not-allowed'
               "
               class="text-black rounded-full h-10 px-10 mx-auto"
               @click.prevent="updateLocation()"
@@ -194,9 +212,7 @@
                 <p class="flex text-H4 text-White font-black leading-none">
                   {{ city.label }}
                 </p>
-                <p
-                  class="flex text-H4 text-White font-book leading-none p-3"
-                >
+                <p class="flex text-H4 text-White font-book leading-none p-3">
                   {{ city.value === "" ? "Empty" : city.value }}
                 </p>
               </div>
@@ -204,9 +220,7 @@
                 <p class="flex text-H4 text-White font-black leading-none">
                   {{ cp.label }}
                 </p>
-                <p
-                  class="flex text-H4 text-White font-book leading-none p-3"
-                >
+                <p class="flex text-H4 text-White font-book leading-none p-3">
                   {{ cp.value === "" ? "Empty" : cp.value }}
                 </p>
               </div>
@@ -214,9 +228,7 @@
                 <p class="flex text-H4 text-White font-black leading-none">
                   {{ country.label }}
                 </p>
-                <p
-                  class="flex text-H4 text-White font-book leading-none p-3"
-                >
+                <p class="flex text-H4 text-White font-book leading-none p-3">
                   {{ country.value === "" ? "Empty" : country.value }}
                 </p>
               </div>
@@ -226,7 +238,17 @@
       </div>
     </div>
     <ModalClear :open="open" @action="close()">
-      <Published :data="data" @action="close"></Published>
+      <Published
+        v-if="modalView === 'publish'"
+        :data="data"
+        @action="close"
+      ></Published>
+      <CropperEvent
+        v-if="img !== ''"
+        :data="data"
+        :src="img"
+        @closeAction="close"
+      />
     </ModalClear>
   </div>
 </template>
@@ -244,6 +266,8 @@ import ModalClear from "@components/modal/ModalClear.vue";
 import Published from "@components/modal/projectId/Published.vue";
 
 import EventServices from "@axios/services/eventServices";
+import CropperEvent from "../cropper/CropperEvent.vue";
+import ImgFormated from "../img/ImgFormated.vue";
 
 export default {
   components: {
@@ -254,6 +278,8 @@ export default {
     PencilIcon,
     ModalClear,
     Published,
+    CropperEvent,
+    ImgFormated,
   },
   props: ["data", "yourPerm"],
   data() {
@@ -261,6 +287,9 @@ export default {
       open: false,
       edit: false,
       editLocation: false,
+      modalView: "",
+      imgUpload: "",
+      img: "",
       errors: [],
       name: {
         label: "NAME",
@@ -312,6 +341,14 @@ export default {
     },
     close() {
       this.open = false;
+      this.img = "";
+      this.imgUpload = "";
+      this.modalView = "";
+    },
+    submit() {
+      let cache = document.getElementById("eventUpload").files[0];
+      this.img = URL.createObjectURL(cache);
+      this.open = true;
     },
     ifUpdating() {
       if (
@@ -382,12 +419,3 @@ export default {
   },
 };
 </script>
-
-
-
-<style scoped>
-.uploadPosterInput {
-  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='14' ry='14' stroke='%23E5E5E5FF' stroke-width='4' stroke-dasharray='10' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
-  border-radius: 14px;
-}
-</style>

@@ -3,56 +3,37 @@
     <div class="flex flex-col">
       <section class="">
         <div class="img-cropper">
+
+          <!-- Close cropper button -->
+          <XButton36  @click="$emit('closeAction')" class="absolute right-[-70px] top-[-65px] px-3 z-10"></XButton36>
+          
           <vue-cropper
-            class="h-144 w-144 mx-auto"
+            class="h-[450px] w-[450px] mx-auto"
             ref="cropper"
-            :aspect-ratio="160 / 160"
+            :aspect-ratio="100 / 100"
             :src="src"
             preview=".preview"
           />
         </div>
       </section>
       <section class="preview-area">
-        <!-- <p>Preview</p>
-        <div class="preview w-[160px] h-[160px] overflow-hidden rounded-full" />
-        <div class="preview w-[24px] h-[24px] overflow-hidden rounded-full" /> -->
         <div class="flex">
-          <toolsButtonSubmit
-            class="w-40 mx-2 mt-5"
-            @action="reset"
-            txtButton="Reset"
-            :color="''"
-          />
-          <toolsButtonSubmit
-            class="w-15 mx-2 mt-5"
-            @action="rotate(90)"
-            txtButton="R+"
-            :color="''"
-          />
-          <toolsButtonSubmit
-            class="w-15 mx-2 mt-5"
-            @action="rotate(-90)"
-            txtButton="R-"
-            :color="''"
-          /><!-- 
-          <toolsButtonSubmit
-            class="w-15 mx-2 mt-5"
-            @action="flipX"
-            txtButton="X"
-            :color="''"
-          />
-          <toolsButtonSubmit
-            class="w-15 mx-2 mt-5"
-            @action="flipY"
-            txtButton="Y"
-            :color="''"
-          /> -->
-          <toolsButtonSubmit
-            class="w-40 mx-2 mt-5"
-            @action="cropImage"
-            txtButton="Save"
-            :color="''"
-          />
+          <button
+            class="w-40 h-10 mx-2 mt-5 bg-white text-Anthracite rounded-full"
+            @click="reset"
+          >Reset</button>
+          <button
+            class="w-10 h-10 mx-2 mt-5 bg-white text-Anthracite rounded-full"
+            @click="rotate(-90)"
+          >-90°</button>
+          <button
+            class="w-10 h-10 mx-2 mt-5 bg-white text-Anthracite rounded-full"
+            @click="rotate(90)"
+          >+90°</button>
+          <button
+            class="w-40 h-10 mx-2 mt-5 bg-white text-Anthracite rounded-full"
+            @click="cropImage"
+          >Save</button>
         </div>
       </section>
     </div>
@@ -61,20 +42,31 @@
 
 <script>
 import VueCropper from "vue-cropperjs";
+import XButton36 from "@components/buttons/XButton36.vue";
 import "cropperjs/dist/cropper.css";
 //tool
 import useStoreAuth from "@stores/auth";
 //services
 import UserUpdateServices from "@axios/services/userUpdateServices.js";
 import ToolsButtonSubmit from "../buttons/ToolsButtonSubmit.vue";
+import EventServices from "../../../plugins/axios/services/eventServices";
+
+
 export default {
   components: {
+    XButton36,
     VueCropper,
     ToolsButtonSubmit,
   },
   props: {
+    venueId : {
+      type: String,
+    },
     src: {
       type: String,
+    },
+    data: {
+      type: Object,
     },
   },
   data() {
@@ -85,6 +77,7 @@ export default {
     };
   },
   methods: {
+    
     dataURLtoFile(dataurl) {
       let arr = dataurl.split(",");
       let mime = arr[0].match(/:(.*?);/)[1];
@@ -98,7 +91,7 @@ export default {
       }
       return new File(
         [u8arr],
-        this.store.dataAccount._id + "avatar." + type[1],
+        this.data._id + "event." + type[1],
         {
           type: mime,
         }
@@ -108,18 +101,34 @@ export default {
       this.store.loading = true;
       // get image data for post processing, e.g. upload or setting image src
       this.cropImg = this.$refs.cropper.getCroppedCanvas().toDataURL();
+      //console.log(' this.cropImg : ',  this.cropImg);
       let submitImg = this.dataURLtoFile(this.cropImg);
+      console.log(' submitImg : ',  submitImg);
       let formData = new FormData();
-      formData.append("img", submitImg);
-      console.log(submitImg);
-      let result = await UserUpdateServices.imgAvatar(formData);
+      console.log('-----------------');
+      formData.append("selectedPic", submitImg);
+      formData.append('venueId', this.venueId);
+      console.log('form data : ',formData);
+      console.log('voici la submit img : ',submitImg);
+     // console.log('We are in the venue id : ');
+     console.log('SSSSSSSSSSSSSSSSSSS ',this.venueId);
+     //const oui = { id : this.venueId };
+      let result = await EventServices.picVenue(formData);
+      console.log("Type de la réponse : ", typeof result);
+      this.data.primaryPic = result.data.imageUrl;
+      this.$emit('callFromCrop');
+      location.reload();
+
+     //await this.data.save();
       if (result.data.success) {
         this.$emit("closeAction");
         this.store.loading = false;
-        this.store.avatarKey = this.store.avatarKey + 1
+        this.store.avatarKey = this.store.avatarKey + 1;
       } else {
         //message d'erreur
         this.$emit("closeAction");
+        this.$emit("reloadImage");
+
         this.store.loading = false;
       }
     },
@@ -141,6 +150,7 @@ export default {
       this.$refs.cropper.reset();
     },
     rotate(deg) {
+      console.log(this.data._id);
       this.$refs.cropper.rotate(deg);
     },
   },

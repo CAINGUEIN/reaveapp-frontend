@@ -13,7 +13,15 @@
         </div>
         <div>
           <h2 class="text-right">{{ dataEvent.name }}</h2>
-          <h3>Organised by @{{ dataEvent.owner.user_id.userTag }}</h3>
+          <h3 class="flex items-center">
+            <ImgFormated
+              :key="dataEvent.owner._id"
+              :size="'l'"
+              :targetSpace="dataEvent.owner._id"
+              :type="'avatar'"
+              class="h-8 w-8 rounded-full bg-slate-300 mr-4"
+            />Organised by @{{ dataEvent.owner.user_id.userTag }}
+          </h3>
         </div>
       </div>
       <div class="flex flex-1 justify-around h-max items-center -mx-24">
@@ -81,8 +89,16 @@
           </div>
         </div>
         <div class="mb-24" v-else>
-          <h2 class=" text-center">
-            Gifted to @{{ dataTickets[index].owner_id.userTag }}
+          <h2 class="text-center flex items-center justify-center">
+            Gifted to
+            <ImgFormated
+              :key="dataTickets[index].owner_id._id"
+              :size="'l'"
+              :targetSpace="dataTickets[index].owner_id._id"
+              :type="'avatar'"
+              class="h-8 w-8 rounded-full bg-slate-300 mx-4"
+            />
+            @{{ dataTickets[index].owner_id.userTag }}
           </h2>
         </div>
       </div>
@@ -113,6 +129,7 @@ import Wallet from "@assets/icons/Wallet.vue";
 import View3D from "@components/modal/wallet/View3D.vue";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/vue/outline";
 import QRView from "@components/modal/wallet/QRView.vue";
+import ImgFormated from "../img/ImgFormated.vue";
 export default {
   components: {
     Button60Slot,
@@ -124,6 +141,7 @@ export default {
     Wallet,
     ModalClear,
     QRView,
+    ImgFormated,
   },
   props: ["dataTickets", "dataEvent", "ticketsResumeBuy"],
   data() {

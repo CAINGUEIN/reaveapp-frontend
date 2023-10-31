@@ -1,7 +1,6 @@
 <template>
   <div>
     <div v-if="!store.dataAccount.lolData.lolPuuid" class="mt-8 text-center">
-      <h3>Enter your <LeagueOfLegend :width="24" :height="24" style="display: inline;" /> Puuid</h3>
       <InputModel
         class="mt-8 mx-auto w-144"
         :data="puuid"
@@ -10,8 +9,8 @@
       />
       <ToolsButtonSubmit
         @action="submit"
-        txtButton="Enter"
-        class="w-32 mx-auto mt-8"
+        txtButton="OK"
+        class="w-96 mx-auto mt-8"
         :color="puuid.value === '' ? 'desactivated' : ''"
       />
     </div>
@@ -58,8 +57,6 @@ import ModuleCompareGoldEarned from "../../../core/components/dashboard/ModuleCo
 import ModuleCompareVisionLaneOpponent from "../../../core/components/dashboard/ModuleCompareVisionLaneOpponent.vue";
 import ModuleCompareVisionPerMinute from "../../../core/components/dashboard/ModuleCompareVisionPerMinute.vue";
 import ModuleAverageKDAInv from "../../../core/components/dashboard/ModuleAverageKDAInv.vue";
-import LeagueOfLegend from "../../../core/assets/icons/LeagueOfLegend.vue";
-
 
 export default {
   components: {
@@ -71,7 +68,6 @@ export default {
     ModuleCompareVisionLaneOpponent,
     ModuleCompareVisionPerMinute,
     ModuleAverageKDAInv,
-    LeagueOfLegend
   },
   props: ["paramOptionGame", "action"],
   data() {

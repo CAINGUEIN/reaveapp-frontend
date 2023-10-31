@@ -1,16 +1,11 @@
 <template>
-  <div class=" h-full max-h-screen overflow-auto scrollbarV">
-    <div class="w-full flex">
-      <ImgFormated
-        :key="store.avatarKey"
-        :size="'s'"
-        :type="'avatar'"
-        class="absolute left-8 top-6 z-10 h-10 w-10 bg-white rounded-full"
-      />
-      <div class="mx-auto mt-6 flex">
+  <div class="h-full w-full max-h-screen overflow-auto scrollbarV">
+    <div class="w-full flex h-16">
+      <div class="mx-auto mt-3 mb-3 flex">
         <button
           v-for="item in nav"
-          class="py-1 px-4 mx-2 hover:bg-LightRock hover:text-white rounded-lg font-medium flex items-center"
+          :key="item.name"
+          class="py-1 px-4 mx-2 text-base hover:bg-LightRock hover:text-white rounded-lg font-medium flex items-center"
           :class="
             target === item.target
               ? 'bg-LightRock text-white'
@@ -20,19 +15,18 @@
         >
           <SvgTarget
             :target="item.icon"
-            height="18"
-            width="18"
+            height="20"
+            width="20"
             class="mr-2"
           ></SvgTarget>
           {{ item.name }}
         </button>
       </div>
-      <XButton40
-        @click="goBack"
-        class="absolute right-8 top-6 z-10"
-      ></XButton40>
     </div>
-    <component :is="target" class="mx-auto w-[95%] max-w-[1680px] mb-8"></component>
+    <component
+      :is="target"
+      class="mx-auto w-[95%] max-w-[1680px] mb-8"
+    ></component>
   </div>
 </template>
 
@@ -44,6 +38,7 @@ import ImgFormated from "@core/components/img/ImgFormated.vue";
 //pages
 import projects from "./EventOperator.vue";
 import items from "./ItemsOperator.vue";
+import venue from "./VenueOperator.vue";
 //tool
 import useStoreAuth from "@stores/auth";
 export default {
@@ -53,6 +48,7 @@ export default {
     projects,
     ImgFormated,
     items,
+    venue,
   },
   data() {
     const store = useStoreAuth();
@@ -60,11 +56,14 @@ export default {
       store,
       target: "projects",
       nav: [
-        { name: "Projects", icon: "Projects", target: "projects" },
+        { name: "Events", icon: "Stars", target: "projects" },
+        { name: "Venues", icon: "Venue", target: "venue" },
+        { name: "Packages", icon: "Packages", target: "package" },
         { name: "Equipement", icon: "Equipment", target: "items" },
-        { name: "Calendar", icon: "Schedule", target: "schedule" },
+      
+        /* { name: "Calendar", icon: "Calendar", target: "calendar" },
         { name: "Analytics", icon: "Analytics", target: "analytics" },
-        { name: "Finance", icon: "PileOfCoins", target: "finance" },
+        { name: "Finance", icon: "PileOfCoins", target: "finance" }, */
       ],
     };
   },

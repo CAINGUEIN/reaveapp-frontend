@@ -1,5 +1,5 @@
 <template>
-  <img :src="srcImg" @error="replaceUrl" :alt="type + size" />
+  <img :src="srcImg" @error="replaceUrl" :alt="type + size" >
 </template>
 
 <script>
@@ -24,9 +24,19 @@ export default {
         this.target = this.store.dataAccount._id;
       } else if (this.type === "avatar") {
         srcType = "useravatar/";
-        this.target = this.store.dataAccount._id;
+        if (this.targetSpace !== undefined) {
+          this.target = this.targetSpace;
+        } else {
+          this.target = this.store.dataAccount._id;
+        }
       } else if (this.type === "friend") {
         srcType = "profilespace/";
+        this.target = this.targetSpace;
+      } else if (this.type === "event") {
+        srcType = "eventpp/";
+        this.target = this.targetSpace;
+      } else if (this.type === "item") {
+        srcType = "equipmentpp/";
         this.target = this.targetSpace;
       }
       this.srcImg =
@@ -40,7 +50,6 @@ export default {
       console.log(this.srcImg);
     },
     replaceUrl(e) {
-      console.log("dans le replace");
       let randomColor = Math.floor(Math.random() * 0xffffff).toString(16);
       let formatSize = "";
       if (this.size === "l") {
@@ -56,7 +65,17 @@ export default {
       } else if (this.size === "status") {
         formatSize = "661x150/";
       }
-      e.target.src = "https://via.placeholder.com/" + formatSize + randomColor;
+      if (this.type === "event") {
+        e.target.src = "/img/imageeventcard.png";
+      } else if (this.type === "item") {
+        e.target.src = "/chaire.jpeg";
+      } else if (this.type === "venue") {
+        e.target.src = "/img/adidasArena.jpg"
+      }
+      else {
+        e.target.src =
+          "https://via.placeholder.com/" + formatSize + randomColor;
+      }
     },
   },
   mounted() {

@@ -264,7 +264,13 @@
               <tr v-for="item in data.equipements" :key="item._id">
                 <td>
                   <div class="flex items-center ml-4 my-2">
-                    <div class="h-15 w-15 rounded-xl mr-4 bg-slate-400"></div>
+                    <ImgFormated
+                      :key="data._id"
+                      :size="'m'"
+                      :targetSpace="item._id"
+                      :type="'item'"
+                      class="h-15 w-15 rounded-xl mr-4 bg-slate-400"
+                    />
                     <p class="text-base font-black text-LightGrey">
                       {{ item.name }}
                     </p>
@@ -385,6 +391,7 @@ import {
   ViewListIcon,
 } from "@heroicons/vue/solid";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
+import ImgFormated from "../../img/ImgFormated.vue";
 
 export default {
   components: {
@@ -407,6 +414,7 @@ export default {
     MenuItem,
     MenuItems,
     DotsHorizontalIcon,
+    ImgFormated,
   },
   props: ["data", "yourPerm"],
   data() {

@@ -1,7 +1,8 @@
 <template>
   <div class="flex flex-col justify-between">
     <label
-      class="flex text-H4 text-White font-black leading-none"
+      class="flex text-White font-black leading-none"
+      :class="textClass"
       :for="data.name"
     >
       {{ data.label }}
@@ -17,10 +18,11 @@
         :type="data.type"
         :name="data.name"
         :id="data.name"
+        :placeholder="data.placeholder ? data.placeholder : data.label"
         :autocomplete="data.name"
-        style="border-color: #2A2A2A;"
-        class="block w-full font-normal py-3 px-6 rounded-Large text-H4 text-White bg-Anthracite leading-none focus:border-White border-2 focus:ring-0 focus:outline-none"
-        :class="data.class"
+        class="block w-full font-normal  px-2 rounded-Large text-H6 text-White bg-Anthracite border-DarkRock leading-none focus:border-White border-2 focus:ring-0 focus:outline-none"
+        :class="paddingY"
+        
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
         :disabled="store.loading"
@@ -51,6 +53,15 @@ export default {
     ExclamationCircleIcon,
   },
   props: {
+    textClass: {
+      type: String,
+      default: "text-H4",  // Valeur par défaut
+    },
+    paddingY: {
+      type: String,
+      default: "py-3",  
+    },
+
     /** :data="inputExemple"
      * inputExemple: {
      *  label: "Exemple",

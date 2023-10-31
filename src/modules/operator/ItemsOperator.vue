@@ -204,7 +204,13 @@
           <tr v-for="item in event.equipements" :key="item._id">
             <td>
               <div class="flex items-center ml-4 my-2">
-                <div class="h-15 w-15 rounded-xl mr-4 bg-slate-400"></div>
+                <ImgFormated
+                  :key="item._id"
+                  :size="'m'"
+                  :targetSpace="item._id"
+                  :type="'item'"
+                  class="h-15 w-15 rounded-xl mr-4 bg-slate-400"
+                />
                 <p class="text-base font-black text-LightGrey">
                   {{ item.name }}
                 </p>
@@ -215,10 +221,19 @@
                 {{ item.quantity }}
               </p>
             </td>
-            <td>
-              <p class="text-base font-black text-LightGrey">
-                {{ event.name }}
-              </p>
+            <td class="">
+              <div class="flex items-center">
+                <ImgFormated
+                  :key="event._id"
+                  :size="'s'"
+                  :targetSpace="event._id"
+                  :type="'event'"
+                  class="h-10 w-10 rounded-xl mr-4 bg-white"
+                />
+                <p class="text-base font-black text-LightGrey">
+                  {{ event.name }}
+                </p>
+              </div>
             </td>
             <td>
               <p class="text-base font-black text-LightGrey">
@@ -266,10 +281,12 @@
                             nav.name === 'Modify'
                               ? ((open = true),
                                 (select = item),
+                                (dataEdit = event),
                                 (modalView = 'EditItem'))
                               : nav.name === 'Remove'
                               ? ((open = true),
                                 (select = item),
+                                (dataEdit = event),
                                 (modalView = 'RemoveItem'))
                               : ''
                           "
@@ -293,7 +310,7 @@
     >
       <component
         :is="modalView"
-        :data="data"
+        :data="dataEdit"
         :select="select"
         @action="close"
       ></component>
@@ -322,6 +339,7 @@ import { DotsHorizontalIcon } from "@heroicons/vue/outline";
 //services
 import EventServices from "@axios/services/eventServices";
 import useStoreAuth from "@stores/auth";
+import ImgFormated from "../../core/components/img/ImgFormated.vue";
 
 export default {
   components: {
@@ -341,6 +359,7 @@ export default {
     ModalClear,
     EditItem,
     RemoveItem,
+    ImgFormated,
   },
   data() {
     const store = useStoreAuth();
@@ -351,6 +370,7 @@ export default {
       select: "",
       show: "list",
       data: "",
+      dataEdit: "",
       navs: [{ name: "Modify" }, { name: "Remove" }],
     };
   },
@@ -358,7 +378,7 @@ export default {
     close(value) {
       this.open = false;
       if (value === "update") {
-        this.$emit("action");
+        this.searchEventOperator();
       }
     },
     async searchEventOperator() {

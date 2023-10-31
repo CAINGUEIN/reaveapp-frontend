@@ -2,11 +2,31 @@
   <div class="mx-auto flex flex-col w-[1000px]">
     <div class="h-[230px] rounded-2xl">
       <div class="w-[1000] h-[230] rounded-2xl overflow-hidden">
-        <img src="/img/KarmineCorp/KC_banner.png" alt="" class="h-auto" />
+        <img
+          v-if="store.dataAccount.userTag === 'Karmine Corp'"
+          src="/img/KarmineCorp/KC_banner.png"
+          alt=""
+          class="h-auto"
+        />
+        <ImgFormated
+          v-else
+          :key="store.avatarKey"
+          :size="'page'"
+          :type="'banner'"
+          class="h-auto"
+        />
       </div>
       <img
+        v-if="store.dataAccount.userTag === 'Karmine Corp'"
         src="/img/KarmineCorp/KC_pp.png"
         alt=""
+        class="absolute rounded-md left-8 -bottom-8 border-4 border-Anthracite"
+      />
+      <ImgFormated
+        v-else
+        :key="store.avatarKey"
+        :size="'xl'"
+        :type="'avatar'"
         class="absolute rounded-md left-8 -bottom-8 border-4 border-Anthracite"
       />
       <button
@@ -53,7 +73,8 @@
       </div>
       <div class="flex mt-4">
         <p class="flex text-Gravel items-center">
-          <SvgTarget target="Calendar" :height="24" :width="24"></SvgTarget> Joined May 2023
+          <SvgTarget target="Calendar" :height="24" :width="24"></SvgTarget>
+          Joined May 2023
         </p>
         <p class="flex text-Gravel items-center ml-8">
           <LinkIcon class="h-6"></LinkIcon>karmineshop.com
@@ -86,6 +107,7 @@ import {
 //tool
 import useStoreAuth from "@stores/auth";
 import SvgTarget from "../SvgTarget.vue";
+import ImgFormated from "../img/ImgFormated.vue";
 export default {
   components: {
     Chevron,
@@ -94,6 +116,7 @@ export default {
     DotsHorizontalIcon,
     SvgTarget,
     LinkIcon,
+    ImgFormated,
   },
   data() {
     const store = useStoreAuth();

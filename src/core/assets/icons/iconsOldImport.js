@@ -18,8 +18,14 @@ import Seat from "./Seat.vue";
 import smsq from "./smsq.vue";
 import Standing from "./Standing.vue";
 import VALOIcon from "./Valorant.vue";
+import mcdoLogo from "./mcdoLogo.vue";
+import PAMLogo from "./PAMLogo.vue";
+import MuseeFabre from "./MuseeFabre.vue";
 
 export {
+  MuseeFabre,
+  PAMLogo,
+  mcdoLogo,
   Block,
   Calendar,
   Check,

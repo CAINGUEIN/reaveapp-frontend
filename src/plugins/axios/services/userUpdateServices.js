@@ -8,7 +8,7 @@ class UserUpdateServices {
         return response;
       })
       .catch((e) => {
-        console.log("error version", e);
+        console.log("error avatar img", e);
         return e;
       });
   }
@@ -19,7 +19,30 @@ class UserUpdateServices {
         return response;
       })
       .catch((e) => {
-        console.log("error version", e);
+        console.log("error banner img", e);
+        return e;
+      });
+  }
+  static async imgEvent(formdata) {
+    return Base.post("/user/update/img/event", formdata)
+      .then((response) => {
+        console.log("We are in the route /img/event and the response is :", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error event img", e);
+        return e;
+      });
+  }
+
+  static async imgItem(formdata) {
+    return Base.post("/user/update/img/item", formdata)
+      .then((response) => {
+        console.log("item img", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error item img", e);
         return e;
       });
   }

@@ -12,7 +12,7 @@ import Share from "./events/Share.vue";
 import Shards from "./shards/Shards.vue";
 
 //Spaces
-import Spaces from "./spaces/Spaces.vue";
+import Spaces from "@assets/icons/Spaces.vue";
 
 //Jobs
 import Jobs from "./jobs/Jobs.vue";

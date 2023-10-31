@@ -1,8 +1,8 @@
 <template>
   <div class="flex h-screen w-full">
-    <div name="contact" class="w-72 bg-Rock rounded-tl-2xl">
+    <div name="contact" class="w-72 p-2 border-r-2 border-Rock">
       <div class="w-full pt-1 px-1 flex justify-between">
-        <h4>Direct Messages</h4>
+        <h4>Direct Message</h4>
         <button
           name="addFriends"
           class="bg-White text-Anthracite h-9 rounded-full items-center hover:bg-DarkRock hover:text-White"
@@ -69,11 +69,14 @@
                 class="flex mt-2 ml-2 justify-between items-center"
               >
                 <div class="flex items-center">
-                  <img
-                    src="https://via.placeholder.com/50"
-                    alt=""
+                  <ImgFormated
+                    :key="friend._id"
+                    :size="'l'"
+                    :targetSpace="friend._id"
+                    :type="'avatar'"
                     class="h-12 w-12 rounded-full"
-                  />
+                  />av
+
                   <div class="ml-3 text-left">
                     <h5>
                       {{ friend.userTag }}
@@ -221,6 +224,7 @@ import {
 } from "@heroicons/vue/outline";
 
 import useStoreAuth from "@stores/auth";
+import ImgFormated from "../../../core/components/img/ImgFormated.vue";
 export default {
   components: {
     Popover,
@@ -234,6 +238,7 @@ export default {
     PlusIcon,
     AddFriendModal,
     ValidateFriendModal,
+    ImgFormated,
   },
   data() {
     const store = useStoreAuth();

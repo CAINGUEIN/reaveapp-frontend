@@ -25,7 +25,13 @@
         <div>
           <h2 class="text-right text-[32px] font-bold">{{ infoEvent.name }}</h2>
           <div class="flex items-center">
-            <div class="rounded-full bg-slate-400 h-9 w-9 mr-3"></div>
+            <ImgFormated
+                :key="infoEvent.owner._id"
+                :size="'s'"
+                :targetSpace="infoEvent.owner._id"
+                :type="'avatar'"
+                class="rounded-full bg-slate-400 h-9 w-9 mr-3"
+              />
             <h3 class="text-xl font-medium">
               Organised by @{{ infoEvent.owner.user_id.userTag }}
             </h3>
@@ -143,6 +149,7 @@ import View3D from "@components/modal/wallet/View3D.vue";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/vue/outline";
 import QRView from "@components/modal/wallet/QRView.vue";
 import SvgTarget from "../../SvgTarget.vue";
+import ImgFormated from "../../img/ImgFormated.vue";
 export default {
   components: {
     Button60Slot,
@@ -155,7 +162,8 @@ export default {
     ModalClearVarient,
     QRView,
     SvgTarget,
-  },
+    ImgFormated
+},
   props: ["infoEvent", "infoTicket"],
   data() {
     return {

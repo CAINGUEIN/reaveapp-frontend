@@ -1,3 +1,4 @@
+
 ici faire une page qui passe par dessus tout le reste a la façon d'une modal qui
 rend ilisible le dessous le temps du chargement des datas
 
@@ -16,21 +17,21 @@ rend ilisible le dessous le temps du chargement des datas
 
 @keyframes breathing {
   0% {
-    -webkit-transform: scale(0.8);
-    -ms-transform: scale(0.8);
-    transform: scale(0.8);
+    -webkit-transform: scale(4);
+    -ms-transform: scale(4);
+    transform: scale(4);
   }
 
   50% {
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
+    -webkit-transform: scale(4.4);
+    -ms-transform: scale(4.4);
+    transform: scale(4.4);
   }
 
   100% {
-    -webkit-transform: scale(0.8);
-    -ms-transform: scale(0.8);
-    transform: scale(0.8);
+    -webkit-transform: scale(4);
+    -ms-transform: scale(4);
+    transform: scale(4);
   }
 }
 
@@ -40,3 +41,18 @@ rend ilisible le dessous le temps du chargement des datas
 <script setup>
     import Reave from '../../assets/icons/Reave.vue';
 </script>
+<!-- ici faire une page qui passe par dessus tout le reste a la façon d'une modal qui
+rend ilisible le dessous le temps du chargement des datas 
+<template>
+    <div>
+        <h1>
+            ca arrive
+        </h1>
+    </div>
+</template>
+
+<script>
+    export default {
+        
+    }
+</script> -->

@@ -36,7 +36,8 @@
           :src="'https://media.reave.dev/useravatar/s' + store.dataAccount._id + 'avatar.png'"
           class="h-10 w-10 rounded-full bg-Gravel"
           @error="replaceUrl"
-      /></ToolsButtonNav>
+      />
+    </ToolsButtonNav>
       <div
         :class="dropdown"
         class="absolute bottom-0 left-16 z-20 bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700"
@@ -143,7 +144,7 @@ export default {
       }
     },
     replaceUrl (e) {
-      console.log("dans le replace");
+      console.log("dans le replace bottom");
       let randomColor = (Math.floor(Math.random()*0xFFFFFF)).toString(16)
       let formatSize = "40/"
       e.target.src = "https://via.placeholder.com/" + formatSize + randomColor

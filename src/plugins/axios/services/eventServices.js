@@ -14,6 +14,65 @@ class EventServices {
       });
   }
 
+  static async createVenue(data) {
+    let body = data;
+    return Base.post(`/event/createVenue`, body)
+      .then((response) => {
+        console.log("venue create", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error ", e);
+        return e;
+      });
+  }
+
+  static async picVenue(formdata) {
+    return Base.post("/user/update/pic/venue", formdata)
+      .then((response) => {
+        console.log("We are in the route /pic/venue and the response is :", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error event img", e);
+        return e;
+      });
+  }
+  
+  static async sendAddressData(venueId, venueName, street, city, pCode, country) {
+    const data = {
+      venueId: venueId,
+      venueName: venueName,
+      street: street,
+      city: city,
+      pCode: pCode,
+      country: country
+    };
+    return Base.post(`/event/sendData`, data)
+      .then((response) => {
+        console.log("We are in the route /sendData and the response is :", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error venue /sendData route", e);
+        return e;
+      });
+  }
+
+
+  static async getImageFromBackend(imageURL) {
+    try {
+      const response = await Base.get(`/uploads/${imageURL}`, { responseType: 'arraybuffer' });
+      const imageBlob = new Blob([response.data], { type: response.headers['content-type'] });
+      
+      return URL.createObjectURL(imageBlob);
+      
+    } catch (error) {
+      console.error('Erreur lors de la récupération de l\'image :', error);
+      throw error; 
+    }
+  }
+
   static async createTicketForEvent(data) {
     let body = data;
     return Base.post(`/event/createTicketForEvent`, body)
@@ -63,10 +122,34 @@ class EventServices {
       });
   }
 
+  static async searchPersonalVenueOperator() {
+    return Base.get(`/event/personalOperatorVenue`)
+      .then((response) => {
+        console.log("venue personalOperator", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error personalOperator", e);
+        return e;
+      });
+  }
+
   static async dataEvent(body) {
     return Base.post(`/event/data`, body)
       .then((response) => {
         console.log("event data", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error ", e);
+        return e;
+      });
+  }
+
+  static async dataVenue(body) {
+    return Base.post(`/event/dataVenue`, body)
+      .then((response) => {
+        console.log("venue data", response);
         return response;
       })
       .catch((e) => {
@@ -86,7 +169,7 @@ class EventServices {
         return e;
       });
   }
-  
+
   static async addStaff(body) {
     return Base.post(`/event/addStaff`, body)
       .then((response) => {
@@ -182,7 +265,7 @@ class EventServices {
         return e;
       });
   }
-  
+
 }
 
 export default EventServices;

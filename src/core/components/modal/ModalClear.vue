@@ -12,7 +12,7 @@
       >
         <div
           class="fixed inset-0 bg-LightRock bg-opacity-70 backdrop-blur-[14px] transition-opacity"
-        />
+        ></div>
       </TransitionChild>
 
       <div class="fixed inset-0 z-10 overflow-y-auto">

@@ -97,6 +97,7 @@ module.exports = {
         img3: "url('/src/core/assets/img/BEMOCS_Fntclr_Screen_Print_A.jpg')",
         img4: "url('/src/core/assets/img/BEMOCS_LR_04_Countryside_00.jpg')",
         img5: "url('/src/core/assets/img/BEMOCS_Merkur_05.jpg')",
+        
       },
       screens: {
         "3xl": "1650px",
