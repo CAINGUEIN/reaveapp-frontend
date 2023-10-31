@@ -20,6 +20,7 @@
   import "@core/assets/leaflet.css";
   import EventServices from "@axios/services/eventServices";
   let map = null;
+  let isPositionDefined = false;
   export default {
     mounted() {
 
@@ -36,16 +37,20 @@
 
         // Center the map on the user's location when the position button is clicked
         position.addEventListener('click', function () {
+          var positionMarker = 'src/core/assets/img/loca.png';
           navigator.geolocation.getCurrentPosition(function (position) {
             var latlng = [position.coords.latitude, position.coords.longitude];
             map.setView(latlng, 13);
-            L.marker(latlng, {
-              icon: L.icon({
-                iconUrl: "https://media.discordapp.net/attachments/696115202185232497/1163095644764905552/loca.png?ex=653e543a&is=652bdf3a&hm=4b86e179bc29064e9efbc1c7ef36ad2801dc94ff3c9a04a9a51cc226c3c4238e&=",
-                iconSize: [25, 41],
-                iconAnchor: [12, 41]
-              })
-            }).addTo(map);
+            if (!isPositionDefined) {
+              L.marker(latlng, {
+                icon: L.icon({
+                  iconUrl: positionMarker,
+                  iconSize: [25, 41],
+                  iconAnchor: [12, 41]
+                })
+              }).addTo(map);
+              isPositionDefined = true;
+            }
           });
         });
       });
@@ -75,6 +80,17 @@
             </div>
             <div id="rmPopupTextLocation">
               ${venue.address.city}, ${venue.address.country}
+            </div>
+          </div>
+          <div id="rmPopupButtonsAndFriends">
+            <div id="rmPopupButtons">
+              <button id="rmPopupTicketButton" class="rmPopupButton">🎟️</button>
+              <button id="rmPopupAuctionButton" class="rmPopupButton">🔨</button>
+            </div>
+            <div id="rmPopupFriends">
+              <div class="rmPopupFriend"></div>
+              <div class="rmPopupFriend"></div>
+              <div class="rmPopupFriend"></div>
             </div>
           </div>
         </div>

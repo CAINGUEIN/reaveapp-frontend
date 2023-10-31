@@ -167,6 +167,47 @@
     z-index: 1000;
 }
 
+#rmPopupButtonsAndFriends{
+    min-height: 52px;
+    min-width: 56px;
+    margin-left: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#rmPopupButtons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.rmPopupButton{
+    height: 24px;
+    width: 24px;
+    border-radius: 100%;
+}
+
+#rmPopupTicketButton{
+    background-color: white;
+}
+
+#rmPopupAuctionButton{
+    background-color: #1a1a1a;
+}
+
+#rmPopupFriends{
+    display: flex;
+}
+
+.rmPopupFriend {
+    height: 16px;
+    width: 16px;
+    border-radius: 100%;
+    background-color: #38f;
+}
+
+/* LEAFLET STYLE */
+
 .leaflet-top {
     width: 100%;
     height: 100%;
@@ -196,7 +237,6 @@
     width: 40px;
 }
 
-/* LEAFLET STYLE */
 
 .leaflet-popup-content {
     width: max-content !important;
