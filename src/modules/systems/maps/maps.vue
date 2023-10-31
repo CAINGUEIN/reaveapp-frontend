@@ -22,6 +22,7 @@
   let map = null;
   export default {
     mounted() {
+
       console.log('Maps mounted');
       const position = document.getElementById("rmPosition");
       import('leaflet').then((L) => {
@@ -50,25 +51,42 @@
       });
 
       function addVenue(venue) {
+        var venueIllustration = 'src/core/assets/img/kcx3.png';
+        var venueIcon = 'src/core/assets/img/defaultVenue.png';
         //marker setup
         var customIcon = L.icon({
-          iconUrl: 'src/core/assets/img/defaultVenue.png',
-          imageUrl: 'https://media.discordapp.net/attachments/696115202185232497/1163095612414238811/kcx.png?ex=653e5433&is=652bdf33&hm=6421b0e3e0b5a0369322440cab52ab9f5bcb91483c023c22d0268cf9261f9b29&=',
-          iconSize: [36, 36], // taille de l'icône
-          iconAnchor: [18, 18], // ancre de l'icône
+          iconUrl: venueIcon,
+          iconSize: [36, 36],
+          iconAnchor: [18, 18],
         });
-
         //marker creation
-        var coords = [venue.address.coordonates.latitude, venue.address.coordonates.longitude]; // Latitude et longitude
+        var coords = [venue.address.coordonates.latitude, venue.address.coordonates.longitude];
         var marker = L.marker(coords, {
           icon: customIcon
         }).addTo(map);
-
         //popup setup&creation
-        var venueIllustration = 'URL_FOR_YOUR_IMAGE'; // Assign your image URL to this variable
-        marker.bindPopup(
-          `<img id="rmImgPopup" src="${venueIllustration}" /><p id="rmPopup"> <b> KCX3 </b><br/> Paris, France </p>`
+        marker.bindPopup(`
+        <div id="rmPinNeedle"></div>
+        <div id="rmPopup">
+          <img id="rmImgPopup" src="${venueIllustration}"/>
+          <div id="rmPopupText">
+            <div id="rmPopupTextTitle">
+              ${venue.name}
+            </div>
+            <div id="rmPopupTextLocation">
+              ${venue.address.city}, ${venue.address.country}
+            </div>
+          </div>
+        </div>
+        `, {
+            closeButton: false,
+            autoClose: false,
+            closeOnClick: false,
+            noHide: true,
+            offset: [0, 40]
+          } //permet de décaler la popup a droite, et de faire en sorte qu'elle ne puisse pas se fermer
         );
+        marker.openPopup();
       }
 
       async function putVenuesOnMap() {
