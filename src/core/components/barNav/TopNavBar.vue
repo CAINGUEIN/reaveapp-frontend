@@ -62,7 +62,7 @@
               open
                 ? 'text-Cloud bg-LightRock hover:text-Cloud hover:bg-LightRock'
                 : 'text-gray-500',
-              'flex items-center justify-center rounded-full cursor-pointer h-12 w-12 hover:bg-DarkRock hover:text-LightGrey',
+              'flex items-center justify-center rounded-full outline-0 cursor-pointer h-12 w-12 hover:bg-DarkRock hover:text-LightGrey',
             ]"
           >
             <Bento :color1="open ? '#BEBEBE' : '#BEBEBE'"></Bento>
