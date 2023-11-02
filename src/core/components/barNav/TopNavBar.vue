@@ -22,28 +22,26 @@
 
         <ToolsButtonNav target="SpacePrivate">
           <div
-          :class="[
-              $route.path.includes('SpacePrivate')
-                ? 'border-2 border-gray-200 p-0.5 -translate-x-1 rounded-2xl'
-                : 'rounded-full hover:rounded-xl transition duration-200 ease-linear'
-            ]">
-            <img
-            style="transition: all 1s ease-out;"
             :class="[
               $route.path.includes('SpacePrivate')
-                ? 'rounded-xl transition-all'
-                : 'rounded-full hover:rounded-xl'
+                ? 'border-2 border-gray-200 p-0.5 -translate-x-1 rounded-2xl'
+                : 'w-12 h-12',
             ]"
-            src="@assets/img/Riot.png"
-            class="w-12 h-12"
-          />
+          >
+            <img
+              src="@assets/img/Riot.png"
+              class="w-12 h-12 space"
+              v-bind:class="{ 'space-selected': $route.path.includes('SpacePrivate') }"
+            />
           </div>
         </ToolsButtonNav>
 
         <SpaceNavBar class="" @action="openSpace" :data="store.dataSpaces" />
         <!--marked-->
-        <div class="h-15 flex items-center"
-        :class="{' -translate-x-2' : $route.path.includes('SpacePrivate')}">
+        <div
+          class="h-15 flex items-center"
+          :class="{ ' -translate-x-2': $route.path.includes('SpacePrivate') }"
+        >
           <ToolsButtonNav
             @click="openModal"
             :dataClass="'top'"
@@ -487,7 +485,26 @@ export default {
       if (this.$route.name !== this.store.view) {
         this.store.view = this.$route.name;
       }
-    }
-  }
+    },
+  },
 };
 </script>
+
+<style lang="css">
+
+.space {
+    border-radius: 100%;
+    transition: border-radius 1s;
+    transition-delay: 0ms;
+}
+
+.space-selected {
+    border-radius: 12px;
+}
+
+.space:hover {
+    border-radius: 12px;
+}
+
+
+</style>
