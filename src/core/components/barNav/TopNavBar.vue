@@ -21,12 +21,29 @@
         </ToolsButtonNav>
 
         <ToolsButtonNav target="SpacePrivate">
-          <Riot :width="48" :height="48" />
+          <div
+          :class="[
+              $route.path.includes('SpacePrivate')
+                ? 'border-2 border-gray-200 p-0.5 -translate-x-1 rounded-2xl'
+                : 'rounded-full hover:rounded-xl transition duration-200 ease-linear'
+            ]">
+            <img
+            style="transition: all 1s ease-out;"
+            :class="[
+              $route.path.includes('SpacePrivate')
+                ? 'rounded-xl transition-all'
+                : 'rounded-full hover:rounded-xl'
+            ]"
+            src="@assets/img/Riot.png"
+            class="w-12 h-12"
+          />
+          </div>
         </ToolsButtonNav>
 
         <SpaceNavBar class="" @action="openSpace" :data="store.dataSpaces" />
         <!--marked-->
-        <div class="h-15 flex items-center">
+        <div class="h-15 flex items-center"
+        :class="{' -translate-x-2' : $route.path.includes('SpacePrivate')}">
           <ToolsButtonNav
             @click="openModal"
             :dataClass="'top'"
