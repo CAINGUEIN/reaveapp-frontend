@@ -65,7 +65,7 @@
     position: absolute;
     height: 40px;
     width: 40px;
-    bottom: 112px;
+    bottom: 132px;
     right: 22px;
     background-color: #1a1a1a;
     border-radius: 12px;
@@ -127,12 +127,13 @@
 #rmSearch {
     position: absolute;
     height: 40px;
-    width: 270px;
+    width: 282px;
     top: 98px;
     left: 30px;
     background-color: #1a1a1a;
     border-radius: 36px;
     padding-left: 16px;
+    padding-right: 16px;
     border: none;
     z-index: 1000;
 }
@@ -167,6 +168,15 @@
 }
 
 /* LEAFLET STYLE */
+
+/*PATCH LEAFLET & OSM LABELS*/ 
+.leaflet-bottom.leaflet-right,
+.leaflet-control-attribution.leaflet-control,
+.leaflet-control-attribution.leaflet-control>a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 
 .leaflet-pane,
 .leaflet-tile,

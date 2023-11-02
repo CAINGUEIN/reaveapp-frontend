@@ -1,5 +1,5 @@
-ce que doit faire cette page recup les infos et les dispatch mettre un isWaitng
-le temps que je dl les infos dans le back avec une petite image d'attente
+<!--ce que doit faire cette page recup les infos et les dispatch mettre un isWaitng
+le temps que je dl les infos dans le back avec une petite image d'attente-->
 
 <template>
   <div>

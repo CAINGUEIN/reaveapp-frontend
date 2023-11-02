@@ -93,7 +93,7 @@
             leave-from-class="opacity-100 translate-y-0"
             leave-to-class="opacity-0 translate-y-1"
           >
-            <PopoverPanel class="absolute right-0 z-10 mt-5">
+            <PopoverPanel class="absolute right-0 z-10 mt-1">
               <div class="overflow-visible">
                 <div
                   class="transition ease-out rounded-[20px] duration-300 relative grid w-52 bg-DarkRock grid-cols-4 p-2"
@@ -286,7 +286,7 @@ import Spaces from "@assets/icons/Spaces.vue";
   import Maps from "@assets/icons/Maps.vue";
   import Stars from "@core/assets/svg/general/Stars.vue"
 
-  /* NEW */
+/* NEW */
 import Events from "@assets/icons/Events.vue";
 import Shards from "@assets/icons/Shards.vue";
 import Hub from "@assets/icons/Hub.vue";

@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h1>WIP Friends Chats</h1>
+      <h1>WIP Chats</h1>
     </div>
   </template>
   
