@@ -5,11 +5,19 @@
     </div>
     <button id="rmSettings">⚙️</button>
     <div id="rmVenuesBar">
-      <button class="venueType">✨ Events</button>
-      <button class="venueType">🏟️ Venues</button>
-      <button class="venueType">🍔 Cybercafe</button>
-      <button class="venueType">🏢 Company HQs</button>
-      <button class="venueType">🏪 Stores</button>
+      <button class="venueType"><Events :width="24" :height="24" class="rmVenueTypeIcon"/>Events</button>
+      <button class="venueType"><Venue :width="24" :height="24" class="rmVenueTypeIcon"/>Venues</button>
+      <button class="venueType"><Events :width="24" :height="24" class="rmVenueTypeIcon"/>Cybercafes</button>
+      <button class="venueType"><Events :width="24" :height="24" class="rmVenueTypeIcon"/>Company HQs</button>
+      <button class="venueType"><Events :width="24" :height="24" class="rmVenueTypeIcon"/>Stores</button>
+      <button class="venueType"><Events :width="24" :height="24" class="rmVenueTypeIcon"/>Parks</button>
+      <button class="venueType"><Bootcamps :width="24" :height="24" class="rmVenueTypeIcon"/>Bootcamps</button>
+      <button class="venueType"><Museum :width="24" :height="24" class="rmVenueTypeIcon"/>Museums</button>
+    </div>
+    <div id="topRightMenu">
+      <button class="topRightButton">🏆</button>
+      <button class="topRightButton">📜</button>
+      <button class="topRightButton">🔖</button>
     </div>
     <button id="rmPosition">📍</button>
     <input id="rmSearch" type="text" placeholder="🔎 Search" />
@@ -17,13 +25,32 @@
 </template>
 
 <script>
+  //import of leaflet css
   import "@core/assets/leaflet.css";
+  //import of the icons
   import EventServices from "@axios/services/eventServices";
+  import Events from "@assets/icons/Events.vue";
+  import Venue from "@assets/icons/Operator/Venue.vue";
+  //import Cybercafes from "@assets/icons/Cybercafes.vue";
+  //import CompanyHQs from "@assets/icons/CompanyHQs.vue";
+  //import Stores from "@assets/icons/Stores.vue";
+  //import Parks from "@assets/icons/Parks.vue";
+  import Bootcamps from "@assets/icons/Bootcamps.vue";
+  import Museum from "@assets/icons/Museum.vue";
+  //global variables declaration
   let map = null;
   let isPositionDefined = false;
-  export default {
-    mounted() {
 
+  //export of the icons
+  export default {
+    components: {
+      Events,
+      Venue,
+      Bootcamps,
+      Museum
+    },
+    mounted() {
+      //map setup
       console.log('Maps mounted');
       const position = document.getElementById("rmPosition");
       import('leaflet').then((L) => {
@@ -33,6 +60,7 @@
           attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
+        // Add all operator venues to the map
         putVenuesOnMap();
 
         // Center the map on the user's location when the position button is clicked
@@ -41,6 +69,7 @@
           navigator.geolocation.getCurrentPosition(function (position) {
             var latlng = [position.coords.latitude, position.coords.longitude];
             map.setView(latlng, 13);
+            // Add a marker on the user's position if it's not already placed
             if (!isPositionDefined) {
               L.marker(latlng, {
                 icon: L.icon({
@@ -55,6 +84,7 @@
         });
       });
 
+      // Add a venue to the map
       function addVenue(venue) {
         var venueIllustration = 'src/core/assets/img/kcx3.png';
         var venueIcon = 'src/core/assets/img/defaultVenue.png';
@@ -95,22 +125,25 @@
           </div>
         </div>
         `, {
+            //permet de décaler la popup a droite, et de faire en sorte qu'elle ne puisse pas se fermer
             closeButton: false,
             autoClose: false,
             closeOnClick: false,
             noHide: true,
             offset: [0, 40]
-          } //permet de décaler la popup a droite, et de faire en sorte qu'elle ne puisse pas se fermer
+          }
         );
+        //popup opening when created
         marker.openPopup();
       }
 
+      // Add all operator venues to the map
       async function putVenuesOnMap() {
         let result = await EventServices.searchPersonalVenueOperator();
         if (result.data.success) {
           let venues = result.data.data;
           for (let i = 0; i < venues.length; i++) {
-            console.log(venues[i].address.coordonates.latitude, venues[i].address.coordonates.longitude);
+            //adding the venue to the map
             addVenue(venues[i]);
           }
         }
