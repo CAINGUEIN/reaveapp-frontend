@@ -24,7 +24,7 @@ import Scrims from "./scrims/Scrims.vue";
 import Bootcamps from "./bootcamps/Bootcamps.vue";
 
 //Museum
-import Museum from "./museum/Museum.vue";
+import Museum from "@assets/icons/Museum.vue";
 
 export {
   Hub,
