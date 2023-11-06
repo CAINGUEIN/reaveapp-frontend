@@ -36,7 +36,7 @@ export default [
         name: "ProjectId",
         component: () =>
           import("@modules/operator/eventPageOperator/OperatorProjectId.vue"),
-        meta: { layout: "Reave", permission: "log" },
+        meta: { layout: "none", permission: "log" },
       },
       {
         path: "operator/venueId/:id",
