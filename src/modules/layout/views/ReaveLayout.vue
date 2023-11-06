@@ -15,21 +15,14 @@
       />
       <div
         class="mt-[12px] mx-8 h-full flex border-2 border-Rock rounded-t-xl border-b-0"
-        v-if="
-          $route.path.includes('SpacePrivate') &&
-          !$route.path.includes('venueId')
-        "
+        v-if="$route.path.includes('SpacePrivate')"
       >
         <LeftNavBar />
         <router-view class="max-h-fit w-full" />
       </div>
       <router-view
         class="max-h-fit"
-        v-if="
-          !$route.path.includes('SpacePrivate') ||
-          $route.path.includes('venueId')
-        "
-      />
+        v-if="!$route.path.includes('SpacePrivate')" />
     </div>
     <CreateSpaceModal @isOpenModal="closeModal" :isOpenModal="isOpenModal" />
   </div>

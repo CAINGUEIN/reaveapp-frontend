@@ -43,7 +43,7 @@ export default [
         name: "VenueId",
         component: () =>
           import("@modules/operator/venuePageOperator/OperatorVenueId.vue"),
-        meta: { layout: "Reave", permission: "log" },
+        meta: { layout: "none", permission: "log" },
       },
     ],
   },
