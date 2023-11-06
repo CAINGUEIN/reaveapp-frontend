@@ -28,7 +28,7 @@
                 : 'rounded-full hover:rounded-xl transition duration-200 ease-linear'
             ]">
             <img
-            style="transition: all 1s ease-out;"
+            style="transition: all 0.05s ease-out;"
             :class="[
               $route.path.includes('SpacePrivate')
                 ? 'rounded-xl transition-all'
