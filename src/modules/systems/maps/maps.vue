@@ -6,13 +6,14 @@
     <button id="rmSettings">⚙️</button>
     <div id="rmVenuesBar">
       <button class="venueType"><Events :width="24" :height="24" class="rmVenueTypeIcon"/>Events</button>
+      <button class="venueType"><Quests :width="24" :height="24" class="rmVenueTypeIcon"/>Quests</button>
       <button class="venueType"><Venue :width="24" :height="24" class="rmVenueTypeIcon"/>Venues</button>
-      <button class="venueType"><Events :width="24" :height="24" class="rmVenueTypeIcon"/>Cybercafes</button>
-      <button class="venueType"><Events :width="24" :height="24" class="rmVenueTypeIcon"/>HQs</button>
-      <button class="venueType"><Events :width="24" :height="24" class="rmVenueTypeIcon"/>Stores</button>
-      <button class="venueType"><Events :width="24" :height="24" class="rmVenueTypeIcon"/>Parks</button>
-      <button class="venueType"><Bootcamps :width="24" :height="24" class="rmVenueTypeIcon"/>Bootcamps</button>
+      <button class="venueType"><Cybercafes :width="24" :height="24" class="rmVenueTypeIcon"/>Cybercafes</button>
+      <button class="venueType"><HQs :width="24" :height="24" class="rmVenueTypeIcon"/>HQs</button>
+      <button class="venueType"><Stores :width="24" :height="24" class="rmVenueTypeIcon"/>Stores</button>
+      <button class="venueType"><Friends :width="24" :height="24" class="rmVenueTypeIcon"/>Friends</button>
       <button class="venueType"><Museum :width="24" :height="24" class="rmVenueTypeIcon"/>Museums</button>
+      <button class="venueType"><Parks :width="24" :height="24" class="rmVenueTypeIcon"/>Parks</button>
     </div>
     <div id="topRightMenu">
       <button class="topRightButton">🔖</button>
@@ -25,16 +26,19 @@
 <script>
   //import of leaflet css
   import "@core/assets/leaflet.css";
-  //import of the icons
+  //import of the services
   import EventServices from "@axios/services/eventServices";
+  //import of the icons
   import Events from "@assets/icons/Events.vue";
+  import Quests from "@assets/icons/Quests.vue";
   import Venue from "@assets/icons/Operator/Venue.vue";
-  //import Cybercafes from "@assets/icons/Cybercafes.vue";
-  //import CompanyHQs from "@assets/icons/CompanyHQs.vue";
-  //import Stores from "@assets/icons/Stores.vue";
-  //import Parks from "@assets/icons/Parks.vue";
+  import Cybercafes from "@assets/icons/Cybercafes.vue";
+  import HQs from "@assets/icons/HQs.vue";
+  import Stores from "@assets/icons/Stores.vue";
+  import Friends from "@assets/icons/Friends.vue";
   import Bootcamps from "@assets/icons/Bootcamps.vue";
   import Museum from "@assets/icons/Museum.vue";
+  import Parks from "@assets/icons/Parks.vue";
   //global variables declaration
   let map = null;
   let isPositionDefined = false;
@@ -43,9 +47,15 @@
   export default {
     components: {
       Events,
+      Quests,
       Venue,
+      Cybercafes,
+      HQs,
+      Stores,
+      Friends,
       Bootcamps,
-      Museum
+      Museum,
+      Parks
     },
     mounted() {
       //map setup
