@@ -20,6 +20,7 @@ import * as tools from "@assets/svg/products/tools/toolsImport";
 import * as wallet from "@assets/icons/Wallet/walletImport";
 import * as operator from "@assets/icons/Operator/operatorImport";
 import * as iconsOld from "@assets/icons/iconsOldImport";
+import * as overviewVenue from "@assets/icons/OverviewVenue/overviewVenueImport";
 
 export default {
   components: {
@@ -33,6 +34,7 @@ export default {
     ...wallet,
     ...operator,
     ...iconsOld,
+    ...overviewVenue
   },
   props: ["target", "width", "color1", "height"],
 };
