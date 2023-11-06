@@ -12,8 +12,9 @@
       <button class="venueType"><HQs :width="24" :height="24" class="rmVenueTypeIcon"/>HQs</button>
       <button class="venueType"><Stores :width="24" :height="24" class="rmVenueTypeIcon"/>Stores</button>
       <button class="venueType"><Friends :width="24" :height="24" class="rmVenueTypeIcon"/>Friends</button>
-      <button class="venueType"><Museum :width="24" :height="24" class="rmVenueTypeIcon"/>Museums</button>
       <button class="venueType"><Parks :width="24" :height="24" class="rmVenueTypeIcon"/>Parks</button>
+      <button class="venueType"><Bootcamps :width="24" :height="24" class="rmVenueTypeIcon"/>Bootcamps</button>
+      <button class="venueType"><Museum :width="24" :height="24" class="rmVenueTypeIcon"/>Museums</button>
     </div>
     <div id="topRightMenu">
       <button class="topRightButton">🔖</button>
