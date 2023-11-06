@@ -31,7 +31,9 @@
             <img
               src="@assets/img/Riot.png"
               class="w-12 h-12 space"
-              v-bind:class="{ 'space-selected': $route.path.includes('SpacePrivate') }"
+              v-bind:class="{
+                'space-selected': $route.path.includes('SpacePrivate'),
+              }"
             />
           </div>
         </ToolsButtonNav>

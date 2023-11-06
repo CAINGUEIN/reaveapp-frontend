@@ -1,6 +1,6 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <TransitionRoot as="template" :show="isOpenModal">
+  <TransitionRoot as="template" :show="props.isOpenModal">
     <Dialog as="div" class="fixed z-50 inset-0 overflow-y-auto" @close="close">
       <div
         class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
@@ -35,13 +35,34 @@
           leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
         >
           <div
-            class="relative inline-block align-bottom bg-appDark rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-modal"
+            class="relative inline-block align-bottom bg-Anthracite rounded-2xl text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-modal"
           >
             <div>
               <div class="mt-3 sm:mt-5">
-                <ChoiseSpaceType v-if="target === ''" v-model="target" @close="close"/>
-                <CreateFriends v-else-if="target === 'friends'" v-model="target" @close="close"/>
-                <CreateTeam v-else-if="target === 'team'" v-model="target" @close="close"/>
+                <div class="flex items-center justify-center">
+                  <button
+                    class="text-right p-3 -translate-y-5 bg-DarkRock hover:bg-LightRock rounded-full w-auto absolute top-7 right-7"
+                    @click="close()"
+                  >
+                    <Cross />
+                  </button>
+                  <h3 class="text-center w-1/2 pt-6">
+                    How do you want to name this Space?
+                  </h3>
+                </div>
+                <InputModel
+                  class="mt-8 px-5 uppercase"
+                  :data="space"
+                  v-model="space.value"
+                  :errors="errors"
+                  @update:modelValue="handleUpdate"
+                ></InputModel>
+                <button
+                  :disabled="isButtonDisabled"
+                  class="disabled:cursor-not-allowed disabled:bg-Gravel px-7 py-3 mt-8 mb-7 rounded-full bg-white transition"
+                >
+                  <p class="text-xl text-Anthracite font-bold">Create</p>
+                </button>
               </div>
             </div>
           </div>
@@ -51,40 +72,72 @@
   </TransitionRoot>
 </template>
 
-<script>
+<script setup>
 import {
   Dialog,
   DialogOverlay,
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import ChoiseSpaceType from "@core/components/modal/ChoiseSpaceType.vue";
-import CreateFriends from "@core/components/modal/CreateFriends.vue";
-import CreateTeam from "@core/components/modal/CreateTeam.vue";
 
+import InputModel from "@core/components/inputs/InputModel.vue";
+import Cross from "@core/assets/icons/Cross.vue";
+import SpaceServices from "../../../plugins/axios/axiosPlugin";
+import { ref, watch } from "vue";
+const emit = defineEmits("isOpenModal");
+const props = defineProps({
+  isOpenModal: String,
+});
+const space = {
+  label: "Space name",
+  name: "name",
+  type: "text",
+  value: "",
+};
+
+const isButtonDisabled = ref(true);
+
+// Observer les changements de space.value
+watch(space.value, (newValue) => {
+  isButtonDisabled.value = newValue.length < 3;
+});
+
+// Méthode pour gérer la mise à jour de space.value
+const handleUpdate = (value) => {
+  space.value = value;
+};
+function close() {
+  emit("isOpenModal", false);
+}
+
+const submit = async () => {
+  let errors = {};
+  let submitData = {
+    name: this.space.value,
+    type: "space",
+  };
+  //faire le submit
+  let result = await SpaceServices.createSpace();
+  if (result.data.success) {
+    console.log(result.data.data);
+    this.$router.push({
+      name: "ProjectId",
+      params: { id: result.data.data._id },
+    });
+  } else {
+    errors = result.data.data.errors;
+  }
+};
+</script>
+<script>
 export default {
-  props: ["isOpenModal"],
-  components: {
-    Dialog,
-    DialogOverlay,
-    TransitionChild,
-    TransitionRoot,
-    ChoiseSpaceType,
-    CreateFriends,
-    CreateTeam
-},
-  data() {
-      return {
-          target: ""
-      }
-  },
   methods: {
     close() {
       this.$emit("isOpenModal", false);
-      this.target = ""
+      this.target = "";
     },
     changeTarget(value) {
-      this.target = value
+      this.target = value;
       console.log(value);
     },
   },

@@ -18,11 +18,10 @@
         :type="data.type"
         :name="data.name"
         :id="data.name"
-        :placeholder="data.placeholder ? data.placeholder : data.label"
+        :placeholder="data.placeholder"
         :autocomplete="data.name"
-        class="block w-full font-normal  px-2 rounded-Large text-H6 text-White bg-Anthracite border-DarkRock leading-none focus:border-White border-2 focus:ring-0 focus:outline-none"
+        class="block w-full transition duration-200 font-normal px-4 rounded-Large text-H6 text-White bg-Anthracite border-DarkRock leading-none focus:border-White border-2 focus:ring-0 focus:outline-none"
         :class="paddingY"
-        
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
         :disabled="store.loading"
@@ -55,11 +54,11 @@ export default {
   props: {
     textClass: {
       type: String,
-      default: "text-H4",  // Valeur par défaut
+      default: "text-H4", // Valeur par défaut
     },
     paddingY: {
       type: String,
-      default: "py-3",  
+      default: "py-3",
     },
 
     /** :data="inputExemple"

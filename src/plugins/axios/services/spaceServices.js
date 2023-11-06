@@ -12,6 +12,10 @@ class SpaceServices {
         return e;
       });
   }
+  // TODO Add a space
+  static async createSpace() {
+    return;
+  }
 }
 
 export default SpaceServices;

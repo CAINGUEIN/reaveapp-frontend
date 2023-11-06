@@ -12,7 +12,6 @@ import useStoreAuth from "@stores/auth";
 /* Import components*/
 import AuthLayout from "@modules/layout/views/AuthLayout.vue";
 import ReaveLayout from "@modules/layout/views/ReaveLayout.vue";
-import SpaceLayout from "@modules/layout/views/SpaceLayout.vue";
 import WaitingLayout from "./components/page/Waiting.vue";
  
 export default {
@@ -20,7 +19,6 @@ export default {
   components: {
     AuthLayout,
     ReaveLayout,
-    SpaceLayout,
     WaitingLayout,
   },
   data() {
