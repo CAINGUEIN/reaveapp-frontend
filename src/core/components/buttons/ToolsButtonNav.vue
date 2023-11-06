@@ -69,7 +69,7 @@
           this.classBTN = "h-12 w-12";
           this.classCompar = " bg-DarkRock text-White hover:bg-LightRock";
         } else if (this.dataClass === "top") {
-          this.classBTN = "h-9 w-9";
+          this.classBTN = "h-6 w-6";
           this.classCompar =
             " bg-LightRock text-LightGrey hover:bg-Platinium hover:text-Cloud";
         } else if (this.dataClass === "logoGame") {
