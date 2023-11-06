@@ -58,7 +58,7 @@
                   @update:modelValue="handleUpdate"
                 ></InputModel>
                 <button
-                  :disabled="isButtonDisabled"
+                  :disabled="!isEnabled"
                   class="disabled:cursor-not-allowed disabled:bg-Gravel px-7 py-3 mt-8 mb-7 rounded-full bg-white transition"
                 >
                   <p class="text-xl text-Anthracite font-bold">Create</p>
@@ -83,8 +83,8 @@ import {
 import InputModel from "@core/components/inputs/InputModel.vue";
 import Cross from "@core/assets/icons/Cross.vue";
 import SpaceServices from "../../../plugins/axios/axiosPlugin";
-import { ref, watch } from "vue";
-const emit = defineEmits("isOpenModal");
+import { ref } from "vue";
+const emit = defineEmits(["isOpenModal", "enableButton"]);
 const props = defineProps({
   isOpenModal: String,
 });
@@ -95,17 +95,16 @@ const space = {
   value: "",
 };
 
-const isButtonDisabled = ref(true);
+const isEnabled = ref(false);
 
-// Observer les changements de space.value
-watch(space.value, (newValue) => {
-  isButtonDisabled.value = newValue.length < 3;
-});
-
-// Méthode pour gérer la mise à jour de space.value
 const handleUpdate = (value) => {
-  space.value = value;
+  if (value.length >= 3) {
+    isEnabled.value = true;
+  } else {
+    isEnabled.value = false;
+  }
 };
+
 function close() {
   emit("isOpenModal", false);
 }
