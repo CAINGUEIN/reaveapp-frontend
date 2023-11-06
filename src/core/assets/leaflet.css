@@ -1,14 +1,10 @@
-* {
-    position: initial;
-}
-
 #reaveMaps {
     font-family: "Gotham", sans-serif;
 }
 
 #map {
     width: 100%;
-    height: 100%;
+    height: calc(100% + 24px);
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -84,7 +80,7 @@
     position: absolute;
     height: 40px;
     width: 40px;
-    bottom: 132px;
+    bottom: 90px;
     right: 22px;
     background-color: #1a1a1a;
     border-radius: 12px;
@@ -116,7 +112,7 @@
     top: 98px;
     left: 376px;
     height: 50px;
-    width: calc(100% - 560px);
+    width: calc(100% - 460px);
     max-width: calc(100% - 376px);
     display: flex;
 }
@@ -149,7 +145,7 @@
     position: relative;
     height: 40px;
     width: auto;
-    background-color: white;
+    background-color: #404040;
     border-radius: 40px;
     appearance: none;
     -webkit-appearance: none;
@@ -159,7 +155,7 @@
     padding-left: 21px;
     padding-right: 21px;
     margin-right: 7px;
-    color: #111111;
+    color: #ffffff;
 }
 
 .venueType,#rmSearch,#rmSettings{
@@ -242,13 +238,14 @@
 }
 
 .leaflet-control-zoom.leaflet-bar.leaflet-control {
-    position: absolute;
+    position: fixed;
     bottom: 22px;
     right: 22px;
     background-color: #1a1a1a;
     border-radius: 12px;
     width: 40px;
     height: 80px;
+    z-index: 1000000;
 }
 
 .leaflet-control-zoom-in {

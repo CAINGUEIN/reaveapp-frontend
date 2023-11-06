@@ -8,15 +8,13 @@
       <button class="venueType"><Events :width="24" :height="24" class="rmVenueTypeIcon"/>Events</button>
       <button class="venueType"><Venue :width="24" :height="24" class="rmVenueTypeIcon"/>Venues</button>
       <button class="venueType"><Events :width="24" :height="24" class="rmVenueTypeIcon"/>Cybercafes</button>
-      <button class="venueType"><Events :width="24" :height="24" class="rmVenueTypeIcon"/>Company HQs</button>
+      <button class="venueType"><Events :width="24" :height="24" class="rmVenueTypeIcon"/>HQs</button>
       <button class="venueType"><Events :width="24" :height="24" class="rmVenueTypeIcon"/>Stores</button>
       <button class="venueType"><Events :width="24" :height="24" class="rmVenueTypeIcon"/>Parks</button>
       <button class="venueType"><Bootcamps :width="24" :height="24" class="rmVenueTypeIcon"/>Bootcamps</button>
       <button class="venueType"><Museum :width="24" :height="24" class="rmVenueTypeIcon"/>Museums</button>
     </div>
     <div id="topRightMenu">
-      <button class="topRightButton">🏆</button>
-      <button class="topRightButton">📜</button>
       <button class="topRightButton">🔖</button>
     </div>
     <button id="rmPosition">📍</button>
