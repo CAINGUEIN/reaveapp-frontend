@@ -51,7 +51,7 @@
             :btnName="'+'"
             :comparTarget="''"
           >
-            <Plus />
+            <Plus/>
           </ToolsButtonNav>
 
           <ToolsButtonNav
