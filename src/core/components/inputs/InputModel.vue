@@ -1,8 +1,7 @@
 <template>
   <div class="flex flex-col justify-between">
     <label
-      class="flex text-White font-black leading-none"
-      :class="textClass"
+      class="flex text-White text-base font-black leading-none"
       :for="data.name"
     >
       {{ data.label }}
