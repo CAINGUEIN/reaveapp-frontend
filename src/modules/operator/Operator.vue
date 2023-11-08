@@ -5,7 +5,8 @@
         <button
           v-for="item in nav"
           :key="item.name"
-          class="py-1 px-4 mx-2 text-base hover:bg-LightRock hover:text-white rounded-lg font-medium flex items-center"
+          :disabled="!item.enabled"
+          class="py-1 px-4 mx-2 text-base disabled:cursor-not-allowed disabled:text hover:bg-LightRock hover:text-white rounded-lg font-medium flex items-center"
           :class="
             target === item.target
               ? 'bg-LightRock text-white'
@@ -56,11 +57,10 @@ export default {
       store,
       target: "projects",
       nav: [
-        { name: "Events", icon: "Stars", target: "projects" },
-        { name: "Venues", icon: "Venue", target: "venue" },
-        { name: "Packages", icon: "Packages", target: "package" },
-        { name: "Equipement", icon: "Equipment", target: "items" },
-      
+        { name: "Events", icon: "Stars", target: "projects", enabled: true },
+        { name: "Venues", icon: "Venue", target: "venue", enabled: true },
+        { name: "Packages", icon: "Packages", target: "package", enabled: false },
+        { name: "Equipement", icon: "Equipment", target: "items", enabled: false }
         /* { name: "Calendar", icon: "Calendar", target: "calendar" },
         { name: "Analytics", icon: "Analytics", target: "analytics" },
         { name: "Finance", icon: "PileOfCoins", target: "finance" }, */

@@ -41,8 +41,8 @@
               <div class="mt-3 sm:mt-5">
                 <div class="flex items-center justify-center">
                   <button
-                    class="text-right p-3 -translate-y-5 bg-DarkRock hover:bg-LightRock rounded-full w-auto absolute top-7 right-7"
-                    @click="close()"
+                    class="text-right p-3 outline-0 -translate-y-5 bg-DarkRock hover:bg-LightRock rounded-full w-auto absolute top-7 right-7"
+                    @click="close"
                   >
                     <Cross />
                   </button>
@@ -111,8 +111,9 @@ import InputModel from "@core/components/inputs/InputModel.vue";
 import uploadModel from "@core/components/inputs/uploadModel.vue";
 import Cross from "@core/assets/icons/Cross.vue";
 import SpaceServices from "@axios/services/spaceServices.js";
+import { useRouter } from "vue-router";
 import { ref } from "vue";
-const emit = defineEmits(["isOpenModal", "enableButton"]);
+const emit = defineEmits(["isOpenModal", "enableButton", "submitSuccess"]);
 const props = defineProps({
   isOpenModal: Boolean,
 });
@@ -133,8 +134,9 @@ const imageSpace = {
 };
 let pictureInput = ref(false);
 const errors = ref({});
+const router = useRouter();
 const isEnabled = ref(false);
-
+const idSpace = ref("");
 const handleUpdate = (value) => {
   if (value.length >= 3) {
     isEnabled.value = true;
@@ -149,24 +151,36 @@ function close() {
 }
 
 const submit = async () => {
-  // let submitData = {
-  //   profile: space.value,
-  //   type: "space",
-  // };
-  pictureInput.value = true;
-  console.log(pictureInput.value);
+  let submitData = {
+    profile: space.value,
+    type: "space",
+  };
+  console.log(submitData.profile)
   //faire le submit
-  // let result = await SpaceServices.createSpace(submitData);
-  // if (result.data.success) {
-  //   console.log(result.data.data);
-  //   pictureInput.value = true;
-  //   // this.$router.push({
-  //   //   name: "SpacePrivate",
-  //   //   params: { id: result.data.data._id },
-  //   // });
-  // } else {
-  //   errors.value = result.data.data.errors;
+  let result = await SpaceServices.createSpace(submitData);
+  if (result.data.success) {
+    console.log(result.data.data);
+    idSpace.value = result.data.data.newSpace._id;
+    console.log(idSpace.value);
+    emit("submitSuccess");
+    pictureInput.value = true;
+    // this.$router.push({
+    //   name: "SpacePrivate",
+    //   params: { id: result.data.data._id },
+    // });
+  }
+  // else {
+  //   errors.value = result.data.message;
   //   console.log(errors.value);
   // }
+};
+
+const goToSpace = () => {
+  console.log(idSpace.value);
+  router.push({
+    name: "SpacePrivate",
+    params: { id: idSpace.value },
+  });
+  close();
 };
 </script>

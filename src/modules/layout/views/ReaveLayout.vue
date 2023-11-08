@@ -9,6 +9,7 @@
             isMapsRoute,
         }"
         @modal-changed="handleModalValueChanged"
+        :dataStore="dataSpace"
       />
       <div
         class="mt-[20px] mx-8 h-full flex border-2 border-Rock rounded-t-xl border-b-0"
@@ -19,9 +20,14 @@
       </div>
       <router-view
         class="max-h-fit"
-        v-if="!$route.path.includes('SpacePrivate')" />
+        v-if="!$route.path.includes('SpacePrivate')"
+      />
     </div>
-    <CreateSpaceModal @isOpenModal="closeModal" :isOpenModal="isOpenModal" />
+    <CreateSpaceModal
+      @submitSuccess="feedDataSpace"
+      @isOpenModal="closeModal"
+      :isOpenModal="isOpenModal"
+    />
   </div>
 </template>
 
@@ -31,56 +37,21 @@ import useStoreAuth from "@stores/auth";
 import useStoreSpace from "@stores/storeSpace";
 //components
 import CreateSpaceModal from "@core/components/modal/CreateSpaceModal.vue";
-import SpaceNavBar from "@core/components/barNav/SpaceNavBar.vue";
-import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
 import TopNavBar from "@core/components/barNav/TopNavBar.vue";
-import Settings from "@assets/icons/Settings.vue";
-import Reave from "@assets/icons/Reave.vue";
-import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
-import Plus from "@assets/icons/Plus.vue";
-import Spaces from "@assets/icons/Spaces.vue";
-import Events from "@assets/icons/Events.vue";
-import Shards from "@assets/icons/Shards.vue";
-import Hub from "@assets/icons/Hub.vue";
-import Jobs from "@assets/icons/Jobs.vue";
-import Academy from "@assets/icons/Academy.vue";
-import Bootcamps from "@assets/icons/Bootcamps.vue";
-import Maps from "@assets/icons/Maps.vue";
-import Conceptor from "@assets/icons/Conceptor.vue";
-import Riot from "@assets/icons/Riot.vue";
 //data
 import dataTopLeft from "@modules/layout/data/dataTopLeftNavBar";
 import dataBottomLeft from "@modules/layout/data/dataBottomLeftNavBar";
-import Bento from "../../../core/assets/icons/Bento.vue";
 import LeftNavBar from "@components/barNav/LeftNavBar.vue";
 export default {
   components: {
     CreateSpaceModal,
-    SpaceNavBar,
     LeftNavBar,
     TopNavBar,
-    ToolsButtonNav,
-    Plus,
-    Spaces,
-    Reave,
-    Riot,
-    Settings,
-    Popover,
-    PopoverButton,
-    PopoverPanel,
-    Events,
-    Shards,
-    Hub,
-    Jobs,
-    Academy,
-    Bootcamps,
-    Maps,
-    Conceptor,
-    Bento,
   },
   data() {
     const store = useStoreAuth();
     const storeSpace = useStoreSpace();
+    let dataSpace;
     return {
       dataTopLeft,
       dataBottomLeft,
@@ -96,7 +67,7 @@ export default {
         value: "",
       },
       dropdown: "hidden",
-
+      dataSpace,
       solutions: [
         {
           target: "Events",
@@ -150,6 +121,10 @@ export default {
     };
   },
   methods: {
+    async feedDataSpace() {
+      await this.storeSpace.feedDataSpace();
+      this.dataSpace = this.storeSpace.dataSpace;
+    },
     handleModalValueChanged(value) {
       this.isOpenModal = value;
     },
@@ -201,25 +176,23 @@ export default {
     this.getUrl();
     this.isMapsRoute = this.$route.path === "/maps";
     console.log(this.isMapsRoute);
+    this.feedDataSpace();
   },
 };
 </script>
 
 <style lang="css">
-
 .space {
-    border-radius: 100%;
-    transition: border-radius 1s;
-    transition-delay: 0ms;
+  border-radius: 100%;
+  transition: border-radius 1s;
+  transition-delay: 0ms;
 }
 
 .space-selected {
-    border-radius: 12px;
+  border-radius: 12px;
 }
 
 .space:hover {
-    border-radius: 12px;
+  border-radius: 12px;
 }
-
-
 </style>

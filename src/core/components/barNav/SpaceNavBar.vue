@@ -1,6 +1,6 @@
 <template>
   <ToolsButtonNav
-    v-for="space in storeSpace.dataSpace"
+    v-for="space in dataSpace"
     @click="$emit('action', space._id)"
     :dataClass="'large'"
     class="mr-2.5"
@@ -34,7 +34,6 @@ import ImgFormated from "@components/img/ImgFormated.vue";
 import useStoreAuth from "@stores/auth";
 import useStoreSpace from "@stores/storeSpace";
 export default {
-  props: ["data"],
   emits: ["action"],
   data() {
     const store = useStoreAuth();
@@ -43,6 +42,9 @@ export default {
       store,
       storeSpace,
     };
+  },
+  props: {
+    dataSpace: Object,
   },
   components: { ToolsButtonNav, ImgFormated },
 };

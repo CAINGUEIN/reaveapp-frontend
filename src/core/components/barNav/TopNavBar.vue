@@ -38,7 +38,7 @@
           </div>
         </ToolsButtonNav> -->
 
-        <SpaceNavBar @action="openSpace" :data="store.dataSpaces" />
+        <SpaceNavBar @action="openSpace" :dataSpace="dataStore" />
         <!--marked-->
         <div class="h-15 flex items-center">
           <ToolsButtonNav
@@ -274,7 +274,6 @@ import Jobs from "@assets/icons/Jobs.vue";
 import Academy from "@assets/icons/Academy.vue";
 import Bootcamps from "@assets/icons/Bootcamps.vue";
 import Maps from "@assets/icons/Maps.vue";
-import Riot from "@assets/icons/Riot.vue";
 
 // Data
 import dataTopLeft from "@modules/layout/data/dataTopLeftNavBar";
@@ -282,6 +281,9 @@ import dataBottomLeft from "@modules/layout/data/dataBottomLeftNavBar";
 import Bento from "../../../core/assets/icons/Bento.vue";
 import Scrims from "../../assets/icons/Scrims.vue";
 export default {
+  props: {
+    dataStore: Object,
+  },
   components: {
     SpaceNavBar,
     ToolsButtonNav,
