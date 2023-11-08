@@ -373,9 +373,6 @@ export default {
     };
   },
   methods: {
-    triggerShowHiddenDiv() {
-      this.$emit('mouseenter-tools-button-nav');
-    },
     openModal() {
       this.isOpenModal = true;
       this.$emit("modal-changed", this.isOpenModal);
