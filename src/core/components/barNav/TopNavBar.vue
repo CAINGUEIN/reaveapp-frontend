@@ -102,13 +102,10 @@
                     :target="item.target"
                     :dataClass="item.dataClass"
                     :comparTarget="store.view"
-                    :isMouseOver="item.icon"
+                    :isMouseOver="true"
                     class="flex rounded-full transition duration-150 ease-in-out my-1 mx-1"
                   >
-                    <!-- <template v-slot:custom>
-                        <div class="tag" v-if="showTag">{{ btnName }}</div>
-                      </template> -->
-
+                
                     <!-- NEW -->
                     <Events
                       width="24"
@@ -324,52 +321,6 @@ export default {
       dropdown: "hidden",
 
       solutions: [
-        /*OLD*/
-        /*
-          {
-            target: "Event",
-            icon: "Leagues",
-            dataClass: "settings",
-            btnName: 'Event',
-          },
-          {
-            target: "Nft",
-            icon: "NFTs",
-            dataClass: "settings",
-            btnName: 'Item',
-          },
-          {
-            target: "Social",
-            icon: "Feed",
-            dataClass: "settings",
-            btnName: 'Social',
-          },
-          {
-            target: "Jobs",
-            icon: "Jobs",
-            dataClass: "settings",
-            btnName: 'Jobs',
-          },
-          {
-            target: "Academy",
-            icon: "Academy",
-            dataClass: "settings",
-            btnName: 'Academy',
-          },
-          {
-            target: "Bootcamps",
-            icon: "Bootcamps",
-            dataClass: "settings",
-            btnName: 'Bootcamps',
-          },
-          {
-            target: "Maps",
-            icon: "Maps",
-            dataClass: "settings",
-            btnName: 'Maps',
-          },
-          */
-        /*NEW*/
         {
           target: "Events",
           icon: "Events",
@@ -422,6 +373,9 @@ export default {
     };
   },
   methods: {
+    triggerShowHiddenDiv() {
+      this.$emit('mouseenter-tools-button-nav');
+    },
     openModal() {
       this.isOpenModal = true;
       this.$emit("modal-changed", this.isOpenModal);

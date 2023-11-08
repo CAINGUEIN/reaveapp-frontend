@@ -7,12 +7,8 @@
     >
       <h2 class="text-white">&lsaquo;</h2>
     </button>
-    <button
-      class="absolute right-0 rounded-full px-3 z-10"
-      @click.prevent="closeModal()"
-    >
-      <h2 class="text-white">X</h2>
-    </button>
+    <XButton36   @click.prevent="closeModal()"
+      class="absolute right-0 rounded-full px-3 z-10"></XButton36>
     
     <div class="pt-12 flex flex-col" v-if="etape === 1">
       <h4 class="text-center">How do you want to</h4>
@@ -36,8 +32,10 @@
 <script>
 import InputModel from "@components/inputs/InputModel.vue";
 import EventServices from "@axios/services/eventServices";
+import XButton36 from "@components/buttons/XButton36.vue";
+
 export default {
-  components: { InputModel },
+  components: { InputModel, XButton36 },
   data() {
     return {
       name: {

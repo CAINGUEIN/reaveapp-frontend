@@ -66,11 +66,11 @@ export default {
         formatSize = "661x150/";
       }
       if (this.type === "event") {
-        e.target.src = "/img/imageeventcard.png";
+        e.target.src = "/img/EventsDefault.png";
       } else if (this.type === "item") {
         e.target.src = "/chaire.jpeg";
       } else if (this.type === "venue") {
-        e.target.src = "/img/adidasArena.jpg"
+        e.target.src = "/img/VenuesDefault.png"
       }
       else {
         e.target.src =

@@ -85,8 +85,8 @@
     <div name="Content" class="mt-8 space-y-4">
       <table class="w-full">
         <thead class="border-b-2 border-LightGrey">
-          <tr>
-            <th scope="col" class="text-left text-base font-black text-LightGrey pl-4">
+          <tr class="mt-8">
+            <th scope="col" class="text-left pt-8 text-base font-black text-LightGrey pl-4">
               NAME
             </th>
             <th scope="col" class="text-left text-base font-black text-LightGrey">
@@ -106,7 +106,7 @@
               <div class="flex items-center ml-4 my-2">
                 <ImgFormated :key="item._id" :size="'s'" :targetSpace="item._id" :type="'venue'"
                   class="h-15 w-15 rounded-xl mr-4 bg-white" />
-                <p class="text-base font-black text-LightGrey">
+                <p class="text-base font-bold text-white">
                   {{ item.name }}
                 </p>
               </div>

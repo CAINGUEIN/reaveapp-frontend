@@ -57,33 +57,30 @@ Primary Photo</pre>
           <div name="inputName2">
 
             <div class="w-[320px] text-H6">
-              <InputModel class="mt-1 py-2" :textClass="'text-H6'" :paddingY="'py-2'" :data="venueName"
+              <InputModel class="mt-1 py-2" :textClass="'text-H6'" :paddingY="'py-2'" :borderRadius="'rounded-xl'" :data="venueName"
                 placeholder:placeholder v-model="venueNameValue" :errors="errors"></InputModel>
-              <InputModel class="mt-4" :textClass="'text-H6'" :paddingY="'py-2'" :data="address" v-model="streetValue"
+              <InputModel class="mt-4" :textClass="'text-H6'" :paddingY="'py-2'" :borderRadius="'rounded-xl'" :data="address" v-model="streetValue"
                 :errors="errors"></InputModel>
               <div class="flex gap-2 mt-2">
-                <InputModel :data="city" :paddingY="'py-2'" v-model="cityValue" :errors="errors"></InputModel>
-                <InputModel :paddingY="'py-2'" :data="cp" v-model="pCodeValue" :errors="errors"></InputModel>
-                <InputModel :paddingY="'py-2'" :data="country" v-model="countryValue" :errors="errors"></InputModel>
+                <InputModel :data="city" :paddingY="'py-2'" :borderRadius="'rounded-xl'" v-model="cityValue" :errors="errors"></InputModel>
+                <InputModel :paddingY="'py-2'" :borderRadius="'rounded-xl'" :data="cp" v-model="pCodeValue" :errors="errors"></InputModel>
+                <InputModel :paddingY="'py-2'" :borderRadius="'rounded-xl'" :data="country"  v-model="countryValue" :errors="errors"></InputModel>
               </div>
             </div>
-
             
           </div>
-
-          
 
           <div name="inputDesc">
             <div class="flex">
 
-              <InputModel :paddingY="'py-2'" :textClass="'text-H6'" class="w-36 mt-4" :data="price" v-model="price.value"
+              <InputModel :paddingY="'py-2'" :borderRadius="'rounded-xl'" :textClass="'text-H6'" class="w-36 mt-4" :data="price" v-model="price.value"
                 :errors="errors"></InputModel>
 
               <Menu as="div" class="flex items-end ml-3" v-slot="{ open }">
 
                 <div>
 
-                  <MenuButton class="flex max-w-xl items-center rounded-full"><button class="text-sm py-[4px] px-3 w-[180px] rounded-2xl font-normal items-center flex 
+                  <MenuButton class="flex max-w-xl items-center rounded-full"><button class="text-sm py-[4px] px-3 w-[163px] rounded-xl font-normal items-center flex 
                   justify-between cursor-pointer border-2" :class="!open ? 'border-DarkRock' : 'border-LightRock'">
                       <div class="text-left" >
 
@@ -146,8 +143,7 @@ Primary Photo</pre>
         <SvgTarget target="Venue" :height="20" :width="20" color1="#808080" class="flex justify-center">
         </SvgTarget>
         <div class="flex flex-col">
-          <pre class="text-base font-sans text-LightGrey font-medium 
-        leading-none">
+          <pre class="leading-5 text-base font-sans text-LightGrey font-medium ">
 The venue's page
 accessible by anyone.</pre>
           <p class="text-xs mt-2 text-Blue underline font-book cursor-pointer">Show preview</p>
@@ -158,8 +154,7 @@ accessible by anyone.</pre>
         <SvgTarget target="Operator" :height="20" :width="20" color1="#808080" class="flex justify-center">
         </SvgTarget>
         <div class="flex flex-col">
-          <pre class="text-base font-sans text-LightGrey font-medium
-        leading-none">
+          <pre class="leading-5 text-base font-sans text-LightGrey font-medium">
 The venue’s page reserved
 for Event Organiser
 in their operator.</pre>
@@ -212,8 +207,7 @@ in their operator.</pre>
   <div class="flex-[0.7] flex flex-col gap-2">
     <p class="text-White font-black text-base">PUBLIC</p>
     <pre class="text-LightGrey font-medium text-base font-sans">
-These features will be seen by any user when visiting your venue’s profile,
-on Reave Maps for example.
+These features will be seen by any user when visiting your venue’s profile, on Reave Maps for example.
 They will of course also be seen by potential organisers.</pre>
 
   </div>

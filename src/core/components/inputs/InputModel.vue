@@ -20,8 +20,9 @@
         :id="data.name"
         :placeholder="data.placeholder"
         :autocomplete="data.name"
-        class="block w-full font-normal px-4 transition-all duration-200 rounded-Large text-H6 text-White bg-Anthracite border-DarkRock leading-none focus:border-White border-2 focus:ring-0 focus:outline-none"
-        :class="paddingY"
+        class="block w-full font-normal px-4 transition-all duration-200 text-H6 
+        text-White bg-Anthracite border-DarkRock leading-none focus:border-White border-2 focus:ring-0 focus:outline-none"
+        :class="paddingY, borderRadius"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
         :disabled="store.loading"
@@ -59,6 +60,10 @@ export default {
     paddingY: {
       type: String,
       default: "py-3",  
+    },
+    borderRadius: {
+      type: String,
+      default: "rounded-Large",  
     },
 
     /** :data="inputExemple"

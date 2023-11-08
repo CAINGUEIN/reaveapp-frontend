@@ -1,18 +1,17 @@
 <template>
-  <div
-    class="flex items-center justify-center rounded-full cursor-pointer"
-    :class="[classBTN, classCompar]"
-    @click="goTo(target)"
-    @mouseover="showTag = isMouseOver"
-    @mouseleave="showTag = false"
-  >
-    <slot></slot>
-    <div
-      class="block rounded-[5px] -bottom-5 z-50 text-White absolute translate-y-1 translate-x--1/2 bg-LightRock transition duration-[300ms] ease-out"
-      :class="{ 'opacity-100': showTag, 'opacity-0': !showTag }"
-    >
-      <div class="p-[4px]">{{ btnName }}</div>
+  <div class="flex items-center justify-center rounded-full cursor-pointer"
+  @mouseenter="isMouseOver ? startTimer() : null"
+  @mouseleave="isMouseOver ? cancelTimer() : null"
+  
+    :class="[classBTN, classCompar]" @click="goTo(target)">
+
+    <div class="block rounded-[5px] z-50 text-White absolute translate-y-full p-[6px]
+       mt-4 bg-LightRock" v-show="displayHiddenDiv">
+     {{ btnName }}
     </div>
+
+    <slot></slot>
+
   </div>
 </template>
 
@@ -42,6 +41,7 @@ export default {
   data() {
     const store = useStoreAuth();
     return {
+      displayHiddenDiv: false,
       showTag: false,
       classBTN: "",
       classCompar: "",
@@ -50,14 +50,32 @@ export default {
     };
   },
   methods: {
+    startTimer() {
+      this.timer = setTimeout(() => {
+        this.showHiddenDiv();
+      }, 1500); 
+    },
+    cancelTimer() {
+      if (this.timer) {
+        clearTimeout(this.timer); 
+        this.hideHiddenDiv();
+      }
+    },
+    showHiddenDiv() {
+        this.displayHiddenDiv = true;
+    },
+
+    hideHiddenDiv() {
+        this.displayHiddenDiv = false;
+    },
     goTo(value) {
       if (value !== undefined) {
         this.store.view = value;
         this.$router.push({
           name: value,
           params: {
-            view: this.subTarget,
-          },
+            view: this.subTarget
+          }
         });
       }
     },
@@ -110,8 +128,7 @@ export default {
         this.classCompar = "text-White bg-LightRock";
       }
       if (this.dataClass === "settings" && this.comparTarget !== this.stat) {
-        this.classCompar =
-          " hover:bg-LightRock hover:text-LightGrey text-Gravel";
+        this.classCompar = " hover:bg-LightRock hover:text-LightGrey text-Gravel";
       }
 
       if (this.dataClass === "reave" && this.comparTarget === this.stat) {
