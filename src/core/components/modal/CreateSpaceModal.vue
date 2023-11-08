@@ -151,24 +151,22 @@ const submit = async () => {
     profile: space.value,
     type: "space",
   };
-  pictureInput.value = true; // A ENLEVER AVANT COMMIT
   // faire le submit
-  // let result = await SpaceServices.createSpace(submitData);
-  // if (result.data.success) {
-  //   console.log(result.data.data);
-  //   idSpace.value = result.data.data.newSpace._id;
-  //   console.log(idSpace.value);
-  //   emit("submitSuccess");
-  // pictureInput.value = true;
-  // this.$router.push({
-  //   name: "SpacePrivate",
-  //   params: { id: result.data.data._id },
-  // });
-
-  // else {
-  //   errors.value = result.data.message;
-  //   console.log(errors.value);
-  // }
+  let result = await SpaceServices.createSpace(submitData);
+  if (result.data.success) {
+    console.log(result.data.data);
+    idSpace.value = result.data.data.newSpace._id;
+    console.log(idSpace.value);
+    emit("submitSuccess");
+    pictureInput.value = true;
+    this.$router.push({
+      name: "SpacePrivate",
+      params: { id: result.data.data._id },
+    });
+  } else {
+    errors.value = result.data.message;
+    console.log(errors.value);
+  }
 };
 
 const goToSpace = () => {
