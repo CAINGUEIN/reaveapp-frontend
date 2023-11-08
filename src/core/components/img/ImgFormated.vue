@@ -29,7 +29,7 @@ export default {
         } else {
           this.target = this.store.dataAccount._id;
         }
-      } else if (this.type === "friend") {
+      } else if (this.type === "space") {
         srcType = "profilespace/";
         this.target = this.targetSpace;
       } else if (this.type === "event") {

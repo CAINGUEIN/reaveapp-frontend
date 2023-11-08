@@ -17,7 +17,7 @@
       <ImgFormated
         :key="store.spaceKey"
         :size="'l'"
-        :type="'friend'"
+        :type="'space'"
         :targetSpace="space._id"
         class="w-12 h-12 space"
         v-bind:class="{

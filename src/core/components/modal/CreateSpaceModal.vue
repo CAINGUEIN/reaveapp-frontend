@@ -40,12 +40,12 @@
             <div>
               <div class="mt-3 sm:mt-5">
                 <div class="flex items-center justify-center">
-                  <button
-                    class="text-right p-3 outline-0 -translate-y-5 bg-DarkRock hover:bg-LightRock rounded-full w-auto absolute top-7 right-7"
-                    @click="close"
-                  >
-                    <Cross />
-                  </button>
+                  <CloseButton
+                    @closeModal="close"
+                    :width="12"
+                    :height="12"
+                    class="absolute top-7 right-7 -translate-y-5"
+                  />
                   <h3
                     class="text-center w-1/2 pt-6"
                     v-if="pictureInput === false"
@@ -64,21 +64,16 @@
                   @update:modelValue="handleUpdate"
                   v-if="pictureInput === false"
                 ></InputModel>
+
                 <div class="mt-8 px-5" v-if="pictureInput === true">
                   <uploadModel
                     v-if="pictureInput === true"
                     :data="imageSpace"
                     v-model="imageSpace.value"
                     :errors="errors"
+                    :idSpace="idSpace"
+                    @goToSpace="goToSpace"
                   />
-                  <button
-                    @click="goToSpace"
-                    :disabled="!isEnabled"
-                    v-if="pictureInput === true"
-                    class="disabled:cursor-not-allowed hover:bg-LightRock disabled:bg-Gravel px-5 py-1.5 mt-8 mb-7 rounded-full bg-DarkRock transition"
-                  >
-                    <p class="text-md text-White font-bold">Skip</p>
-                  </button>
                 </div>
 
                 <p v-if="errors.value">{{ errors }}</p>
@@ -109,10 +104,10 @@ import {
 
 import InputModel from "@core/components/inputs/InputModel.vue";
 import uploadModel from "@core/components/inputs/uploadModel.vue";
-import Cross from "@core/assets/icons/Cross.vue";
 import SpaceServices from "@axios/services/spaceServices.js";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
+import CloseButton from "../buttons/CloseButton.vue";
 const emit = defineEmits(["isOpenModal", "enableButton", "submitSuccess"]);
 const props = defineProps({
   isOpenModal: Boolean,
@@ -136,7 +131,7 @@ let pictureInput = ref(false);
 const errors = ref({});
 const router = useRouter();
 const isEnabled = ref(false);
-const idSpace = ref("");
+const idSpace = ref("654b936b3cbb4c609f50de60");
 const handleUpdate = (value) => {
   if (value.length >= 3) {
     isEnabled.value = true;
@@ -156,23 +151,24 @@ const submit = async () => {
     profile: space.value,
     type: "space",
   };
-  console.log(submitData.profile);
+  pictureInput.value = true; // A ENLEVER AVANT COMMIT
   // faire le submit
-  let result = await SpaceServices.createSpace(submitData);
-  if (result.data.success) {
-    console.log(result.data.data);
-    idSpace.value = result.data.data.newSpace._id;
-    console.log(idSpace.value);
-    emit("submitSuccess");
-    pictureInput.value = true;
-    this.$router.push({
-      name: "SpacePrivate",
-      params: { id: result.data.data._id },
-    });
-  } else {
-    errors.value = result.data.message;
-    console.log(errors.value);
-  }
+  // let result = await SpaceServices.createSpace(submitData);
+  // if (result.data.success) {
+  //   console.log(result.data.data);
+  //   idSpace.value = result.data.data.newSpace._id;
+  //   console.log(idSpace.value);
+  //   emit("submitSuccess");
+  // pictureInput.value = true;
+  // this.$router.push({
+  //   name: "SpacePrivate",
+  //   params: { id: result.data.data._id },
+  // });
+
+  // else {
+  //   errors.value = result.data.message;
+  //   console.log(errors.value);
+  // }
 };
 
 const goToSpace = () => {

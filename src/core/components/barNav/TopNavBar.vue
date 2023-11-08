@@ -20,24 +20,6 @@
           <Reave />
         </ToolsButtonNav>
 
-        <!-- <ToolsButtonNav target="SpacePrivate">
-          <div
-            :class="[
-              $route.path.includes('SpacePrivate')
-                ? 'border-2 border-gray-200 p-0.5 -translate-x-1 rounded-2xl'
-                : 'w-12 h-12',
-            ]"
-          >
-            <img
-              src="@assets/img/Riot.png"
-              class="w-12 h-12 space"
-              v-bind:class="{
-                'space-selected': $route.path.includes('SpacePrivate'),
-              }"
-            />
-          </div>
-        </ToolsButtonNav> -->
-
         <SpaceNavBar @action="openSpace" :dataSpace="dataStore" />
         <!--marked-->
         <div class="h-15 flex items-center">
