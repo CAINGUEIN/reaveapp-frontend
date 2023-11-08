@@ -147,6 +147,7 @@ const handleUpdate = (value) => {
 
 function close() {
   emit("isOpenModal", false);
+  space.value = "";
   pictureInput.value = false;
 }
 
@@ -155,8 +156,8 @@ const submit = async () => {
     profile: space.value,
     type: "space",
   };
-  console.log(submitData.profile)
-  //faire le submit
+  console.log(submitData.profile);
+  // faire le submit
   let result = await SpaceServices.createSpace(submitData);
   if (result.data.success) {
     console.log(result.data.data);
@@ -164,15 +165,14 @@ const submit = async () => {
     console.log(idSpace.value);
     emit("submitSuccess");
     pictureInput.value = true;
-    // this.$router.push({
-    //   name: "SpacePrivate",
-    //   params: { id: result.data.data._id },
-    // });
+    this.$router.push({
+      name: "SpacePrivate",
+      params: { id: result.data.data._id },
+    });
+  } else {
+    errors.value = result.data.message;
+    console.log(errors.value);
   }
-  // else {
-  //   errors.value = result.data.message;
-  //   console.log(errors.value);
-  // }
 };
 
 const goToSpace = () => {
