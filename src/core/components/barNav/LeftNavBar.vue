@@ -11,37 +11,37 @@
       :comparTarget="store.view"
       class="transition duration-150 py-2 flex-col justify-between ease-in-out hover:text-White"
     >
-        <Riot v-if="item.icon === 'Riot'" :width="24" :height="24"></Riot>
-        <Messages
-          v-if="item.icon === 'Messages'"
-          :width="24"
-          :height="24"
-        ></Messages>
-        <Dashboard
-          v-if="item.icon === 'Dashboard'"
-          :width="24"
-          :height="24"
-        ></Dashboard>
-        <Operator
-          v-if="item.icon === 'Operator'"
-          :width="24"
-          :height="24"
-        ></Operator>
-        <Conceptor
-          v-if="item.icon === 'Conceptor'"
-          :width="24"
-          :height="24"
-        ></Conceptor>
-        <Calendar
-          v-if="item.icon === 'Calendar'"
-          :width="24"
-          :height="24"
-        ></Calendar>
-        <Analytics
-          v-if="item.icon === 'Analytics'"
-          :width="24"
-          :height="24"
-        ></Analytics>
+      <Riot v-if="item.icon === 'Riot'" :width="24" :height="24"></Riot>
+      <Messages
+        v-if="item.icon === 'Messages'"
+        :width="24"
+        :height="24"
+      ></Messages>
+      <Dashboard
+        v-if="item.icon === 'Dashboard'"
+        :width="24"
+        :height="24"
+      ></Dashboard>
+      <Operator
+        v-if="item.icon === 'Operator'"
+        :width="24"
+        :height="24"
+      ></Operator>
+      <Conceptor
+        v-if="item.icon === 'Conceptor'"
+        :width="24"
+        :height="24"
+      ></Conceptor>
+      <Calendar
+        v-if="item.icon === 'Calendar'"
+        :width="24"
+        :height="24"
+      ></Calendar>
+      <Analytics
+        v-if="item.icon === 'Analytics'"
+        :width="24"
+        :height="24"
+      ></Analytics>
     </ToolsButtonNav>
   </div>
 </template>

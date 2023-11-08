@@ -10,17 +10,17 @@
     "
   >
     <div class="flex justify-between w-full">
-      <div class="flex space-x-4 items-center">
+      <div class="flex space-x-2 items-center">
         <ToolsButtonNav
           :target="'PersonalMessages'"
           :dataClass="'reave'"
           :comparTarget="store.view"
-          class=""
+          class="mr-2"
         >
           <Reave />
         </ToolsButtonNav>
 
-        <ToolsButtonNav target="SpacePrivate">
+        <!-- <ToolsButtonNav target="SpacePrivate">
           <div
             :class="[
               $route.path.includes('SpacePrivate')
@@ -36,14 +36,11 @@
               }"
             />
           </div>
-        </ToolsButtonNav>
+        </ToolsButtonNav> -->
 
-        <SpaceNavBar class="" @action="openSpace" :data="store.dataSpaces" />
+        <SpaceNavBar @action="openSpace" :data="store.dataSpaces" />
         <!--marked-->
-        <div
-          class="h-15 flex items-center"
-          :class="{ ' -translate-x-2': $route.path.includes('SpacePrivate') }"
-        >
+        <div class="h-15 flex items-center">
           <ToolsButtonNav
             @click="openModal"
             :dataClass="'top'"
@@ -51,7 +48,7 @@
             :btnName="'+'"
             :comparTarget="''"
           >
-            <Plus/>
+            <Plus />
           </ToolsButtonNav>
 
           <ToolsButtonNav
@@ -273,20 +270,6 @@ import Reave from "@assets/icons/Reave.vue";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import Plus from "@assets/icons/Plus.vue";
 import Spaces from "@assets/icons/Spaces.vue";
-
-/* OLD */
-/*
-  import Explore from "@assets/icons/Explore.vue";
-  import Feed from "@assets/icons/Feed.vue";
-  import Academy from "@assets/icons/Academy.vue";
-  import Jobs from "@assets/icons/Jobs.vue";
-  import Bootcamps from "@assets/icons/Bootcamps.vue";
-  import Leagues from "@assets/icons/Leagues.vue";
-  import NFTs from "@assets/icons/NFTs.vue";
-  import Maps from "@assets/icons/Maps.vue";
-  import Stars from "@core/assets/svg/general/Stars.vue"
-
-/* NEW */
 import Events from "@assets/icons/Events.vue";
 import Shards from "@assets/icons/Shards.vue";
 import Hub from "@assets/icons/Hub.vue";
@@ -295,7 +278,8 @@ import Academy from "@assets/icons/Academy.vue";
 import Bootcamps from "@assets/icons/Bootcamps.vue";
 import Maps from "@assets/icons/Maps.vue";
 import Riot from "@assets/icons/Riot.vue";
-//data
+
+// Data
 import dataTopLeft from "@modules/layout/data/dataTopLeftNavBar";
 import dataBottomLeft from "@modules/layout/data/dataBottomLeftNavBar";
 import Bento from "../../../core/assets/icons/Bento.vue";
@@ -307,7 +291,6 @@ export default {
     Plus,
     Spaces,
     Reave,
-    Riot,
     Settings,
     Popover,
     PopoverButton,
@@ -449,18 +432,17 @@ export default {
           id: target,
         })
       ) {
+        console.log(this.$store);
         this.$router.push({
-          path: "/space/" + type,
-          query: {
-            id: target,
-          },
+          name: "SpacePrivate",
+          params: { id: target },
         });
       } else {
         this.$router.push({
           name: "Personal",
         });
       }
-      console.log("open", "/space/" + type + "/" + target);
+      console.log("open", "/spacePrivate/" + type + "/" + target);
     },
     getUrl() {
       if (this.$route.name !== this.store.view) {
@@ -491,22 +473,3 @@ export default {
   },
 };
 </script>
-
-<style lang="css">
-
-.space {
-    border-radius: 100%;
-    transition: border-radius 1s;
-    transition-delay: 0ms;
-}
-
-.space-selected {
-    border-radius: 12px;
-}
-
-.space:hover {
-    border-radius: 12px;
-}
-
-
-</style>

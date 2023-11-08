@@ -46,8 +46,14 @@
                   >
                     <Cross />
                   </button>
-                  <h3 class="text-center w-1/2 pt-6">
-                    How do you want to name this Space?
+                  <h3
+                    class="text-center w-1/2 pt-6"
+                    v-if="pictureInput === false"
+                  >
+                    {{ space.title }}
+                  </h3>
+                  <h3 class="text-center pt-6" v-if="pictureInput === true">
+                    {{ imageSpace.title }}
                   </h3>
                 </div>
                 <InputModel
@@ -56,12 +62,33 @@
                   v-model="space.value"
                   :errors="errors"
                   @update:modelValue="handleUpdate"
+                  v-if="pictureInput === false"
                 ></InputModel>
+                <div class="mt-8 px-5" v-if="pictureInput === true">
+                  <uploadModel
+                    v-if="pictureInput === true"
+                    :data="imageSpace"
+                    v-model="imageSpace.value"
+                    :errors="errors"
+                  />
+                  <button
+                    @click="goToSpace"
+                    :disabled="!isEnabled"
+                    v-if="pictureInput === true"
+                    class="disabled:cursor-not-allowed hover:bg-LightRock disabled:bg-Gravel px-5 py-1.5 mt-8 mb-7 rounded-full bg-DarkRock transition"
+                  >
+                    <p class="text-md text-White font-bold">Skip</p>
+                  </button>
+                </div>
+
+                <p v-if="errors.value">{{ errors }}</p>
                 <button
+                  v-if="pictureInput === false"
+                  @click="submit"
                   :disabled="!isEnabled"
-                  class="disabled:cursor-not-allowed disabled:bg-Gravel px-7 py-3 mt-8 mb-7 rounded-full bg-white transition"
+                  class="disabled:cursor-not-allowed disabled:bg-Gravel px-5 py-1.5 mt-8 mb-7 rounded-full bg-white transition"
                 >
-                  <p class="text-xl text-Anthracite font-bold">Create</p>
+                  <p class="text-md text-Anthracite font-bold">Create Space</p>
                 </button>
               </div>
             </div>
@@ -81,20 +108,31 @@ import {
 } from "@headlessui/vue";
 
 import InputModel from "@core/components/inputs/InputModel.vue";
+import uploadModel from "@core/components/inputs/uploadModel.vue";
 import Cross from "@core/assets/icons/Cross.vue";
-import SpaceServices from "../../../plugins/axios/axiosPlugin";
+import SpaceServices from "@axios/services/spaceServices.js";
 import { ref } from "vue";
 const emit = defineEmits(["isOpenModal", "enableButton"]);
 const props = defineProps({
-  isOpenModal: String,
+  isOpenModal: Boolean,
 });
 const space = {
   label: "Space name",
   name: "name",
+  title: "How do you want to name this Space?",
   type: "text",
   value: "",
 };
 
+const imageSpace = {
+  label: "Upload Space Picture",
+  title: "Setup your Space Picture.",
+  name: "image",
+  type: "file",
+  value: "",
+};
+let pictureInput = ref(false);
+const errors = ref({});
 const isEnabled = ref(false);
 
 const handleUpdate = (value) => {
@@ -107,38 +145,28 @@ const handleUpdate = (value) => {
 
 function close() {
   emit("isOpenModal", false);
+  pictureInput.value = false;
 }
 
 const submit = async () => {
-  let errors = {};
-  let submitData = {
-    name: this.space.value,
-    type: "space",
-  };
+  // let submitData = {
+  //   profile: space.value,
+  //   type: "space",
+  // };
+  pictureInput.value = true;
+  console.log(pictureInput.value);
   //faire le submit
-  let result = await SpaceServices.createSpace();
-  if (result.data.success) {
-    console.log(result.data.data);
-    this.$router.push({
-      name: "ProjectId",
-      params: { id: result.data.data._id },
-    });
-  } else {
-    errors = result.data.data.errors;
-  }
-};
-</script>
-<script>
-export default {
-  methods: {
-    close() {
-      this.$emit("isOpenModal", false);
-      this.target = "";
-    },
-    changeTarget(value) {
-      this.target = value;
-      console.log(value);
-    },
-  },
+  // let result = await SpaceServices.createSpace(submitData);
+  // if (result.data.success) {
+  //   console.log(result.data.data);
+  //   pictureInput.value = true;
+  //   // this.$router.push({
+  //   //   name: "SpacePrivate",
+  //   //   params: { id: result.data.data._id },
+  //   // });
+  // } else {
+  //   errors.value = result.data.data.errors;
+  //   console.log(errors.value);
+  // }
 };
 </script>

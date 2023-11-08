@@ -1,6 +1,6 @@
 export default [
   {
-    path: "/SpacePrivate",
+    path: "/SpacePrivate/:id",
     name: "SpacePrivate",
     component: () => import("@modules/space/views/space.vue"),
     meta: { layout: "Reave", permission: "log" },

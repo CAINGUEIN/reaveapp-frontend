@@ -1,42 +1,64 @@
 <template>
-  <div class="flex flex-col justify-between text-white">
+  <div class="flex flex-col items-center text-Gravel hover:text-White w-full h-[299px]">
     <label
-      class="h-20 font-400 mb-1 rounded-2xl border-dashed border-2 flex"
+      class="font-400 mb-1 rounded-full border-dashed w-64 h-64 border-2 flex text-Gravel hover:text-White"
       :for="data.name"
     >
-        <div class="flex flex-1 flex-col">
-          <svg
-            class="m-auto h-12 w-12 text-gray-400"
-            stroke="currentColor"
-            fill="none"
-            viewBox="0 0 48 48"
-            aria-hidden="true"
-          >
-            <path
-              d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+      <div class="flex flex-col w-full text-Gravel hover:text-White">
+        <div 
+          class="my-auto w-[136px] mx-auto p-3 cursor-pointer rounded-xl label hover:bg-LightRock text-Gravel hover:text-White"
+        >
+         <div class="text-Gravel hover:text-White">
+
+         </div>
+          <Picture class="mx-auto" :width="24" :height="24"></Picture>
+          <p class="text-sm mt-2 w-fit font-medium">
+            {{ props.data.label }}
+          </p>
+          <label :for="data.name">
+            <input
+              :id="data.name"
+              :name="data.name"
+              :type="data.type"
+              class="sr-only"
+              @input="emitImg"
+              accept="image/png"
             />
-          </svg>
-          <div class="">
-            <label :for="data.name">
-              <input
-                :id="data.name"
-                :name="data.name"
-                :type="data.type"
-                class="sr-only"
-                @input="emitImg"
-                accept="image/png"
-              />
-            </label>
-          </div>
+          </label>
         </div>
+      </div>
     </label>
+    <h4 class="text-Gravel w-64 pt-3 font-medium text-xs">
+      By creating a Space, you agree to Reave's
+      <span class="text-Blue font-bold">Community Guidelines.</span>
+    </h4>
   </div>
 </template>
+<script setup>
+import Picture from "@assets/icons/Picture.vue";
 
-<script>
+const emit = defineEmits("update:modelValue");
+
+const colorPlus = "#111111";
+
+const changeColor = () => {
+  colorPlus = "#2a2a2a";
+}
+
+const props = defineProps({
+  data: Object,
+  miniature: {
+    default: {},
+  },
+  modelValue: { Object, String },
+  error: Object,
+});
+function emitImg(e) {
+  console.log(e.target.files[0]);
+  emit("update:modelValue", e.target.files[0]);
+}
+</script>
+<!-- <script>
 /**
  * composant qui gere l'affichage
  * de l'input de type text
@@ -52,14 +74,7 @@ export default {
      *  value: "",
      * },
      */
-    data: Object,
-    miniature: {
-      default: {},
-    },
-    /** v-model="inputExemple.value"
-     * ce qui va etre submit
-     */
-    modelValue: { Object, String },
+
     /** :errors="errors[exemple]"
      * retour de l'erreur
      */
@@ -68,11 +83,16 @@ export default {
     },
   },
   emits: ["update:modelValue"],
-  methods: {
-    emitImg(e) {
-      console.log(e.target.files[0]);
-      this.$emit("update:modelValue", e.target.files[0]);
-    },
-  },
+  methods: {},
 };
-</script>
+</script> -->
+
+<style>
+.label {
+  color: rgb(128 128 128);
+}
+
+.label:hover {
+  color: rgb(255 255 255);
+}
+</style>

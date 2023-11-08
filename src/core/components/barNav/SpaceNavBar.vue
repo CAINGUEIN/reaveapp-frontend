@@ -1,18 +1,30 @@
 <template>
   <ToolsButtonNav
     v-for="space in storeSpace.dataSpace"
-    @click="$emit('action', space._id, space.typeOfSpace)"
+    @click="$emit('action', space._id)"
     :dataClass="'large'"
     class="mr-2.5"
     :slot="true"
   >
-    <ImgFormated
-      :key="store.spaceKey"
-      :size="'l'"
-      :type="'friend'"
-      :targetSpace="space._id"
-      class="rounded-full my-auto"
-    />
+    <div
+      :class="[
+        $route.path.includes(space._id)
+          ? ' border-gray-200 rounded-2xl '
+          : 'border-Anthracite',
+      ]"
+      class="border-2 p-0.5"
+    >
+      <ImgFormated
+        :key="store.spaceKey"
+        :size="'l'"
+        :type="'friend'"
+        :targetSpace="space._id"
+        class="w-12 h-12 space"
+        v-bind:class="{
+          'space-selected': $route.path.includes(space._id),
+        }"
+      />
+    </div>
   </ToolsButtonNav>
 </template>
 
@@ -35,3 +47,21 @@ export default {
   components: { ToolsButtonNav, ImgFormated },
 };
 </script>
+
+<style lang="css">
+
+.space {
+    border-radius: 100%;
+    transition: border-radius 1s;
+}
+
+.space-selected {
+    border-radius: 12px;
+}
+
+.space:hover {
+    border-radius: 12px;
+}
+
+
+</style>

@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="flex h-screen"
-    v-bind:class="{ 'pb-5': !$route.path.includes('SpacePrivate') }"
-  >
+  <div class="flex h-screen">
     <div class="w-full flex flex-col h-full">
       <TopNavBar
         :class="{
@@ -14,7 +11,7 @@
         @modal-changed="handleModalValueChanged"
       />
       <div
-        class="mt-[12px] mx-8 h-full flex border-2 border-Rock rounded-t-xl border-b-0"
+        class="mt-[20px] mx-8 h-full flex border-2 border-Rock rounded-t-xl border-b-0"
         v-if="$route.path.includes('SpacePrivate')"
       >
         <LeftNavBar />
@@ -207,3 +204,22 @@ export default {
   },
 };
 </script>
+
+<style lang="css">
+
+.space {
+    border-radius: 100%;
+    transition: border-radius 1s;
+    transition-delay: 0ms;
+}
+
+.space-selected {
+    border-radius: 12px;
+}
+
+.space:hover {
+    border-radius: 12px;
+}
+
+
+</style>
