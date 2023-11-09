@@ -12,7 +12,7 @@
         :dataStore="dataSpace"
       />
       <div
-        class="mt-6 mx-8 h-full flex border-2 border-Rock rounded-t-xl border-b-0"
+        class="mt-4 mx-8 h-full flex border-2 border-Rock rounded-t-xl border-b-0"
         v-if="$route.path.includes('SpacePrivate')"
       >
         <LeftNavBar />
