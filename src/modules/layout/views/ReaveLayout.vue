@@ -3,7 +3,7 @@
     <div class="w-full flex flex-col h-full">
       <TopNavBar
         :class="{
-          'sticky top-0 mx-8 left-0 right-0 flex pt-6 pb-[18px] items-center bg-Anthracite':
+          'sticky top-0 mx-8 left-0 right-0 flex pt-6 items-center bg-Anthracite':
             !isMapsRoute,
           'absolute top-0 left-0 right-0 flex pt-6 pb-[18px] items-center':
             isMapsRoute,
@@ -12,7 +12,7 @@
         :dataStore="dataSpace"
       />
       <div
-        class="mt-[20px] mx-8 h-full flex border-2 border-Rock rounded-t-xl border-b-0"
+        class="mt-6 mx-8 h-full flex border-2 border-Rock rounded-t-xl border-b-0"
         v-if="$route.path.includes('SpacePrivate')"
       >
         <LeftNavBar />
