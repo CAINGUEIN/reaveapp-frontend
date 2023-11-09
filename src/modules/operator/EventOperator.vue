@@ -8,8 +8,8 @@
         >
           <SvgTarget
             target="Plus"
-            height="16"
-            width="16"
+            :height="16"
+            :width="16"
             class="mx-auto"
           ></SvgTarget>
         </button>
@@ -33,8 +33,8 @@
           <Button40Slot class="flex bg-LightRock rounded-full ml-3">
             <SvgTarget
               target="Filters"
-              height="24"
-              width="24"
+              :height="24"
+              :width="24"
               class="mx-auto my-auto"
             ></SvgTarget>
           </Button40Slot>
@@ -49,8 +49,8 @@
           >
             <SvgTarget
               target="Ligns"
-              height="24"
-              width="24"
+              :height="24"
+              :width="24"
               class="mx-auto my-auto"
             ></SvgTarget>
           </button>
@@ -63,8 +63,8 @@
           >
             <SvgTarget
               target="smsq"
-              height="24"
-              width="24"
+              :height="24"
+              :width="24"
               class="mx-auto my-auto"
             ></SvgTarget>
           </button>
@@ -75,8 +75,8 @@
           >
             <SvgTarget
               target="lgsq"
-              height="24"
-              width="24"
+              :height="24"
+              :width="24"
               class="mx-auto my-auto"
             ></SvgTarget>
           </button>
@@ -90,8 +90,8 @@
               Most Recent
               <SvgTarget
                 target="Chevron"
-                height="24"
-                width="24"
+                :height="24"
+                :width="24"
                 class="mx-auto my-auto"
               ></SvgTarget>
             </MenuButton>

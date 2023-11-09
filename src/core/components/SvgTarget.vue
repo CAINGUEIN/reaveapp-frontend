@@ -36,6 +36,11 @@ export default {
     ...iconsOld,
     ...overviewVenue
   },
-  props: ["target", "width", "color1", "height"],
+  props: {
+    target: String,
+    width: Number,
+    height: Number,
+    color1: String,
+  },
 };
 </script>

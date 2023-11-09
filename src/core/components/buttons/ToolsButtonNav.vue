@@ -1,17 +1,19 @@
 <template>
-  <div class="flex items-center justify-center rounded-full cursor-pointer"
-  @mouseenter="isMouseOver ? startTimer() : null"
-  @mouseleave="isMouseOver ? cancelTimer() : null"
-  
-    :class="[classBTN, classCompar]" @click="goTo(target)">
-
-    <div class="block rounded-[5px] z-50 text-White absolute translate-y-full p-[6px]
-       mt-4 bg-LightRock" v-show="displayHiddenDiv">
-     {{ btnName }}
+  <div
+    class="flex items-center justify-center rounded-full cursor-pointer"
+    @mouseenter="isMouseOver ? startTimer() : null"
+    @mouseleave="isMouseOver ? cancelTimer() : null"
+    :class="[classBTN, classCompar]"
+    @click="goTo(target)"
+  >
+    <div
+      class="block rounded-[5px] z-50 text-White absolute translate-y-full p-[6px] mt-4 bg-LightRock"
+      v-show="displayHiddenDiv"
+    >
+      {{ btnName }}
     </div>
 
     <slot></slot>
-
   </div>
 </template>
 
@@ -53,20 +55,20 @@ export default {
     startTimer() {
       this.timer = setTimeout(() => {
         this.showHiddenDiv();
-      }, 1500); 
+      }, 1500);
     },
     cancelTimer() {
       if (this.timer) {
-        clearTimeout(this.timer); 
+        clearTimeout(this.timer);
         this.hideHiddenDiv();
       }
     },
     showHiddenDiv() {
-        this.displayHiddenDiv = true;
+      this.displayHiddenDiv = true;
     },
 
     hideHiddenDiv() {
-        this.displayHiddenDiv = false;
+      this.displayHiddenDiv = false;
     },
     goTo(value) {
       if (value !== undefined) {
@@ -74,8 +76,8 @@ export default {
         this.$router.push({
           name: value,
           params: {
-            view: this.subTarget
-          }
+            view: this.subTarget,
+          },
         });
       }
     },
@@ -128,7 +130,8 @@ export default {
         this.classCompar = "text-White bg-LightRock";
       }
       if (this.dataClass === "settings" && this.comparTarget !== this.stat) {
-        this.classCompar = " hover:bg-LightRock hover:text-LightGrey text-Gravel";
+        this.classCompar =
+          " hover:bg-LightRock hover:text-LightGrey text-Gravel";
       }
 
       if (this.dataClass === "reave" && this.comparTarget === this.stat) {

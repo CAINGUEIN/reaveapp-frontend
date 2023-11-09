@@ -7,7 +7,7 @@
         <button
           class="bg-White text-Anthracite h-10 w-10 rounded-full items-center hover:bg-DarkRock hover:text-White flex"
           @click.prevent="open = true">
-          <SvgTarget target="Plus" height="16" width="16" class="mx-auto"></SvgTarget>
+          <SvgTarget target="Plus" :height="16" :width="16" class="mx-auto"></SvgTarget>
         </button>
         <label for="search" class="sr-only">Search</label>
         <div class="relative text-white border-White flex justify-between h-10 w-2/3 ml-3">
@@ -18,7 +18,7 @@
               placeholder="Search" type="search" name="search" />
           </div>
           <Button40Slot class="flex bg-LightRock rounded-full ml-3">
-            <SvgTarget target="Filters" height="24" width="24" class="mx-auto my-auto"></SvgTarget>
+            <SvgTarget target="Filters" :height="24" :width="24" class="mx-auto my-auto"></SvgTarget>
           </Button40Slot>
         </div>
       </div>
@@ -26,15 +26,15 @@
         <div class="rounded-lg bg-DarkRock h-10 flex">
           <button class="w-12 h-10 rounded-lg flex" :class="show === 'list' ? 'bg-LightRock text-White' : 'bg-DarkRock'"
             @click="show = 'list'">
-            <SvgTarget target="Ligns" height="24" width="24" class="mx-auto my-auto"></SvgTarget>
+            <SvgTarget target="Ligns" :height="24" :width="24" class="mx-auto my-auto"></SvgTarget>
           </button>
           <button class="w-12 h-10 rounded-lg flex" :class="show === 'board' ? 'bg-LightRock text-White' : 'bg-DarkRock'
             " @click="show = 'board'">
-            <SvgTarget target="smsq" height="24" width="24" class="mx-auto my-auto"></SvgTarget>
+            <SvgTarget target="smsq" :height="24" :width="24" class="mx-auto my-auto"></SvgTarget>
           </button>
           <button class="w-12 h-10 rounded-lg flex" :class="show === 'grid' ? 'bg-LightRock text-White' : 'bg-DarkRock'"
             @click="show = 'grid'">
-            <SvgTarget target="lgsq" height="24" width="24" class="mx-auto my-auto"></SvgTarget>
+            <SvgTarget target="lgsq" :height="24" :width="24" class="mx-auto my-auto"></SvgTarget>
           </button>
         </div>
         <Menu as="div" class="relative inline-block text-left ml-3">
@@ -45,7 +45,7 @@
 
               <span class="text-LightGrey text-base font-medium">Order by</span>
               Most Recent
-              <SvgTarget target="Chevron" height="24" width="24" class="mx-auto my-auto"></SvgTarget>
+              <SvgTarget target="Chevron" :height="24" :width="24" class="mx-auto my-auto"></SvgTarget>
             </MenuButton>
           </div>
 
