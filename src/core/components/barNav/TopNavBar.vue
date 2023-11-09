@@ -87,7 +87,6 @@
                     :isMouseOver="true"
                     class="flex rounded-full transition duration-150 ease-in-out my-1 mx-1"
                   >
-                
                     <!-- NEW -->
                     <Events
                       width="24"
@@ -369,8 +368,8 @@ export default {
       ) {
         console.log(this.$store);
         this.$router.push({
-          name: "SpacePrivate",
-          params: { id: target },
+          name: "Operator",
+          params: { id: target, target: "projects" },
         });
       } else {
         this.$router.push({

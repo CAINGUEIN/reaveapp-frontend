@@ -1,6 +1,6 @@
 <template>
   <ToolsButtonNav
-    v-for="space in dataSpace"
+    v-for="(space,index) in dataSpace"
     @click="$emit('action', space._id)"
     :dataClass="'large'"
     class="mr-2.5"

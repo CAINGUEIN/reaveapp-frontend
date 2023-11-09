@@ -2,47 +2,56 @@
   <div
     class="flex-col justify-between px-3 py-3 items-center space-y-2 border-r-2 border-Rock"
   >
-    <ToolsButtonNav
-      v-for="item in buttonsMenu"
-      :btnName="item.icon"
-      :key="item.target"
-      :target="item.target"
-      :dataClass="item.dataClass"
-      :comparTarget="store.view"
-      class="transition duration-150 py-2 flex-col justify-between ease-in-out hover:text-White"
+    <div
+      class="transition duration-150 space-y-2 flex-col justify-between ease-in-out hover:text-White"
     >
-      <Riot v-if="item.icon === 'Riot'" :width="24" :height="24"></Riot>
-      <Messages
-        v-if="item.icon === 'Messages'"
-        :width="24"
-        :height="24"
-      ></Messages>
-      <Dashboard
-        v-if="item.icon === 'Dashboard'"
-        :width="24"
-        :height="24"
-      ></Dashboard>
-      <Operator
-        v-if="item.icon === 'Operator'"
-        :width="24"
-        :height="24"
-      ></Operator>
-      <Conceptor
-        v-if="item.icon === 'Conceptor'"
-        :width="24"
-        :height="24"
-      ></Conceptor>
-      <Calendar
-        v-if="item.icon === 'Calendar'"
-        :width="24"
-        :height="24"
-      ></Calendar>
-      <Analytics
-        v-if="item.icon === 'Analytics'"
-        :width="24"
-        :height="24"
-      ></Analytics>
-    </ToolsButtonNav>
+      <ToolsButtonNav
+        v-for="item in buttonsMenu"
+        :btnName="item.icon"
+        :key="item.target"
+        :target="item.target"
+        :dataClass="item.dataClass"
+        :comparTarget="store.view"
+      >
+        <ImgFormated
+          v-if="item.icon === 'Space'"
+          :key="store.spaceKey"
+          :size="'xs'"
+          :type="'space'"
+          class="rounded-full cursor-pointer h-6 w-6 hover:bg-Rock text-Gravel"
+        />
+        <Messages
+          v-if="item.icon === 'Messages'"
+          :width="24"
+          :height="24"
+        ></Messages>
+        <Dashboard
+          v-if="item.icon === 'Dashboard'"
+          :width="24"
+          :height="24"
+        ></Dashboard>
+        <Operator
+          v-if="item.icon === 'Operator'"
+          :width="24"
+          :height="24"
+        ></Operator>
+        <Conceptor
+          v-if="item.icon === 'Conceptor'"
+          :width="24"
+          :height="24"
+        ></Conceptor>
+        <Calendar
+          v-if="item.icon === 'Calendar'"
+          :width="24"
+          :height="24"
+        ></Calendar>
+        <Analytics
+          v-if="item.icon === 'Analytics'"
+          :width="24"
+          :height="24"
+        ></Analytics>
+      </ToolsButtonNav>
+    </div>
   </div>
 </template>
 
@@ -55,17 +64,17 @@ import { useRoute } from "vue-router";
 import Operator from "@assets/icons/Operator.vue";
 import Analytics from "@assets/svg/pricing/Analytics.vue";
 import Conceptor from "@assets/icons/Conceptor.vue";
-import Riot from "@assets/icons/Riot.vue";
 import Calendar from "@assets/icons/Calendar.vue";
 import Messages from "@assets/icons/Messages.vue";
 import ToolsButtonNav from "../buttons/ToolsButtonNav.vue";
 import Dashboard from "../../assets/icons/Dashboard.vue";
+import ImgFormated from "../img/ImgFormated.vue";
 
 const store = useStoreAuth();
 const buttonsMenu = [
   {
     target: "Space",
-    icon: "Riot",
+    icon: "Space",
     dataClass: "spaces",
   },
   {
