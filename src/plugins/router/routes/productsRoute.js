@@ -151,7 +151,7 @@ export default [
   {
     path: "/maps",
     name: "Maps",
-    component: () => import("@modules/systems/maps/maps.vue"),
+    component: () => import("@modules/systems/maps/Maps.vue"),
     meta: {
       layout: "Reave",
       permission: "log",

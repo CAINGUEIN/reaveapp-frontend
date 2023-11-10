@@ -3,7 +3,7 @@
     <div id="map"></div>
     <div id="rmLayoutTop">
     </div>
-      <button id="rmSettings"><Filters :width="24" :height="24"/></button>
+      <button id="rmFilters"><Filters :width="24" :height="24"/></button>
     <div id="rmVenuesBar">
       <button class="venueType"><Events :width="24" :height="24" class="rmVenueTypeIcon"/>Events</button>
       <button class="venueType"><Quests :width="24" :height="24" class="rmVenueTypeIcon"/>Quests</button>
@@ -17,7 +17,10 @@
       <button class="topRightButton"><Save :width="24" :height="24"/></button>
     </div>
     <button id="rmPosition"><Position :width="24" :height="24"/></button>
-    <input id="rmSearch" type="text" placeholder="🔎 Search">
+    <div id="rmSearch">
+      <img id="rmSearchIcon" src="src/core/assets/icons/vanillaSVGs/Search.svg">
+      <input id="rmSearchBar" type="text" placeholder="Search">
+    </div>
   </div>
 </template>
 <script>
@@ -36,6 +39,7 @@
   import Friends from "@assets/icons/Friends.vue";
   import Save from "@assets/icons/Save.vue";
   import Position from "@assets/icons/Position.vue";
+  import Search from "@assets/icons/Search.vue";
   //global variables declaration
   let map = null;
   let isPositionDefined = false;
@@ -52,7 +56,8 @@
       Stores,
       Friends,
       Save,
-      Position
+      Position,
+      Search,
     },
     mounted() {
       //map setup

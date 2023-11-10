@@ -25,7 +25,7 @@ import SOON from "./reavewallet/SOON.vue";
 import Gift from "./reavewallet/Gift.vue";
 
 //Reave Maps
-import Maps from "./maps/maps.vue";
+import Maps from "./maps/Maps.vue";
 
 //Calendar
 import Calendar from "./calendar/Calendar.vue";

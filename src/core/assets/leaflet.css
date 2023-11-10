@@ -95,12 +95,12 @@
     justify-content: center;
 }
 
-#rmSettings {
+#rmFilters {
     position: absolute;
     height: 40px;
     width: 40px;
     top: 98px;
-    left: 324px;
+    left: 329px;
     background-color: #1a1a1a;
     border-radius: 40px;
     appearance: none;
@@ -178,18 +178,36 @@
     margin-right: 8px;
 }
 
-#rmSearch {
+#rmSearch{
     position: absolute;
     height: 40px;
-    width: 282px;
+    width: 300px;
     top: 98px;
-    left: 30px;
+    left: 22px;
     background-color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
     border-radius: 36px;
-    padding-left: 16px;
-    padding-right: 16px;
+}
+
+#rmSearchBar {
+    height: 40px;
+    width: 282px;
     border: none;
     z-index: 1000;
+    background-color: transparent;
+}
+
+#rmSearchBar::placeholder {
+    color: #808080;
+}
+
+#rmSearchIcon{
+    z-index: 1000;
+    height: 16px;
+    width: 16px;
+    margin-left: 16px;
 }
 
 #rmPinNeedle {
@@ -847,9 +865,20 @@ svg.leaflet-image-layer.leaflet-interactive path {
 .leaflet-popup-content-wrapper {
     /*text-align: left;*/
     border-radius: 16px;
-    transform: translateX(calc(50% + 30px));
+    transform: translateX(calc(40% + 55px));
 }
 
+
+/*making translated divs not draggable, but popup content clickable*/
+.leaflet-popup-content-wrapper,.leaflet-popup.leaflet-zoom-animated{
+    z-index: -1000;
+    pointer-events: none;
+}
+
+.leaflet-popup-content-wrapper *,.leaflet-popup-close-button * {
+    z-index: 1000;
+    pointer-events:all;
+}
 
 .leaflet-popup-close-button {
     display: none;
