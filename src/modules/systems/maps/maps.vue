@@ -20,7 +20,6 @@
     <input id="rmSearch" type="text" placeholder="🔎 Search">
   </div>
 </template>
-
 <script>
   //import of leaflet css
   import "@core/assets/leaflet.css";
@@ -124,9 +123,9 @@
               <button id="rmPopupAuctionButton" class="rmPopupButton">🔨</button>
             </div>
             <div id="rmPopupFriends">
-              <div class="rmPopupFriend"></div>
-              <div class="rmPopupFriend"></div>
-              <div class="rmPopupFriend"></div>
+              <div class="rmPopupFriend"><img src="src/core/assets/img/1.png" class="rmPopupFriend"/></div>
+              <div class="rmPopupFriend"><img src="src/core/assets/img/2.png" class="rmPopupFriend"/></div>
+              <div class="rmPopupFriend"><img src="src/core/assets/img/3.png" class="rmPopupFriend"/></div>
             </div>
           </div>
         </div>

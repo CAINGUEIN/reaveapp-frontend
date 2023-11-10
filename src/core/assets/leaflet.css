@@ -233,12 +233,15 @@
     display: flex;
 }
 
-.rmPopupFriend {
+div.rmPopupFriend {
     height: 16px;
     width: 16px;
-    border-radius: 100%;
-    background-color: #38f;
+    background-color: #1a1a1a;
     margin-right: -4px;
+}
+
+.rmPopupFriend{
+    border-radius: 100%;
 }
 
 /* LEAFLET STYLE */
