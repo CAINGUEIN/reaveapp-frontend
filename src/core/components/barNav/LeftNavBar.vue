@@ -13,9 +13,15 @@
         :dataClass="item.dataClass"
         :comparTarget="store.view"
       >
-        <ImgFormated
+        <img
           v-if="item.icon === 'Space'"
+          :src="spaceStore.getImg(props.idSpace)"
+          alt=""
+        />
+        <ImgFormated
+          v-if="item.icon === 'Space' && !spaceStore.getImg(props.idSpace)"
           :key="store.spaceKey"
+          :srcImg="img"
           :size="'xs'"
           :type="'space'"
           class="rounded-full cursor-pointer h-6 w-6 hover:bg-Rock text-Gravel"
@@ -58,7 +64,8 @@
 <script setup>
 // hooks
 import useStoreAuth from "@stores/auth";
-import { watch } from "vue";
+import useStoreSpace from "@stores/storeSpace";
+import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
 // Components
 import Operator from "@assets/icons/Operator.vue";
@@ -70,7 +77,12 @@ import ToolsButtonNav from "../buttons/ToolsButtonNav.vue";
 import Dashboard from "../../assets/icons/Dashboard.vue";
 import ImgFormated from "../img/ImgFormated.vue";
 
+const props = defineProps({
+  idSpace: String,
+});
 const store = useStoreAuth();
+const spaceStore = useStoreSpace();
+
 const buttonsMenu = [
   {
     target: "Space",

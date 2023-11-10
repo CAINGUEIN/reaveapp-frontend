@@ -15,7 +15,7 @@
         class="mt-4 mx-8 h-full flex border-2 border-Rock rounded-t-xl border-b-0"
         v-if="$route.path.includes('SpacePrivate')"
       >
-        <LeftNavBar />
+        <LeftNavBar :idSpace="$route.params.id" />
         <router-view class="max-h-fit w-full" />
       </div>
       <router-view
@@ -122,9 +122,7 @@ export default {
   },
   methods: {
     async feedDataSpace() {
-      if (!this.storeSpace.dataSpace) {
-        await this.storeSpace.feedDataSpace();
-      }
+      await this.storeSpace.feedDataSpace();
       this.dataSpace = this.storeSpace.dataSpace;
     },
     handleModalValueChanged(value) {

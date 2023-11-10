@@ -131,7 +131,7 @@ let pictureInput = ref(false);
 const errors = ref({});
 const router = useRouter();
 const isEnabled = ref(false);
-const idSpace = ref("654b936b3cbb4c609f50de60");
+const idSpace = ref("");
 const handleUpdate = (value) => {
   if (value.length >= 3) {
     isEnabled.value = true;
@@ -156,13 +156,8 @@ const submit = async () => {
   if (result.data.success) {
     console.log(result.data.data);
     idSpace.value = result.data.data.newSpace._id;
-    console.log(idSpace.value);
     emit("submitSuccess");
     pictureInput.value = true;
-    this.$router.push({
-      name: "SpacePrivate",
-      params: { id: result.data.data._id },
-    });
   } else {
     errors.value = result.data.message;
     console.log(errors.value);

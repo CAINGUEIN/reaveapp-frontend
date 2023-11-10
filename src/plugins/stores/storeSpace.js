@@ -11,9 +11,9 @@ const StoreSpace = defineStore("space", {
     };
   },
   getters: {
-    // getImg(id) {
-    //   return this.dataSpace[result.data.data[index].picture]
-    // }
+    getImg: (state) => {
+      return (id) => state.dataSpace[id].picture;
+    },
   },
   actions: {
     async feedDataSpace() {
@@ -21,13 +21,11 @@ const StoreSpace = defineStore("space", {
       let result = await SpaceServices.checkSpace();
       let pic;
       for (let index = 0; index < result.data.data.length; index++) {
-        console.log(result.data.data[index]._id);
         this.dataSpace[result.data.data[index]._id] = result.data.data[index];
         pic = result.data.data[index].picture;
         if (pic) {
           this.dataSpace[result.data.data[index]._id].picture =
             await EventServices.getImageFromBackend(pic);
-          console.log(this.dataSpace[result.data.data[index].picture]);
         }
       }
       console.log("dans le dataSpace", this.dataSpace);
@@ -42,6 +40,7 @@ const StoreSpace = defineStore("space", {
     deleteDataSpace(state) {
       state.dataSpace = "";
     },
+
   },
 });
 

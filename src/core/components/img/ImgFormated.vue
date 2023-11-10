@@ -1,14 +1,16 @@
 <template>
-  <img :src="srcImg" @error="replaceUrl" :alt="type + size" >
+  <img :src="srcImg" @error="replaceUrl" :alt="type + size" />
 </template>
 
 <script>
 import useStoreAuth from "@stores/auth";
+import useStoreSpace from "@stores/storeSpace";
 
 export default {
-  props: ["type", "size", "targetSpace"],
+  props: ["type", "size", "targetSpace", "id"],
   data() {
     const store = useStoreAuth();
+    // const spaceStore = useStoreSpace();
     return {
       store,
       srcImg: "",
@@ -18,39 +20,45 @@ export default {
   },
   methods: {
     async setSrcImg() {
-      let srcType = "";
-      if (this.type === "banner") {
-        srcType = "userbanner/";
-        this.target = this.store.dataAccount._id;
-      } else if (this.type === "avatar") {
-        srcType = "useravatar/";
-        if (this.targetSpace !== undefined) {
-          this.target = this.targetSpace;
-        } else {
+      // if (this.type === "spaceleftbar") {
+        
+      //   this.srcImg = spaceStore.getImg(this.id);
+      //   console.log("IMGFORMAT: ", this.srcImg);
+      // }
+      if (this.srcImg === "") {
+        let srcType = "";
+        if (this.type === "banner") {
+          srcType = "userbanner/";
           this.target = this.store.dataAccount._id;
+        } else if (this.type === "avatar") {
+          srcType = "useravatar/";
+          if (this.targetSpace !== undefined) {
+            this.target = this.targetSpace;
+          } else {
+            this.target = this.store.dataAccount._id;
+          }
+        } else if (this.type === "space") {
+          srcType = "profilespace/";
+          this.target = this.targetSpace;
+        } else if (this.type === "event") {
+          srcType = "eventpp/";
+          this.target = this.targetSpace;
+        } else if (this.type === "item") {
+          srcType = "equipmentpp/";
+          this.target = this.targetSpace;
         }
-      } else if (this.type === "space") {
-        srcType = "profilespace/";
-        this.target = this.targetSpace;
-      } else if (this.type === "event") {
-        srcType = "eventpp/";
-        this.target = this.targetSpace;
-      } else if (this.type === "item") {
-        srcType = "equipmentpp/";
-        this.target = this.targetSpace;
+        if (this.srcImg == "") {
+          this.srcImg =
+            this.srcMediaBase +
+            srcType +
+            this.size +
+            this.target +
+            this.type +
+            ".png?rand=" +
+            Math.random();
+          console.log(this.srcImg);
+        }
       }
-      if(this.srcImg == ""){
-        this.srcImg =
-        this.srcMediaBase +
-          srcType +
-        this.size +
-        this.target +
-        this.type +
-        ".png?rand=" +
-        Math.random();
-      console.log(this.srcImg);
-      }
-
     },
     replaceUrl(e) {
       let randomColor = Math.floor(Math.random() * 0xffffff).toString(16);
@@ -73,12 +81,16 @@ export default {
       } else if (this.type === "item") {
         e.target.src = "/chaire.jpeg";
       } else if (this.type === "venue") {
-        e.target.src = "/img/VenuesDefault.png"
-      }
-      else {
+        e.target.src = "/img/VenuesDefault.png";
+      } else {
         e.target.src =
           "https://via.placeholder.com/" + formatSize + randomColor;
       }
+    },
+  },
+  watch: {
+    $route() {
+      this.setSrcImg();
     },
   },
   mounted() {
