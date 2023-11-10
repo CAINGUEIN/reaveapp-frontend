@@ -4,7 +4,7 @@
 
 #map {
     width: 100%;
-    height: calc(100% + 20px);
+    height: 100%;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -26,6 +26,7 @@
     padding: 8px;
     padding-right: 12px;
     width: max-content;
+    user-select: none;
 }
 
 #rmPopupText {
@@ -80,7 +81,7 @@
     position: absolute;
     height: 40px;
     width: 40px;
-    bottom: 90px;
+    bottom: 110px;
     right: 22px;
     background-color: #1a1a1a;
     border-radius: 12px;
@@ -219,6 +220,9 @@
     height: 24px;
     width: 24px;
     border-radius: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 #rmPopupTicketButton {
@@ -238,6 +242,7 @@ div.rmPopupFriend {
     width: 16px;
     background-color: #1a1a1a;
     margin-right: -4px;
+    margin-top: 8px;
 }
 
 .rmPopupFriend{

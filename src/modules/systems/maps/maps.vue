@@ -119,8 +119,8 @@
           </div>
           <div id="rmPopupButtonsAndFriends">
             <div id="rmPopupButtons">
-              <button id="rmPopupTicketButton" class="rmPopupButton">🎟️</button>
-              <button id="rmPopupAuctionButton" class="rmPopupButton">🔨</button>
+              <div id="rmPopupTicketButton" class="rmPopupButton"><img src="src/core/assets/icons/vanillaSVGs/Ticket.svg"></div>
+              <div id="rmPopupAuctionButton" class="rmPopupButton"><img src="src/core/assets/icons/vanillaSVGs/Auctions.svg"></div>
             </div>
             <div id="rmPopupFriends">
               <div class="rmPopupFriend"><img src="src/core/assets/img/1.png" class="rmPopupFriend"/></div>
