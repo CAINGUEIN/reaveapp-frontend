@@ -1,6 +1,6 @@
 <template>
   <ToolsButtonNav
-    v-for="(space,index) in dataSpace"
+    v-for="(space, index) in dataSpace"
     @click="$emit('action', space._id)"
     :dataClass="'large'"
     class="mr-2.5"
@@ -18,6 +18,7 @@
         :key="store.spaceKey"
         :size="'l'"
         :type="'space'"
+        :src="space.picture"
         :targetSpace="space._id"
         class="w-12 h-12 space"
         v-bind:class="{
@@ -51,19 +52,16 @@ export default {
 </script>
 
 <style lang="css">
-
 .space {
-    border-radius: 100%;
-    transition: border-radius 1s;
+  border-radius: 100%;
+  transition: border-radius 1s;
 }
 
 .space-selected {
-    border-radius: 12px;
+  border-radius: 12px;
 }
 
 .space:hover {
-    border-radius: 12px;
+  border-radius: 12px;
 }
-
-
 </style>

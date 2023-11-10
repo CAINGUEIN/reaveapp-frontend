@@ -30,7 +30,10 @@ class EventServices {
   static async picVenue(formdata) {
     return Base.post("/user/update/pic/venue", formdata)
       .then((response) => {
-        console.log("We are in the route /pic/venue and the response is :", response);
+        console.log(
+          "We are in the route /pic/venue and the response is :",
+          response
+        );
         return response;
       })
       .catch((e) => {
@@ -38,19 +41,29 @@ class EventServices {
         return e;
       });
   }
-  
-  static async sendAddressData(venueId, venueName, street, city, pCode, country) {
+
+  static async sendAddressData(
+    venueId,
+    venueName,
+    street,
+    city,
+    pCode,
+    country
+  ) {
     const data = {
       venueId: venueId,
       venueName: venueName,
       street: street,
       city: city,
       pCode: pCode,
-      country: country
+      country: country,
     };
     return Base.post(`/event/sendData`, data)
       .then((response) => {
-        console.log("We are in the route /sendData and the response is :", response);
+        console.log(
+          "We are in the route /sendData and the response is :",
+          response
+        );
         return response;
       })
       .catch((e) => {
@@ -59,17 +72,19 @@ class EventServices {
       });
   }
 
-
   static async getImageFromBackend(imageURL) {
     try {
-      const response = await Base.get(`/uploads/${imageURL}`, { responseType: 'arraybuffer' });
-      const imageBlob = new Blob([response.data], { type: response.headers['content-type'] });
-      
+      const response = await Base.get(`/uploads/${imageURL}`, {
+        responseType: "arraybuffer",
+      });
+      const imageBlob = new Blob([response.data], {
+        type: response.headers["content-type"],
+      });
+
       return URL.createObjectURL(imageBlob);
-      
     } catch (error) {
-      console.error('Erreur lors de la récupération de l\'image :', error);
-      throw error; 
+      console.error("Erreur lors de la récupération de l'image :", error);
+      throw error;
     }
   }
 
@@ -265,7 +280,6 @@ class EventServices {
         return e;
       });
   }
-
 }
 
 export default EventServices;

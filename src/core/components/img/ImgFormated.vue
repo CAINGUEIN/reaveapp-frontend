@@ -39,15 +39,18 @@ export default {
         srcType = "equipmentpp/";
         this.target = this.targetSpace;
       }
-      this.srcImg =
+      if(this.srcImg == ""){
+        this.srcImg =
         this.srcMediaBase +
-        srcType +
+          srcType +
         this.size +
         this.target +
         this.type +
         ".png?rand=" +
         Math.random();
       console.log(this.srcImg);
+      }
+
     },
     replaceUrl(e) {
       let randomColor = Math.floor(Math.random() * 0xffffff).toString(16);

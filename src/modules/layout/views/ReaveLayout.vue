@@ -122,7 +122,9 @@ export default {
   },
   methods: {
     async feedDataSpace() {
-      await this.storeSpace.feedDataSpace();
+      if (!this.storeSpace.dataSpace) {
+        await this.storeSpace.feedDataSpace();
+      }
       this.dataSpace = this.storeSpace.dataSpace;
     },
     handleModalValueChanged(value) {

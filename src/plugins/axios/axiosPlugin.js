@@ -40,29 +40,29 @@ Base.interceptors.response.use((response) => {
 if (import.meta.env.VITE_APP_WATCH_SERVICES === "yes") {
   Base.interceptors.request.use(
     (request) => {
-      console.log("\\\\\\\\");
-      console.log(`SENDING FROM FRONTEND :`, request);
-      console.log("\\\\\\\\");
+      // console.log("\\\\\\\\");
+      // console.log(`SENDING FROM FRONTEND :`, request);
+      // console.log("\\\\\\\\");
       return request;
     },
     (err) => {
-      console.log("\\\\\\\\");
-      console.log(`RECEIVED RESPONSE FROM BACKEND : ${err.response}`);
-      console.log("\\\\\\\\");
+      // console.log("\\\\\\\\");
+      // console.log(`RECEIVED RESPONSE FROM BACKEND : ${err.response}`);
+      // console.log("\\\\\\\\");
       return err.response;
     }
   );
   Base.interceptors.response.use(
     (response) => {
-      console.log("\\\\\\\\");
-      console.log(`RECEIVED RESPONSE FROM BACKEND : ${response}`);
-      console.log("\\\\\\\\");
+      // console.log("\\\\\\\\");
+      // console.log(`RECEIVED RESPONSE FROM BACKEND : ${response}`);
+      // console.log("\\\\\\\\");
       return response;
     },
     (err) => {
-      console.log("\\\\\\\\");
-      console.log(`RECEIVED RESPONSE FROM BACKEND : ${err.response}`);
-      console.log("\\\\\\\\");
+      // console.log("\\\\\\\\");
+      // console.log(`RECEIVED RESPONSE FROM BACKEND : ${err.response}`);
+      // console.log("\\\\\\\\");
       return err.response;
     }
   );
