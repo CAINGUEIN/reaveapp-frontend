@@ -865,7 +865,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 .leaflet-popup-content-wrapper {
     /*text-align: left;*/
     border-radius: 16px;
-    transform: translateX(calc(40% + 55px));
+    transform: translateX(calc(47% + 43px));
 }
 
 
