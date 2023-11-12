@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import SpaceServices from "@axios/services/spaceServices";
-import EventServices from "../axios/services/eventServices";
+import VenueServices from "../axios/services/venueServices";
+import UploadServices from "../axios/services/uploadServices";
+
 
 const StoreSpace = defineStore("space", {
   state: () => {
@@ -25,7 +27,7 @@ const StoreSpace = defineStore("space", {
         pic = result.data.data[index].picture;
         if (pic) {
           this.dataSpace[result.data.data[index]._id].picture =
-            await EventServices.getImageFromBackend(pic);
+            await UploadServices.getImageFromBackend(pic);
         }
       }
       console.log("dans le dataSpace", this.dataSpace);

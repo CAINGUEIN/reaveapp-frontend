@@ -29,7 +29,7 @@ static async uploadPicture(routePath, formdata) {
           });
       }
 
-static async getImageFromBackend(imageURL, subFolder) {
+static async getImageFromBackend(imageURL) {
         return await Base.get(`/uploads/${imageURL}`, { responseType: 'arraybuffer' })
           .then((response) => {
             const imageBlob = new Blob([response.data], { type: response.headers['content-type'] });
