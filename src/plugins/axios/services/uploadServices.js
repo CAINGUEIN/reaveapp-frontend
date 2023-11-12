@@ -42,3 +42,5 @@ static async getImageFromBackend(imageURL, subFolder) {
       }
       
 }
+
+export default UploadServices;
