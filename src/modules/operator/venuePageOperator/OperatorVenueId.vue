@@ -34,7 +34,7 @@
   //tool
   import useStoreAuth from "@stores/auth";
   //services
-  import eventServices from "@axios/services/eventServices";
+  import venueServices from "@axios/services/venueServices";
   export default {
     components: {
       XButton36,
@@ -69,8 +69,7 @@
       },
       async feadData() {
         let body = { _id: this.id };
-        console.log('YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY', body);
-        let result = await eventServices.dataVenue(body);
+        let result = await venueServices.dataVenue(body);
         if (result.data.success) {
           this.infoEvent = result.data.data;
           this.perm();

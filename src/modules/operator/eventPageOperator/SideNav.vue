@@ -196,7 +196,7 @@ export default {
             { target: "", icon: "Eye", name: "Spectators" },
             { target: "", icon: "Fist", name: "Participants" },
             { target: "", icon: "Stand", name: "Stands" },
-            { target: "", icon: "Events", name: "Venues" },
+            { target: "PeopleVenue", icon: "Venue", name: "Venues" },
             { target: "", icon: "Sponsors", name: "Sponsors" },
           ],
         },

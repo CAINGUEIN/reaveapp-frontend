@@ -32,7 +32,7 @@
   
   <script>
   import InputModel from "@components/inputs/InputModel.vue";
-  import EventServices from "@axios/services/eventServices";
+  import VenueServices from "@axios/services/venueServices";
   import XButton36 from "@components/buttons/XButton36.vue";
 
   export default {
@@ -59,7 +59,7 @@
       };
     },
     methods: {
-        async submit() {
+      async submit() {
       this.errors = {};
       let submitData = {
         name: this.name.value,
@@ -67,7 +67,7 @@
       };
         console.log('voici le ', submitData);
         //faire le submit
-        let result = await EventServices.createVenue(submitData);
+        let result = await VenueServices.createVenue(submitData);
         if (result.data.success) {
           console.log(result.data.data);
            this.$router.push({

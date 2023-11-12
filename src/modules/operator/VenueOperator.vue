@@ -85,8 +85,8 @@
     <div name="Content" class="mt-8 space-y-4">
       <table class="w-full">
         <thead class="border-b-2 border-LightGrey">
-          <tr class="mt-8">
-            <th scope="col" class="text-left pt-8 text-base font-black text-LightGrey pl-4">
+          <tr>
+            <th scope="col" class="text-left text-base font-black text-LightGrey pl-4">
               NAME
             </th>
             <th scope="col" class="text-left text-base font-black text-LightGrey">
@@ -121,7 +121,7 @@
                 {{ $dayjs(item.updatedAt).format("DD/MM/YYYY") }}
               </p>
             </td>
-            
+
             <td class="py-4 px-3 rounded-r-xl">
               <div class="flex justify-end">
                 <Menu as="div" class="relative ml-3">
@@ -174,15 +174,14 @@
 <script>
 //component
 import ModalClear from "@components/modal/ModalClear.vue";
-import CreateEvent from "../platforms/events/CreateEvent.vue";
-import CreateVenue from "../platforms/events/CreateVenue.vue";
+import CreateVenue from "../platforms/venues/CreateVenue.vue";
 import WalletCard from "@components/eventCardContent/WalletCard.vue";
 import Button40Slot from "@components/buttons/Button40Slot.vue";
 import SvgTarget from "@components/SvgTarget.vue";
 import ImgFormated from "@core/components/img/ImgFormated.vue";
 
 //services
-import EventServices from "@axios/services/eventServices";
+import VenueServices from "@axios/services/venueServices";
 //tool
 import useStoreAuth from "@stores/auth";
 import {
@@ -200,7 +199,6 @@ export default {
   components: {
     ModalClear,
     WalletCard,
-    CreateEvent,
     CreateVenue,
     ImgFormated,
     Button40Slot,
@@ -235,8 +233,7 @@ export default {
       this.$router.push({ name: "VenueId", params: { id: target } });
     },
     async searchVenueOperator() {
-      //recup de toute les datas dans les event qui on pour owner le id du user
-      let result = await EventServices.searchPersonalVenueOperator();
+      let result = await VenueServices.searchPersonalVenueOperator();
       if (result.data.success) {
         this.data = result.data.data;
       }

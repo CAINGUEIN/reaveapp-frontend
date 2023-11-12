@@ -78,10 +78,10 @@ export default {
       });
     },
     getUrl() {
-      if (Object.keys(this.$route.params).length > 0) {
-        this.target = this.$route.params.target;
-      } else {
+      if (this.$route.params.view == 'projects' || this.$route.params.target == 'projects') {
         this.target = "projects";
+      } else if (this.$route.params.view == 'venue' || this.$route.params.target == 'venue') {
+        this.target = "venue";
       }
     },
   },

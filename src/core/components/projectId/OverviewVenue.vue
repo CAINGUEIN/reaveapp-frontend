@@ -5,10 +5,18 @@
         <SvgTarget target="Overview" :height="20" :width="20" class="mr-2"></SvgTarget>
         OVERVIEW
       </span>
-      <button
+      <!-- <button
         class="ml-6 text-left pl-3 pr-4 py-1 my-0.5 flex items-center text-base font-black text-Anthracite bg-white rounded-full h-10"
         v-if="(yourPerm === 'Owner' || yourPerm === 'Admin') && !data.isPublished
           " @click="(open = true), (modalView = 'publish')">
+        <SvgTarget target="Publish" :height="20" :width="20" color1="#000000" class="mr-2"></SvgTarget>
+        Publish
+      </button> -->
+
+      <button
+        class="ml-6 text-left pl-3 pr-4 py-1 my-0.5 flex items-center text-base font-black text-Anthracite bg-white rounded-full h-10"
+        v-if="(yourPerm === 'Owner' || yourPerm === 'Admin')
+          " @click="publish">
         <SvgTarget target="Publish" :height="20" :width="20" color1="#000000" class="mr-2"></SvgTarget>
         Publish
       </button>
@@ -437,7 +445,8 @@ import { PencilIcon } from "@heroicons/vue/outline";
 import ModalClear from "@components/modal/ModalClear.vue";
 import Published from "@components/modal/projectId/Published.vue";
 
-import EventServices from "@axios/services/eventServices";
+import VenueServices from "@axios/services/venueServices";
+import UploadServices from "@axios/services/uploadServices";
 import CropperEvent from "../cropper/CropperEvent.vue";
 import ImgFormated from "../img/ImgFormated.vue";
 import { ChevronUpIcon } from "@heroicons/vue/outline";
@@ -545,6 +554,13 @@ export default {
   },
 },
   methods: {
+    publish() {
+      let body = { _id: this.$route.params.id };
+      VenueServices.publishVenue(body);
+      this.open = true;
+      this.modalView = 'publish';
+
+    },
 
     addPrivateFeature() {
       this.openAdd = true;
@@ -558,7 +574,7 @@ export default {
       const city = this.cityValue;
       const pCode = this.pCodeValue;
       const country = this.countryValue;
-      await EventServices.sendAddressData(venueId, venueName, street, city, pCode, country);
+      await VenueServices.sendAddressData(venueId, venueName, street, city, pCode, country);
       location.reload();
 
     },
@@ -575,14 +591,12 @@ export default {
       // Reset input to select a picture again
       this.$refs.inputFile.value = null;
     },
-
     async getBackendImage() {
       const imageURL2 = this.data.primaryPic;
       if (imageURL2 != ""){
-        console.log('fffoijjjoijio',imageURL2);
-      let result = await EventServices.getImageFromBackend(imageURL2);
-      this.imageURL = result;}
-    },
+      let result = await UploadServices.getImageFromBackend(imageURL2, 'venue');
+      this.imageURL = result;
+    }},
 
     goBack() {
       this.$router.back();
@@ -603,75 +617,15 @@ export default {
       console.log('selected pic : ', this.selectedPic);
       this.picUpload = null;
       // this.modalView = "";
-    },
-
-    ifUpdating() {
-      if (
-        this.name.value !== this.data.name ||
-        this.description.value !== this.data.description
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    ifUpdatingLocation() {
-      if (this.venueName.value !== this.data.venueName) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    async update() {
-      let body = {
-        event_id: this.data._id,
-        name: this.name.value,
-        description: this.description.value,
-      };
-      let result = await EventServices.updateEvent(body);
-      if (result.data.success) {
-        this.edit = false;
-        this.$emit("action");
-      } else {
-        this.errors.push(result.data.errors);
-        this.name.value = this.data.name;
-      }
-    },
-    async updateLocation() {
-      let body = {
-        event_id: this.data._id,
-        venueName: this.venueName.value,
-        address: this.address.value,
-        city: this.city.value,
-        cp: this.cp.value,
-        country: this.country.value,
-      };
-      let result = await EventServices.updateEvent(body);
-      if (result.data.success) {
-        this.editLocation = false;
-        this.$emit("action");
-      } else {
-        this.errors.push(result.data.errors);
-        this.venueName.value = this.data.venueName;
-      }
-    },
-    setEdit() {
-      if (!this.name.value) {
-        this.edit = true;
-      } else {
-        this.edit = false;
-      }
-    },
+    }
   },
   mounted() {
-   
-    this.name.value = this.data.name;
-    this.data.venueName ? (this.venueName.value = this.data.venueName) : "";
-    this.data.address ? (this.address.value = this.data.address) : "";
-    this.data.city ? (this.city.value = this.data.city) : "";
-    this.data.cp ? (this.cp.value = this.data.cp) : "";
-    this.data.country ? (this.country.value = this.data.country) : "";
-    this.setEdit();
+    // this.name.value = this.data.name;
+    // this.data.venueName ? (this.venueName.value = this.data.venueName) : "";
+    // this.data.address ? (this.address.value = this.data.address) : "";
+    // this.data.city ? (this.city.value = this.data.city) : "";
+    // this.data.cp ? (this.cp.value = this.data.cp) : "";
+    // this.data.country ? (this.country.value = this.data.country) : "";
     this.getBackendImage();
   },
 };

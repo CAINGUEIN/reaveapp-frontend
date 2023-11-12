@@ -28,6 +28,7 @@
   import "@core/assets/leaflet.css";
   //import of the services
   import EventServices from "@axios/services/eventServices";
+  import VenueServices from "@axios/services/VenueServices";
   //import of the icons
   import Filters from "@assets/icons/Filters.vue";
   import Events from "@assets/icons/Events.vue";
@@ -149,7 +150,7 @@
 
       // Add all operator venues to the map
       async function putVenuesOnMap() {
-        let result = await EventServices.searchPersonalVenueOperator();
+        let result = await VenueServices.searchPersonalVenueOperator();
         if (result.data.success) {
           let venues = result.data.data;
           for (let i = 0; i < venues.length; i++) {

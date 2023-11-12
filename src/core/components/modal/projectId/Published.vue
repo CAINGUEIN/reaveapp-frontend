@@ -44,8 +44,9 @@
         </button>
       </div>
       <div v-if="!ifPublished()" class="flex flex-col">
-        <h4 class="text-center">Missing information</h4>
-        <h4 class="text-center">For published</h4>
+        <!-- <h4 class="text-center">Missing information</h4>
+        <h4 class="text-center">For published</h4> -->
+        <h4 class="text-center">Venue Published !</h4>
       </div>
     </div>
   </div>

@@ -50,6 +50,8 @@ import useStoreAuth from "@stores/auth";
 import UserUpdateServices from "@axios/services/userUpdateServices.js";
 import ToolsButtonSubmit from "../buttons/ToolsButtonSubmit.vue";
 import EventServices from "../../../plugins/axios/services/eventServices";
+import VenueServices from "../../../plugins/axios/services/venueServices";
+import UploadServices from "../../../plugins/axios/services/uploadServices";
 
 
 export default {
@@ -106,14 +108,17 @@ export default {
       console.log(' submitImg : ',  submitImg);
       let formData = new FormData();
       console.log('-----------------');
+  
       formData.append("selectedPic", submitImg);
       formData.append('venueId', this.venueId);
+      //formData.append("subFolder", uploadDirectory);
       console.log('form data : ',formData);
       console.log('voici la submit img : ',submitImg);
-     // console.log('We are in the venue id : ');
-     console.log('SSSSSSSSSSSSSSSSSSS ',this.venueId);
-     //const oui = { id : this.venueId };
-      let result = await EventServices.picVenue(formData);
+     
+
+      // Send route path and formData
+      let result = await UploadServices.uploadPicture('venue/primaryPic', formData);
+      //let result = await VenueServices.primaryPicVenue(formData);
       console.log("Type de la réponse : ", typeof result);
       this.data.primaryPic = result.data.imageUrl;
       this.$emit('callFromCrop');

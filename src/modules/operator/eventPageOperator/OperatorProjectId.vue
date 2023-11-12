@@ -25,6 +25,7 @@ import SideNav from "./SideNav.vue";
 import XButton36 from "@components/buttons/XButton36.vue";
 //pages
 import Staff from "@components/projectId/staff/Staff.vue";
+import PeopleVenue from "@components/projectId/people/PeopleVenue.vue";
 import Format from "@components/projectId/logistics/Format.vue";
 import Equipements from "@components/projectId/logistics/Equipements.vue";
 import Tickets from "@components/projectId/products/Tickets.vue";
@@ -41,6 +42,7 @@ export default {
     Overview,
     Format,
     Equipements,
+    PeopleVenue,
     Staff,
     Tickets,
     Panel,
@@ -106,6 +108,9 @@ export default {
         }
       });
       return match;
+    },
+    goBack() {
+      this.$router.back();
     },
     close(value) {
       this.open = false;
