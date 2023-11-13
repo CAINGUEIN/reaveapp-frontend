@@ -65,7 +65,7 @@
 <script setup>
 import Picture from "@assets/icons/Picture.vue";
 import CloseButton from "../buttons/CloseButton.vue";
-import uploadServices from "@axios/services/uploadServices.js";
+import UploadServices from "@axios/services/uploadServices.js";
 import { ref } from "vue";
 
 const isUploading = ref(false);
@@ -102,7 +102,7 @@ const upload = async () => {
   let formData = new FormData();
   formData.append("selectedPic", image.value);
   formData.append("spaceId", props.idSpace);
-  await uploadServices
+  await UploadServices
     .picSpace(formData)
     .then((response) => {
       message = response.data.message;
