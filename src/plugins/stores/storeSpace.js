@@ -1,8 +1,6 @@
 import { defineStore } from "pinia";
 import SpaceServices from "@axios/services/spaceServices";
-import VenueServices from "../axios/services/venueServices";
 import UploadServices from "../axios/services/uploadServices";
-
 
 const StoreSpace = defineStore("space", {
   state: () => {

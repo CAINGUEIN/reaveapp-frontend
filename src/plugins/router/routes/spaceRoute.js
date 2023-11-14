@@ -6,6 +6,11 @@ export default [
     meta: { layout: "Reave", permission: "log" },
     children: [
       {
+        path: "analytics",
+        name: "Analytics",
+        component: () => import("@modules/space/views/Analytics.vue"),
+      },
+      {
         path: "conceptor",
         name: "Conceptor",
         component: () => import("@modules/tools/conceptor/Conceptor.vue"),
