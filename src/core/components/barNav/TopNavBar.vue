@@ -15,12 +15,25 @@
           :target="'PersonalMessages'"
           :dataClass="'reave'"
           :comparTarget="store.view"
-          class="mr-2"
+          class="mr-2 transition-all duration-300"
         >
           <Reave />
         </ToolsButtonNav>
-
-        <SpaceNavBar @action="openSpace" :dataSpace="dataStore" />
+        <div v-if="loadingStore" class="flex">
+          <div
+            class="w-12 h-12 bg-LightRock mr-2.5 rounded-full animate-pulse"
+          ></div>
+          <div
+            class="w-12 h-12 bg-LightRock mr-2.5 rounded-full animate-pulse"
+          ></div>
+          <div
+            class="w-12 h-12 bg-LightRock mr-2.5 rounded-full animate-pulse"
+          ></div>
+          <div
+            class="w-12 h-12 bg-LightRock mr-2.5 rounded-full animate-pulse"
+          ></div>
+        </div>
+        <SpaceNavBar v-else @action="openSpace" :dataSpace="dataStore" />
         <!--marked-->
         <div class="h-15 flex items-center">
           <ToolsButtonNav
@@ -264,6 +277,7 @@ import Scrims from "../../assets/icons/Scrims.vue";
 export default {
   props: {
     dataStore: Object,
+    loadingStore: Boolean,
   },
   components: {
     SpaceNavBar,
@@ -291,6 +305,7 @@ export default {
     return {
       dataTopLeft,
       dataBottomLeft,
+      isLoaded: false,
       isOpenModal: false,
       isOpenStatusMenu: false,
       store,
@@ -356,6 +371,10 @@ export default {
     };
   },
   methods: {
+    loaded() {
+      console.log("C'est pret!");
+      this.isLoaded = true;
+    },
     openModal() {
       this.isOpenModal = true;
       this.$emit("modal-changed", this.isOpenModal);

@@ -12,11 +12,13 @@
         :target="item.target"
         :dataClass="item.dataClass"
         :comparTarget="store.view"
+        class="transition-all duration-300"
       >
         <img
           v-if="item.icon === 'Space'"
           :src="spaceStore.getImg(props.idSpace)"
-          alt=""
+          alt="Space picture"
+          class="rounded-full cursor-pointer h-6 w-6 hover:bg-Rock text-Gravel"
         />
         <ImgFormated
           v-if="item.icon === 'Space' && !spaceStore.getImg(props.idSpace)"
@@ -65,7 +67,7 @@
 // hooks
 import useStoreAuth from "@stores/auth";
 import useStoreSpace from "@stores/storeSpace";
-import { ref, watch } from "vue";
+import { onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 // Components
 import Operator from "@assets/icons/Operator.vue";

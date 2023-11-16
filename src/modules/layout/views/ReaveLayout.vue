@@ -10,6 +10,7 @@
         }"
         @modal-changed="handleModalValueChanged"
         :dataStore="dataSpace"
+        :loadingStore="loading"
       />
       <div
         class="mt-4 mx-8 h-full flex border-2 border-Rock rounded-t-xl border-b-0"
@@ -56,6 +57,7 @@ export default {
       dataTopLeft,
       dataBottomLeft,
       isMapsRoute: false,
+      loading: false,
       isOpenModal: false,
       isOpenStatusMenu: false,
       store,
@@ -173,10 +175,14 @@ export default {
     },
   },
   mounted() {
+    this.loading = true;
     this.getUrl();
     this.isMapsRoute = this.$route.path === "/maps";
     console.log(this.isMapsRoute);
     this.feedDataSpace();
+    setTimeout(() => {
+      this.loading = false
+    }, 500)
   },
 };
 </script>

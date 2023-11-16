@@ -20,7 +20,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ["Gotham", ...defaultTheme.fontFamily.sans],
-        serif: ["Gotham Bold", ...defaultTheme.fontFamily.sans],
+        bold: ["Gotham Bold", ...defaultTheme.fontFamily.sans],
       },
       colors: {
         Black: "#000000",

@@ -4,9 +4,9 @@
 
 <script>
 import useStoreAuth from "@stores/auth";
-import useStoreSpace from "@stores/storeSpace";
 
 export default {
+  emits: ["loaded"],
   props: ["type", "size", "targetSpace", "id"],
   data() {
     const store = useStoreAuth();
@@ -20,11 +20,6 @@ export default {
   },
   methods: {
     async setSrcImg() {
-      // if (this.type === "spaceleftbar") {
-        
-      //   this.srcImg = spaceStore.getImg(this.id);
-      //   console.log("IMGFORMAT: ", this.srcImg);
-      // }
       if (this.srcImg === "") {
         let srcType = "";
         if (this.type === "banner") {

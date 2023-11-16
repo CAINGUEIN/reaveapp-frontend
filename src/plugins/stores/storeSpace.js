@@ -12,8 +12,13 @@ const StoreSpace = defineStore("space", {
   },
   getters: {
     getImg: (state) => {
-      return (id) => state.dataSpace[id].picture;
-    },
+      return (id) => {
+        if (state.dataSpace[id]) {
+          return state.dataSpace[id].picture;
+        }
+        return "";
+      };
+    }
   },
   actions: {
     async feedDataSpace() {

@@ -2,9 +2,7 @@
   <div class="p-8 bg-DarkRock text-White rounded-xl">
     <div class="items-center h-6 space-x-2 flex flex-row">
       <SvgTarget :target="props.icon" :height="24" :width="24" />
-      <h3
-        class="text-2xl leading-none font-serif font-bold text-White"
-      >
+      <h3 class="text-2xl leading-none font-bold text-White">
         {{ props.title }}
       </h3>
       <div
@@ -14,7 +12,7 @@
         }"
         class="px-2.5 py-1.5 rounded-3xl"
       >
-        <p class="text-Anthracite text-xs font-extrabold">{{ props.version }}</p>
+        <p class="text-Anthracite text-xs leading-none  font-extrabold">{{ props.version }}</p>
       </div>
     </div>
     <div class="mt-6">

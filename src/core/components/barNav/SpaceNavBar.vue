@@ -12,13 +12,15 @@
           ? ' border-gray-200 rounded-2xl '
           : 'border-Anthracite',
       ]"
-      class="border-2 p-0.5"
+      class="border-2 transition rounded-2xl duration-500 p-0.5"
     >
       <ImgFormated
         :key="store.spaceKey"
         :size="'l'"
         :type="'space'"
+        @loaded="imageLoaded"
         :src="space.picture"
+        :srcImg="space.picture"
         :targetSpace="space._id"
         class="w-12 h-12 space"
         v-bind:class="{
@@ -35,17 +37,20 @@ import ImgFormated from "@components/img/ImgFormated.vue";
 import useStoreAuth from "@stores/auth";
 import useStoreSpace from "@stores/storeSpace";
 export default {
-  emits: ["action"],
+  emits: ["action", "loaded"],
   data() {
     const store = useStoreAuth();
     const storeSpace = useStoreSpace();
     return {
       store,
       storeSpace,
+      isloading: true,
+      imgLoads: 0,
     };
   },
   props: {
     dataSpace: Object,
+    hide: Boolean,
   },
   components: { ToolsButtonNav, ImgFormated },
 };
