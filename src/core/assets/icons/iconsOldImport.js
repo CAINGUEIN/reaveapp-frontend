@@ -9,6 +9,7 @@ import Handicap from "./Handicap.vue";
 import Ligns from "./Ligns.vue";
 import lgsq from "./lgsq.vue";
 import LOLIcon from "./LeagueOfLegend.vue";
+import Smash from "./SmashLogo.vue";
 import Notification from "./Notification.vue";
 import Options from "./Options.vue";
 import Plan from "./Plan.vue";
@@ -17,6 +18,7 @@ import Projects from "./Projects.vue";
 import Seat from "./Seat.vue";
 import smsq from "./smsq.vue";
 import Standing from "./Standing.vue";
+import RocketLeague from "./RocketLeagueLogo.vue";
 import VALOIcon from "./Valorant.vue";
 import mcdoLogo from "./mcdoLogo.vue";
 import PAMLogo from "./PAMLogo.vue";
@@ -28,6 +30,7 @@ export {
   mcdoLogo,
   Block,
   Calendar,
+  RocketLeague,
   Check,
   CheckVoid,
   Chevron,
@@ -44,6 +47,7 @@ export {
   Schedule,
   Seat,
   smsq,
+  Smash,
   Standing,
   VALOIcon,
 };

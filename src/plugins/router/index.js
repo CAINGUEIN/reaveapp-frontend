@@ -9,7 +9,7 @@ const { cookies } = useCookies();
 let routes = [
   {
     path: "/",
-    redirect: "/login",
+    redirect: "/home",
   },
   {
     path: "/waiting",
@@ -25,11 +25,12 @@ import socialRoute from "@router/routes/socialRoute";
 import productsRoute from "@router/routes/productsRoute";
 import spaceRoute from "@router/routes/spaceRoute";
 import newRoute from "@router/routes/newRoute";
-
+import landingRoute from "./routes/landingRoute";
 routes = routes.concat(
   routesAuth,
   personalRoute,
   friendsRoute,
+  landingRoute,
   socialRoute,
   spaceRoute,
   productsRoute,
@@ -79,7 +80,7 @@ router.beforeEach(async (to, from) => {
     //si pas de match de page
     if (to.matched.length === 0) {
       console.log("redirect si pas de match");
-      return { name: "Personal", params: { view: "dashboard" } };
+      return { name: "Landing" };
     }
     // verifiaction si les droits de la page sont accesible par le user
     if (store[to.meta.permission] === false) {
@@ -96,12 +97,12 @@ router.beforeEach(async (to, from) => {
     //si pas de match de page
     if (to.matched.length === 0) {
       console.log("redirect si pas de match");
-      return { name: "Login" };
+      return { name: "Landing" };
     }
     // verification des droits de la page
     if (to.meta.permission !== "noLog" && to.meta.permission !== undefined) {
       console.log("redirect si on est nolog mais que la page est pas nolog");
-      return { name: "Login" };
+      return { name: "Landing" };
     }
   }
 });

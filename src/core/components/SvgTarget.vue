@@ -19,6 +19,7 @@ import * as experiences from "@assets/svg/products/experiences/experiencesImport
 import * as tools from "@assets/svg/products/tools/toolsImport";
 import * as wallet from "@assets/icons/Wallet/walletImport";
 import * as operator from "@assets/icons/Operator/operatorImport";
+import * as events from "@assets/icons/Events/eventImport";
 import * as iconsOld from "@assets/icons/iconsOldImport";
 import * as overviewVenue from "@assets/icons/OverviewVenue/overviewVenueImport";
 
@@ -29,6 +30,7 @@ export default {
     ...pricing,
     ...platforms,
     ...systems,
+    ...events,
     ...experiences,
     ...tools,
     ...wallet,

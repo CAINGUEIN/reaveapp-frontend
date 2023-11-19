@@ -15,7 +15,7 @@
         class="transition-all duration-300"
       >
         <img
-          v-if="item.icon === 'Space'"
+          v-if="item.icon === 'Space' && spaceStore.getImg(props.idSpace)"
           :src="spaceStore.getImg(props.idSpace)"
           alt="Space picture"
           class="rounded-full cursor-pointer h-6 w-6 hover:bg-Rock text-Gravel"

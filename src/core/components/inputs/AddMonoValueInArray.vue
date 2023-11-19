@@ -11,10 +11,7 @@
       }}</span></label
     >
     <div class="grid grid-cols-1">
-      <div
-        v-if="modelValue !== ''"
-        class="flex relative"
-      >
+      <div v-if="modelValue !== ''" class="flex relative">
         <ToolsButtonSubmit
           class="mb-0 mx-1"
           @action="remove()"
@@ -27,9 +24,9 @@
         />
       </div>
     </div>
-    <label
-      class="flex text-H4 text-White font-bold leading-none"
-     >Event Color</label>
+    <label class="flex text-H4 text-White font-bold leading-none"
+      >Event Color</label
+    >
     <div class="grid grid-cols-5">
       <div class="flex relative" v-for="option in data.options" :key="option">
         <ToolsButtonSubmit
@@ -39,7 +36,7 @@
           :color="option.value"
         />
         <XIcon
-          v-if="modelValue ===option.value"
+          v-if="modelValue === option.value"
           class="absolute h-6 w-6 text-red right-0 rounded-full bg-black bg-opacity-50"
           aria-hidden="true"
           @click="remove()"
@@ -88,7 +85,7 @@ export default {
       cache: this.data,
       errorsHelpers,
       store,
-      };
+    };
   },
   methods: {
     add(option, data) {

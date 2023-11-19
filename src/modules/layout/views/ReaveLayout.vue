@@ -1,7 +1,32 @@
 <template>
-  <div class="flex h-screen">
+  <div class="flex min-h-screen">
     <div class="w-full flex flex-col h-full">
+      <div
+        v-if="loading"
+        :class="{
+          'sticky top-0 mx-8 left-0 right-0 flex pt-6 items-center bg-Anthracite':
+            !isMapsRoute,
+          'absolute top-0 left-0 right-0 flex pt-6 pb-[18px] items-center':
+            isMapsRoute,
+        }"
+      >
+        <div v-if="loadingStore" class="flex">
+          <div
+            class="w-12 h-12 bg-LightRock mr-2.5 rounded-full animate-pulse"
+          ></div>
+          <div
+            class="w-12 h-12 bg-LightRock mr-2.5 rounded-full animate-pulse"
+          ></div>
+          <div
+            class="w-12 h-12 bg-LightRock mr-2.5 rounded-full animate-pulse"
+          ></div>
+          <div
+            class="w-12 h-12 bg-LightRock mr-2.5 rounded-full animate-pulse"
+          ></div>
+        </div>
+      </div>
       <TopNavBar
+        v-else
         :class="{
           'sticky top-0 mx-8 left-0 right-0 flex pt-6 items-center bg-Anthracite':
             !isMapsRoute,
@@ -12,7 +37,7 @@
         :dataStore="dataSpace"
         :loadingStore="loading"
       />
-      <div
+      <div  
         class="mt-4 mx-8 h-full flex border-2 border-Rock rounded-t-xl border-b-0"
         v-if="$route.path.includes('SpacePrivate')"
       >
@@ -181,8 +206,8 @@ export default {
     console.log(this.isMapsRoute);
     this.feedDataSpace();
     setTimeout(() => {
-      this.loading = false
-    }, 500)
+      this.loading = false;
+    }, 500);
   },
 };
 </script>

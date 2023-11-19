@@ -19,7 +19,7 @@
         :id="data.name"
         :placeholder="data.placeholder"
         :autocomplete="data.name"
-        class="block w-full font-normal px-4 transition-all duration-200 text-H6 
+        class="block w-full placeholder:font-semibold font-normal px-4 transition-all duration-200 text-H6 
         text-White bg-Anthracite border-DarkRock leading-none focus:border-White border-2 focus:ring-0 focus:outline-none"
         :class="paddingY, borderRadius"
         :value="modelValue"
