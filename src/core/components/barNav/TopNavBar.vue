@@ -268,12 +268,12 @@ import Jobs from "@assets/icons/Jobs.vue";
 import Academy from "@assets/icons/Academy.vue";
 import Bootcamps from "@assets/icons/Bootcamps.vue";
 import Maps from "@assets/icons/Maps.vue";
+import Scrims from "@assets/icons/Scrims.vue";
+import Bento from "@assets/icons/Bento.vue";
 
 // Data
 import dataTopLeft from "@modules/layout/data/dataTopLeftNavBar";
 import dataBottomLeft from "@modules/layout/data/dataBottomLeftNavBar";
-import Bento from "../../../core/assets/icons/Bento.vue";
-import Scrims from "../../assets/icons/Scrims.vue";
 export default {
   props: {
     dataStore: Object,
@@ -362,10 +362,10 @@ export default {
           btnName: "Maps",
         },
         {
-          target: "Trainer",
+          target: "Scrims",
           icon: "Scrims",
           dataClass: "settings",
-          btnName: "Training",
+          btnName: "Scrims",
         },
       ],
     };

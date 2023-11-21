@@ -9,19 +9,19 @@ import Save from "./events/Save.vue";
 import Share from "./events/Share.vue";
 
 //Shards
-import Shards from "./shards/Shards.vue";
+import Shards from "@assets/icons/Shards.vue";
 
 //Spaces
 import Spaces from "@assets/icons/Spaces.vue";
 
 //Jobs
-import Jobs from "./jobs/Jobs.vue";
+import Jobs from "@assets/icons/Jobs.vue";
 
 //Scrims
-import Scrims from "./scrims/Scrims.vue";
+import Scrims from "@assets/icons/Scrims.vue";
 
 //Bootcamps
-import Bootcamps from "./bootcamps/Bootcamps.vue";
+import Bootcamps from "@assets/icons/Bootcamps.vue";
 
 //Museum
 import Museum from "@assets/icons/Museum.vue";

@@ -157,4 +157,14 @@ export default [
       permission: "log",
     },
   },
+
+  {
+    path: "/scrims",
+    name: "Scrims",
+    component: () => import("@modules/platforms/scrims/Scrims.vue"),
+    meta: {
+      layout: "Reave",
+      permission: "log",
+    },
+  },
 ];
