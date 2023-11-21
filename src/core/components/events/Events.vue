@@ -2,29 +2,7 @@
   <div class="w-10/12 mt-6 h-full mx-auto">
     <div v-if="!isloading">
       <div class="w-full h-full">
-        <div class="flex mx-auto flex-row justify-between">
-          <Tabs class="flex-wrap my-auto" />
-          <div
-            class="flex my-auto mr-40 rounded-full w-[400px] h-12 bg-DarkRock"
-          >
-            <Search
-              class="h-10 w-10 top-0.5 p-2 my-auto ml-3 text-Gravel rounded-full"
-            />
-            <input
-              :type="searchBar.type"
-              :placeholder="searchBar.placeholder"
-              class="bg-DarkRock block w-full h-full border-transparent focus:ring-0 pl-1 border-0 rounded-full text-White placeholder-Gravel font-medium"
-            />
-            <div
-              class="p-2 m-1 my-auto rounded-full bg-LightRock cursor-pointer"
-            >
-              <Filters :width="24" :height="24" />
-            </div>
-          </div>
-          <h3 class="py-2.5 my-auto px-3 flex-none text-base">
-            Organise an Event
-          </h3>
-        </div>
+        <Headers v-if="token" />
         <div class="w-full relative mt-6 rounded-2xl h-64 overflow-hidden">
           <img :src="topEvent.image" class="w-full h-full" alt="" />
           <div
@@ -84,13 +62,16 @@
 
 <script setup>
 import SkeletonEvents from "./SkeletonEvents.vue";
-import Tabs from "./elements/Tabs.vue";
-import Search from "@assets/icons/Operator/Search.vue";
-import Filters from "@assets/icons/Filters.vue";
 import Ticket from "@assets/icons/Ticket.vue";
 import Event from "./elements/Event.vue";
 import Categories from "./elements/Categories.vue";
 import Icon from "./elements/Icon.vue";
+import Headers from "./Headers.vue";
+import { useCookies } from "vue3-cookies";
+
+const { cookies } = useCookies(); 
+const token = cookies.get("userSession");
+
 const isloading = false;
 const topEvent = {
   space: "KarmineCorp",
@@ -113,11 +94,5 @@ const event = {
   location: "La Defense Arena, Paris, France",
   type: "Spectacles",
   games: ["Smash", "RocketLeague", "VALOIcon", "LOLIcon"],
-};
-const searchBar = {
-  type: "text",
-  name: "eventSearch",
-  value: "",
-  placeholder: "Search Events, Venues, People...",
 };
 </script>

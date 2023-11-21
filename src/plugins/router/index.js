@@ -62,9 +62,7 @@ router.beforeEach(async (to, from) => {
         "ici si on a un token valide et que on a recup les datas user"
       );
       if (await storeSpace.feedDataSpace()) {
-        console.log(
-          "et que on a recup les datas space"
-        );
+        console.log("et que on a recup les datas space");
       }
     } else {
       cookies.remove("userSession"); //return this

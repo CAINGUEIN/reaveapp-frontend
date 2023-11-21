@@ -13,13 +13,14 @@ import useStoreAuth from "@stores/auth";
 import AuthLayout from "@modules/layout/views/AuthLayout.vue";
 import ReaveLayout from "@modules/layout/views/ReaveLayout.vue";
 import WaitingLayout from "./components/page/Waiting.vue";
- 
+import VisitorLayout from "@modules/layout/views/VisitorLayout.vue";
 export default {
   name: "App",
   components: {
     AuthLayout,
     ReaveLayout,
     WaitingLayout,
+    VisitorLayout,
   },
   data() {
     const store = useStoreAuth();
