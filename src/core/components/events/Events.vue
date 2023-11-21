@@ -1,5 +1,5 @@
 <template>
-  <div class="w-10/12 mt-6 h-full mx-auto">
+  <div class="w-10/12 max-w-[1332px] mt-6 h-full mx-auto">
     <div v-if="!isloading">
       <div class="w-full h-full">
         <Headers v-if="token" />

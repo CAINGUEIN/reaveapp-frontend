@@ -28,7 +28,12 @@
       </div>
     </div>
     <div class="flex flew-row space-x-1 text-White">
-      <Translate class="my-auto" :width="32" :height="32" v-if="props.visitor" />
+      <Translate
+        class="my-auto"
+        :width="32"
+        :height="32"
+        v-if="props.visitor"
+      />
       <h3 class="py-2.5 my-auto px-3 flex-none text-base">Organise an Event</h3>
       <ToolsButtonNav :target="'Login'" v-if="props.visitor">
         <div class="py-2 px-5 bg-White my-auto rounded-full">
