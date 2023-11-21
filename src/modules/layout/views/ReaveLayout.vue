@@ -1,5 +1,5 @@
 <template>
-  <div class="flex min-h-screen">
+  <div class="flex h-screen">
     <div class="w-full flex flex-col h-full">
       <div
         v-if="loading"
@@ -37,7 +37,7 @@
         :dataStore="dataSpace"
         :loadingStore="loading"
       />
-      <div  
+      <div
         class="mt-4 mx-8 h-full flex border-2 border-Rock rounded-t-xl border-b-0"
         v-if="$route.path.includes('SpacePrivate')"
       >
