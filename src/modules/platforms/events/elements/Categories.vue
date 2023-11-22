@@ -5,7 +5,7 @@
       :key="categorie"
       class="cursor-pointer p-1 flex flex-col text-Gravel hover:bg-LightRock rounded-xl"
     >
-      <SvgTarget class="mx-auto" :width="20" :height="20" :target="categorie" />
+      <SvgTarget class="mx-auto" :width="24" :height="24" :target="categorie" />
       <p class="font-medium mx-auto text-sm pt-3">
         {{ categorie }}
       </p>

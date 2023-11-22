@@ -5,7 +5,7 @@
         v-if="props.visitor"
         :target="'PersonalMessages'"
         :dataClass="'reave'"
-        class="mr-2 transition-all duration-300"
+        class="mr-6 transition-all duration-300"
       >
         <Reave />
       </ToolsButtonNav>
@@ -37,7 +37,7 @@
       <h3 class="py-2.5 my-auto px-3 flex-none text-base">Organise an Event</h3>
       <ToolsButtonNav :target="'Login'" v-if="props.visitor">
         <div class="py-2 px-5 bg-White my-auto rounded-full">
-          <p class="text-Anthracite text-base font-bold">Login</p>
+          <h3 class="text-Anthracite text-base">Login</h3>
         </div>
       </ToolsButtonNav>
     </div>
@@ -46,7 +46,7 @@
 
 <script setup>
 import Tabs from "./elements/Tabs.vue";
-import Translate from "../../assets/icons/Translate.vue";
+import Translate from "@assets/icons/Translate.vue";
 import Search from "@assets/icons/Operator/Search.vue";
 import Filters from "@assets/icons/Filters.vue";
 import Reave from "@assets/icons/Reave.vue";

@@ -22,8 +22,8 @@
       <p class="text-White mt-2 text-xl font-semibold">
         {{ props.dataEvent.title }}
       </p>
-      <p class="text-LightGrey font-medium">{{ props.dataEvent.date }}</p>
-      <p class="text-LightGrey font-medium">{{ props.dataEvent.location }}</p>
+      <p class="text-Cloud font-medium">{{ props.dataEvent.date }}</p>
+      <p class="text-Cloud font-medium">{{ props.dataEvent.location }}</p>
     </div>
   </div>
 </template>
