@@ -179,7 +179,7 @@ onBeforeMount(async () => {
           <div class="font-bold text-white">{{ item.name }}</div>
         </div>
         <div class="flex basis-1/4 items-center">
-          <SvgTarget target="Maps" :height="16" :width="16" class="mx-2"></SvgTarget>
+          <SvgTarget target="Maps" :height="16" :width="16" class="mr-2"></SvgTarget>
           <pre class="leading-5 text-[16px] font-sans text-LightGrey font-medium">
 {{ item.address.country != "" ? 
 `${item.address.country}, ${item.address.pcode} ${item.address.city},
@@ -189,7 +189,7 @@ ${item.address.street}`
 </pre>
         </div>
         <div class="flex basis-1/4 font-medium items-center">
-          <SvgTarget target="Capacity" :height="16" :width="16" class="mx-2"></SvgTarget>
+          <SvgTarget target="Capacity" :height="16" :width="16" class="mr-2"></SvgTarget>
           <div class="font-medium">X Capacity</div>
         </div>
         <div class="flex basis-1/4 text-white items-center">
