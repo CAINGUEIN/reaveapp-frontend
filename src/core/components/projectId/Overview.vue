@@ -2,9 +2,9 @@
   <div>
     <div name="layout" class="flex justify-between items-center">
       <p class="flex items-center">
-        <span class="font-black text-xl text-white flex items-center"></span>
+        <span class="font-black text-xl text-white flex items-center">
         <SvgTarget target="Overview" :height="20" :width="20" class="mr-2"></SvgTarget>
-        OVERVIEW
+        OVERVIEW</span>
         <button
           class="ml-6 text-left pl-3 pr-4 py-1 my-0.5 flex items-center text-base font-black text-Anthracite bg-white rounded-full h-10"
           v-if="(yourPerm === 'Owner' || yourPerm === 'Admin') && !data.isPublished
