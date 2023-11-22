@@ -23,6 +23,7 @@ import VALOIcon from "./Valorant.vue";
 import mcdoLogo from "./mcdoLogo.vue";
 import PAMLogo from "./PAMLogo.vue";
 import MuseeFabre from "./MuseeFabre.vue";
+import Capacity from "./Capacity.vue";
 
 export {
   MuseeFabre,
@@ -50,4 +51,5 @@ export {
   Smash,
   Standing,
   VALOIcon,
+  Capacity,
 };

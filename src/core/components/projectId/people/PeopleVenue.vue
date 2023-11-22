@@ -189,7 +189,7 @@ ${item.address.street}`
 </pre>
         </div>
         <div class="flex basis-1/4 font-medium items-center">
-          <SvgTarget target="Maps" :height="16" :width="16" class="mx-2"></SvgTarget>
+          <SvgTarget target="Capacity" :height="16" :width="16" class="mx-2"></SvgTarget>
           <div class="font-medium">X Capacity</div>
         </div>
         <div class="flex basis-1/4 text-white items-center">
