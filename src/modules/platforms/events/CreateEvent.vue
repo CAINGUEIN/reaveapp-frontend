@@ -36,6 +36,7 @@ import XButton36 from "@components/buttons/XButton36.vue";
 
 export default {
   components: { InputModel, XButton36 },
+  props : { spaceAssociated: { type: String} },
   data() {
     return {
       name: {
@@ -61,6 +62,7 @@ export default {
       let submitData = {
         name: this.name.value,
         type: "event",
+        spaceAssociated: this.spaceAssociated,
       };
       //faire le submit
       let result = await EventServices.createEvent(submitData);

@@ -51,8 +51,9 @@ class EventServices {
       });
   }
 
-  static async searchPersonalEventOperator() {
-    return Base.get(`/event/personalOperator`)
+  static async searchPersonalEventOperator(spaceAssociated) {
+    const sendSpaceAssociated = { sendSpaceAssociated: spaceAssociated}
+    return Base.post(`/event/personalOperator`, sendSpaceAssociated)
       .then((response) => {
         console.log("event personalOperator", response);
         return response;

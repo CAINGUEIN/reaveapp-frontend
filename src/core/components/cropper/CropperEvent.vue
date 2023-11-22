@@ -61,9 +61,6 @@ export default {
     ToolsButtonSubmit,
   },
   props: {
-    venueId : {
-      type: String,
-    },
     src: {
       type: String,
     },
@@ -103,39 +100,25 @@ export default {
       this.store.loading = true;
       // get image data for post processing, e.g. upload or setting image src
       this.cropImg = this.$refs.cropper.getCroppedCanvas().toDataURL();
-      //console.log(' this.cropImg : ',  this.cropImg);
       let submitImg = this.dataURLtoFile(this.cropImg);
       console.log(' submitImg : ',  submitImg);
-      let formData = new FormData();
+      
       console.log('-----------------');
-  
-      formData.append("selectedPic", submitImg);
-      formData.append('venueId', this.venueId);
-      //formData.append("subFolder", uploadDirectory);
-      console.log('form data : ',formData);
-      console.log('voici la submit img : ',submitImg);
-     
+      console.log("llm1");
 
-      // Send route path and formData
-      let result = await UploadServices.uploadPicture('venue/primaryPic', formData);
-      //let result = await VenueServices.primaryPicVenue(formData);
-      console.log("Type de la réponse : ", typeof result);
-      this.data.primaryPic = result.data.imageUrl;
-      this.$emit('callFromCrop');
-      location.reload();
-
+      this.$emit('callFromCrop', { selectedPic: submitImg });
      //await this.data.save();
-      if (result.data.success) {
-        this.$emit("closeAction");
-        this.store.loading = false;
-        this.store.avatarKey = this.store.avatarKey + 1;
-      } else {
-        //message d'erreur
-        this.$emit("closeAction");
-        this.$emit("reloadImage");
+      // if (result.data.success) {
+      //   this.$emit("closeAction");
+      //   this.store.loading = false;
+      //   this.store.avatarKey = this.store.avatarKey + 1;
+      // } else {
+      //   //message d'erreur
+      //   this.$emit("closeAction");
+      //   this.$emit("reloadImage");
 
-        this.store.loading = false;
-      }
+      //   this.store.loading = false;
+      // }
     },
     flipX() {
       const dom = this.$refs.flipX;

@@ -7,14 +7,14 @@ import useStoreAuth from "@stores/auth";
 
 export default {
   emits: ["loaded"],
-  props: ["type", "size", "targetSpace", "id"],
+  props: ["srcImg","type", "size", "targetSpace", "id"],
   data() {
     const store = useStoreAuth();
     // const spaceStore = useStoreSpace();
     return {
       store,
       srcImg: "",
-      srcMediaBase: "https://media.reave.dev/",
+      //srcMediaBase: "https://media.reave.dev/",
       target: "",
     };
   },
@@ -42,17 +42,17 @@ export default {
           srcType = "equipmentpp/";
           this.target = this.targetSpace;
         }
-        if (this.srcImg == "") {
-          this.srcImg =
-            this.srcMediaBase +
-            srcType +
-            this.size +
-            this.target +
-            this.type +
-            ".png?rand=" +
-            Math.random();
-          console.log(this.srcImg);
-        }
+        // if (this.srcImg == "") {
+        //   this.srcImg =
+        //     this.srcMediaBase +
+        //     srcType +
+        //     this.size +
+        //     this.target +
+        //     this.type +
+        //     ".png?rand=" +
+        //     Math.random();
+        //   console.log(this.srcImg);
+        // }
       }
     },
     replaceUrl(e) {
@@ -78,18 +78,20 @@ export default {
       } else if (this.type === "venue") {
         e.target.src = "/img/VenuesDefault.png";
       } else {
+       // e.target.src = "/img/EventsDefault.png";
         e.target.src =
-          "https://via.placeholder.com/" + formatSize + randomColor;
+         "https://via.placeholder.com/" + formatSize + randomColor;
       }
     },
   },
   watch: {
     $route() {
-      this.setSrcImg();
+     // this.setSrcImg();
     },
   },
   mounted() {
-    this.setSrcImg();
+   //this.setSrcImg();
+    
   },
 };
 </script>

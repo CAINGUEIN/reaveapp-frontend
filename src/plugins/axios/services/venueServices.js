@@ -15,8 +15,9 @@ static async createVenue(data) {
       });
   }
 
-  static async searchPersonalVenueOperator() {
-    return Base.get(`/venue/personalOperatorVenue`)
+  static async searchPersonalVenueOperator(spaceAssociated) {
+    const sendSpaceAssociated = { sendSpaceAssociated: spaceAssociated}
+    return Base.post(`/venue/personalOperatorVenue`, sendSpaceAssociated)
       .then((response) => {
         console.log("venue personalOperator", response);
         return response;

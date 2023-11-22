@@ -5,14 +5,6 @@
         <SvgTarget target="Overview" :height="20" :width="20" class="mr-2"></SvgTarget>
         OVERVIEW
       </span>
-      <!-- <button
-        class="ml-6 text-left pl-3 pr-4 py-1 my-0.5 flex items-center text-base font-black text-Anthracite bg-white rounded-full h-10"
-        v-if="(yourPerm === 'Owner' || yourPerm === 'Admin') && !data.isPublished
-          " @click="(open = true), (modalView = 'publish')">
-        <SvgTarget target="Publish" :height="20" :width="20" color1="#000000" class="mr-2"></SvgTarget>
-        Publish
-      </button> -->
-
       <button
         class="ml-6 text-left pl-3 pr-4 py-1 my-0.5 flex items-center text-base font-black text-Anthracite bg-white rounded-full h-10"
         v-if="(yourPerm === 'Owner' || yourPerm === 'Admin')
@@ -423,11 +415,10 @@ equipment & systems.</pre>
   
   </ModalClear>
 
-
     <ModalClear :open="open" @action="close()">
       <Published v-if="modalView === 'publish'" :data="data" @action="close"></Published>
-      <CropperEvent v-if="selectedPic !== null" :data="data" :src="selectedPic" :venueId=this.$route.params.id @callFromCrop="getBackendImage"
-        @closeAction="closeCropper" />
+      <CropperEvent v-if="selectedPic !== null" :data="data" 
+      :src="selectedPic" @callFromCrop="useCroppedImage"/>
     </ModalClear>
   </div>
 </template>
@@ -471,6 +462,7 @@ export default {
   props: ["data", "yourPerm"],
   data() {
     return {
+      routeId : this.$route.params.id,
       venueNameValue : this.data.name,
       streetValue : this.data.address.street,
       cityValue : this.data.address.city,
@@ -566,6 +558,20 @@ export default {
       this.openAdd = true;
 
     },
+    async useCroppedImage(data) {
+      console.log("llm2", this.routeId);
+      const formData = new FormData();
+      formData.append("selectedPic", data.selectedPic);
+      formData.append("routeId", this.routeId);
+      console.log("llm3");
+      let result = await UploadServices.uploadPicture('venue/primaryPic', formData);
+      console.log("llm4", result);
+      this.data.posterPic = result.data.imageUrl;
+      
+      this.closeCropper;
+      await this.getBackendImage();
+      location.reload();
+    },
 
     async sendAddressDataVenue() {
       const venueId = this.$route.params.id;
@@ -594,7 +600,7 @@ export default {
     async getBackendImage() {
       const imageURL2 = this.data.primaryPic;
       if (imageURL2 != ""){
-      let result = await UploadServices.getImageFromBackend(imageURL2, 'venue');
+      let result = await UploadServices.getImageFromBackend(imageURL2);
       this.imageURL = result;
     }},
 

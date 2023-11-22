@@ -101,11 +101,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in data" :key="item._id" @click="goTo(item._id)" class="cursor-pointer hover:bg-DarkRock">
+          <tr v-if="divOpen === 1" v-for="item in data" :key="item._id" @click="goTo(item._id)"
+            class="cursor-pointer hover:bg-DarkRock">
             <td class="rounded-l-xl">
               <div class="flex items-center ml-4 my-2">
-                <ImgFormated :key="item._id" :size="'s'" :targetSpace="item._id" :type="'venue'"
-                  class="h-15 w-15 rounded-xl mr-4 bg-white" />
+                 <div class="w-16 h-16 rounded-xl mr-4" :style="getImageBlob(item.primaryPic)"></div> 
+                <!-- <ImgFormated :key="item._id" :size="'s'" :targetSpace="item._id" :type="'venue'"
+                  class="h-15 w-15 rounded-xl mr-4 bg-white" /> -->
                 <p class="text-base font-bold text-white">
                   {{ item.name }}
                 </p>
@@ -166,7 +168,7 @@
       </table>
     </div>
     <ModalClear :open="open" @action="close()">
-      <CreateVenue @action="close()"></CreateVenue>
+      <CreateVenue :spaceAssociated="getSpaceId" @action="close()"></CreateVenue>
     </ModalClear>
   </div>
 </template>
@@ -182,6 +184,8 @@ import ImgFormated from "@core/components/img/ImgFormated.vue";
 
 //services
 import VenueServices from "@axios/services/venueServices";
+import UploadServices from "@axios/services/uploadServices";
+
 //tool
 import useStoreAuth from "@stores/auth";
 import {
@@ -218,6 +222,11 @@ export default {
   data() {
     const store = useStoreAuth();
     return {
+      venuePP: [],
+      venuePPObject: {},
+      divOpen: 0,
+      getSpaceId: this.$route.params.id,
+      divOpen: 1,
       open: false,
       store,
       show: "list",
@@ -232,15 +241,57 @@ export default {
     goTo(target) {
       this.$router.push({ name: "VenueId", params: { id: target } });
     },
+
+    async getVenueProfilePic() {
+      console.log('llm4', this.venuePP);
+      const promiseArray = this.venuePP.map(async (data) => {
+        console.log('llm5', data);
+        if (data !== '') {
+          console.log('llm5.5');
+          let result = await UploadServices.getImageFromBackend(data);
+          console.log('llm6', result);
+          this.venuePPObject[data] = result;
+        }
+
+      });
+      await Promise.all(promiseArray);
+      console.log('llm7', this.venuePPObject);
+      this.divOpen = 1;
+    },
+     getImageBlob(imageName){
+      console.log('llm8', imageName);
+      return {
+        'background-image': `url("${this.venuePPObject[imageName] ? this.venuePPObject[imageName] : '/img/VenuesDefault.png'}")`,
+        'background-size': 'contain',
+        'background-repeat': 'no-repeat',
+      };
+    },
     async searchVenueOperator() {
-      let result = await VenueServices.searchPersonalVenueOperator();
+      console.log('llm1', this.$route.params.id);
+      let result = await VenueServices.searchPersonalVenueOperator(this.getSpaceId);
       if (result.data.success) {
         this.data = result.data.data;
+        console.log("llm2", this.data);
+        for (let i = 0; i < result.data.data.length; i++) {
+          console.log('llm3', result.data.data[i].primaryPic);
+          this.venuePP.push(result.data.data[i].primaryPic);
+
+          //console.log("llm4", this.venuePP);
+
+        }
       }
     },
   },
-  mounted() {
-    this.searchVenueOperator();
+  watch: {
+    '$route.params.id': function (newId) {
+      this.getSpaceId = newId;
+      this.searchVenueOperator();
+    }
+  },
+  async beforeMount() {
+    await this.searchVenueOperator();
+    await this.getVenueProfilePic();
+    console.log('llm8');
   },
 };
 </script>

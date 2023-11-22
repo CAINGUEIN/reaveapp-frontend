@@ -390,6 +390,7 @@ export default {
           name: "Operator",
           params: { id: target, target: "projects" },
         });
+        //location.reload();
       } else {
         this.$router.push({
           name: "Personal",

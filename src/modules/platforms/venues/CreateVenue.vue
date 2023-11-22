@@ -37,6 +37,7 @@
 
   export default {
     components: { InputModel, XButton36},
+    props : { spaceAssociated: { type: String} },
     data() {
       return {
         placeholder: String,
@@ -64,6 +65,7 @@
       let submitData = {
         name: this.name.value,
         type: "Venue",
+        spaceAssociated: this.spaceAssociated,
       };
         console.log('voici le ', submitData);
         //faire le submit
