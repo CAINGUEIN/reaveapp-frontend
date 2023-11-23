@@ -9,9 +9,11 @@ import Handicap from "./Handicap.vue";
 import Ligns from "./Ligns.vue";
 import lgsq from "./lgsq.vue";
 import LOLIcon from "./LeagueOfLegend.vue";
+import CSGO from "./CSGO.vue";
 import Smash from "./SmashLogo.vue";
 import Notification from "./Notification.vue";
 import Options from "./Options.vue";
+import Overwatch from "./Overwatch.vue";
 import Plan from "./Plan.vue";
 import Plus from "./Plus.vue";
 import Projects from "./Projects.vue";
@@ -35,6 +37,8 @@ export {
   Check,
   CheckVoid,
   Chevron,
+  Overwatch,
+  CSGO,
   Filters,
   Handicap,
   Ligns,

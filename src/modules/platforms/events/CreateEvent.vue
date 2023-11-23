@@ -7,9 +7,11 @@
     >
       <h2 class="text-white">&lsaquo;</h2>
     </button>
-    <XButton36   @click.prevent="closeModal()"
-      class="absolute right-0 rounded-full px-3 z-10"></XButton36>
-    
+    <XButton36
+      @click.prevent="closeModal()"
+      class="absolute right-0 rounded-full px-3 z-10"
+    ></XButton36>
+
     <div class="pt-12 flex flex-col" v-if="etape === 1">
       <h4 class="text-center">How do you want to</h4>
       <h4 class="text-center">name this event ?</h4>
@@ -36,7 +38,7 @@ import XButton36 from "@components/buttons/XButton36.vue";
 
 export default {
   components: { InputModel, XButton36 },
-  props : { spaceAssociated: { type: String} },
+  props: { spaceAssociated: { type: String } },
   data() {
     return {
       name: {

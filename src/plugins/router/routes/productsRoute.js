@@ -93,7 +93,7 @@ export default [
   {
     path: "/events",
     name: "Events",
-    component: () => import("@modules/platforms/events/Events.vue"),
+    component: () => import("@modules/platforms/events/landing/Events.vue"),
     meta: {
       layout: "Reave",
       permission: "log"

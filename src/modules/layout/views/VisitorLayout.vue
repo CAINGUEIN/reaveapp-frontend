@@ -13,5 +13,5 @@
   </div>
 </template>
 <script setup>
-import Headers from "../../platforms/events/Headers.vue";
+import Headers from "../../platforms/events/landing/Headers.vue";
 </script>

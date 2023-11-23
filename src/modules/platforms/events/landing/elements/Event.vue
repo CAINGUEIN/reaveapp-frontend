@@ -1,6 +1,6 @@
 <template>
-  <div class="w-80 h-fit relative flex flex-col">
-    <div class="w-full h-80 rounded-2xl relative">
+  <div class="relative flex flex-col">
+    <div class="w-full h-fit rounded-2xl relative">
       <img :src="props.dataEvent.image" class="object-contain" />
       <div
         class="absolute text-White space-x-2 pr-0 top-3 right-3 flex flex-row"
@@ -8,7 +8,7 @@
         <Icon v-for="game in props.dataEvent.games" :key="game" :icon="game" />
       </div>
       <div class="absolute text-White space-x-2 pr-0 bottom-3 right-3">
-        <Icon :icon="props.dataEvent.type" />
+        <Icon :icon="props.dataEvent.type" :width="24" :height="24" />
       </div>
     </div>
     <div>

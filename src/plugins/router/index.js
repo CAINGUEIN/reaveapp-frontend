@@ -25,11 +25,7 @@ import socialRoute from "@router/routes/socialRoute";
 import productsRoute from "@router/routes/productsRoute";
 import spaceRoute from "@router/routes/spaceRoute";
 import newRoute from "@router/routes/newRoute";
-<<<<<<< Updated upstream
 import pageRoute from "@router/routes/pageRoute";
-import landingRoute from "./routes/landingRoute";
-=======
->>>>>>> Stashed changes
 routes = routes.concat(
   routesAuth,
   personalRoute,
@@ -38,7 +34,7 @@ routes = routes.concat(
   spaceRoute,
   productsRoute,
   newRoute,
-  pageRoute,
+  pageRoute
 );
 
 const router = createRouter({

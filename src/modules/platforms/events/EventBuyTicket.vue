@@ -20,6 +20,7 @@
           <div name="tickets" class="flex ml-4">
             <div
               v-for="item in infoEvent.tickets"
+              :key="item"
               class="flex items-center mr-16"
             >
               <div
@@ -94,6 +95,7 @@
           <div
             v-else
             v-for="(item, index) in listTicket"
+            :key="index"
             class="flex justify-between bg-DarkRock p-2 rounded-2xl"
           >
             <div name="info" class="flex items-center">
