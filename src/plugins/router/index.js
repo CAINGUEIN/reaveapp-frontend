@@ -9,7 +9,7 @@ const { cookies } = useCookies();
 let routes = [
   {
     path: "/",
-    redirect: "/events",
+    redirect: "/login",
   },
   {
     path: "/waiting",
