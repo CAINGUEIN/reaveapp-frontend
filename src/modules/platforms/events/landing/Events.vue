@@ -143,16 +143,6 @@ const events = [
     games: ["Overwatch"],
   },
   {
-    space: "KarmineCorp",
-    spaceIcon: "/src/core/assets/img/KarmineLogo.png",
-    image: "/src/core/assets/img/kcx3big.png",
-    title: "KCX3",
-    date: "16 September 2023",
-    location: "La Defense Arena, Paris, France",
-    type: "Spectacles",
-    games: ["Smash", "RocketLeague", "VALOIcon", "LOLIcon"],
-  },
-  {
     space: "Speedons",
     spaceIcon: "/src/core/assets/img/speedonsIcon.png",
     image: "/src/core/assets/img/speedons.png",

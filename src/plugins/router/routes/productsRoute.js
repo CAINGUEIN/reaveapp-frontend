@@ -1,5 +1,3 @@
-import { useCookies } from "vue3-cookies";
-
 export default [
   /*OLD*/
   /*
@@ -96,7 +94,6 @@ export default [
     component: () => import("@modules/platforms/events/landing/Events.vue"),
     meta: {
       layout: "Reave",
-      permission: "log"
     },
   },
 
@@ -105,7 +102,8 @@ export default [
     name: "Shards",
     component: () => import("@modules/platforms/shards/Shards.vue"),
     meta: {
-      layout: getLayoutFromCookie(),
+      layout: "Reave",
+      permission: "log",
     },
   },
 
@@ -169,14 +167,3 @@ export default [
     },
   },
 ];
-
-
-function getLayoutFromCookie() {
-  const { cookies } = useCookies();
-  const token = cookies.get("userSession");
-  if (token) {
-    return "Reave";
-  } else {
-    return "Visitor";
-  }
-}

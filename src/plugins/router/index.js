@@ -9,7 +9,6 @@ const { cookies } = useCookies();
 let routes = [
   {
     path: "/",
-    redirect: "/login",
   },
   {
     path: "/waiting",
@@ -48,11 +47,6 @@ router.beforeEach(async (to, from) => {
   const storeSpace = useStoreSpace();
 
   console.log("dans le beforeEach");
-  if (storeData.data === "") {
-    console.log("ici si pas de data pour recup les datas de base");
-    await storeData.feedData();
-    console.log("pinia data load");
-  }
   // mise en pause de la navigation
   // si pas de donné de connection
   if (store.isLogin === "") {
@@ -67,6 +61,7 @@ router.beforeEach(async (to, from) => {
     } else {
       cookies.remove("userSession"); //return this
       console.log("ici si pas de token ou token invalide");
+      return { name: "Events" }
     }
   }
 
@@ -75,6 +70,11 @@ router.beforeEach(async (to, from) => {
   // si connecté
   if (store.isLogin) {
     console.log("si login");
+    if (storeData.data === "") {
+      console.log("ici si pas de data pour recup les datas de base");
+      await storeData.feedData();
+      console.log("pinia data load");
+    }
     //si pas de match de page
     if (to.matched.length === 0) {
       console.log("redirect si pas de match");
@@ -95,7 +95,7 @@ router.beforeEach(async (to, from) => {
     //si pas de match de page
     if (to.matched.length === 0) {
       console.log("redirect si pas de match");
-      return { name: "Landing" };
+      return { name: "Events" };
     }
     // verification des droits de la page
     if (to.meta.permission !== "noLog" && to.meta.permission !== undefined) {

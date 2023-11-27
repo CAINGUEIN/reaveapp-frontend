@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-screen">
+  <div class="flex h-screen" v-if="token">
     <div class="w-full flex flex-col h-full">
       <div
         v-if="loading"
@@ -45,7 +45,7 @@
         <router-view class="max-h-fit w-full" />
       </div>
       <router-view
-        class="max-h-fit"
+        class="max-h-fit bg-Anthracite"
         v-if="!$route.path.includes('SpacePrivate')"
       />
     </div>
@@ -55,6 +55,7 @@
       :isOpenModal="isOpenModal"
     />
   </div>
+  <VisitorLayout v-else />
 </template>
 
 <script>
@@ -64,23 +65,29 @@ import useStoreSpace from "@stores/storeSpace";
 //components
 import CreateSpaceModal from "@core/components/modal/CreateSpaceModal.vue";
 import TopNavBar from "@core/components/barNav/TopNavBar.vue";
+import VisitorLayout from "@modules/layout/views/VisitorLayout.vue";
 //data
 import dataTopLeft from "@modules/layout/data/dataTopLeftNavBar";
 import dataBottomLeft from "@modules/layout/data/dataBottomLeftNavBar";
 import LeftNavBar from "@components/barNav/LeftNavBar.vue";
+import { useCookies } from "vue3-cookies";
 export default {
   components: {
     CreateSpaceModal,
     LeftNavBar,
+    VisitorLayout,
     TopNavBar,
   },
   data() {
     const store = useStoreAuth();
     const storeSpace = useStoreSpace();
+    const { cookies } = useCookies();
+    let token = cookies.get("userSession");
     let dataSpace;
     return {
       dataTopLeft,
       dataBottomLeft,
+      token,
       isMapsRoute: false,
       loading: false,
       isOpenModal: false,
@@ -204,10 +211,12 @@ export default {
     this.getUrl();
     this.isMapsRoute = this.$route.path === "/maps";
     console.log(this.isMapsRoute);
-    this.feedDataSpace();
-    setTimeout(() => {
-      this.loading = false;
-    }, 500);
+    if (this.token) {
+      this.feedDataSpace();
+      setTimeout(() => {
+        this.loading = false;
+      }, 500);
+    }
   },
 };
 </script>
