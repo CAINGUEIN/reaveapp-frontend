@@ -9,6 +9,7 @@ const { cookies } = useCookies();
 let routes = [
   {
     path: "/",
+    redirect: "Events",
   },
   {
     path: "/waiting",
@@ -61,7 +62,7 @@ router.beforeEach(async (to, from) => {
     } else {
       cookies.remove("userSession"); //return this
       console.log("ici si pas de token ou token invalide");
-      return { name: "Events" }
+      return { name: "Events" };
     }
   }
 

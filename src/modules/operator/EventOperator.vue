@@ -191,7 +191,10 @@
           >
             <td class="rounded-l-xl">
               <div class="flex items-center ml-4 my-2">
-                <div class="w-16 h-16 rounded-xl mr-4" :style="getImageBlob(item.posterPic)"></div>
+                <div
+                  class="w-16 h-16 rounded-xl mr-4"
+                  :style="getImageBlob(item.posterPic)"
+                ></div>
                 <p class="text-base font-black text-LightGrey">
                   {{ item.name }}
                 </p>
@@ -259,7 +262,10 @@
       </table>
     </div>
     <ModalClear :open="open" @action="close()">
-      <CreateEvent :spaceAssociated="getSpaceId" @action="close()"></CreateEvent>
+      <CreateEvent
+        :spaceAssociated="getSpaceId"
+        @action="close()"
+      ></CreateEvent>
     </ModalClear>
   </div>
 </template>
@@ -325,28 +331,31 @@ export default {
     };
   },
   methods: {
-    getImageBlob(imageName){
-      console.log('llm8', imageName);
+    getImageBlob(imageName) {
+      console.log("llm8", imageName);
       return {
-        'background-image': `url("${this.venuePPObject[imageName] ? this.venuePPObject[imageName] : '/img/EventsDefault.png'}")`,
-        'background-size': 'contain',
-        'background-repeat': 'no-repeat',
+        "background-image": `url("${
+          this.venuePPObject[imageName]
+            ? this.venuePPObject[imageName]
+            : "/img/EventsDefault.png"
+        }")`,
+        "background-size": "contain",
+        "background-repeat": "no-repeat",
       };
     },
     async getEventPosterPic() {
-      console.log('llm4', this.venuePP);
+      console.log("llm4", this.venuePP);
       const promiseArray = this.venuePP.map(async (data) => {
-        console.log('llm5', data);
-        if (data !== '') {
-          console.log('llm5.5');
+        console.log("llm5", data);
+        if (data !== "") {
+          console.log("llm5.5");
           let result = await UploadServices.getImageFromBackend(data);
-          console.log('llm6', result);
+          console.log("llm6", result);
           this.venuePPObject[data] = result;
         }
-
       });
       await Promise.all(promiseArray);
-      console.log('llm7', this.venuePPObject);
+      console.log("llm7", this.venuePPObject);
       this.divOpen = 1;
     },
     close() {
@@ -356,32 +365,33 @@ export default {
       this.$router.push({ name: "ProjectId", params: { id: target } });
     },
     async searchEventOperator() {
-      console.log('llm1', this.$route.params.id);
+      console.log("llm1", this.$route.params.id);
       //recup de toute les datas dans les event qui on pour owner le id du user
-      let result = await EventServices.searchPersonalEventOperator(this.getSpaceId);
+      let result = await EventServices.searchPersonalEventOperator(
+        this.getSpaceId
+      );
       if (result.data.success) {
         this.data = result.data.data;
         console.log("llm2", this.data);
         for (let i = 0; i < result.data.data.length; i++) {
-          console.log('llm3', result.data.data[i].posterPic);
+          console.log("llm3", result.data.data[i].posterPic);
           this.venuePP.push(result.data.data[i].posterPic);
 
           console.log("llm4", this.venuePP);
-
         }
-      
       }
     },
   },
   watch: {
-    '$route.params.id': function(newId) {
+    "$route.params.id": function (newId) {
       this.getSpaceId = newId;
       this.searchEventOperator();
-    }},
-    async beforeMount() {
+    },
+  },
+  async beforeMount() {
     await this.searchEventOperator();
     await this.getEventPosterPic();
-    console.log('llm9');
+    console.log("llm9");
   },
 };
 </script>

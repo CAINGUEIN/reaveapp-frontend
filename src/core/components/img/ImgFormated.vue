@@ -7,13 +7,26 @@ import useStoreAuth from "@stores/auth";
 
 export default {
   emits: ["loaded"],
-  props: ["srcImg","type", "size", "targetSpace", "id"],
+  props: ["srcImg", "type", "size", "targetSpace", "id"],
   data() {
     const store = useStoreAuth();
     // const spaceStore = useStoreSpace();
     return {
       store,
-      srcImg: "",
+      defaultImgs: [
+        "blue",
+        "darkBlue",
+        "darkGrey",
+        "darkRed",
+        "green",
+        "grey",
+        "lightGreen",
+        "lightPurple",
+        "orange",
+        "purple",
+        "red",
+        "yellow",
+      ],
       //srcMediaBase: "https://media.reave.dev/",
       target: "",
     };
@@ -56,7 +69,7 @@ export default {
       }
     },
     replaceUrl(e) {
-      let randomColor = Math.floor(Math.random() * 0xffffff).toString(16);
+      let randomColor = Math.floor(Math.random() * 8);
       let formatSize = "";
       if (this.size === "l") {
         formatSize = "60/";
@@ -78,20 +91,20 @@ export default {
       } else if (this.type === "venue") {
         e.target.src = "/img/VenuesDefault.png";
       } else {
-       // e.target.src = "/img/EventsDefault.png";
+        // e.target.src = "/img/EventsDefault.png";
         e.target.src =
-         "https://via.placeholder.com/" + formatSize + randomColor;
+          "/src/core/assets/img/profilePicture/" +
+          this.defaultImgs[randomColor] + ".png";
       }
     },
   },
   watch: {
     $route() {
-     // this.setSrcImg();
+      // this.setSrcImg();
     },
   },
   mounted() {
-   //this.setSrcImg();
-    
+    //this.setSrcImg();
   },
 };
 </script>

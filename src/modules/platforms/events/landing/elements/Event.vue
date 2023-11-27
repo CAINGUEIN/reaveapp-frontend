@@ -1,7 +1,7 @@
 <template>
   <div class="relative flex flex-col">
     <div class="w-full h-fit rounded-2xl relative">
-      <img :src="props.dataEvent.image" class="object-contain" />
+      <img :src="props.dataEvent.posterPic" class="object-contain" />
       <div
         class="absolute text-White space-x-2 pr-0 top-3 right-3 flex flex-row"
       >
@@ -15,22 +15,48 @@
       <div class="flex flex-row mt-2 space-y-1">
         <img
           class="w-6 h-6 rounded-full my-auto mr-2"
-          :src="props.dataEvent.spaceIcon"
+          :src="props.dataSpace.picture"
         />
-        <p class="font-medium text-White">{{ props.dataEvent.space }}</p>
+        <p class="font-medium text-White">{{ props.dataSpace.nameSpace }}</p>
       </div>
       <p class="text-White mt-2 text-xl font-semibold">
         {{ props.dataEvent.title }}
       </p>
-      <p class="text-Cloud font-medium">{{ props.dataEvent.date }}</p>
-      <p class="text-Cloud font-medium">{{ props.dataEvent.location }}</p>
+      <p class="text-Cloud font-medium">{{ formattedDate }}</p>
+      <p class="text-Cloud font-medium mt-1">
+        {{
+          props.dataEvent.venueName +
+          ", " +
+          props.dataEvent.city +
+          ", " +
+          props.dataEvent.country
+        }}
+      </p>
     </div>
   </div>
 </template>
 
 <script setup>
+import { onMounted, ref } from "vue";
 import Icon from "./Icon.vue";
 const props = defineProps({
   dataEvent: Object,
+  dataSpace: Object,
+});
+const formattedDate = ref("");
+const formatDate = (inputDate) => {
+  const date = new Date(inputDate);
+  const options = {
+    weekday: "long", // Jour de la semaine (nom complet)
+    day: "numeric", // Jour du mois
+    month: "long", // Mois (nom complet)
+    year: "numeric", // Année
+  };
+
+  return date.toLocaleDateString("en-US", options);
+};
+onMounted(() => {
+  formattedDate.value = formatDate(props.dataEvent.date);
+  console.log(formattedDate); // Exemple de sortie : "samedi 16 septembre 2023"
 });
 </script>

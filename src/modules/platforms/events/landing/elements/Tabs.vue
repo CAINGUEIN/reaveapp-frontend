@@ -5,7 +5,7 @@
       :key="tab"
       class="cursor-pointer hover:bg-Rock rounded-xl"
     >
-      <p class="font-bold text-sm py-1.5 px-3 text-White">{{ tab }}</p>
+      <p class="font-bold text-base py-1.5 px-3 text-White">{{ tab }}</p>
     </div>
   </div>
 </template>
