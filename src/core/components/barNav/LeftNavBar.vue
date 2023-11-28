@@ -64,19 +64,19 @@
 </template>
 
 <script setup>
-// Hooks
+// hooks
 import useStoreAuth from "@stores/auth";
 import useStoreSpace from "@stores/storeSpace";
 import { onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 // Components
-import Messages from "@assets/icons/Messages.vue";
-import Dashboard from "../../assets/icons/Dashboard.vue";
 import Operator from "@assets/icons/Operator.vue";
-import Conceptor from "@assets/icons/Conceptor.vue";
 import Analytics from "@assets/svg/pricing/Analytics.vue";
+import Conceptor from "@assets/icons/Conceptor.vue";
 import Calendar from "@assets/icons/Calendar.vue";
+import Messages from "@assets/icons/Messages.vue";
 import ToolsButtonNav from "../buttons/ToolsButtonNav.vue";
+import Dashboard from "../../assets/icons/Dashboard.vue";
 import ImgFormated from "../img/ImgFormated.vue";
 
 const props = defineProps({
@@ -87,12 +87,12 @@ const spaceStore = useStoreSpace();
 
 const buttonsMenu = [
   {
-    target: "Spaces",
-    icon: "Spaces",
+    target: "Space",
+    icon: "Space",
     dataClass: "spaces",
   },
   {
-    target: "Chats",
+    target: "SpaceFriendsChat",
     icon: "Messages",
     dataClass: "spaces",
   },
@@ -112,7 +112,7 @@ const buttonsMenu = [
     dataClass: "spaces",
   },
   {
-    target: "Calendar",
+    target: "SpaceFriendsCalendar",
     icon: "Calendar",
     dataClass: "spaces",
   },
