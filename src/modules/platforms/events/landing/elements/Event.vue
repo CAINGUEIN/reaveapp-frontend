@@ -1,6 +1,6 @@
 <template>
   <div class="relative flex flex-col">
-    <div class="w-full h-fit rounded-2xl relative">
+    <div class="w-full h-fit rounded-2xl relative" @click="goTo">
       <img :src="props.dataEvent.posterPic" class="object-contain" />
       <div
         class="absolute text-White space-x-2 pr-0 top-3 right-3 flex flex-row"
@@ -37,6 +37,9 @@
 </template>
 
 <script setup>
+import { useRouter } from "vue-router";
+const router = useRouter();
+
 import { onMounted, ref } from "vue";
 import Icon from "./Icon.vue";
 const props = defineProps({
@@ -59,4 +62,9 @@ onMounted(() => {
   formattedDate.value = formatDate(props.dataEvent.date);
   console.log(formattedDate); // Exemple de sortie : "samedi 16 septembre 2023"
 });
+
+
+const goTo = () => {
+  router.push({ name: "EventPage"});
+}
 </script>

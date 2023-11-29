@@ -67,12 +67,6 @@ const findPublishedVenuesMethod = async () => {
 }
 
 const goTo = () => {
-  // router.push({
-  //         name: "EventPage",
-  //         //params: { id: target, target: "projects" },
-  //       });
-
-  // Go to Venue page
 }
 
 onBeforeMount(async () => {

@@ -240,13 +240,13 @@ import SeatMap from "@components/eventBuyTicket/SeatMap.vue";
 import ResumeTicketsBuy from "@components/eventBuyTicket/ResumeTicketsBuy.vue";
 import SelectOwner from "@components/modal/eventId/SelectOwner.vue";
 //services
-import eventServices from "@axios/services/eventServices";
+import EventServices from "@axios/services/eventServices";
 import ticketServices from "@axios/services/ticketServices";
 //tool
 import useStoreAuth from "@stores/auth";
 import Crediting from "@components/modal/wallet/Crediting.vue";
 import SvgTarget from "@components/SvgTarget.vue";
-import ImgFormated from "../../../../core/components/img/ImgFormated.vue";
+import ImgFormated from "@components/img/ImgFormated.vue";
 export default {
   components: {
     XButton60,
@@ -264,7 +264,7 @@ export default {
     return {
       store,
       open: false,
-      id: "",
+      id: "655e3a1bc7a488be76608eff",
       infoEvent: "",
       listTicket: [],
       indexTicket: "",
@@ -278,12 +278,12 @@ export default {
       this.$router.back();
     },
     getUrl() {
-      if (Object.keys(this.$route.params).length > 0) {
-        this.id = this.$route.params.id;
+      //if (Object.keys(this.$route.params).length > 0) {
+       // this.id = this.$route.params.id;
         this.feadData();
-      } else {
-        this.goBack();
-      }
+     // } else {
+     //   this.goBack();
+     // }
     },
     ticketsRemaining() {
       let totalTickets = 0;
@@ -297,7 +297,7 @@ export default {
     },
     async feadData() {
       let body = { _id: this.id };
-      let result = await eventServices.dataEvent(body);
+      let result = await EventServices.dataEvent(body);
       if (result.data.success) {
         this.infoEvent = result.data.data;
       }

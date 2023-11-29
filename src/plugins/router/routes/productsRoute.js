@@ -74,26 +74,27 @@ export default [
       permission: "log"
     },
   },
-  {
-    path: "/eventBuyTicket/:id",
-    name: "EventBuyTicket",
-    component: () =>
-      import("@modules/platforms/events/views/EventBuyTicket.vue"),
-    meta: {
-      layout: "none",
-      permission: "log"
-    },
-  },
+ 
   */
 
   /*NEW*/
-
   {
     path: "/events",
     name: "Events",
     component: () => import("@modules/platforms/events/landing/Events.vue"),
     meta: {
       layout: "Reave",
+    },
+  },
+
+  {
+    path: "/eventBuyTicket",
+    name: "EventBuyTicket",
+    component: () =>
+      import("@modules/platforms/events/EventBuyTicket.vue"),
+    meta: {
+      layout: "none",
+      permission: "log"
     },
   },
 

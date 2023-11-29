@@ -7,6 +7,7 @@ import Colour from "./Colour.vue";
 import Cost from "./Cost.vue";
 import Documents from "./Documents.vue";
 import Equipment from "./Equipment.vue";
+import Link from "./Link.vue";
 
 
 
@@ -50,7 +51,7 @@ export {
   Cost,
   Documents,
   Equipment,
-
+  Link,
   Eye,
   FileHistory,
   Fist,

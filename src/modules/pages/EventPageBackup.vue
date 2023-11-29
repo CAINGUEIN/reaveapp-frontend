@@ -1,118 +1,126 @@
 <template>
   <div v-if="infoEvent" class="overflow-y-auto h-screen scrollbarV">
+
     <XButton40 @click="goBack" class="absolute right-6 top-6 z-10"></XButton40>
-
-    <!-- An attempt to a responsive page -->
-    <div class="flex ml-[8.3vw] mt-[3.33vw]">
-      <div>
-        <img src="/img/BigIMG.png" class="rounded-2xl w-[53vw]" />
+    <div class="ml-5 mt-20 flex">
+      <div class="w-[1016px] rounded-2xl flex">
+        <img src="/img/BigIMG.png" alt="" class="my-auto w-full" />
       </div>
-      <div class="flex flex-col ml-[2.5vw]">
+      <div class="ml-10 flex flex-col justify-between w-2/5">
+        <div class="flex flex-col justify-between mt-6">
+          <h1 class="text-[48px] font-bold">{{ infoEvent.name }}</h1>
+          <div class="flex items-center space-x-4">
+            <ImgFormated :key="infoEvent.owner._id" :size="'s'" :targetSpace="infoEvent.owner._id" :type="'avatar'"
+              class="h-8 w-8 rounded-full bg-slate-300 my-3" />
+            <p class="text-white font-medium">
+              Organised by @{{ infoEvent.owner.user_id.userTag }}
+            </p>
+          </div>
+          <div class="flex mt-4 w-full">
+            <button class="text-black rounded-full h-[40px]  ml-0 w-[191px] bg-white flex" @click="goTo()">
 
-        <div class="flex flex-[0.99] mt-[1.6vw] flex-col w-[24vw]">
-          <div class="text-[2.5vw] font-bold">{{ infoEvent.name }}</div>
-          <div class="flex">
-            <div class="flex flex-col w-full">
-
-              <div class="flex gap-[0.625vw] items-center">
-                <ImgFormated :key="infoEvent.owner._id" :size="'s'" :targetSpace="infoEvent.owner._id" :type="'avatar'"
-                  class="h-[1.6vw] w-[1.6vw] rounded-full bg-slate-300 my-[0.4vw]" />
-                <div class="text-[0.83vw] font-medium">
-                  Organised by @{{ infoEvent.owner.user_id.userTag }}
-                </div>
+              <div class="flex items-center m-auto">
+                <SvgTarget :target="'Tickets'" color1="#000" :width="24" :height="24" class="mr-2"></SvgTarget>
+                <h4 class="text-black text-base font-black">Buy Tickets</h4>
               </div>
-              <button class="text-black rounded-full h-[2.1vw] mt-[0.83vw] w-[10vw] bg-white flex" @click="goTo()">
-                <div class="flex items-center m-auto">
-                  <SvgTarget :target="'Tickets'" color1="#000" :width="24" :height="24" class="mr-[0.41vw]"></SvgTarget>
-                  <h4 class="text-black text-[0.83vw] font-black">Buy Tickets</h4>
-                </div>
-              </button>
-
-              <div class="grid grid-cols-2 mt-10">
-                <div class="col-span-1">
-                  <div><!--<SvgTarget :target="Date"></SvgTarget> -->
-                    <p class="text-[0.83vw]">Date</p>
-                  </div>
-                  <h3 class="text-[1.04vw] font-black">{{ $dayjs(infoEvent.date).format("MM.DD.YYYY") }}</h3>
-                  <h3 class="text-[1.04vw] font-black">at {{ $dayjs(infoEvent.date).format("hh:mm A") }}</h3>
-                </div>
-                <div class="col-span-1">
-                  <p class="text-[0.83vw]">Location</p>
-                  <h3 class="text-[1.04vw] font-black">
-                    {{
-                      infoEvent.venueName +
-                      ", " +
-                      infoEvent.adress +
-                      ", " +
-                      infoEvent.city +
-                      ", " +
-                      infoEvent.country
-                    }}
-                  </h3>
-                </div>
-                <div class="col-span-1">
-                  <p class="text-[0.83vw]">Booking Time Left</p>
-                  <h3 class="text-[1.04vw] font-black">{{ $dayjs(infoEvent.date).fromNow() }}</h3>
-                </div>
-                <div class="col-span-1">
-                  <p class="text-[0.83vw]">Remaining Seats</p>
-                </div>
+            </button>
+            <!-- <Button60Slot class="ml-4 my-auto relative">
+              <Auctions :width="32" :height="32" class="m-auto"></Auctions>
+              <div class="absolute bottom-0 left-0 right-0 flex">
+                <SvgTarget
+                  :height="40"
+                  :width="40"
+                  class="mx-auto"
+                  target="SOON"
+                ></SvgTarget>
               </div>
+            </Button60Slot> -->
+          </div>
+          <div class="grid-cols-2 grid w-full gap-4 mt-10">
+            <div class="col-span-1">
+              <p>Date</p>
+              <h3 class="text-xl font-black">{{ $dayjs(infoEvent.date).format("MM.DD.YYYY") }}</h3>
+              <h3 class="text-xl font-black">at {{ $dayjs(infoEvent.date).format("hh:mm A") }}</h3>
+            </div>
+            <div class="col-span-1">
+              <p>Location</p>
+              <h3 class="text-xl font-black">
+                {{
+                  infoEvent.venueName +
+                  ", " +
+                  infoEvent.adress +
+                  ", " +
+                  infoEvent.city +
+                  ", " +
+                  infoEvent.country
+                }}
+              </h3>
+            </div>
+            <div class="col-span-1">
+              <p>Booking Time Left</p>
+              <h3 class="text-xl font-black">{{ $dayjs(infoEvent.date).fromNow() }}</h3>
+            </div>
+            <div class="col-span-1">
+              <p>Remaining Seats</p>
+
             </div>
           </div>
         </div>
-
-        <div class="flex flex[0.01]">
-          <div v-for="item in nav" class="flex">
-            <Button40Slot class="my-[0.41vw] mr-[0.41vw]">
-              <SvgTarget class="m-auto flex-row" :target="item.icon" :width="24" :height="24"></SvgTarget>
-            </Button40Slot>
-          </div>
+        <!------------------------------------>
+        <div  class="flex">
+          <Button40Slot class="my-2 mr-2">
+            <SvgTarget class="m-auto" target="Link" :width="24" :height="24"></SvgTarget>
+          </Button40Slot>
+          <Button40Slot class="m-2">
+            <SvgTarget class="m-auto" target="Share" :width="24" :height="24"></SvgTarget>
+          </Button40Slot>
+          <Button40Slot class="m-2">
+            <SvgTarget class="m-auto" target="Heart" :width="24" :height="24"></SvgTarget>
+          </Button40Slot>
+          <Button40Slot class="m-2">
+            <SvgTarget class="m-auto" target="Save" :width="24" :height="24"></SvgTarget>
+          </Button40Slot>
         </div>
       </div>
-    </div>
-
-    <div class="flex flex-row">
-
     </div>
     <div class="mx-24 mt-10">
       <div class="w-full border-b-2 border-Gravel flex justify-around">
         <div class="-mb-0.5">
           <button class="border-b-2 pb-2 px-10" :class="select === 'About'
-            ? 'border-White'
-            : 'hover:border-White border-Gravel'
+              ? 'border-White'
+              : 'hover:border-White border-Gravel'
             " @click.prevent="select = 'About'">
             <p class="text-xl font-medium" :class="select === 'About' ? 'text-White' : 'hover:text-White'">
               About
             </p>
           </button>
           <button class="border-b-2 pb-2 px-10" :class="select === 'Format'
-            ? 'border-White'
-            : 'hover:border-White border-Gravel'
+              ? 'border-White'
+              : 'hover:border-White border-Gravel'
             " @click.prevent="select = 'Format'">
             <p class="text-xl font-medium" :class="select === 'Format' ? 'text-White' : 'hover:text-White'">
               Format
             </p>
           </button>
           <button class="border-b-2 pb-2 px-10" :class="select === 'Venue'
-            ? 'border-White'
-            : 'hover:border-White border-Gravel'
+              ? 'border-White'
+              : 'hover:border-White border-Gravel'
             " @click.prevent="select = 'Venue'">
             <p class="text-xl font-medium" :class="select === 'Venue' ? 'text-White' : 'hover:text-White'">
               Venue
             </p>
           </button>
           <button class="border-b-2 pb-2 px-10" :class="select === 'Products'
-            ? 'border-White'
-            : 'hover:border-White border-Gravel'
+              ? 'border-White'
+              : 'hover:border-White border-Gravel'
             " @click.prevent="select = 'Products'">
             <p class="text-xl font-medium" :class="select === 'Products' ? 'text-White' : 'hover:text-White'">
               Products
             </p>
           </button>
           <button class="border-b-2 pb-2 px-10" :class="select === 'People'
-            ? 'border-White'
-            : 'hover:border-White border-Gravel'
+              ? 'border-White'
+              : 'hover:border-White border-Gravel'
             " @click.prevent="select = 'People'">
             <p class="text-xl font-medium" :class="select === 'People' ? 'text-White' : 'hover:text-White'">
               People
@@ -121,9 +129,6 @@
         </div>
       </div>
     </div>
-
-
-
     <div>
       <EventIdAbout v-if="select === 'About'" :data="infoEvent"></EventIdAbout>
       <EventIdFormat v-if="select === 'Format'" :data="infoEvent"></EventIdFormat>
@@ -178,12 +183,6 @@ export default {
   },
   data() {
     return {
-      nav: [
-        { name: "Link", icon: "Link", target: "Link" },
-        { name: "Share", icon: "Share", target: "Share" },
-        { name: "Heart", icon: "Heart", target: "Heart" },
-        { name: "Save", icon: "Save", target: "Save" }
-      ],
       id: "655e3a1bc7a488be76608eff",
       infoEvent: "",
       select: "About",
@@ -194,7 +193,7 @@ export default {
       this.$router.back();
     },
     goTo(target) {
-      //this.$router.push({ name: "EventBuyTicket" });
+      this.$router.push({ name: "EventBuyTicket" });
     },
     getUrl() {
       // if (Object.keys(this.$route.params).length > 0) {
@@ -227,5 +226,6 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped>div {
+  border: 2px solid red;
+}</style>
