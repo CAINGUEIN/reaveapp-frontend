@@ -310,7 +310,7 @@ export default {
     goTo() {
       this.$router.push({ 
         name: "EventPage",
-        params: { id: routeId },}, );
+        params: { id: this.routeId }}, );
     },
 
     goBack() {
