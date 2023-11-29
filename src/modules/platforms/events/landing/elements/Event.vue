@@ -17,7 +17,7 @@
           class="w-6 h-6 rounded-full my-auto mr-2"
           :src="props.dataSpace.picture"
         />
-        <p class="font-medium text-White">{{ props.dataSpace.nameSpace }}</p>
+        <p class="font-medium text-White">{{ props.dataEvent.name }}</p>
       </div>
       <p class="text-White mt-2 text-xl font-semibold">
         {{ props.dataEvent.title }}
@@ -65,6 +65,6 @@ onMounted(() => {
 
 
 const goTo = () => {
-  router.push({ name: "EventPage"});
+  router.push({ name: "EventPage" , params: {id: props.dataEvent._id}});
 }
 </script>

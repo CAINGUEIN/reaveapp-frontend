@@ -184,7 +184,7 @@ export default {
         { name: "Heart", icon: "Heart", target: "Heart" },
         { name: "Save", icon: "Save", target: "Save" }
       ],
-      id: "655e3a1bc7a488be76608eff",
+      id: "",
       infoEvent: "",
       select: "About",
     };
@@ -197,12 +197,12 @@ export default {
       //this.$router.push({ name: "EventBuyTicket" });
     },
     getUrl() {
-      // if (Object.keys(this.$route.params).length > 0) {
-      // this.id = this.$route.params.id;
+       if (Object.keys(this.$route.params).length > 0) {
+       this.id = this.$route.params.id;
       this.feadData();
-      //} else {
-      //   this.goBack();
-      //}
+      } else {
+         this.goBack();
+      }
     },
     ticketsRemaining() {
       let totalTickets = 0;
