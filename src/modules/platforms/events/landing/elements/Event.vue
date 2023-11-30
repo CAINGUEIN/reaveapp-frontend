@@ -17,10 +17,10 @@
           class="w-6 h-6 rounded-full my-auto mr-2"
           :src="props.dataSpace.picture"
         />
-        <p class="font-medium text-White">{{ props.dataEvent.name }}</p>
+        <p class="font-medium text-White">{{ props.dataSpace.nameSpace }}</p>
       </div>
       <p class="text-White mt-2 text-xl font-semibold">
-        {{ props.dataEvent.title }}
+        {{ props.dataEvent.name }}
       </p>
       <p class="text-Cloud font-medium">{{ formattedDate }}</p>
       <p class="text-Cloud font-medium mt-1">
@@ -60,7 +60,7 @@ const formatDate = (inputDate) => {
 };
 onMounted(() => {
   formattedDate.value = formatDate(props.dataEvent.date);
-  console.log(formattedDate); // Exemple de sortie : "samedi 16 septembre 2023"
+  console.log(props.dataSpace);
 });
 
 const goTo = () => {

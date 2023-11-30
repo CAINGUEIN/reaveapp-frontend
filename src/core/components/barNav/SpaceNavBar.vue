@@ -17,7 +17,6 @@
         :key="store.spaceKey"
         :size="'l'"
         :type="'space'"
-        @loaded="imageLoaded"
         :src="space.picture"
         :srcImg="space.picture"
         :targetSpace="space._id"

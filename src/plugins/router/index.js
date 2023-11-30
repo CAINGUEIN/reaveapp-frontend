@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import useStoreAuth from "@stores/auth";
 import useStoreData from "@stores/data";
-import useStoreSpace from "@stores/storeSpace";
 import { useCookies } from "vue3-cookies";
 
 const { cookies } = useCookies();

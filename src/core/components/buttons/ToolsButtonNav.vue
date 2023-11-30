@@ -27,7 +27,6 @@ import useStoreAuth from "@stores/auth";
  *  bouton en select
  */
 export default {
-  emits: ["tool-clicked"],
   props: {
     target: String,
     subTarget: String,
@@ -80,7 +79,6 @@ export default {
             view: this.subTarget,
           },
         });
-        this.$emit("tool-clicked");
       }
     },
     classButton() {

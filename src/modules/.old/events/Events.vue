@@ -139,7 +139,7 @@ export default {
     },
     //faire la route pour recup les data d'event de base recup les 20 prochaines
     async feadDataCards() {
-      let result = await EventServices.listEvent();
+      let result = await EventServices.listCurrentEvent();
       if (result.data.success) {
         this.dataCards = result.data.data;
       } else {

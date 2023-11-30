@@ -27,6 +27,18 @@ class EventServices {
       });
   }
 
+  static async listCurrentEvent(body) {
+    return Base.post(`/event/listCurrent`, body)
+      .then((response) => {
+        console.log("event list", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error ", e);
+        return e;
+      });
+  }
+
   static async listEvent(body) {
     return Base.post(`/event/list`, body)
       .then((response) => {

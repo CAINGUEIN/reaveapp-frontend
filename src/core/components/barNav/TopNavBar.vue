@@ -93,7 +93,6 @@
                   class="transition ease-out rounded-[20px] duration-300 relative grid w-52 bg-DarkRock grid-cols-4 p-2"
                 >
                   <ToolsButtonNav
-                    @tool-clicked="closeBento"
                     v-for="item in solutions"
                     :btnName="item.icon"
                     :key="item.target"

@@ -1,6 +1,7 @@
 <template>
   <div class="w-10/12 max-w-[1332px] mt-6 h-full mx-auto">
-    <div v-if="!isloading">
+    <div v-if="isloading"><h1>Loading...</h1></div>
+    <div v-else>
       <div class="w-full h-full">
         <Headers v-if="token" />
         <div class="w-full relative mt-6 rounded-2xl h-64 overflow-hidden">
@@ -63,12 +64,11 @@
         </div>
       </div>
     </div>
-    <SkeletonEvents v-else />
   </div>
 </template>
 
 <script setup>
-import SkeletonEvents from "./SkeletonEvents.vue";
+//import SkeletonEvents from "./SkeletonEvents.vue";
 import Ticket from "@assets/icons/Ticket.vue";
 import Categories from "./elements/Categories.vue";
 import Event from "./elements/Event.vue";
@@ -86,7 +86,7 @@ const storeSpace = useStoreSpace();
 const token = cookies.get("userSession");
 const dataEvents = ref({});
 const dataSpaces = ref({});
-const isloading = false;
+let isloading = ref(true);
 const topEvent = {
   space: "KarmineCorp",
   spaceIcon: "/src/core/assets/img/KarmineLogo.png",
@@ -184,24 +184,24 @@ const topEvent = {
 
 const getEvents = async () => {
   let result;
-  if (!storeSpace.dataSpace) {
-    await storeSpace.feedDataSpace();
-  }
+  let space;
+  await storeSpace.feedDataSpace();
   dataSpaces.value = storeSpace.dataSpace;
-  for (const space in dataSpaces.value) {
-    result = await EventServices.searchPersonalEventOperator(space);
-    if (result.data.data.length > 0) {
-      for (let i = 0; i < result.data.data.length; i++) {
-        dataEvents.value[result.data.data[i]._id] = result.data.data[i];
-        dataEvents.value[result.data.data[i]._id].spaceAssociated =
-          storeSpace.dataSpace[
-            dataEvents.value[result.data.data[i]._id].spaceAssociated
-          ];
-        dataEvents.value[result.data.data[i]._id].posterPic =
-          await UploadServices.getImageFromBackend(
-            dataEvents.value[result.data.data[i]._id].posterPic
+  result = await EventServices.listEvent();
+  console.log(result.data.data);
+  if (result.data.data.length > 0) {
+    for (let i = 0; i < result.data.data.length; i++) {
+      dataEvents.value[result.data.data[i]._id] = result.data.data[i];
+      space =
+        dataSpaces.value[
+          dataEvents.value[result.data.data[i]._id].spaceAssociated
+        ];
+      console.log(space);
+      dataEvents.value[result.data.data[i]._id].spaceAssociated = space;
+      dataEvents.value[result.data.data[i]._id].posterPic =
+        await UploadServices.getImageFromBackend(
+          dataEvents.value[result.data.data[i]._id].posterPic
         );
-      }
     }
   }
 };
@@ -209,5 +209,6 @@ const getEvents = async () => {
 onMounted(async () => {
   await getEvents();
   console.log(dataEvents.value);
+  isloading.value = false;
 });
 </script>
