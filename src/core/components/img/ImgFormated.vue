@@ -23,7 +23,7 @@ export default {
   methods: {
     async setSrcImg() {
       if (this.srcImg === "") {
-        if (localStorage.getItem("color")) {
+        if (this.type == "avatar" && localStorage.getItem("color")) {
           this.srcImg =
             "/src/core/assets/img/profilePicture/" +
             localStorage.getItem("color") +
@@ -34,7 +34,9 @@ export default {
             "/src/core/assets/img/profilePicture/" +
             this.images[randomColor] +
             ".png";
-          localStorage.setItem("color", this.images[randomColor]);
+          if (this.type == "avatar") {
+            localStorage.setItem("color", this.images[randomColor]);
+          }
         }
       }
     },

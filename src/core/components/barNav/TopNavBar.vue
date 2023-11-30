@@ -118,7 +118,7 @@
             :dataClass="''"
             @click.right.prevent="toggleDropdown"
           >
-            <ImgFormated class="rounded-full" />
+            <ImgFormated class="rounded-full" type="avatar" />
           </ToolsButtonNav>
           <div
             :class="dropdown"
