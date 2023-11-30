@@ -5,12 +5,13 @@ export default [
       component: () => import("@modules/pages/EventPage.vue"),
       meta: { layout: "none", permission: "log" },
     },
-   /*  {
-      path: "/venuePage",
+    {
+      path: "/venuePage/:id",
       name: "VenuePage",
-      component: () => import("@modules/auth/views/VenuePage.vue"),
+      component: () => import("@modules/pages/VenuePage.vue"),
+      props: true,
       meta: { layout: "none", permission: "log" },
-    }, */
+    }, 
     
   ];
   

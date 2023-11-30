@@ -2,7 +2,7 @@
 import { ref, computed, onMounted, onBeforeMount, compile, reactive, nextTick } from 'vue';
 import VenueServices from '@axios/services/venueServices';
 import UploadServices from "@axios/services/uploadServices";
-import SvgTarget from "../../SvgTarget.vue";
+import SvgTarget from "@components/SvgTarget.vue";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import Button40Slot from "@components/buttons/Button40Slot.vue";
 import XButton36 from "@components/buttons/XButton36.vue";
@@ -61,7 +61,14 @@ const findPublishedVenuesMethod = async () => {
   }
 }
 
-const goTo = () => {
+const goTo = (getId, data2) => {
+  router.push({
+    name: "VenuePage",
+    params: { id: getId, data3: data2 },
+    //venuePPObjectData: JSON.stringify(venuePPObjectData) 
+    //query: { data: JSON.stringify(data) },
+  
+  });
 }
 
 onBeforeMount(async () => {
@@ -160,7 +167,7 @@ onBeforeMount(async () => {
   <div name="separate" class="h-0.5 w-full bg-Gravel mt-4 ml-4"></div>
   <div class="flex flex-col text-[16px] w-full h-full gap-2 mt-3 ml-4">
 
-    <div v-if="divOpen === 1" v-for="item in data" :key="item._id" @click="goTo()"
+    <div v-if="divOpen === 1" v-for="item in data" :key="item._id" @click="goTo(item._id, item)"
       class="cursor-pointer text-[16px] flex items-center hover:bg-DarkRock">
       <div class="flex w-full p-4 ">
         <div class="flex gap-4 items-center basis-1/4 h-full ">
