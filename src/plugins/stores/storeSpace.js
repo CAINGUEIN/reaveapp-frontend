@@ -1,27 +1,14 @@
 import { defineStore } from "pinia";
 import SpaceServices from "@axios/services/spaceServices";
 import UploadServices from "../axios/services/uploadServices";
-
+import { defaultImgs } from "@assets/img/profilePicture/pictureImport";
 const StoreSpace = defineStore("space", {
   state: () => {
     //ici mes variables
     return {
       dataSpace: {},
       isWaiting: false,
-      defaultImgs: [
-        "blue",
-        "darkBlue",
-        "darkGrey",
-        "darkRed",
-        "green",
-        "grey",
-        "lightGreen",
-        "lightPurple",
-        "orange",
-        "purple",
-        "red",
-        "yellow",
-      ],
+      defaultImgs: defaultImgs,
     };
   },
   getters: {
