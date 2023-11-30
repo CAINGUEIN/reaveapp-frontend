@@ -2,7 +2,7 @@
   <div>
     <component
       :is="target"
-      :width="width"
+      :width= "width"
       :color1="color1"
       :height="height"
     ></component>

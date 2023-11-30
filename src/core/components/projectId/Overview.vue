@@ -101,8 +101,8 @@ Poster</pre>
           </div>
         </div>
         <div name="footerEvent">
-          <p class="cursor-pointer text-xs text-LightGrey font-normal mt-5">
-            Show preview
+          <p class="cursor-pointer text-xs text-LightGrey font-normal mt-5" @click ="goTo">
+            Show preview 
           </p>
         </div>
       </div>
@@ -306,6 +306,11 @@ export default {
       //this.open = true;
       this.modalView = 'publish';
 
+    },
+    goTo() {
+      this.$router.push({ 
+        name: "EventPage",
+        params: { id: this.routeId }}, );
     },
 
     goBack() {

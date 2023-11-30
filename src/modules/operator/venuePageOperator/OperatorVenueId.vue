@@ -5,6 +5,7 @@
         v-model="select"
         :select="select"
         :yourPerm="yourPerm"
+        :imageURL="imageURL"
         :infoEvent="infoEvent"
       ></SideNavVenue>
       <div name="content" class="w-full px-[30px] pt-8 overflow-auto scrollbarV pb-4">
@@ -35,6 +36,8 @@
   import useStoreAuth from "@stores/auth";
   //services
   import venueServices from "@axios/services/venueServices";
+  import UploadServices from "@axios/services/uploadServices";
+  
   export default {
     components: {
       XButton36,
@@ -56,13 +59,16 @@
         select: "OverviewVenue",
         index: 1,
         yourPerm: "",
+        imageURL: "",
       };
     },
     methods: {
-      getUrl() {
+      async getUrl() {
         if (Object.keys(this.$route.params).length > 0) {
           this.id = this.$route.params.id;
-          this.feadData();
+          await this.feadData();
+          await this.getBackendImage();
+          
         } else {
           this.goBack();
         }
@@ -106,6 +112,11 @@
           }
         });
         return match;
+      },
+      async getBackendImage() {
+        console.log('oom',this.infoEvent);
+        let result = await UploadServices.getImageFromBackend(this.infoEvent.primaryPic);
+        this.imageURL = result;
       },
       close(value) {
         this.open = false;

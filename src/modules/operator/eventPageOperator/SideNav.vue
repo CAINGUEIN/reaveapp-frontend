@@ -10,7 +10,7 @@
         <ImgFormated
           :key="infoEvent.name"
           :size="'s'"
-          :type="'avatar'"
+          :srcImg = "imageURL"
           class="z-10 h-10 w-10 bg-white rounded-full mr-3"
         />
         <p class="truncate font-bold text-xl">{{ infoEvent.name }}</p>
@@ -148,7 +148,7 @@ export default {
     MenuItem,
     MenuItems,
   },
-  props: ["yourPerm", "infoEvent", "select", "modelValue"],
+  props: ["yourPerm", "infoEvent", "select", "modelValue", "imageURL"],
   data() {
     return {
       userNavigation: [{ name: "opt1" }, { name: "opt2" }, { name: "Remove" }],

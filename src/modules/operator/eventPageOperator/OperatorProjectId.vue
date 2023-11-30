@@ -5,6 +5,7 @@
       v-model="select"
       :select="select"
       :yourPerm="yourPerm"
+      :imageURL="imageURL"
       :infoEvent="infoEvent"
     ></SideNav>
     <div name="content" class="w-full px-[30px] pt-8 overflow-auto scrollbarV pb-4">
@@ -36,6 +37,7 @@ import Panel from "@components/projectId/finance/Panel.vue";
 import useStoreAuth from "@stores/auth";
 //services
 import eventServices from "@axios/services/eventServices";
+import UploadServices from "@axios/services/uploadServices";
 export default {
   components: {
     XButton36,
@@ -52,6 +54,7 @@ export default {
   data() {
     const store = useStoreAuth();
     return {
+      imageURL: "",
       store,
       id: "",
       infoEvent: "",
@@ -61,10 +64,11 @@ export default {
     };
   },
   methods: {
-    getUrl() {
+   async getUrl() {
       if (Object.keys(this.$route.params).length > 0) {
         this.id = this.$route.params.id;
-        this.feadData();
+        await this.feadData();
+        await this.getBackendImage();
       } else {
         this.goBack();
       }
@@ -112,6 +116,10 @@ export default {
     goBack() {
       this.$router.back();
     },
+    async getBackendImage() {
+        let result = await UploadServices.getImageFromBackend(this.infoEvent.posterPic);
+        this.imageURL = result;
+      },
     close(value) {
       this.open = false;
       if (value === "update") {

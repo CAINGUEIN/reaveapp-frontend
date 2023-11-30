@@ -8,12 +8,7 @@ import Button40Slot from "@components/buttons/Button40Slot.vue";
 import XButton36 from "@components/buttons/XButton36.vue";
 import { useRouter } from "vue-router";
 import {
-  AdjustmentsIcon,
   SearchIcon,
-  ChevronDownIcon,
-  ViewListIcon,
-  ViewGridIcon,
-  ViewBoardsIcon,
 } from "@heroicons/vue/solid";
 
 const data = ref('');
@@ -67,12 +62,6 @@ const findPublishedVenuesMethod = async () => {
 }
 
 const goTo = () => {
-  // router.push({
-  //         name: "EventPage",
-  //         //params: { id: target, target: "projects" },
-  //       });
-
-  // Go to Venue page
 }
 
 onBeforeMount(async () => {
