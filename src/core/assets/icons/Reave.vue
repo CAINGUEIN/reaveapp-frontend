@@ -1,5 +1,4 @@
 <template>
-  <div>
     <svg
       width="25"
       height="25"
@@ -12,5 +11,4 @@
         fill="currentColor"
       />
     </svg>
-  </div>
 </template>

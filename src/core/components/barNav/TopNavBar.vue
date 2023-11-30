@@ -15,7 +15,7 @@
           :target="'PersonalMessages'"
           :dataClass="'reave'"
           :comparTarget="store.view"
-          class="mr-2 transition-all duration-300"
+          class="mr-2 transition-all duration-300 max-w-none"
         >
           <Reave />
         </ToolsButtonNav>
@@ -33,7 +33,7 @@
             class="w-12 h-12 bg-LightRock mr-2.5 rounded-full animate-pulse"
           ></div>
         </div>
-        <div v-else class="flex overflow-x-auto">
+        <div v-else class="flex overflow-x-auto snap-x">
           <SpaceNavBar @action="openSpace" :dataSpace="dataStore" />
         </div>
         <!--marked-->

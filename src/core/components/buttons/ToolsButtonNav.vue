@@ -94,7 +94,7 @@ export default {
         this.classBTN = "h-10 w-10";
         this.classCompar = "text-Gravel hover:text-LightGrey";
       } else if (this.dataClass === "reave") {
-        this.classBTN = "h-12 w-12";
+        this.classBTN = "p-3";
         this.classCompar = " bg-DarkRock text-White hover:bg-LightRock";
       } else if (this.dataClass === "top") {
         this.classBTN = "h-6 w-6";
