@@ -9,7 +9,7 @@
       :class="[
         $route.path.includes(space._id)
           ? ' border-gray-200 rounded-2xl '
-          : 'border-Anthracite',
+          : 'border-transparent',
       ]"
       class="border-2 transition rounded-2xl duration-500 p-0.5"
     >
@@ -21,7 +21,7 @@
         :src="space.picture"
         :srcImg="space.picture"
         :targetSpace="space._id"
-        class="w-12 h-12 space"
+        class="min-w-12 h-12 space max-w-none"
         v-bind:class="{
           'space-selected': $route.path.includes(space._id),
         }"

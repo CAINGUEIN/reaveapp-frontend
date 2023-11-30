@@ -10,7 +10,7 @@
     "
   >
     <div class="flex justify-between w-full">
-      <div class="flex space-x-2 items-center">
+      <div class="flex space-x-2 items-center overflow-x-hidden">
         <ToolsButtonNav
           :target="'PersonalMessages'"
           :dataClass="'reave'"
@@ -33,7 +33,9 @@
             class="w-12 h-12 bg-LightRock mr-2.5 rounded-full animate-pulse"
           ></div>
         </div>
-        <SpaceNavBar v-else @action="openSpace" :dataSpace="dataStore" />
+        <div v-else class="flex overflow-x-auto">
+          <SpaceNavBar @action="openSpace" :dataSpace="dataStore" />
+        </div>
         <!--marked-->
         <div class="h-15 flex items-center">
           <ToolsButtonNav
@@ -205,14 +207,6 @@ import Reave from "@assets/icons/Reave.vue";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import Plus from "@assets/icons/Plus.vue";
 import Spaces from "@assets/icons/Spaces.vue";
-import Events from "@assets/icons/Events.vue";
-import Shards from "@assets/icons/Shards.vue";
-import Hub from "@assets/icons/Hub.vue";
-import Jobs from "@assets/icons/Jobs.vue";
-import Academy from "@assets/icons/Academy.vue";
-import Bootcamps from "@assets/icons/Bootcamps.vue";
-import Maps from "@assets/icons/Maps.vue";
-import Scrims from "@assets/icons/Scrims.vue";
 import Bento from "@assets/icons/Bento.vue";
 
 // Data
@@ -231,19 +225,11 @@ export default {
     SvgTarget,
     Spaces,
     Reave,
+    Bento,
     Settings,
     Popover,
     PopoverButton,
     PopoverPanel,
-    Events,
-    Shards,
-    Hub,
-    Jobs,
-    Academy,
-    Bootcamps,
-    Maps,
-    Bento,
-    Scrims,
     ImgFormated,
   },
   data() {
