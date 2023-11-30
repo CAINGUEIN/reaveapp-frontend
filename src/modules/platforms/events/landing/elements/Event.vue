@@ -1,7 +1,7 @@
 <template>
   <div class="relative flex flex-col">
-    <div class="w-full h-fit rounded-2xl relative" @click="goTo">
-      <img :src="props.dataEvent.posterPic" class="object-contain" />
+    <div class="w-full h-fit relative" @click="goTo">
+      <img :src="props.dataEvent.posterPic" class="object-contain rounded-xl" />
       <div
         class="absolute text-White space-x-2 pr-0 top-3 right-3 flex flex-row"
       >
@@ -63,8 +63,7 @@ onMounted(() => {
   console.log(formattedDate); // Exemple de sortie : "samedi 16 septembre 2023"
 });
 
-
 const goTo = () => {
-  router.push({ name: "EventPage" , params: {id: props.dataEvent._id}});
-}
+  router.push({ name: "EventPage", params: { id: props.dataEvent._id } });
+};
 </script>
