@@ -45,7 +45,6 @@ const router = createRouter({
 router.beforeEach(async (to, from) => {
   const store = useStoreAuth();
   const storeData = useStoreData();
-  const storeSpace = useStoreSpace();
 
   console.log("dans le beforeEach");
   // mise en pause de la navigation
@@ -56,9 +55,6 @@ router.beforeEach(async (to, from) => {
       console.log(
         "ici si on a un token valide et que on a recup les datas user"
       );
-      if (await storeSpace.feedDataSpace()) {
-        console.log("et que on a recup les datas space");
-      }
     } else {
       cookies.remove("userSession"); //return this
       console.log("ici si pas de token ou token invalide");

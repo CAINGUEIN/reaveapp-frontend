@@ -1,3 +1,5 @@
+import Academy from "./Academy.vue";
+import Events from "./Events.vue";
 import Block from "./Block.vue";
 import Calendar from "./Calendar.vue";
 import Schedule from "./Schedule.vue";
@@ -28,6 +30,8 @@ import MuseeFabre from "./MuseeFabre.vue";
 import Capacity from "./Capacity.vue";
 
 export {
+  Academy,
+  Events,
   MuseeFabre,
   PAMLogo,
   mcdoLogo,

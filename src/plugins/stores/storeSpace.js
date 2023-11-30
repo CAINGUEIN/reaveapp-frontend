@@ -8,6 +8,20 @@ const StoreSpace = defineStore("space", {
     return {
       dataSpace: {},
       isWaiting: false,
+      defaultImgs: [
+        "blue",
+        "darkBlue",
+        "darkGrey",
+        "darkRed",
+        "green",
+        "grey",
+        "lightGreen",
+        "lightPurple",
+        "orange",
+        "purple",
+        "red",
+        "yellow",
+      ],
     };
   },
   getters: {
@@ -18,7 +32,7 @@ const StoreSpace = defineStore("space", {
         }
         return "";
       };
-    }
+    },
   },
   actions: {
     async feedDataSpace() {
@@ -31,6 +45,11 @@ const StoreSpace = defineStore("space", {
         if (pic) {
           this.dataSpace[result.data.data[index]._id].picture =
             await UploadServices.getImageFromBackend(pic);
+        } else {
+          this.dataSpace[result.data.data[index]._id].picture =
+            "/src/core/assets/img/profilePicture/" +
+            this.defaultImgs[index] +
+            ".png";
         }
       }
       console.log("dans le dataSpace", this.dataSpace);
@@ -45,7 +64,6 @@ const StoreSpace = defineStore("space", {
     deleteDataSpace(state) {
       state.dataSpace = "";
     },
-
   },
 });
 

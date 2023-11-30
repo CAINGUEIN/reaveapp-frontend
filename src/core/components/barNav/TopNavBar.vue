@@ -85,12 +85,13 @@
             leave-from-class="opacity-100 translate-y-0"
             leave-to-class="opacity-0 translate-y-1"
           >
-            <PopoverPanel class="absolute right-0 z-10 mt-1">
+            <PopoverPanel ref="bento" class="absolute right-0 z-10 mt-1">
               <div class="overflow-visible">
                 <div
                   class="transition ease-out rounded-[20px] duration-300 relative grid w-52 bg-DarkRock grid-cols-4 p-2"
                 >
                   <ToolsButtonNav
+                    @tool-clicked="closeBento"
                     v-for="item in solutions"
                     :btnName="item.icon"
                     :key="item.target"
@@ -100,58 +101,7 @@
                     :isMouseOver="true"
                     class="flex rounded-full transition duration-150 ease-in-out my-1 mx-1"
                   >
-                    <!-- NEW -->
-                    <Events
-                      width="24"
-                      height="24"
-                      v-if="item.icon === 'Events'"
-                    ></Events>
-                    <Shards
-                      width="24"
-                      height="24"
-                      v-if="item.icon === 'Shards'"
-                    ></Shards>
-                    <Hub
-                      width="24"
-                      height="24"
-                      v-if="item.icon === 'Hub'"
-                    ></Hub>
-                    <Jobs
-                      width="24"
-                      height="24"
-                      v-if="item.icon === 'Jobs'"
-                    ></Jobs>
-                    <Academy
-                      width="24"
-                      height="24"
-                      v-if="item.icon === 'Academy'"
-                    ></Academy>
-                    <Bootcamps
-                      width="24"
-                      height="24"
-                      v-if="item.icon === 'Bootcamps'"
-                    ></Bootcamps>
-                    <Maps
-                      width="24"
-                      height="24"
-                      v-if="item.icon === 'Maps'"
-                    ></Maps>
-                    <Scrims
-                      width="24"
-                      height="24"
-                      v-if="item.icon === 'Scrims'"
-                    ></Scrims>
-
-                    <!-- OLD -->
-                    <!--
-                        <Feed v-if="item.icon === 'Events'"></Feed>
-                        <Academy v-if="item.icon === 'Academy'"></Academy>
-                        <Jobs v-if="item.icon === 'Jobs'"></Jobs>
-                        <Bootcamps v-if="item.icon === 'Bootcamps'"></Bootcamps>
-                        <Leagues v-if="item.icon === 'Leagues'"></Leagues>
-                        <NFTs v-if="item.icon === 'NFTs'"></NFTs>
-                        <Maps v-if="item.icon === 'Maps'"></Maps>
-                        -->
+                    <SvgTarget :target="item.icon" :width="24" :height="24" />
                   </ToolsButtonNav>
                 </div>
               </div>
@@ -166,15 +116,8 @@
             :dataClass="''"
             @click.right.prevent="toggleDropdown"
           >
-            <img
-              :src="
-                'https://media.reave.dev/useravatar/s' +
-                store.dataAccount._id +
-                'avatar.png'
-              "
-              class="h-10 w-10 rounded-full bg-Gravel"
-              @error="replaceUrl"
-          /></ToolsButtonNav>
+            <ImgFormated class="rounded-full" />
+          </ToolsButtonNav>
           <div
             :class="dropdown"
             class="absolute right-0 bg-white divide-y divide-gray-100 rounded w-44 dark:bg-gray-700"
@@ -253,6 +196,7 @@
 //store
 import useStoreAuth from "@stores/auth";
 import useStoreSpace from "@stores/storeSpace";
+import SvgTarget from "@core/components/SvgTarget.vue";
 //components
 import SpaceNavBar from "@core/components/barNav/SpaceNavBar.vue";
 import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
@@ -274,6 +218,7 @@ import Bento from "@assets/icons/Bento.vue";
 // Data
 import dataTopLeft from "@modules/layout/data/dataTopLeftNavBar";
 import dataBottomLeft from "@modules/layout/data/dataBottomLeftNavBar";
+import ImgFormated from "../img/ImgFormated.vue";
 export default {
   props: {
     dataStore: Object,
@@ -283,6 +228,7 @@ export default {
     SpaceNavBar,
     ToolsButtonNav,
     Plus,
+    SvgTarget,
     Spaces,
     Reave,
     Settings,
@@ -298,6 +244,7 @@ export default {
     Maps,
     Bento,
     Scrims,
+    ImgFormated,
   },
   data() {
     const store = useStoreAuth();
@@ -371,6 +318,11 @@ export default {
     };
   },
   methods: {
+    closeBento() {
+      // Utilisez la référence du Popover pour le fermer
+      this.$refs.bento.close();
+      console.log("CLOSED");
+    },
     loaded() {
       console.log("C'est pret!");
       this.isLoaded = true;
@@ -380,11 +332,7 @@ export default {
       this.$emit("modal-changed", this.isOpenModal);
     },
     async openSpace(target, type) {
-      if (
-        await this.storeSpace.feedDataSpace({
-          id: target,
-        })
-      ) {
+      if (this.storeSpace.dataSpace[target]) {
         console.log(this.$store);
         this.$router.push({
           name: "Operator",

@@ -15,17 +15,10 @@
         class="transition-all duration-300"
       >
         <img
+          draggable="false"
           v-if="item.icon === 'Space' && spaceStore.getImg(props.idSpace)"
           :src="spaceStore.getImg(props.idSpace)"
           alt="Space picture"
-          class="rounded-full cursor-pointer h-6 w-6 hover:bg-Rock text-Gravel"
-        />
-        <ImgFormated
-          v-if="item.icon === 'Space' && !spaceStore.getImg(props.idSpace)"
-          :key="store.spaceKey"
-          :srcImg="img"
-          :size="'xs'"
-          :type="'space'"
           class="rounded-full cursor-pointer h-6 w-6 hover:bg-Rock text-Gravel"
         />
         <Messages
