@@ -38,6 +38,16 @@
         <div
           class="my-auto min-w-full min-h-full cursor-pointer rounded-xl text-White"
         >
+          <label :for="data.name">
+            <input
+                :id="data.name"
+                :name="data.name"
+                :type="data.type"
+                class="sr-only"
+                @input="emitImg"
+                accept="image/png"
+              />
+            </label>
           <img :src="previewImage" alt="spacePicture" class="w-full h-full" />
         </div>
       </div>
@@ -102,6 +112,7 @@ const upload = async () => {
   let formData = new FormData();
   formData.append("selectedPic", image.value);
   formData.append("spaceId", props.idSpace);
+  console.log(formData)
   await UploadServices
     .picSpace(formData)
     .then((response) => {

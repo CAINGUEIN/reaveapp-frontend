@@ -188,7 +188,6 @@ const getEvents = async () => {
   await storeSpace.feedDataSpace();
   dataSpaces.value = storeSpace.dataSpace;
   result = await EventServices.listEvent();
-  console.log(result.data.data);
   if (result.data.data.length > 0) {
     for (let i = 0; i < result.data.data.length; i++) {
       dataEvents.value[result.data.data[i]._id] = result.data.data[i];
@@ -196,7 +195,6 @@ const getEvents = async () => {
         dataSpaces.value[
           dataEvents.value[result.data.data[i]._id].spaceAssociated
         ];
-      console.log(space);
       dataEvents.value[result.data.data[i]._id].spaceAssociated = space;
       dataEvents.value[result.data.data[i]._id].posterPic =
         await UploadServices.getImageFromBackend(
@@ -208,7 +206,6 @@ const getEvents = async () => {
 
 onMounted(async () => {
   await getEvents();
-  console.log(dataEvents.value);
   isloading.value = false;
 });
 </script>

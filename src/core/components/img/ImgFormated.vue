@@ -4,14 +4,12 @@
 
 <script>
 import useStoreAuth from "@stores/auth";
-import useStoreSpace from "@stores/storeSpace";
 import { defaultImgs } from "@assets/img/profilePicture/pictureImport";
 export default {
   emits: ["loaded"],
   props: ["type", "size", "targetSpace", "id"],
   data() {
     const store = useStoreAuth();
-    const spaceStore = useStoreSpace();
     return {
       store,
       images: defaultImgs,
