@@ -10,14 +10,14 @@
       <div class="flex flex-col ml-[2.5vw]">
 
         <div class="flex flex-[0.99] mt-[1.6vw] flex-col w-[24vw]">
-          <div class="text-[2.5vw] font-bold">{{ infoEvent.name }}</div>
+          <div class="text-[2.5vw] text-white font-bold">{{ infoEvent.name }}</div>
           <div class="flex">
             <div class="flex flex-col w-full">
 
               <div class="flex gap-[0.625vw] items-center">
                 <ImgFormated :key="infoEvent.owner._id" :size="'s'" :targetSpace="infoEvent.owner._id" :type="'avatar'"
                   class="h-[1.6vw] w-[1.6vw] rounded-full bg-slate-300 my-[0.4vw]" />
-                <div class="text-[0.83vw] font-medium">
+                <div class="text-[0.83vw] text-white font-medium">
                   Organised by @{{ infoEvent.owner.user_id.userTag }}
                 </div>
               </div>
