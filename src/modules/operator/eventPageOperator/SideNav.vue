@@ -10,7 +10,7 @@
         <ImgFormated
           :key="infoEvent.name"
           :size="'s'"
-          :srcImg = "imageURL"
+          :srcImg="imageURL"
           class="z-10 h-10 w-10 bg-white rounded-full mr-3"
         />
         <p class="truncate font-bold text-xl">{{ infoEvent.name }}</p>
@@ -161,13 +161,14 @@ export default {
           items: [],
         },
         {
-          cathegory: "Products",
+          cathegory: "Items",
           target: "",
-          icon: "Products",
+          icon: "Shards",
           open: true,
           items: [
             { target: "Tickets", icon: "Tickets", name: "Tickets" },
             { target: "", icon: "Trophees", name: "Prizes" },
+            { target: "", icon: "Stars", name: "Badges" },
             { target: "", icon: "Merch", name: "Merch" },
             { target: "", icon: "Skins", name: "Drops" },
             { target: "", icon: "ReaveCards", name: "Reave Cards" },
@@ -181,9 +182,7 @@ export default {
           items: [
             { target: "Format", icon: "Format", name: "Format" },
             { target: "Equipements", icon: "Equipment", name: "Equipment" },
-            { target: "", icon: "Maps", name: "Travel" },
             { target: "", icon: "Calendar", name: "Calendar" },
-            { target: "", icon: "Tasks", name: "Tasks" },
           ],
         },
         {
@@ -193,11 +192,12 @@ export default {
           open: true,
           items: [
             { target: "Staff", icon: "Heart", name: "Staff" },
-            { target: "", icon: "Eye", name: "Spectators" },
-            { target: "", icon: "Fist", name: "Participants" },
-            { target: "", icon: "Stand", name: "Stands" },
             { target: "PeopleVenue", icon: "Venue", name: "Venues" },
             { target: "", icon: "Sponsors", name: "Sponsors" },
+            { target: "", icon: "Stand", name: "Booths" },
+            { target: "", icon: "Stars", name: "Guests" },
+            { target: "", icon: "Fist", name: "Participants" },
+            { target: "", icon: "Eye", name: "Spectators" },
           ],
         },
         {
@@ -206,9 +206,8 @@ export default {
           icon: "Analytics",
           open: true,
           items: [
-            { target: "", icon: "Products", name: "Products" },
+            { target: "", icon: "Shards", name: "Items" },
             { target: "", icon: "Logistics", name: "Logistics" },
-            { target: "", icon: "Game", name: "Game" },
             { target: "", icon: "Marketing", name: "Marketing" },
             { target: "", icon: "People", name: "People" },
           ],
@@ -219,6 +218,7 @@ export default {
           icon: "Marketing",
           open: true,
           items: [
+            { target: "", icon: "Notification", name: "Notifications" },
             { target: "", icon: "Profiles", name: "Profiles" },
             { target: "", icon: "Campaigns", name: "Campaigns" },
           ],
