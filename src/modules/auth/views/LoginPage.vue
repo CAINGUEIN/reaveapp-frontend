@@ -89,7 +89,7 @@ export default {
         let resultDataAccount = await this.store.feedDataAccount();
         if (resultDataAccount) {
           this.errors = errorsHelpers.resetError();
-          this.$router.push({ path: "/events"});
+          this.$router.push({ path: "/events" });
           this.store.loading = false;
         }
       } else {

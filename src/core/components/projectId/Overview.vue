@@ -3,13 +3,26 @@
     <div name="layout" class="flex justify-between items-center">
       <p class="flex items-center">
         <span class="font-black text-xl text-white flex items-center">
-        <SvgTarget target="Overview" :height="20" :width="20" class="mr-2"></SvgTarget>
-        OVERVIEW</span>
+          <SvgTarget
+            target="Overview"
+            :height="20"
+            :width="20"
+            class="mr-2"
+          ></SvgTarget>
+          OVERVIEW</span
+        >
         <button
           class="ml-6 text-left pl-3 pr-4 py-1 my-0.5 flex items-center text-base font-black text-Anthracite bg-white rounded-full h-10"
-          v-if="(yourPerm === 'Owner' || yourPerm === 'Admin') && !data.isPublished
-            " @click="(open = true), (modalView = 'publish')">
-          <SvgTarget target="Publish" :height="20" :width="20" color1="#000000" class="mr-2"></SvgTarget>
+          v-if="(yourPerm === 'Owner' || yourPerm === 'Admin') && !isPublished"
+          @click="(open = true), (modalView = 'publish')"
+        >
+          <SvgTarget
+            target="Publish"
+            :height="20"
+            :width="20"
+            color1="#000000"
+            class="mr-2"
+          ></SvgTarget>
           Publish
         </button>
       </p>
@@ -20,14 +33,26 @@
         <div name="headerEvent" class="flex items-end justify-between mt-10">
           <p class="text-xl text-LightGrey font-black leading-none">EVENT</p>
           <div>
-            <button v-if="edit" :class="ifUpdating() ? 'bg-white' : 'bg-Gravel cursor-not-allowed'
-              " class="text-black rounded-full h-10 px-10 mx-auto" @click.prevent="update()">
+            <button
+              v-if="edit"
+              :class="
+                ifUpdating() ? 'bg-white' : 'bg-Gravel cursor-not-allowed'
+              "
+              class="text-black rounded-full h-10 px-10 mx-auto"
+              @click.prevent="update()"
+            >
               <h4 class="text-black text-xl">Save</h4>
             </button>
-            <Button40Slot v-if="(yourPerm === 'Owner' || yourPerm === 'Admin') &&
-              !data.isPublished &&
-              !edit
-              " :selected="edit" class="" @click="edit === true ? (edit = false) : (edit = true)">
+            <Button40Slot
+              v-if="
+                (yourPerm === 'Owner' || yourPerm === 'Admin') &&
+                !data.isPublished &&
+                !edit
+              "
+              :selected="edit"
+              class=""
+              @click="edit === true ? (edit = false) : (edit = true)"
+            >
               <PencilIcon class="h-5 m-auto"></PencilIcon>
             </Button40Slot>
           </div>
@@ -56,24 +81,54 @@
             />
             <p class="text-center my-auto">Upload Event Poster</p>
           </label> -->
-          <div name="uploadPic" :style="customBg" :class="this.imageURL != null ? 'flex  rounded-[12px] flex-col w-[220px] h-[220px]'
-            : 'flex border-dashed border-4 rounded-[12px] border-Silver flex-col w-[220px] h-[220px]'" @click="">
-
+          <div
+            name="uploadPic"
+            :style="customBg"
+            :class="
+              this.imageURL != null
+                ? 'flex  rounded-[12px] flex-col w-[220px] h-[220px]'
+                : 'flex border-dashed border-4 rounded-[12px] border-Silver flex-col w-[220px] h-[220px]'
+            "
+            @click=""
+          >
             <!-- Upload Event Pic -->
-            <input type="file" name="selectedPic" class="hidden" ref="inputFile" accept=".jpg, .jpeg, .png"
-              @input="picUpload" @change="onFileSelected">
+            <input
+              type="file"
+              name="selectedPic"
+              class="hidden"
+              ref="inputFile"
+              accept=".jpg, .jpeg, .png"
+              @input="picUpload"
+              @change="onFileSelected"
+            />
 
-            <div class="text-center my-auto cursor-pointer" @click="$refs.inputFile.click()">
-              <SvgTarget target="UploadPic" :height="20" :width="20" color1="#808080" class="flex justify-center">
+            <div
+              class="text-center my-auto cursor-pointer"
+              @click="$refs.inputFile.click()"
+            >
+              <SvgTarget
+                target="UploadPic"
+                :height="20"
+                :width="20"
+                color1="#808080"
+                class="flex justify-center"
+              >
               </SvgTarget>
               <pre class="font-sans" style="text-shadow: 1px 1px 2px black">
 Upload Event
-Poster</pre>
+Poster</pre
+              >
             </div>
           </div>
           <div class="ml-6 w-[400px]">
             <div name="inputName">
-              <InputModel v-if="edit" class="w-full" :data="name" v-model="name.value" :errors="errors"></InputModel>
+              <InputModel
+                v-if="edit"
+                class="w-full"
+                :data="name"
+                v-model="name.value"
+                :errors="errors"
+              ></InputModel>
               <div v-else>
                 <p class="text-H4 font-black text-white">NAME</p>
                 <p class="mt-4 font-medium text-H4 text-LightGrey">
@@ -86,8 +141,13 @@ Poster</pre>
                 <p class="flex text-H4 text-White font-black leading-none mt-4">
                   {{ description.label }}
                 </p>
-                <textarea :name="description.name" v-model="description.value" :placeholder="description.label" id=""
-                  class="w-full bg-transparent border-2 border-White rounded-2xl mt-4"></textarea>
+                <textarea
+                  :name="description.name"
+                  v-model="description.value"
+                  :placeholder="description.label"
+                  id=""
+                  class="w-full bg-transparent border-2 border-White rounded-2xl mt-4"
+                ></textarea>
               </div>
               <div v-else>
                 <p class="flex text-H4 text-White font-black leading-none mt-4">
@@ -101,8 +161,11 @@ Poster</pre>
           </div>
         </div>
         <div name="footerEvent">
-          <p class="cursor-pointer text-xs text-LightGrey font-normal mt-5" @click ="goTo">
-            Show preview 
+          <p
+            class="cursor-pointer text-xs text-LightGrey font-normal mt-5"
+            @click="goTo"
+          >
+            Show preview
           </p>
         </div>
       </div>
@@ -110,20 +173,32 @@ Poster</pre>
         <div name="headerLocation" class="flex items-end justify-between mt-8">
           <p class="text-xl text-LightGrey font-black leading-none">LOCATION</p>
           <div>
-            <button v-if="editLocation" :class="ifUpdatingLocation()
-              ? 'bg-white'
-              : 'bg-Gravel cursor-not-allowed'
-              " class="text-black rounded-full h-10 px-10 mx-auto" @click.prevent="updateLocation()">
+            <button
+              v-if="editLocation"
+              :class="
+                ifUpdatingLocation()
+                  ? 'bg-white'
+                  : 'bg-Gravel cursor-not-allowed'
+              "
+              class="text-black rounded-full h-10 px-10 mx-auto"
+              @click.prevent="updateLocation()"
+            >
               <h4 class="text-black text-xl">Save</h4>
             </button>
-            <Button40Slot v-if="(yourPerm === 'Owner' || yourPerm === 'Admin') &&
-              !data.isPublished &&
-              !editLocation
-              " :selected="editLocation" class="" @click="
-    editLocation === true
-      ? (editLocation = false)
-      : (editLocation = true)
-    ">
+            <Button40Slot
+              v-if="
+                (yourPerm === 'Owner' || yourPerm === 'Admin') &&
+                !data.isPublished &&
+                !editLocation
+              "
+              :selected="editLocation"
+              class=""
+              @click="
+                editLocation === true
+                  ? (editLocation = false)
+                  : (editLocation = true)
+              "
+            >
               <PencilIcon class="h-5 m-auto"></PencilIcon>
             </Button40Slot>
           </div>
@@ -131,12 +206,34 @@ Poster</pre>
         <div name="separateLocation" class="h-0.5 w-full bg-Gravel mt-4"></div>
         <div name="contentEvent" class="flex mt-8">
           <div v-if="editLocation" class="w-[644px]">
-            <InputModel class="mt-4" :data="venueName" v-model="venueName.value" :errors="errors"></InputModel>
-            <InputModel class="mt-4" :data="adress" v-model="adress.value" :errors="errors"></InputModel>
+            <InputModel
+              class="mt-4"
+              :data="venueName"
+              v-model="venueName.value"
+              :errors="errors"
+            ></InputModel>
+            <InputModel
+              class="mt-4"
+              :data="adress"
+              v-model="adress.value"
+              :errors="errors"
+            ></InputModel>
             <div class="flex gap-2 mt-2">
-              <InputModel :data="city" v-model="city.value" :errors="errors"></InputModel>
-              <InputModel :data="cp" v-model="cp.value" :errors="errors"></InputModel>
-              <InputModel :data="country" v-model="country.value" :errors="errors"></InputModel>
+              <InputModel
+                :data="city"
+                v-model="city.value"
+                :errors="errors"
+              ></InputModel>
+              <InputModel
+                :data="cp"
+                v-model="cp.value"
+                :errors="errors"
+              ></InputModel>
+              <InputModel
+                :data="country"
+                v-model="country.value"
+                :errors="errors"
+              ></InputModel>
             </div>
           </div>
           <div v-else>
@@ -183,9 +280,18 @@ Poster</pre>
       </div>
     </div>
     <ModalClear :open="open" @action="close()">
-      <PublishEvent v-if="modalView === 'publish'" :data="data" @action="close"></PublishEvent>
-      <CropperEvent v-if="selectedPic !== null" :data="data" 
-      :src="selectedPic" @callFromCrop="useCroppedImage"/>
+      <PublishEvent
+        v-if="modalView === 'publish'"
+        :data="data"
+        @action="close"
+        @update="isPublished = true"
+      ></PublishEvent>
+      <CropperEvent
+        v-if="selectedPic !== null"
+        :data="data"
+        :src="selectedPic"
+        @callFromCrop="useCroppedImage"
+      />
     </ModalClear>
   </div>
 </template>
@@ -228,7 +334,7 @@ export default {
       openAdd: false,
       selectedPic: null,
       picUpload: null,
-
+      isPublished: this.data.isPublished,
       open: false,
       edit: false,
       editLocation: false,
@@ -283,19 +389,17 @@ export default {
   computed: {
     customBg() {
       return {
-        'background-image': `url('${this.imageURL}')`,
-        'background-size': 'contain',
-        'background-repeat': 'no-repeat',
+        "background-image": `url('${this.imageURL}')`,
+        "background-size": "contain",
+        "background-repeat": "no-repeat",
       };
-
     },
   },
   methods: {
-
     onFileSelected(event) {
       this.picUpload = event.target.files[0];
       this.selectedPic = URL.createObjectURL(this.picUpload);
-      console.log('selectedPic after onFile : ', this.selectedPic);
+      console.log("selectedPic after onFile : ", this.selectedPic);
       this.open = true;
       // Reset input to select a picture again
       this.$refs.inputFile.value = null;
@@ -304,13 +408,13 @@ export default {
       //let body = { _id: this.$route.params.id };
       //VenueServices.publishVenue(body);
       //this.open = true;
-      this.modalView = 'publish';
-
+      this.modalView = "publish";
     },
     goTo() {
-      this.$router.push({ 
+      this.$router.push({
         name: "EventPage",
-        params: { id: this.routeId }}, );
+        params: { id: this.routeId },
+      });
     },
 
     goBack() {
@@ -319,7 +423,7 @@ export default {
     closeCropper() {
       this.selectedPic = null;
       this.open = false;
-      console.log('selected pic : ', this.selectedPic);
+      console.log("selected pic : ", this.selectedPic);
       this.picUpload = null;
       // this.modalView = "";
     },
@@ -328,7 +432,6 @@ export default {
       if (imageURL2 != "") {
         let result = await UploadServices.getImageFromBackend(imageURL2);
         this.imageURL = result;
-       
       }
     },
     async useCroppedImage(data) {
@@ -337,15 +440,18 @@ export default {
       formData.append("selectedPic", data.selectedPic);
       formData.append("routeId", this.routeId);
       console.log("llm3");
-      let result = await UploadServices.uploadPicture('event/posterPic', formData);
+      let result = await UploadServices.uploadPicture(
+        "event/posterPic",
+        formData
+      );
       console.log("llm4", result);
       this.data.posterPic = result.data.imageUrl;
-      
+
       this.closeCropper;
       await this.getBackendImage();
       location.reload();
     },
-    
+
     close() {
       this.open = false;
       //this.img = "";
