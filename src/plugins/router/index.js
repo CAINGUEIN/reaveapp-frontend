@@ -50,6 +50,7 @@ router.beforeEach(async (to, from) => {
   // si pas de donné de connection
   if (store.isLogin === "") {
     console.log("si pas de login");
+    
     if (await store.feedDataAccount()) {
       console.log(
         "ici si on a un token valide et que on a recup les datas user"

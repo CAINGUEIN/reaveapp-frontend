@@ -3,7 +3,7 @@ export default [
       path: "/eventPage/:id",
       name: "EventPage",
       component: () => import("@modules/pages/EventPage.vue"),
-      meta: { layout: "none", permission: "log" },
+      meta: { layout: "none"},
     },
     {
       path: "/venuePage/:id",
