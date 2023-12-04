@@ -4,94 +4,59 @@
   >
     <div
       v-if="infoEvent !== ''"
-      class="z-10 flex items-center justify-between my-6 pl-8 pr-3"
+      class="z-10 flex-col hover:bg-Rock rounded-lg m-6 p-2 pl-3 pr-3"
     >
-      <div class="flex items-center">
-        <ImgFormated
-          :key="infoEvent.name"
-          :size="'s'"
-          :srcImg="imageURL"
-          class="z-10 h-10 w-10 bg-white rounded-full mr-3"
-        />
-        <p class="truncate font-bold text-xl">{{ infoEvent.name }}</p>
+    <div class="flex items-center">
+          <ImgFormated
+            :key="infoEvent.name"
+            :size="'s'"
+            :srcImg = "imageURL"
+            class="z-10 h-10 w-10 bg-white rounded-full mr-3"
+          />
+          <p class="truncate font-bold text-xl">{{ infoEvent.name }}</p>
+        </div>
+        <div class="flex justify-end">
+        
+        </div>
       </div>
-      <div class="flex justify-end">
-        <Menu as="div" class="relative ml-3">
-          <div>
-            <MenuButton class="flex max-w-xs items-center rounded-full"
-              ><Button40Slot class="flex my-auto"
-                ><DotsHorizontalIcon class="m-1.5"></DotsHorizontalIcon
-              ></Button40Slot>
-            </MenuButton>
-          </div>
-          <transition
-            enter-active-class="transition ease-out duration-100"
-            enter-from-class="transform opacity-0 scale-95"
-            enter-to-class="transform opacity-100 scale-100"
-            leave-active-class="transition ease-in duration-75"
-            leave-from-class="transform opacity-100 scale-100"
-            leave-to-class="transform opacity-0 scale-95"
-          >
-            <MenuItems
-              class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-LightRock py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-            >
-              <MenuItem v-for="item in userNavigation" :key="item.name">
-                <button
-                  :class="[
-                    item.name === 'Remove' ? 'text-Red' : 'text-White',
-                    'block px-4 py-2 text-sm',
-                  ]"
-                  @click="
-                    item.name === 'Modify'
-                      ? ((open = true), (select = user), (modalView = 'Modify'))
-                      : item.name === 'Remove'
-                      ? ((open = true), (select = user), (modalView = 'Remove'))
-                      : ''
-                  "
-                >
-                  {{ item.name }}
-                </button>
-              </MenuItem>
-            </MenuItems>
-          </transition>
-        </Menu>
-      </div>
-    </div>
-    <div v-for="section in nav" class="flex flex-col mt-5 mx-8">
-      <p
-        class="flex items-center text-LightGrey font-medium text-xl cursor-pointer p-2 rounded-lg"
-        @click="
-          section.items.length > 0
-            ? section.open === true
-              ? (section.open = false)
-              : (section.open = true)
-            : section.target !== ''
-            ? $emit('update:modelValue', section.target)
-            : ''
-        "
-        :class="
-          select === section.target
-            ? 'text-LightGrey bg-DarkRock'
-            : 'text-Gravel hover:text-LightGrey hover:bg-LightRock'
-        "
-      >
-        <SvgTarget
-          :target="section.icon"
-          :height="20"
-          :width="20"
-          class="mr-2"
-        ></SvgTarget>
-        {{ section.cathegory
-        }}<ChevronUpIcon
-          v-if="section.items.length > 0"
-          class="h-8"
-          :class="
-            section.open === true
-              ? 'transition-all ease-in-out rotate-180'
-              : 'transition-all ease-in-out'
+      <div v-for="section in nav" 
+        :class="section.cathegory == 'Search' ? 
+        'flex flex-col mx-8' : 'flex flex-col mt-5 mx-8'">
+        <p
+          class="flex items-center text-LightGrey font-medium text-xl cursor-pointer p-2 rounded-lg"
+          @click="
+            section.items.length > 0
+              ? section.open === true
+                ? (section.open = false)
+                : (section.open = true)
+              : section.target !== ''
+              ? $emit('update:modelValue', section.target)
+              : ''
           "
-        />
-      </p>
+          :class=" 
+            select === section.target
+              ? section.cathegory == 'Search' ? 'text-LightRock cursor-not-allowed' : 'text-LightGrey bg-DarkRock'
+              : section.cathegory == 'Search' ? 'text-LightRock cursor-not-allowed' : 'text-Gravel hover:text-LightGrey hover:bg-LightRock'
+          "
+        >
+          <SvgTarget
+            :target="section.icon"
+            :height="20"
+            :width="20"
+            :class="section.cathegory == 'Search' ? 'text-LightRock mr-[10px]' : 'mr-2'"
+            
+          ></SvgTarget>
+          {{ section.cathegory
+          }}<ChevronUpIcon
+            v-if="section.items.length > 0"
+            class="h-8"
+            :class="
+              section.open === true
+                ? 'transition-all ease-in-out rotate-180'
+                : 'transition-all ease-in-out'
+            "
+          />
+        </p>
       <div
         v-for="item in section.items"
         :class="
@@ -161,6 +126,13 @@ export default {
           items: [],
         },
         {
+          cathegory: "Search",
+          target: "Search",
+          icon: "Search",
+          open: true,
+          items: [],
+        },
+        {
           cathegory: "Items",
           target: "",
           icon: "Shards",
@@ -208,7 +180,7 @@ export default {
           items: [
             { target: "Staff", icon: "Heart", name: "Staff" },
             { target: "PeopleVenue", icon: "Venue", name: "Venues" },
-            { target: "", icon: "Sponsors", name: "Sponsors" },
+            { target: "", icon: "Marketing", name: "Sponsors" },
             { target: "", icon: "Stand", name: "Booths" },
             { target: "", icon: "Stars", name: "Guests" },
             { target: "", icon: "Fist", name: "Participants" },

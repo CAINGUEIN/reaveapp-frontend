@@ -4,7 +4,7 @@
     >
       <div
         v-if="infoEvent !== ''"
-        class="z-10 flex items-center justify-between my-6 pl-8 pr-3"
+        class="z-10 flex-col hover:bg-Rock rounded-lg m-6 p-2 pl-3 pr-3"
       >
         <div class="flex items-center">
           <ImgFormated
@@ -16,45 +16,7 @@
           <p class="truncate font-bold text-xl">{{ infoEvent.name }}</p>
         </div>
         <div class="flex justify-end">
-          <Menu as="div" class="relative ml-3">
-            <div>
-              <MenuButton class="flex max-w-xs items-center rounded-full"
-                ><Button40Slot class="flex my-auto"
-                  ><DotsHorizontalIcon class="m-1.5"></DotsHorizontalIcon
-                ></Button40Slot>
-              </MenuButton>
-            </div>
-            <transition
-              enter-active-class="transition ease-out duration-100"
-              enter-from-class="transform opacity-0 scale-95"
-              enter-to-class="transform opacity-100 scale-100"
-              leave-active-class="transition ease-in duration-75"
-              leave-from-class="transform opacity-100 scale-100"
-              leave-to-class="transform opacity-0 scale-95"
-            >
-              <MenuItems
-                class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-LightRock py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-              >
-                <MenuItem v-for="item in userNavigation" :key="item.name">
-                  <button
-                    :class="[
-                      item.name === 'Remove' ? 'text-Red' : 'text-White',
-                      'block px-4 py-2 text-sm',
-                    ]"
-                    @click="
-                      item.name === 'Modify'
-                        ? ((open = true), (select = user), (modalView = 'Modify'))
-                        : item.name === 'Remove'
-                        ? ((open = true), (select = user), (modalView = 'Remove'))
-                        : ''
-                    "
-                  >
-                    {{ item.name }}
-                  </button>
-                </MenuItem>
-              </MenuItems>
-            </transition>
-          </Menu>
+        
         </div>
       </div>
       <div v-for="section in nav" 
@@ -118,9 +80,9 @@
           >
             <SvgTarget
               :target="item.icon"
-              :height="12"
-              :width="12"
-              class="mr-2"
+              :height="16"
+              :width="16"
+              class="mr-1.5"
             ></SvgTarget>
             {{ item.name }}
           </button>
@@ -178,9 +140,7 @@
             items: [
               { target: "", icon: "Plan", name: "Plans" },
               { target: "", icon: "Equipment", name: "Equipment" },
-              { target: "", icon: "Maps", name: "Travel" },
               { target: "", icon: "Calendar", name: "Calendar" },
-              { target: "", icon: "Tasks", name: "Tasks" },
               { target: "", icon: "Programs", name: "Programs" },
             ],
           },
@@ -192,10 +152,10 @@
             items: [
               { target: "", icon: "Heart", name: "Staff" },
               { target: "", icon: "Stars", name: "Events" },
-              { target: "", icon: "Fist", name: "Sponsors" },
+              { target: "", icon: "Marketing", name: "Sponsors" },
               { target: "", icon: "Stand", name: "Booths" },
               { target: "", icon: "Events", name: "Guests" },
-              { target: "", icon: "Sponsors", name: "Subscribers" },
+              { target: "", icon: "Crown", name: "Subscribers" },
             ],
           },
           {
@@ -204,7 +164,7 @@
             icon: "Analytics",
             open: true,
             items: [
-              { target: "", icon: "Products", name: "Items" },
+              { target: "", icon: "Shards", name: "Items" },
               { target: "", icon: "Logistics", name: "Logistics" },
               { target: "", icon: "Marketing", name: "Marketing" },
               { target: "", icon: "People", name: "People" },
