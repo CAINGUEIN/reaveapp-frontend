@@ -41,7 +41,7 @@ export default {
       if (result.data.success) {
         this.$cookies.remove("userSession"); //return this
         this.store.deleteDataAccount();
-        this.$router.push({ name: "Login" });
+        this.$router.push({ name: "Events" });
       } else {
         console.log("erreur de deconnexion");
       }
