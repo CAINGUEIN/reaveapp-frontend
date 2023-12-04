@@ -30,7 +30,7 @@ export default {
         //si rien on degage c'est pas normal
       } else {
         console.log(this.$route.query.id);
-        await this.storeSpace.feedDataSpace(this.$route.query);
+        await this.storeSpace.feedDataSpaceUser(this.$route.query);
       }
     },
   },

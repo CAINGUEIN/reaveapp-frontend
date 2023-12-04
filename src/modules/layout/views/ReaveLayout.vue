@@ -50,7 +50,7 @@
       />
     </div>
     <CreateSpaceModal
-      @submitSuccess="feedDataSpace"
+      @submitSuccess="feedDataSpaceUser"
       @isOpenModal="closeModal"
       :isOpenModal="isOpenModal"
     />
@@ -155,8 +155,8 @@ export default {
     };
   },
   methods: {
-    async feedDataSpace() {
-      await this.storeSpace.feedDataSpace();
+    async feedDataSpaceUser() {
+      await this.storeSpace.feedDataSpaceUser();
       this.dataSpace = this.storeSpace.dataSpace;
     },
     handleModalValueChanged(value) {
@@ -167,7 +167,7 @@ export default {
     },
     async openSpace(target, type) {
       if (
-        await this.storeSpace.feedDataSpace({
+        await this.storeSpace.feedDataSpaceUser({
           id: target,
         })
       ) {
@@ -212,7 +212,7 @@ export default {
     this.isMapsRoute = this.$route.path === "/maps";
     console.log(this.isMapsRoute);
     if (this.token) {
-      this.feedDataSpace();
+      this.feedDataSpaceUser();
       setTimeout(() => {
         this.loading = false;
       }, 500);

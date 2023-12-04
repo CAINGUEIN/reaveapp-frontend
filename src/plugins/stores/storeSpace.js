@@ -24,7 +24,7 @@ const StoreSpace = defineStore("space", {
   actions: {
     async feedDataSpace() {
       this.isWaiting = true;
-      let result = await SpaceServices.checkSpace();
+      let result = await SpaceServices.getSpace();
       let pic;
       for (let index = 0; index < result.data.data.length; index++) {
         this.dataSpace[result.data.data[index]._id] = result.data.data[index];
@@ -40,6 +40,32 @@ const StoreSpace = defineStore("space", {
         }
       }
       console.log("dans le dataSpace", this.dataSpace);
+      if (result.status == "200") {
+        this.isWaiting = false;
+        return true;
+      } else {
+        this.isWaiting = false;
+        return false;
+      }
+    },
+    async feedDataSpaceUser() {
+      this.isWaiting = true;
+      let result = await SpaceServices.checkSpace();
+      let pic;
+      for (let index = 0; index < result.data.data.length; index++) {
+        this.dataSpace[result.data.data[index]._id] = result.data.data[index];
+        pic = result.data.data[index].picture;
+        if (pic) {
+          this.dataSpace[result.data.data[index]._id].picture =
+            await UploadServices.getImageFromBackend(pic);
+        } else {
+          this.dataSpace[result.data.data[index]._id].picture =
+            "/src/core/assets/img/profilePicture/" +
+            this.defaultImgs[index] +
+            ".png";
+        }
+      }
+      console.log("dans le dataSpaceUser", this.dataSpace);
       if (result.status == "200") {
         this.isWaiting = false;
         return true;
