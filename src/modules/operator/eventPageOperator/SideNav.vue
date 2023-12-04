@@ -186,6 +186,20 @@ export default {
           ],
         },
         {
+          cathegory: "Production",
+          target: "",
+          icon: "TV",
+          open: true,
+          items: [
+            { target: "", icon: "MatchHistory", name: "History" },
+            { target: "", icon: "Dashboards", name: "Dashboards" },
+            { target: "", icon: "Mirror", name: "Clips" },
+            { target: "", icon: "Planner", name: "Reviews" },
+            { target: "", icon: "Insights", name: "Insights" },
+            { target: "", icon: "Programs", name: "Programs" },
+          ],
+        },
+        {
           cathegory: "People",
           target: "",
           icon: "People",
