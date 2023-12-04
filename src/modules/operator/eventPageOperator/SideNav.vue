@@ -181,6 +181,7 @@ export default {
           open: true,
           items: [
             { target: "Format", icon: "Format", name: "Format" },
+            { target: "", icon: "Plan", name: "Plans" },
             { target: "Equipements", icon: "Equipment", name: "Equipment" },
             { target: "", icon: "Calendar", name: "Calendar" },
           ],
