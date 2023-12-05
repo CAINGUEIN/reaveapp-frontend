@@ -22,10 +22,10 @@
         :errors="errors"
       ></InputModel>
       <button
-        class="bg-white flex item-center rounded-full p-2 px-6 mx-auto mt-8"
+        class="bg-white flex item-center rounded-full p-1.5 px-5 mx-auto mt-8"
         @click.prevent="submit()"
       >
-        <p class="text-Anthracite font-black">Create</p>
+        <p class="text-Anthracite font-black">Create Event</p>
       </button>
     </div>
   </div>

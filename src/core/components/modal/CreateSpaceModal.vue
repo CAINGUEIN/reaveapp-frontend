@@ -37,15 +37,15 @@
           <div
             class="relative inline-block align-bottom bg-Anthracite rounded-2xl text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-modal"
           >
+            <CloseButton
+              @closeModal="close"
+              :width="12"
+              :height="12"
+              class="absolute right-6 top-6"
+            />
             <div>
               <div class="mt-3 sm:mt-5">
                 <div class="flex items-center justify-center">
-                  <CloseButton
-                    @closeModal="close"
-                    :width="12"
-                    :height="12"
-                    class="absolute top-7 right-7 -translate-y-5"
-                  />
                   <h3
                     class="text-center w-1/2 pt-6"
                     v-if="pictureInput === false"
@@ -83,7 +83,7 @@
                   :disabled="!isEnabled"
                   class="disabled:cursor-not-allowed disabled:bg-Gravel px-5 py-1.5 mt-8 mb-7 rounded-full bg-white transition"
                 >
-                  <p class="text-md text-Anthracite font-bold">Create Space</p>
+                  <p class="text-Anthracite font-black">Create Space</p>
                 </button>
               </div>
             </div>
