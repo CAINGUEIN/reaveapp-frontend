@@ -9,23 +9,23 @@
     </button>
     <XButton36
       @click.prevent="closeModal()"
-      class="absolute right-0 rounded-full px-3 z-10"
+      class="absolute right-0 rounded-full z-10"
     ></XButton36>
 
-    <div class="pt-12 flex flex-col" v-if="etape === 1">
+    <div class="pt-6 flex flex-col" v-if="etape === 1">
       <h4 class="text-center">How do you want to</h4>
-      <h4 class="text-center">name this event ?</h4>
+      <h4 class="text-center">name this event?</h4>
       <InputModel
-        class="mt-4"
+        class="mt-8"
         :data="name"
         v-model="name.value"
         :errors="errors"
       ></InputModel>
       <button
-        class="bg-white h-15 rounded-full p-4 px-8 mx-auto mt-4"
+        class="bg-white flex item-center rounded-full p-2 px-6 mx-auto mt-8"
         @click.prevent="submit()"
       >
-        <p class="text-black font-bold">Create</p>
+        <p class="text-Anthracite font-black">Create</p>
       </button>
     </div>
   </div>
@@ -42,7 +42,7 @@ export default {
   data() {
     return {
       name: {
-        label: "Project name",
+        label: "EVENT NAME",
         name: "name",
         type: "text",
         value: "",

@@ -3,13 +3,13 @@
     <div name="topContent" class="mt-8 flex justify-between">
       <div class="w-1/3 flex">
         <button
-          class="bg-White text-Anthracite h-10 w-10 rounded-full items-center hover:bg-DarkRock hover:text-White flex"
+          class="bg-White border-Anthracite h-10 w-10 rounded-full items-center hover:bg-Cloud hover:text-Anthracite flex"
           @click.prevent="open = true"
         >
           <SvgTarget
             target="Plus"
-            :height="16"
-            :width="16"
+            :height="24"
+            :width="24"
             class="mx-auto"
           ></SvgTarget>
         </button>
@@ -273,6 +273,7 @@
 <script>
 //component
 import ModalClear from "@components/modal/ModalClear.vue";
+import Plus from "@core/assets/icons/Plus.vue";
 import CreateEvent from "../platforms/events/CreateEvent.vue";
 import WalletCard from "@components/eventCardContent/WalletCard.vue";
 import Button40Slot from "@components/buttons/Button40Slot.vue";
@@ -299,6 +300,7 @@ export default {
   components: {
     ModalClear,
     WalletCard,
+    Plus,
     CreateEvent,
     ImgFormated,
     Button40Slot,

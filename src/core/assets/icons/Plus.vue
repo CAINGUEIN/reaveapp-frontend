@@ -1,22 +1,22 @@
 <template>
   <div>
     <svg
-      width="24"
-      height="24"
-      viewBox="0 0 32 32"
+      :width="width"
+      :height="height"
+      viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M9 16H23"
-        :stroke="color1"
-        stroke-width="2"
+        d="M5 12H19"
+        :stroke="color2"
+        stroke-width="3"
         stroke-linecap="round"
       />
       <path
-        d="M16 9V23"
-        :stroke="color1"
-        stroke-width="2"
+        d="M12 5V19"
+        :stroke="color2"
+        stroke-width="3"
         stroke-linecap="round"
       />
     </svg>
