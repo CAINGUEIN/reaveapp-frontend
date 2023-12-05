@@ -67,21 +67,23 @@
 
                 <div class="mt-8 px-5" v-if="pictureInput === true">
                   <uploadModel
-                    v-show="!open"
-                    v-if="pictureInput === true"
+                    v-if="open === false"
                     :data="imageSpace"
                     v-model="imageSpace.value"
+                    :croppedImg="croppedImage"
                     :errors="errors"
                     :idSpace="idSpace"
                     @goToSpace="goToSpace"
-                    @cropImage="open"
+                    @cropImage="cropImage"
+                    @reset="resetImg"
                   />
-                  <CropperEvent
+                  <CropperSpace
                     v-if="open"
-                    :data="data"
                     :src="previewImage"
+                    :idSpace="idSpace"
                     @closeAction="close"
                     @callFromCrop="useCroppedImage"
+                    @reset="resetImg"
                   />
                 </div>
                 <p v-if="errors.value">{{ errors }}</p>
@@ -112,10 +114,10 @@ import {
 
 import InputModel from "@core/components/inputs/InputModel.vue";
 import uploadModel from "@core/components/inputs/uploadModel.vue";
-import CropperEvent from "../cropper/CropperEvent.vue";
+import CropperSpace from "../cropper/CropperSpace.vue";
 import SpaceServices from "@axios/services/spaceServices.js";
 import { useRouter } from "vue-router";
-import { ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import CloseButton from "../buttons/CloseButton.vue";
 const emit = defineEmits(["isOpenModal", "enableButton", "submitSuccess"]);
 const props = defineProps({
@@ -138,10 +140,12 @@ const imageSpace = {
   value: "",
 };
 let pictureInput = ref(false);
+const croppedImage = ref("");
 const errors = ref({});
 const router = useRouter();
 const isEnabled = ref(false);
 const idSpace = ref("");
+let previewImage = ref("");
 const handleUpdate = (value) => {
   if (value.length >= 3) {
     isEnabled.value = true;
@@ -150,6 +154,17 @@ const handleUpdate = (value) => {
   }
 };
 
+const cropImage = (img) => {
+  console.log(img);
+  previewImage.value = img;
+  open.value = true;
+}
+
+const useCroppedImage = (img) => {
+  croppedImage.value = img;
+  open.value = false;
+  console.log("NOUVELLE IMAGE CROPPED: " + croppedImage.value);
+}
 function close() {
   emit("isOpenModal", false);
   space.value = "";
@@ -174,12 +189,21 @@ const submit = async () => {
   }
 };
 
+const resetImg = () => {
+  croppedImage.value = {};
+  previewImage.value = "";
+  open.value = false;
+
+}
+
+
 const goToSpace = () => {
-  console.log(idSpace.value);
+  previewImage.value = "";
   router.push({
     name: "SpacePrivate",
     params: { id: idSpace.value },
   });
   close();
 };
+
 </script>

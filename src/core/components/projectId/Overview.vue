@@ -290,6 +290,7 @@ Poster</pre
         v-if="selectedPic !== null"
         :data="data"
         :src="selectedPic"
+        @closeAction="close"
         @callFromCrop="useCroppedImage"
       />
     </ModalClear>

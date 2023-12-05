@@ -60,7 +60,7 @@
 // hooks
 import useStoreAuth from "@stores/auth";
 import useStoreSpace from "@stores/storeSpace";
-import { onMounted, watch } from "vue";
+import { watch } from "vue";
 import { useRoute } from "vue-router";
 // Components
 import Operator from "@assets/icons/Operator.vue";
@@ -70,7 +70,6 @@ import Calendar from "@assets/icons/Calendar.vue";
 import Messages from "@assets/icons/Messages.vue";
 import ToolsButtonNav from "../buttons/ToolsButtonNav.vue";
 import Dashboard from "../../assets/icons/Dashboard.vue";
-import ImgFormated from "../img/ImgFormated.vue";
 
 const props = defineProps({
   idSpace: String,

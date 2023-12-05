@@ -3,10 +3,12 @@
     <div class="flex flex-col">
       <section class="">
         <div class="img-cropper">
-
           <!-- Close cropper button -->
-          <XButton36  @click="$emit('closeAction')" class="absolute right-[-70px] top-[-65px] px-3 z-10"></XButton36>
-          
+          <XButton36
+            @click="$emit('closeAction')"
+            class="absolute right-[-70px] top-[-65px] px-3 z-10"
+          ></XButton36>
+
           <vue-cropper
             class="h-[450px] w-[450px] mx-auto"
             ref="cropper"
@@ -21,19 +23,27 @@
           <button
             class="w-40 h-10 mx-2 mt-5 bg-white text-Anthracite rounded-full"
             @click="reset"
-          >Reset</button>
+          >
+            Reset
+          </button>
           <button
             class="w-10 h-10 mx-2 mt-5 bg-white text-Anthracite rounded-full"
             @click="rotate(-90)"
-          >-90°</button>
+          >
+            -90°
+          </button>
           <button
             class="w-10 h-10 mx-2 mt-5 bg-white text-Anthracite rounded-full"
             @click="rotate(90)"
-          >+90°</button>
+          >
+            +90°
+          </button>
           <button
             class="w-40 h-10 mx-2 mt-5 bg-white text-Anthracite rounded-full"
             @click="cropImage"
-          >Save</button>
+          >
+            Save
+          </button>
         </div>
       </section>
     </div>
@@ -44,62 +54,49 @@
 import VueCropper from "vue-cropperjs";
 import XButton36 from "@components/buttons/XButton36.vue";
 import "cropperjs/dist/cropper.css";
-//tool
-import useStoreAuth from "@stores/auth";
-//services
-import UserUpdateServices from "@axios/services/userUpdateServices.js";
-import ToolsButtonSubmit from "../buttons/ToolsButtonSubmit.vue";
-import EventServices from "../../../plugins/axios/services/eventServices";
-import VenueServices from "../../../plugins/axios/services/venueServices";
-import UploadServices from "../../../plugins/axios/services/uploadServices";
-
+//
 
 export default {
   components: {
     XButton36,
     VueCropper,
-    ToolsButtonSubmit,
   },
   props: {
     src: {
       type: String,
     },
-    data: {
-      type: Object,
+    idSpace: {
+      type: String,
     },
   },
   data() {
-    const store = useStoreAuth();
     return {
-      store,
       cropImg: "",
     };
   },
   methods: {
-    
     dataURLtoFile(dataurl) {
       let arr = dataurl.split(",");
       let mime = arr[0].match(/:(.*?);/)[1];
       let type = mime.split("/");
-      console.log(mime);
       let bstr = atob(arr[1]);
       let n = bstr.length;
       let u8arr = new Uint8Array(n);
       while (n--) {
         u8arr[n] = bstr.charCodeAt(n);
       }
-      return new File(
-        [u8arr],
-        this.data._id + "event." + type[1],
-        {
-          type: mime,
-        }
-      );
+      return new File([u8arr], this.idSpace + '.' +type[1], {
+        type: mime,
+      });
     },
     async cropImage() {
       this.cropImg = this.$refs.cropper.getCroppedCanvas().toDataURL();
       let submitImg = this.dataURLtoFile(this.cropImg);
-      this.$emit('callFromCrop', { selectedPic: submitImg });
+      this.$emit("callFromCrop", {
+        idSpace: this.idSpace,
+        selectedPic: submitImg,
+        url: this.cropImg,
+      });
     },
     flipX() {
       const dom = this.$refs.flipX;
@@ -116,10 +113,9 @@ export default {
       dom.setAttribute("data-scale", scale);
     },
     reset() {
-      this.$refs.cropper.reset();
+      this.$emit("reset");
     },
     rotate(deg) {
-      console.log(this.data._id);
       this.$refs.cropper.rotate(deg);
     },
   },

@@ -5,11 +5,10 @@
     <label
       class="font-400 mb-1 rounded-full border-dashed w-64 h-64 border-2 flex text-Gravel hover:text-White"
       :for="data.name"
-      v-if="!isUploaded"
+      v-if="!croppedImg.url"
     >
       <div class="flex flex-col w-full">
         <div
-          v-if="!isUploaded"
           class="my-auto w-[136px] mx-auto p-3 cursor-pointer rounded-xl label hover:bg-LightRock text-Gravel hover:text-White"
         >
           <Picture class="mx-auto" :width="24" :height="24"></Picture>
@@ -30,8 +29,8 @@
       </div>
     </label>
     <label
-      v-if="isUploaded"
-      class="font-400 mb-1 rounded-full w-64 h-64  hover:blur-sm flex text-Gravel hover:text-White"
+      v-if="croppedImg.url"
+      class="font-400 mb-1 rounded-full w-64 h-64 flex text-Gravel hover:text-White"
       :for="data.name"
     >
       <div class="flex flex-col w-full">
@@ -40,15 +39,19 @@
         >
           <label :for="data.name">
             <input
-                :id="data.name"
-                :name="data.name"
-                :type="data.type"
-                class="sr-only"
-                @input="emitImg"
-                accept="image/png"
-              />
-            </label>
-          <img :src="previewImage" alt="spacePicture" class="w-full h-full" />
+              :id="data.name"
+              :name="data.name"
+              :type="data.type"
+              class="sr-only"
+              @input="emitImg"
+              accept="image/png"
+            />
+          </label>
+          <img
+            :src="croppedImg.url"
+            alt="spacePicture"
+            class="w-full h-full rounded-full"
+          />
         </div>
       </div>
     </label>
@@ -58,15 +61,15 @@
     </h4>
   </div>
   <button
-    v-if="!isUploaded"
     @click="goToSpace"
+    v-if="!croppedImg.url"
     class="hover:bg-LightRock px-5 py-1.5 mt-8 mb-7 rounded-full bg-DarkRock transition"
   >
     <p class="text-md text-White font-bold">Skip</p>
   </button>
   <button
-    v-if="isUploaded"
     @click="upload"
+    v-if="croppedImg.url"
     class="px-5 py-1.5 mt-8 mb-7 rounded-full bg-White transition"
   >
     <p class="text-md text-Anthracite font-bold">Save</p>
@@ -74,14 +77,13 @@
 </template>
 <script setup>
 import Picture from "@assets/icons/Picture.vue";
-import CloseButton from "../buttons/CloseButton.vue";
 import UploadServices from "@axios/services/uploadServices.js";
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import useStoreSpace from "@stores/storeSpace";
 
-const isUploading = ref(false);
-const isUploaded = ref(false);
-const emit = defineEmits("goToSpace");
+const emit = defineEmits(["goToSpace", "cropImage", "reset"]);
 let progress = ref(0);
+const storeSpace = useStoreSpace();
 let image = ref({});
 let previewImage = ref("");
 const props = defineProps({
@@ -89,47 +91,52 @@ const props = defineProps({
   miniature: {
     default: {},
   },
+  croppedImg: Object,
   idSpace: String,
   modelValue: { Object, String },
   error: Object,
 });
-function emitImg(e) {
-  isUploading.value = true;
+
+const emitImg = (e) => {
   image.value = e.target.files[0];
-  image.value.sizeinKB = image.value.size;
-  if (image.value.size > 1000) {
-    image.value.sizeinKB = Math.floor(image.value.size / 1000);
-  }
-  isUploaded.value = true;
   previewImage.value = URL.createObjectURL(image.value);
-  console.log(image.value);
-}
+  emit("cropImage", previewImage.value);
+};
+
 const goToSpace = () => {
   emit("goToSpace");
 };
 const upload = async () => {
   let message;
   let formData = new FormData();
-  formData.append("selectedPic", image.value);
+  formData.append("selectedPic", props.croppedImg.selectedPic);
   formData.append("spaceId", props.idSpace);
-  console.log(formData)
-  await UploadServices
-    .picSpace(formData)
-    .then((response) => {
+  await UploadServices.picSpace(formData)
+    .then(async (response) => {
       message = response.data.message;
       console.log(message);
-    })
-    .then((images) => {
-      console.log(images);
-      goToSpace();
+      try {
+        const img = await UploadServices.getImageFromBackend(
+          response.data.data.picture
+        );
+        storeSpace.dataSpace[props.idSpace].picture = img;
+        goToSpace();
+      } catch (err) {
+        console.warn(err);
+      }
     })
     .catch((err) => {
+      console.warn(err);
       progress.value = 0;
-      message = err.data.message;
       image.value = undefined;
     });
 };
 
+watch(() => {
+  if (props.idSpace !== props.croppedImg.idSpace) {
+    emit("reset");
+  }
+});
 </script>
 
 <style>
