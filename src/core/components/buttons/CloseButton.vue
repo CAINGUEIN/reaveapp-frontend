@@ -1,7 +1,7 @@
 <template>
   <button
     :class="props.class"
-    class="text-right p-3 outline-0 bg-DarkRock hover:bg-LightRock rounded-full w-auto"
+    class="text-right cursor-pointer p-3 outline-0 bg-DarkRock hover:bg-LightRock rounded-full w-auto"
     @click="close"
   >
     <Cross :width="props.width" :height="props.height" />

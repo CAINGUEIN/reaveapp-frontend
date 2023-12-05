@@ -41,7 +41,7 @@
               @closeModal="close"
               :width="12"
               :height="12"
-              class="absolute right-6 top-6"
+              class="absolute z-30 right-6 top-6"
             />
             <div>
               <div class="mt-3 sm:mt-5">
@@ -67,15 +67,23 @@
 
                 <div class="mt-8 px-5" v-if="pictureInput === true">
                   <uploadModel
+                    v-show="!open"
                     v-if="pictureInput === true"
                     :data="imageSpace"
                     v-model="imageSpace.value"
                     :errors="errors"
                     :idSpace="idSpace"
                     @goToSpace="goToSpace"
+                    @cropImage="open"
+                  />
+                  <CropperEvent
+                    v-if="open"
+                    :data="data"
+                    :src="previewImage"
+                    @closeAction="close"
+                    @callFromCrop="useCroppedImage"
                   />
                 </div>
-
                 <p v-if="errors.value">{{ errors }}</p>
                 <button
                   v-if="pictureInput === false"
@@ -104,6 +112,7 @@ import {
 
 import InputModel from "@core/components/inputs/InputModel.vue";
 import uploadModel from "@core/components/inputs/uploadModel.vue";
+import CropperEvent from "../cropper/CropperEvent.vue";
 import SpaceServices from "@axios/services/spaceServices.js";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
@@ -112,6 +121,7 @@ const emit = defineEmits(["isOpenModal", "enableButton", "submitSuccess"]);
 const props = defineProps({
   isOpenModal: Boolean,
 });
+const open = ref(false);
 const space = {
   label: "Space name",
   name: "name",
