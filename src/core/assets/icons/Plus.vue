@@ -9,13 +9,13 @@
     >
       <path
         d="M5 12H19"
-        :stroke="color2"
+        :stroke="color1"
         stroke-width="3"
         stroke-linecap="round"
       />
       <path
         d="M12 5V19"
-        :stroke="color2"
+        :stroke="color1"
         stroke-width="3"
         stroke-linecap="round"
       />
