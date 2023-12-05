@@ -21,25 +21,25 @@
       <section class="preview-area">
         <div class="flex">
           <button
-            class="w-40 h-10 mx-2 mt-5 bg-white text-Anthracite rounded-full"
+            class="w-40 h-10 mx-2 mt-5 bg-white text-Anthracite font-black rounded-full"
             @click="reset"
           >
             Reset
           </button>
           <button
-            class="w-10 h-10 mx-2 mt-5 bg-white text-Anthracite rounded-full"
+            class="w-10 h-10 mx-2 mt-5 bg-white text-Anthracite font-black rounded-full"
             @click="rotate(-90)"
           >
             -90°
           </button>
           <button
-            class="w-10 h-10 mx-2 mt-5 bg-white text-Anthracite rounded-full"
+            class="w-10 h-10 mx-2 mt-5 bg-white text-Anthracite font-black rounded-full"
             @click="rotate(90)"
           >
             +90°
           </button>
           <button
-            class="w-40 h-10 mx-2 mt-5 bg-white text-Anthracite rounded-full"
+            class="w-40 h-10 mx-2 my-5 bg-white text-Anthracite font-black rounded-full"
             @click="cropImage"
           >
             Save

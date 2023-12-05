@@ -3,7 +3,7 @@
     <div name="topContent" class="mt-8 flex justify-between">
       <div class="w-1/3 flex">
         <button
-          class="bg-White border-Anthracite h-10 w-10 rounded-full items-center hover:bg-Cloud hover:text-Anthracite flex"
+          class="bg-White placeholder-Anthracite h-10 w-10 rounded-full items-center hover:bg-Cloud hover:text-Anthracite flex"
           @click.prevent="open = true"
         >
           <SvgTarget
