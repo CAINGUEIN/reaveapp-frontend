@@ -54,7 +54,6 @@ const props = defineProps({
 const space = {
   label: "Space name",
   name: "name",
-  title: "How do you want to name this Space?",
   type: "text",
   value: "",
 };

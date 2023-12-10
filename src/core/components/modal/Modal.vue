@@ -67,7 +67,7 @@ import CreateCalendarEvent from "./CreateCalendarEvent.vue";
 import CreateTeam from "./CreateTeam.vue";
 import DeleteSpace from "./space/DeleteSpace.vue";
 import CreateCategory from "./CreateCategory.vue";
-
+import EditProfilePictureSpace from "./space/EditProfilePictureSpace.vue";
 const componentMap = {
   CreateSpaceModal,
   CreateRoom,
@@ -75,6 +75,7 @@ const componentMap = {
   CreateFriends,
   CreateTeam,
   CreateCalendarEvent,
+  EditProfilePictureSpace,
   DeleteSpace,
 };
 

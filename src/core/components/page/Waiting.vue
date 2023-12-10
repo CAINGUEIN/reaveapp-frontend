@@ -4,7 +4,7 @@ rend ilisible le dessous le temps du chargement des datas
 
 <template>
     <div class="h-screen flex justify-center items-center">
-        <Reave id="reaveLogo" width="30" height="30" />
+        <Reave id="reaveLogo" :width="30" :height="30" />
     </div>
 </template>
 

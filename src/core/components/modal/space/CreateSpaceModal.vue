@@ -87,6 +87,7 @@ const imageSpace = {
   label: "Upload Space Picture",
   title: "Setup your Space Picture.",
   name: "image",
+  info: "By creating a Space, ",
   type: "file",
   value: "",
 };
@@ -114,7 +115,6 @@ const cropImage = (img) => {
 const useCroppedImage = (img) => {
   croppedImage.value = img;
   open.value = false;
-  console.log("NOUVELLE IMAGE CROPPED: " + croppedImage.value);
 };
 function close() {
   emit("isOpenModal", false);

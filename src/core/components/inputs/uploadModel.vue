@@ -35,9 +35,17 @@
     >
       <div class="flex flex-col w-full">
         <div
-          class="my-auto min-w-full min-h-full cursor-pointer rounded-xl text-White"
+          @mouseover="hoverEdit = true"
+          @mouseleave="hoverEdit = false"
+          class="my-auto min-w-full min-h-full cursor-pointer hover:opacity-50 hover:blur-sm rounded-xl text-White"
         >
           <label :for="data.name">
+            <p
+              v-bind:class="{ absolute: hoverEdit }"
+              class="hidden z-50 text-center top-24 right-0 left-0 text-White"
+            >
+              Edit space
+            </p>
             <input
               :id="data.name"
               :name="data.name"
@@ -56,7 +64,7 @@
       </div>
     </label>
     <h4 class="text-Gravel w-64 pt-3 font-medium text-xs">
-      By creating a Space, you agree to Reave's
+      {{ props.data.info }} you agree to Reave's
       <span class="text-Blue font-bold">Community Guidelines.</span>
     </h4>
   </div>
@@ -84,6 +92,7 @@ import useStoreSpace from "@stores/storeSpace";
 const emit = defineEmits(["goToSpace", "cropImage", "reset"]);
 let progress = ref(0);
 const storeSpace = useStoreSpace();
+const hoverEdit = ref(false);
 let image = ref({});
 let previewImage = ref("");
 const props = defineProps({
@@ -109,27 +118,31 @@ const goToSpace = () => {
 const upload = async () => {
   let message;
   let formData = new FormData();
-  formData.append("selectedPic", props.croppedImg.selectedPic);
-  formData.append("spaceId", props.idSpace);
-  await UploadServices.picSpace(formData)
-    .then(async (response) => {
-      message = response.data.message;
-      console.log(message);
-      try {
-        const img = await UploadServices.getImageFromBackend(
-          response.data.data.picture
-        );
-        storeSpace.dataSpace[props.idSpace].picture = img;
-        goToSpace();
-      } catch (err) {
+  if (props.croppedImg.selectedPic) {
+    formData.append("selectedPic", props.croppedImg.selectedPic);
+    formData.append("spaceId", props.idSpace);
+    await UploadServices.picSpace(formData)
+      .then(async (response) => {
+        message = response.data.message;
+        console.log(message);
+        try {
+          const img = await UploadServices.getImageFromBackend(
+            response.data.data.picture
+          );
+          storeSpace.dataSpace[props.idSpace].picture = img;
+          goToSpace();
+        } catch (err) {
+          console.warn(err);
+        }
+      })
+      .catch((err) => {
         console.warn(err);
-      }
-    })
-    .catch((err) => {
-      console.warn(err);
-      progress.value = 0;
-      image.value = undefined;
-    });
+        progress.value = 0;
+        image.value = undefined;
+      });
+  } else {
+    goToSpace();
+  }
 };
 
 watch(() => {

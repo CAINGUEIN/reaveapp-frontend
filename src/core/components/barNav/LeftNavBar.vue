@@ -153,7 +153,7 @@ const spaceMenu = [
   {
     icon: "Profile",
     name: "Profile",
-    modal: "",
+    modal: "EditProfilePictureSpace",
   },
   {
     icon: "Plus",

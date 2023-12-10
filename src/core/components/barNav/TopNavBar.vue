@@ -202,6 +202,7 @@ import SvgTarget from "@core/components/SvgTarget.vue";
 import SpaceNavBar from "@core/components/barNav/SpaceNavBar.vue";
 import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
 import Settings from "@assets/icons/Settings.vue";
+import InputModel from "../inputs/InputModel.vue";
 import Reave from "@assets/icons/Reave.vue";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import Plus from "@assets/icons/Plus.vue";
@@ -226,6 +227,7 @@ export default {
     Reave,
     Bento,
     Settings,
+    InputModel,
     Popover,
     PopoverButton,
     PopoverPanel,
@@ -243,6 +245,7 @@ export default {
       store,
       storeSpace,
       storeView: store.view,
+      errors: "",
       moodMessage: {
         name: "moodMessage",
         type: "text",

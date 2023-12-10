@@ -10,7 +10,7 @@
             isMapsRoute,
         }"
       >
-        <div v-if="loadingStore" class="flex">
+        <div v-if="loading" class="flex">
           <div
             class="w-12 h-12 bg-LightRock mr-2.5 rounded-full animate-pulse"
           ></div>
