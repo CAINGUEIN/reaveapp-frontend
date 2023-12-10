@@ -7,22 +7,19 @@
     >
       <h2 class="text-white">&lsaquo;</h2>
     </button>
-    <XButton36
-      @click.prevent="closeModal()"
-      class="absolute right-0 rounded-full z-10"
-    ></XButton36>
 
-    <div class="pt-6 flex flex-col" v-if="etape === 1">
+    <div class="pt-6 px-5 flex flex-col" v-if="etape === 1">
       <h4 class="text-center">How do you want to</h4>
       <h4 class="text-center">name this event?</h4>
-      <InputModel
-        class="mt-8"
-        :data="name"
-        v-model="name.value"
-        :errors="errors"
-      ></InputModel>
+      <InputModel class="mt-8" :data="name" v-model="name.value"></InputModel>
+      <p
+        class="text-Red mt-2 font-semibold"
+        v-if="Object.keys(errors).length > 0"
+      >
+        {{ errors }}
+      </p>
       <button
-        class="bg-white flex item-center rounded-full p-1.5 px-5 mx-auto mt-8"
+        class="bg-white flex item-center rounded-full p-1.5 mb-7 px-5 mx-auto mt-8"
         @click.prevent="submit()"
       >
         <p class="text-Anthracite font-black">Create Event</p>
@@ -75,7 +72,7 @@ export default {
           params: { id: result.data.data._id },
         });
       } else {
-        this.errors = result.data.data.errors;
+        this.errors = result.data.message;
       }
     },
     closeModal() {

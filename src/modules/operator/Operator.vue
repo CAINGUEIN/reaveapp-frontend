@@ -6,7 +6,7 @@
           v-for="item in nav"
           :key="item.name"
           :disabled="!item.enabled"
-          class="p-1 px-4 mx-2 my-1 items-center text-base disabled:cursor-not-allowed disabled:text-LightRock disabled:hover:bg-Anthracite disabled:text hover:bg-LightRock hover:text-white rounded-lg font-medium flex items-center"
+          class="p-1 px-4 mx-2 my-1 items-center text-base disabled:cursor-not-allowed disabled:text-LightRock disabled:hover:bg-Anthracite disabled:text hover:bg-LightRock hover:text-white rounded-lg font-medium flex"
           :class="
             target === item.target
               ? 'bg-LightRock text-white'

@@ -29,9 +29,16 @@
             leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
             <DialogPanel
-              class="relative transform rounded-lg bg-Anthracite px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:p-6"
+              class="relative inline-block align-bottom bg-Anthracite rounded-2xl text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-modal"
               :class="width === 728 ? 'sm:max-w-[728px]' : 'sm:max-w-lg'"
             >
+              <Closebutton
+                @closeModal="closeModal"
+                :width="12"
+                :height="12"
+                class="absolute z-30 right-6 top-6"
+              />
+              
               <!-- content here -->
               <slot></slot>
             </DialogPanel>
@@ -46,18 +53,18 @@
 import {
   Dialog,
   DialogPanel,
-  DialogTitle,
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
+import Closebutton from "../buttons/closebutton.vue";
 
 export default {
   components: {
     Dialog,
     DialogPanel,
-    DialogTitle,
     TransitionChild,
     TransitionRoot,
+    Closebutton,
   },
   props: ["open", "action", "width"],
   methods: {

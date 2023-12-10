@@ -24,11 +24,13 @@ import smsq from "./smsq.vue";
 import Standing from "./Standing.vue";
 import RocketLeague from "./RocketLeagueLogo.vue";
 import VALOIcon from "./Valorant.vue";
+import Trash from "./Trash.vue";
 import mcdoLogo from "./mcdoLogo.vue";
 import PAMLogo from "./PAMLogo.vue";
 import MuseeFabre from "./MuseeFabre.vue";
 import Capacity from "./Capacity.vue";
-
+import Profile from "./Profile.vue";
+import Settings from "./Settings.vue";
 export {
   Academy,
   Events,
@@ -52,12 +54,15 @@ export {
   Options,
   Plan,
   Plus,
+  Profile,
   Projects,
   Schedule,
+  Settings,
   Seat,
   smsq,
   Smash,
   Standing,
+  Trash,
   VALOIcon,
   Capacity,
 };

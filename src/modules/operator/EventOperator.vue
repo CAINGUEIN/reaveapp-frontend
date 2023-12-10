@@ -274,7 +274,7 @@
 //component
 import ModalClear from "@components/modal/ModalClear.vue";
 import Plus from "@core/assets/icons/Plus.vue";
-import CreateEvent from "../platforms/events/CreateEvent.vue";
+import CreateEvent from "@components/modal/CreateEvent.vue";
 import WalletCard from "@components/eventCardContent/WalletCard.vue";
 import Button40Slot from "@components/buttons/Button40Slot.vue";
 import SvgTarget from "@components/SvgTarget.vue";

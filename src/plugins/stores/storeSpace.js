@@ -49,6 +49,7 @@ const StoreSpace = defineStore("space", {
       }
     },
     async feedDataSpaceUser() {
+      this.dataSpace = {};
       this.isWaiting = true;
       let result = await SpaceServices.checkSpace();
       let pic;

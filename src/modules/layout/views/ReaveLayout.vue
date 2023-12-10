@@ -41,7 +41,7 @@
         class="mt-4 mx-8 h-full flex border-2 border-Rock rounded-t-xl border-b-0"
         v-if="$route.path.includes('SpacePrivate')"
       >
-        <LeftNavBar :idSpace="$route.params.id" />
+        <LeftNavBar :idSpace="$route.params.id" @modal="handleModal" />
         <router-view class="max-h-fit w-full" />
       </div>
       <router-view
@@ -49,10 +49,13 @@
         v-if="!$route.path.includes('SpacePrivate')"
       />
     </div>
-    <CreateSpaceModal
+    <Modal
       @submitSuccess="feedDataSpaceUser"
       @isOpenModal="closeModal"
+      :modal="modal"
       :isOpenModal="isOpenModal"
+      :spaceName="spaceName"
+      :idSpace="$route.params.id"
     />
   </div>
   <VisitorLayout v-else />
@@ -63,7 +66,6 @@
 import useStoreAuth from "@stores/auth";
 import useStoreSpace from "@stores/storeSpace";
 //components
-import CreateSpaceModal from "@core/components/modal/CreateSpaceModal.vue";
 import TopNavBar from "@core/components/barNav/TopNavBar.vue";
 import VisitorLayout from "@modules/layout/views/VisitorLayout.vue";
 //data
@@ -71,12 +73,13 @@ import dataTopLeft from "@modules/layout/data/dataTopLeftNavBar";
 import dataBottomLeft from "@modules/layout/data/dataBottomLeftNavBar";
 import LeftNavBar from "@components/barNav/LeftNavBar.vue";
 import { useCookies } from "vue3-cookies";
+import Modal from "../../../core/components/modal/Modal.vue";
 export default {
   components: {
-    CreateSpaceModal,
     LeftNavBar,
     VisitorLayout,
     TopNavBar,
+    Modal,
   },
   data() {
     const store = useStoreAuth();
@@ -89,8 +92,11 @@ export default {
       dataBottomLeft,
       token,
       isMapsRoute: false,
+      modal: "",
       loading: false,
+      spaceName: "",
       isOpenModal: false,
+      isOpenSpaceModal: false,
       isOpenStatusMenu: false,
       store,
       storeSpace,
@@ -161,6 +167,14 @@ export default {
     },
     handleModalValueChanged(value) {
       this.isOpenModal = value;
+      this.modal = "CreateSpaceModal";
+    },
+    handleModal(value) {
+      if (value !== "") {
+        this.modal = value;
+        this.isOpenModal = true;
+        this.spaceName = this.dataSpace[this.$route.params.id].nameSpace;
+      }
     },
     closeModal() {
       this.isOpenModal = false;
