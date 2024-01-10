@@ -10,7 +10,7 @@
             target="Plus"
             :height="24"
             :width="24"
-            class="mx-auto"
+            class="mx-auto text-Anthracite"
           ></SvgTarget>
         </button>
         <label for="search" class="sr-only">Search</label>
@@ -163,7 +163,7 @@
               scope="col"
               class="text-left text-base font-black text-LightGrey pl-4"
             >
-              NAME
+              PROJECT NAME
             </th>
             <th
               scope="col"
