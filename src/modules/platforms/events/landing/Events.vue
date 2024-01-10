@@ -1,6 +1,6 @@
 <template>
   <div class="w-10/12 max-w-[1332px] mt-6 h-full mx-auto">
-    <div v-if="isloading"><SkeletonEvents /></div>
+    <div v-if="isloading"><h1>Loading...</h1></div>
     <div v-else>
       <div class="w-full h-full">
         <Headers v-if="token" />
@@ -52,11 +52,12 @@
           </div>
         </div>
         <Categories class="w-full mx-auto" />
-        <div class="mt-6 w-full mx-auto grid grid-cols-4">
+        <div class="mt-6 flex w-full mx-auto flex-row flex-wrap">
           <Event
             class="w-[318px] h-fit mb-12 cursor-pointer"
             v-for="(event, index) in dataEvents"
             :key="index"
+            :class="[(index + 1) % 4 === 0 && index !== 0 ? 'mr-0' : 'mr-5']"
             :dataEvent="event"
             :dataSpace="event.spaceAssociated"
           />
@@ -67,7 +68,7 @@
 </template>
 
 <script setup>
-import SkeletonEvents from "./skeletons/SkeletonEvents.vue";
+//import SkeletonEvents from "./SkeletonEvents.vue";
 import Ticket from "@assets/icons/Ticket.vue";
 import Categories from "./elements/Categories.vue";
 import Event from "./elements/Event.vue";
@@ -85,7 +86,6 @@ const storeSpace = useStoreSpace();
 const token = cookies.get("userSession");
 const dataEvents = ref({});
 const dataSpaces = ref({});
-const emits = defineEmits(["loaded"]);
 let isloading = ref(true);
 const topEvent = {
   space: "KarmineCorp",
@@ -206,9 +206,6 @@ const getEvents = async () => {
 
 onMounted(async () => {
   await getEvents();
-  setTimeout(() => {
-    isloading.value = false;
-    emits("loaded");
-  }, 500);
+  isloading.value = false;
 });
 </script>

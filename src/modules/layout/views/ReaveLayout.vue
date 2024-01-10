@@ -10,46 +10,19 @@
             isMapsRoute,
         }"
       >
-        <div class="flex flex-row w-full justify-between">
-          <div class="flex flex-row space-x-3">
-            <div class="w-12 h-12 bg-DarkRock flex rounded-full animate-pulse">
-              <div
-                class="w-6 h-6 rounded-full bg-LightRock mx-auto my-auto"
-              ></div>
-            </div>
-            <div
-              class="w-12 h-12 bg-LightRock rounded-full animate-pulse"
-            ></div>
-            <div
-              class="w-12 h-12 bg-LightRock rounded-full animate-pulse"
-            ></div>
-            <div
-              class="w-12 h-12 bg-LightRock rounded-full animate-pulse"
-            ></div>
-            <div
-              class="w-6 h-6 my-auto bg-LightRock rounded-full animate-pulse"
-            ></div>
-            <div
-              class="w-6 h-6 my-auto bg-LightRock rounded-full animate-pulse"
-            ></div>
-          </div>
-          <div class="flex flex-row space-x-3">
-            <div class="w-12 h-12 bg-DarkRock flex rounded-full animate-pulse">
-              <div
-                class="w-6 h-6 rounded-full bg-LightRock mx-auto my-auto"
-              ></div>
-            </div>
-            <div class="w-12 h-12 bg-DarkRock flex rounded-full animate-pulse">
-              <div
-                class="w-6 h-6 rounded-full bg-LightRock mx-auto my-auto"
-              ></div>
-            </div>
-            <div class="w-12 h-12 bg-DarkRock flex rounded-full animate-pulse">
-              <div
-                class="w-9 h-9 rounded-full bg-LightRock mx-auto my-auto"
-              ></div>
-            </div>
-          </div>
+        <div v-if="loading" class="flex">
+          <div
+            class="w-12 h-12 bg-LightRock mr-2.5 rounded-full animate-pulse"
+          ></div>
+          <div
+            class="w-12 h-12 bg-LightRock mr-2.5 rounded-full animate-pulse"
+          ></div>
+          <div
+            class="w-12 h-12 bg-LightRock mr-2.5 rounded-full animate-pulse"
+          ></div>
+          <div
+            class="w-12 h-12 bg-LightRock mr-2.5 rounded-full animate-pulse"
+          ></div>
         </div>
       </div>
       <TopNavBar
@@ -62,6 +35,7 @@
         }"
         @modal-changed="handleModalValueChanged"
         :dataStore="dataSpace"
+        :loadingStore="loading"
       />
       <div
         class="mt-4 mx-8 h-full flex border-2 border-Rock rounded-t-xl border-b-0"
