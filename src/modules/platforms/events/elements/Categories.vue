@@ -1,9 +1,9 @@
 <template>
-  <div class="w-fit mt-6 space-x-12 flex flex-row">
+  <div class="w-fit mt-6 grid gap-[62px] grid-cols-8 col-span-3">
     <div
       v-for="categorie in categories"
       :key="categorie"
-      class="w-24 cursor-pointer p-1 flex flex-col text-Gravel hover:bg-LightRock rounded-xl"
+      class="cursor-pointer p-1 flex flex-col text-Gravel hover:bg-LightRock rounded-xl"
     >
       <SvgTarget class="mx-auto" :width="24" :height="24" :target="categorie" />
       <p class="font-medium mx-auto text-sm pt-3">

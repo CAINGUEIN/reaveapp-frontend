@@ -10,7 +10,7 @@
             target="Plus"
             :height="24"
             :width="24"
-            class="mx-auto"
+            class="mx-auto text-Anthracite"
           ></SvgTarget>
         </button>
         <label for="search" class="sr-only">Search</label>
@@ -24,7 +24,7 @@
             />
             <input
               id="search"
-              class="bg-DarkRock block h-10 border-transparent focus:ring-0 border-0 rounded-full text-White placeholder-Gravel text-xl font-medium"
+              class="bg-DarkRock block h-10 border-transparent focus:ring-0 pl-0 border-0 rounded-full text-White placeholder-Gravel text-xl font-medium"
               placeholder="Search"
               type="search"
               name="search"
