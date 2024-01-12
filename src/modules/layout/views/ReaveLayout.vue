@@ -190,7 +190,14 @@ export default {
   },
   methods: {
     async feedDataSpaceUser() {
-      await this.storeSpace.feedDataSpaceUser();
+      if (this.storeSpace.isDataSpaceEmpty()) {
+        await this.storeSpace.feedDataSpaceUser();
+        setTimeout(() => {
+          this.loading = false;
+        }, 500);
+      } else {
+        this.loading = false;
+      }
       this.dataSpace = this.storeSpace.dataSpace;
     },
     handleModalValueChanged(value) {
@@ -255,9 +262,6 @@ export default {
     console.log(this.isMapsRoute);
     if (this.token) {
       this.feedDataSpaceUser();
-      setTimeout(() => {
-        this.loading = false;
-      }, 500);
     }
   },
 };

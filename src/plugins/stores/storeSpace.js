@@ -78,6 +78,9 @@ const StoreSpace = defineStore("space", {
     deleteDataSpace(state) {
       state.dataSpace = "";
     },
+    isDataSpaceEmpty() {
+      return Object.keys(this.dataSpace).length === 0;
+    },
   },
 });
 

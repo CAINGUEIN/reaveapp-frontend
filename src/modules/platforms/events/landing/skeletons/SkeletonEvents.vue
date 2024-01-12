@@ -14,7 +14,7 @@
       ></div>
     </div>
     <CategoriesSkeleton class="w-full mx-auto" />
-    <div class="mt-6 w-full mx-auto grid grid-cols-4 gap-4 sm:grid-cols-2">
+    <div class="mt-6 w-full mx-auto grid grid-cols-3 gap-4 2xl:grid-cols-4">
       <EventSkeleton
         class="w-[318px] h-fit mb-12"
         v-for="index in 10"

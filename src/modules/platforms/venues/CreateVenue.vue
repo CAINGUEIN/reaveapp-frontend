@@ -8,12 +8,8 @@
     >
       <h2 class="text-white">&lsaquo;</h2>
     </button>
-    <XButton36
-      @click.prevent="closeModal()"
-      class="absolute right-0 rounded-full z-10"
-    ></XButton36>
 
-    <div class="pt-6 flex flex-col" v-if="etape === 1">
+    <div class="pt-6 flex flex-col p-6" v-if="etape === 1">
       <h4 class="text-center">How do you want to</h4>
       <h4 class="text-center">name this venue?</h4>
       <InputModel

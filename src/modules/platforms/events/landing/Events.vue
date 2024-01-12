@@ -52,7 +52,7 @@
           </div>
         </div>
         <Categories class="w-full mx-auto" />
-        <div class="mt-6 w-full mx-auto grid grid-cols-4">
+        <div class="mt-6 w-full mx-auto grid grid-cols-3 gap-4 2xl:grid-cols-4">
           <Event
             class="w-[318px] h-fit mb-12 cursor-pointer"
             v-for="(event, index) in dataEvents"
@@ -205,7 +205,7 @@ const getEvents = async () => {
 };
 
 onMounted(async () => {
-  await getEvents();
+  getEvents();
   setTimeout(() => {
     isloading.value = false;
     emits("loaded");
