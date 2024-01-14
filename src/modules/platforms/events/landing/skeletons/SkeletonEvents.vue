@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-[1332px] bg-Anthracite mt-6 h-full mx-auto">
     <div class="w-full h-full">
-      <HeadersSkeleton v-if="token" /> 
+      <HeadersSkeleton v-if="token" />
       <div class="w-full relative mt-6 rounded-2xl h-64 overflow-hidden">
         <div class="w-full h-full" alt=""></div>
         <div class="absolute inset-0 bg-LightRock animate-pulse"></div>
@@ -14,9 +14,11 @@
       ></div>
     </div>
     <CategoriesSkeleton class="w-full mx-auto" />
-    <div class="mt-6 w-full mx-auto grid grid-cols-3 gap-4 2xl:grid-cols-4">
+    <div
+      class="mt-6 max-w-full mx-auto grid md:grid-cols-1 xl:grid-cols-2 grid-cols-4 gap-4 2xl:grid-cols-3"
+    >
       <EventSkeleton
-        class="w-[318px] h-fit mb-12"
+        class="min-w-[260px] w-fit max-w-[318px] h-fit mb-12"
         v-for="index in 10"
         :key="index"
       />

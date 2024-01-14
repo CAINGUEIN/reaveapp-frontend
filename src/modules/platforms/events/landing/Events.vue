@@ -51,15 +51,28 @@
             <Icon :icon="topEvent.type" />
           </div>
         </div>
-        <Categories class="w-full mx-auto" />
-        <div class="mt-6 w-full mx-auto grid grid-cols-3 gap-4 2xl:grid-cols-4">
-          <Event
-            class="w-[318px] h-fit mb-12 cursor-pointer"
-            v-for="(event, index) in dataEvents"
-            :key="index"
-            :dataEvent="event"
-            :dataSpace="event.spaceAssociated"
-          />
+        <Categories class="w-fit mx-auto" />
+        <div class="flex flex-row w-full h-full">
+          <div
+            v-if="Object.keys(dataEvents).length > 0"
+            class="mt-6 max-w-full mx-auto ml-0 grid md:grid-cols-1 lg:grid-cols-2 grid-cols-4 gap-4 xl:grid-cols-3"
+          >
+            <Event
+              class="min-w-[260px] w-fit max-w-[318px] h-fit mb-12 cursor-pointer"
+              v-for="(event, index) in dataEvents"
+              :key="index"
+              :dataEvent="event"
+              :dataSpace="event.spaceAssociated"
+            />
+          </div>
+          <div v-else class="mx-auto mt-48 flex flex-col">
+            <h3 class="">No Events on Reave at the moment.</h3>
+            <div
+              class="py-2 px-5 mt-4 bg-White mx-auto cursor-pointer rounded-full w-fit"
+            >
+              <h3 class="text-Anthracite text-base">Become an Organiser</h3>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -83,6 +96,7 @@ const { cookies } = useCookies();
 const storeSpace = useStoreSpace();
 
 const token = cookies.get("userSession");
+
 const dataEvents = ref({});
 const dataSpaces = ref({});
 const emits = defineEmits(["loaded"]);

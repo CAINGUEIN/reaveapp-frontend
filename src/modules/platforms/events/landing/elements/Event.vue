@@ -1,7 +1,10 @@
 <template>
   <div class="relative flex flex-col">
     <div class="w-full h-fit relative" @click="goTo">
-      <img :src="props.dataEvent.posterPic" class="object-contain rounded-xl" />
+      <img
+        :src="props.dataEvent.posterPic"
+        class="max-w-full h-auto object-cover rounded-xl"
+      />
       <div
         class="absolute text-White space-x-2 pr-0 top-3 right-3 flex flex-row"
       >

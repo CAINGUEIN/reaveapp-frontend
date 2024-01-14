@@ -156,7 +156,7 @@
       </div>
     </div>
     <div name="Content" class="mt-8 space-y-4">
-      <table class="w-full">
+      <table class="w-full" v-if="show === 'list'">
         <thead class="border-b-2 border-LightGrey">
           <tr>
             <th
@@ -169,13 +169,20 @@
               scope="col"
               class="text-left text-base font-black text-LightGrey"
             >
-              LAST EDIT
+              OWNED BY
             </th>
             <th
               scope="col"
               class="text-left text-base font-black text-LightGrey"
             >
-              OWNED BY
+              LAST EDIT
+            </th>
+
+            <th
+              scope="col"
+              class="text-left text-base font-black text-LightGrey"
+            >
+              STATE
             </th>
             <th scope="col" class="">
               <span class="sr-only">Edit</span>
@@ -195,19 +202,28 @@
                   class="w-16 h-16 rounded-xl mr-4"
                   :style="getImageBlob(item.posterPic)"
                 ></div>
-                <p class="text-base font-black text-LightGrey">
+                <p class="text-base font-black text-White">
                   {{ item.name }}
                 </p>
               </div>
             </td>
             <td>
               <p class="text-base font-black text-LightGrey">
+                {{ item.owner.user_id.userTag }}
+              </p>
+            </td>
+            <td>
+
+              <p class="text-base font-black text-LightGrey">
                 {{ $dayjs(item.updatedAt).format("DD/MM/YYYY") }}
               </p>
             </td>
             <td>
-              <p class="text-base font-black text-LightGrey">
-                {{ item.owner.user_id.userTag }}
+              <p class="text-base font-black text-LightGrey" v-if="item.isPublished">
+                Published
+              </p>
+              <p class="text-base font-black text-LightGrey" v-if="isPublished">
+                Unpublished
               </p>
             </td>
             <td class="py-4 px-3 rounded-r-xl">
@@ -260,6 +276,26 @@
           </tr>
         </tbody>
       </table>
+      <div class="w-full flex flex-row space-x-5" v-if="show === 'board'">
+        <div v-for="item in data" :key="item._id" @click="goTo(item._id)">
+          <div class="w-full h-fit relative cursor-pointer">
+            <div
+              :style="getImageBlob(item.posterPic)"
+              class="rounded-xl w-28 h-28"
+            ></div>
+            <div
+              class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50"
+            ></div>
+            <div
+              class="absolute text-White space-x-2 pr-0 bottom-3 left-3 flex flex-row"
+            >
+              <p class="text-base font-black text-White">
+                {{ item.name }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <ModalClear :open="open" @action="close()">
       <CreateEvent

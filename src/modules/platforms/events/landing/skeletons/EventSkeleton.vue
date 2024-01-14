@@ -2,7 +2,6 @@
   <div class="relative flex flex-col">
     <div class="w-full h-fit relative">
       <div class="w-80 h-80 bg-LightRock animate-pulse rounded-xl"></div>
-      <div class="absolute space-x-2 pr-0 top-3 right-3 flex flex-row"></div>
     </div>
     <div class="bg-Anthracite space-y-2">
       <div class="flex flex-row mt-2">

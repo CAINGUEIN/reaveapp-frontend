@@ -97,12 +97,22 @@ module.exports = {
         img3: "url('/src/core/assets/img/BEMOCS_Fntclr_Screen_Print_A.jpg')",
         img4: "url('/src/core/assets/img/BEMOCS_LR_04_Countryside_00.jpg')",
         img5: "url('/src/core/assets/img/BEMOCS_Merkur_05.jpg')",
-        
       },
       screens: {
         "3xl": "1650px",
-        "ml": { "min": "950px", "max": "1023px" },
+        ml: { min: "950px", max: "1023px" },
       },
+    },
+    screens: {
+      "2xl": { max: "1535px" },
+
+      xl: { max: "1279px" },
+
+      lg: { max: "1023px" },
+
+      md: { max: "767px" },
+
+      sm: { max: "639px" },
     },
   },
   plugins: [

@@ -8,8 +8,6 @@
             !isMapsRoute,
           'absolute top-0 left-0 right-0 flex pt-6 pb-[18px] items-center':
             isMapsRoute,
-          'bg-opacity-60': isOpenModal,
-          'bg-Anthracite': !isOpenModal,
         }"
       >
         <div class="flex flex-row w-full justify-between">
@@ -57,10 +55,12 @@
       <TopNavBar
         v-else
         :class="{
-          'sticky top-0 mx-8 left-0 right-0 flex pt-6 items-center bg-Anthracite':
+          'sticky top-0 mx-8 left-0 right-0 flex pt-6 items-center transition-all duration-300':
             !isMapsRoute,
           'absolute top-0 left-0 right-0 flex pt-6 pb-[18px] items-center':
             isMapsRoute,
+          'bg-opacity-60 opacity-60 blur-sm': isOpenModal && !isMapsRoute,
+          'bg-Anthracite': !isOpenModal && !isMapsRoute,
         }"
         @modal-changed="handleModalValueChanged"
         :dataStore="dataSpace"
@@ -190,14 +190,7 @@ export default {
   },
   methods: {
     async feedDataSpaceUser() {
-      if (this.storeSpace.isDataSpaceEmpty()) {
-        await this.storeSpace.feedDataSpaceUser();
-        setTimeout(() => {
-          this.loading = false;
-        }, 500);
-      } else {
-        this.loading = false;
-      }
+      await this.storeSpace.feedDataSpaceUser();
       this.dataSpace = this.storeSpace.dataSpace;
     },
     handleModalValueChanged(value) {
@@ -261,7 +254,15 @@ export default {
     this.isMapsRoute = this.$route.path === "/maps";
     console.log(this.isMapsRoute);
     if (this.token) {
-      this.feedDataSpaceUser();
+      if (this.storeSpace.isDataSpaceEmpty()) {
+        this.feedDataSpaceUser();
+        setTimeout(() => {
+          this.loading = false;
+        }, 500);
+      } else {
+        this.dataSpace = this.storeSpace.dataSpace;
+        this.loading = false;
+      }
     }
   },
 };
