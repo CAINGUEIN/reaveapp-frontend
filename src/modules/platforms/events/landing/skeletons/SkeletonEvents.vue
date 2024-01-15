@@ -15,7 +15,7 @@
     </div>
     <CategoriesSkeleton class="w-full mx-auto" />
     <div
-      class="mt-6 max-w-full mx-auto grid md:grid-cols-1 xl:grid-cols-2 grid-cols-4 gap-4 2xl:grid-cols-3"
+      class="mt-6 max-w-full max-mx-auto grid max-md:grid-cols-1 max-xl:grid-cols-2 grid-cols-4 gap-4 max-2xl:grid-cols-3"
     >
       <EventSkeleton
         class="min-w-[260px] w-fit max-w-[318px] h-fit mb-12"

@@ -55,7 +55,7 @@
         <div class="flex flex-row w-full h-full">
           <div
             v-if="Object.keys(dataEvents).length > 0"
-            class="mt-6 max-w-full mx-auto ml-0 grid md:grid-cols-1 lg:grid-cols-2 grid-cols-4 gap-4 xl:grid-cols-3"
+            class="mt-6 max-w-full mx-auto ml-0 grid max-md:grid-cols-1 max-lg:grid-cols-2 grid-cols-4 gap-4 max-xl:grid-cols-3"
           >
             <Event
               class="min-w-[260px] w-fit max-w-[318px] h-fit mb-12 cursor-pointer"
