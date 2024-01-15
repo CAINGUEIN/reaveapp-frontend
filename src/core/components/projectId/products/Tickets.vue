@@ -55,17 +55,24 @@
               :width="20"
               class="mr-2"
             ></SvgTarget>
-            <span class="font-black text-xl text-white">TICKETS</span>
+            <span class="font-black text-xl text-white">Tickets</span>
           </p>
-          <p class="mt-6 text-base">xxx</p>
-          <p class="mt-6 text-base">
+          <p class="mt-6 text-base font-medium">
+            Create tier levels, nest automatic data into tickets, manage the
+            sales calendar, permission access, other associated features and of
+            course price.
+          </p>
+          <p class="mt-6 text-base font-medium">
             No ticket category has been added here yet.
           </p>
           <button
-            class="text-black rounded-full h-10 px-10 mx-auto bg-white mt-9"
+            class="text-black flex flex-row rounded-full items-center h-10 px-10 mx-auto bg-white mt-9"
             @click.prevent="open = true"
           >
-            <p class="text-black text-base font-black">Add your first ticket</p>
+            <CreateTicket />
+            <p class="text-black pl-2.5 text-base font-black">
+              Create your first ticket
+            </p>
           </button>
         </div>
       </div>
@@ -74,13 +81,22 @@
         :is="view"
         :data="data"
         :yourPerm="yourPerm"
-        @open="open = true"
+        @open="openModal"
         @action="update()"
         @change="view = $event"
       ></component>
     </div>
     <ModalClear :open="open" @action="close()">
-      <AddTicket :data="data" @action="close"></AddTicket>
+      <AddTicket
+        v-if="modalView === 'Add'"
+        :data="data"
+        @action="close"
+      ></AddTicket>
+      <DeleteTicket
+        v-if="modalView === 'Remove'"
+        :data="data"
+        @action="close"
+      ></DeleteTicket>
     </ModalClear>
   </div>
 </template>
@@ -96,6 +112,8 @@ import List from "./tickets/List.vue";
 
 import ModalClear from "@components/modal/ModalClear.vue";
 import AddTicket from "@components/modal/projectId/logistics/AddTicket.vue";
+import CreateTicket from "../../../assets/icons/CreateTicket.vue";
+import DeleteTicket from "../../modal/projectId/logistics/DeleteTicket.vue";
 
 export default {
   components: {
@@ -106,15 +124,22 @@ export default {
     List,
     ModalClear,
     AddTicket,
-  },
+    DeleteTicket,
+    CreateTicket,
+},
   props: ["data", "yourPerm"],
   data() {
     return {
       open: false,
       view: "List",
+      modalView: "",
     };
   },
   methods: {
+    openModal(modal) {
+      this.open = true;
+      this.modalView = modal;
+    },
     goBack() {
       this.$router.back();
     },

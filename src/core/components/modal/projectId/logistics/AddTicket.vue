@@ -2,20 +2,34 @@
   <div>
     <button
       v-if="etape > 1"
-      class="absolute left-0 rounded-full px-3 z-10"
+      class="absolute left-0 bg-DarkRock h-9 w-9 hover:bg-LightRock rounded-full px-3 z-10"
       @click.prevent="etape = etape - 1"
     >
-      <h2 class="text-white">&lsaquo;</h2>
+      <svg
+        width="10"
+        height="14"
+        viewBox="0 0 10 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9 13.0022L1 7.0022"
+          stroke="white"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <path
+          d="M9 1.00146L1 7.00146"
+          stroke="white"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
     </button>
-    <XButton36
-      class="absolute right-0 z-10"
-      @click.prevent="closeModal()"
-    ></XButton36>
-    <div class="pt-12 flex flex-col" v-if="etape === 1">
-      <h4 class="text-center">What’s the name of</h4>
-      <h4 class="text-center">this Ticket Category?</h4>
+    <div class="pt-3 flex flex-col" v-if="etape === 1">
+      <h4 class="text-center">Name</h4>
       <InputModel
-        class="mt-6"
+        class="mt-6 uppercase"
         :data="cathegory"
         v-model="cathegory.value"
         :errors="errors[cathegory.name]"
@@ -23,19 +37,20 @@
       </InputModel>
       <button
         :class="
-          cathegory.value !== '' ? 'bg-white' : 'bg-Gravel cursor-not-allowed'
+          cathegory.value.length >= 3
+            ? 'bg-white'
+            : 'bg-Gravel cursor-not-allowed'
         "
-        class="text-black rounded-full h-16 px-10 mx-auto mt-6"
+        class="text-black rounded-full px-5 py-1.5 mx-auto mt-6"
         @click.prevent="cathegory.value !== '' ? etape++ : ''"
       >
-        <h4 class="text-black">Continue</h4>
+        <p class="text-black font-black">Continue</p>
       </button>
     </div>
-    <div class="pt-12 flex flex-col" v-if="etape === 2">
-      <h4 class="text-center">What’s the price of</h4>
-      <h4 class="text-center">this Ticket Category?</h4>
+    <div class="pt-3 flex flex-col" v-if="etape === 2">
+      <h4 class="text-center">Price</h4>
       <PriceInputModel
-        class="mt-6"
+        class="mt-6 uppercase"
         :data="price"
         v-model="price.value"
         :errors="errors[price.name]"
@@ -45,30 +60,66 @@
         :class="
           price.value !== '' ? 'bg-white' : 'bg-Gravel cursor-not-allowed'
         "
-        class="text-black rounded-full h-16 px-10 mx-auto mt-6"
+        class="text-black rounded-full px-5 py-1.5 mx-auto mt-6"
         @click.prevent="price.value !== '' ? etape++ : ''"
       >
-        <h4 class="text-black">Continue</h4>
+        <p class="text-black font-black">Continue</p>
       </button>
     </div>
-    <div class="pt-12 flex flex-col" v-if="etape === 3">
-      <h4 class="text-center">What’s the colour of</h4>
-      <h4 class="text-center">this Ticket Category?</h4>
+    <div class="pt-3 flex flex-col" v-if="etape === 3">
+      <h4 class="text-center mb-8">Design</h4>
       <label
         class="flex text-H4 text-White font-black leading-none my-4"
         for=""
+        v-if="!model"
       >
         MODEL
       </label>
-      <div style="display: flex; justify-content: center; align-items: center; width: 100%;" v-if="model">
-        <video id="videoI" src="/img/diamondticket.mp4" autoplay loop style="width: 70%; height: auto; object-fit: cover;"></video>
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+        "
+        v-if="model"
+      >
+        <video
+          id="videoI"
+          src="/img/diamondticket.mp4"
+          autoplay
+          loop
+          style="width: 70%; height: auto; object-fit: cover"
+        ></video>
         <!-- <canvas id="videoT" width="400" height="300"></canvas> -->
       </div>
-      <div class="flex items-start self-start gap-3 items-center">
-        <SvgTarget color1="#BEBEBE" class="m-auto" target="Conceptor">
+      <div class="flex self-start gap-3 mt-3 items-center">
+        <SvgTarget
+          :width="24"
+          :height="24"
+          color1="#BEBEBE"
+          class="m-auto"
+          target="Conceptor"
+        >
         </SvgTarget>
-        <label class="underline cursor-pointer" for="modelFileInput">Upload 3d File</label>
-        <input class="hidden" type="file" @change="uploadModel($event)" id="modelFileInput">
+        <label
+          class="underline cursor-pointer font-medium"
+          for="modelFileInput"
+          v-if="!model"
+          >Upload 3d File</label
+        >
+        <label
+          class="underline cursor-pointer font-medium"
+          for="modelFileInput"
+          v-if="model"
+          >Change File</label
+        >
+        <input
+          class="hidden"
+          type="file"
+          @change="uploadModel($event)"
+          id="modelFileInput"
+        />
       </div>
       <label
         class="flex text-H4 text-White font-black leading-none my-4 mt-8"
@@ -81,75 +132,96 @@
           <div class="flex space-x-2">
             <div
               v-for="item in colorArray"
-              class="h-6 w-6 rounded"
+              :key="item"
+              class="h-6 w-6 rounded cursor-pointer"
               :style="'background: #' + item"
               :class="item === color ? 'border-2 border-White' : ''"
               @click.prevent="color = item"
-            ></div>
+            >
+              <svg
+                class="mt-1 mx-auto"
+                v-if="item === color"
+                width="12"
+                height="13"
+                viewBox="0 0 12 13"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 6.71429L3.73888 11.4395C4.13271 12.1189 5.12012 12.1001 5.48773 11.4061L11 1"
+                  stroke="white"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
           </div>
           <div class="flex space-x-2">
             <div
               v-for="item in colorArrayBis"
-              class="h-6 w-6 rounded"
+              :key="item"
+              class="h-6 w-6 rounded cursor-pointer"
               :style="'background: #' + item"
               :class="item === color ? 'border-2 border-White' : ''"
               @click.prevent="color = item"
-            ></div>
+            >
+              <svg
+                v-if="item === color"
+                class="mt-1 mx-auto"
+                width="12"
+                height="13"
+                viewBox="0 0 12 13"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 6.71429L3.73888 11.4395C4.13271 12.1189 5.12012 12.1001 5.48773 11.4061L11 1"
+                  stroke="white"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
           </div>
-        <div class="flex items-start my-2 self-start gap-3 items-center">
-          <SvgTarget color1="#BEBEBE" class="m-auto" :height="32" :width="32" target="Colour">
-          </SvgTarget>
-          <label class="underline cursor-pointer">Pick a custom color</label>
-        </div>
-
+          <div class="flex items-start my-2 self-start gap-3">
+            <SvgTarget
+              color1="#BEBEBE"
+              class="m-auto"
+              :height="24"
+              :width="24"
+              target="Colour"
+            >
+            </SvgTarget>
+            <label class="underline cursor-pointer font-medium"
+              >Pick a custom color</label
+            >
+          </div>
         </div>
       </div>
 
       <button
         :class="color !== '' ? 'bg-white' : 'bg-Gravel cursor-not-allowed'"
-        class="text-black rounded-full h-16 px-10 mx-auto mt-6"
+        class="text-black rounded-full px-5 py-1.5 mx-auto mt-6"
         @click.prevent="color !== '' ? etape++ : ''"
       >
-        <h4 class="text-black">Continue</h4>
+        <p class="text-black font-black">Continue</p>
       </button>
     </div>
-    <div class="pt-12 flex flex-col" v-if="etape === 4">
-      <h4 class="text-center">How many tickets do you</h4>
-      <h4 class="text-center">want sell from this category?</h4>
-      <label
-        class="flex text-H4 text-White font-black leading-none mt-6"
-        for=""
-      >
-        TYPE
-      </label>
-      <p class="mt-1">Standing or Sitting?</p>
-
-      <div class="switchParent">
-        <input type="checkbox" v-model="enabled" class="switch" id="stand">
-        <div class="switch_1_ON" v-if="!enabled">
-          <BootcampsVue color1="#111111" width="24" height="24" />
-        </div>
-        <div class="switch_1_OFF" v-else >
-          <BootcampsVue color1="#404040" width="24" height="24" />
-        </div>
-        <div class="switch_2_ON" v-if="enabled">
-          <StandingVue color1="#111111" width="24" height="24"  />
-        </div>
-        <div class="switch_2_OFF" v-else>
-          <StandingVue :color1="'#404040'" width="24" height="24"/>
-        </div>
-      </div>
-      <div v-if="!enabled" class="flex justify-between items-center">
-        <div class="flex w-1/2 space-x-2">
+    <div class="flex pt-3 flex-col" v-if="etape === 4">
+      <h4 class="text-center font-black text-White">Quantity</h4>
+      <div class="flex justify-between items-center">
+        <div class="flex w-1/2 space-x-2 mt-8">
           <InputModel
-            class="mt-6"
+            :paddingY="'h-15'"
+            :fontBold="'font-bold'"
             :data="column"
             v-model="column.value"
             :errors="errors[column.name]"
           >
           </InputModel>
           <InputModel
-            class="mt-6"
+            :paddingY="'h-15'"
+            :fontBold="'font-bold'"
             :data="row"
             v-model="row.value"
             :errors="errors[row.name]"
@@ -158,26 +230,19 @@
         </div>
         <div class="mt-12 mr-4">
           <p class="">Number of Seats</p>
-          <p class="text-White font-bold">{{ column.value * row.value }}</p>
+          <p class="text-White text-left font-bold">
+            {{ column.value * row.value }}
+          </p>
         </div>
-      </div>
-      <div v-else>
-        <InputModel
-          class="mt-6"
-          :data="quantities"
-          v-model="quantities.value"
-          :errors="errors[quantities.name]"
-        >
-        </InputModel>
       </div>
       <button
         :class="
           price.value !== '' ? 'bg-white' : 'bg-Gravel cursor-not-allowed'
         "
-        class="text-black rounded-full h-16 px-10 mx-auto mt-6"
+        class="text-black rounded-full px-5 py-1.5 mx-auto mt-6"
         @click.prevent="submit()"
       >
-        <h4 class="text-black">Continue</h4>
+        <p class="text-black font-black">Continue</p>
       </button>
     </div>
   </div>
@@ -187,67 +252,57 @@
 //components
 import InputModel from "@components/inputs/InputModel.vue";
 import PriceInputModel from "@components/inputs/PriceInputModel.vue";
-import XButton36 from "@components/buttons/XButton36.vue";
 import EventServices from "@axios/services/eventServices";
-import Button40Slot from "@components/buttons/Button40Slot.vue";
-import { RefreshIcon } from "@heroicons/vue/outline";
-import { Switch } from "@headlessui/vue";
 import SvgTarget from "../../../SvgTarget.vue";
-import { nextTick } from 'vue';
-import StandingVue from '../../../../assets/icons/Standing.vue';
-import BootcampsVue from '../../../../assets/icons/Bootcamps.vue';
-
+import StandingVue from "../../../../assets/icons/Standing.vue";
+import BootcampsVue from "../../../../assets/icons/Bootcamps.vue";
 
 export default {
   components: {
-    XButton36,
     InputModel,
     PriceInputModel,
-    Button40Slot,
-    RefreshIcon,
-    Switch,
     SvgTarget,
     StandingVue,
-    BootcampsVue
+    BootcampsVue,
   },
   props: ["data", "yourPerm", "action"],
   data() {
     return {
       etape: 1,
       cathegory: {
-        label: "Category name",
+        label: "Ticket name",
         placeholder: "Name",
         name: "cathegory",
         type: "text",
         value: "",
       },
       price: {
-        label: "PRICE",
-        placeholder: "0,00",
+        label: "Ticket Price",
+        placeholder: "120",
         name: "price",
         type: "number",
         value: "",
         class: "text-center",
       },
       colorArray: [
-        '1ABC9C',
-        '5BFFA1',
-        '71C6FF',
-        '9B59B6',
-        'E91E63',
-        'FFB800',
-        'E74C3C',
-        'BEBEBE'
+        "1ABC9C",
+        "5BFFA1",
+        "71C6FF",
+        "9B59B6",
+        "E91E63",
+        "FFB800",
+        "E74C3C",
+        "BEBEBE",
       ],
       colorArrayBis: [
-        '005B14',
-        '00AE40',
-        '0066FF',
-        'CD6DFB',
-        '7500BD',
-        'FF7A30',
-        'F82E2E',
-        '505050',
+        "005B14",
+        "00AE40",
+        "0066FF",
+        "CD6DFB",
+        "7500BD",
+        "FF7A30",
+        "F82E2E",
+        "505050",
       ],
       color: "",
       type: "",
@@ -312,32 +367,32 @@ export default {
       ];
     },
     uploadModel(event) {
-      console.log(event)
-      this.model = true
+      console.log(event);
+      this.model = true;
       // nextTick(() => {
       //   this.draw()
       // })
     },
     draw() {
       const videoUrl = "/img/ticketLogo.mp4"; // Remplacez par le lien direct vers votre vidéo
-      const canvas = document.getElementById('videoT');
-      console.log(canvas)
-      const ctx = canvas.getContext('2d');
-      const video = document.createElement('video');
+      const canvas = document.getElementById("videoT");
+      console.log(canvas);
+      const ctx = canvas.getContext("2d");
+      const video = document.createElement("video");
       video.src = videoUrl;
 
-      video.addEventListener('loadedmetadata', () => {
-        console.log("lodaded video")
-        video.play()
+      video.addEventListener("loadedmetadata", () => {
+        console.log("lodaded video");
+        video.play();
 
         this.processFrames(video, ctx);
       });
 
-      video.addEventListener('ended', () => {
+      video.addEventListener("ended", () => {
         video.pause();
-      }); 
+      });
 
-      video.addEventListener('play', () => {
+      video.addEventListener("play", () => {
         this.updateCanvas(video, ctx);
       });
 
@@ -350,15 +405,18 @@ export default {
 
       ctx.drawImage(video, 0, 0, ctx.canvas.width, ctx.canvas.height);
 
-      const imageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+      const imageData = ctx.getImageData(
+        0,
+        0,
+        ctx.canvas.width,
+        ctx.canvas.height
+      );
       const data = imageData.data;
-
 
       for (let i = 0; i < data.length; i += 4) {
         const red = data[i];
         const green = data[i + 1];
         const blue = data[i + 2];
-
 
         if (red === 1 && green === 1 && blue === 1) {
           data[i + 3] = 0; // Définir la transparence à 0 pour rendre le pixel transparent
@@ -413,105 +471,11 @@ export default {
 </script>
 
 <style scoped>
-
 video {
-  filter: url(#fff)
+  filter: url(#fff);
 }
-
-/* svg {
-  display: initial;
-} */
-
-
-/* #stand {
-    display: none;
-} */
-
-/* #stand:not(:checked)~label.checkbox_true {
-    display: none;
-}
-
-#stand:not(:checked)~label.checkbox_false {
-    display: inline;
-}
-
-#stand:checked~label.checkbox_true {
-    display: inline;
-}
-
-#stand:checked~label.checkbox_false {
-    display: none;
-} */
 
 span.selected {
-    text-decoration: underline;
+  text-decoration: underline;
 }
-
-
-
-:root{
-    --switch-height: 50px;
-    --switch-width: 100px;
-    --switch-knob-diameter: 45px;
-}
-
-
-.switch{
-    display: block;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    width: 95px;
-    height: 50px;
-    background-color: #1A1A1A !important;
-    background-image: none !important;
-    border-radius: calc(50px / 2);
-    position: relative;
-    border: none;
-}
-
-
-
-
-.switchParent {
-    margin: 4px 0;
-    width: 95px;
-    height: 50px;
-    position: relative;
-}
-
-.switch_1_ON, .switch_1_OFF, .switch_2_ON, .switch_2_OFF {
-  width: 38px;
-  top: 6px;
-  height: 38px;
-  position: absolute;
-  border-radius: 19px;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.switchParent > *:focus {
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-.switch_1_ON, .switch_1_OFF {
-  left: 6px;
-}
-
-.switch_1_ON, .switch_2_ON {
-  background-color: white;
-}
-
-.switch_2_ON, .switch_2_OFF {
-  right: 6px;
-}
-
-
-
 </style>
-
-

@@ -8,7 +8,7 @@
       <h2 class="text-white">&lsaquo;</h2>
     </button>
 
-    <div class="pt-6 px-5 flex flex-col" v-if="etape === 1">
+    <div class="flex flex-col pt-6" v-if="etape === 1">
       <h4 class="text-center">How do you want to</h4>
       <h4 class="text-center">name this event?</h4>
       <InputModel class="mt-8" :data="name" v-model="name.value"></InputModel>
@@ -19,7 +19,7 @@
         {{ errors }}
       </p>
       <button
-        class="bg-white flex item-center rounded-full p-1.5 mb-7 px-5 mx-auto mt-8"
+        class="bg-white flex item-center rounded-full p-1.5 px-5 mx-auto mt-8"
         @click.prevent="submit()"
       >
         <p class="text-Anthracite font-black">Create Event</p>

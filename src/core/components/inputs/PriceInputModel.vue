@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-col justify-between">
     <label
-      class="flex text-H4 text-White font-black leading-none"
+      class="flex text-White font-black text-base leading-none"
       :for="data.name"
     >
-      {{ data.label }} <GoldRC style="margin-left: 4px; margin-top: 2px;" width="16" height="16" />
-      <span class="text-Red ml-2 text-H6 font-normal" id="email-error">{{
+      {{ data.label }} <GoldRC style="margin-left: 4px;" width="16" height="16" />
+      <span class="text-Red ml-2 text-H6" id="email-error">{{
         !errors.hasOwnProperty(data.name)
           ? ""
           : errorsHelpers.affichageError(errors[data.name].message)
@@ -19,7 +19,7 @@
         :id="data.name"
         :placeholder="data.placeholder ? data.placeholder : data.label"
         :autocomplete="data.name"
-        class="block w-full font-normal py-3 px-6 rounded-Large text-H4 text-White bg-Anthracite border-LightGrey leading-none focus:border-White border-2 focus:ring-0 focus:outline-none"
+        class="block w-full font-bold py-5 px-6 rounded-Large text-H2 text-White bg-DarkRock border-DarkRock border-2 leading-none focus:ring-0 focus:border-DarkRock focus:outline-none"
         :class="data.class"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"

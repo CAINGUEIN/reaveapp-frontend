@@ -104,15 +104,25 @@ module.exports = {
       },
     },
     screens: {
-      "2xl": { max: "1535px" },
+      "max-2xl": { max: "1535px" },
 
-      xl: { max: "1279px" },
+      "max-xl": { max: "1279px" },
 
-      lg: { max: "1023px" },
+      "max-lg": { max: "1023px" },
 
-      md: { max: "767px" },
+      "max-md": { max: "767px" },
 
-      sm: { max: "639px" },
+      "max-sm": { max: "639px" },
+
+      sm: { min: "640px" },
+
+      md: { min: "768px" },
+
+      lg: { min: "1024px	" },
+
+      xl: { min: "1280px" },
+
+      "2xl": { min: "1536px" },
     },
   },
   plugins: [

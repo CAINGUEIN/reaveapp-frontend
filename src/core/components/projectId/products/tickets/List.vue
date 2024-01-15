@@ -4,7 +4,7 @@
       <div class="flex gap-3">
         <button
           class="bg-White text-Anthracite h-10 w-10 rounded-full items-center hover:bg-DarkRock hover:text-White"
-          @click.prevent="$emit('open')"
+          @click.prevent="$emit('open', 'Add')"
           v-if="
             (yourPerm === 'Owner' || yourPerm === 'Admin') && !data.isPublished
           "
@@ -240,17 +240,7 @@
                             item.name === 'Remove' ? 'text-Red' : 'text-White',
                             'block px-4 py-2 text-sm',
                           ]"
-                          @click="
-                            item.name === 'Modify'
-                              ? ((open = true),
-                                (select = user),
-                                (modalView = 'Modify'))
-                              : item.name === 'Remove'
-                              ? ((open = true),
-                                (select = user),
-                                (modalView = 'Remove'))
-                              : ''
-                          "
+                          @click.prevent="$emit('open', item.name)"
                         >
                           {{ item.name }}
                         </button>
@@ -272,16 +262,7 @@ import Button40Slot from "@components/buttons/Button40Slot.vue";
 import GoldRC from "@assets/icons/Wallet/GoldRC.vue";
 
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
-import {
-  AdjustmentsIcon,
-  ChevronDownIcon,
-  DotsHorizontalIcon,
-  PlusIcon,
-  SearchIcon,
-  ViewBoardsIcon,
-  ViewGridIcon,
-  ViewListIcon,
-} from "@heroicons/vue/outline";
+import { DotsHorizontalIcon, PlusIcon } from "@heroicons/vue/outline";
 import SvgTarget from "../../../SvgTarget.vue";
 
 export default {
@@ -293,12 +274,6 @@ export default {
     MenuItem,
     MenuItems,
     PlusIcon,
-    SearchIcon,
-    AdjustmentsIcon,
-    ViewListIcon,
-    ViewBoardsIcon,
-    ViewGridIcon,
-    ChevronDownIcon,
     SvgTarget,
     DotsHorizontalIcon,
   },
