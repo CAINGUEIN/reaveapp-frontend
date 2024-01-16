@@ -27,7 +27,7 @@
       </svg>
     </button>
     <div class="pt-3 flex flex-col" v-if="etape === 1">
-      <h4 class="text-center">Name</h4>
+      <h4 class="text-center font-black">Name</h4>
       <InputModel
         class="mt-6 uppercase"
         :data="cathegory"
@@ -48,9 +48,10 @@
       </button>
     </div>
     <div class="pt-3 flex flex-col" v-if="etape === 2">
-      <h4 class="text-center">Price</h4>
+      <h4 class="text-center font-black">Price</h4>
       <PriceInputModel
         class="mt-6 uppercase"
+        :type="'currency'"
         :data="price"
         v-model="price.value"
         :errors="errors[price.name]"
@@ -67,7 +68,7 @@
       </button>
     </div>
     <div class="pt-3 flex flex-col" v-if="etape === 3">
-      <h4 class="text-center mb-8">Design</h4>
+      <h4 class="text-center mb-8 font-black">Design</h4>
       <label
         class="flex text-H4 text-White font-black leading-none my-4"
         for=""
@@ -93,7 +94,7 @@
         ></video>
         <!-- <canvas id="videoT" width="400" height="300"></canvas> -->
       </div>
-      <div class="flex self-start gap-3 mt-3 items-center">
+      <div class="flex self-start gap-3 items-center">
         <SvgTarget
           :width="24"
           :height="24"
@@ -106,7 +107,7 @@
           class="underline cursor-pointer font-medium"
           for="modelFileInput"
           v-if="!model"
-          >Upload 3d File</label
+          >Upload 3D File</label
         >
         <label
           class="underline cursor-pointer font-medium"
@@ -183,19 +184,6 @@
               </svg>
             </div>
           </div>
-          <div class="flex items-start my-2 self-start gap-3">
-            <SvgTarget
-              color1="#BEBEBE"
-              class="m-auto"
-              :height="24"
-              :width="24"
-              target="Colour"
-            >
-            </SvgTarget>
-            <label class="underline cursor-pointer font-medium"
-              >Pick a custom color</label
-            >
-          </div>
         </div>
       </div>
 
@@ -212,7 +200,7 @@
       <div class="flex justify-between items-center">
         <div class="flex w-1/2 space-x-2 mt-8">
           <InputModel
-            :paddingY="'h-15'"
+            :paddingY="'h-12'"
             :fontBold="'font-bold'"
             :data="column"
             v-model="column.value"
@@ -220,7 +208,7 @@
           >
           </InputModel>
           <InputModel
-            :paddingY="'h-15'"
+            :paddingY="'h-12'"
             :fontBold="'font-bold'"
             :data="row"
             v-model="row.value"
@@ -309,21 +297,21 @@ export default {
       model: false,
       column: {
         label: "COLUMNS",
-        placeholder: "12",
+        placeholder: "0",
         name: "column",
         type: "number",
         value: "",
       },
       row: {
         label: "ROWS",
-        placeholder: "12",
+        placeholder: "0",
         name: "row",
         type: "number",
         value: "",
       },
       quantities: {
         label: "QUANTITIES",
-        placeholder: "12",
+        placeholder: "0",
         name: "quantities",
         type: "number",
         value: "",

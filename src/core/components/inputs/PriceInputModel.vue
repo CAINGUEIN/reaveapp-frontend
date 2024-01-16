@@ -4,7 +4,7 @@
       class="flex text-White font-black text-base leading-none"
       :for="data.name"
     >
-      {{ data.label }} <GoldRC style="margin-left: 4px;" width="16" height="16" />
+      {{ data.label }}
       <span class="text-Red ml-2 text-H6" id="email-error">{{
         !errors.hasOwnProperty(data.name)
           ? ""
@@ -12,21 +12,33 @@
       }}</span>
     </label>
 
-    <div class="mt-3 relative">
-      <input
-        :type="data.type"
-        :name="data.name"
-        :id="data.name"
-        :placeholder="data.placeholder ? data.placeholder : data.label"
-        :autocomplete="data.name"
-        class="block w-full font-bold py-5 px-6 rounded-Large text-H2 text-White bg-DarkRock border-DarkRock border-2 leading-none focus:ring-0 focus:border-DarkRock focus:outline-none"
-        :class="data.class"
-        :value="modelValue"
-        @input="$emit('update:modelValue', $event.target.value)"
-        :disabled="store.loading"
-        aria-describedby="email-error"
-        aria-invalid="true"
-      />
+    <div
+      class="mt-3 relative w-full font-black py-3 px-6 rounded-Large text-H2 text-White bg-DarkRock border-DarkRock border-2 leading-none focus:ring-0 focus:border-DarkRock focus:outline-none"
+    >
+      <div class="flex flex-row justify-center">
+        <input
+          :type="data.type"
+          :name="data.name"
+          :id="data.name"
+          maxlength="5"
+          :placeholder="data.placeholder ? data.placeholder : data.label"
+          :autocomplete="data.name"
+          class="max-w-full min-w-auto font-black text-H2 pr-0 text-White bg-DarkRock border-DarkRock leading-none focus:ring-0 focus:border-DarkRock focus:outline-none"
+          :class="data.class"
+          :value="modelValue"
+          @input="$emit('update:modelValue', $event.target.value)"
+          :disabled="store.loading"
+          aria-describedby="email-error"
+          aria-invalid="true"
+        />
+        <span
+          :class="modelValue.length === 0 ? ' text-gray-500' : 'text-White'"
+          class="font-black text-H2 my-auto"
+        >
+          €
+        </span>
+      </div>
+
       <div
         v-if="errors.hasOwnProperty(data.name)"
         class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"
@@ -41,7 +53,6 @@
 import { ExclamationCircleIcon } from "@heroicons/vue/solid";
 import errorsHelpers from "@core/support/functions/errorsHelpers";
 import useStoreAuth from "@stores/auth";
-import GoldRC from "../../assets/icons/Wallet/GoldRC.vue";
 
 /**
  * composant qui gere l'affichage
@@ -49,7 +60,7 @@ import GoldRC from "../../assets/icons/Wallet/GoldRC.vue";
  */
 export default {
   components: {
-    ExclamationCircleIcon,GoldRC
+    ExclamationCircleIcon,
   },
   props: {
     /** :data="inputExemple"
@@ -83,10 +94,7 @@ export default {
 };
 </script>
 
-
 <style scoped>
-
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -94,7 +102,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 

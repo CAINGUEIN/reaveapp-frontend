@@ -19,6 +19,7 @@
         :id="data.name"
         :placeholder="data.placeholder"
         :autocomplete="data.name"
+        min="0"
         class="block w-full placeholder:font-semibold py-2 px-4 transition-all duration-200 text-H6 text-White bg-Anthracite border-DarkRock leading-none focus:border-White border-2 focus:ring-0 focus:outline-none"
         :class="`${paddingY} ${borderRadius} ${fontBold}`"
         :value="modelValue"
