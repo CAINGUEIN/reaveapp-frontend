@@ -1,6 +1,7 @@
 import Academy from "./Academy.vue";
 import Events from "./Events.vue";
 import Block from "./Block.vue";
+import Bootcamps from "./Bootcamps.vue";
 import Calendar from "./Calendar.vue";
 import Schedule from "./Schedule.vue";
 import Check from "./Check.vue";
@@ -10,6 +11,7 @@ import Filters from "./Filters.vue";
 import Handicap from "./Handicap.vue";
 import Ligns from "./Ligns.vue";
 import lgsq from "./lgsq.vue";
+import Timer from "./Timer.vue";
 import LOLIcon from "./LeagueOfLegend.vue";
 import CSGO from "./CSGO.vue";
 import Smash from "./SmashLogo.vue";
@@ -26,6 +28,7 @@ import RocketLeague from "./RocketLeagueLogo.vue";
 import VALOIcon from "./Valorant.vue";
 import Trash from "./Trash.vue";
 import mcdoLogo from "./mcdoLogo.vue";
+import Maps from "./Maps.vue";
 import PAMLogo from "./PAMLogo.vue";
 import MuseeFabre from "./MuseeFabre.vue";
 import Capacity from "./Capacity.vue";
@@ -35,9 +38,12 @@ export {
   Academy,
   Events,
   MuseeFabre,
+  Maps,
+  Bootcamps,
   PAMLogo,
   mcdoLogo,
   Block,
+  Timer,
   Calendar,
   RocketLeague,
   Check,

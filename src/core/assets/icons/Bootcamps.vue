@@ -1,8 +1,8 @@
 <template>
   <div>
     <svg
-      width="24"
-      height="24"
+      :width="width"
+      :height="height"
       viewBox="0 0 32 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -38,3 +38,26 @@
     </svg>
   </div>
 </template>
+
+<script>
+  export default {
+    props: {
+      width: {
+        type: Number,
+        default: 16
+      },
+      height: {
+        type: Number,
+        default: 16
+      },
+    color2: {
+      type: String,
+      default: "#808080",
+    },
+    color1: {
+      type: String,
+      default: "#E5E5E5",
+    },
+    },
+  }
+</script>

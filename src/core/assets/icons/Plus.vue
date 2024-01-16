@@ -10,13 +10,13 @@
       <path
         d="M5 12H19"
         :stroke="color1"
-        stroke-width="3"
+        stroke-width="2"
         stroke-linecap="round"
       />
       <path
         d="M12 5V19"
         :stroke="color1"
-        stroke-width="3"
+        stroke-width="2"
         stroke-linecap="round"
       />
     </svg>

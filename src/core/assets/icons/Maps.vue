@@ -1,16 +1,53 @@
 <template>
   <div>
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      :width="width"
+      :height="height"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M12 21.75C17.3848 21.75 21.75 17.3848 21.75 12C21.75 6.61522 17.3848 2.25 12 2.25C6.61522 2.25 2.25 6.61522 2.25 12C2.25 17.3848 6.61522 21.75 12 21.75Z"
-        stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" />
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+      />
       <path
         d="M15.5747 2.91797V6.3587C15.5747 7.51832 14.6363 8.4567 13.4767 8.4567H12.2255C11.9432 8.4567 11.7144 8.68557 11.7144 8.96785V9.89097C11.7144 11.0506 12.6527 11.989 13.8124 11.989C14.7889 11.989 15.5747 12.7824 15.5747 13.7513V14.4303C15.5747 15.4068 16.3681 16.1926 17.337 16.1926H20.7854"
-        stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" />
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+      />
       <path
         d="M2.30127 10.8809H5.20033C6.16923 10.8809 6.95503 11.6667 6.95503 12.6356V13.1696C6.95503 14.1385 7.74082 14.9243 8.70972 14.9243H9.25139C10.1364 14.9243 10.884 15.588 10.9908 16.4654C11.0824 17.2054 10.7009 17.9149 10.0296 18.2506L6.44388 20.0358"
-        stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" />
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+      />
     </svg>
-
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    width: {
+      type: Number,
+      default: 16,
+    },
+    height: {
+      type: Number,
+      default: 16,
+    },
+    color2: {
+      type: String,
+      default: "#808080",
+    },
+    color1: {
+      type: String,
+      default: "#E5E5E5",
+    },
+  },
+};
+</script>
