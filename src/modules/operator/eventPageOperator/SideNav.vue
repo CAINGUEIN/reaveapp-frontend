@@ -23,7 +23,7 @@
         :class="section.cathegory == 'Search' ? 
         'flex flex-col mx-8' : 'flex flex-col mt-5 mx-8'">
         <p
-          class="flex items-center text-LightGrey font-medium text-xl cursor-pointer p-2 rounded-lg"
+          class="flex items-center text-LightGrey font-medium text-xl cursor-pointer px-2 py-1.5 rounded-lg"
           @click="
             section.items.length > 0
               ? section.open === true

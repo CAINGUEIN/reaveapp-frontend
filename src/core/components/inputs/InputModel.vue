@@ -24,6 +24,7 @@
         :class="`${paddingY} ${borderRadius} ${fontBold}`"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
+        @focusout="$emit('update:value', $event.target.value)"
         :disabled="store.loading"
         aria-describedby="email-error"
         aria-invalid="true"
@@ -89,7 +90,7 @@ export default {
       default: {},
     },
   },
-  emits: ["update:modelValue"],
+  emits: ["update:modelValue", "update:value"],
   data() {
     const store = useStoreAuth();
     return {

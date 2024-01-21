@@ -9,9 +9,16 @@
     >
       <div class="flex flex-col w-full">
         <div
+          @mouseover="hoverEnter"
+          @mouseleave="hoverLeave"
           class="my-auto w-[136px] mx-auto p-3 cursor-pointer rounded-xl label hover:bg-LightRock text-Gravel hover:text-White"
         >
-          <Picture class="mx-auto" :width="24" :height="24"></Picture>
+          <Picture
+            class="mx-auto"
+            :color3="color"
+            :width="24"
+            :height="24"
+          ></Picture>
           <p class="text-sm mt-2 w-fit font-medium">
             {{ props.data.label }}
           </p>
@@ -35,8 +42,8 @@
     >
       <div class="flex flex-col w-full">
         <div
-          @mouseover="hoverEdit = true"
-          @mouseleave="hoverEdit = false"
+          @mouseover="hoverEnter"
+          @mouseleave="hoverLeave"
           class="my-auto min-w-full min-h-full cursor-pointer hover:opacity-50 hover:blur-sm rounded-xl text-White"
         >
           <label :for="data.name">
@@ -92,6 +99,7 @@ import useStoreSpace from "@stores/storeSpace";
 const emit = defineEmits(["goToSpace", "cropImage", "reset"]);
 let progress = ref(0);
 const storeSpace = useStoreSpace();
+const color = ref("#000");
 const hoverEdit = ref(false);
 let image = ref({});
 let previewImage = ref("");
@@ -105,6 +113,16 @@ const props = defineProps({
   modelValue: { Object, String },
   error: Object,
 });
+
+const hoverEnter = () => {
+  hoverEdit.value = true;
+  color.value = "#2a2a2a";
+};
+
+const hoverLeave = () => {
+  hoverEdit.value = false;
+  color.value = "#000";
+};
 
 const emitImg = (e) => {
   image.value = e.target.files[0];

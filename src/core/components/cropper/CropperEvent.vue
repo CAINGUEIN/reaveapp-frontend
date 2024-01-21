@@ -3,14 +3,16 @@
     <div class="flex flex-col">
       <section class="">
         <div class="img-cropper">
-
           <!-- Close cropper button -->
-          <XButton36  @click="$emit('closeAction')" class="absolute right-[-70px] top-[-65px] px-3 z-10"></XButton36>
-          
+          <XButton36
+            @click="$emit('closeAction')"
+            class="absolute right-[-70px] top-[-65px] px-3 z-10"
+          ></XButton36>
+
           <vue-cropper
-            class="h-[450px] w-[450px] mx-auto"
+            class="mx-auto w-[450px] h-[450px]"
             ref="cropper"
-            :aspect-ratio="100 / 100"
+            :aspect-ratio="type === 'posterPic' ? 1 : 16 / 9"
             :src="src"
             preview=".preview"
           />
@@ -21,19 +23,27 @@
           <button
             class="w-40 h-10 mx-2 mt-5 bg-white text-Anthracite rounded-full"
             @click="reset"
-          >Reset</button>
+          >
+            Reset
+          </button>
           <button
             class="w-10 h-10 mx-2 mt-5 bg-white text-Anthracite rounded-full"
             @click="rotate(-90)"
-          >-90°</button>
+          >
+            -90°
+          </button>
           <button
             class="w-10 h-10 mx-2 mt-5 bg-white text-Anthracite rounded-full"
             @click="rotate(90)"
-          >+90°</button>
+          >
+            +90°
+          </button>
           <button
             class="w-40 h-10 mx-2 mt-5 bg-white text-Anthracite rounded-full"
             @click="cropImage"
-          >Save</button>
+          >
+            Save
+          </button>
         </div>
       </section>
     </div>
@@ -46,26 +56,28 @@ import XButton36 from "@components/buttons/XButton36.vue";
 import "cropperjs/dist/cropper.css";
 //tool
 import useStoreAuth from "@stores/auth";
-//services
-import UserUpdateServices from "@axios/services/userUpdateServices.js";
-import ToolsButtonSubmit from "../buttons/ToolsButtonSubmit.vue";
-import EventServices from "../../../plugins/axios/services/eventServices";
-import VenueServices from "../../../plugins/axios/services/venueServices";
-import UploadServices from "../../../plugins/axios/services/uploadServices";
-
 
 export default {
   components: {
     XButton36,
     VueCropper,
-    ToolsButtonSubmit,
   },
+  emits: [
+    "callFromCrop",
+    "callFromCropSecondPic",
+    "callFromCropDescPic",
+    "closeModal",
+  ],
   props: {
     src: {
       type: String,
     },
     data: {
       type: Object,
+    },
+    type: {
+      type: String,
+      default: "",
     },
   },
   data() {
@@ -76,7 +88,6 @@ export default {
     };
   },
   methods: {
-    
     dataURLtoFile(dataurl) {
       let arr = dataurl.split(",");
       let mime = arr[0].match(/:(.*?);/)[1];
@@ -88,18 +99,40 @@ export default {
       while (n--) {
         u8arr[n] = bstr.charCodeAt(n);
       }
-      return new File(
-        [u8arr],
-        this.data._id + "event." + type[1],
-        {
+      if (this.type === "secondPic") {
+        return new File([u8arr], `second.${this.data._id}.${type[1]}`, {
           type: mime,
-        }
-      );
+        });
+      } else if (this.type === "descPic") {
+        return new File([u8arr], `desc.${this.data._id}.${type[1]}`, {
+          type: mime,
+        });
+      } else {
+        return new File([u8arr], `event.${this.data._id}.${type[1]}`, {
+          type: mime,
+        });
+      }
     },
     async cropImage() {
       this.cropImg = this.$refs.cropper.getCroppedCanvas().toDataURL();
       let submitImg = this.dataURLtoFile(this.cropImg);
-      this.$emit('callFromCrop', { selectedPic: submitImg });
+      console.log(this.type);
+      if (this.type === "secondPic") {
+        this.$emit("callFromCropSecondPic", {
+          selectedPic: submitImg,
+          imageName: this.cropImg.name,
+        });
+      } else if (this.type === "descPic") {
+        this.$emit("callFromCropDescPic", {
+          selectedPic: submitImg,
+          imageName: this.cropImg.name,
+        });
+      } else {
+        this.$emit("callFromCrop", {
+          selectedPic: submitImg,
+          imageName: this.cropImg.name,
+        });
+      }
     },
     flipX() {
       const dom = this.$refs.flipX;

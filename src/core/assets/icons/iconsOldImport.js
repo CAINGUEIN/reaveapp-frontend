@@ -21,6 +21,7 @@ import Overwatch from "./Overwatch.vue";
 import Plan from "./Plan.vue";
 import Plus from "./Plus.vue";
 import Projects from "./Projects.vue";
+import Preview from "./Preview.vue";
 import Seat from "./Seat.vue";
 import smsq from "./smsq.vue";
 import Standing from "./Standing.vue";
@@ -34,6 +35,7 @@ import MuseeFabre from "./MuseeFabre.vue";
 import Capacity from "./Capacity.vue";
 import Profile from "./Profile.vue";
 import Settings from "./Settings.vue";
+import Picture from "./Picture.vue";
 export {
   Academy,
   Events,
@@ -60,6 +62,8 @@ export {
   Options,
   Plan,
   Plus,
+  Picture,
+  Preview,
   Profile,
   Projects,
   Schedule,

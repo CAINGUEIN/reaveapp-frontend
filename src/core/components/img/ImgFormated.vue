@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     async setSrcImg() {
-      if (this.srcImg === "") {
+      if (this.srcImg === "" || this.srcImg === undefined) {
         if (this.type == "avatar" && localStorage.getItem("color")) {
           this.srcImg =
             "/src/core/assets/img/profilePicture/" +

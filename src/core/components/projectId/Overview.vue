@@ -2,14 +2,14 @@
   <div>
     <div name="layout" class="flex justify-between items-center">
       <p class="flex items-center">
-        <span class="font-black text-xl text-white flex items-center">
+        <span class="font-black uppercase text-xl text-white flex items-center">
           <SvgTarget
             target="Overview"
             :height="20"
             :width="20"
             class="mr-2"
           ></SvgTarget>
-          OVERVIEW</span
+          Overview</span
         >
         <button
           class="ml-6 text-left pl-3 pr-4 py-1 my-0.5 flex items-center text-base font-black text-Anthracite bg-white rounded-full h-10"
@@ -25,254 +25,249 @@
           ></SvgTarget>
           Publish
         </button>
+        <button
+          class="ml-6 text-left pl-3 pr-4 py-1 my-0.5 flex items-center text-base font-black bg-DarkRock text-white rounded-full h-10"
+          @click="goTo"
+        >
+          <SvgTarget target="Preview" color1="#FFFFFF" class="mr-2"></SvgTarget>
+          See Event Page Preview
+        </button>
       </p>
       <XButton36 @click="goBack" class="z-10"></XButton36>
     </div>
     <div class="max-w-7xl w-[95%] mx-auto">
       <div name="eventSection">
         <div name="headerEvent" class="flex items-end justify-between mt-10">
-          <p class="text-xl text-LightGrey font-black leading-none">EVENT</p>
-          <div>
-            <button
-              v-if="edit"
-              :class="
-                ifUpdating() ? 'bg-white' : 'bg-Gravel cursor-not-allowed'
-              "
-              class="text-black rounded-full h-10 px-10 mx-auto"
-              @click.prevent="update()"
-            >
-              <h4 class="text-black text-xl">Save</h4>
-            </button>
-            <Button40Slot
-              v-if="
-                (yourPerm === 'Owner' || yourPerm === 'Admin') &&
-                !data.isPublished &&
-                !edit
-              "
-              :selected="edit"
-              class=""
-              @click="edit === true ? (edit = false) : (edit = true)"
-            >
-              <PencilIcon class="h-5 m-auto"></PencilIcon>
-            </Button40Slot>
-          </div>
+          <p class="text-xl text-LightGrey uppercase font-black leading-none">
+            Global
+          </p>
         </div>
         <div name="separateEvent" class="h-0.5 w-full bg-Gravel mt-4"></div>
-        <div name="contentEvent" class="flex mt-8">
-          <!-- <label
-            class="h-[220px] w-[220px] border-2 border-dashed rounded-xl px-10 cursor-pointer flex"
-            for="eventUpload"
-          >
-            <input
-              id="eventUpload"
-              name="eventUpload"
-              type="file"
-              class="sr-only"
-              @input="imgUpload"
-              accept="image/png"
-              @change="submit"
-            />
-            <ImgFormated
-              :key="data._id"
-              :size="'xl'"
-              :targetSpace="data._id"
-              :type="'event'"
-              class="absolute opacity-50 left-0 right-0 top-0 bottom-0 rounded-xl bg-white"
-            />
-            <p class="text-center my-auto">Upload Event Poster</p>
-          </label> -->
-          <div
-            name="uploadPic"
-            :style="customBg"
-            :class="
-              this.imageURL != null
-                ? 'flex  rounded-[12px] flex-col w-[220px] h-[220px]'
-                : 'flex border-dashed border-4 rounded-[12px] border-Silver flex-col w-[220px] h-[220px]'
-            "
-            @click=""
-          >
-            <!-- Upload Event Pic -->
-            <input
-              type="file"
-              name="selectedPic"
-              class="hidden"
-              ref="inputFile"
-              accept=".jpg, .jpeg, .png"
-              @input="picUpload"
-              @change="onFileSelected"
-            />
-
-            <div
-              class="text-center my-auto cursor-pointer"
-              @click="$refs.inputFile.click()"
+        <div name="contentEvent" class="flex mt-6">
+          <div>
+            <label class="text-base text-White font-black uppercase"
+              >Event poster</label
             >
-              <SvgTarget
-                target="UploadPic"
-                :height="20"
-                :width="20"
-                color1="#808080"
-                class="flex justify-center"
+            <div
+              name="uploadPic"
+              :style="customBg"
+              @mouseover="hoverEdit = true"
+              @mouseleave="hoverEdit = false"
+              class="mt-4"
+              :class="
+                this.imageURL != null
+                  ? 'flex hover:opacity-50 rounded-[12px] flex-col w-[318px] h-[318px]'
+                  : 'flex border-dashed border-4 rounded-[12px] border-Silver flex-col w-[220px] h-[220px]'
+              "
+            >
+              <!-- Upload Event Pic -->
+              <input
+                type="file"
+                class="hidden"
+                name="selectedEventPic"
+                ref="inputPoster"
+                accept=".jpg, .jpeg, .png"
+                @change="onPosterPicSelected"
+              />
+              <div
+                class="text-center my-auto cursor-pointer"
+                @click="$refs.inputPoster.click()"
               >
-              </SvgTarget>
-              <pre class="font-sans" style="text-shadow: 1px 1px 2px black">
-Upload Event
-Poster</pre
-              >
+                <pre
+                  v-bind:class="{
+                    relative: hoverEdit && !imageURL,
+                    hidden: !hoverEdit && imageURL,
+                  }"
+                  class="font-sans text-White opacity-100 font-medium text-lg"
+                >
+Upload
+Poster Image</pre
+                >
+              </div>
             </div>
           </div>
-          <div class="ml-6 w-[400px]">
+          <div class="ml-6 mt-1 w-[400px]">
             <div name="inputName">
               <InputModel
-                v-if="edit"
-                class="w-full"
+                v-if="!isPublished"
+                @update:value="update"
+                class="w-[318px] space-y-5"
+                :fontBold="'font-medium'"
                 :data="name"
                 v-model="name.value"
                 :errors="errors"
               ></InputModel>
               <div v-else>
-                <p class="text-H4 font-black text-white">NAME</p>
+                <p class="font-black text-base text-white uppercase">
+                  Event Name
+                </p>
                 <p class="mt-4 font-medium text-H4 text-LightGrey">
                   {{ name.value }}
                 </p>
               </div>
             </div>
-            <div name="inputDesc">
-              <div v-if="edit">
-                <p class="flex text-H4 text-White font-black leading-none mt-4">
-                  {{ description.label }}
-                </p>
+          </div>
+        </div>
+        <div name="secondaryPics" class="flex mt-8">
+          <div>
+            <label class="text-base text-White font-black uppercase"
+              >Secondary Images</label
+            >
+            <div class="w-full flex flex-row space-x-2.5 mt-4">
+              <div v-for="image in secondaryPics" :key="image">
+                <img
+                  v-if="image"
+                  :src="image"
+                  alt=""
+                  class="rounded-[12px] flex-col w-[248px] h-[154px]"
+                />
+              </div>
+              <div
+                v-if="secondaryPics.length === 0"
+                name="uploadPic"
+                @mouseover="hoverEdit = true"
+                @mouseleave="hoverEdit = false"
+                class="mt-4 flex border-dashed border-4 rounded-[12px] border-Silver flex-col w-[248px] h-[154px]"
+                
+              >
+                <!-- Upload Desc Pic -->
+                <input
+                  type="file"
+                  name="selectedSecondPic"
+                  ref="picSecondUpload"
+                  class="sr-only"
+                  accept=".jpg, .jpeg, .png"
+                  @change="onSecondPicSelected"
+                />
+                <div
+                  class="text-center my-auto cursor-pointer"
+                  @click="$refs.picSecondUpload.click()"
+                >
+                  <pre
+                    v-bind:class="{
+                      relative: hoverDescEdit && !descURL,
+                      hidden: !hoverDescEdit && descURL,
+                    }"
+                    class="font-sans text-LightRock font-medium text-lg"
+                  >
+Upload
+Additionnal Image</pre
+                  >
+                </div>
+              </div>
+
+              <div
+                v-else
+                class="rounded-full cursor-pointer my-auto ml-2 w-10 h-10 bg-White text-LightRock"
+              >
+                <!-- Upload Secondary Pic -->
+                <label class="cursor-pointer rounded-full">
+                  <Picture
+                    class="mx-auto my-auto h-full"
+                    :color3="'#fff'"
+                    :width="18"
+                    :height="16"
+                  ></Picture>
+
+                  <input
+                    type="file"
+                    name="selectedSecondPic"
+                    ref="picSecondUpload"
+                    class="sr-only"
+                    accept=".jpg, .jpeg, .png"
+                    @change="onSecondPicSelected"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div name="locationSection" class="">
+        <div name="headerLocation" class="flex items-end justify-between mt-8">
+          <p class="text-xl text-LightGrey uppercase font-black leading-none">
+            About
+          </p>
+          <div></div>
+        </div>
+        <div name="separateLocation" class="h-0.5 w-full bg-Gravel mt-4"></div>
+        <div name="contentEvent" class="flex w-full">
+          <div name="inputDesc" class="flex flex-row pt-6 space-x-6">
+            <div v-if="!isPublished" class="w-full">
+              <p
+                class="flex text-base text-white uppercase font-black leading-none"
+              >
+                {{ description.label }}
+              </p>
+              <div class="relative w-full max-w-[500px] mt-4">
                 <textarea
                   :name="description.name"
                   v-model="description.value"
-                  :placeholder="description.label"
-                  id=""
-                  class="w-full bg-transparent border-2 border-White rounded-2xl mt-4"
+                  :placeholder="description.name"
+                  maxlength="240"
+                  @focusout="update"
+                  class="w-full py-4 px-4 resize min-w-[452px] max-w-[500px] min-h-[154px] max-h-72 font-medium bg-transparent focus:ring-0 border-2 border-DarkRock focus:border-White rounded-2xl"
                 ></textarea>
-              </div>
-              <div v-else>
-                <p class="flex text-H4 text-White font-black leading-none mt-4">
-                  {{ description.label }}
-                </p>
-                <p class="mt-4 font-medium text-H4 text-LightGrey">
-                  {{ description.value === "" ? "Empty" : description.value }}
-                </p>
+                <div class="absolute bottom-3 right-3 text-LightRock">
+                  <span
+                    v-bind:class="{
+                      'text-Red opacity-70': description.value.length >= 230,
+                    }"
+                    class="font-medium"
+                    >{{ 240 - description.value.length }}</span
+                  >
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div name="footerEvent">
-          <p
-            class="cursor-pointer text-xs text-LightGrey font-normal mt-5"
-            @click="goTo"
-          >
-            Show preview
-          </p>
-        </div>
-      </div>
-      <div name="locationSection">
-        <div name="headerLocation" class="flex items-end justify-between mt-8">
-          <p class="text-xl text-LightGrey font-black leading-none">LOCATION</p>
-          <div>
-            <button
-              v-if="editLocation"
-              :class="
-                ifUpdatingLocation()
-                  ? 'bg-white'
-                  : 'bg-Gravel cursor-not-allowed'
-              "
-              class="text-black rounded-full h-10 px-10 mx-auto"
-              @click.prevent="updateLocation()"
-            >
-              <h4 class="text-black text-xl">Save</h4>
-            </button>
-            <Button40Slot
-              v-if="
-                (yourPerm === 'Owner' || yourPerm === 'Admin') &&
-                !data.isPublished &&
-                !editLocation
-              "
-              :selected="editLocation"
-              class=""
-              @click="
-                editLocation === true
-                  ? (editLocation = false)
-                  : (editLocation = true)
-              "
-            >
-              <PencilIcon class="h-5 m-auto"></PencilIcon>
-            </Button40Slot>
-          </div>
-        </div>
-        <div name="separateLocation" class="h-0.5 w-full bg-Gravel mt-4"></div>
-        <div name="contentEvent" class="flex mt-8">
-          <div v-if="editLocation" class="w-[644px]">
-            <InputModel
-              class="mt-4"
-              :data="venueName"
-              v-model="venueName.value"
-              :errors="errors"
-            ></InputModel>
-            <InputModel
-              class="mt-4"
-              :data="adress"
-              v-model="adress.value"
-              :errors="errors"
-            ></InputModel>
-            <div class="flex gap-2 mt-2">
-              <InputModel
-                :data="city"
-                v-model="city.value"
-                :errors="errors"
-              ></InputModel>
-              <InputModel
-                :data="cp"
-                v-model="cp.value"
-                :errors="errors"
-              ></InputModel>
-              <InputModel
-                :data="country"
-                v-model="country.value"
-                :errors="errors"
-              ></InputModel>
+            <div v-else>
+              <p class="flex text-H4 text-White font-black leading-none mt-4">
+                {{ description.label }}
+              </p>
+              <p class="mt-4 font-medium text-H4 text-LightGrey">
+                {{ description.value === "" ? "Empty" : description.value }}
+              </p>
             </div>
-          </div>
-          <div v-else>
-            <p class="flex text-H4 text-White font-black leading-none mt-4">
-              {{ venueName.label }}
-            </p>
-            <p class="flex text-H4 text-White font-book leading-none mt-4 p-3">
-              {{ venueName.value === "" ? "Empty" : venueName.value }}
-            </p>
-            <p class="flex text-H4 text-White font-black leading-none mt-4">
-              {{ adress.label }}
-            </p>
-            <p class="flex text-H4 text-White font-book leading-none mt-4 p-3">
-              {{ adress.value === "" ? "Empty" : adress.value }}
-            </p>
-            <div class="flex">
-              <div class="w-1/3">
-                <p class="flex text-H4 text-White font-black leading-none">
-                  {{ city.label }}
-                </p>
-                <p class="flex text-H4 text-White font-book leading-none p-3">
-                  {{ city.value === "" ? "Empty" : city.value }}
-                </p>
-              </div>
-              <div class="w-1/3">
-                <p class="flex text-H4 text-White font-black leading-none">
-                  {{ cp.label }}
-                </p>
-                <p class="flex text-H4 text-White font-book leading-none p-3">
-                  {{ cp.value === "" ? "Empty" : cp.value }}
-                </p>
-              </div>
-              <div class="w-1/3">
-                <p class="flex text-H4 text-White font-black leading-none">
-                  {{ country.label }}
-                </p>
-                <p class="flex text-H4 text-White font-book leading-none p-3">
-                  {{ country.value === "" ? "Empty" : country.value }}
-                </p>
+            <div>
+              <label class="text-base text-White font-black uppercase"
+                >Description Image</label
+              >
+              <div
+                name="uploadPic"
+                :style="customDescBg"
+                @mouseover="hoverDescEdit = true"
+                @mouseleave="hoverDescEdit = false"
+                class="mt-2.5"
+                :class="
+                  this.descURL != null
+                    ? 'flex hover:opacity-50 rounded-[12px] flex-col w-[248px] h-[154px]'
+                    : 'flex border-dashed border-4 rounded-[12px] border-Silver flex-col w-[248px] h-[154px]'
+                "
+              >
+                <!-- Upload Desc Pic -->
+                <input
+                  type="file"
+                  name="selectedDescPic"
+                  ref="inputDescFile"
+                  class="hidden"
+                  accept=".jpg, .jpeg, .png"
+                  @change="onDescPicSelected"
+                />
+
+                <div
+                  class="text-center my-auto cursor-pointer"
+                  @click="$refs.inputDescFile.click()"
+                >
+                  <pre
+                    v-bind:class="{
+                      relative: hoverDescEdit && !descURL,
+                      hidden: !hoverDescEdit && descURL,
+                    }"
+                    class="font-sans text-White font-medium text-lg"
+                  >
+Upload
+Description Image</pre
+                  >
+                </div>
               </div>
             </div>
           </div>
@@ -290,8 +285,11 @@ Poster</pre
         v-if="selectedPic !== null"
         :data="data"
         :src="selectedPic"
+        :type="imageType"
         @closeAction="close"
+        @callFromCropSecondPic="useCroppedImageSecondPic"
         @callFromCrop="useCroppedImage"
+        @callFromCropDescPic="useCroppedImageDescPic"
       />
     </ModalClear>
   </div>
@@ -300,11 +298,9 @@ Poster</pre
 <script>
 //components
 import XButton36 from "@components/buttons/XButton36.vue";
-import Button40Slot from "@components/buttons/Button40Slot.vue";
 import SvgTarget from "../SvgTarget.vue";
+import Picture from "@assets/icons/Picture.vue";
 import InputModel from "@components/inputs/InputModel.vue";
-
-import { PencilIcon } from "@heroicons/vue/outline";
 
 import ModalClear from "@components/modal/ModalClear.vue";
 import PublishEvent from "@components/modal/projectId/PublishEvent.vue";
@@ -312,29 +308,33 @@ import PublishEvent from "@components/modal/projectId/PublishEvent.vue";
 import EventServices from "@axios/services/eventServices";
 import UploadServices from "@axios/services/uploadServices";
 import CropperEvent from "../cropper/CropperEvent.vue";
-import ImgFormated from "../img/ImgFormated.vue";
 
 export default {
   components: {
     XButton36,
-    Button40Slot,
     SvgTarget,
     InputModel,
-    PencilIcon,
+    Picture,
     ModalClear,
     PublishEvent,
     CropperEvent,
-    ImgFormated,
   },
   props: ["data", "yourPerm"],
   data() {
     return {
+      hoverEdit: false,
+      hoverDescEdit: false,
       routeId: this.$route.params.id,
       imageURL: null,
+      descURL: null,
+      imageType: "",
       isMenuOpen: false,
       openAdd: false,
       selectedPic: null,
       picUpload: null,
+      descPicUpload: null,
+      picSecondUpload: null,
+      secondaryPics: [],
       isPublished: this.data.isPublished,
       open: false,
       edit: false,
@@ -344,16 +344,16 @@ export default {
       img: "",
       errors: [],
       name: {
-        label: "NAME",
+        label: "EVENT NAME",
         name: "name",
         type: "text",
         value: "",
       },
       description: {
-        label: "DESCRIPTION",
-        name: "description",
+        label: "Event Description",
+        name: "Text",
         type: "textarea",
-        value: "",
+        value: this.data.description,
       },
       venueName: {
         label: "VENUE NAME",
@@ -395,15 +395,51 @@ export default {
         "background-repeat": "no-repeat",
       };
     },
+    customDescBg() {
+      return {
+        "background-image": `url('${this.descURL}')`,
+        "background-size": "cover",
+        "background-repeat": "no-repeat",
+      };
+    },
+    customSecondPics(pic) {
+      return {
+        "background-image": `url('${pic}')`,
+        "background-size": "contain",
+        "background-repeat": "no-repeat",
+      };
+    },
   },
   methods: {
-    onFileSelected(event) {
+    onPosterPicSelected(event) {
+      console.log("PRIMARY PIC");
       this.picUpload = event.target.files[0];
       this.selectedPic = URL.createObjectURL(this.picUpload);
       console.log("selectedPic after onFile : ", this.selectedPic);
+      this.imageType = "posterPic";
       this.open = true;
       // Reset input to select a picture again
-      this.$refs.inputFile.value = null;
+      event.target.value = null;
+    },
+    onSecondPicSelected(event) {
+      console.log("IMAGE SECONDARY");
+      this.picSecondUpload = event.target.files[0];
+      this.selectedPic = URL.createObjectURL(this.picSecondUpload);
+      console.log("selectedPic after onFile : ", this.selectedPic);
+      this.imageType = "secondPic";
+      this.open = true;
+      // Reset input to select a picture again
+      event.target.value = null;
+    },
+    onDescPicSelected(event) {
+      console.log("IMAGE DESC");
+      this.descPicUpload = event.target.files[0];
+      this.selectedPic = URL.createObjectURL(this.descPicUpload);
+      console.log("selectedPic after onFile : ", this.selectedPic);
+      this.imageType = "descPic";
+      this.open = true;
+      // Reset input to select a picture again
+      event.target.value = null;
     },
     publish() {
       //let body = { _id: this.$route.params.id };
@@ -428,15 +464,28 @@ export default {
       this.picUpload = null;
       // this.modalView = "";
     },
-    async getBackendImage() {
-      const imageURL2 = this.data.posterPic;
-      if (imageURL2 != "") {
-        let result = await UploadServices.getImageFromBackend(imageURL2);
-        this.imageURL = result;
+    async getBackendImage(img) {
+      if (img !== "") {
+        let result = await UploadServices.getImageFromBackend(img);
+        return result;
       }
     },
+    async useCroppedImageSecondPic(data) {
+      console.log(data);
+      const formData = new FormData();
+      formData.append("selectedPic", data.selectedPic);
+      formData.append("routeId", this.routeId);
+      let result = await UploadServices.uploadPicture(
+        "event/secondaryPics",
+        formData
+      );
+      console.log("llm3", result);
+      const image = await this.getBackendImage(result.data.name);
+      this.secondaryPics.push(image);
+      this.closeCropper();
+    },
     async useCroppedImage(data) {
-      console.log("llm2", this.routeId);
+      console.log(data.selectedPic.filename);
       const formData = new FormData();
       formData.append("selectedPic", data.selectedPic);
       formData.append("routeId", this.routeId);
@@ -446,13 +495,21 @@ export default {
         formData
       );
       console.log("llm4", result);
-      this.data.posterPic = result.data.imageUrl;
-
-      this.closeCropper;
-      await this.getBackendImage();
-      location.reload();
+      this.imageURL = await this.getBackendImage(result.data.name);
+      this.closeCropper();
     },
-
+    async useCroppedImageDescPic(data) {
+      const formData = new FormData();
+      formData.append("selectedPic", data.selectedPic);
+      formData.append("routeId", this.routeId);
+      let result = await UploadServices.uploadPicture(
+        "event/descPic",
+        formData
+      );
+      console.log("llm5", result);
+      this.descURL = await this.getBackendImage(result.data.name);
+      this.closeCropper();
+    },
     close() {
       this.open = false;
       //this.img = "";
@@ -482,18 +539,20 @@ export default {
       }
     },
     async update() {
-      let body = {
-        event_id: this.data._id,
-        name: this.name.value,
-        description: this.description.value,
-      };
-      let result = await EventServices.updateEvent(body);
-      if (result.data.success) {
-        this.edit = false;
-        this.$emit("action");
-      } else {
-        this.errors.push(result.data.errors);
-        this.name.value = this.data.name;
+      if (this.ifUpdating()) {
+        let body = {
+          event_id: this.data._id,
+          name: this.name.value,
+          description: this.description.value,
+        };
+        let result = await EventServices.updateEvent(body);
+        if (result.data.success) {
+          this.edit = false;
+          this.$emit("action");
+        } else {
+          this.errors.push(result.data.errors);
+          this.name.value = this.data.name;
+        }
       }
     },
     async updateLocation() {
@@ -527,7 +586,7 @@ export default {
   //     this.getSpaceId = newId;
   //     this.searchEventOperator();
   //   }},
-  mounted() {
+  async mounted() {
     this.name.value = this.data.name;
     this.data.venueName ? (this.venueName.value = this.data.venueName) : "";
     this.data.adress ? (this.adress.value = this.data.adress) : "";
@@ -535,7 +594,15 @@ export default {
     this.data.cp ? (this.cp.value = this.data.cp) : "";
     this.data.country ? (this.country.value = this.data.country) : "";
     this.setEdit();
-    this.getBackendImage();
+    this.imageURL = await this.getBackendImage(this.data.posterPic);
+    this.descURL = await this.getBackendImage(this.data.descriptionPic);
+    if (this.data.secondaryPics) {
+      for (const image in this.data.secondaryPics) {
+        this.secondaryPics[image] = await this.getBackendImage(
+          this.data.secondaryPics[image]
+        );
+      }
+    }
   },
 };
 </script>

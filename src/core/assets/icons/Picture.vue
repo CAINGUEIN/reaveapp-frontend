@@ -15,6 +15,7 @@
       :stroke="color1"
       stroke-width="1.5"
     />
+
     <path
       d="M1 13.0005L4.17482 10.0373C4.55903 9.67869 5.15525 9.67869 5.53946 10.0373L8.03197 12.3636C8.41617 12.7222 9.0124 12.7222 9.3966 12.3636L14.032 8.03728C14.4162 7.67869 15.0124 7.67869 15.3966 8.03728L19 11.4005"
       :stroke="color1"
@@ -29,7 +30,7 @@
       :stroke="color1"
       stroke-width="1.5"
     />
-    <ellipse cx="17.9994" cy="17" rx="3.99943" ry="4" :fill="colorPlus" />
+    <ellipse cx="17.9994" cy="17" rx="3.99943" ry="4" :fill="color3" />
     <path
       d="M16.0001 17.0024H19.9995"
       :stroke="color1"
@@ -55,6 +56,10 @@ export default {
     height: {
       type: Number,
       default: 33,
+    },
+    color3: {
+      type: String,
+      default: "#000000",
     },
     color2: {
       type: String,
