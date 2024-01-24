@@ -20,7 +20,7 @@
         </div>
       </div>
       <div v-for="section in nav" 
-        :class="section.cathegory == 'Search' ? 
+        :class="section. category == 'Search' ? 
         'flex flex-col mx-8' : 'flex flex-col mt-5 mx-8'">
         <p
           class="flex items-center text-LightGrey font-medium text-xl cursor-pointer p-2 rounded-lg"
@@ -35,18 +35,18 @@
           "
           :class=" 
             select === section.target
-              ? section.cathegory == 'Search' ? 'text-LightRock cursor-not-allowed' : 'text-LightGrey bg-DarkRock'
-              : section.cathegory == 'Search' ? 'text-LightRock cursor-not-allowed' : 'text-Gravel hover:text-LightGrey hover:bg-LightRock'
+              ? section. category == 'Search' ? 'text-LightRock cursor-not-allowed' : 'text-LightGrey bg-DarkRock'
+              : section. category == 'Search' ? 'text-LightRock cursor-not-allowed' : 'text-Gravel hover:text-LightGrey hover:bg-LightRock'
           "
         >
           <SvgTarget
             :target="section.icon"
             :height="20"
             :width="20"
-            :class="section.cathegory == 'Search' ? 'text-LightRock mr-[10px]' : 'mr-2'"
+            :class="section. category == 'Search' ? 'text-LightRock mr-[10px]' : 'mr-2'"
             
           ></SvgTarget>
-          {{ section.cathegory
+          {{ section. category
           }}<ChevronUpIcon
             v-if="section.items.length > 0"
             class="h-8"
@@ -119,21 +119,21 @@
         userNavigation: [{ name: "Option 1" }, { name: "Option 2" }, { name: "Remove" }],
         nav: [
           {
-            cathegory: "Overview",
+             category: "Overview",
             target: "OverviewVenue",
             icon: "Overview",
             open: true,
             items: [],
           },
           {
-            cathegory: "Search",
+             category: "Search",
             target: "",
             icon: "Search",
             open: true,
             items: [],
           },
           {
-            cathegory: "Logistics",
+             category: "Logistics",
             target: "",
             icon: "Logistics",
             open: true,
@@ -145,7 +145,7 @@
             ],
           },
           {
-            cathegory: "People",
+             category: "People",
             target: "",
             icon: "People",
             open: true,
@@ -159,7 +159,7 @@
             ],
           },
           {
-            cathegory: "Analytics",
+             category: "Analytics",
             target: "",
             icon: "Analytics",
             open: true,
@@ -171,7 +171,7 @@
             ],
           },
           {
-            cathegory: "Marketing",
+             category: "Marketing",
             target: "",
             icon: "Marketing",
             open: true,
@@ -181,7 +181,7 @@
             ],
           },
           {
-            cathegory: "Finance",
+             category: "Finance",
             target: "",
             icon: "Finance",
             open: true,

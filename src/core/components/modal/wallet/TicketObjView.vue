@@ -6,7 +6,7 @@
       <div class="flex justify-between">
         <div>
           <h1 class="uppercase" :style="'color: #' + matchData('color')">
-            {{ matchData("cathegory") }}
+            {{ matchData(" category") }}
           </h1>
           <h3 class="mt-3 font-medium text-2xl flex">
             <div class="h-9 w-9 rounded-full bg-white flex mr-4">
@@ -116,7 +116,7 @@
         @action="close()"
         :event="infoEvent.name"
         :place="
-          matchData('cathegory') +
+          matchData(' category') +
           ', Row ' +
           infoTicket.row +
           ', Seat ' +

@@ -28,7 +28,7 @@
                 class="h-6 w-6 rounded-full"
               ></div>
               <div class="ml-4">
-                <p class="leading-6">{{ item.cathegory }}</p>
+                <p class="leading-6">{{ item. category }}</p>
                 <div class="flex items-center">
                   <h3 class="leading-7">{{ item.price }}</h3>
                   <GoldRC class="ml-2" :width="14" :height="14"></GoldRC>
@@ -124,7 +124,7 @@
                   class="leading-7 font-medium"
                   :style="'color: #' + item.ticket.color"
                 >
-                  {{ item.ticket.cathegory }}
+                  {{ item.ticket. category }}
                 </h3>
                 <p class="leading-6">ZoneName</p>
                 <p class="leading-6">

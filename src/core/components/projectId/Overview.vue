@@ -113,7 +113,7 @@ Poster Image</pre
             <label class="text-base text-White font-black uppercase"
               >Secondary Images</label
             >
-            <div class="w-full flex flex-row space-x-2.5 mt-4">
+            <div class="w-full grid grid-cols-4 gap-2.5 mt-4">
               <div v-for="image in secondaryPics" :key="image">
                 <img
                   v-if="image"
@@ -125,12 +125,11 @@ Poster Image</pre
               <div
                 v-if="secondaryPics.length === 0"
                 name="uploadPic"
-                @mouseover="hoverEdit = true"
-                @mouseleave="hoverEdit = false"
+                @mouseover="hoverSecondEdit = true"
+                @mouseleave="hoverSecondEdit = false"
                 class="mt-4 flex border-dashed border-4 rounded-[12px] border-Silver flex-col w-[248px] h-[154px]"
-                
               >
-                <!-- Upload Desc Pic -->
+                <!-- Upload Additionnal Pic -->
                 <input
                   type="file"
                   name="selectedSecondPic"
@@ -145,8 +144,8 @@ Poster Image</pre
                 >
                   <pre
                     v-bind:class="{
-                      relative: hoverDescEdit && !descURL,
-                      hidden: !hoverDescEdit && descURL,
+                      relative: hoverSecondEdit || secondaryPics.length === 0,
+                      hidden: !hoverSecondEdit && secondaryPics.length > 0,
                     }"
                     class="font-sans text-LightRock font-medium text-lg"
                   >
@@ -192,35 +191,40 @@ Additionnal Image</pre
         </div>
         <div name="separateLocation" class="h-0.5 w-full bg-Gravel mt-4"></div>
         <div name="contentEvent" class="flex w-full">
-          <div name="inputDesc" class="flex flex-row pt-6 space-x-6">
-            <div v-if="!isPublished" class="w-full">
+          <div name="inputDesc" class="flex flex-row pt-6 space-x-6 w-full">
+            <div v-if="!isPublished" class="w-fit">
               <p
                 class="flex text-base text-white uppercase font-black leading-none"
               >
                 {{ description.label }}
               </p>
-              <div class="relative w-full max-w-[500px] mt-4">
+              <div class="relative w-fit max-h-80 mt-4">
                 <textarea
                   :name="description.name"
                   v-model="description.value"
                   :placeholder="description.name"
                   maxlength="240"
+                  resize="none"
                   @focusout="update"
-                  class="w-full py-4 px-4 resize min-w-[452px] max-w-[500px] min-h-[154px] max-h-72 font-medium bg-transparent focus:ring-0 border-2 border-DarkRock focus:border-White rounded-2xl"
+                  oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
+                  class="w-full py-4 px-4 resize max-w-[500px] max-h-72 min-h-fit overflow-y-hidden font-medium bg-Anthracite border-DarkRock focus:border-White border-2 focus:ring-0 focus:outline-none rounded-2xl"
                 ></textarea>
-                <div class="absolute bottom-3 right-3 text-LightRock">
+                <div class="absolute bottom-3 flex right-3 text-LightRock">
                   <span
                     v-bind:class="{
-                      'text-Red opacity-70': description.value.length >= 230,
+                      'text-Red opacity-70': description.value.length === 240,
                     }"
-                    class="font-medium"
+                    class="font-medium text-base"
                     >{{ 240 - description.value.length }}</span
                   >
+                  <div class="resizer"></div>
                 </div>
               </div>
             </div>
-            <div v-else>
-              <p class="flex text-H4 text-White font-black leading-none mt-4">
+            <div v-else class="w-fit">
+              <p
+                class="flex text-base text-white uppercase font-black leading-none"
+              >
                 {{ description.label }}
               </p>
               <p class="mt-4 font-medium text-H4 text-LightGrey">
@@ -228,7 +232,8 @@ Additionnal Image</pre
               </p>
             </div>
             <div>
-              <label class="text-base text-White font-black uppercase"
+              <label
+                class="text-base text-White font-black leading-none uppercase"
                 >Description Image</label
               >
               <div
@@ -323,6 +328,7 @@ export default {
   data() {
     return {
       hoverEdit: false,
+      hoverSecondEdit: false,
       hoverDescEdit: false,
       routeId: this.$route.params.id,
       imageURL: null,
@@ -606,3 +612,25 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+textarea {
+  border: ridge 2px;
+  min-height: 154px;
+  max-width: 452px;
+  min-width: 260px;
+}
+.resizer {
+  background-image: url("svg/textarea-resize.svg");
+  background-size: cover;
+  width: 12px;
+  height: 12px;
+  margin-top: auto;
+  margin-left: 8px;
+  margin-bottom: auto;
+}
+
+textarea::-webkit-resizer {
+  display: none;
+}
+</style>

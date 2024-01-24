@@ -23,7 +23,17 @@ class SpaceServices {
         return e;
       });
   }
-  // TODO Add a space
+  static async getSpaceById(id) {
+    return Base.post(`${route}/spaceById`, { id: id })
+      .then((response) => {
+        console.log("auth : spaceById", response);
+        return response;
+      })
+      .catch((e) => {
+        console.log("error ", e);
+        return e;
+      });
+  }
   static async createSpace(data) {
     return Base.post(`${route}/create`, data)
       .then((response) => {

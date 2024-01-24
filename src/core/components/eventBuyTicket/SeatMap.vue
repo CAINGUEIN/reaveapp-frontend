@@ -13,20 +13,20 @@
           class="relative h-[35px] "
             v-for="(seat, indexColumn) in typeTicket.column"
             @click.prevent="
-              verifySoldable(indexRow, indexColumn, typeTicket.cathegory)
+              verifySoldable(indexRow, indexColumn, typeTicket.category)
                 ? ''
                 : addTicket(indexRow, indexColumn, typeTicket)
             "
           >
             <Seat
               :color1="
-                verifyTicketColor(indexRow, indexColumn, typeTicket.cathegory, typeTicket.color)
+                verifyTicketColor(indexRow, indexColumn, typeTicket.category, typeTicket.color)
               "
               :width="30"
               :height="35"
               class="-rotate-90"
               :class="
-                verifyTicketClass(indexRow, indexColumn, typeTicket.cathegory)
+                verifyTicketClass(indexRow, indexColumn, typeTicket.category)
               "
             ></Seat>
             <p class="text-black text-xs bottom-1 absolute">
@@ -55,27 +55,27 @@ export default {
         if (
           this.listTicket[index].row === row &&
           this.listTicket[index].column === column &&
-          this.listTicket[index].ticket.cathegory === ticket.cathegory
+          this.listTicket[index].ticket.category === ticket.category
         ) {
           return this.$emit("remove", index);
         }
       }
       this.$emit("push", data);
     },
-    verifyTicketClass(verifRow, verifColumn, verifCathegory) {
+    verifyTicketClass(verifRow, verifColumn, verifcategory) {
       let verifTicket = false;
       let verifListTicket = false;
       for (let index = 0; index < this.listTicket.length; index++) {
         if (
           this.listTicket[index].row === verifRow &&
           this.listTicket[index].column === verifColumn &&
-          this.listTicket[index].ticket.cathegory === verifCathegory
+          this.listTicket[index].ticket.category === verifcategory
         ) {
           return "cursor-pointer";
         }
       }
       for (let index = 0; index < this.tickets.length; index++) {
-        if (this.tickets[index].cathegory === verifCathegory) {
+        if (this.tickets[index].category === verifcategory) {
           for (
             let index2 = 0;
             index2 < this.tickets[index].soldTickets.length;
@@ -92,20 +92,20 @@ export default {
       }
       return "cursor-pointer"
     },
-    verifyTicketColor(verifRow, verifColumn, verifCathegory, color) {
+    verifyTicketColor(verifRow, verifColumn, verifcategory, color) {
       let verifTicket = false;
       let verifListTicket = false;
       for (let index = 0; index < this.listTicket.length; index++) {
         if (
           this.listTicket[index].row === verifRow &&
           this.listTicket[index].column === verifColumn &&
-          this.listTicket[index].ticket.cathegory === verifCathegory
+          this.listTicket[index].ticket.category === verifcategory
         ) {
           return "#CD6DFB" ;
         }
       }
       for (let index = 0; index < this.tickets.length; index++) {
-        if (this.tickets[index].cathegory === verifCathegory) {
+        if (this.tickets[index].category === verifcategory) {
           for (
             let index2 = 0;
             index2 < this.tickets[index].soldTickets.length;
@@ -122,9 +122,9 @@ export default {
       }
       return "#" + color;
     },
-    verifySoldable(verifRow, verifColumn, verifCathegory) {
+    verifySoldable(verifRow, verifColumn, verifcategory) {
       for (let index = 0; index < this.tickets.length; index++) {
-        if (this.tickets[index].cathegory === verifCathegory) {
+        if (this.tickets[index].category === verifcategory) {
           for (
             let index2 = 0;
             index2 < this.tickets[index].soldTickets.length;

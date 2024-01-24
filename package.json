@@ -26,6 +26,8 @@
     "cropperjs": "^1.5.12",
     "dayjs": "^1.11.0",
     "dotenv": "^16.0.0",
+    "flowbite": "^2.2.1",
+    "flowbite-vue": "^0.1.2",
     "last": "^1.1.0",
     "leaflet-css": "^0.1.0",
     "pinia": "^2.0.11",

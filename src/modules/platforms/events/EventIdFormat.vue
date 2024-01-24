@@ -1,5 +1,6 @@
 <template>
-  <div class="my-14 w-[90%] max-w-[1260] mx-auto">
+  <p class="font-black text-H1 mt-8 text-center">WIP</p>
+  <!-- <div class="my-14 w-[90%] max-w-[1260] mx-auto">
     <div class="flex justify-between">
       <div v-if="data.description" class="">
         <h2 class="text-5xl font-medium">Planning</h2>
@@ -51,7 +52,7 @@ authorised to stream</p>
       <h2 class="text-5xl font-medium">Table</h2>
       <img src="/img/Eventpage/Table.png" alt="" class="w-full mt-8" />
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>

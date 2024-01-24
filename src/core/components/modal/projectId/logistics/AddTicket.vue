@@ -5,44 +5,25 @@
       class="absolute left-0 bg-DarkRock h-9 w-9 hover:bg-LightRock rounded-full px-3 z-10"
       @click.prevent="etape = etape - 1"
     >
-      <svg
-        width="10"
-        height="14"
-        viewBox="0 0 10 14"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M9 13.0022L1 7.0022"
-          stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
-        />
-        <path
-          d="M9 1.00146L1 7.00146"
-          stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
-        />
-      </svg>
+      <SvgTarget :target="'Arrow'" class="rotate-180" />
     </button>
     <div class="pt-3 flex flex-col" v-if="etape === 1">
       <h4 class="text-center font-black">Name</h4>
       <InputModel
         class="mt-6 uppercase"
-        :data="cathegory"
-        v-model="cathegory.value"
-        :errors="errors[cathegory.name]"
+        :data="category"
+        v-model="category.value"
+        :errors="errors[category.name]"
       >
       </InputModel>
       <button
         :class="
-          cathegory.value.length >= 3
+          category.value.length >= 3
             ? 'bg-white'
             : 'bg-Gravel cursor-not-allowed'
         "
         class="text-black rounded-full px-5 py-1.5 mx-auto mt-6"
-        @click.prevent="cathegory.value !== '' ? etape++ : ''"
+        @click.prevent="category.value !== '' ? etape++ : ''"
       >
         <p class="text-black font-black">Continue</p>
       </button>
@@ -257,10 +238,10 @@ export default {
   data() {
     return {
       etape: 1,
-      cathegory: {
+      category: {
         label: "Ticket name",
         placeholder: "Name",
-        name: "cathegory",
+        name: " category",
         type: "text",
         value: "",
       },
@@ -434,7 +415,7 @@ export default {
       let body = {
         project_id: this.data._id,
         quantities: this.quantities.value,
-        cathegory: this.cathegory.value,
+        category: this.category.value,
         price: this.price.value,
         color: this.color,
         type: this.type,

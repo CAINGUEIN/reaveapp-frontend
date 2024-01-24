@@ -31,7 +31,7 @@
         </div>
         <div>
           <p class="text-xl font-bold text-white">
-            {{ matchData("cathegory") }}
+            {{ matchData(" category") }}
           </p>
           <h4 class="text-xl font-bold text-white">{{ infoEvent.name }}</h4>
         </div>

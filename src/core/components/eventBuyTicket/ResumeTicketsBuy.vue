@@ -5,9 +5,9 @@
     <div class="flex flex-col w-full h-full">
       <div class="flex justify-between">
         <div>
-          <h1>{{ dataTickets[index].ticket.cathegory }} Ticket</h1>
+          <h1>{{ dataTickets[index].ticket. category }} Ticket</h1>
           <h3>
-            {{ dataTickets[index].ticket.cathegory }}, Row
+            {{ dataTickets[index].ticket. category }}, Row
             {{ dataTickets[index].row }}, Seat {{ dataTickets[index].column }}
           </h3>
         </div>
@@ -108,7 +108,7 @@
         @action="close()"
         :event="dataEvent.name"
         :place="
-          dataTickets[index].ticket.cathegory +
+          dataTickets[index].ticket. category +
           ', Row ' +
           dataTickets[index].row +
           ', Seat ' +

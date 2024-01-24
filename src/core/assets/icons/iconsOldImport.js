@@ -1,4 +1,5 @@
 import Academy from "./Academy.vue";
+import Arrow from "./Arrow.vue";
 import Events from "./Events.vue";
 import Block from "./Block.vue";
 import Bootcamps from "./Bootcamps.vue";
@@ -24,6 +25,7 @@ import Projects from "./Projects.vue";
 import Preview from "./Preview.vue";
 import Seat from "./Seat.vue";
 import smsq from "./smsq.vue";
+import ChevronDown from "./ChevronDown.vue"
 import Standing from "./Standing.vue";
 import RocketLeague from "./RocketLeagueLogo.vue";
 import VALOIcon from "./Valorant.vue";
@@ -38,6 +40,7 @@ import Settings from "./Settings.vue";
 import Picture from "./Picture.vue";
 export {
   Academy,
+  Arrow,
   Events,
   MuseeFabre,
   Maps,
@@ -59,6 +62,7 @@ export {
   lgsq,
   LOLIcon,
   Notification,
+  ChevronDown,
   Options,
   Plan,
   Plus,

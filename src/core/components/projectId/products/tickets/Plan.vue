@@ -197,13 +197,13 @@
           >
             <div class="flex">
               <SvgTarget
-                :target="cathegory === 'Sitting' ? 'Bootcamps' : cathegory"
+                :target=" category === 'Sitting' ? 'Bootcamps' :  category"
                 height="16"
                 width="16"
                 class="h-6 w-6 flex items-center justify-center rounded-full bg-white mr-2 text-Anthracite"
               ></SvgTarget>
               <span class="text-white text-base font-medium">{{
-                cathegory === "" ? "Select" : cathegory
+                 category === "" ? "Select" :  category
               }}</span>
             </div>
 
@@ -235,7 +235,7 @@
                     active ? 'bg-Stone' : '',
                     'block mx-2 rounded-lg px-2 py-2 text-sm',
                   ]"
-                  @click.prevent="cathegory = 'Sitting'"
+                  @click.prevent=" category = 'Sitting'"
                   class="flex items-center text-base font-medium text-white"
                   ><SvgTarget
                     target="CheckVoid"
@@ -243,7 +243,7 @@
                     width="16"
                     class="h-6 w-6 flex items-center justify-center mr-2"
                     :class="
-                      cathegory === 'Sitting' ? 'text-white' : 'text-LightRock'
+                       category === 'Sitting' ? 'text-white' : 'text-LightRock'
                     "
                   ></SvgTarget>
                   <SvgTarget
@@ -262,7 +262,7 @@
                     active ? 'bg-Stone' : '',
                     'block mx-2 rounded-lg px-2 py-2 text-sm',
                   ]"
-                  @click.prevent="cathegory = 'Standing'"
+                  @click.prevent=" category = 'Standing'"
                   class="flex items-center text-base font-medium text-white"
                   ><SvgTarget
                     target="CheckVoid"
@@ -270,7 +270,7 @@
                     width="16"
                     class="h-6 w-6 flex items-center justify-center mr-2"
                     :class="
-                      cathegory === 'Standing' ? 'text-white' : 'text-LightRock'
+                       category === 'Standing' ? 'text-white' : 'text-LightRock'
                     "
                   ></SvgTarget>
                   <SvgTarget
@@ -289,7 +289,7 @@
                     active ? 'bg-Stone' : '',
                     'block mx-2 rounded-lg px-2 py-2 text-sm',
                   ]"
-                  @click.prevent="cathegory = 'Handicap'"
+                  @click.prevent=" category = 'Handicap'"
                   class="flex items-center text-base font-medium text-white"
                   ><SvgTarget
                     target="CheckVoid"
@@ -297,7 +297,7 @@
                     width="16"
                     class="h-6 w-6 flex items-center justify-center mr-2"
                     :class="
-                      cathegory === 'Handicap' ? 'text-white' : 'text-LightRock'
+                       category === 'Handicap' ? 'text-white' : 'text-LightRock'
                     "
                   ></SvgTarget>
                   <SvgTarget
@@ -341,7 +341,7 @@ export default {
   components: { SvgTarget, Menu, MenuButton, MenuItem, MenuItems },
   data() {
     return {
-      cathegory: "",
+       category: "",
       ticket: "",
       btn: false,
     };

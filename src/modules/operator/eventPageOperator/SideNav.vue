@@ -6,57 +6,66 @@
       v-if="infoEvent !== ''"
       class="z-10 flex-col hover:bg-Rock rounded-lg m-6 p-2 pl-3 pr-3"
     >
-    <div class="flex items-center">
-          <ImgFormated
-            :key="infoEvent.name"
-            :size="'s'"
-            :srcImg = "imageURL"
-            class="z-10 h-10 w-10 bg-white rounded-full mr-3"
-          />
-          <p class="truncate font-bold text-xl">{{ infoEvent.name }}</p>
-        </div>
-        <div class="flex justify-end">
-        
-        </div>
+      <div class="flex items-center">
+        <ImgFormated
+          :key="infoEvent.name"
+          :size="'s'"
+          :srcImg="imageURL"
+          class="z-10 h-10 w-10 bg-white rounded-full mr-3"
+        />
+        <p class="truncate font-bold text-xl">{{ infoEvent.name }}</p>
       </div>
-      <div v-for="section in nav" 
-        :class="section.cathegory == 'Search' ? 
-        'flex flex-col mx-8' : 'flex flex-col mt-5 mx-8'">
-        <p
-          class="flex items-center text-LightGrey font-medium text-xl cursor-pointer px-2 py-1.5 rounded-lg"
-          @click="
-            section.items.length > 0
-              ? section.open === true
-                ? (section.open = false)
-                : (section.open = true)
-              : section.target !== ''
-              ? $emit('update:modelValue', section.target)
-              : ''
+      <div class="flex justify-end"></div>
+    </div>
+    <div
+      v-for="section in nav"
+      :key="section"
+      :class="
+        section.category == 'Search'
+          ? 'flex flex-col mx-8'
+          : 'flex flex-col mt-5 mx-8'
+      "
+    >
+      <p
+        class="flex items-center text-LightGrey font-medium text-xl cursor-pointer px-2 py-1.5 rounded-lg"
+        @click="
+          section.items.length > 0
+            ? section.open === true
+              ? (section.open = false)
+              : (section.open = true)
+            : section.target !== ''
+            ? $emit('update:modelValue', section.target)
+            : ''
+        "
+        :class="
+          select === section.target
+            ? section.category == 'Search'
+              ? 'text-LightRock cursor-not-allowed'
+              : 'text-LightGrey bg-DarkRock'
+            : section.category == 'Search'
+            ? 'text-LightRock cursor-not-allowed'
+            : 'text-Gravel hover:text-LightGrey hover:bg-LightRock'
+        "
+      >
+        <SvgTarget
+          :target="section.icon"
+          :height="20"
+          :width="20"
+          :class="
+            section.category == 'Search' ? 'text-LightRock mr-[10px]' : 'mr-2'
           "
-          :class=" 
-            select === section.target
-              ? section.cathegory == 'Search' ? 'text-LightRock cursor-not-allowed' : 'text-LightGrey bg-DarkRock'
-              : section.cathegory == 'Search' ? 'text-LightRock cursor-not-allowed' : 'text-Gravel hover:text-LightGrey hover:bg-LightRock'
+        ></SvgTarget>
+        {{ section.category
+        }}<SvgTarget :target="'ChevronDown'" :height="16" :width="16"
+          v-if="section.items.length > 0"
+          class="ml-2 mt-0.5"
+          :class="
+            section.open === true
+              ? 'transition-all ease-in-out'
+              : 'transition-all ease-in-out rotate-180'
           "
-        >
-          <SvgTarget
-            :target="section.icon"
-            :height="20"
-            :width="20"
-            :class="section.cathegory == 'Search' ? 'text-LightRock mr-[10px]' : 'mr-2'"
-            
-          ></SvgTarget>
-          {{ section.cathegory
-          }}<ChevronUpIcon
-            v-if="section.items.length > 0"
-            class="h-8"
-            :class="
-              section.open === true
-                ? 'transition-all ease-in-out rotate-180'
-                : 'transition-all ease-in-out'
-            "
-          />
-        </p>
+        />
+      </p>
       <div
         v-for="item in section.items"
         :class="
@@ -119,21 +128,21 @@ export default {
       userNavigation: [{ name: "opt1" }, { name: "opt2" }, { name: "Remove" }],
       nav: [
         {
-          cathegory: "Overview",
+          category: "Overview",
           target: "Overview",
           icon: "Overview",
           open: true,
           items: [],
         },
         {
-          cathegory: "Search",
+          category: "Search",
           target: "Search",
           icon: "Search",
           open: true,
           items: [],
         },
         {
-          cathegory: "Items",
+          category: "Items",
           target: "",
           icon: "Shards",
           open: true,
@@ -147,7 +156,7 @@ export default {
           ],
         },
         {
-          cathegory: "Logistics",
+          category: "Logistics",
           target: "",
           icon: "Logistics",
           open: true,
@@ -159,7 +168,7 @@ export default {
           ],
         },
         {
-          cathegory: "Production",
+          category: "Production",
           target: "",
           icon: "TV",
           open: true,
@@ -173,7 +182,7 @@ export default {
           ],
         },
         {
-          cathegory: "People",
+          category: "People",
           target: "",
           icon: "People",
           open: true,
@@ -188,7 +197,7 @@ export default {
           ],
         },
         {
-          cathegory: "Analytics",
+          category: "Analytics",
           target: "",
           icon: "Analytics",
           open: true,
@@ -200,7 +209,7 @@ export default {
           ],
         },
         {
-          cathegory: "Marketing",
+          category: "Marketing",
           target: "",
           icon: "Marketing",
           open: true,
@@ -211,7 +220,7 @@ export default {
           ],
         },
         {
-          cathegory: "Finance",
+          category: "Finance",
           target: "",
           icon: "Finance",
           open: true,

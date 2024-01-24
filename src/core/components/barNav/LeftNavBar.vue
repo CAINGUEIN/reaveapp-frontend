@@ -6,21 +6,6 @@
       class="transition duration-150 space-y-2 flex-col justify-between ease-in-out hover:text-White"
     >
       <Popover class="relative" v-slot="{ open }">
-        <div
-          :class="[
-            open ? ' bg-LightRock' : 'hover:bg-Rock',
-            'flex items-center justify-center rounded-full h-10 w-10  text-Gravel transition-all duration-300',
-          ]"
-        >
-          <PopoverButton class="outline-none">
-            <img
-              draggable="false"
-              class="rounded-full cursor-pointer h-6 w-6"
-              :src="spaceStore.getImg(props.idSpace)"
-              alt="Space picture"
-            />
-          </PopoverButton>
-        </div>
         <transition
           enter-active-class="transition ease-out duration-200 z-50"
           enter-from-class="opacity-0 -translate-x-1 z-50"
@@ -29,10 +14,10 @@
           leave-from-class="opacity-100 translate-y-0 z-50"
           leave-to-class="opacity-0 -translate-x-1 z-50"
         >
-          <PopoverPanel ref="bento" class="absolute z-1000">
+          <PopoverPanel ref="bento" class="absolute z-50">
             <div
               style="border: solid 1px"
-              class="transition w-[242px] left-9 bottom-9 flex-col z-50 space-y-1 p-3 ease-out right-2/3 rounded-xl border-Gravel duration-300 relative bg-DarkRock"
+              class="transition w-[242px] left-12 bottom-9 flex-col z-50 space-y-1 p-3 ease-out right-2/3 rounded-xl border-Gravel duration-300 relative bg-DarkRock"
             >
               <p class="font-bold py-2 px-3 w-fit text-White">
                 {{ spaceStore.dataSpace[props.idSpace].nameSpace }}
@@ -80,6 +65,22 @@
             </div>
           </PopoverPanel>
         </transition>
+        <div
+          :class="[
+            open ? ' bg-LightRock' : 'hover:bg-Rock',
+            'flex items-center justify-center rounded-full h-10 w-10  text-Gravel transition-all duration-300',
+          ]"
+        >
+          <PopoverButton class="outline-none">
+            <img
+              draggable="false"
+              class="rounded-full cursor-pointer h-6 w-6"
+              :src="spaceStore.getImg(props.idSpace)"
+              alt="Space picture"
+            />
+          </PopoverButton>
+        </div>
+
       </Popover>
       <ToolsButtonNav
         v-for="item in buttonsMenu"

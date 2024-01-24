@@ -175,7 +175,7 @@
                     :style="'background: #' + item.color"
                   ></div>
                   <p class="text-base font-black text-LightGrey">
-                    {{ item.cathegory }}
+                    {{ item. category }}
                   </p>
                 </div>
               </td>

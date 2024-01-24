@@ -75,6 +75,18 @@ const StoreSpace = defineStore("space", {
         return false;
       }
     },
+    async findSingleSpace(id) {
+      this.isWaiting = true;
+      let result = await SpaceServices.getSpaceById(id);
+      if (result.status == "200") {
+        this.dataSpace[result.data.data._id] = result.data.data;
+        this.isWaiting = false;
+        return true;
+      } else {
+        this.isWaiting = false;
+        return false;
+      }
+    },
     deleteDataSpace(state) {
       state.dataSpace = "";
     },

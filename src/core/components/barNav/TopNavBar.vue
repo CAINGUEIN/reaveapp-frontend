@@ -2,7 +2,7 @@
   <div
     name="nav-bar-top"
     style="
-      z-index: 100000;
+      z-index: 40;
       margin-left: 30px;
       margin-right: 30px;
       padding-top: 0px;
@@ -110,7 +110,39 @@
           </transition>
         </Popover>
         <div class="relative">
-          <ToolsButtonNav
+          <Popover class="relative" v-slot="{ open }">
+            <div
+              :class="[
+                open
+                  ? 'text-Cloud bg-LightRock hover:text-Cloud hover:bg-LightRock'
+                  : 'text-gray-500',
+                'flex items-center justify-center rounded-full outline-0 cursor-pointer h-12 w-12 hover:bg-DarkRock hover:text-LightGrey',
+              ]"
+            >
+              <PopoverButton class="outline-none">
+                <ImgFormated class="rounded-full" type="avatar" />
+              </PopoverButton>
+            </div>
+            <transition
+              enter-active-class="transition ease-out duration-200"
+              enter-from-class="opacity-0 translate-y-1"
+              enter-to-class="opacity-100 translate-y-0"
+              leave-active-class="transition ease-in duration-150"
+              leave-from-class="opacity-100 translate-y-0"
+              leave-to-class="opacity-0 translate-y-1"
+            >
+              <PopoverPanel ref="bento" class="absolute right-0 z-10 mt-1">
+                <div class="overflow-visible">
+                  <div
+                    class="transition ease-out rounded-[12px] duration-300 relative grid w-52 bg-DarkRock grid-cols-4 p-2"
+                  >
+                    <p class="font-bold py-2 px-3 w-fit text-White">test</p>
+                  </div>
+                </div>
+              </PopoverPanel>
+            </transition>
+          </Popover>
+          <!-- <ToolsButtonNav
             :target="'Personal'"
             :subTarget="'dashboard'"
             :comparTarget="store.view"
@@ -118,7 +150,7 @@
             @click.right.prevent="toggleDropdown"
           >
             <ImgFormated class="rounded-full" type="avatar" />
-          </ToolsButtonNav>
+          </ToolsButtonNav> -->
           <div
             :class="dropdown"
             class="absolute right-0 bg-white divide-y divide-gray-100 rounded w-44 dark:bg-gray-700"
