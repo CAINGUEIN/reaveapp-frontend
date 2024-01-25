@@ -1,191 +1,166 @@
 <template>
-  <div id="globalContainer">
-    <img id="banner"
-      src="https://media.discordapp.net/attachments/696115202185232497/1165637125438451802/image.png?ex=6547932b&is=65351e2b&hm=a094f6480320d6164a083083adaac6040a0995018858a698876131fab93be6ab&=&width=750&height=180" />
-    <img id="pfp"
-      src="https://cdn.discordapp.com/attachments/696115202185232497/1164987971091578910/image.png?ex=65453698&is=6532c198&hm=5884aea8c834b89241ebe9b18c9e0ba91235a4f49d6aa6d3e86bf4260ebe50c3&" />
-    <div id="statusContainer">
-      <div id="status"></div>
-    </div>
-
-    <div id="profileDataAndButtons">
-      <div id="profileNameAndMedals">
-        <p id="profileName">Terratiger</p>
-        <div id="medals">
-          <div id="medal"></div>
-          <div id="medal"></div>
-          <div id="medal"></div>
-          <div id="medal"></div>
+  <div class="overflow-visible">
+    <div
+      class="transition ease-out rounded-[12px] mt-1 duration-300 relative w-fit bg-DarkRock p-3"
+    >
+      <div
+        class="w-[304px] h-[72px] rounded-lg"
+        style="
+          background-image: url(../../../../../public/img/PersonalBanneer.png);
+          background-size: cover;
+          background-position: center;
+        "
+      >
+        <div class="absolute -bottom-4 left-3">
+          <ImgFormated class="rounded-full w-12 h-12" type="avatar" />
+          <span
+            class="bottom-1 left-9 absolute w-4 h-4 bg-Green border-2 border-DarkRock rounded-full"
+          ></span>
         </div>
       </div>
-      <div id="profileIdAndTeam">
-        <p id="profileId">@Terratiger</p>
-        <div id="teamContainer">
-          <p id="team">LFT</p>
+
+      <p class="font-black w-fit mt-5 text-xl text-White">
+        {{ props.profileInfo.profileName }}
+      </p>
+
+      <p class="font-medium text-base w-fit text-Gravel">
+        @{{ props.profileInfo.userTag }}
+      </p>
+      <div class="h-0.5 w-full bg-Platinium my-4"></div>
+      <div class="flex flex-row space-x-1">
+        <ToolsButtonNav
+          v-for="item in personalTools"
+          :key="item.name"
+          :target="'Personal'"
+          :btnName="item.name"
+          :subTarget="item.target"
+          @click="emit('close')"
+          :isMouseOver="true"
+          :class="
+            route.params.view === item.target ? 'bg-LightRock text-White' : ''
+          "
+          class="flex rounded-full hover:bg-LightRock hover:text-LightGrey text-Gravel transition duration-150 ease-in-out p-2"
+        >
+          <SvgTarget :width="24" :height="24" :target="item.icon" />
+        </ToolsButtonNav>
+      </div>
+      <div class="h-0.5 w-full bg-Platinium my-4"></div>
+      <div class="flex flex-row space-x-1">
+        <div class="mx-2 p-2 w-6 h-6 bg-Green rounded-full my-auto"></div>
+        <div
+          v-for="item in personalOptions"
+          :key="item.name"
+          @click="emit('close')"
+          class="flex rounded-full"
+        >
+          <ToolsButtonNav
+            v-if="item.type === 'page'"
+            :target="'Personal'"
+            :subTarget="item.target"
+            :dataClass="'settings'"
+            class="w-10 hover:bg-LightRock transition duration-150 ease-in-out"
+            :btnName="item.name"
+            :class="
+              route.params.view === item.target ? 'bg-LightRock text-White' : ''
+            "
+            :isMouseOver="true"
+          >
+            <SvgTarget
+              :class="item.target === 'save' ? 'pr-0.5' : ''"
+              :width="24"
+              :height="24"
+              :target="item.icon"
+            />
+          </ToolsButtonNav>
+          <div
+            v-if="item.type === 'settings'"
+            class="flex w-10 h-10 cursor-pointer hover:text-LightGrey text-Gravel hover:bg-LightRock rounded-full my-auto transition duration-150 ease-in-out"
+            @click="emit('logout', item.target)"
+          >
+            <SvgTarget
+              class="m-auto hover:text-LightGrey text-Gravel"
+              :width="24"
+              :height="24"
+              :target="'switch'"
+            />
+          </div>
+          <div
+            v-if="item.type === 'modal'"
+            class="flex w-10 h-10 cursor-pointer hover:text-LightGrey text-Gravel hover:bg-LightRock rounded-full my-auto transition duration-150 ease-in-out"
+            @click="emit('modalChanged', item.target)"
+          >
+            <SvgTarget
+              class="m-auto"
+              :width="24"
+              :height="24"
+              :target="item.icon"
+            />
+          </div>
         </div>
-      </div>
-      <div id="divider"></div>
-      <div id="buttonList">
-        <button>Wallet</button>
-        <button>Dashboards</button>
-        <button>Mirror</button>
-        <button>Conceptor</button>
-
-        <button>Calendars</button>
-
-        <button>Notifications</button>
-      </div>
-      <div id="divider"></div>
-      <div id="buttonList">
-        <button>Status</button>
-        <button>Search</button>
-        <button>Friends</button>
-        <button>Bookmarks</button>
-        <button>Switch Accounts</button>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-  export default {};
+<script setup>
+import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
+import SvgTarget from "@components/SvgTarget.vue";
+import { useRoute } from "vue-router";
+import { defineProps, defineEmits } from "vue";
+const route = useRoute();
+const emit = defineEmits(["logout", "close", "modalChanged"]);
+const props = defineProps({
+  profileInfo: {
+    type: Object,
+    required: true,
+  },
+});
+const personalTools = [
+  {
+    name: "Wallet",
+    icon: "ReaveWallet",
+    target: "wallet",
+  },
+  {
+    name: "Conceptor",
+    icon: "Conceptor",
+    target: "conceptor",
+  },
+  {
+    name: "Calendar",
+    icon: "Calendar",
+    target: "calendar",
+  },
+  {
+    name: "Notification",
+    icon: "Notification",
+    target: "notifs",
+  },
+];
+const personalOptions = [
+  {
+    icon: "Search",
+    name: "Search",
+    target: "search",
+    type: "modal",
+  },
+  {
+    icon: "Friends",
+    name: "Friends",
+    target: "friends",
+    type: "page",
+  },
+  {
+    icon: "Save",
+    name: "Save",
+    target: "save",
+    type: "page",
+  },
+  {
+    icon: "Switch",
+    name: "Switch Account",
+    target: "logout",
+    type: "settings",
+  },
+];
 </script>
-
-<style lang="scss" scoped>
-  /*body {
-    font-family: 'Gotham', sans-serif;
-    margin: 0px;
-  }*/
-
-  p {
-    margin: 0px;
-  }
-
-  #globalContainer {
-    top: 0px;
-    left: 0px;
-    width: 324px;
-    height: 296px;
-    background-color: #1a1a1a;
-    border-radius: 12px;
-  }
-
-  #banner {
-    position: absolute;
-    width: 300px;
-    height: 72px;
-    top: 12px;
-    left: 12px;
-    border-radius: 8px;
-  }
-
-  #pfp {
-    position: absolute;
-    width: 48px;
-    height: 48px;
-    left: 24px;
-    top: 52px
-  }
-
-  #statusContainer {
-    position: absolute;
-    top: 84px;
-    left: 56px;
-    border-radius: 100%;
-    background-color: #1a1a1a;
-    width: 14px;
-    height: 14px;
-    padding: 2px;
-  }
-
-  #status {
-    background-color: #00ae40;
-    border-radius: 100%;
-    width: 100%;
-    height: 100%;
-  }
-
-  #profileDataAndButtons {
-    position: relative;
-    left: 12px;
-    top: 114px;
-    height: auto;
-    width: calc(100% - 24px);
-  }
-
-  #profileName {
-    color: #ffffff;
-    font-size: 20px;
-  }
-
-  #profileId {
-    color: #808080;
-    font-size: 16px;
-    margin-top: 5px;
-  }
-
-  #divider {
-    width: 100%;
-    height: 2px;
-    background-color: #404040;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-
-  #buttonList {
-    display: flex;
-    height: auto;
-  }
-
-  button {
-
-    all: initial;
-    color: #ffffff;
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-  }
-
-  button:hover {
-    background-color: #2a2a2a;
-  }
-
-  #profileNameAndMedals,
-  #profileIdAndTeam {
-    display: flex;
-    justify-content: space-between
-  }
-
-  #medals {
-    display: flex;
-    float: right;
-  }
-
-  #medal {
-    margin-left: 4px;
-    width: 20px;
-    height: 20px;
-    border-radius: 100%;
-    background-color: yellow;
-  }
-
-  #profileIdAndTeam {
-    align-items: flex-end
-  }
-
-  #teamContainer {
-    display: flex;
-    background-color: #2a2a2a;
-    border-radius: 4px;
-    width: 32px;
-    height: 16px;
-    align-items: center;
-    justify-content: space-evenly;
-  }
-
-  #team {
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 10px;
-  }
-</style>

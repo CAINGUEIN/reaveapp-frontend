@@ -63,6 +63,7 @@
           'bg-Anthracite': !isOpenModal && !isMapsRoute,
         }"
         @modal-changed="handleModalValueChanged"
+        @logout="handleModalSettings"
         :dataStore="dataSpace"
       />
       <div
@@ -85,6 +86,11 @@
       :spaceName="spaceName"
       :idSpace="$route.params.id"
     />
+    <ModalSettings
+      @isOpenModal="closeModal"
+      :isOpenModal="isOpenModalSettings"
+      :target="target"
+    />
   </div>
   <VisitorLayout v-else />
 </template>
@@ -96,6 +102,8 @@ import useStoreSpace from "@stores/storeSpace";
 //components
 import TopNavBar from "@core/components/barNav/TopNavBar.vue";
 import VisitorLayout from "@modules/layout/views/VisitorLayout.vue";
+import ModalSettings from "@core/components/settings/ModalSettings.vue";
+
 //data
 import dataTopLeft from "@modules/layout/data/dataTopLeftNavBar";
 import dataBottomLeft from "@modules/layout/data/dataBottomLeftNavBar";
@@ -106,6 +114,7 @@ export default {
   components: {
     LeftNavBar,
     VisitorLayout,
+    ModalSettings,
     TopNavBar,
     Modal,
   },
@@ -123,8 +132,10 @@ export default {
       modal: "",
       loading: false,
       spaceName: "",
+      target: "",
       isOpenModal: false,
       isOpenSpaceModal: false,
+      isOpenModalSettings: false,
       isOpenStatusMenu: false,
       store,
       storeSpace,
@@ -194,8 +205,13 @@ export default {
       this.dataSpace = this.storeSpace.dataSpace;
     },
     handleModalValueChanged(value) {
-      this.isOpenModal = value;
-      this.modal = "CreateSpaceModal";
+      console.log(value);
+      this.isOpenModal = true;
+      this.modal = value;
+    },
+    handleModalSettings(value) {
+      this.isOpenModalSettings = true;
+      this.target = value;
     },
     handleModal(value) {
       if (value !== "") {
@@ -206,6 +222,7 @@ export default {
     },
     closeModal() {
       this.isOpenModal = false;
+      this.isOpenModalSettings = false;
     },
     async openSpace(target, type) {
       if (

@@ -73,6 +73,14 @@ export default {
     goTo(value) {
       if (value !== undefined) {
         this.store.view = value;
+        if (value === "Personal") {
+          this.$router.push({
+            name: value,
+            params: {
+              view: this.subTarget,
+            },
+          });
+        }
         this.$router.push({
           name: value,
           params: {

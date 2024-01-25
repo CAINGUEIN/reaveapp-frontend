@@ -5,9 +5,9 @@
     <div class="flex flex-col w-full h-full">
       <div class="flex justify-between">
         <div>
-          <h1>{{ dataTickets[index].ticket. category }} Ticket</h1>
+          <h1>{{ dataTickets[index].ticket.category }} Ticket</h1>
           <h3>
-            {{ dataTickets[index].ticket. category }}, Row
+            {{ dataTickets[index].ticket.category }}, Row
             {{ dataTickets[index].row }}, Seat {{ dataTickets[index].column }}
           </h3>
         </div>
@@ -83,9 +83,18 @@
             >
               <h4 class="text-black">See QR Code</h4>
             </button>
-            <Button60Slot class="flex ml-6"
-              ><Wallet class="m-auto"></Wallet
-            ></Button60Slot>
+            <router-link
+              :to="{
+                name: 'event',
+                params: { id: dataEvent._id },
+                query: { view: 'event' },
+              }"
+            >
+              class="text-black rounded-full h-16 px-10 ml-0 w-80 bg-white"
+              <Button60Slot class="flex ml-6"
+                ><Wallet class="m-auto"></Wallet
+              ></Button60Slot>
+            </router-link>
           </div>
         </div>
         <div class="mb-24" v-else>
@@ -108,7 +117,7 @@
         @action="close()"
         :event="dataEvent.name"
         :place="
-          dataTickets[index].ticket. category +
+          dataTickets[index].ticket.category +
           ', Row ' +
           dataTickets[index].row +
           ', Seat ' +
@@ -130,6 +139,7 @@ import View3D from "@components/modal/wallet/View3D.vue";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/vue/outline";
 import QRView from "@components/modal/wallet/QRView.vue";
 import ImgFormated from "../img/ImgFormated.vue";
+import router from "../../../plugins/router";
 export default {
   components: {
     Button60Slot,
@@ -142,6 +152,7 @@ export default {
     ModalClear,
     QRView,
     ImgFormated,
+    router,
   },
   props: ["dataTickets", "dataEvent", "ticketsResumeBuy"],
   data() {

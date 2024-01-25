@@ -58,7 +58,7 @@
         </div>
       </div>
 
-      <div class="flex space-x-4 items-center">
+      <div class="flex space-x-2 items-center">
         <ToolsButtonNav
           :target="'Settings'"
           :subTarget="'account'"
@@ -67,16 +67,16 @@
           <Settings color1="#BEBEBE" />
         </ToolsButtonNav>
 
-        <Popover class="relative" v-slot="{ open }">
+        <Popover class="relative" v-slot="{ close }">
           <PopoverButton
             :class="[
-              open
+              !close
                 ? 'text-Cloud bg-LightRock hover:text-Cloud hover:bg-LightRock'
                 : 'text-gray-500',
               'flex items-center justify-center rounded-full outline-0 cursor-pointer h-12 w-12 hover:bg-DarkRock hover:text-LightGrey',
             ]"
           >
-            <Bento :color1="open ? '#BEBEBE' : '#BEBEBE'"></Bento>
+            <Bento :color1="close ? '#BEBEBE' : '#BEBEBE'"></Bento>
           </PopoverButton>
 
           <transition
@@ -99,6 +99,7 @@
                     :target="item.target"
                     :dataClass="item.dataClass"
                     :comparTarget="store.view"
+                    @click="close"
                     :isMouseOver="true"
                     class="flex rounded-full transition duration-150 ease-in-out my-1 mx-1"
                   >
@@ -110,19 +111,18 @@
           </transition>
         </Popover>
         <div class="relative">
-          <Popover class="relative" v-slot="{ open }">
-            <div
+          <Popover class="relative" v-slot="{ close }">
+            <PopoverButton
+              class="outline-none"
               :class="[
-                open
-                  ? 'text-Cloud bg-LightRock hover:text-Cloud hover:bg-LightRock'
-                  : 'text-gray-500',
-                'flex items-center justify-center rounded-full outline-0 cursor-pointer h-12 w-12 hover:bg-DarkRock hover:text-LightGrey',
+                !close
+                  ? 'text-Cloud border-LightRock hover:text-Cloud'
+                  : 'text-gray-500 hover:border-DarkRock',
+                'flex items-center justify-center transition-colors rounded-full border-8 border-Anthracite  outline-0 cursor-pointer h-14 w-14  hover:text-LightGrey',
               ]"
             >
-              <PopoverButton class="outline-none">
-                <ImgFormated class="rounded-full" type="avatar" />
-              </PopoverButton>
-            </div>
+              <ImgFormated class="rounded-full" type="avatar" />
+            </PopoverButton>
             <transition
               enter-active-class="transition ease-out duration-200"
               enter-from-class="opacity-0 translate-y-1"
@@ -132,93 +132,14 @@
               leave-to-class="opacity-0 translate-y-1"
             >
               <PopoverPanel ref="bento" class="absolute right-0 z-10 mt-1">
-                <div class="overflow-visible">
-                  <div
-                    class="transition ease-out rounded-[12px] duration-300 relative grid w-52 bg-DarkRock grid-cols-4 p-2"
-                  >
-                    <p class="font-bold py-2 px-3 w-fit text-White">test</p>
-                  </div>
-                </div>
+                <personalCard
+                  @logout="$emit('logout', 'logout')"
+                  @close="close"
+                  :profileInfo="store.dataAccount"
+                />
               </PopoverPanel>
             </transition>
           </Popover>
-          <!-- <ToolsButtonNav
-            :target="'Personal'"
-            :subTarget="'dashboard'"
-            :comparTarget="store.view"
-            :dataClass="''"
-            @click.right.prevent="toggleDropdown"
-          >
-            <ImgFormated class="rounded-full" type="avatar" />
-          </ToolsButtonNav> -->
-          <div
-            :class="dropdown"
-            class="absolute right-0 bg-white divide-y divide-gray-100 rounded w-44 dark:bg-gray-700"
-          >
-            <ul
-              class="py-1 text-sm text-gray-700 dark:text-gray-200"
-              aria-labelledby="dropdownDefault"
-            >
-              <li>
-                <a
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >Online</a
-                >
-              </li>
-              <li>
-                <a
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >Inactif</a
-                >
-              </li>
-              <li>
-                <a
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >Ne pas déranger</a
-                >
-              </li>
-              <li>
-                <a
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >Invisible</a
-                >
-              </li>
-            </ul>
-            <div class="py-1 text-sm">
-              <InputModel
-                class="m-0 p-0 text-gray-700 dark:text-gray-200"
-                :data="moodMessage"
-                v-model="moodMessage.value"
-                :errors="errors"
-              />
-            </div>
-            <ul
-              class="py-1 text-sm text-gray-700 dark:text-gray-200"
-              aria-labelledby="dropdownDividerButton"
-            >
-              <li>
-                <a
-                  href="#"
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >list</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >des</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >status perso</a
-                >
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
@@ -245,6 +166,7 @@ import Bento from "@assets/icons/Bento.vue";
 import dataTopLeft from "@modules/layout/data/dataTopLeftNavBar";
 import dataBottomLeft from "@modules/layout/data/dataBottomLeftNavBar";
 import ImgFormated from "../img/ImgFormated.vue";
+import personalCard from "../profile/personalCard/personalCard.vue";
 export default {
   props: {
     dataStore: Object,
@@ -255,6 +177,7 @@ export default {
     ToolsButtonNav,
     Plus,
     SvgTarget,
+    personalCard,
     Spaces,
     Reave,
     Bento,
@@ -272,6 +195,7 @@ export default {
       dataTopLeft,
       dataBottomLeft,
       isLoaded: false,
+      open: false,
       isOpenModal: false,
       isOpenStatusMenu: false,
       store,
@@ -339,6 +263,7 @@ export default {
   },
   methods: {
     closeBento() {
+      console.log(this.$refs.bento.close());
       // Utilisez la référence du Popover pour le fermer
       this.$refs.bento.close();
       console.log("CLOSED");
@@ -349,7 +274,7 @@ export default {
     },
     openModal() {
       this.isOpenModal = true;
-      this.$emit("modal-changed", this.isOpenModal);
+      this.$emit("modal-changed", "CreateSpaceModal");
     },
     async openSpace(target, type) {
       if (this.storeSpace.dataSpace[target]) {

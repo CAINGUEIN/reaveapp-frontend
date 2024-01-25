@@ -12,9 +12,10 @@
           target="Arrow"
           :height="12"
           :width="24"
-          class="mx-2"  
+          class="mx-2"
         ></SvgTarget>
         <img
+          v-if="infoSpace.picture"
           :src="infoSpace.picture"
           class="w-6 h-6 ml-2 mr-4 rounded-full"
           alt=""
@@ -26,7 +27,6 @@
     <div class="px-48">
       <!-- An attempt to a responsive page -->
       <div class="flex flex-row justify-center mt-8">
-
         <img
           :src="infoEvent.posterPic"
           class="rounded-2xl min-w-[400px] max-w-full max-h-[642px] h-fit"
@@ -40,6 +40,7 @@
               <div class="flex flex-col w-full">
                 <div class="flex gap-[0.625vw] items-center">
                   <ImgFormated
+                    v-if="infoEvent"
                     :key="infoEvent.owner._id"
                     :size="'s'"
                     :src="infoSpace.picture"
@@ -295,8 +296,6 @@ import EventIdVenue from "@modules/platforms/events/EventIdVenue.vue";
 import EventIdProducts from "@modules/platforms/events/EventIdProducts.vue";
 import EventIdPeople from "@modules/platforms/events/EventIdPeople.vue";
 import UploadServices from "@axios/services/uploadServices";
-import Carousel from "@modules/platforms/events/landing/elements/Carousel.vue";
-import { FwbCarousel } from "flowbite-vue";
 //services
 import EventServices from "@axios/services/eventServices";
 import SvgTarget from "@components/SvgTarget.vue";
@@ -325,7 +324,7 @@ const goBack = () => {
 };
 
 const goTo = () => {
-  //route.push({ name: "EventBuyTicket" });
+  router.push({ name: "EventBuyTicket", params: { id: infoEvent.value._id } });
 };
 
 const getUrl = () => {
@@ -351,7 +350,6 @@ const feedData = async () => {
   if (event.data.success) {
     infoEvent.value = event.data.data;
     infoEvent.value.ticketsRemaining = ticketsRemaining();
-    console.log("VOICI LES INFOS EVENTS : ", infoEvent.value);
     if (infoEvent.value.posterPic) {
       infoEvent.value.posterPic = await UploadServices.getImageFromBackend(
         infoEvent.value.posterPic
@@ -359,7 +357,6 @@ const feedData = async () => {
     }
     await storeSpace.findSingleSpace(infoEvent.value.spaceAssociated);
     infoSpace.value = storeSpace.dataSpace[infoEvent.value.spaceAssociated];
-    console.log("VOICI LES INFOS SPACES : ", infoSpace.value);
 
     if (infoSpace.value.picture) {
       infoSpace.value.picture = await UploadServices.getImageFromBackend(
@@ -378,7 +375,7 @@ const feedData = async () => {
             infoEvent.value.secondaryPics[i]
           );
       }
-      infoEvent.secondaryPics.map((picture, i) => ({
+      infoEvent.value.secondaryPics.map((picture, i) => ({
         src: picture,
         alt: "Image " + i,
       }));

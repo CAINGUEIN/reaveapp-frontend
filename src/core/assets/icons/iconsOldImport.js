@@ -9,6 +9,7 @@ import Check from "./Check.vue";
 import CheckVoid from "./CheckVoid.vue";
 import Chevron from "./Chevron.vue";
 import Filters from "./Filters.vue";
+import Friends from "./Friends.vue";
 import Handicap from "./Handicap.vue";
 import Ligns from "./Ligns.vue";
 import lgsq from "./lgsq.vue";
@@ -37,6 +38,7 @@ import MuseeFabre from "./MuseeFabre.vue";
 import Capacity from "./Capacity.vue";
 import Profile from "./Profile.vue";
 import Settings from "./Settings.vue";
+import Switch from "./Switch.vue";
 import Picture from "./Picture.vue";
 export {
   Academy,
@@ -57,6 +59,7 @@ export {
   Overwatch,
   CSGO,
   Filters,
+  Friends,
   Handicap,
   Ligns,
   lgsq,
@@ -76,6 +79,7 @@ export {
   smsq,
   Smash,
   Standing,
+  Switch,
   Trash,
   VALOIcon,
   Capacity,

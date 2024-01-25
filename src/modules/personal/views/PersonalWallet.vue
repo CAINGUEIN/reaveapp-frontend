@@ -8,30 +8,38 @@
         class="mx-auto max-w-2xl py-8 lg:max-w-7xl"
         aria-labelledby="order-history-heading"
       >
-        <div class="flex justify-between items-baseline">
+        <div class="flex justify-between mb-[18px] items-end">
           <h1
             id="order-history-heading"
-            class="text-3xl font-bold tracking-tight text-white mb-4 flex items-center"
+            class="text-2xl font-bold tracking-tight text-white flex items-center"
           >
             <span><SvgTarget target="Balance" class="mr-4"></SvgTarget></span>
             Balance
           </h1>
           <a
             @click="changeView('walletBallance')"
-            class="text-base cursor-pointer"
+            class="text-base cursor-pointer font-medium underline"
             >View monitor</a
           >
         </div>
-        <div name="coin" class="flex flex-col bg-DarkRock rounded-xl p-4">
+        <div name="coin" class="flex flex-col bg-DarkRock rounded-2xl p-4">
           <div class="flex w-full justify-between">
             <div class="flex items-center space-x-2">
-              <h2>
-                {{ store.dataAccount.coin }}
-              </h2>
-              <GoldRC></GoldRC>
+              <h2>{{ store.dataAccount.coin }}€</h2>
             </div>
 
-            <div class="flex space-x-4">
+            <div class="flex space-x-3">
+              <button
+                class="bg-white text-black rounded-full h-[50px] w-[50px] flex"
+                @click.prevent="(open = true), (modal = 'transferTo')"
+              >
+                <TransferTo
+                  class="m-auto"
+                  :width="26"
+                  :height="26"
+                  :color1="'black'"
+                ></TransferTo>
+              </button>
               <button
                 class="bg-white text-black rounded-full h-[50px] w-[50px] flex"
                 @click.prevent="(open = true), (modal = 'credit')"
@@ -54,17 +62,6 @@
                   :color1="'black'"
                 ></Debit>
               </button>
-              <button
-                class="bg-white text-black rounded-full h-[50px] w-[50px] flex"
-                @click.prevent="(open = true), (modal = 'transferTo')"
-              >
-                <TransferTo
-                  class="m-auto"
-                  :width="26"
-                  :height="26"
-                  :color1="'black'"
-                ></TransferTo>
-              </button>
             </div>
           </div>
         </div>
@@ -72,38 +69,54 @@
           <div class="flex justify-between items-baseline">
             <h1
               id="order-history-heading"
-              class="text-3xl font-bold tracking-tight text-white mt-8 flex items-center"
+              class="text-2xl font-bold tracking-tight text-white mt-8 flex items-center"
             >
               <span
-                ><SvgTarget target="Exchanges" class="mr-4"></SvgTarget
+                ><SvgTarget
+                  target="Exchanges"
+                  :width="24"
+                  :height="24"
+                  class="mr-3"
+                ></SvgTarget
               ></span>
               Transactions
             </h1>
             <a
               @click="changeView('walletTransaction')"
-              class="text-base cursor-pointer"
+              class="text-base font-medium underline cursor-pointer"
               >View all transactions</a
             >
           </div>
 
-          <table class="overflow-hidden text-[18px] text-center w-full my-4">
+          <table
+            style="border-collapse:separate; border-spacing: 0 12px"
+            class="overflow-hidden table-auto border-separate font-medium text-xl text-center w-full my-4"
+          >
             <tr>
-              <th class="py-2">
-                <p class="font-medium text-White mr-6">Type</p>
+              <th>
+                <p class="text-left text-White font-medium">Type</p>
               </th>
-              <th><p class="font-medium text-White text-left">Name</p></th>
-              <th><p class="font-medium text-White">Date</p></th>
-              <th><p class="font-medium text-White">Amount</p></th>
+              <th>
+                <p class="text-left text-White font-medium">Name</p>
+              </th>
+              <th><p class="text-White text-left font-medium">Date</p></th>
+              <th>
+                <p class="text-White text-right mr-3 font-medium">Amount</p>
+              </th>
             </tr>
-            <tr class="">
+            <tr>
               <th class="bg-white h-0.5"></th>
               <th class="bg-white h-0.5"></th>
               <th class="bg-white h-0.5"></th>
               <th class="bg-white h-0.5"></th>
             </tr>
-            <tr v-for="item in reverse(10)" class="hover:bg-DarkRock">
+            <tr
+              v-for="item in reverse(10)"
+              :key="item"
+              class="hover:bg-DarkRock border-Anthracite"
+            >
               <td class="py-3 rounded-l-2xl">
-                <div class="flex justify-center mr-6">
+                <div class="flex justify-start mr-6">
                   <div
                     v-if="item.type === 'coin' && item.value > 0"
                     class="flex"
@@ -156,7 +169,7 @@
                   </div>
                 </div>
               </td>
-              <td class="py-3 text-left">
+              <td class="py-3 text-left w-fit">
                 <p
                   class="text-xl font-normal"
                   v-if="item.type === 'sendCoin' && item.value > 0"
@@ -166,50 +179,54 @@
 
                 <p></p>
                 <p
-                  class="text-xl font-normal"
+                  class="text-xl font-medium"
                   v-if="item.type === 'sendCoin' && item.value < 0"
                 >
                   don
                 </p>
                 <p
-                  class="text-xl font-normal"
+                  class="text-xl text-left font-medium"
                   v-if="item.type === 'coin' && item.value > 0"
                 >
                   Achat
                 </p>
                 <p
-                  class="text-xl font-normal"
+                  class="text-xl text-left font-medium"
                   v-if="item.type === 'coin' && item.value < 0"
                 >
                   Vente
                 </p>
-                <p class="text-xl font-normal" v-if="item.type === 'BuyTicket'">
+                <p
+                  class="text-xl text-left font-normal"
+                  v-if="item.type === 'BuyTicket'"
+                >
                   {{ item.message }}
                 </p>
                 <p
-                  class="text-xl font-normal"
+                  class="text-xl text-left font-normal"
                   v-if="item.type === 'GiftTicket'"
                 >
                   {{ item.message }}
                 </p>
                 <p
-                  class="text-xl font-normal"
+                  class="text-xl text-left font-medium"
                   v-if="item.type === 'GiftedTicket'"
                 >
                   {{ item.message }}
                 </p>
               </td>
-              <td class="py-3">
-                <p class="text-xl font-normal">
-                  {{ $dayjs(item.date).format("DD-MM-YYYY") }}
+              <td class="py-3 w-fit">
+                <p class="text-xl text-left font-medium">
+                  {{ $dayjs(item.date).format("DD/MM/YYYY") }}
                 </p>
               </td>
               <td class="rounded-r-2xl py-3">
                 <p
-                  class="text-xl font-normal"
+                  class="text-xl text-right font-medium"
                   :class="item.value > 0 ? 'text-Green' : 'text-Red'"
                 >
-                  {{ item.value }}
+                  <span class="font-medium w-fit" v-if="item.value > 0">+</span
+                  >{{ item.value }}€
                 </p>
               </td>
             </tr>
@@ -228,14 +245,21 @@
         <div class="flex justify-between items-baseline">
           <h1
             id="order-history-heading"
-            class="text-3xl font-bold tracking-tight text-white mb-4 flex items-center"
+            class="text-2xl font-bold tracking-tight text-white mb-4 flex items-center"
           >
-            <span><SvgTarget target="Inventory" class="mr-4"></SvgTarget></span>
+            <span
+              ><SvgTarget
+                target="Inventory"
+                :width="24"
+                :height="24"
+                class="mr-4"
+              ></SvgTarget
+            ></span>
             Inventory
           </h1>
           <a
             @click="changeView('walletInventory')"
-            class="text-base cursor-pointer"
+            class="text-base font-medium underline cursor-pointer"
             >View all items</a
           >
         </div>

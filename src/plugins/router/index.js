@@ -67,6 +67,7 @@ router.beforeEach(async (to, from) => {
   // si connecté
   if (store.isLogin) {
     console.log("si login");
+    console.log(to.fullPath );
     if (storeData.data === "") {
       console.log("ici si pas de data pour recup les datas de base");
       await storeData.feedData();

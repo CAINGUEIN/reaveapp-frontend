@@ -28,7 +28,7 @@
                 class="h-6 w-6 rounded-full"
               ></div>
               <div class="ml-4">
-                <p class="leading-6">{{ item. category }}</p>
+                <p class="leading-6">{{ item.category }}</p>
                 <div class="flex items-center">
                   <h3 class="leading-7">{{ item.price }}</h3>
                   <GoldRC class="ml-2" :width="14" :height="14"></GoldRC>
@@ -124,7 +124,7 @@
                   class="leading-7 font-medium"
                   :style="'color: #' + item.ticket.color"
                 >
-                  {{ item.ticket. category }}
+                  {{ item.ticket.category }}
                 </h3>
                 <p class="leading-6">ZoneName</p>
                 <p class="leading-6">
@@ -264,7 +264,7 @@ export default {
     return {
       store,
       open: false,
-      id: "655e3a1bc7a488be76608eff",
+      id: "",
       infoEvent: "",
       listTicket: [],
       indexTicket: "",
@@ -278,12 +278,12 @@ export default {
       this.$router.back();
     },
     getUrl() {
-      //if (Object.keys(this.$route.params).length > 0) {
-       // this.id = this.$route.params.id;
+      if (Object.keys(this.$route.params).length > 0) {
+        this.id = this.$route.params.id;
         this.feadData();
-     // } else {
-     //   this.goBack();
-     // }
+      } else {
+        this.goBack();
+      }
     },
     ticketsRemaining() {
       let totalTickets = 0;

@@ -2,11 +2,10 @@ export default [
   {
     path: "/pspace/:view",
     name: "Personal",
-
     component: () => import("@modules/personal/views/PersonalLayout.vue"),
     meta: { layout: "Reave", permission: "log" },
   },
-
+  
   {
     path: "/personalMessages",
     name: "PersonalMessages",

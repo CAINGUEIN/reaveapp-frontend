@@ -1,205 +1,75 @@
 <template>
-  <div class=" h-full max-h-full overflow-auto scrollbarV">
-      <div class="mx-8 sticky top-0 left-0 right-0 h-15 z-10 bg-Anthracite">
-        <div class="flex justify-between bg-DarkRock rounded-full items-center">
-          <div name="space-name" class="flex ml-4" @click="goTo('Profile')">
-            <ImgFormated
-              :key="store.avatarKey"
-              :size="'xs'"
-              :type="'avatar'"
-              class="rounded-full my-auto"
-            />
-            <h4 class="ml-4">{{ store.dataAccount.userTag }}</h4>
-          </div>
-          <LolOptionDashboard
-            v-if="view === 'dashboard' && option === 'lol'"
-            :dataOptionGame="dataOptionGame"
-            @actionParam="(e) => setParamOptionGame(e)"
-          />
-          <div
-            v-if="view === 'dashboard' || view === 'tree' || view === 'history'"
-            name="select-game"
-            class="flex bg-LightRock rounded-full"
-          >
-            <ToolsButtonNav
-              :btnName="'lol'"
-              :dataClass="'logoGame'"
-              :comparTarget="option"
-              @click="option = 'lol'"
-            >
-              <LeagueOfLegend />
-            </ToolsButtonNav>
-            <ToolsButtonNav
-              :btnName="'ow'"
-              :dataClass="'logoGame'"
-              :comparTarget="option"
-              @click="option = 'ow'"
-            >
-              <Overwatch />
-            </ToolsButtonNav>
-            <ToolsButtonNav
-              :btnName="'valo'"
-              :dataClass="'logoGame'"
-              :comparTarget="option"
-              @click="option = 'valo'"
-            >
-              <Valorant />
-            </ToolsButtonNav>
-          </div>
-          <div name="icon" class="flex">
-            <ToolsButtonNav
-              :btnName="'dashboard'"
-              :dataClass="'spaceIcon'"
-              :comparTarget="view"
-              @click="view = 'dashboard'"
-            >
-              <Dashboard />
-            </ToolsButtonNav>
-            <!-- <ToolsButtonNav
-              :btnName="'tree'"
-              :dataClass="'spaceIcon'"
-              :comparTarget="view"
-              @click="view = 'tree'"
-            >
-              <Tree />
-            </ToolsButtonNav> --><ToolsButtonNav
-              :btnName="'history'"
-              :dataClass="'spaceIcon'"
-              :comparTarget="view"
-              @click="view = 'history'"
-            >
-              <MatchHistory />
-            </ToolsButtonNav>
-            <ToolsButtonNav
-              :btnName="'calendar'"
-              :dataClass="'spaceIcon'"
-              :comparTarget="view"
-              @click="view = 'calendar'"
-            >
-              <Calendar />
-              <div class="absolute text-[11px] font-black bottom-[18px]">
-                {{ this.$dayjs().format("D") }}
-              </div>
-            </ToolsButtonNav>
-
-            <!-- <ToolsButtonNav
-              :btnName="'cloud'"
-              :dataClass="'spaceIcon'"
-              :comparTarget="view"
-              @click="view = 'cloud'"
-            >
-              <Cloud />
-            </ToolsButtonNav> -->
-
-            <ToolsButtonNav
-              :btnName="'wallet'"
-              :dataClass="'spaceIcon'"
-              :comparTarget="view"
-              @click="view = 'wallet'"
-            >
-              <Wallet />
-            </ToolsButtonNav>
-
-            <!--  <ToolsButtonNav
-              :btnName="'operator'"
-              :dataClass="'spaceIcon'"
-              :comparTarget="view"
-              @click="view = 'operator'"
-            >
-              <Operator />
-            </ToolsButtonNav> -->
-            <!-- <ToolsButtonNav
-              :btnName="'championPass'"
-              :dataClass="'spaceIcon'"
-              :comparTarget="view"
-              @click="view = 'championPass'"
-            >
-              <ChampionPass />
-            </ToolsButtonNav> -->
-            <ToolsButtonNav
-              :btnName="'notifs'"
-              :dataClass="'spaceIcon'"
-              :comparTarget="view"
-              @click="view = 'notifs'"
-            >
-              <Notification />
-            </ToolsButtonNav>
-          </div>
-        </div>
-      </div>
-      <div class="flex-1 max-h-fit mx-[90px]">
-        <DashboardLol
-          v-if="view === 'dashboard' && option === 'lol'"
-          class="w-full h-full"
-          @action="(e) => (dataOptionWait = e)"
-          :paramOptionGame="paramOptionGame"
-        ></DashboardLol>
-        <DashboardValo
-          v-if="view === 'dashboard' && option === 'valo'"
-          class="w-full h-full"
-        ></DashboardValo>
-        <DashboardOw
-          v-if="view === 'dashboard' && option === 'ow'"
-          class="w-full h-full"
-        ></DashboardOw>
-        <PersonalCalendar
-          v-if="view === 'calendar'"
-          class="w-full h-full"
-          @action="(e) => openModal(e)"
-        ></PersonalCalendar>
-        <MatchHistoryLol
-          v-if="view === 'history' && option === 'lol'"
-          class="w-full h-full"
-        ></MatchHistoryLol>
-        <MatchHistoryOw
-          v-if="view === 'history' && option === 'ow'"
-          class="w-full h-full"
-        ></MatchHistoryOw>
-        <MatchHistoryValo
-          v-if="view === 'history' && option === 'valo'"
-          class="w-full h-full"
-        ></MatchHistoryValo>
-        <PersonalWallet
-          v-if="view === 'wallet'"
-          class="w-full h-full"
-          @action="changeView"
-        ></PersonalWallet>
-        <PersonalOperator
-          v-if="view === 'operator'"
-          class="w-full h-full"
-        ></PersonalOperator>
-        <PersonalWalletBallance
-          v-if="view === 'walletBallance'"
-          class="w-full h-full"
-          @action="changeView"
-        ></PersonalWalletBallance>
-        <PersonalWalletInventory
-          v-if="view === 'walletInventory'"
-          class="w-full h-full"
-          @action="changeView"
-        ></PersonalWalletInventory>
-        <PersonalWalletTransaction
-          v-if="view === 'walletTransaction'"
-          class="w-full h-full"
-          @action="changeView"
-        ></PersonalWalletTransaction>
-      </div>
-      <CreateCalendarEvent
-        @isOpenModal="closeModal"
-        :isOpenModal="isOpenModal"
-        :data="data"
-      />
+  <div class="h-full max-h-full overflow-auto scrollbarV">
+    <div class="flex-1 h-full mx-[90px]">
+      <DashboardLol
+        v-if="view === 'dashboard' && option === 'lol'"
+        class="w-full h-full"
+        @action="(e) => (dataOptionWait = e)"
+        :paramOptionGame="paramOptionGame"
+      ></DashboardLol>
+      <DashboardValo
+        v-if="view === 'dashboard' && option === 'valo'"
+        class="w-full h-full"
+      ></DashboardValo>
+      <DashboardOw
+        v-if="view === 'dashboard' && option === 'ow'"
+        class="w-full h-full"
+      ></DashboardOw>
+      <FriendsCalendar
+        v-if="view === 'calendar'"
+        class="w-full h-full my-auto"/>
+    
+      <MatchHistoryLol
+        v-if="view === 'history' && option === 'lol'"
+        class="w-full h-full"
+      ></MatchHistoryLol>
+      <MatchHistoryOw
+        v-if="view === 'history' && option === 'ow'"
+        class="w-full h-full"
+      ></MatchHistoryOw>
+      <MatchHistoryValo
+        v-if="view === 'history' && option === 'valo'"
+        class="w-full h-full"
+      ></MatchHistoryValo>
+      <Conceptor v-if="view === 'conceptor'" class="w-full h-full" />
+      <PersonalWallet
+        v-if="view === 'wallet'"
+        class="w-full h-full"
+        @action="changeView"
+      ></PersonalWallet>
+      <PersonalOperator
+        v-if="view === 'operator'"
+        class="w-full h-full"
+      ></PersonalOperator>
+      <PersonalWalletBallance
+        v-if="view === 'walletBallance'"
+        class="w-full h-full"
+        @action="changeView"
+      ></PersonalWalletBallance>
+      <PersonalWalletInventory
+        v-if="view === 'walletInventory'"
+        class="w-full h-full"
+        @action="changeView"
+      ></PersonalWalletInventory>
+      <PersonalWalletTransaction
+        v-if="view === 'walletTransaction'"
+        class="w-full h-full"
+        @action="changeView"
+      ></PersonalWalletTransaction>
     </div>
+    <CreateCalendarEvent
+      @isOpenModal="closeModal"
+      :isOpenModal="isOpenModal"
+      :data="data"
+    />
+  </div>
 </template>
 
 <script>
-//TODO: pensé a faire un systeme de sauvegarde du lieu de navigation
-// passé en query le lieu pour si on recharge et que les variable de navigation sont vide
-// la recup dans lURL si rien mettre a la page de garde
-
 //component
 import PersonalCalendar from "@modules/personal/views/PersonalCalendar.vue";
-import PersonalSpacePage from "@modules/personal/views/PersonalSpacePage.vue";
+import FriendsCalendar from "@modules/friends/views/FriendsCalendar.vue";
+import Conceptor from "@modules/tools/conceptor/Conceptor.vue";
 import CreateCalendarEvent from "@core/components/modal/CreateCalendarEvent.vue";
 import DashboardLol from "@modules/personal/views/DashboardLol.vue";
 import DashboardValo from "@modules/personal/views/DashboardValo.vue";
@@ -211,54 +81,25 @@ import PersonalWalletBallance from "@modules/personal/views/PersonalWalletBallan
 import PersonalWalletInventory from "@modules/personal/views/PersonalWalletInventory.vue";
 import PersonalWalletTransaction from "@modules/personal/views/PersonalWalletTransaction.vue";
 
-import LolOptionDashboard from "@core/components/layout/LolOptionDashboard.vue";
-import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
 import PersonalWallet from "./PersonalWallet.vue";
 //tool
 import useStoreAuth from "@stores/auth";
 //assets
-import Dashboard from "@assets/icons/Dashboard.vue";
-import Tree from "@assets/icons/Tree.vue";
-import Calendar from "@assets/icons/Calendar.vue";
-import MatchHistory from "@assets/icons/MatchHistory.vue";
-import Cloud from "@assets/icons/Cloud.vue";
-import Notification from "@assets/icons/Notification.vue";
-import Wallet from "@assets/icons/Wallet.vue";
-import ChampionPass from "@assets/icons/ChampionPass.vue";
-import LeagueOfLegend from "@assets/icons/LeagueOfLegend.vue";
-import Overwatch from "@assets/icons/Overwatch.vue";
-import Valorant from "@assets/icons/Valorant.vue";
-import ImgFormated from "@core/components/img/ImgFormated.vue";
-import Operator from "@core/assets/icons/Operator.vue";
 import PersonalOperator from "../../operator/EventOperator.vue";
 
 export default {
   components: {
     PersonalCalendar,
-    PersonalSpacePage,
     CreateCalendarEvent,
     DashboardLol,
     DashboardValo,
+    Conceptor,
     DashboardOw,
+    FriendsCalendar,
     MatchHistoryLol,
     MatchHistoryOw,
     MatchHistoryValo,
-    LolOptionDashboard,
-    ToolsButtonNav,
-    Dashboard,
-    Tree,
-    Calendar,
-    MatchHistory,
-    Cloud,
-    Notification,
-    Wallet,
-    ChampionPass,
-    LeagueOfLegend,
-    Overwatch,
-    Valorant,
-    ImgFormated,
     PersonalWallet,
-    Operator,
     PersonalOperator,
     PersonalWalletBallance,
     PersonalWalletInventory,
@@ -302,10 +143,10 @@ export default {
       this.paramOptionGame = value;
     },
     goTo(target) {
-      this.$router.push({ name: target, params: { view: 'Events' }, });
+      this.$router.push({ name: target, params: { view: "Events" } });
     },
     changeView(value) {
-      this.view = value
+      this.view = value;
     },
     setUrl(value) {
       this.$router.replace({
@@ -328,6 +169,9 @@ export default {
     },
     view() {
       this.setUrl(this.view);
+    },
+    "$route.params.view"(newValue) {
+      this.view = newValue;
     },
   },
   mounted() {
