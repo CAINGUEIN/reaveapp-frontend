@@ -14,6 +14,7 @@ import AuthLayout from "@modules/layout/views/AuthLayout.vue";
 import ReaveLayout from "@modules/layout/views/ReaveLayout.vue";
 import WaitingLayout from "./components/page/Waiting.vue";
 import VisitorLayout from "@modules/layout/views/VisitorLayout.vue";
+import EventLayout from "@modules/layout/views/EventLayout.vue";
 export default {
   name: "App",
   components: {
@@ -21,6 +22,7 @@ export default {
     ReaveLayout,
     WaitingLayout,
     VisitorLayout,
+    EventLayout,
   },
   data() {
     const store = useStoreAuth();

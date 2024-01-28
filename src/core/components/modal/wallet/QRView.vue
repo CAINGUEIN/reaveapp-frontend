@@ -1,11 +1,5 @@
 <template>
   <div>
-    <button
-      class="absolute right-0 rounded-full px-3 z-10"
-      @click.prevent="closeModal()"
-    >
-      <h2 class="text-white">X</h2>
-    </button>
     <div class="py-8 flex flex-col">
       <h4 class="text-center">{{ event }}</h4>
       <h5 class="text-center">{{ place }}</h5>

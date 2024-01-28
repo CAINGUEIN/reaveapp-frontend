@@ -82,7 +82,8 @@ export default {
       let item = "";
       const loader = new GLTFLoader();
       loader.load(
-        "../NFT_Card_v1.glb",
+        "../../../../public/NFT_Card_v1.glb",
+
         (glb) => {
           item = glb.scene;
           item.scale.set(0.35, 0.35, 0.35, 0.35);

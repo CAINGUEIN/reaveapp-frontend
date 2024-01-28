@@ -9,12 +9,13 @@ export default [
   },
 
   {
-    path: "/eventBuyTicket/:id",
+    path: "/:idSpace/eventBuyTicket/:id",
     name: "EventBuyTicket",
+    props: true,
     component: () =>
       import("@modules/platforms/events/EventBuyTicket.vue"),
     meta: {
-      layout: "none",
+      layout: "Event",
       permission: "log"
     },
   },

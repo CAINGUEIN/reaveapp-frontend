@@ -46,6 +46,7 @@ module.exports = {
         Purple: "#7500BD",
         Silver: "#505050",
         Platinium: "#404040",
+        Frog: "#00D44E"
       },
       fontSize: {
         H1: "64px",

@@ -1,29 +1,5 @@
 <template>
-  <div v-if="!loading" class="overflow-y-auto max-w-screen h-screen scrollbarV">
-    <div class="flex w-full px-[30px] mt-8 flex-row justify-between">
-      <span class="text-white flex items-center font-black uppercase text-xl">
-        <SvgTarget
-          target="Events"
-          :height="20"
-          :width="20"
-          class="mr-2"
-        ></SvgTarget>
-        <SvgTarget
-          target="Arrow"
-          :height="12"
-          :width="24"
-          class="mx-2"
-        ></SvgTarget>
-        <img
-          v-if="infoSpace.picture"
-          :src="infoSpace.picture"
-          class="w-6 h-6 ml-2 mr-4 rounded-full"
-          alt=""
-        />
-        {{ infoSpace.nameSpace }}
-      </span>
-      <XButton40 @click="goBack" class="relative"></XButton40>
-    </div>
+  <div v-if="!loading" class="max-w-screen h-full scrollbarV">
     <div class="px-48">
       <!-- An attempt to a responsive page -->
       <div class="flex flex-row justify-center mt-8">
@@ -53,18 +29,18 @@
                   </div>
                 </div>
                 <button
-                  class="text-black rounded-full h-[2.1vw] mt-[0.83vw] w-[10vw] bg-white flex"
+                  class="text-black rounded-full h-[1.7vw] mt-[0.6vw] w-[8vw] bg-white flex"
                   @click="goTo()"
                 >
                   <div class="flex items-center m-auto">
                     <SvgTarget
                       :target="'Tickets'"
                       color1="#000"
-                      :width="24"
-                      :height="24"
+                      :height="(1 * windowWidth) / 100"
+                      :width="(1 * windowWidth) / 100"
                       class="mr-[0.41vw]"
                     ></SvgTarget>
-                    <h4 class="text-black text-[0.83vw] font-black">
+                    <h4 class="text-black text-[0.7vw] font-black">
                       Buy Tickets
                     </h4>
                   </div>
@@ -76,8 +52,8 @@
                       <SvgTarget
                         :target="'Calendar'"
                         class="my-auto"
-                        :width="20"
-                        :height="20"
+                        :height="windowWidth / 100"
+                        :width="windowWidth / 100"
                       />
                       <p class="text-[0.83vw] font-medium my-auto pl-2">
                         Dates
@@ -95,8 +71,8 @@
                       <SvgTarget
                         :target="'Maps'"
                         class="my-auto"
-                        :width="20"
-                        :height="20"
+                        :height="windowWidth / 100"
+                        :width="windowWidth / 100"
                       />
                       <p class="text-[0.83vw] font-medium my-auto pl-2">
                         Location
@@ -123,8 +99,8 @@
                       <SvgTarget
                         :target="'Calendar'"
                         class="my-auto"
-                        :width="20"
-                        :height="20"
+                        :height="windowWidth / 100"
+                        :width="windowWidth / 100"
                       />
                       <p class="text-[0.83vw] font-medium my-auto pl-2">
                         Booking Time Left
@@ -139,8 +115,8 @@
                       <SvgTarget
                         :target="'Bootcamps'"
                         class="my-auto"
-                        :width="20"
-                        :height="20"
+                        :height="windowWidth / 100"
+                        :width="windowWidth / 100"
                       />
                       <p class="text-[0.83vw] font-medium my-auto pl-2">
                         Remaining Seats
@@ -157,7 +133,7 @@
 
           <div class="flex flex[0.01]">
             <div v-for="item in nav" :key="item" class="flex">
-              <Button40Slot class="my-[0.41vw] mr-[0.41vw]">
+              <Button40Slot class="mr-[0.41vw]">
                 <SvgTarget
                   class="m-auto flex-row"
                   :target="item.icon"
@@ -264,6 +240,7 @@
         <EventIdAbout
           v-if="select === 'About'"
           :data="infoEvent"
+          :spaceName="infoSpace.nameSpace"
         ></EventIdAbout>
         <EventIdFormat
           v-if="select === 'Format'"
@@ -289,22 +266,25 @@
 
 <script setup>
 import Button40Slot from "@components//buttons/Button40Slot.vue";
-import XButton40 from "@components/buttons/XButton40.vue";
 import EventIdAbout from "@modules/platforms/events/EventIdAbout.vue";
 import EventIdFormat from "@modules/platforms/events/EventIdFormat.vue";
 import EventIdVenue from "@modules/platforms/events/EventIdVenue.vue";
 import EventIdProducts from "@modules/platforms/events/EventIdProducts.vue";
 import EventIdPeople from "@modules/platforms/events/EventIdPeople.vue";
-import UploadServices from "@axios/services/uploadServices";
-//services
-import EventServices from "@axios/services/eventServices";
-import SvgTarget from "@components/SvgTarget.vue";
-import useStoreSpace from "@stores/storeSpace";
 
+//services
+import SvgTarget from "@components/SvgTarget.vue";
 import ImgFormated from "@components/img/ImgFormated.vue";
 import { onMounted, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
-const storeSpace = useStoreSpace();
+import { useRouter } from "vue-router";
+
+const props = defineProps({
+  dataEvent: Object,
+  dataSpace: Object,
+});
+
+const windowWidth = ref(window.innerWidth);
+const windowHeight = ref(window.innerHeight);
 let nav = ref([
   { name: "Link", icon: "Link", target: "Link" },
   { name: "Share", icon: "Share", target: "Share" },
@@ -312,80 +292,21 @@ let nav = ref([
   { name: "Save", icon: "Save", target: "Save" },
 ]);
 const loading = ref(true);
-
-let id = ref("");
-let infoEvent = ref("");
-let infoSpace = ref("");
+let infoEvent = ref(props.dataEvent);
+let infoSpace = ref(props.dataSpace);
 let select = ref("About");
 const router = useRouter();
-const route = useRoute();
-const goBack = () => {
-  router.back();
-};
 
 const goTo = () => {
   router.push({ name: "EventBuyTicket", params: { id: infoEvent.value._id } });
 };
 
-const getUrl = () => {
-  if (Object.keys(route.params).length > 0) {
-    id.value = route.params.id;
-    feedData();
-  } else {
-    goBack();
-  }
-};
-
-const ticketsRemaining = () => {
-  let totalTickets = 0;
-  for (let index = 0; index < infoEvent.value.tickets.length; index++) {
-    totalTickets = totalTickets + infoEvent.value.tickets[index].quantities;
-  }
-  return totalTickets;
-};
-
-const feedData = async () => {
-  let body = { _id: id.value };
-  let event = await EventServices.dataEvent(body);
-  if (event.data.success) {
-    infoEvent.value = event.data.data;
-    infoEvent.value.ticketsRemaining = ticketsRemaining();
-    if (infoEvent.value.posterPic) {
-      infoEvent.value.posterPic = await UploadServices.getImageFromBackend(
-        infoEvent.value.posterPic
-      );
-    }
-    await storeSpace.findSingleSpace(infoEvent.value.spaceAssociated);
-    infoSpace.value = storeSpace.dataSpace[infoEvent.value.spaceAssociated];
-
-    if (infoSpace.value.picture) {
-      infoSpace.value.picture = await UploadServices.getImageFromBackend(
-        infoSpace.value.picture
-      );
-    }
-    if (infoEvent.value.descriptionPic) {
-      infoEvent.value.descriptionPic = await UploadServices.getImageFromBackend(
-        infoEvent.value.descriptionPic
-      );
-    }
-    if (infoEvent.value.secondaryPics.length > 0) {
-      for (let i = 0; i < infoEvent.value.secondaryPics.length; i++) {
-        infoEvent.value.secondaryPics[i] =
-          await UploadServices.getImageFromBackend(
-            infoEvent.value.secondaryPics[i]
-          );
-      }
-      infoEvent.value.secondaryPics.map((picture, i) => ({
-        src: picture,
-        alt: "Image " + i,
-      }));
-    }
-  }
-};
-
 onMounted(() => {
-  getUrl();
   loading.value = false;
+  window.addEventListener("resize", () => {
+    windowWidth.value = window.innerWidth;
+    windowHeight.value = window.innerHeight;
+  });
 });
 </script>
 

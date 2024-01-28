@@ -106,7 +106,6 @@
 import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
 import SvgTarget from "@components/SvgTarget.vue";
 import { useRoute } from "vue-router";
-import { defineProps, defineEmits } from "vue";
 const route = useRoute();
 const emit = defineEmits(["logout", "close", "modalChanged"]);
 const props = defineProps({
