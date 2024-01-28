@@ -121,7 +121,7 @@
                   {{ item.ticket.category }}
                 </h3>
                 <p class="leading-6 text-base font-medium">
-                  ZoneName, Row {{ item.row }}, Seat {{ item.column }}
+                  Row {{ item.row }}, Seat {{ item.column }}
                 </p>
               </div>
             </div>

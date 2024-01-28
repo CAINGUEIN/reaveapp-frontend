@@ -2,17 +2,23 @@
   <div class="px-24 pt-8 pb-12 h-full">
     <div class="flex flex-col w-full h-full">
       <div class="flex justify-between">
-        <div>
-          <h1 :style="`color:#${dataTickets[index].ticket.color}`">{{ dataTickets[index].ticket.category }}</h1>
-          <h3>
-            {{ dataTickets[index].ticket.category }}, Row
-            {{ dataTickets[index].row }}, Seat {{ dataTickets[index].column }}
+        <div class="space-y-4">
+          <h1 :style="`color:#${dataTickets[index].ticket.color}`">
+            {{ dataTickets[index].ticket.category }}
+          </h1>
+          <h3 class="font-medium">
+            Row {{ dataTickets[index].row }}, Seat
+            {{ dataTickets[index].column }}
           </h3>
         </div>
-        <div>
+        <div class="space-y-4">
           <h2 class="text-right font-bold">{{ dataEvent.name }}</h2>
           <h3 class="flex items-center font-medium">
-            <img class="w-8 h-8 rounded-full mr-3" :src="this.dataSpace.picture" alt=""/>Organised by @{{ this.dataSpace.nameSpace }}
+            <img
+              class="w-8 h-8 rounded-full mr-3"
+              :src="this.dataSpace.picture"
+              alt=""
+            />Organised by @{{ this.dataSpace.nameSpace }}
           </h3>
         </div>
       </div>
@@ -74,7 +80,7 @@
           <div class="flex items-center mt-6 bg-DarkRock rounded-2xl px-4 py-3">
             <button
               @click="open = true"
-              class="text-black flex flex-row justify-center items-center rounded-full h-16 px-10 ml-0 w-80 bg-white"
+              class="text-black flex flex-row justify-center items-center rounded-full px-6 py-2 ml-0 bg-white"
             >
               <SvgTarget
                 :target="'QRCode'"
@@ -82,35 +88,47 @@
                 :height="24"
                 class="mr-2"
               />
-              <h4 class="text-black font-black">See QR Code</h4>
+              <h4 class="text-black font-black text-base">See QR Code</h4>
             </button>
             <div>
               <Button60Slot
-              @click="router.push({ name: 'Personal', params: { view: 'conceptor' } })"
-              :dataClass="'bg-LightRock hover:bg-Platinium'"
-                class="flex ml-6 bg-LightRock hover:bg-Platinium rounded-full"
-                ><SvgTarget :target="'conceptor'" class="m-auto" />
+                @click="
+                  router.push({
+                    name: 'Personal',
+                    params: { view: 'conceptor' },
+                  })
+                "
+                :dataClass="'bg-LightRock w-10 h-10 hover:bg-Platinium'"
+                class="flex ml-3 bg-LightRock hover:bg-Platinium rounded-full"
+                ><SvgTarget
+                  :target="'conceptor'"
+                  :width="24"
+                  :height="24"
+                  class="m-auto"
+                />
               </Button60Slot>
             </div>
             <div>
               <Button60Slot
-                :dataClass="'bg-LightRock hover:bg-Platinium'"
-                class="flex ml-6 rounded-full"
-                ><GiftTo class="m-auto"
+                :dataClass="'bg-LightRock w-10 h-10 hover:bg-Platinium'"
+                class="flex ml-3 rounded-full"
+                ><GiftTo :width="24" :height="24" class="m-auto"
               /></Button60Slot>
             </div>
 
-            <div class="flex flex-row bg-Rock ml-6 rounded-full">
+            <div class="flex flex-row bg-Rock ml-3 rounded-full">
               <Button60Slot
-                :dataClass="'bg-LightRock hover:bg-Platinium'"
+                :dataClass="'bg-LightRock w-10 h-10 hover:bg-Platinium'"
                 class="flex rounded-full"
                 ><SvgTarget class="m-auto" :target="'Preview'" />
               </Button60Slot>
-              <Button60Slot :dataClass="'bg-Rock hover:bg-LightRock'" class="flex hover:bg-Platinium rounded-full"
+              <Button60Slot
+                :dataClass="'bg-Rock w-10 h-10 hover:bg-LightRock'"
+                class="flex hover:bg-Platinium rounded-full"
                 ><svg
                   class="m-auto"
-                  width="30"
-                  height="30"
+                  width="24"
+                  height="24"
                   viewBox="0 0 26 26"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -206,7 +224,7 @@ export default {
     SvgTarget,
     GiftTo,
   },
-  props: ["dataTickets", "dataEvent", "ticketsResumeBuy","dataSpace"],
+  props: ["dataTickets", "dataEvent", "ticketsResumeBuy", "dataSpace"],
   data() {
     const router = useRouter();
     return {

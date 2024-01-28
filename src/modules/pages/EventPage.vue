@@ -240,7 +240,6 @@
         <EventIdAbout
           v-if="select === 'About'"
           :data="infoEvent"
-          :spaceName="infoSpace.nameSpace"
         ></EventIdAbout>
         <EventIdFormat
           v-if="select === 'Format'"

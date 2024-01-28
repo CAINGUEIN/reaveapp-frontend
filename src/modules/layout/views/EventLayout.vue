@@ -93,6 +93,7 @@ const close = () => {
   });
 };
 const goBack = () => {
+  boughtTicket.value = false;
   router.back();
 };
 const windowWidth = ref("");

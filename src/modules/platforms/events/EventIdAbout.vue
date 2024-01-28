@@ -54,7 +54,7 @@
               </div>
             </button>
             <p class="font-bold mt-6 text-H4 text-White">
-              {{ props.spaceName + " " + ticket.category }} Ticket
+              {{ props.name + " " + ticket.category }} Ticket
             </p>
           </div>
         </div>
@@ -70,10 +70,6 @@ import ImgFormated from "../../../core/components/img/ImgFormated.vue";
 const props = defineProps({
   data: {
     type: Object,
-    required: true,
-  },
-  spaceName: {
-    type: String,
     required: true,
   },
 });
