@@ -1,20 +1,20 @@
 <template>
   <div
     v-if="this.infoEvent && page === 'buy'"
-    class="overflow-y-auto h-screen scrollbarV pb-8"
+    class="overflow-y-hidden h-full scrollbarV pb-8"
   >
-    <div class="mx-24 mt-28 flex">
+    <div class="mx-24 mt-18 flex h-full">
       <div class="w-2/3 flex flex-col">
         <SeatMap
           :tickets="infoEvent.tickets"
           :listTicket="listTicket"
           @push="pushTicket"
           @remove="removeTicket"
-          class="aspect-2 bg-DarkRock rounded-2xl max-h-[736px] w-full flex flex-col overflow-auto scrollbarV space-y-2 p-2 h-full"
+          class="aspect-2 bg-DarkRock rounded-2xl h-[600px] w-full flex flex-col overflow-auto scrollbarV space-y-2 p-2"
         >
         </SeatMap>
         <div
-          class="p-[14px] mt-8 bg-DarkRock rounded-2xl flex justify-between items-center"
+          class="px-8 py-3.5 mt-8 bg-DarkRock rounded-2xl flex justify-between items-center"
         >
           <div name="tickets" class="flex ml-4">
             <div
@@ -27,179 +27,247 @@
                 class="h-6 w-6 rounded-full"
               ></div>
               <div class="ml-4">
-                <p class="leading-6">{{ item.category }}</p>
+                <p class="leading-6 text-base font-medium">
+                  {{ item.category }}
+                </p>
                 <div class="flex items-center">
-                  <h3 class="leading-7">{{ item.price }}€</h3>
+                  <h3 class="leading-7 text-xl">{{ item.price }}€</h3>
                 </div>
               </div>
             </div>
           </div>
           <div name="info" class="flex space-x-4 mr-4">
             <div class="mr-16">
-              <p class="leading-6">Available Tickets</p>
-              <h3 class="leading-7">{{ ticketsRemaining() }}</h3>
+              <p class="leading-6 text-base font-medium">Available seats</p>
+              <h3 class="leading-7 text-xl">{{ ticketsRemaining() }}</h3>
             </div>
             <div class="">
-              <p class="leading-6">Booking time left</p>
-              <h3 class="text-Orange leading-7">
+              <p class="leading-6 text-base font-medium">Booking time left</p>
+              <h3 class="text-Orange text-xl leading-7">
                 {{ $dayjs(infoEvent.date).fromNow() }}
               </h3>
             </div>
           </div>
         </div>
       </div>
-      <div class="pl-18 flex flex-col justify-between w-1/3">
-        <div class="flex flex-col">
-          <h1 class="mb-2 font-bold">{{ infoEvent.name }}</h1>
+      <div class="flex flex-col w-full h-full">
+        <div class="pl-18 flex flex-col justify-between h-[710px] w-full">
           <div class="flex flex-col">
-            <div class="flex items-center space-x-4 mt-6">
-              <img
-                :src="infoSpace.picture"
-                class="h-8 w-8 rounded-full bg-slate-300"
-              />
-              <p class="text-white font-medium">
-                Organised by @{{ infoSpace.nameSpace }}
-              </p>
-            </div>
-            <h4 class="mt-4 text-base font-black">
-              {{ $dayjs(infoEvent.date).format("dddd, MM.DD.YYYY  hh:mm A") }}
-            </h4>
-            <h4 class="mt-1 text-base font-black">
-              {{
-                infoEvent.venueName +
-                ", " +
-                infoEvent.adress +
-                ", " +
-                infoEvent.city +
-                ", " +
-                infoEvent.country
-              }}
-            </h4>
-          </div>
-        </div>
-        <div
-          name="backet"
-          class="h-[460px] overflow-auto scrollbarV px-2 py-4 space-y-2 border-y-2 border-Gravel my-5"
-        >
-          <div v-if="listTicket.length === 0" class="w-full h-full flex">
-            <div class="m-auto text-center">
-              <p class="text-base font-medium">Select Seats on Venue Plan.</p>
-              <p class="text-base font-medium">Tickets will appear here.</p>
+            <h1 class="mb-2 font-bold">{{ infoEvent.name }}</h1>
+            <div class="flex flex-col">
+              <div class="flex items-center space-x-4 mt-6">
+                <img
+                  :src="infoSpace.picture"
+                  class="h-8 w-8 rounded-full bg-slate-300"
+                />
+                <p class="text-white font-medium">
+                  Organised by @{{ infoSpace.nameSpace }}
+                </p>
+              </div>
+              <h4 class="mt-4 text-base font-black">
+                {{ $dayjs(infoEvent.date).format("dddd, MM.DD.YYYY  hh:mm A") }}
+              </h4>
+              <h4 class="mt-1 text-base font-black">
+                {{
+                  infoEvent.venueName +
+                  ", " +
+                  infoEvent.adress +
+                  ", " +
+                  infoEvent.city +
+                  ", " +
+                  infoEvent.country
+                }}
+              </h4>
             </div>
           </div>
           <div
-            v-else
-            v-for="(item, index) in listTicket"
-            :key="index"
-            class="flex justify-between bg-DarkRock p-3 pr-4 rounded-2xl"
+            name="backet"
+            class="flex-1 h-[400px] overflow-auto scrollbarV py-3 space-y-2 border-y-2 border-Gravel my-5"
           >
-            <div name="info" class="flex items-center">
-              <div name="img" class="w-16 h-16 rounded-2xl">
-                <ImgFormated
-                  :key="infoEvent._id"
-                  :size="'m'"
-                  :targetSpace="infoEvent._id"
-                  :type="'event'"
-                  class="absolute rounded-lg top-0 bottom-0"
-                />
-                <div
-                  class="absolute flex right-0 bottom-0 h-6 w-6 bg-white rounded-full"
-                >
-                  <SvgTarget
-                    target="Bootcamps"
-                    :width="16"
-                    :height="16"
-                    class="m-auto text-Anthracite"
-                  ></SvgTarget>
-                </div>
-              </div>
-              <div class="ml-3">
-                <h3
-                  class="leading-7 font-medium text-xl"
-                  :style="'color: #' + item.ticket.color"
-                >
-                  {{ item.ticket.category }}
-                </h3>
-                <p class="leading-6 text-base font-medium">
-                  Row {{ item.row }}, Seat {{ item.column }}
-                </p>
+            <div v-if="listTicket.length === 0" class="w-full h-full flex">
+              <div class="m-auto text-center">
+                <p class="text-base font-medium">Select Seats on Venue Plan.</p>
+                <p class="text-base font-medium">Tickets will appear here.</p>
               </div>
             </div>
-            <div name="other" class="flex flex-col items-end">
-              <div class="flex items-center">
-                <h3 class="">{{ item.ticket.price }}€</h3>
-              </div>
-              <div v-if="item.owner_id" class="flex items-center space-x-2">
-                <ImgFormated
-                  :key="item.owner_id._id"
-                  :size="'s'"
-                  :targetSpace="item.owner_id._id"
-                  :type="'avatar'"
-                  class="w-6 h-6 border-2 border-Frog rounded-full bg-Gravel"
-                />
-                <div class="flex flex-col">
-                  <p class="text-base font-black text-White">
-                    {{ item.owner_id.profileName }}
+            <div
+              v-else
+              v-for="(item, index) in listTicket"
+              :key="index"
+              class="flex justify-between bg-DarkRock p-3 pr-4 rounded-2xl"
+            >
+              <div name="info" class="flex items-center">
+                <div name="img" class="w-16 h-16 rounded-2xl">
+                  <ImgFormated
+                    :key="infoEvent._id"
+                    :size="'m'"
+                    :targetSpace="infoEvent._id"
+                    :type="'event'"
+                    class="absolute rounded-lg top-0 bottom-0"
+                  />
+                  <div
+                    class="absolute flex right-0 bottom-0 h-6 w-6 bg-white rounded-full"
+                  >
+                    <SvgTarget
+                      target="Bootcamps"
+                      :width="16"
+                      :height="16"
+                      class="m-auto text-Anthracite"
+                    ></SvgTarget>
+                  </div>
+                </div>
+                <div class="ml-3">
+                  <h3
+                    class="leading-7 font-medium text-xl"
+                    :style="'color: #' + item.ticket.color"
+                  >
+                    {{ item.ticket.category }}
+                  </h3>
+                  <p class="leading-6 text-base font-medium">
+                    Row {{ item.row }}, Seat {{ item.column }}
                   </p>
                 </div>
               </div>
-              <button v-else @click.prevent="selectUser(index)">
-                Select Ticket owner
-              </button>
+              <div name="other" class="flex flex-col items-end justify-center">
+                <div class="flex items-center">
+                  <p
+                    v-if="!RPLolSelected"
+                    class="text-xl font-black text-White"
+                  >
+                    {{ item.ticket.price }}€
+                  </p>
+                  <p v-else class="flex flex-row text-xl font-black text-White">
+                    <SvgTarget
+                      class="my-auto mr-1 text-Yellow"
+                      :target="'RPLoL'"
+                    />
+                    {{ item.ticket.price * 115 }}
+                  </p>
+                </div>
+                <div v-if="item.owner_id" class="flex items-center space-x-2">
+                  <ImgFormated
+                    :key="item.owner_id._id"
+                    :size="'s'"
+                    :targetSpace="item.owner_id._id"
+                    :type="'avatar'"
+                    class="w-6 h-6 border-2 border-Frog rounded-full bg-Gravel"
+                  />
+                  <div class="flex flex-col">
+                    <p class="text-base font-black text-White">
+                      {{ item.owner_id.profileName }}
+                    </p>
+                  </div>
+                </div>
+                <button v-else @click.prevent="selectUser(index)">
+                  Select Ticket owner
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="flex justify-between">
-          <h3 class="font-medium">Total</h3>
-          <div class="flex flex-col items-end">
-            <div class="flex items-center">
-              <p class="text-[32px] text-white font-black">
-                {{ totalTicketsCoin() }}€
+          <div class="flex justify-between">
+            <div class="flex flex-col space-y-3">
+              <h3 class="font-medium text-2xl">Total</h3>
+            </div>
+            <div class="flex flex-col items-end">
+              <div class="flex items-center">
+                <p
+                  v-if="!RPLolSelected"
+                  class="text-[24px] text-white font-black"
+                >
+                  {{ totalTicketsCoin() }}€
+                </p>
+                <p
+                  v-else
+                  class="text-[24px] flex flex-row text-white font-black"
+                >
+                  <SvgTarget
+                    class="my-auto mr-1 text-Yellow"
+                    :target="'RPLoL'"
+                  />
+                  {{ totalTicketsCoin() * 115 }}
+                </p>
+              </div>
+              <p class="font-medium">
+                {{ listTicket.length }} Seat{{
+                  listTicket.length > 1 ? "s" : ""
+                }}
               </p>
             </div>
-            <p class="font-medium">
-              {{ listTicket.length }} Seat{{ listTicket.length > 1 ? "s" : "" }}
-            </p>
           </div>
         </div>
-        <button
-          class="rounded-full py-4 px-8 mt-6 mx-auto"
-          :class="
-            listTicket.length === 0
-              ? 'text-black bg-LightGrey cursor-not-allowed'
-              : 'text-black bg-white'
-          "
-          @click.prevent="
-            totalTicketsCoin() > this.store.dataAccount.coin
-              ? ((view = 'addCoin'), (open = true))
-              : listTicket.length > 0
-              ? buyAction()
-              : ''
-          "
+        <div
+          class="flex ml-18 flex-row h-fit rounded-l-full w-fit rounded-r-full bg-DarkRock"
+          v-if="listTicket.length > 0"
         >
-          <div class="mx-auto flex justify-center">
-            <SvgTarget
-              :target="
-                totalTicketsCoin() > this.store.dataAccount.coin
-                  ? 'Credit'
-                  : 'Tickets'
-              "
-              color1="#000"
-              :width="32"
-              :height="32"
-              class="my-auto mr-2"
-            ></SvgTarget>
-            <h4 class="text-black font-black my-auto">
-              {{
-                totalTicketsCoin() > this.store.dataAccount.coin
-                  ? "Add Coins"
-                  : listTicket.length === 1
-                  ? "Buy Ticket"
-                  : "Buy Tickets"
-              }}
-            </h4>
+          <div
+            @click="RPLolSelected = false"
+            :class="[
+              !RPLolSelected
+                ? 'bg-LightRock'
+                : 'bg-DarkRock hover:bg-LightRock',
+            ]"
+            class="w-8 h-8 p-2 my-0 cursor-pointer rounded-full text-xl leading-4 m-auto text-White"
+          >
+            €
           </div>
-        </button>
+          <div
+            @click="RPLolSelected = true"
+            :class="[
+              RPLolSelected
+                ? 'bg-LightRock'
+                : 'bg-DarkRock opacity-30 hover:bg-LightRock',
+            ]"
+            class="w-8 h-8 p-1.5 rounded-full cursor-pointer text-xl text-White"
+          >
+            <SvgTarget
+              :width="20"
+              :height="20"
+              :target="'RPLoL'"
+              class="text-Yellow my-auto"
+            />
+          </div>
+        </div>
+        <div class="ml-18 w-full pr-12 flex">
+          <button
+            class="rounded-full mx-auto py-2 px-8 mt-6 w-fit"
+            v-if="listTicket.length > 0"
+            :class="
+              listTicket.length === 0
+                ? 'text-black bg-LightGrey cursor-not-allowed'
+                : 'text-black bg-white'
+            "
+            @click.prevent="
+              totalTicketsCoin() > this.store.dataAccount.coin
+                ? ((view = 'addCoin'), (open = true))
+                : listTicket.length > 0
+                ? buyAction()
+                : ''
+            "
+          >
+            <div class="mx-auto flex justify-center">
+              <SvgTarget
+                :target="
+                  totalTicketsCoin() > this.store.dataAccount.coin
+                    ? 'Credit'
+                    : 'Tickets'
+                "
+                color1="#000"
+                :width="24"
+                :height="24"
+                class="my-auto mr-2"
+              ></SvgTarget>
+              <p class="text-black font-base font-black my-auto">
+                {{
+                  totalTicketsCoin() > this.store.dataAccount.coin
+                    ? "Add Coins"
+                    : listTicket.length === 1
+                    ? "Buy Ticket"
+                    : "Buy Tickets"
+                }}
+              </p>
+            </div>
+          </button>
+        </div>
       </div>
     </div>
     <ModalClear :open="open" @action="close()">
@@ -208,7 +276,7 @@
         :data="parseInt(this.store.dataAccount.coin - totalTicketsCoin())"
         @action="close"
       ></Crediting>
-      <!-- <SelectOwner v-else @action="close"></SelectOwner> -->
+      <SelectOwner v-else @action="close"></SelectOwner>
     </ModalClear>
   </div>
   <div v-if="infoEvent && page === 'resume'" class="h-full">
@@ -226,6 +294,7 @@
 import ModalClear from "@components/modal/ModalClear.vue";
 import SeatMap from "@components/eventBuyTicket/SeatMap.vue";
 import ResumeTicketsBuy from "@components/eventBuyTicket/ResumeTicketsBuy.vue";
+import SelectOwner from "@components/modal/eventId/SelectOwner.vue";
 //services
 import ticketServices from "@axios/services/ticketServices";
 import useStoreAuth from "@stores/auth";
@@ -245,6 +314,8 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["update"]);
+
+const RPLolSelected = ref(false);
 const open = ref(false);
 const id = ref("");
 const listTicket = ref([]);

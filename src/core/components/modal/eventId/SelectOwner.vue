@@ -11,22 +11,27 @@
       class="absolute right-0 z-10"
       @click.prevent="closeModal()"
     ></XButton36>
-    <div class="pt-12 flex flex-col" v-if="etape === 1">
-      <h4 class="text-center">To whom are you gifting</h4>
-      <h4 class="text-center">this ticket?</h4>
-      <div class="mt-4">
-        <label for="search" class="text-white"
-          >ENTER USER TAG OR PROFILE NAME</label
+    <div class="pt-3 flex flex-col" v-if="etape === 1">
+      <p class="text-2xl text-White text-center font-black">
+        To whom are you gifting
+      </p>
+      <p class="text-2xl text-White text-center font-black">this ticket?</p>
+      <div class="mt-8 w-full">
+        <p
+          for="search"
+          class="text-white text-base font-black text-left w-full uppercase"
         >
-        <div class="relative text-gray-400 border-White mt-2">
+          Enter user tag or profile name
+        </p>
+        <div class="relative text-gray-400 border-White my-3">
           <SearchIcon
-            class="absolute h-5 w-5 z-10 my-1.5 ml-3"
+            class="absolute h-5 w-5 z-10 my-1.5 ml-3 text-Gravel"
             aria-hidden="true"
           />
           <!-- voir a comprendre pourquoi j'ai un ring bleu -->
           <input
             id="search"
-            class="bg-DarkRock block w-full h-8 pl-11 rounded-full text-White placeholder-Gravel ring-0 focus:ring-0 focus:outline-none border-0 focus:border-0"
+            class="bg-DarkRock font-medium placeholder:text-Gravel block w-full h-8 pl-11 rounded-full text-White placeholder-Gravel ring-0 focus:ring-0 focus:outline-none border-0 focus:border-0"
             placeholder="Search"
             type="search"
             name="search"
@@ -42,12 +47,12 @@
           >
             <div class="flex items-center">
               <ImgFormated
-              :key="friend._id"
-              :size="'l'"
-              :targetSpace="friend._id"
-              :type="'avatar'"
-              class="h-9 w-9 bg-slate-500 rounded-full"
-            />
+                :key="friend._id"
+                :size="'l'"
+                :targetSpace="friend._id"
+                :type="'avatar'"
+                class="h-9 w-9 bg-slate-500 rounded-full"
+              />
               <div class="ml-4">
                 <h4>{{ friend.userTag }}</h4>
                 <h5 class="text-Gravel">@{{ friend.profileName }}</h5>
@@ -89,8 +94,8 @@ export default {
     MenuButton,
     MenuItem,
     MenuItems,
-    ImgFormated
-},
+    ImgFormated,
+  },
   data() {
     const store = useStoreAuth();
     return {

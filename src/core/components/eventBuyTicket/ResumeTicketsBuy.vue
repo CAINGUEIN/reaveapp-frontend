@@ -188,7 +188,7 @@
           ', Seat ' +
           dataTickets[index].column
         "
-        :other="'pour le moment pas fait'"
+        :other="dataTickets[index].createdAt"
       ></QRView>
     </ModalClear>
   </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="my-14 w-[90%] max-w-[1260] mx-auto">
     <div class="my-9">
-      <h2 class="text-5xl font-medium">Drops</h2>
+      <h2 class="text-5xl font-medium">Items</h2>
       <div class="grid grid-cols-4 gap-6 mt-8">
         <div v-for="item in drops" class="h-full w-full">
           <img :src="'/img/KarmineCorp/Products/' + item.img" alt="" class="" />
