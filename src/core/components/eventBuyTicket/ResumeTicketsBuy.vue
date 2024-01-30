@@ -6,7 +6,13 @@
           <h1 :style="`color:#${dataTickets[index].ticket.color}`">
             {{ dataTickets[index].ticket.category }}
           </h1>
-          <h3 class="font-medium">
+          <h3 class="font-medium flex flex-row">
+            <SvgTarget
+              :target="'Bootcamps'"
+              :width="24"
+              :height="24"
+              class="mx-auto bg-White text-Anthracite my-auto p-2 rounded-full mr-3 w-fit"
+            />
             Row {{ dataTickets[index].row }}, Seat
             {{ dataTickets[index].column }}
           </h3>
@@ -265,7 +271,7 @@ export default {
       this.open = false;
     },
     paramWidth() {
-      return window.innerWidth / 4;
+      return window.innerWidth / 3;
     },
   },
   mounted() {

@@ -158,8 +158,8 @@
                     </p>
                   </div>
                 </div>
-                <button v-else @click.prevent="selectUser(index)">
-                  Select Ticket owner
+                <button class="py-1.5 mt-1 px-2 rounded bg-LightRock" v-else @click.prevent="selectUser(index)">
+                  <p class="text-LightGrey font-medium text-xs">Select Ticket owner</p>
                 </button>
               </div>
             </div>
@@ -256,7 +256,7 @@
                 :height="24"
                 class="my-auto mr-2"
               ></SvgTarget>
-              <p class="text-black font-base font-black my-auto">
+              <p class="text-black text-base font-black my-auto">
                 {{
                   totalTicketsCoin() > this.store.dataAccount.coin
                     ? "Add Coins"

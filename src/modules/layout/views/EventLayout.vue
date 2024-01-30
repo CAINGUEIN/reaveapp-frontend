@@ -62,7 +62,18 @@
           </span>
         </div>
       </span>
-      <XButton40 @click="close()" class="relative"></XButton40>
+      <div class="flex flex-row">
+        <div class="flex flex-row mr-8" v-if="route.name === 'EventBuyTicket' && !boughtTicket">
+          <ImgFormated :type="'avatar'" class=" w-10 h-10 mr-2 rounded-full border-2 border-Frog" />
+          <SvgTarget
+            target="AddFriends"
+            :height="24"
+            :width="24"
+            class="mx-2 p-2 bg-White cursor-pointer m-auto rounded-full text-Anthracite"
+          />
+        </div>
+        <XButton40 @click="close()" class="relative"></XButton40>
+      </div>
     </div>
 
     <router-view
@@ -83,6 +94,7 @@ import { useRoute, useRouter } from "vue-router";
 import useStoreSpace from "@stores/storeSpace";
 import UploadServices from "@axios/services/uploadServices";
 import EventServices from "@axios/services/eventServices";
+import ImgFormated from "../../../core/components/img/ImgFormated.vue";
 const storeSpace = useStoreSpace();
 const router = useRouter();
 const route = useRoute();

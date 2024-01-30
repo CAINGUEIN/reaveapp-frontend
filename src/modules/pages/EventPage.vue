@@ -9,12 +9,12 @@
         />
         <div class="flex flex-col ml-16">
           <div class="flex flex-[0.99] mt-[1.6vw] flex-col w-[24vw]">
-            <div class="text-[2.5vw] 2xl:text-5xl text-white font-bold">
+            <div class="text-5xl text-white font-bold">
               {{ infoEvent.name }}
             </div>
             <div class="flex">
               <div class="flex flex-col w-full">
-                <div class="flex gap-[0.625vw] items-center">
+                <div class="flex gap-[0.625vw] mt-5 items-center">
                   <ImgFormated
                     v-if="infoEvent"
                     :key="infoEvent.owner._id"
@@ -24,29 +24,32 @@
                     :type="'avatar'"
                     class="h-[1.6vw] w-[1.6vw] rounded-full bg-slate-300 my-[0.4vw]"
                   />
-                  <div class="text-[0.83vw] text-white font-medium">
+                  <div class="text-[0.83vw]  text-white font-medium">
                     Organised by @{{ infoSpace.nameSpace }}
                   </div>
                 </div>
                 <button
-                  class="text-black rounded-full h-[1.7vw] mt-[0.6vw] w-[8vw] bg-white flex"
+                  class="rounded-full bg-White py-2 px-8 mt-6 w-fit"
                   @click="goTo()"
                 >
-                  <div class="flex items-center m-auto">
+
+                  <div class="mx-auto flex justify-center">
                     <SvgTarget
                       :target="'Tickets'"
                       color1="#000"
-                      :height="(1 * windowWidth) / 100"
-                      :width="(1 * windowWidth) / 100"
-                      class="mr-[0.41vw]"
+                      :height="24"
+                      :width="24"
+                      class="my-auto mr-2"
                     ></SvgTarget>
-                    <h4 class="text-black text-[0.7vw] font-black">
+                    <h4 class="text-black text-base font-black my-auto">
                       Buy Tickets
                     </h4>
                   </div>
                 </button>
+                <div class="ml-18 w-full pr-12 flex">
+        </div>
 
-                <div class="grid grid-cols-2 mt-10 gap-y-12 gap-x-16">
+                <div class="grid grid-cols-2 mt-10 gap-y-12">
                   <div class="col-span-1">
                     <div class="flex flex-row">
                       <SvgTarget
@@ -97,7 +100,7 @@
                   <div class="col-span-1">
                     <div class="flex flex-row">
                       <SvgTarget
-                        :target="'Calendar'"
+                        :target="'Chronometer'"
                         class="my-auto"
                         :height="windowWidth / 100"
                         :width="windowWidth / 100"
@@ -151,7 +154,7 @@
         <div class="w-full border-b-2 border-Gravel flex justify-around">
           <div class="-mb-0.5">
             <button
-              class="border-b-2 pb-2 px-10"
+              class="border-b-2 pb-3 px-8"
               :class="
                 select === 'About'
                   ? 'border-White'
@@ -167,7 +170,7 @@
               </p>
             </button>
             <button
-              class="border-b-2 pb-2 px-10"
+              class="border-b-2 pb-3 px-8"
               :class="
                 select === 'Format'
                   ? 'border-White'
@@ -183,7 +186,7 @@
               </p>
             </button>
             <button
-              class="border-b-2 pb-2 px-10"
+              class="border-b-2 pb-3 px-8"
               :class="
                 select === 'Venue'
                   ? 'border-White'
@@ -199,7 +202,7 @@
               </p>
             </button>
             <button
-              class="border-b-2 pb-2 px-10"
+              class="border-b-2 pb-3 px-8"
               :class="
                 select === 'Products'
                   ? 'border-White'
@@ -217,7 +220,7 @@
               </p>
             </button>
             <button
-              class="border-b-2 pb-2 px-10"
+              class="border-b-2 pb-3 px-8"
               :class="
                 select === 'People'
                   ? 'border-White'
