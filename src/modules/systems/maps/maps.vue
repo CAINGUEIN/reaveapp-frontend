@@ -18,7 +18,7 @@
     </div>
     <button id="rmPosition"><Position :width="24" :height="24"/></button>
     <div id="rmSearch">
-      <img id="rmSearchIcon" src="src/core/assets/icons/vanillaSVGs/Search.svg">
+      <img id="rmSearchIcon" src="@core\components\modal\Search.vue">
       <input id="rmSearchBar" type="text" placeholder="Search">
     </div>
   </div>
