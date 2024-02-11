@@ -67,7 +67,7 @@
           </p>
           <button
             class="text-black flex flex-row rounded-full items-center h-10 px-10 mx-auto bg-white mt-9"
-            @click.prevent="open = true"
+            @click.prevent="openModal('Add')"
           >
             <CreateTicket />
             <p class="text-black pl-2.5 text-base font-black">

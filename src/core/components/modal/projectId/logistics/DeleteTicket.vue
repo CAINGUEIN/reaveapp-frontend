@@ -8,7 +8,7 @@
         class="bg-Ruby hover:bg-red-700 transition-all flex item-center rounded-full p-1.5 px-5 mx-auto"
         @click.prevent="submit()"
       >
-        <p class="text-White font-black">Delete Event</p>
+        <p class="text-White font-black">Delete Ticket</p>
       </button>
       </div>
 
