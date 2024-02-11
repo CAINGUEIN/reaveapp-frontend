@@ -134,6 +134,7 @@
               <PopoverPanel ref="bento" class="absolute right-0 z-10 mt-1">
                 <personalCard
                   @logout="$emit('logout', 'logout')"
+                  @modalChanged="handleModal"
                   @close="close"
                   :profileInfo="store.dataAccount"
                 />
@@ -275,6 +276,10 @@ export default {
     openModal() {
       this.isOpenModal = true;
       this.$emit("modal-changed", "CreateSpaceModal");
+    },
+    handleModal(value) {
+      console.log(value);
+      this.$emit("modal-changed", value);
     },
     async openSpace(target, type) {
       if (this.storeSpace.dataSpace[target]) {

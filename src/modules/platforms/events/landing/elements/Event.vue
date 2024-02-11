@@ -67,6 +67,12 @@ onMounted(() => {
 });
 
 const goTo = () => {
-  router.push({ name: "EventPage", params: { id: props.dataEvent._id } });
+  router.push({
+    name: "EventPage",
+    params: {
+      idSpace: props.dataSpace._id,
+      id: props.dataEvent._id,
+    },
+  });
 };
 </script>

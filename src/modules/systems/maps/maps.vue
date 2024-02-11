@@ -18,7 +18,7 @@
     </div>
     <button id="rmPosition"><Position :width="24" :height="24"/></button>
     <div id="rmSearch">
-      <img id="rmSearchIcon" src="src/core/assets/icons/vanillaSVGs/Search.svg">
+      <img id="rmSearchIcon" src="@core\components\modal\Search.vue">
       <input id="rmSearchBar" type="text" placeholder="Search">
     </div>
   </div>
@@ -28,7 +28,7 @@
   import "@core/assets/leaflet.css";
   //import of the services
   import EventServices from "@axios/services/eventServices";
-  import VenueServices from "@axios/services/VenueServices";
+  import VenueServices from "@axios/services/venueServices";
   //import of the icons
   import Filters from "@assets/icons/Filters.vue";
   import Events from "@assets/icons/Events.vue";

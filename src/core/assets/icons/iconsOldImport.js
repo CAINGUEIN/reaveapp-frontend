@@ -3,6 +3,7 @@ import Arrow from "./Arrow.vue";
 import Events from "./Events.vue";
 import Block from "./Block.vue";
 import Bootcamps from "./Bootcamps.vue";
+import Chronometer from "./Chronometer.vue";
 import Calendar from "./Calendar.vue";
 import Schedule from "./Schedule.vue";
 import Check from "./Check.vue";
@@ -40,8 +41,10 @@ import Profile from "./Profile.vue";
 import Settings from "./Settings.vue";
 import Switch from "./Switch.vue";
 import Picture from "./Picture.vue";
+import AddFriends from "./Events/AddFriends.vue";
 export {
   Academy,
+  AddFriends,
   Arrow,
   Events,
   MuseeFabre,
@@ -52,6 +55,7 @@ export {
   Block,
   Timer,
   Calendar,
+  Chronometer,
   RocketLeague,
   Check,
   CheckVoid,

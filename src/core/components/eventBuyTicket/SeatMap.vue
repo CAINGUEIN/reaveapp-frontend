@@ -1,17 +1,19 @@
 <template>
   <div>
-    <div v-for="typeTicket in tickets" class="m-auto">
+    <div v-for="typeTicket in tickets" :key="typeTicket" class="m-auto">
       <div
         v-if="typeTicket.type === 'Sitting'"
         class="flex justify-center gap-2"
       >
         <div
           v-for="(ligne, indexRow) in typeTicket.row"
+          :key="indexRow"
           class="flex flex-col justify-center"
         >
           <div
-          class="relative h-[35px] "
+            class="relative h-[35px]"
             v-for="(seat, indexColumn) in typeTicket.column"
+            :key="indexColumn"
             @click.prevent="
               verifySoldable(indexRow, indexColumn, typeTicket.category)
                 ? ''
@@ -20,7 +22,12 @@
           >
             <Seat
               :color1="
-                verifyTicketColor(indexRow, indexColumn, typeTicket.category, typeTicket.color)
+                verifyTicketColor(
+                  indexRow,
+                  indexColumn,
+                  typeTicket.category,
+                  typeTicket.color
+                )
               "
               :width="30"
               :height="35"
@@ -29,9 +36,6 @@
                 verifyTicketClass(indexRow, indexColumn, typeTicket.category)
               "
             ></Seat>
-            <p class="text-black text-xs bottom-1 absolute">
-              {{ indexRow + " " + indexColumn }}
-            </p>
           </div>
         </div>
       </div>
@@ -41,12 +45,15 @@
 
 <script>
 import Seat from "@assets/icons/Seat.vue";
-
 export default {
   props: ["tickets", "listTicket"],
   methods: {
     addTicket(row, column, ticket) {
-      let data = { row: row, column: column, ticket: ticket };
+      let data = {
+        row: row,
+        column: column,
+        ticket: ticket,
+      };
       if (this.listTicket.length === 0) {
         return this.$emit("push", data);
       }
@@ -63,8 +70,6 @@ export default {
       this.$emit("push", data);
     },
     verifyTicketClass(verifRow, verifColumn, verifcategory) {
-      let verifTicket = false;
-      let verifListTicket = false;
       for (let index = 0; index < this.listTicket.length; index++) {
         if (
           this.listTicket[index].row === verifRow &&
@@ -90,18 +95,16 @@ export default {
           }
         }
       }
-      return "cursor-pointer"
+      return "cursor-pointer";
     },
     verifyTicketColor(verifRow, verifColumn, verifcategory, color) {
-      let verifTicket = false;
-      let verifListTicket = false;
       for (let index = 0; index < this.listTicket.length; index++) {
         if (
           this.listTicket[index].row === verifRow &&
           this.listTicket[index].column === verifColumn &&
           this.listTicket[index].ticket.category === verifcategory
         ) {
-          return "#CD6DFB" ;
+          return "#CD6DFB";
         }
       }
       for (let index = 0; index < this.tickets.length; index++) {
@@ -145,5 +148,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

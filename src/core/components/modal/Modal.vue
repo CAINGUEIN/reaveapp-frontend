@@ -19,7 +19,7 @@
           leave-to="opacity-0"
         >
           <DialogOverlay
-            class="fixed inset-0 bg-Stone bg-opacity-60 transition-opacity"
+            class="fixed inset-0 bg-Stone backdrop-blur-sm transition-all bg-opacity-60"
           />
         </TransitionChild>
 
@@ -43,6 +43,7 @@
             :is="componentMap[props.modal]"
             @isOpenModal="emit('isOpenModal', false)"
             @deleteSpace="emit('deleteSpace')"
+            @close="emit('isOpenModal', false)"
             :spaceName="props.spaceName"
             :idSpace="props.idSpace"
           />
@@ -68,6 +69,7 @@ import CreateTeam from "./CreateTeam.vue";
 import DeleteSpace from "./space/DeleteSpace.vue";
 import CreateCategory from "./CreateCategory.vue";
 import EditProfilePictureSpace from "./space/EditProfilePictureSpace.vue";
+import Search from "./Search.vue";
 const componentMap = {
   CreateSpaceModal,
   CreateRoom,
@@ -77,6 +79,7 @@ const componentMap = {
   CreateCalendarEvent,
   EditProfilePictureSpace,
   DeleteSpace,
+  Search,
 };
 
 const emit = defineEmits(["isOpenModal", "submitSuccess", "deleteSpace"]);

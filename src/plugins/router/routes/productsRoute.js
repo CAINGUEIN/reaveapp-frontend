@@ -9,12 +9,13 @@ export default [
   },
 
   {
-    path: "/eventBuyTicket/:id",
+    path: "/:idSpace/eventBuyTicket/:id",
     name: "EventBuyTicket",
+    props: true,
     component: () =>
       import("@modules/platforms/events/EventBuyTicket.vue"),
     meta: {
-      layout: "none",
+      layout: "Event",
       permission: "log"
     },
   },
@@ -72,7 +73,7 @@ export default [
   {
     path: "/maps",
     name: "Maps",
-    component: () => import("@modules/systems/maps/Maps.vue"),
+    component: () => import("@modules/systems/maps/maps.vue"),
     meta: {
       layout: "Reave",
       permission: "log",

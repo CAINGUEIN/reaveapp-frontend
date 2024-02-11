@@ -14,7 +14,7 @@
         <div class="absolute -bottom-4 left-3">
           <ImgFormated class="rounded-full w-12 h-12" type="avatar" />
           <span
-            class="bottom-1 left-9 absolute w-4 h-4 bg-Green border-2 border-DarkRock rounded-full"
+            class="bottom-0 left-[32px] absolute w-4 h-4 bg-Green border-2 border-DarkRock rounded-full"
           ></span>
         </div>
       </div>
@@ -106,7 +106,7 @@
 import ToolsButtonNav from "@core/components/buttons/ToolsButtonNav.vue";
 import SvgTarget from "@components/SvgTarget.vue";
 import { useRoute } from "vue-router";
-import { defineProps, defineEmits } from "vue";
+import ImgFormated from "../../img/ImgFormated.vue";
 const route = useRoute();
 const emit = defineEmits(["logout", "close", "modalChanged"]);
 const props = defineProps({
@@ -141,7 +141,7 @@ const personalOptions = [
   {
     icon: "Search",
     name: "Search",
-    target: "search",
+    target: "Search",
     type: "modal",
   },
   {

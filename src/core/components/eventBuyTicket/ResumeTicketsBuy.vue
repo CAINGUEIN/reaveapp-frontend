@@ -1,26 +1,30 @@
 <template>
-  <div class="px-24 pt-24 pb-12 h-full">
-    <XButton60 @click="goBack" class="absolute right-6 top-6 z-10"> </XButton60>
-
+  <div class="px-24 pt-8 pb-12 h-full">
     <div class="flex flex-col w-full h-full">
       <div class="flex justify-between">
-        <div>
-          <h1>{{ dataTickets[index].ticket.category }} Ticket</h1>
-          <h3>
-            {{ dataTickets[index].ticket.category }}, Row
-            {{ dataTickets[index].row }}, Seat {{ dataTickets[index].column }}
+        <div class="space-y-4">
+          <h1 :style="`color:#${dataTickets[index].ticket.color}`">
+            {{ dataTickets[index].ticket.category }}
+          </h1>
+          <h3 class="font-medium flex flex-row">
+            <SvgTarget
+              :target="'Bootcamps'"
+              :width="24"
+              :height="24"
+              class="mx-auto bg-White text-Anthracite my-auto p-2 rounded-full mr-3 w-fit"
+            />
+            Row {{ dataTickets[index].row }}, Seat
+            {{ dataTickets[index].column }}
           </h3>
         </div>
-        <div>
-          <h2 class="text-right">{{ dataEvent.name }}</h2>
-          <h3 class="flex items-center">
-            <ImgFormated
-              :key="dataEvent.owner._id"
-              :size="'l'"
-              :targetSpace="dataEvent.owner._id"
-              :type="'avatar'"
-              class="h-8 w-8 rounded-full bg-slate-300 mr-4"
-            />Organised by @{{ dataEvent.owner.user_id.userTag }}
+        <div class="space-y-4">
+          <h2 class="text-right font-bold">{{ dataEvent.name }}</h2>
+          <h3 class="flex items-center font-medium">
+            <img
+              class="w-8 h-8 rounded-full mr-3"
+              :src="this.dataSpace.picture"
+              alt=""
+            />Organised by @{{ this.dataSpace.nameSpace }}
           </h3>
         </div>
       </div>
@@ -29,13 +33,16 @@
           <div
             class="absolute left-0 top-0 bottom-0 right-0 backdrop-blur-sm"
           ></div>
-          <Button60Slot @click="indexDec()" class="flex m-auto"
+          <Button60Slot
+            @click="indexDec()"
+            class="flex m-auto"
+            v-if="dataTickets.length > 1"
             ><ArrowLeftIcon class="h-10 w-10 m-auto"></ArrowLeftIcon
           ></Button60Slot>
         </div>
         <div class="relative flex-1 overflow-auto">
           <div
-            class="relative w-full flex gap-6 snap-x snap-mandatory overflow-x-auto pb-14 scroll-snap-container scrollbar"
+            class="relative w-full flex gap-6 snap-x snap-mandatory overflow-x-auto scroll-snap-container scrollbar"
             :style="{ 'scroll-behavior': 'smooth' }"
           >
             <div
@@ -43,13 +50,14 @@
             ></div>
             <div
               v-for="(item, index) in dataTickets"
+              :key="index"
               class="snap-always snap-center shrink-0 first:pl-8 last:pr-8"
             >
               <View3D
                 :data="index"
                 :color="dataTickets[index].ticket.color"
                 :w="paramWidth()"
-                :h="paramWidth() * 1.15"
+                :h="paramWidth()"
                 class="scroll-snap-item shrink-0 object-cover"
               ></View3D>
             </div>
@@ -62,7 +70,10 @@
           <div
             class="absolute left-0 top-0 bottom-0 right-0 backdrop-blur-sm"
           ></div>
-          <Button60Slot @click="indexInc()" class="flex m-auto"
+          <Button60Slot
+            @click="indexInc()"
+            class="flex m-auto"
+            v-if="dataTickets.length > 1"
             ><ArrowRightIcon class="h-10 w-10 m-auto"></ArrowRightIcon
           ></Button60Slot>
         </div>
@@ -70,31 +81,91 @@
       <div>
         <div
           v-if="!dataTickets[index].owner_id"
-          class="flex flex-col justify-around items-center"
+          class="flex flex-col mb-16 justify-around items-center"
         >
-          <div class="flex items-center">
-            <Checkmark class="mx-auto"></Checkmark>
-            <h2 class="ml-4">Tickets Acquired</h2>
-          </div>
-          <div class="flex items-center mt-6">
+          <div class="flex items-center mt-6 bg-DarkRock rounded-2xl px-4 py-3">
             <button
               @click="open = true"
-              class="text-black rounded-full h-16 px-10 ml-0 w-80 bg-white"
+              class="text-black flex flex-row justify-center items-center rounded-full px-6 py-2 ml-0 bg-white"
             >
-              <h4 class="text-black">See QR Code</h4>
+              <SvgTarget
+                :target="'QRCode'"
+                :width="24"
+                :height="24"
+                class="mr-2"
+              />
+              <h4 class="text-black font-black text-base">See QR Code</h4>
             </button>
-            <router-link
-              :to="{
-                name: 'event',
-                params: { id: dataEvent._id },
-                query: { view: 'event' },
-              }"
-            >
-              class="text-black rounded-full h-16 px-10 ml-0 w-80 bg-white"
-              <Button60Slot class="flex ml-6"
-                ><Wallet class="m-auto"></Wallet
-              ></Button60Slot>
-            </router-link>
+            <div>
+              <Button60Slot
+                @click="
+                  router.push({
+                    name: 'Personal',
+                    params: { view: 'conceptor' },
+                  })
+                "
+                :dataClass="'bg-LightRock w-10 h-10 hover:bg-Platinium'"
+                class="flex ml-3 bg-LightRock hover:bg-Platinium rounded-full"
+                ><SvgTarget
+                  :target="'conceptor'"
+                  :width="24"
+                  :height="24"
+                  class="m-auto"
+                />
+              </Button60Slot>
+            </div>
+            <div>
+              <Button60Slot
+                :dataClass="'bg-LightRock w-10 h-10 hover:bg-Platinium'"
+                class="flex ml-3 rounded-full"
+                ><GiftTo :width="24" :height="24" class="m-auto"
+              /></Button60Slot>
+            </div>
+
+            <div class="flex flex-row bg-Rock ml-3 rounded-full">
+              <Button60Slot
+                :dataClass="'bg-LightRock w-10 h-10 hover:bg-Platinium'"
+                class="flex rounded-full"
+                ><SvgTarget class="m-auto" :target="'Preview'" />
+              </Button60Slot>
+              <Button60Slot
+                :dataClass="'bg-Rock w-10 h-10 hover:bg-LightRock'"
+                class="flex hover:bg-Platinium rounded-full"
+                ><svg
+                  class="m-auto"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 26 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16.0605 12.8757C16.0605 13.7992 15.7375 14.6849 15.1626 15.3379C14.5878 15.991 13.8081 16.3578 12.9951 16.3578C12.1821 16.3578 11.4024 15.991 10.8275 15.3379C10.2526 14.6849 9.92969 13.7992 9.92969 12.8757C9.92969 11.9522 10.2526 11.0665 10.8275 10.4135C11.4024 9.76042 12.1821 9.39355 12.9951 9.39355C13.8081 9.39355 14.5878 9.76042 15.1626 10.4135C15.7375 11.0665 16.0605 11.9522 16.0605 12.8757V12.8757Z"
+                    stroke="#808080"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M3.25 12.875C4.55177 8.16598 8.42541 4.75 13 4.75C17.5756 4.75 21.4482 8.16598 22.75 12.875C21.4482 17.584 17.5756 21 13 21C8.42541 21 4.55177 17.584 3.25 12.875Z"
+                    stroke="#808080"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M0 22.6274L22.6274 2.47955e-05L25.4558 2.82845L2.82843 25.4559L0 22.6274Z"
+                    fill="#212121"
+                  />
+                  <path
+                    d="M2.8877 22.5659L22.5637 2.8899"
+                    stroke="#808080"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </Button60Slot>
+            </div>
           </div>
         </div>
         <div class="mb-24" v-else>
@@ -123,7 +194,7 @@
           ', Seat ' +
           dataTickets[index].column
         "
-        :other="'pour le moment pas fait'"
+        :other="dataTickets[index].createdAt"
       ></QRView>
     </ModalClear>
   </div>
@@ -140,6 +211,9 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/vue/outline";
 import QRView from "@components/modal/wallet/QRView.vue";
 import ImgFormated from "../img/ImgFormated.vue";
 import router from "../../../plugins/router";
+import { useRouter } from "vue-router";
+import SvgTarget from "../SvgTarget.vue";
+import GiftTo from "../../assets/icons/Wallet/GiftTo.vue";
 export default {
   components: {
     Button60Slot,
@@ -153,11 +227,15 @@ export default {
     QRView,
     ImgFormated,
     router,
+    SvgTarget,
+    GiftTo,
   },
-  props: ["dataTickets", "dataEvent", "ticketsResumeBuy"],
+  props: ["dataTickets", "dataEvent", "ticketsResumeBuy", "dataSpace"],
   data() {
+    const router = useRouter();
     return {
       index: 0,
+      router,
       open: false,
     };
   },
@@ -193,7 +271,7 @@ export default {
       this.open = false;
     },
     paramWidth() {
-      return window.innerWidth / 4;
+      return window.innerWidth / 3;
     },
   },
   mounted() {

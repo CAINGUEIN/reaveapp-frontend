@@ -32,7 +32,7 @@
               class="relative inline-block align-bottom p-6 bg-Anthracite rounded-2xl text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-modal"
               :class="width === 728 ? 'sm:max-w-[728px]' : 'sm:max-w-lg'"
             >
-              <Closebutton
+              <CloseButton
                 @closeModal="closeModal"
                 :width="12"
                 :height="12"
@@ -56,7 +56,7 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import Closebutton from "../buttons/closebutton.vue";
+import CloseButton from "../buttons/CloseButton.vue";
 
 export default {
   components: {
@@ -64,7 +64,7 @@ export default {
     DialogPanel,
     TransitionChild,
     TransitionRoot,
-    Closebutton,
+    CloseButton,
   },
   props: ["open", "action", "width"],
   methods: {

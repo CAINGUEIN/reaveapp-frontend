@@ -21,7 +21,7 @@
           :name="data.name"
           :id="data.name"
           maxlength="5"
-          :placeholder="data.placeholder ? data.placeholder : data.label"
+          :placeholder="data.placeholder+'€' ? data.placeholder  : data.label+'€' "
           :autocomplete="data.name"
           class="max-w-full min-w-auto font-black text-H2 pr-0 text-White bg-DarkRock border-DarkRock leading-none focus:ring-0 focus:border-DarkRock focus:outline-none"
           :class="data.class"
@@ -35,7 +35,6 @@
           :class="modelValue.length === 0 ? ' text-gray-500' : 'text-White'"
           class="font-black text-H2 my-auto"
         >
-          €
         </span>
       </div>
 

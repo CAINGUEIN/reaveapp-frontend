@@ -13,8 +13,8 @@
               <SvgTarget
                 target="Bootcamps"
                 :width="24"
-                color1="#000"
-                class="mx-auto my-auto"
+                :height="24"
+                class="mx-auto my-auto text-Anthracite"
               ></SvgTarget>
             </div>
             Row
@@ -122,7 +122,7 @@
           ', Seat ' +
           infoTicket.column
         "
-        :other="'pour le moment pas fait'"
+        :date="infoTicket.createdAt"
       ></QRView>
       <img
         class=""

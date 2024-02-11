@@ -28,7 +28,7 @@ export default {
       let scene = new THREE.Scene();
       scene.background = new THREE.Color("#111111");
       let camera = new THREE.PerspectiveCamera(65, 1, 1, 2000);
-      camera.position.set(0, 0, 100);
+      camera.position.set(0, 0, 115);
       scene.add(camera);
 
       let colorRender = new THREE.Color("#"+this.color);
@@ -58,17 +58,17 @@ export default {
       light4.position.set(0, 0, -60);
       scene.add(light4);
 
-     /* //pour voir de ou vienne les source lumineuse
-     let lightHelper = new THREE.DirectionalLightHelper(light, 1);
-     scene.add(lightHelper);
-     let lightHelper2 = new THREE.DirectionalLightHelper(light2, 1);
-     scene.add(lightHelper2);
-     let lightHelper3 = new THREE.DirectionalLightHelper(light3, 1);
-     scene.add(lightHelper3);
-     let lightHelper4 = new THREE.DirectionalLightHelper(light4, 1);
-     scene.add(lightHelper4);
-     let lightHelper5 = new THREE.DirectionalLightHelper(light5, 1);
-     scene.add(lightHelper5); */
+    //  /* //pour voir de ou vienne les source lumineuse
+    //  let lightHelper = new THREE.DirectionalLightHelper(light, 1);
+    //  scene.add(lightHelper);
+    //  let lightHelper2 = new THREE.DirectionalLightHelper(light2, 1);
+    //  scene.add(lightHelper2);
+    //  let lightHelper3 = new THREE.DirectionalLightHelper(light3, 1);
+    //  scene.add(lightHelper3);
+    //  let lightHelper4 = new THREE.DirectionalLightHelper(light4, 1);
+    //  scene.add(lightHelper4);
+    //  let lightHelper5 = new THREE.DirectionalLightHelper(light5, 1);
+    //  scene.add(lightHelper5); */
 
       let renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setSize(parseFloat(this.w) , parseFloat(this.h));
@@ -82,7 +82,8 @@ export default {
       let item = "";
       const loader = new GLTFLoader();
       loader.load(
-        "../NFT_Card_v1.glb",
+        "../../../../public/NFT_Card_v1.glb",
+
         (glb) => {
           item = glb.scene;
           item.scale.set(0.35, 0.35, 0.35, 0.35);

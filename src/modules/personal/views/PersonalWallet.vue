@@ -268,6 +268,7 @@
         >
           <WalletCard
             v-for="ticket in dataTicket(20)"
+            :key="ticket"
             :data="ticket"
           ></WalletCard>
         </div>
@@ -292,7 +293,6 @@ import Debit from "@assets/icons/Wallet/Debit.vue";
 import Purshase from "@assets/icons/Wallet/Purshase.vue";
 import TransferTo from "@assets/icons/Wallet/TransferTo.vue";
 import TransferFrom from "@assets/icons/Wallet/TransferFrom.vue";
-import GoldRC from "@assets/icons/Wallet/GoldRC.vue";
 import GiftFrom from "@assets/icons/Wallet/GiftFrom.vue";
 import GiftTo from "@assets/icons/Wallet/GiftTo.vue";
 import WalletCard from "@components/eventCardContent/WalletCard.vue";
@@ -302,7 +302,6 @@ import Crediting from "@components/modal/wallet/Crediting.vue";
 
 //tool
 import useStoreAuth from "@stores/auth";
-import { GiftIcon } from "@heroicons/vue/solid";
 import SvgTarget from "@components/SvgTarget.vue";
 
 export default {
@@ -312,13 +311,11 @@ export default {
     Credit,
     Debit,
     TransferTo,
-    GoldRC,
     Crediting,
     Debiting,
     TransferingTo,
     Purshase,
     TransferFrom,
-    GiftIcon,
     GiftFrom,
     GiftTo,
     SvgTarget,
