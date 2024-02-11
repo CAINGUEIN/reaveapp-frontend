@@ -56,7 +56,7 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import CloseButton from "../Buttons/CloseButton.vue";
+import CloseButton from "../buttons/CloseButton.vue";
 
 export default {
   components: {
