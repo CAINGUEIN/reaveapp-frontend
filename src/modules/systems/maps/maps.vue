@@ -28,7 +28,7 @@
   import "@core/assets/leaflet.css";
   //import of the services
   import EventServices from "@axios/services/eventServices";
-  import VenueServices from "@axios/services/VenueServices";
+  import VenueServices from "@axios/services/venueServices";
   //import of the icons
   import Filters from "@assets/icons/Filters.vue";
   import Events from "@assets/icons/Events.vue";
