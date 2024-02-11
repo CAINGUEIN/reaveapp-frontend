@@ -2,7 +2,7 @@ export default [
   {
     path: "/SpacePrivate/:id",
     name: "SpacePrivate",
-    component: () => import("@modules/space/views/space.vue"),
+    component: () => import("@modules/space/views/Space.vue"),
     meta: { layout: "Reave", permission: "log" },
     children: [
       {
