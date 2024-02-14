@@ -21,10 +21,10 @@ export default {
   methods: {
     async setSrcImg() {
       if (this.srcImg === "" || this.srcImg === undefined) {
-        if (this.type == "avatar" && localStorage.getItem("color")) {
+        if (this.type == "avatar" && localStorage.getItem("avatarColor")) {
           this.srcImg =
             "/src/core/assets/img/profilePicture/" +
-            localStorage.getItem("color") +
+            localStorage.getItem("avatarColor") +
             ".png";
         } else {
           let randomColor = Math.floor(Math.random() * 10);
@@ -33,7 +33,22 @@ export default {
             this.images[randomColor] +
             ".png";
           if (this.type == "avatar") {
-            localStorage.setItem("color", this.images[randomColor]);
+            localStorage.setItem("avatarColor", this.images[randomColor]);
+          }
+        }
+        if (this.type == "event" && localStorage.getItem("spaceColor")) {
+          this.srcImg =
+            "/src/core/assets/img/profilePicture/" +
+            localStorage.getItem("spaceColor") +
+            ".png";
+        } else {
+          let randomColor = Math.floor(Math.random() * 10);
+          this.srcImg =
+            "/src/core/assets/img/profilePicture/" +
+            this.images[randomColor] +
+            ".png";
+          if (this.type == "event") {
+            localStorage.setItem("spaceColor", this.images[randomColor]);
           }
         }
       }

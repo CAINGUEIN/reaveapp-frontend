@@ -60,7 +60,7 @@ export default {
       this.errors = {};
       let submitData = {
         name: this.name.value,
-        type: "event",
+        type: "Spectacles",
         spaceAssociated: this.spaceAssociated,
       };
       //faire le submit

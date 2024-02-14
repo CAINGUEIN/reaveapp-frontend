@@ -127,10 +127,15 @@ const getEvents = async () => {
           dataEvents.value[result.data.data[i]._id].spaceAssociated
         ];
       dataEvents.value[result.data.data[i]._id].spaceAssociated = space;
-      dataEvents.value[result.data.data[i]._id].posterPic =
-        await UploadServices.getImageFromBackend(
-          dataEvents.value[result.data.data[i]._id].posterPic
-        );
+      if (dataEvents.value[result.data.data[i]._id].posterPic) {
+        dataEvents.value[result.data.data[i]._id].posterPic =
+          await UploadServices.getImageFromBackend(
+            dataEvents.value[result.data.data[i]._id].posterPic
+          );
+      } else {
+        dataEvents.value[result.data.data[i]._id].posterPic =
+          "/img/EventsDefault.png";
+      }
     }
   }
 };

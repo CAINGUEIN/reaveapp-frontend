@@ -4,7 +4,7 @@
       <!-- An attempt to a responsive page -->
       <div class="flex flex-row justify-center mt-8">
         <img
-          :src="infoEvent.posterPic"
+          :src="infoEvent.posterPic || '/img/EventsDefault.png'"
           class="rounded-2xl min-w-[400px] max-w-full max-h-[642px] h-fit"
         />
         <div class="flex flex-col ml-16">
@@ -16,15 +16,20 @@
               <div class="flex flex-col w-full">
                 <div class="flex gap-[0.625vw] mt-5 items-center">
                   <ImgFormated
-                    v-if="infoEvent"
+                    v-if="infoEvent && infoSpace.picture"
                     :key="infoEvent.owner._id"
                     :size="'s'"
                     :src="infoSpace.picture"
                     :targetSpace="infoEvent.owner._id"
-                    :type="'avatar'"
+                    :type="'spaceProfile'"
                     class="h-[1.6vw] w-[1.6vw] rounded-full bg-slate-300 my-[0.4vw]"
                   />
-                  <div class="text-[0.83vw]  text-white font-medium">
+                  <ImgFormated
+                    v-else
+                    :type="'event'"
+                    class="h-[1.6vw] w-[1.6vw] rounded-full bg-slate-300 my-[0.4vw]"
+                  />
+                  <div class="text-[0.83vw] text-white font-medium">
                     Organised by @{{ infoSpace.nameSpace }}
                   </div>
                 </div>

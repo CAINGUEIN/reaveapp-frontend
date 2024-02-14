@@ -34,6 +34,11 @@
             class="w-6 h-6 ml-2 mr-4 rounded-full"
             alt=""
           />
+          <ImgFormated
+            v-else
+            :type="'event'"
+            class="w-6 h-6 ml-2 mr-4 rounded-full"
+          />
           <span
             v-bind:class="{
               'text-LightGrey': route.name !== 'EventPage',
@@ -63,8 +68,14 @@
         </div>
       </span>
       <div class="flex flex-row">
-        <div class="flex flex-row mr-8" v-if="route.name === 'EventBuyTicket' && !boughtTicket">
-          <ImgFormated :type="'avatar'" class=" w-10 h-10 mr-2 rounded-full border-2 border-Frog" />
+        <div
+          class="flex flex-row mr-8"
+          v-if="route.name === 'EventBuyTicket' && !boughtTicket"
+        >
+          <ImgFormated
+            :type="'avatar'"
+            class="w-10 h-10 mr-2 rounded-full border-2 border-Frog"
+          />
           <SvgTarget
             target="AddFriends"
             :height="24"

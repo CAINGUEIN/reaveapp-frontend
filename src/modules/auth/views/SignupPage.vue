@@ -181,7 +181,7 @@ export default {
         let resultDataAccount = await this.store.feedDataAccount();
         if (resultDataAccount) {
           this.errors = errorsHelpers.resetError();
-          this.$router.push({ path: "/personalMessages"});
+          this.$router.push({ name: "Events" });
           this.store.loading = false;
         }
       } else {
